@@ -30,7 +30,7 @@ If you're relatively computer savvy, it shouldn't be too hard, if not, I'm happy
 10.)For full functionality my gearswap and init files do depend on a few other addons that can be found in your launcher, I'll list them here: 
 	Addons: Shortcuts, Cancel, Itemizer.    Plugins: Timers, Run
 	
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Macros and More~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Macros and More ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [Ctrl+F8]	= Toggle auto-stun mode, will attempt to automatically stun a list of moves in your
 			Windower4\addons\GearSwap\libs\Sel-MonsterAbilities.lua file.
