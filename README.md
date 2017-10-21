@@ -94,7 +94,7 @@ If you're relatively computer savvy, it shouldn't be too hard, if not, I'm happy
 :Macro:		/console gs rh toggle
 		
 [Win+F10]	= Toggle job specific modes, different depending on jobs some examples:
-				Also sometimes Ctrl/Alt/Win + Grave/Tilde (` or ~) or even Backspace, Backslash, Delete, Dash or Equals.
+                  Also sometimes Ctrl/Alt/Win + Grave/Tilde (` or ~) or even Backspace, Backslash, Delete, Dash or Equals.
 
 :Macro:
 Thf:		/console gs c toggle AmbushMode		(Equips Ambush gear on TP and non SA/TA WS)
@@ -102,7 +102,8 @@ Blu:		/console gs c toggle LearningMode	(Locks learning gear in at all times.)
 Pld:		/console gs c toggle EquipShield	(Allows Weapon/Shield to swap with F10/F11)
 Brd:		/console gs c cycle ExtraSongsMode   (Your next song plays as a dummy song.) [Ctrl+~]
 Blm:		/console gs c cycle RecoverMode		(Nukes in converts elemental damage to MP gear)
-Blm2:		/console gs c cycle MagicBurstMode	(Single makes your next spell burst, while lock keeps it bursting until you toggle again.) [Win+~]
+Blm2:		/console gs c cycle MagicBurstMode	(Single makes your next spell burst, while lock keeps it bursting
+                                                         until you toggle again.) [Win+~]
 
 
 [F11]		= Somewhat "Lock" a Magical defense set in, only changes some gear for spells and abilities
@@ -226,10 +227,11 @@ autowstp = 1250
 [G]					= Anchor (Prevents you from being knocked back by monster TP moves.)
 [Q]					= AllSeeingEye (Allows you to see things usually invisible to players.)
 [O]					= Dressup (Prevents players from blinking with the proper setup.)
-[T]					= Zonetimer (Keeps track of the amount of time you've spent in a zone, or since you loaded the timer.)
+[T]					= Zonetimer (Keeps track of the amount of time you've spent in a zone, or since you loaded
+                                                     the timer.)
 [I]					= Gametime (Tracks days of the week and current time at the top of the screen.)
 [R]					= Treasury (Automatically lots and passes or drops certain items you set.)
-[F12]				= Gearswap (Reloads to reset all the current modes or update changes quickly.)
+[F12]				        = Gearswap (Reloads to reset all the current modes or update changes quickly.)
 
 My scripts\init.txt loads Request, which is an addon that can be used to answer player's requests, use it with the Shortcuts addon.
 It also loads a few other addons which I've written or found from other sources.
