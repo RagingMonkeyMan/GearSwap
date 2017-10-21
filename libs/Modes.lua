@@ -164,8 +164,8 @@ function M(t, ...)
         m._track._default = t or false
         m._track._description = args[1]
         -- Text lookups for bool values
-        m[true] = 'On'
-        m[false] = 'Off'
+        m[true] = 'on'
+        m[false] = 'off'
     else
         -- Construction failure
         error("Unable to construct a mode table with the provided parameters.", 2)
@@ -365,9 +365,9 @@ _meta.M.__methods['set'] = function(m, val)
             m._track._current = val
         elseif type(val) == 'string' then
             val = val:lower()
-            if val == 'On' or val == 'true' then
+            if val == 'on' or val == 'true' then
                 m._track._current = true
-            elseif val == 'Off' or val == 'false' then
+            elseif val == 'off' or val == 'false' then
                 m._track._current = false
             else
                 error("Unrecognized value: "..tostring(val), 2)
@@ -453,3 +453,5 @@ _meta.M.__methods['f_has_value'] = function(m)
         end
     end
 end
+
+
