@@ -51,12 +51,12 @@ MagicalAbility = S{"Stone III","Stone IV","Stone V","Stone VI","Stonega III","St
 				  }
 
 --List of moves to activate resist defense on.
-					
+
 ResistAbility = S{"Death","Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paralyga","Break","Breakga","Bad Breath","Sweet Breath","Torpefying Charge",
 					"Sleep","Sleepga","Sleepga II","Bindga","Torpid Glare","Danse Macabre","Stalking Prey","Hemocladis","Mayhem Lantern","Absoloute Terror",
 					"Fulmination","Chilling Roar","Maiden's Virelai","Entice","Psyche Suction","Scream","Fatal Scream","Tepal Twist","Bloom Fouette",
 					"Petalback Spin","Potted Plant","Tiiimbeeer","Level 3 Petrify","Afflicting Gaze","Beleaguerment","Besieger's Bane","Deathly Diminuendo",
-					"Enthrall","Shah Mat","Infected Illusion","Impact","Slimy Proposal","Spinning Fin",
+					"Enthrall","Shah Mat","Infected Illusion","Impact","Slimy Proposal","Spinning Fin","Nosferatu's Kiss",
 				 }
 
 AoEAbility = S{"Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paralyga","Breakga","Bad Breath","Sweet Breath","Torpefying Charge",
