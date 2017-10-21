@@ -9,7 +9,7 @@ StunAbility = 	  S{"Fulmination", "Breakga", "Death Scissors", "Hell Scissors",
 					"Smouldering Swarm", "Blackout", "Tempestuous Upheaval", "Vespine Hurricane", "Stinger Volley", "Incisive Denouement",
 					"Incisive Apotheosis", "Death", "Saurian Swamp", "Saurian Slide", "Jungle Wallop", "Velkkan Pygmachia", "Barreling Smash",
 					"Jungle Hoodoo", "Merciless Mauling", "Galumph", "Velkkan Ambush", "Rending Deluge", "Riptide Eupnea", "Sundering Snip",
-					"Impenetrable Carapace", "Viscid Spindrift", "Venom Shower", "Protolithic Puncture", "Aquatic Lance","Pelagic Cleaver", 
+					"Impenetrable Carapace", "Viscid Spindrift", "Venom Shower", "Protolithic Puncture", "Aquatic Lance","Pelagic Cleaver",
 					"Tidal Guillotine", "Mayhem Lantern", "Whirling Inferno","Tarichutoxin", "Calcifying Mist", "Testudo Tremor",
 					"Batholithic Shell", "Volcanic Stasis", "Tyrannical Blow", "Blistering Roar", "Meteor", "Kaustra", "Amnesic Blast",
 					"Cruel Joke","Seismostomp","Torpid Glare","Danse Macabre", "Gates of Hades","Just Desserts","Sakra Storm",
@@ -18,11 +18,11 @@ StunAbility = 	  S{"Fulmination", "Breakga", "Death Scissors", "Hell Scissors",
 					"??? Needles","10000 Needles","4000 Needles","Slimy Proposal","Ruthlessness","Stalking Prey","Level 3 Petrify",
 					"Chymous Reek","Crowning Flatus","Gnash 'n Guttle","Infected Illusion","Dynastic Gravitas","Fulminous Fury","Tartaric Sigil",
 				   }
-				 
+
 --"Raksha: Vengeance","Raksha: Judgment",
 
 --List of moves to activate physical defense on.
-					
+
 PhysicalAbility = S{"Ripper Fang","Chomp Rush","Scythe Tail","Cyclotail","Delta Thrust",
 					"Head Butt","Tortoise Stomp","Painful Whip","Recoil Dive","Gnash","Deathgnash","Seismic Tail","Big Scissors",
 					"Megascissors","Drill Branch","Pinecone Bomb","Predator Claws","Mountain Buster","Spinning Dive","Chaotic Strike",
@@ -35,7 +35,7 @@ PhysicalAbility = S{"Ripper Fang","Chomp Rush","Scythe Tail","Cyclotail","Delta 
 				   }
 
 --List of moves to activate magical defense on.
-					
+
 MagicalAbility = S{"Stone III","Stone IV","Stone V","Stone VI","Stonega III","Stonega IV","Stonega V","Stoneja","Quake","Quake II",
 					"Water III","Water IV","Water V","Water VI","Waterga III","Waterga IV","Waterga V","Waterja","Flood","Flood II",
 					"Fire III", "Fire IV", "Fire V", "Fire VI","Firaga III","Firaga IV","Firaga V","Firaja","Flare","Flare II",
@@ -49,14 +49,14 @@ MagicalAbility = S{"Stone III","Stone IV","Stone V","Stone VI","Stonega III","St
 					"Pain Sync","Backdraft","Radiant Breath","Chaos Breath","Dark Orb","Spectral Floe","Zero Hour","Interference","Flank Opening",
 					"Hellish Crescendo","Malign Invocation","Shadow Wreck","Stygian Cyclone",
 				  }
-					
+
 --List of moves to activate resist defense on.
 					
 ResistAbility = S{"Death","Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paralyga","Break","Breakga","Bad Breath","Sweet Breath","Torpefying Charge",
 					"Sleep","Sleepga","Sleepga II","Bindga","Torpid Glare","Danse Macabre","Stalking Prey","Hemocladis","Mayhem Lantern","Absoloute Terror",
 					"Fulmination","Chilling Roar","Maiden's Virelai","Entice","Psyche Suction","Scream","Fatal Scream","Tepal Twist","Bloom Fouette",
 					"Petalback Spin","Potted Plant","Tiiimbeeer","Level 3 Petrify","Afflicting Gaze","Beleaguerment","Besieger's Bane","Deathly Diminuendo",
-					"Enthrall","Shah Mat","Infected Illusion","Impact","Slimy Proposal",
+					"Enthrall","Shah Mat","Infected Illusion","Impact","Slimy Proposal","Spinning Fin",
 				 }
 
 AoEAbility = S{"Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paralyga","Breakga","Bad Breath","Sweet Breath","Torpefying Charge",
