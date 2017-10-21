@@ -12,21 +12,21 @@ end
 function job_setup()
 
 	state.Buff.Entrust = buffactive.Entrust or false
-	
+
     indi_timer = ''
     indi_duration = 180
 
     LowTierNukes = S{'Stone', 'Water', 'Aero', 'Fire', 'Blizzard', 'Thunder',
         'Stone II', 'Water II', 'Aero II', 'Fire II', 'Blizzard II', 'Thunder II',
-        'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}	
-		
+        'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}
+
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
-	
+
 	autows = 'Realmrazer'
 	autofood = 'Miso Ramen'
 	indispell = 'Torpor'
 	geospell = 'Frailty'
-	
+
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode"},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
 
@@ -80,7 +80,7 @@ function job_precast(spell, spellMap, eventArgs)
 				gear.default.obi_waist = gear.obi_high_nuke_waist
 			end
 		end
-		
+
         if state.CastingMode.value == 'Proc' then
             classes.CustomClass = 'Proc'
         end
@@ -109,11 +109,11 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				end
 			end
 		end
-		
+
 		if spell.element and sets.element[spell.element] then
 			equip(sets.element[spell.element])
 		end
-		
+
 		if state.RecoverMode.value == 'Always' or (state.RecoverMode.value == '60%' and player.mpp < 60) or (state.RecoverMode.value == '35%' and player.mpp < 35) then
 			if state.MagicBurstMode.value ~= 'Off' and sets.RecoverBurst then
 				equip(sets.RecoverBurst)
@@ -121,7 +121,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.RecoverMP)
 			end
 		end
-		
+
     elseif spell.skill == 'Geomancy' then
         for buff,active in pairs(state.Buff) do
             if active and sets.buff[buff] then
@@ -129,7 +129,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
             end
         end
     end
-	
+
 end
 
 function job_pet_midcast(spell, spellMap, eventArgs)
@@ -199,12 +199,12 @@ function job_get_spell_map(spell, default_spell_map)
 		else
 			return 'IntEnfeebles'
 		end
-		
+
 	elseif spell.skill == 'Geomancy' then
 		if spell.english:startswith('Indi') then
 			return 'Indi'
 		end
-	
+
     elseif spell.skill == 'Elemental Magic' then
 		if default_spell_map == 'ElementalEnfeeble' or spell.english:contains('helix') then
 			return
@@ -214,7 +214,7 @@ function job_get_spell_map(spell, default_spell_map)
             return 'HighTierNuke'
         end
 	end
-	
+
 end
 
 function job_customize_idle_set(idleSet)
@@ -230,7 +230,7 @@ function job_update(cmdParams, eventArgs)
     if player.indi then
         classes.CustomIdleGroups:append('Indi')
     end
-	
+
 end
 
 -- Function to display the current relevant user state when doing an update.
@@ -250,7 +250,7 @@ function job_self_command(commandArgs, eventArgs)
 			if state.DisplayMode.value then update_job_states()	end
 		elseif commandArgs[1]:lower() == 'elemental' then
 			handle_elemental(commandArgs)
-			eventArgs.handled = true			
+			eventArgs.handled = true
 		end
 end
 
@@ -268,7 +268,7 @@ function handle_elemental(cmdParams)
 
     if strategem == 'nuke' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
+
 		if state.ElementalMode.value == 'Fire' then
 			if spell_recasts[148] == 0 then
 				send_command('input /ma "Fire V" <t>')
@@ -281,7 +281,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[144] == 0 then
 				send_command('input /ma "Fire" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Wind' then
 			if spell_recasts[158] == 0 then
 				send_command('input /ma "Aero V" <t>')
@@ -294,7 +294,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[154] == 0 then
 				send_command('input /ma "Aero" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Lightning' then
 			if spell_recasts[168] == 0 then
 				send_command('input /ma "Thunder V" <t>')
@@ -320,7 +320,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[159] == 0 then
 				send_command('input /ma "Stone" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Ice' then
 			if spell_recasts[153] == 0 then
 				send_command('input /ma "Blizzard V" <t>')
@@ -333,7 +333,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[149] == 0 then
 				send_command('input /ma "Blizzard" <t>')
 			end
-		
+
 		elseif state.ElementalMode.value == 'Water' then
 			if spell_recasts[173] == 0 then
 				send_command('input /ma "Water V" <t>')
@@ -346,30 +346,30 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[169] == 0 then
 				send_command('input /ma "Water" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Light' then
 			add_to_chat(123,'Error: There are no light nukes.')
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There are no dark nukes.')
 		end
-		
+
 	elseif strategem == 'smallnuke' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
+
 		if state.ElementalMode.value == 'Fire' then
 			if spell_recasts[145] == 0 then
 				send_command('input /ma "Fire II" <t>')
 			elseif spell_recasts[144] == 0 then
 				send_command('input /ma "Fire" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Wind' then
 			if spell_recasts[155] == 0 then
 				send_command('input /ma "Aero II" <t>')
 			elseif spell_recasts[154] == 0 then
 				send_command('input /ma "Aero" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Lightning' then
 			if spell_recasts[165] == 0 then
 				send_command('input /ma "Thunder II" <t>')
@@ -383,21 +383,21 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[159] == 0 then
 				send_command('input /ma "Stone" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Ice' then
 			if spell_recasts[150] == 0 then
 				send_command('input /ma "Blizzard II" <t>')
 			elseif spell_recasts[149] == 0 then
 				send_command('input /ma "Blizzard" <t>')
 			end
-		
+
 		elseif state.ElementalMode.value == 'Water' then
 			if spell_recasts[170] == 0 then
 				send_command('input /ma "Water II" <t>')
 			elseif spell_recasts[169] == 0 then
 				send_command('input /ma "Water" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Light' then
 			add_to_chat(123,'Error: There are no light nukes.')
 		elseif state.ElementalMode.value == 'Dark' then
@@ -422,7 +422,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			send_command('input /ma "Bio" <t>')
 		end
-		
+
 	elseif strategem == 'tier2' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fire II" <t>')
@@ -441,7 +441,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			send_command('input /ma "Bio II" <t>')
 		end
-		
+
 	elseif strategem == 'tier3' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fire III" <t>')
@@ -460,7 +460,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark tier III.')
 		end
-		
+
 	elseif strategem == 'tier4' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fire IV" <t>')
@@ -479,7 +479,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark tier IV.')
 		end
-		
+
 	elseif strategem == 'tier5' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fire V" <t>')
@@ -498,7 +498,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark tier V.')
 		end
-		
+
 	elseif strategem == 'aga' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Firaga" <t>')
@@ -517,7 +517,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark -aja.')
 		end
-		
+
 	elseif strategem == 'aga2' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Firaga II" <t>')
@@ -536,10 +536,10 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark -aja.')
 		end
-		
+
 	elseif strategem == 'ara' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
+
 		if state.ElementalMode.value == 'Fire' then
 			if spell_recasts[865] == 0 then
 				send_command('input /ma "Fira III" <t>')
@@ -548,7 +548,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[828] == 0 then
 				send_command('input /ma "Fira" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Wind' then
 			if spell_recasts[867] == 0 then
 				send_command('input /ma "Aera III" <t>')
@@ -557,7 +557,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[832] == 0 then
 				send_command('input /ma "Aera" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Lightning' then
 			if spell_recasts[869] == 0 then
 				send_command('input /ma "Thundara III" <t>')
@@ -575,7 +575,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[834] == 0 then
 				send_command('input /ma "Stonera" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Ice' then
 			if spell_recasts[866] == 0 then
 				send_command('input /ma "Blizzara III" <t>')
@@ -584,7 +584,7 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[830] == 0 then
 				send_command('input /ma "Blizzara" <t>')
 			end
-		
+
 		elseif state.ElementalMode.value == 'Water' then
 			if spell_recasts[870] == 0 then
 				send_command('input /ma "Watera III" <t>')
@@ -593,13 +593,13 @@ function handle_elemental(cmdParams)
 			elseif spell_recasts[838] == 0 then
 				send_command('input /ma "Watera" <t>')
 			end
-			
+
 		elseif state.ElementalMode.value == 'Light' then
 			add_to_chat(123,'Error: There are no light -ara spells.')
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There are no dark -ara spells.')
 		end
-		
+
 	elseif strategem == 'ara1' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fira" <t>')
@@ -637,7 +637,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark -ara spells.')
 		end
-		
+
 	elseif strategem == 'ara3' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Fira III" <t>')
@@ -656,7 +656,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			add_to_chat(123,'Error: There is no dark -ara spells.')
 		end
-		
+
 	elseif strategem == 'helix' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Pyrohelix" <t>')
@@ -675,7 +675,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			send_command('input /ma "Noctohelix" <t>')
 		end
-	
+
 	elseif strategem == 'enfeeble' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Burn" <t>')
@@ -694,7 +694,7 @@ function handle_elemental(cmdParams)
 		elseif state.ElementalMode.value == 'Dark' then
 			send_command('input /ma "Blind" <t>')
 		end
-	
+
 	elseif strategem == 'bardsong' then
 		if state.ElementalMode.value == 'Fire' then
 			send_command('input /ma "Ice Threnody" <t>')
@@ -717,7 +717,7 @@ function handle_elemental(cmdParams)
 	--Leave out target, let shortcuts auto-determine it.
 	elseif strategem == 'weather' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
+
 		if state.ElementalMode.value == 'Fire' then
 			if player.target.index == player.index and buffactive['Firestorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
 				send_command('input /ma "Klimaform" <me>')
@@ -767,7 +767,7 @@ function handle_elemental(cmdParams)
 				send_command('input /ma "Voidstorm"')
 			end
 		end
-	
+
     else
         add_to_chat(123,'Unrecognized elemental command.')
     end
@@ -781,11 +781,11 @@ end
 function check_geo()
 	if state.AutoBuffMode.value and not moving and not areas.Cities:contains(world.area) then
 		if not player.indi then
-			windower.send_command('input /ma "Indi-'..indispell..'" <me>')
+			windower.chat.input('input /ma "Indi-'..indispell..'" <me>')
 			tickdelay = 90
-			return true 
+			return true
 		elseif not pet.isvalid then
-			windower.send_command('input /ma "Geo-'..geospell..'" <bt>')
+			windower.chat.input('input /ma "Geo-'..geospell..'" <bt>')
 			tickdelay = 90
 			return true
 		else

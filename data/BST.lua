@@ -23,28 +23,28 @@
 -- Keep in mind that any time you Change Jobs/Subjobs, your Pet/Pet Food/etc. reset to default options.
 -- F12 will list your current options.
 -------------------------------------------------------------------------------------------------------------------
- 
+
 -------------------------------------------------------------------------------------------------------------------
 -- Initialization function that defines sets and variables to be used.
 -------------------------------------------------------------------------------------------------------------------
- 
+
 -- IMPORTANT: Make sure to also get the Mote-Include.lua file (and its supplementary files) to go with this.
- 
+
 -- Initialization function for this job file.
 function get_sets()
         -- Load and initialize the include file.
         include('Sel-Include.lua')
 end
- 
+
 function job_setup()
 
 	state.Buff['Killer Instinct'] = buffactive['Killer Instinct'] or false
 	state.Buff["Unleash"] = buffactive["Unleash"] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
-		
+
 	-- 'Out of Range' distance; WS will auto-cancel
 	target_distance = 6
- 
+
 	-- Complete list of Ready moves to use with Sic & Ready Recast -5 Desultor Tassets.
 	ready_moves_to_check = S{'Sic','Whirl Claws','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
         'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang',
@@ -61,7 +61,7 @@ function job_setup()
         'Sensilla Blades','Tegmina Buffet','Molting Plumage','Swooping Frenzy','Pentapeck','Sweeping Gouge',
         'Zealous Snort','Somersault ','Tickling Tendrils','Stink Bomb','Nectarous Deluge','Nepenthic Plunge',
         'Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Sickle Slash'}
- 
+
 	tp_based_ready_moves = S{'Sic','Somersault ','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
         'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
         'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Geist Wall','Numbing Noise','Frogkick',
@@ -74,7 +74,7 @@ function job_setup()
         'Purulent Ooze','Corrosive Ooze','Tortoise Stomp','Harden Shell','Aqua Breath','Sensilla Blades',
         'Tegmina Buffet','Sweeping Gouge','Zealous Snort','Tickling Tendrils','Pecking Flurry',
         'Pestilent Plume','Foul Waters','Spider Web'}
- 
+
 	-- List of Magic-based Ready moves to use with Pet MAB or Pet M.Acc gearset.
 	magic_ready_moves = S{'Dust Cloud','Sheep Song','Scream','Dream Flower','Roar','Gloeosuccus','Palsy Pollen',
         'Soporific','Cursed Sphere','Venom','Geist Wall','Toxic Spit','Numbing Noise','Spoil','Hi-Freq Field',
@@ -83,12 +83,12 @@ function job_setup()
         'Blaster','Intimidate','Snow Cloud','Noisome Powder','TP Drainkiss','Jettatura','Charged Whisker',
         'Purulent Ooze','Corrosive Ooze','Aqua Breath','Molting Plumage','Stink Bomb','Nectarous Deluge',
         'Nepenthic Plunge','Pestilent Plume','Foul Waters','Spider Web'}
- 
+
 	-- List of abilities to reference for applying Treasure Hunter +1 via Chaac Belt.
 	abilities_to_check = S{'Feral Howl','Quickstep','Box Step','Stutter Step','Desperate Flourish','Violent Flourish',
         'Animated Flourish','Provoke','Dia','Dia II','Flash','Bio','Bio II','Sleep','Sleep II',
         'Drain','Aspir','Dispel','Steal','Mug'}
-		
+
 	ready_moves = {}
 	ready_moves.default =  {['DroopyDortwin']='Foot Kick',['PonderingPeter']='Foot Kick',['HeraldHenry']='Big Scissors',['CourierCarrie']='Big Scissors',
 							['AgedAngus']='Big Scissors',['SunburstMalfik']='Big Scissors',['WarlikePatrick']='Fireball',['ScissorlegXerin']='Sensilla Blades',
@@ -102,7 +102,7 @@ function job_setup()
 							['CursedAnnabelle']='Mandibular Bite',['SurgingStorm']='Beak Lunge',['SubmergedIyo']='Beak Lunge',
 							['SharpwitHermes']='Head Butt',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
 							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
-						   
+
 	ready_moves.aoe = 	   {['DroopyDortwin']='Whirl Claws',['PonderingPeter']='Whirl Claws',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Fireball',['ScissorlegXerin']='Tegmina Buffet',
 							['BouncingBertha']='Tegmina Buffet',['RhymingShizuna']='Sheep Song',['AttentiveIbuki']='Molting Plumage',
@@ -112,12 +112,12 @@ function job_setup()
 							['SpiderFamiliar']='Spider Web',['GussyHachirobe']='Spider Web',['ThreestarLynn']='Spiral Spin',['GenerousArthur']='Purulent Ooze',
 							['CursedAnnabelle']='Sandblast',['SharpwitHermes']='Scream',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
 							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
-							
+
 	ready_moves.buff =     {['DroopyDortwin']='Wild Carrot',['PonderingPeter']='Wild Carrot',['HeraldHenry']='Scissor Guard',['CourierCarrie']='Scissor Guard',
 							['AgedAngus']='Scissor Guard',['SunburstMalfik']='Scissor Guard',['WarlikePatrick']='Secretion',
 							['RhymingShizuna']='Rage',['AmiableRoche']='Water Wall',['HurlerPercival']='Rhino Guard',
 							['CaringKiyomaro']='Zealous Snort',['VivaciousVickie']='Zealous Snort'}
-							
+
 	ready_moves.debuff =   {['DroopyDortwin']='Dust Cloud',['PonderingPeter']='Dust Cloud',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Infrasonics',['ScissorlegXerin']='Tegmina Buffet',
 							['BouncingBertha']='Tegmina Buffet',['RhymingShizuna']='Sheep Song',['AttentiveIbuki']='Swooping Frenzy',
@@ -129,7 +129,7 @@ function job_setup()
 							['GenerousArthur']='Corrosive Ooze',['CursedAnnabelle']='Sandpit',
 							['SharpwitHermes']='Wild Oats',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
 							['MosquitoFamiliar']='Gloom Spray',['Left-HandedYoko']='Gloom Spray',}
-							
+
 	ready_moves.physical = {['DroopyDortwin']='Foot Kick',['PonderingPeter']='Foot Kick',['HeraldHenry']='Big Scissors',['CourierCarrie']='Big Scissors',
 							['AgedAngus']='Big Scissors',['SunburstMalfik']='Big Scissors',['WarlikePatrick']='Tail Blow',['ScissorlegXerin']='Sensilla Blades',
 							['BouncingBertha']='Sensilla Blades',['RhymingShizuna']='Lamb Chop',['AttentiveIbuki']='Swooping Frenzy',
@@ -141,7 +141,7 @@ function job_setup()
 							['GussyHachirobe']='Sickle Slash',['ThreestarLynn']='Spiral Spin',['GenerousArthur']='Purulent Ooze',
 							['CursedAnnabelle']='Mandibular Bite',['SurgingStorm']='Beak Lunge',['SubmergedIyo']='Beak Lunge',
 							['SharpwitHermes']='Head Butt'}
-							
+
 	ready_moves.magical =  {['DroopyDortwin']='Dust Cloud',['PonderingPeter']='Dust Cloud',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Fireball',
 							['AttentiveIbuki']='Molting Plumage',['SwoopingZhivago']='Molting Plumage',
@@ -153,7 +153,7 @@ function job_setup()
 
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Rampage','Calamity'}
- 
+
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
 	state.RewardMode = M{['description']='Reward Mode', 'Theta', 'Zeta', 'Eta'}
@@ -162,15 +162,15 @@ function job_setup()
 
 	UnleashLock = true
 	UnleashLocked = false
-	
+
 	autows = 'Cloudsplitter'
 	autofood = 'Akamochi'
- 
+
 	update_combat_form()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode"},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
 end
- 
+
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for standard casting events.
 -------------------------------------------------------------------------------------------------------------------
@@ -183,9 +183,9 @@ end
 
 function job_filter_precast(spell, spellMap, eventArgs)
     if spell.english == "Bestial Loyalty" then
-		
+
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		
+
 		if abil_recasts[94] ~= 0 then
 				send_command('@input /ja "Call Beast" <me>')
                 eventArgs.cancel = true
@@ -197,14 +197,14 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
         cancel_conflicting_buffs(spell, action, spellMap, eventArgs)
- 
+
         if spell.type == "WeaponSkill" and spell.name ~= 'Mistral Axe' and spell.name ~= 'Bora Axe' and spell.target.distance > target_distance then
                 eventArgs.cancel = true
                 add_to_chat(123, spell.name..' Canceled: [Out of Range]')
 
 		elseif spell.english == 'Reward' then
 			equip(sets.precast.JA.Reward[state.RewardMode.value])
-			
+
 			if state.PetMode.value == 'PetOnly' then
 				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
 					equip(sets.RewardAxesDW)
@@ -215,7 +215,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 		elseif spell.english == 'Spur' then
 			equip(sets.precast.JA.Spur)
-			
+
 			if state.PetMode.value == 'PetOnly' then
 				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
 					equip(sets.SpurAxesDW)
@@ -250,7 +250,7 @@ function job_precast(spell, spellMap, eventArgs)
 				else
 					equip(sets.precast.JA['Bestial Loyalty'][state.JugMode.value])
 				end
-				
+
 		elseif spell.english == 'Call Beast' then
 				equip(sets.precast.JA['Bestial Loyalty'][state.JugMode.value])
 
@@ -264,7 +264,7 @@ function job_precast(spell, spellMap, eventArgs)
                 end
         end
 end
- 
+
 function job_post_precast(spell, spellMap, eventArgs)
 
 	-- Replace Moonshade Earring if we're at cap TP
@@ -299,16 +299,16 @@ function job_post_precast(spell, spellMap, eventArgs)
 				equip(sets.DayWSEars)
 			end
 		end
-		
+
 		-- If Killer Instinct is active during WS, equip Ferine Gausape +2.
         if buffactive['Killer Instinct'] then
                 equip(sets.buff['Killer Instinct'])
         end
 	end
- 
-	
+
+
 end
- 
+
 function job_pet_midcast(spell, spellMap, eventArgs)
         if state.PetMode.value == 'PetOnly' then
                 if state.OffenseMode.value:contains('Acc') then
@@ -327,7 +327,7 @@ function job_pet_midcast(spell, spellMap, eventArgs)
                         equip(set_combine(sets.midcast.Pet.WS, sets.midcast.Pet[state.CorrelationMode.value]))
                 end
         end
- 
+
         if magic_ready_moves:contains(spell.name) then
                 if state.PetMode.value == 'PetOnly' then
                         equip(sets.midcast.Pet.MagicReadyNE)
@@ -335,7 +335,7 @@ function job_pet_midcast(spell, spellMap, eventArgs)
                         equip(sets.midcast.Pet.MagicReady)
                 end
         end
- 
+
         -- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
         if tp_based_ready_moves:contains(spell.name) and PetJob == 'Warrior' then
                 if pet.tp < 1900 then
@@ -359,17 +359,17 @@ end
 function job_pet_aftercast(spell, action, spellMap, eventArgs)
 	send_command('@wait 1;gs c showcharge')
 end
- 
+
 -- Return true if we handled the aftercast work.  Otherwise it will fall back
 -- to the general aftercast() code in Mote-Include.
 function job_aftercast(spell, spellMap, eventArgs)
 
 end
- 
+
 -------------------------------------------------------------------------------------------------------------------
 -- Customization hook for idle sets.
 -------------------------------------------------------------------------------------------------------------------
- 
+
 function job_customize_idle_set(idleSet)
 
         if  state.PetMode.value == 'PetOnly' then
@@ -387,7 +387,7 @@ function job_customize_melee_set(meleeSet)
     end
 
     return meleeSet
-end 
+end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Hooks for Reward, Correlation, Treasure Hunter, and Pet Mode handling.
@@ -429,11 +429,11 @@ function get_custom_wsmode(spell, spellMap, default_wsmode)
                 end
         end
 end
- 
+
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements self-commands.
 -------------------------------------------------------------------------------------------------------------------
- 
+
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
@@ -625,50 +625,50 @@ function job_update(cmdParams, eventArgs)
 			PetJob = 'Black Mage'
 	end
 end
- 
+
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
 function display_current_job_state(eventArgs)
     local msg = 'Melee'
-   
+
     if state.CombatForm.has_value then
         msg = msg .. ' (' .. state.CombatForm.value .. ')'
     end
-   
+
     msg = msg .. ': '
-   
+
     msg = msg .. state.OffenseMode.value
     if state.HybridMode.value ~= 'Normal' then
         msg = msg .. '/' .. state.HybridMode.value
     end
     msg = msg .. ', WS: ' .. state.WeaponskillMode.value
-   
+
     if state.DefenseMode.value ~= 'None' then
         msg = msg .. ', ' .. 'Defense: ' .. state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')'
     end
-   
+
     if state.Kiting.value then
         msg = msg .. ', Kiting'
     end
-	
+
     if state.ExtraMeleeMode.value ~= 'None' then
         msg = msg .. ', Extra: ' .. state.ExtraMeleeMode.value
     end
- 
+
     msg = msg .. ', Reward: '..state.RewardMode.value..', Correlation: '..state.CorrelationMode.value
- 
+
     if state.JugMode.value ~= 'None' then
         add_to_chat(8,'--- Jug Pet: '.. state.JugMode.value ..' --- ('.. PetInfo ..', '.. PetJob ..')')
     end
- 
+
     add_to_chat(122, msg)
- 
+
     eventArgs.handled = true
 end
- 
+
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
- 
+
 function update_combat_form()
 	if player.equipment.main and (player.sub_job == 'NIN' or player.sub_job == 'DNC') and player.equipment.sub and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or player.equipment.sub:contains('Shield')) then
 			state.CombatForm:set('DW')
@@ -680,11 +680,11 @@ end
 function update_melee_groups()
 	if player.equipment.main then
 		classes.CustomMeleeGroups:clear()
-		
+
 		if player.equipment.main == "Aymur" and state.Buff['Aftermath: Lv.3'] then
 				classes.CustomMeleeGroups:append('AM')
 		end
-	end	
+	end
 end
 
 function job_self_command(commandArgs, eventArgs)
@@ -700,15 +700,15 @@ function job_self_command(commandArgs, eventArgs)
 				UnleashLock = true
 				add_to_chat(122, "Unleash now locks gear.")
 			end
-			
+
 		elseif commandArgs[1]:lower() == 'ready' and pet.isvalid then
-	
+
 				if pet.status == "Idle" and player.target.type == "MONSTER" then
 					windower.chat.input('/pet Fight <t>')
 				else
 					handle_ready(commandArgs)
 				end
-		
+
 		end
 end
 
@@ -724,7 +724,7 @@ function check_pet()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if abil_recasts[103] == 0 and not (buffactive.amnesia or buffactive.impairment) then
 			if item_available('Pet Food '..state.RewardMode.value..'') then
-				windower.send_command('input /ja "Reward" <me>')
+				windower.chat.input('/ja "Reward" <me>')
 				tickdelay = 30
 				return true
 			else
@@ -745,7 +745,7 @@ function check_ready()
 				tickdelay = 85
 				return true
 			elseif pet.status == "Idle" and player.target.type == "MONSTER" then
-				windower.send_command('input /pet Fight <t>')
+				windower.chat.input('/pet Fight <t>')
 				tickdelay = 60
 				return true
 			else
@@ -773,16 +773,16 @@ end
 function get_current_ready_count()
     local abil_recasts = windower.ffxi.get_ability_recasts()
     local readyRecast = abil_recasts[102]
- 
+
     local maxCharges = 3
- 
+
 	local ReadyChargeTimer = get_ready_charge_timer()
- 
+
 	-- The *# is your current recharge timer.
     local fullRechargeTime = 3*ReadyChargeTimer
- 
+
     local currentCharges = math.floor(maxCharges - maxCharges * readyRecast / fullRechargeTime)
- 
+
     return currentCharges
 end
 
@@ -805,7 +805,7 @@ function handle_ready(commandArgs)
 		add_to_chat(123,'Abort: No pet charges!')
 		return
 	end
-	
+
     if not commandArgs[2] then
 		if ready_moves.default[pet.name] then
 			windower.chat.input('/pet "'..ready_moves.default[pet.name]..'" <me>')
@@ -821,7 +821,7 @@ function handle_ready(commandArgs)
         add_to_chat(123,'Abort: Unknown ready type: '..tostring(ready))
         return
     end
-	
+
     if ready_moves[ready][pet.name] then
 		windower.chat.input('/pet "'..ready_moves[ready][pet.name]..'" <me>')
 	elseif ready == 'default' then
@@ -837,7 +837,7 @@ function get_ready_charge_timer()
 	if 	player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 100 then
 		chargetimer = chargetimer - 5
 	end
-	
+
 	if state.PetMode.Value == 'PetOnly' and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
 		if sets.midcast.Pet.ReadyRecastNE.sub and sets.midcast.Pet.ReadyRecastNE.sub == "Charmer's Merlin" then
 			chargetimer = chargetimer - 5
@@ -851,5 +851,5 @@ function get_ready_charge_timer()
 		end
 	end
 
-	return chargetimer	
+	return chargetimer
 end

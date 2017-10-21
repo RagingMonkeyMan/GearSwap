@@ -18,28 +18,28 @@ function job_setup()
     petWeaponskills = S{"Slapstick", "Knockout", "Magic Mortar",
         "Chimera Ripper", "String Clipper",  "Cannibal Blade", "Bone Crusher", "String Shredder",
         "Arcuballista", "Daze", "Armor Piercer", "Armor Shatterer"}
-    
+
     -- Map automaton heads to combat roles
-		
+
 	state.PartyChatWS = M(false, 'Weaponskills in party chat')
-		
+
     -- Subset of modes that use magic
     magicPetModes = S{'Nuke','Heal','Magic'}
-    
+
     -- Var to track the current pet mode.
     state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','Tank','LightTank','Magic','Heal','Nuke'}
-	
+
 	state.AutoPuppetMode = M(false, 'Auto Puppet Mode')
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
-	
+
     update_pet_mode()
-	
+
 	autows = "Victory Smite"
 	autofood = 'Akamochi'
 	lastpettp = 0
-	
+
 	update_melee_groups()
 	init_job_states({"Capacity","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode"},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -70,7 +70,7 @@ end
 function job_pet_midcast(spell, spellMap, eventArgs)
     if petWeaponskills:contains(spell.english) then
         classes.CustomClass = "Weaponskill"
-		
+
 		if sets.midcast.Pet.WeaponSkill[spell] then
 			equip(sets.midcast.Pet.WeaponSkill[spell.english])
 		else
@@ -107,7 +107,7 @@ function job_status_change(newStatus, oldStatus, eventArgs)
 	if newStatus == "Engaged" and pet.isvalid and pet.status == "Idle" and player.target.type == "MONSTER" and state.AutoDeployMode.value and player.target.distance < 20 then
 		windower.chat.input('/pet Deploy <t>')
 	end
-	
+
 --[[
     if newStatus == 'Engaged' then
         display_pet_status()
@@ -140,7 +140,7 @@ function job_customize_passive_set(baseSet)
 			baseSet = set_combine(baseSet, sets.midcast.Pet.PetWSGear)
 		end
 	end
-	
+
 	return baseSet
 end
 -------------------------------------------------------------------------------------------------------------------
@@ -169,14 +169,14 @@ function job_tick()
 	if check_repair() then return true end
 	if check_auto_pet() then return true end
 	if check_maneuver() then return true end
-	
+
 	if state.PetWSGear.value and pet.isvalid and pet.tp and pet.tp ~= lastpettp then
 		if (pet.tp > 999 and lastpettp < 1000) or (pet.tp < 1000 and lastpettp > 999) then
 			windower.send_command('gs c update')
 		end
 		lastpettp = pet.tp
 	end
-	
+
 	return false
 end
 -------------------------------------------------------------------------------------------------------------------
@@ -237,11 +237,11 @@ end
 function display_pet_status()
     if pet.isvalid then
         local petInfoString = pet.name..' ['..pet.head..']['..pet.frame..']: '..tostring(pet.status)..'  TP='..tostring(pet.tp)..'  HP%='..tostring(pet.hpp)
-        
+
         if magicPetModes:contains(state.PetMode.value) then
             petInfoString = petInfoString..'  MP%='..tostring(pet.mpp)
         end
-        
+
         add_to_chat(122,petInfoString)
     end
 end
@@ -249,17 +249,17 @@ end
 function update_melee_groups()
 	if player.equipment.main then
 		classes.CustomMeleeGroups:clear()
-		
+
 		if player.equipment.main == "Kenkonken" and state.Buff['Aftermath: Lv.3'] then
 				classes.CustomMeleeGroups:append('AM')
 		end
-	end	
+	end
 end
 
 function check_auto_pet()
 
 	if not state.AutoPuppetMode.value or areas.Cities:contains(world.area) then return false end
-	
+
 	local abil_recasts = windower.ffxi.get_ability_recasts()
 
 	if not pet.isvalid then
@@ -273,7 +273,7 @@ function check_auto_pet()
 			tickdelay = 30
 			return true
 		end
-		
+
 	elseif pet.status == "Idle" then
 		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp == 100 and abil_recasts[208] == 0 then
 			windower.chat.input('/pet "Deactivate" <me>')
@@ -284,8 +284,8 @@ function check_auto_pet()
 			tickdelay = 30
 			return true
 		end
-	end	
-	
+	end
+
 	return false
 end
 
@@ -293,9 +293,9 @@ function check_repair()
 
 	if state.AutoRepairMode.value and pet.isvalid and pet.hpp < 45 then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-	
+
 		if abil_recasts[206] == 0 and item_available('Automat. Oil +3') then
-			windower.send_command('input /ja "Repair" <me>')
+			windower.chat.input('input /ja "Repair" <me>')
 			tickdelay = 30
 			return true
 		end
@@ -320,6 +320,6 @@ function check_maneuver()
 			return true
 		end
 	end
-	
+
 	return false
 end
