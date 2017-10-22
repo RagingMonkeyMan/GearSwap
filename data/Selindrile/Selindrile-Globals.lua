@@ -2,7 +2,7 @@
 --Extra user functions to change how gearswap functions across jobs.
 
 --Time Related Settings
---Set time_test to true to see and test time settings, change offset to change the settings.
+--Set time_test to true to see and test time settings, change offset to change the delay, requires a capacity ring with uses.
 --time_offset = -39538
 --time_test = false
 
