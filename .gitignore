@@ -1,0 +1,46 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+
+equip_processing.lua
+export.lua
+flow.lua
+gearswap.lua
+helper_functions.lua
+packet_parsing.lua
+readme.md
+refresh.lua
+statics.lua
+targets.lua
+triggers.lua
+user_functions.lua
+validate.lua
+version_history.txt
+data/User-Globals.lua
+beta_examples_and_information/Advanced sets tables.txt
+beta_examples_and_information/Byrth_BLM.lua
+beta_examples_and_information/Byrth_DNC.lua
+beta_examples_and_information/Byrth_BRD.lua
+beta_examples_and_information/Byrth_GEO.lua
+beta_examples_and_information/Byrth_MNK.lua
+beta_examples_and_information/Byrth_PLD.lua
+beta_examples_and_information/Byrth_SMN.lua
+beta_examples_and_information/Byrth_THF.lua
+beta_examples_and_information/Byrth_WAR.lua
+beta_examples_and_information/Snprphnx_SCH.lua
+beta_examples_and_information/Variables.xlsx
+data/instructions.txt
+libs/Mote-documentation.txt
+libs/Mote-Globals.lua
+libs/Mote-Include.lua
+libs/Mote-Mappings.lua
+libs/Mote-SelfCommands.lua
+libs/Mote-TreasureHunter.lua
+libs/Mote-Utility.lua
+libs/rev1/Modes.lua
+libs/rev1/Mote-documentation.txt
+libs/rev1/Mote-Globals.lua
+libs/rev1/Mote-Include.lua
+libs/rev1/Mote-Mappings.lua
+libs/rev1/Mote-SelfCommands.lua
+libs/rev1/Mote-TreasureHunter.lua
+libs/rev1/Mote-Utility.lua
