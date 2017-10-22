@@ -2,11 +2,8 @@
 --Extra user functions to change how gearswap functions across jobs.
 
 --Time Related Settings
-<<<<<<< HEAD
---Set time_test to true to see and test time settings, change offset to change the delay, requires a capacity ring with uses.
-=======
---Set time_test to true to see and test time settings, change offset to change the settings, requires a capacity ring with uses.
->>>>>>> fe7202bc5501cf8ef0b91c631f41a43d00884133
+--Set time_test to true to see and test time settings, change offset to change the settings, requires a capacity ring with uses,
+--Real cap ring delay is 834 for me with this offset.
 --time_offset = -39538
 --time_test = false
 

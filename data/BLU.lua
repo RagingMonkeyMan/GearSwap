@@ -22,7 +22,7 @@ function job_setup()
     state.Buff['Unbridled Learning'] = buffactive['Unbridled Learning'] or false
 	state.Buff['Unbridled Wisdom'] = buffactive['Unbridled Wisdom'] or false
 	
-	--List of which WS you plan to use TP bonus WS with.
+	--List of which WS you plan to use TP bonus WS equipment with.
 	moonshade_ws = S{'Chant du Cygne', 'Savage Blade','Requiescat'}
 	
 	state.LearningMode = M(false, 'Learning Mode')
