@@ -683,23 +683,23 @@ function check_trust()
 				local spell_recasts = windower.ffxi.get_spell_recasts()
 			
 				if spell_recasts[980] == 0 and not have_trust("Yoran-Oran") then
-					windower.send_command('input /ma "Yoran-Oran (UC)" <me>')
+					windower.chat.input('/ma "Yoran-Oran (UC)" <me>')
 					tickdelay = 250
 					return true
 				elseif spell_recasts[952] == 0 and not have_trust("Koru-Moru") then
-					windower.send_command('input /ma "Koru-Moru" <me>')
+					windower.chat.input('/ma "Koru-Moru" <me>')
 					tickdelay = 250
 					return true
 				elseif spell_recasts[967] == 0 and not have_trust("Qultada") then
-					windower.send_command('input /ma "Qultada" <me>')
+					windower.chat.input('/ma "Qultada" <me>')
 					tickdelay = 250
 					return true
 				elseif spell_recasts[914] == 0 and not have_trust("Ulmia") then
-					windower.send_command('input /ma "Ulmia" <me>')
+					windower.chat.input('/ma "Ulmia" <me>')
 					tickdelay = 250
 					return true
 				elseif spell_recasts[979] == 0 and not have_trust("Selh'teus") then
-					windower.send_command('input /ma "Selh\'teus" <me>')
+					windower.chat.input('/ma "Selh\'teus" <me>')
 					tickdelay = 250
 					return true
 				else
