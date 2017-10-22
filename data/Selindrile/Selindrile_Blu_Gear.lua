@@ -451,13 +451,6 @@ function init_gear_sets()
 
 	-- Engaged sets
 
-	-- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous
-	-- sets if more refined versions aren't defined.
-	-- If you create a set with both offense and defense modes, the offense mode should be first.
-	-- EG: sets.engaged.Dagger.Accuracy.Evasion
-
-	-- Caps with Magic Haste Cap, +5DW = Change Earrings, 10DW
-
 	sets.engaged = {main="Tizona", sub="Almace",ammo="Ginsen",
 			    head="Dampening Tam",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 			    body="Adhemar Jacket",hands="Adhemar Wristbands",ring1="Epona's Ring",ring2="Petrov Ring",
