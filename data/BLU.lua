@@ -42,7 +42,7 @@ function job_setup()
         'Bilgestorm'
     }
 
-    -- Spells with heavy accuracy penalties, that need to prioritize accuracy first.
+    -- Spells with heavy accuracy penalties, that need to prioritize accuracy.
     blue_magic_maps.PhysicalAcc = S{
         'Heavy Strike',
     }
