@@ -44,4 +44,6 @@ libs/rev1/Mote-Mappings.lua
 libs/rev1/Mote-SelfCommands.lua
 libs/rev1/Mote-TreasureHunter.lua
 libs/rev1/Mote-Utility.lua
-Mytha*
+*_Gear.lua
+*-Items.lua
+*-Globals.lua
