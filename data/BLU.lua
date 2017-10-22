@@ -33,7 +33,7 @@ function job_setup()
     
     -- Mappings for gear sets to use for various blue magic spells.
     -- While Str isn't listed for each, it's generally assumed as being at least
-    -- moderately signficant, even for spells with other mods.
+    -- moderately signficant, even for spells with other mods, if only for pDif.
     
     -- Physical Spells --
     
