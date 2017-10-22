@@ -45,5 +45,6 @@ libs/rev1/Mote-SelfCommands.lua
 libs/rev1/Mote-TreasureHunter.lua
 libs/rev1/Mote-Utility.lua
 *_Gear.lua
+*_Crafting.lua
 *-Items.lua
 *-Globals.lua
