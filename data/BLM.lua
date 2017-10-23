@@ -96,7 +96,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		elseif is_nuke(spell, spellMap) and spell.english ~= 'Impact' then
 			if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
 
-			if player.hpp < 75 and player.tp < 1000 and (state.CastingMode.value == 'Normal' or state.CastingMode.value == 'Fodder') then
+			if player.hpp < 75 and player.tp < 1000 and state.CastingMode.value == 'Fodder' then
 				if item_available("Sorcerer's Ring") then
 					sets.SorcRing = {ring1="Sorcerer's Ring"}
 					equip(sets.SorcRing)
