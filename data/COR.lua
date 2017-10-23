@@ -279,7 +279,7 @@ function do_bullet_checks(spell, spellMap, eventArgs)
     
     -- Low ammo warning.
     if spell.type ~= 'CorsairShot' and (available_bullets > 0) and (available_bullets <= options.ammo_warning_limit) then
-        local msg = '*****  LOW AMMO WARNING: '..bullet_name..' *****'
+        local msg = '****  LOW AMMO WARNING: '..bullet_name..' ****'
         --local border = string.repeat("*", #msg)
         local border = ""
         for i = 1, #msg do
