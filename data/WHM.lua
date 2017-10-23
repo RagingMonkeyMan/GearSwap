@@ -15,14 +15,15 @@ function job_setup()
     state.Buff['Afflatus Misery'] = buffactive['Afflatus Misery'] or false
 	state.Buff['Divine Caress'] = buffactive['Divine Caress'] or false
 	
-	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 	state.AutoCaress = M(true, 'Auto Caress Mode')
 	state.Gambanteinn = M(false, 'Gambanteinn Cursna Mode')
 	
 	autows = 'Mystic Boon'
 	autofood = 'Miso Ramen'
 	
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","CastingMode","TreasureMode",})
+	state.ElementalMode = M{['description'] = 'Elemental Mode','Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water',}
+	
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -224,4 +225,363 @@ function check_arts()
 	end
 
 	return false
+end
+
+function handle_elemental(cmdParams)
+    -- cmdParams[1] == 'elemental'
+    -- cmdParams[2] == ability to use
+
+    if not cmdParams[2] then
+        add_to_chat(123,'Error: No elemental command given.')
+        return
+    end
+    local strategem = cmdParams[2]:lower()
+
+    if strategem == 'nuke' then
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
+		if state.ElementalMode.value == 'Fire' then
+			if spell_recasts[145] == 0 then
+				send_command('input /ma "Fire II" <t>')
+			elseif spell_recasts[144] == 0 then
+				send_command('input /ma "Fire" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Wind' then
+			if spell_recasts[155] == 0 then
+				send_command('input /ma "Aero II" <t>')
+			elseif spell_recasts[154] == 0 then
+				send_command('input /ma "Aero" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Lightning' then
+			if spell_recasts[165] == 0 then
+				send_command('input /ma "Thunder II" <t>')
+			elseif spell_recasts[164] == 0 then
+				send_command('input /ma "Thunder" <t>')
+			end
+
+		elseif state.ElementalMode.value == 'Earth' then
+			if spell_recasts[160] == 0 then
+				send_command('input /ma "Stone II" <t>')
+			elseif spell_recasts[159] == 0 then
+				send_command('input /ma "Stone" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Ice' then
+			if spell_recasts[150] == 0 then
+				send_command('input /ma "Blizzard II" <t>')
+			elseif spell_recasts[149] == 0 then
+				send_command('input /ma "Blizzard" <t>')
+			end
+		
+		elseif state.ElementalMode.value == 'Water' then
+			if spell_recasts[170] == 0 then
+				send_command('input /ma "Water II" <t>')
+			elseif spell_recasts[169] == 0 then
+				send_command('input /ma "Water" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Light' then
+			if spell_recasts[22] == 0 then
+				send_command('input /ma "Holy II" <t>')
+			elseif spell_recasts[21] == 0 then
+				send_command('input /ma "Holy" <t>')
+			elseif spell_recasts[30] == 0 then
+				send_command('input /ma "Banish III" <t>')
+			elseif spell_recasts[29] == 0 then
+				send_command('input /ma "Banish II" <t>')
+			elseif spell_recasts[28] == 0 then
+				send_command('input /ma "Banish" <t>')
+			end
+
+		elseif state.ElementalMode.value == 'Dark' then
+			add_to_chat(123,'Error: There are no dark nukes.')
+		end
+		
+	elseif strategem == 'smallnuke' then
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
+		if state.ElementalMode.value == 'Fire' then
+			if spell_recasts[145] == 0 then
+				send_command('input /ma "Fire II" <t>')
+			elseif spell_recasts[144] == 0 then
+				send_command('input /ma "Fire" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Wind' then
+			if spell_recasts[155] == 0 then
+				send_command('input /ma "Aero II" <t>')
+			elseif spell_recasts[154] == 0 then
+				send_command('input /ma "Aero" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Lightning' then
+			if spell_recasts[165] == 0 then
+				send_command('input /ma "Thunder II" <t>')
+			elseif spell_recasts[164] == 0 then
+				send_command('input /ma "Thunder" <t>')
+			end
+
+		elseif state.ElementalMode.value == 'Earth' then
+			if spell_recasts[160] == 0 then
+				send_command('input /ma "Stone II" <t>')
+			elseif spell_recasts[159] == 0 then
+				send_command('input /ma "Stone" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Ice' then
+			if spell_recasts[150] == 0 then
+				send_command('input /ma "Blizzard II" <t>')
+			elseif spell_recasts[149] == 0 then
+				send_command('input /ma "Blizzard" <t>')
+			end
+		
+		elseif state.ElementalMode.value == 'Water' then
+			if spell_recasts[170] == 0 then
+				send_command('input /ma "Water II" <t>')
+			elseif spell_recasts[169] == 0 then
+				send_command('input /ma "Water" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Light' then
+			if spell_recasts[29] == 0 then
+				send_command('input /ma "Banish II" <t>')
+			elseif spell_recasts[28] == 0 then
+				send_command('input /ma "Banish" <t>')
+			end
+			
+		elseif state.ElementalMode.value == 'Dark' then
+			add_to_chat(123,'Error: There are no dark nukes.')
+		end
+
+	elseif strategem == 'tier1' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Fire" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Aero" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Thunder" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Stone" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Blizzard" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Water" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Banish" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command('input /ma "Bio" <t>')
+		end
+		
+	elseif strategem == 'tier2' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Fire II" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Aero II" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Thunder II" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Stone II" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Blizzard II" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Water II" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Banish II" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command('input /ma "Bio II" <t>')
+		end
+		
+
+	elseif strategem == 'aga' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Firaga" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Aeroga" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Thundaga" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Stonega" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Blizzaga" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Waterga" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Banishga" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			add_to_chat(123,'Error: There is no dark -aja.')
+		end
+		
+	elseif strategem == 'aga2' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Firaga II" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Aeroga II" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Thundaga II" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Stonega II" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Blizzaga II" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Waterga II" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Banishga II" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			add_to_chat(123,'Error: There is no dark -aja.')
+		end
+		
+	elseif strategem == 'helix' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Pyrohelix" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Anemohelix" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Ionohelix" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Luminohelix" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Geohelix" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Cryohelix" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Hydrohelix" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command('input /ma "Noctohelix" <t>')
+		end
+	
+	elseif strategem == 'enfeeble' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Burn" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Choke" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Shock" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Rasp" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Frost" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Drown" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Dia II" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command('input /ma "Blind" <t>')
+		end
+		
+	elseif strategem == 'spikes' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Blaze Spikes" <me>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('There are no wind spikes')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Shock Spikes" <me>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('There are no earth spikes')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Ice Spikes" <me>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('There are no water spikes')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('There are no light spikes')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command("White Mage can't cast Dread Spikes.")
+		end
+		
+	elseif strategem == 'enspell' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Enfire" <me>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Enaero" <me>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Enthunder" <me>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Enstone" <me>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Enblizzard" <me>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Enwater" <me>')
+		elseif state.ElementalMode.value == 'Light' then
+			add_to_chat(123,'Error: There is no light enspell.')
+		elseif state.ElementalMode.value == 'Dark' then
+			add_to_chat(123,'Error: There is no dark enspell.')
+		end
+	
+	elseif strategem == 'bardsong' then
+		if state.ElementalMode.value == 'Fire' then
+			send_command('input /ma "Ice Threnody" <t>')
+		elseif state.ElementalMode.value == 'Wind' then
+			send_command('input /ma "Earth Threnody" <t>')
+		elseif state.ElementalMode.value == 'Lightning' then
+			send_command('input /ma "Water Threnody" <t>')
+		elseif state.ElementalMode.value == 'Earth' then
+			send_command('input /ma "Ltng. Threnody" <t>')
+		elseif state.ElementalMode.value == 'Ice' then
+			send_command('input /ma "Wind Threnody" <t>')
+		elseif state.ElementalMode.value == 'Water' then
+			send_command('input /ma "Fire Threnody" <t>')
+		elseif state.ElementalMode.value == 'Light' then
+			send_command('input /ma "Dark Threnody" <t>')
+		elseif state.ElementalMode.value == 'Dark' then
+			send_command('input /ma "Light Threnody" <t>')
+		end
+	
+	--Leave out target, let shortcuts auto-determine it.
+	elseif strategem == 'weather' then
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
+		if state.ElementalMode.value == 'Fire' then
+			if player.target.index == player.index and buffactive['Firestorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Firestorm"')
+			end
+		elseif state.ElementalMode.value == 'Wind' then
+			if player.target.index == player.index and buffactive['Windstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Windstorm"')
+			end
+		elseif state.ElementalMode.value == 'Lightning' then
+			if player.target.index == player.index and buffactive['Thunderstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Thunderstorm"')
+			end
+		elseif state.ElementalMode.value == 'Light' then
+			if player.target.index == player.index and buffactive['Aurorastorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Aurorastorm"')
+			end
+		elseif state.ElementalMode.value == 'Earth' then
+			if player.target.index == player.index and buffactive['Sandstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Sandstorm"')
+			end
+		elseif state.ElementalMode.value == 'Ice' then
+			if player.target.index == player.index and buffactive['Hailstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Hailstorm"')
+			end
+		elseif state.ElementalMode.value == 'Water' then
+			if player.target.index == player.index and buffactive['Rainstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Rainstorm"')
+			end
+		elseif state.ElementalMode.value == 'Dark' then
+			if player.target.index == player.index and buffactive['Voidstorm'] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+				send_command('input /ma "Klimaform" <me>')
+			else
+				send_command('input /ma "Voidstorm"')
+			end
+		end
+	
+    else
+        add_to_chat(123,'Unrecognized elemental command.')
+    end
 end

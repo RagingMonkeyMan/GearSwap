@@ -376,7 +376,12 @@ function handle_elemental(cmdParams)
 			end
 			
 		elseif state.ElementalMode.value == 'Light' then
-			add_to_chat(123,'Error: There are no light nukes.')
+			if spell_recasts[29] == 0 then
+				send_command('input /ma "Banish II" <t>')
+			elseif spell_recasts[28] == 0 then
+				send_command('input /ma "Banish" <t>')
+			end
+
 		elseif state.ElementalMode.value == 'Dark' then
 			if spell_recasts[219] == 0 then
 				send_command('input /ma "Comet" <t>')

@@ -12,7 +12,6 @@ function user_setup()
     send_command('bind !` input /ja "Release" <me>')
 	send_command('bind @` gs c cycle MagicBurst')
 	send_command('bind ^` gs c toggle PactSpamMode')
-	send_command('bind @f10 gs c cycle RecoverMode')
 	send_command('bind !pause gs c toggle AutoSubMode') --Automatically uses sublimation.
 	
     select_default_macro_book()
