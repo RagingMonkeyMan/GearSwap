@@ -48,3 +48,4 @@ libs/rev1/Mote-Utility.lua
 *_Crafting.lua
 *-Items.lua
 *-Globals.lua
+data/export/*
