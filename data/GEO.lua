@@ -270,7 +270,7 @@ function handle_elemental(cmdParams)
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 
 		if state.ElementalMode.value == 'Fire' then
-			if spell_recasts[148] == 0 then
+			if spell_recasts[148] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Fire V" <t>')
 			elseif spell_recasts[147] == 0 then
 				send_command('input /ma "Fire IV" <t>')
@@ -283,7 +283,7 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Wind' then
-			if spell_recasts[158] == 0 then
+			if spell_recasts[158] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Aero V" <t>')
 			elseif spell_recasts[157] == 0 then
 				send_command('input /ma "Aero IV" <t>')
@@ -296,7 +296,7 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Lightning' then
-			if spell_recasts[168] == 0 then
+			if spell_recasts[168] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Thunder V" <t>')
 			elseif spell_recasts[167] == 0 then
 				send_command('input /ma "Thunder IV" <t>')
@@ -309,7 +309,7 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Earth' then
-			if spell_recasts[163] == 0 then
+			if spell_recasts[163] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Stone V" <t>')
 			elseif spell_recasts[162] == 0 then
 				send_command('input /ma "Stone IV" <t>')
@@ -322,7 +322,7 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Ice' then
-			if spell_recasts[153] == 0 then
+			if spell_recasts[153] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Blizzard V" <t>')
 			elseif spell_recasts[152] == 0 then
 				send_command('input /ma "Blizzard IV" <t>')
@@ -335,7 +335,7 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Water' then
-			if spell_recasts[173] == 0 then
+			if spell_recasts[173] == 0 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 				send_command('input /ma "Water V" <t>')
 			elseif spell_recasts[172] == 0 then
 				send_command('input /ma "Water IV" <t>')
