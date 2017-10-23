@@ -781,11 +781,11 @@ end
 function check_geo()
 	if state.AutoBuffMode.value and not moving and not areas.Cities:contains(world.area) then
 		if not player.indi then
-			windower.chat.input('input /ma "Indi-'..indispell..'" <me>')
+			windower.chat.input('/ma "Indi-'..indispell..'" <me>')
 			tickdelay = 90
 			return true
 		elseif not pet.isvalid then
-			windower.chat.input('input /ma "Geo-'..geospell..'" <bt>')
+			windower.chat.input('/ma "Geo-'..geospell..'" <t>')
 			tickdelay = 90
 			return true
 		else
