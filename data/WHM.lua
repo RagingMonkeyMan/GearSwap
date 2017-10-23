@@ -22,7 +22,7 @@ function job_setup()
 	autows = 'Mystic Boon'
 	autofood = 'Miso Ramen'
 	
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -99,14 +99,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		
 		if spell.element and sets.element[spell.element] then
 			equip(sets.element[spell.element])
-		end
-		
-		if state.RecoverMode.value == 'Always' then equip(sets.RecoverMP)
-		elseif state.RecoverMode.value == 'Never' then
-		elseif state.RecoverMode.value == '60%' then
-			if player.mpp <60 then equip(sets.RecoverMP) end
-		elseif state.RecoverMode.value == '35%' then
-			if player.mpp <35 then equip(sets.RecoverMP) end
 		end
     end
 	

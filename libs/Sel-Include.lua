@@ -799,8 +799,12 @@ function default_post_precast(spell, spellMap, eventArgs)
 		
 		if state.DefenseMode.value ~= 'None' then
 			if spell.action_type == 'Magic' then
-				if sets.precast[spell.english] and sets.precast[spell.english].DT then
-					equip(sets.precast[spell.english].DT)
+				if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DT then
+					equip(sets.precast.FC[spell.english].DT)
+				elseif sets.precast.FC[spellMap] and sets.precast.FC[spellMap].DT then
+					equip(sets.precast.FC[spellMap].DT)
+				elseif sets.precast.FC[spell.skill] and sets.precast.FC[spell.skill].DT then
+					equip(sets.precast.FC[spell.skill].DT)
 				elseif sets.precast.FC.DT then
 					equip(sets.precast.FC.DT)
 				else

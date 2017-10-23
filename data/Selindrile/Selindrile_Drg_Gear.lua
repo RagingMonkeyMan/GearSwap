@@ -33,22 +33,22 @@ function init_gear_sets()
 	-- Precast sets to enhance JAs
 	sets.precast.JA.Angon = {ammo="Angon"} --hands="Ptero. Fin. G. +1"
 	sets.precast.JA.Jump = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 	sets.precast.JA['Ancient Circle'] = {} --legs="Vishap Brais"
 	sets.precast.JA['High Jump'] = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 	sets.precast.JA['Soul Jump'] = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 	sets.precast.JA['Spirit Jump'] = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 	sets.precast.JA['Super Jump'] = {}
 	sets.precast.JA['Spirit Link'] = {head="Vishap Armet +1"} --head="Vishap Armet",hands="Lnc. Vmbrc. +2"
 	sets.precast.JA['Call Wyvern'] = {} --body="Ptero. Mail +1"
@@ -93,9 +93,9 @@ function init_gear_sets()
 	-- Default set for any weaponskill that isn't any more specifically defined
 	
 	sets.precast.WS = {ammo="Knobkierrie",
-		head="Flam. Zucchto +2",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands="Sulev. Gauntlets +2",ring1="Regal Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Fotia Gorget",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Fotia Gorget",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 		
 	sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {})
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {neck="Shulmanu Collar"})
@@ -139,21 +139,21 @@ function init_gear_sets()
 	sets.defense.PDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Shadow Mantle",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 
 	sets.Kiting = {legs="Carmine Cuisses +1"}
 	sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}
@@ -184,25 +184,25 @@ function init_gear_sets()
 	-- Normal melee group
 
 	sets.engaged = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Shulmanu Collar",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Shulmanu Collar",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
     sets.engaged.SomeAcc = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Shulmanu Collar",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Shulmanu Collar",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Regal Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 	sets.engaged.Acc = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Shulmanu Collar",ear1="Digni. Earring",ear2="Telos Earring",
+		head="Flam. Zucchetto +2",neck="Shulmanu Collar",ear1="Digni. Earring",ear2="Telos Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Ramuh Ring +1",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
     sets.engaged.FullAcc = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Shulmanu Collar",ear1="Zennaroi Earring",ear2="Telos Earring",
+		head="Flam. Zucchetto +2",neck="Shulmanu Collar",ear1="Zennaroi Earring",ear2="Telos Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
     sets.engaged.Fodder = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Flam. Zucchetto +2",neck="Ganesha's Mala",ear1="Brutal Earring",ear2="Sherida Earring",
 		body=gear.valorous_wsd_body,hands=gear.valorous_acc_hands,ring1="Petrov Ring",ring2="Niqmaddu Ring",
-		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulevi. Cuisses +2",feet="Flam. Gambieras +2"}
+		back="Brigantia's Mantle",waist="Ioskeha Belt",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 
     sets.engaged.AM = {}
     sets.engaged.AM.SomeAcc = {}
@@ -257,8 +257,8 @@ function select_default_macro_book()
         set_macro_page(5, 13)
     elseif player.sub_job == 'SAM' then
         set_macro_page(3, 13)
-    elseif player.sub_job == 'RDM' then
-        set_macro_page(1, 13)
+    elseif player.sub_job == 'BLU' then
+        set_macro_page(2, 13)
     else
         set_macro_page(5, 13)
     end
