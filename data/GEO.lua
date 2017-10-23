@@ -785,7 +785,7 @@ function check_geo()
 			tickdelay = 90
 			return true
 		elseif not pet.isvalid then
-			windower.chat.input('/ma "Geo-'..geospell..'" <t>')
+			windower.chat.input('/ma "Geo-'..geospell..'" <bt>')
 			tickdelay = 90
 			return true
 		else
