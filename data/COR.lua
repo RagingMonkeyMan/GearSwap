@@ -255,7 +255,7 @@ function do_bullet_checks(spell, spellMap, eventArgs)
   
 	local available_bullets = count_available_bullets(bullet_name)
 	
-  -- If no ammo is available, give appropriate warning and end.
+  -- If no ammo is available, give appropriate warning and cancel.
     if not (available_bullets > 0) then
         if spell.type == 'CorsairShot' and player.equipment.ammo ~= 'empty' then
             add_to_chat(217, 'No Quick Draw ammo available, using equipped ammo: ('..player.equipment.ammo..')')
