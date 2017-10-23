@@ -334,7 +334,7 @@ function count_available_bullets(bullet_name)
 	end
 
 	if player.wardrobe2[bullet_name] then
-		bullet_count = bullet_count + player.wardrobe3[bullet_name].count
+		bullet_count = bullet_count + player.wardrobe2[bullet_name].count
 	end
 	
 	if player.wardrobe3[bullet_name] then
