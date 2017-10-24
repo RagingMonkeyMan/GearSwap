@@ -222,6 +222,9 @@ white_stratagems = S{'Penury','Celerity','Accession','Rapture','Perpetuance','Al
 
 black_stratagems = S{'Parsimony','Alacrity','Manifestation','Ebullience','Focalization','Equanimity','Immanence','Addendum: Black'}
 
+geo_debuffs = S{'Frailty','Torpor','Wilt','Fade','Malaise','Slip','Torpor','Vex','Languor','Slow','Paralysis','Gravity','Poison'}
+geo_buffs = S{'Regen','Refresh','Haste','STR','DEX','VIT','AGI','INT','MND','CHR','Fury','Barrier','Acumen','Fend','Precision','Voidance','Focus','Attunement'}
+
 addendum_white = {[14]="Poisona",[15]="Paralyna",[16]="Blindna",[17]="Silena",[18]="Stona",[19]="Viruna",[20]="Cursna",
     [143]="Erase",[13]="Raise II",[140]="Raise III",[141]="Reraise II",[142]="Reraise III",[135]="Reraise"}
     

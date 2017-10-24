@@ -792,11 +792,11 @@ function check_geo()
 	if state.AutoBuffMode.value and not moving and not areas.Cities:contains(world.area) then
 		if not player.indi then
 			windower.chat.input('/ma "Indi-'..indispell..'" <me>')
-			tickdelay = 90
+			tickdelay = 130
 			return true
-		elseif not pet.isvalid then
+		elseif not pet.isvalid and (windower.ffxi.get_mob_by_target('bt') or geo_buffs:contains(geospell)) then
 			windower.chat.input('/ma "Geo-'..geospell..'" <bt>')
-			tickdelay = 90
+			tickdelay = 140
 			return true
 		else
 			return false
