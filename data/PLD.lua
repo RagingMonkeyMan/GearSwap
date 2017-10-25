@@ -14,7 +14,7 @@ function job_setup()
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff.Sentinel = buffactive.Sentinel or false
     state.Buff.Cover = buffactive.Cover or false
-	state.Stance = M('Hasso','None','Seigan')
+	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 
 	state.EquipShield = M(false, 'Shield Swapping Defense Mode')
 	

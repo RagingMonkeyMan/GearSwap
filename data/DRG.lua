@@ -16,7 +16,7 @@ function job_setup()
 	state.Buff['Spirit Surge'] = buffactive['Spirit Surge'] or false
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
-	state.Stance = M('Hasso','None','Seigan')
+	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 	
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Stardiver'}
