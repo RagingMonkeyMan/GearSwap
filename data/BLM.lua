@@ -8,7 +8,6 @@ function get_sets()
     include('Sel-Include.lua')
 end
 
--- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
 	state.Buff['Mana Wall'] = buffactive['Mana Wall'] or false
