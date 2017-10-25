@@ -295,7 +295,7 @@ function check_repair()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		if abil_recasts[206] == 0 and item_available('Automat. Oil +3') then
-			windower.chat.input('input /ja "Repair" <me>')
+			windower.chat.input('/ja "Repair" <me>')
 			tickdelay = 30
 			return true
 		end
