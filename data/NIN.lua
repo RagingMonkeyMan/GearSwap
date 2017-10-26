@@ -24,6 +24,8 @@ function job_setup()
 	autows = "Blade: Shun"
 	autofood = 'Soy Ramen'
 	
+	utsusemi_ni_cancel_delay = .1
+	
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end

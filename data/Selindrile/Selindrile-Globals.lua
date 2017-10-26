@@ -7,6 +7,9 @@
 --time_offset = -39538
 --time_test = false
 
+--If this is set to true it will prevent you from casting shadows when you have more up than that spell would generate.
+conserveshadows = false
+
 --Display related settings.
 state.DisplayMode.value = true --Set this to false if you don't want to display modes at the bottom of your screen.
 --Uncomment the settings below and change the numbers if you want to move the display to a custom location.

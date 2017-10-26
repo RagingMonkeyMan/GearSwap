@@ -7,14 +7,13 @@
 -- Buff utility functions.
 -------------------------------------------------------------------------------------------------------------------
 
-local cancel_spells_to_check = S{'Sneak', 'Stoneskin', 'Spectral Jig', 'Trance', 'Monomi: Ichi', 'Utsusemi: Ichi','Diamondhide','Magic Barrier'}
+local cancel_spells_to_check = S{'Sneak', 'Stoneskin', 'Spectral Jig', 'Trance', 'Monomi: Ichi', 'Utsusemi: Ichi','Utsusemi: Ni','Diamondhide','Magic Barrier'}
 local cancel_types_to_check = S{'Waltz', 'Samba'}
 
 -- Function to cancel buffs if they'd conflict with using the spell you're attempting.
 -- Requirement: Must have Cancel addon installed and loaded for this to work.
 function cancel_conflicting_buffs(spell, spellMap, eventArgs)
     if cancel_spells_to_check:contains(spell.english) or cancel_types_to_check:contains(spell.type) then
-        
         if spell.english == 'Spectral Jig' and buffactive.sneak then
             cast_delay(0.2)
             send_command('cancel sneak')
@@ -24,9 +23,16 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
             send_command('@wait 1.0;cancel stoneskin')
         elseif spell.english:startswith('Monomi') then
             send_command('@wait 1.5;cancel sneak')
-        elseif spell.english == 'Utsusemi: Ichi' then
-			if buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)'] then
-				add_to_chat(123,'Abort: You have 3 or more shadows.')
+        elseif spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San' then
+			if buffactive['Copy Image (4+)'] and conserveshadows then
+				add_to_chat(123,'Abort: You have four or more shadows.')
+                eventArgs.cancel = true
+			else
+				send_command('@wait '..utsusemi_ni_cancel_delay..';cancel copy image,copy image (2),copy image (3)')
+			end
+        elseif spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi' then
+			if (buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)']) and conserveshadows then
+				add_to_chat(123,'Abort: You have three or more shadows.')
                 eventArgs.cancel = true
 			else
 				send_command('@wait '..utsusemi_cancel_delay..';cancel copy image,copy image (2)')

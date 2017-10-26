@@ -148,6 +148,8 @@ function init_include()
 	autows = ''
 	autowstp = 1000
 	utsusemi_cancel_delay = .5
+	lastshadow = "Utsusemi: Ichi"
+	conserveshadows = true
 	buffup = false
 	time_offset = -39538
 	time_test = false
@@ -776,6 +778,10 @@ function default_post_precast(spell, spellMap, eventArgs)
 				else
 					equip(sets.midcast['Elemental Magic'])
 				end
+			elseif spell.english:startswith('Utsusemi') then
+				if sets.precast.FC.Shadows and ((spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San') or (spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi')) then
+					equip(sets.precast.FC.Shadows)
+				end
 			end
 
 		elseif spell.type == 'WeaponSkill' then
@@ -908,10 +914,14 @@ end
 
 function default_aftercast(spell, spellMap, eventArgs)
 
-	if is_nuke(spell, spellMap) and state.MagicBurstMode.value == 'Single' then
-		state.MagicBurstMode:reset()
-	elseif spell.type == 'WeaponSkill' and state.SkillchainMode.value == 'Single' then
-		state.SkillchainMode:reset()
+	if not spell.interrupted then
+		if is_nuke(spell, spellMap) and state.MagicBurstMode.value == 'Single' then
+			state.MagicBurstMode:reset()
+		elseif spell.type == 'WeaponSkill' and state.SkillchainMode.value == 'Single' then
+			state.SkillchainMode:reset()
+		elseif spell.english:startswith('Utsusemi') then
+			lastshadow = spell.english
+		end
 	end
 
     if not pet_midaction() then
