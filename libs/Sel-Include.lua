@@ -148,7 +148,7 @@ function init_include()
 	autows = ''
 	autowstp = 1000
 	utsusemi_cancel_delay = .5
-	lastshadow = "Utsusemi: Ichi"
+	lastshadow = "Utsusemi: San"
 	conserveshadows = true
 	buffup = false
 	time_offset = -39538

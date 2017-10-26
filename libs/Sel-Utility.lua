@@ -28,14 +28,15 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
 				add_to_chat(123,'Abort: You have four or more shadows.')
                 eventArgs.cancel = true
 			else
-				send_command('@wait '..utsusemi_ni_cancel_delay..';cancel copy image,copy image (2),copy image (3)')
+				add_to_chat(123,'Yolo')
+				send_command('@wait '..utsusemi_ni_cancel_delay..';cancel copy image*')
 			end
         elseif spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi' then
 			if (buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)']) and conserveshadows then
 				add_to_chat(123,'Abort: You have three or more shadows.')
                 eventArgs.cancel = true
 			else
-				send_command('@wait '..utsusemi_cancel_delay..';cancel copy image,copy image (2)')
+				send_command('@wait '..utsusemi_cancel_delay..';cancel copy image*')
 			end
         elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['saber dance'] then
             cast_delay(0.2)
