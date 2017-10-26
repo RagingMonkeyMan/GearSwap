@@ -659,6 +659,14 @@ function can_use(spell)
         if not available_spells[spell.id] and not (spell.id == 503 or spell.id == 417) then
             add_to_chat(123,"Abort: You haven't learned ["..(res.spells[spell.id][language] or spell.id).."].")
             return false
+        elseif spell.type == 'Ninjutsu'  then
+            if player.main_job_id ~= 13 and player.sub_job_id ~= 13 then
+                add_to_chat(123,"Abort: You don't have access to ["..(spell[language] or spell.id).."].")
+                return false
+            elseif not player.inventory[tool_map[spell.english][language]] and not (player.main_job_id == 13 and player.inventory[universal_tool_map[spell.english][language]]) then
+                add_to_chat(123,"Abort: You don't have the proper ninja tool available.")
+                return false
+            end
         -- Filter for spells that you know, but do not currently have access to
         elseif (not spell_jobs[player.main_job_id] or not (spell_jobs[player.main_job_id] <= player.main_job_level or
             (spell_jobs[player.main_job_id] >= 100 and number_of_jps(player.job_points[__raw.lower(res.jobs[player.main_job_id].ens)]) >= spell_jobs[player.main_job_id]) ) ) and
@@ -695,14 +703,6 @@ function can_use(spell)
             -- This code isn't hurting anything, but it doesn't need to be here either.
             add_to_chat(123,"Abort: You haven't set ["..(res.spells[spell.id][language] or spell.id).."].")
             return false
-        elseif spell.type == 'Ninjutsu'  then
-            if player.main_job_id ~= 13 and player.sub_job_id ~= 13 then
-                add_to_chat(123,"Abort: You don't have access to ["..(spell[language] or spell.id).."].")
-                return false
-            elseif not player.inventory[tool_map[spell.english][language]] and not (player.main_job_id == 13 and player.inventory[universal_tool_map[spell.english][language]]) then
-                add_to_chat(123,"Abort: You don't have the proper ninja tool available.")
-                return false
-            end
         end
     elseif category == 7 or category == 9 then
         local available = windower.ffxi.get_abilities()
