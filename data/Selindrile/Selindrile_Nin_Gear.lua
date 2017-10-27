@@ -79,9 +79,9 @@ function init_gear_sets()
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {ammo="Seeth. Bomblet +1",
         head="Lilitu Headpiece",neck="Fotia Gorget",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Ken. Samue",hands="Adhemar Wristbands",ring1="Ilabrat Ring",ring2="Regal Ring",
+        body="Adhemar Jacket",hands="Adhemar Wristbands",ring1="Ilabrat Ring",ring2="Regal Ring",
         back=gear.da_jse_back,waist="Fotia Belt",legs="Samnuha Tights",feet=gear.herculean_wsd_feet}
-    sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {head="Dampening Tam",legs="Hiza. Hizayoroi +2",ear2="Telos Earring"})
+    sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {head="Dampening Tam","Ken. Samue",legs="Hiza. Hizayoroi +2",ear2="Telos Earring"})
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {head="Ynglinga Sallet",neck="Combatant's Torque",ear2="Telos Earring",body="Ken. Samue",hands="Mummu Wrists +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
 	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",body="Mummu Jacket +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
 	
@@ -98,13 +98,13 @@ function init_gear_sets()
     sets.precast.WS['Blade: Hi'].FullAcc = set_combine(sets.precast.WS.FullAcc, {hands="Ryuo Tekko",legs="Hiza. Hizayoroi +2"})
     sets.precast.WS['Blade: Hi'].Fodder = set_combine(sets.precast.WS['Blade: Hi'], {})
 
-    sets.precast.WS['Blade: Shun'] = set_combine(sets.precast.WS, {feet=gear.herculean_acc_feet})
-    sets.precast.WS['Blade: Shun'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {feet=gear.herculean_acc_feet})
-    sets.precast.WS['Blade: Shun'].Acc = set_combine(sets.precast.WS.Acc, {legs="Mummu Kecks +1"})
-    sets.precast.WS['Blade: Shun'].FullAcc = set_combine(sets.precast.WS.FullAcc, {legs="Mummu Kecks +1"})
+    sets.precast.WS['Blade: Shun'] = set_combine(sets.precast.WS, {ear1="Lugra Earring",ear2="Lugra Earring +1",legs="Jokushu Haidate",feet=gear.herculean_acc_feet})
+    sets.precast.WS['Blade: Shun'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {ear1="Lugra Earring",ear2="Lugra Earring +1",legs="Jokushu Haidate",feet=gear.herculean_acc_feet})
+    sets.precast.WS['Blade: Shun'].Acc = set_combine(sets.precast.WS.Acc, {})
+    sets.precast.WS['Blade: Shun'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
     sets.precast.WS['Blade: Shun'].Fodder = set_combine(sets.precast.WS['Blade: Shun'], {})
 
-    sets.precast.WS['Blade: Ten'] = set_combine(sets.precast.WS, {neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",body=gear.herculean_wsd_body,back=gear.wsd_jse_back,waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_wsd_feet})
+    sets.precast.WS['Blade: Ten'] = set_combine(sets.precast.WS, {neck="Caro Necklace",ear1="Moonshade Earring",ear2="Lugra Earring +1",body=gear.herculean_wsd_body,back=gear.wsd_jse_back,waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_wsd_feet})
     sets.precast.WS['Blade: Ten'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {neck="Caro Necklace",ear1="Moonshade Earring",body=gear.herculean_wsd_body,back=gear.wsd_jse_back,waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_wsd_feet})
     sets.precast.WS['Blade: Ten'].Acc = set_combine(sets.precast.WS.Acc, {back=gear.wsd_jse_back})
     sets.precast.WS['Blade: Ten'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
@@ -116,8 +116,12 @@ function init_gear_sets()
         back="Toro Cape",waist="Chaac Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_acc_feet}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Cessance Earring",ear2="Brutal Earring",}
+	sets.precast.MaxTP = {ear1="Lugra Earring",ear2="Lugra Earring +1",}
 	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.AccDayMaxTPWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.DayMaxTPWSEars = {ear1="Cessance Earring",ear2="Brutal Earring",}
+	sets.AccDayWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.DayWSEars = {ear1="Moonshade Earring",ear2="Brutal Earring",}
 
     
     --------------------------------------

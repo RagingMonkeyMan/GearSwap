@@ -37,6 +37,7 @@ function job_setup()
 
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff['Pianissimo'] = buffactive['Pianissimo'] or false
+	state.Buff['Nightingale'] = buffactive['Nightingale'] or false
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 
 	--List of which WS you plan to use TP bonus WS with.
@@ -101,7 +102,29 @@ end
 
 function job_post_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' then
+	if spell.type == 'BardSong' then
+	
+		if state.Buff['Nightingale'] then
+		
+			-- Replicate midcast in precast for nightingale including layering.
+            local generalClass = get_song_class(spell)
+            if generalClass and sets.midcast[generalClass] then
+                equip(sets.midcast[generalClass])
+            end
+
+			if sets.midcast[spell.english] then
+				equip(sets.midcast[spell.english])
+			elseif sets.midcast[get_spell_map(spell, default_spell_map)] then
+				equip(sets.midcast[get_spell_map(spell, default_spell_map)])
+			end
+			
+			if state.ExtraSongsMode.value == 'Full Length' or state.ExtraSongsMode.value == 'Full Length Lock' then
+				equip(sets.midcast.Daurdabla)
+			end
+		
+		end
+
+	elseif spell.type == 'WeaponSkill' then
         -- Replace Moonshade Earring if we're at cap TP
         if player.tp == 3000 and moonshade_ws:contains(spell.english) then
 			if not state.WeaponskillMode.Current:contains('Acc') or (state.Buff['Sneak Attack'] or state.Buff['Trick Attack']) then

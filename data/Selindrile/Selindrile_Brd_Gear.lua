@@ -104,7 +104,7 @@ function init_gear_sets()
 	-- For song buffs (duration and AF3 set bonus)
 	sets.midcast.SongEffect = {main="Kali",sub="Genmei Shield",range="Linos",
 		head="Aoidos' Calot +2",neck="Aoidos' Matinee",ear2="Loquacious Earring",
-		body="Aoidos' Hongreline +2",hands="Aoidos' Manchettes +2",ring1="Prolix Ring",
+		body="Aoidos' Hongreline +2",hands="Aoidos' Manchettes +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Swith Cape +1",waist="Witful Belt",legs="Mdk. Shalwar +1",feet="Brioso Slippers +1"}
 
 	-- For song defbuffs (duration primary, accuracy secondary)
