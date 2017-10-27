@@ -123,7 +123,7 @@ end
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
 
-	if buffactive['Battuta'] and state.DefenseMode.value == 'None' sets.buff.Battuta then 
+	if buffactive['Battuta'] and state.DefenseMode.value == 'None' and sets.buff.Battuta then 
 		meleeSet = set_combine(sets.buff.Battuta)
 	end
 
