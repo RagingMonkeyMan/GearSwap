@@ -17,7 +17,7 @@
 
     Simple macro to cast a dummy Daurdabla song:
     /console gs c set ExtraSongsMode Dummy
-    /ma "Shining Fantasia" <me>
+    /ma "Mage's Ballad" <me>
 
     To use a Terpander rather than Daurdabla, set the info.ExtraSongInstrument variable to
     'Terpander', and info.ExtraSongs to 1.
