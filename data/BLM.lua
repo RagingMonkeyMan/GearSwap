@@ -2,7 +2,7 @@
 -- Setup functions for this job.  Generally should not be modified.
 -------------------------------------------------------------------------------------------------------------------
 
--- Initialization function for this job file.
+-- Initialization function for this job.
 function get_sets()
     -- Load and initialize the include file.
     include('Sel-Include.lua')
