@@ -66,7 +66,7 @@ function handle_set(cmdParams)
         state_var:set(cmdParams[2])
         local newVal = state_var.value
 
-		if state_var ~= state.DefenseMode and newVal == oldVal then
+		if state_var ~= state.DefenseMode and newVal == oldVal and not newVal == 'Single' then
 			handle_reset(cmdParams)
 			return
 		end
