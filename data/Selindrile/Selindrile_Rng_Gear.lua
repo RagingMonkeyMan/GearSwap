@@ -58,8 +58,8 @@ function init_gear_sets()
 		body="Amini Caban +1",hands="Carmine Fin. Ga. +1",
 		back=gear.tp_ranger_jse_back,waist="Impulse Belt",legs="Nahtirah Trousers",feet="Amini Bottillons"}
 		
-	sets.buff.RA.Flurry = set_combine(sets.precast.RA, {})
-	sets.buff.RA.Flurry2 = set_combine(sets.precast.RA, {})
+	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {})
+	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {})
 
 
 	-- Weaponskill sets
@@ -125,6 +125,7 @@ function init_gear_sets()
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
 		
 	sets.buff['Double Shot'] = {back=gear.tp_ranger_jse_back}
+	sets.buff['Double Shot'].Acc = {}
 	
 	sets.Self_Healing = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}
 	sets.Cure_Received = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}

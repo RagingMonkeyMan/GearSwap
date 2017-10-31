@@ -117,8 +117,8 @@ function init_gear_sets()
         body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",
         back=gear.snapshot_jse_back,waist="Impulse Belt",legs="Laksa. Trews +3",feet="Meg. Jam. +2"}
 		
-	sets.buff.RA.Flurry = set_combine(sets.precast.RA, {})
-	sets.buff.RA.Flurry2 = set_combine(sets.precast.RA, {})
+	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {})
+	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {})
 
        
     -- Weaponskill sets
