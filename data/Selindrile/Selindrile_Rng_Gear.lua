@@ -53,15 +53,13 @@ function init_gear_sets()
 
 	-- Ranged sets (snapshot)
 	
-    sets.precast.RA = {
-        head="Chass. Tricorne +1",
-        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",
-        back=gear.tp_ranger_jse_back,waist="Impulse Belt",legs="Laksa. Trews +3",feet="Meg. Jam. +2"}
-	
 	sets.precast.RA = {
 		head="Amini Gapette",
 		body="Amini Caban +1",hands="Carmine Fin. Ga. +1",
 		back=gear.tp_ranger_jse_back,waist="Impulse Belt",legs="Nahtirah Trousers",feet="Amini Bottillons"}
+		
+	sets.buff.RA.Flurry = set_combine(sets.precast.RA, {})
+	sets.buff.RA.Flurry2 = set_combine(sets.precast.RA, {})
 
 
 	-- Weaponskill sets

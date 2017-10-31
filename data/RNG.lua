@@ -64,11 +64,7 @@ function update_combat_form()
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-	if spell.action_type == 'Ranged Attack' then
-        if buffactive['Double Shot'] and sets.buff['Double Shot'] then
-			equip(sets.buff['Double Shot'])
-		end
-	elseif spell.type == 'WeaponSkill' then
+	if spell.type == 'WeaponSkill' then
         -- Replace Moonshade Earring if we're at cap TP
         if player.tp == 3000 and moonshade_ws:contains(spell.english) then
 			if state.WeaponskillMode.Current:contains('Acc') then
@@ -81,9 +77,13 @@ function job_post_precast(spell, spellMap, eventArgs)
 			end
 
 		end
-	
+	elseif spell.action_type == 'Ranged Attack' and sets.precast.RA and buffactive.Flurry then
+		if sets.precast.RA.Flurry and lastflurry == 1 then
+			equip(sets.precast.RA.Flurry)
+		elseif sets.precast.RA.Flurry and lastflurry == 2 then
+			equip(sets.precast.RA.Flurry2)
+		end
 	end
-	
 end
 
 function job_self_command(commandArgs, eventArgs)
@@ -94,7 +94,11 @@ end
 function job_post_midcast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Ranged Attack' then
 		if buffactive['Double Shot'] and sets.buff['Double Shot'] then
-			equip(sets.buff['Double Shot'])
+			if sets.buff['Double Shot'][state.RangedMode.value] then
+				equip(sets.buff['Double Shot'][state.RangedMode.value])
+			else
+				equip(sets.buff['Double Shot'])
+			end
 		end
 
 		if state.Buff.Barrage and sets.buff.Barrage then

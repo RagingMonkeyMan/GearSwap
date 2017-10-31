@@ -97,7 +97,7 @@ function init_gear_sets()
     sets.precast.Waltz = {
 		head="Sulevia's Mask +1",
 		body="Cab. Surcoat +1",ring1="Asklepian Ring",ring2="Valseur's Ring",
-		waist="Chaac Belt",legs="Sulevi. Cuisses +2"}
+		waist="Chaac Belt",legs="Sulev. Cuisses +2"}
         
     -- Don't need any special gear for Healing Waltz.
     sets.precast.Waltz['Healing Waltz'] = {}
@@ -135,7 +135,7 @@ function init_gear_sets()
     sets.precast.WS = {ammo="Paeapua",
 		head="Sulevia's Mask +1",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Sulevia's Plate. +1",hands=gear.odyssean_wsd_hands,ring1="Regal Ring",ring2="Rufescent Ring",
-		back="Bleating Mantle",waist="Fotia Belt",legs="Sulevi. Cuisses +2",feet="Sulevia's Leggings +1"}
+		back="Bleating Mantle",waist="Fotia Belt",legs="Sulev. Cuisses +2",feet="Sulevia's Leggings +1"}
 		
     sets.precast.WS.DT = {ammo="Staunch Tathlum",
         head="Souv. Schaller +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Odnowa Earring",
@@ -250,7 +250,7 @@ function init_gear_sets()
     sets.resting = {ammo="Homiliary",
 		head="Jumalik Helm",neck="Coatl Gorget +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Jumalik Mail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Fucho-no-obi",legs="Sulevi. Cuisses +2",feet="Cab. Leggings +1"}
+		back="Moonbeam Cape",waist="Fucho-no-obi",legs="Sulev. Cuisses +2",feet="Cab. Leggings +1"}
 
     -- Idle sets
     sets.idle = {ammo="Homiliary",
@@ -351,7 +351,7 @@ function init_gear_sets()
 	sets.defense.BDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Moonbeam Cape",waist="Asklepian Belt",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Moonbeam Cape",waist="Asklepian Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.defense.Tank = {ammo="Staunch Tathlum",
 		head="Chev. Armet +1",neck="Loricate Torque +1",ear1="Creed Earring",ear2="Thureous Earring",
@@ -383,7 +383,7 @@ function init_gear_sets()
     sets.defense.OchainNoShellMDT = {ammo="Staunch Tathlum",
 		head="Founder's Corona",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
 		body="Tartarus Platemail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Engulfer Cape +1",waist="Flax Sash",legs="Sulevi. Cuisses +2",feet="Chev. Sabatons +1"}
+		back="Engulfer Cape +1",waist="Flax Sash",legs="Sulev. Cuisses +2",feet="Chev. Sabatons +1"}
 		
     sets.defense.AegisMDT = {ammo="Staunch Tathlum",
 		head="Founder's Corona",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
@@ -393,16 +393,16 @@ function init_gear_sets()
     sets.defense.AegisNoShellMDT = {ammo="Staunch Tathlum",
 		head="Founder's Corona",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
 		body="Tartarus Platemail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Shadow Ring",
-		back=gear.fastcast_jse_back,waist="Asklepian Belt",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}		
+		back=gear.fastcast_jse_back,waist="Asklepian Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}		
 
 	--------------------------------------
 	-- Engaged sets
 	--------------------------------------
     
 	sets.engaged = {ammo="Ginsen",
-		head="Flam. Zucchto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
+		head="Flam. Zucchetto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Sulevia's Plate. +1",hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Petrov Ring",
-		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Founder's Greaves"}
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
 
     sets.engaged.Acc = {ammo="Hasty Pinion +1",
         head="Sulevia's Mask +1",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
@@ -412,12 +412,12 @@ function init_gear_sets()
     sets.engaged.DW = {ammo="Paeapua",
 		head="Sulevia's Mask +1",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
 		body="Sulevia's Plate. +1",hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Petrov Ring",
-		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulevi. Cuisses +2",feet="Founder's Greaves"}
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
 
     sets.engaged.DW.Acc = {ammo="Ginsen",
 		head="Sulevia's Mask +1",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
 		body="Sulevia's Plate. +1",hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Ramuh Ring +1",
-		back="Letalis Mantle",waist="Olseni Belt",legs="Sulevi. Cuisses +2",feet="Founder's Greaves"}
+		back="Letalis Mantle",waist="Olseni Belt",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
 
 	sets.engaged.Tank = {ammo="Staunch Tathlum",
 		head="Chev. Armet +1",neck="Loricate Torque +1",ear1="Creed Earring",ear2="Thureous Earring",
@@ -427,22 +427,22 @@ function init_gear_sets()
 	sets.engaged.BreathTank = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Thureous Earring",ear2="Etiolation Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Engulfer Cape +1",waist="Creed Baudrier",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Engulfer Cape +1",waist="Creed Baudrier",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.engaged.Acc.BreathTank = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Thureous Earring",ear2="Etiolation Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Engulfer Cape +1",waist="Creed Baudrier",legs="Sulevi. Cuisses +2",feet="Amm Greaves"}
+		back="Engulfer Cape +1",waist="Creed Baudrier",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.engaged.DDTank = {ammo="Hasty Pinion +1",
 		head="Sulevia's Mask +1",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Cessance Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Patricius Ring",
-		back="Weard Mantle",waist="Tempus Fugit",legs="Sulevi. Cuisses +2",feet="Sulev. Leggings +1"}
+		back="Weard Mantle",waist="Tempus Fugit",legs="Sulev. Cuisses +2",feet="Sulev. Leggings +1"}
 		
 	sets.engaged.Acc.DDTank = {ammo="Hasty Pinion +1",
 		head="Sulevia's Mask +1",neck="Loricate Torque +1",ear1="Zennaroi Earring",ear2="Telos Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Patricius Ring",
-		back="Weard Mantle",waist="Tempus Fugit",legs="Sulevi. Cuisses +2",feet="Sulev. Leggings +1"}
+		back="Weard Mantle",waist="Tempus Fugit",legs="Sulev. Cuisses +2",feet="Sulev. Leggings +1"}
 		
 	sets.engaged.NoShellTank = {ammo="Staunch Tathlum",
         head="Jumalik Helm",neck="Loricate Torque +1",ear1="Thureous Earring",ear2="Etiolation Earring",
@@ -452,7 +452,7 @@ function init_gear_sets()
     sets.engaged.Acc.Tank = {ammo="Ginsen",
         head="Sulevia's Mask +1",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
         body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Ground. Mantle +1",waist="Olseni Belt",legs="Sulevi. Cuisses +2",feet="Sulev. Leggings +1"}
+        back="Ground. Mantle +1",waist="Olseni Belt",legs="Sulev. Cuisses +2",feet="Sulev. Leggings +1"}
 		
     sets.engaged.Reraise = set_combine(sets.engaged.Tank, sets.Reraise)
     sets.engaged.Acc.Reraise = set_combine(sets.engaged.Acc.Tank, sets.Reraise)

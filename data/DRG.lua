@@ -17,6 +17,7 @@ function job_setup()
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
+	state.AutoJumpMode = M(false, 'Auto Jump Mode')
 	
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Stardiver'}
@@ -27,7 +28,7 @@ function job_setup()
 	Breath_HPP = 60
 	update_combat_form()
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -202,6 +203,7 @@ end
 
 function job_tick()
 	if check_hasso() then return true end
+	if check_jump() then return true end
 	return false
 end
 
@@ -243,7 +245,7 @@ function job_customize_melee_set(meleeSet)
 end
 
 function check_hasso()
-	if not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.sub_job == 'SAM' and player.in_combat then
+	if not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.sub_job == 'SAM' and player.status == 'Engaged' then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
@@ -253,6 +255,26 @@ function check_hasso()
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
 			windower.chat.input('/ja "Seigan" <me>')
+			tickdelay = 110
+			return true
+		end
+	
+	end
+		
+	return false
+end
+
+function check_jump()
+	if state.AutoJumpMode.value and player.status == 'Engaged' and player.tp < 501 then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		
+		if abil_recasts[158] == 0 then
+			windower.chat.input('/ja "Spirit Jump" <t>')
+			tickdelay = 110
+			return true
+		elseif abil_recasts[159] == 0 then
+			windower.chat.input('/ja "Soul Jump" <t>')
 			tickdelay = 110
 			return true
 		end

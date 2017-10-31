@@ -28,7 +28,7 @@ RefreshAbility = S{"Refresh","Refresh II", "Refresh III"
 PhalanxAbility = S{"Phalanx II"
 				 }
 				 
-EnhancingAbility = S{"Haste","Haste II","Adloquium",
+EnhancingAbility = S{"Haste","Haste II","Flurry","Flurry II","Adloquium",
 				 }
 
 windower.raw_register_event('action', function(act)
@@ -48,11 +48,6 @@ windower.raw_register_event('action', function(act)
     else
         return
     end
-
-	-- Make sure it's not US!
-	if actor.id == player.id then
-		return
-	end
 
 	-- Check if we're targetting it.
     if player and player.target and player.target.id and actor.id == player.target.id then
@@ -95,7 +90,7 @@ windower.raw_register_event('action', function(act)
 		targetsSelf = false
 		targetsMe = false
 		targetsDistance = math.sqrt(otherTarget.distance)
-	end	
+	end
 	
 	if state.AutoEngageMode.value and curact.category == 1 and targetsMe and actor.race == 0 and player.status == 'Idle' and not moving then
 		if player.target.type == "MONSTER" then
@@ -104,6 +99,28 @@ windower.raw_register_event('action', function(act)
 			send_command('setkey escape down; wait .2;setkey escape up')
 		end
 		return
+	end
+
+	-- Track buffs locally
+	if curact.category == 4 then
+		act_info = res.spells[curact.param]
+		if curact.targets[1].actions[1].message == 230 then
+			if EnhancingAbility:contains(act_info.name) then
+				if act_info.name:endswith('II') then
+					if act_info.name:startswith('Haste') then
+						lasthaste = 2
+					elseif act_info.name:startswith('Flurry') then
+						lastflurry = 2
+					end
+				else
+					if act_info.name:startswith('Haste') then
+						lasthaste = 1
+					elseif act_info.name:startswith('Flurry') then
+						lastflurry = 1
+					end
+				end
+			end
+		end
 	end
 	
 	-- Turn off Defense if needed for things we're targetting.
@@ -124,25 +141,27 @@ windower.raw_register_event('action', function(act)
 		end
 	end
 	
-    -- Make sure it's a WS or MA before reacting to it.		
+	-- Make sure it's not US from this point on!
+	if actor.id == player.id then return end
+    -- Make sure it's a WS or MA precast before reacting to it.		
     if curact.category ~= 7 and curact.category ~= 8 then return end
 	
     -- Get the name of the action.
     if curact.category == 7 then act_info = res.monster_abilities[curact.targets[1].actions[1].param] end
     if curact.category == 8 then act_info = res.spells[curact.targets[1].actions[1].param] end
 	if act_info == nil then return end
-	
+
+	-- Reactions begin.
 	if state.BlockWarp.value and ((targetsMe and (act_info.name == 'Warp II' or act_info.name == 'Retrace')) or (actor.in_party and (act_info.name:contains('Teleport') or act_info.name:contains('Recall')))) then
-	local party = windower.ffxi.get_party()
+		local party = windower.ffxi.get_party()
 	
 		if party.party1_leader == player.id then
 			windower.chat.input('/pcmd kick '..actor.name..'')
 		else
 			windower.chat.input('/pcmd leave')
 		end
-	end
-	
-	if midaction() or curact.category ~= 8 or state.DefenseMode.value ~= 'None' then
+
+	elseif midaction() or curact.category ~= 8 or state.DefenseMode.value ~= 'None' then
 			
 	elseif targetsMe then
 		if CureAbility:contains(act_info.name) and player.hpp < 75 then

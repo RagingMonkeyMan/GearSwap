@@ -147,12 +147,16 @@ function init_include()
 	autonuke = 'Fire'
 	autows = ''
 	autowstp = 1000
-	utsusemi_cancel_delay = .5
-	lastshadow = "Utsusemi: San"
-	conserveshadows = true
 	buffup = false
 	time_offset = -39538
 	time_test = false
+	utsusemi_cancel_delay = .5
+	conserveshadows = true
+	
+	-- Buff tracking that buffactive can't detect
+	lastshadow = "Utsusemi: San"	
+	lasthaste = 1
+	lastflurry = 1
 	
     -- Sub-tables within the sets table that we expect to exist, and are annoying to have to
     -- define within each individual job file.  We can define them here to make sure we don't

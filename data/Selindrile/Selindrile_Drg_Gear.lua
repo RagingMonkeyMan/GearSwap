@@ -20,6 +20,7 @@ function user_setup()
 	send_command('bind !` input /ja "Seigan" <me>')
 	send_command('bind ^f11 gs c cycle MagicalDefenseMode')
 	send_command('bind !f11 gs c cycle ExtraMeleeMode')
+	send_command('bind @f7 gs c toggle AutoJumpMode')
 	send_command('bind @` gs c cycle SkillchainMode')
 end
 
@@ -222,7 +223,7 @@ function init_gear_sets()
     sets.engaged.AM.FullAcc.PDT = {}
     sets.engaged.AM.Fodder.PDT = {}
 		
-	-- Melee sets for in Adoulin, which has an extra 2% Haste from Ionis.
+	--[[ Melee sets for in Adoulin, which has an extra 2% Haste from Ionis.
 	
     sets.engaged.Adoulin = {}
     sets.engaged.Adoulin.SomeAcc = {}
@@ -247,6 +248,7 @@ function init_gear_sets()
 	sets.engaged.Adoulin.AM.Acc.PDT = {}
     sets.engaged.Adoulin.AM.FullAcc.PDT = {}
     sets.engaged.Adoulin.AM.Fodder.PDT = {}
+	]]
 
 end
 

@@ -112,6 +112,7 @@ function update_job_states()
 		RewardMode = "Reward",
 		AutoNukeMode = "Auto Nuke: "..autonuke.."",
 		AutoBuffMode = "Auto Buff",
+		AutoJumpMode = "Auto Jump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
 		AutoFoodMode = "Auto Food: "..autofood.."",
 		RngHelper = "RngHelper",

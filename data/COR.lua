@@ -71,8 +71,18 @@ function job_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)
-	if spell.action_type == 'Ranged Attack' and buffactive['Triple Shot'] and sets.buff['Triple Shot'] then
-        equip(sets.buff['Triple Shot'])
+	if spell.action_type == 'Ranged Attack' then
+		if buffactive['Triple Shot'] and sets.buff['Triple Shot'] then
+			if sets.buff['Triple Shot'][state.RangedMode.value] then
+				equip(sets.buff['Triple Shot'][state.RangedMode.value])
+			else
+				equip(sets.buff['Triple Shot'])
+			end
+		end
+
+		if state.Buff.Barrage and sets.buff.Barrage then
+			equip(sets.buff.Barrage)
+		end
 	end
 end
 
@@ -149,11 +159,7 @@ function update_combat_form()
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-	if spell.action_type == 'Ranged Attack' then
-        if buffactive['Triple Shot'] and sets.buff['Triple Shot'] then
-			equip(sets.buff['Triple Shot'])
-		end
-	elseif spell.type == 'WeaponSkill' then
+	if spell.type == 'WeaponSkill' then
         -- Replace Moonshade Earring if we're at cap TP
         if player.tp == 3000 and moonshade_ws:contains(spell.english) then
 			if state.WeaponskillMode.Current:contains('Acc') then
@@ -169,6 +175,12 @@ function job_post_precast(spell, spellMap, eventArgs)
 			equip(sets.precast.CorsairShot.Proc)
 		elseif state.CastingMode.value == 'Resistant' then
 			classes.CustomClass = 'Acc'
+		end
+	elseif spell.action_type == 'Ranged Attack' and sets.precast.RA and buffactive.Flurry then
+		if sets.precast.RA.Flurry and lastflurry == 1 then
+			equip(sets.precast.RA.Flurry)
+		elseif sets.precast.RA.Flurry and lastflurry == 2 then
+			equip(sets.precast.RA.Flurry2)
 		end
 	elseif (spell.type == 'CorsairRoll' or spell.english == "Double-Up") and state.LuzafRing.value then
 		equip(sets.precast.LuzafRing)
