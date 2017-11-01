@@ -20,7 +20,9 @@ end
 
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
-	
+
+	-- Whether to automatically generate bullets.
+	state.AutoBulletMode = M(true,'Auto Bullet Mode')	
 	-- Whether to use Luzaf's Ring
     state.LuzafRing = M(false, "Luzaf's Ring")
     -- Whether a warning has been given for low ammo
@@ -34,8 +36,6 @@ function job_setup()
 
     define_roll_values()
 	update_combat_form()
-	
-	state.AutoBulletMode = M(true,'Auto Bullet Mode')
 	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode","LuzafRing","AutoBuffMode",},{"OffenseMode","RangedMode","WeaponskillMode","ElementalMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
