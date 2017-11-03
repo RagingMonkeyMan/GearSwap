@@ -221,7 +221,7 @@ function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets f
 	end
 
 	if state.Buff['Aftermath: Lv.3'] then
-		if sets.midcast.Pet[spell.english].AM then
+		if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].AM then
 			equip(sets.midcast.Pet[spell.english].AM)
 		elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.AM then
 			equip(sets.midcast.Pet.PhysicalBloodPactRage.AM)
