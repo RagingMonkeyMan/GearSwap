@@ -2,7 +2,7 @@
 function user_setup()
 	-- Options: Override default values
     state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
-    state.WeaponskillMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
+    state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','FullAcc','Fodder')
     state.HybridMode:options('Normal')
     state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')

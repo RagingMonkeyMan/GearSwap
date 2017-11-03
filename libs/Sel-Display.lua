@@ -230,7 +230,7 @@ function update_job_states()
 				stateBox:append(string.format("   %sDeath Mode: %s%s", clr.w, clr.h, state.DeathMode.value))
 			end
 		elseif n == 'WeaponskillMode' then
-			if state.WeaponskillMode.value ~= 'Normal' then
+			if state.WeaponskillMode.value ~= 'Match' then
 				stateBox:append(string.format("%s   Weaponskill: %s%s", clr.w, clr.h, state.WeaponskillMode.value))
 			end
 		elseif n == 'ElementalMode' then

@@ -1,7 +1,7 @@
 function user_setup()
 	state.OffenseMode:options('Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
 	state.HybridMode:options('Normal', 'PDT')
-	state.WeaponskillMode:options('Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
+	state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
 	state.CastingMode:options('Normal')
 	state.IdleMode:options('Normal', 'Refresh', 'Reraise')
 	state.RestingMode:options('Normal')

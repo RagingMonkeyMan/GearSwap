@@ -2,7 +2,7 @@ function user_setup()
 
 	state.OffenseMode:options('Normal','SomeAcc','Acc','HighAcc','FullAcc')
 	state.HybridMode:options('Normal','DTLite','Tank')
-	state.WeaponskillMode:options('Normal','SomeAcc','Acc','HighAcc','FullAcc')
+	state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','HighAcc','FullAcc')
 	state.CastingMode:options('Normal', 'Resistant')
 	state.PhysicalDefenseMode:options('PDT', 'PDT_HP')
 	state.MagicalDefenseMode:options('MDT','MDT_HP','BDT','BDT_HP')

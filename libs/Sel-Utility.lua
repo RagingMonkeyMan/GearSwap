@@ -1345,7 +1345,7 @@ function check_ws()
 
 	local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
 		
-		if player.hpp < 66 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
+		if player.hpp < 41 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Sanguine Blade" <t>')
 			tickdelay = 80
 			return true

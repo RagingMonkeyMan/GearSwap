@@ -2,7 +2,7 @@
 function user_setup()
 	state.OffenseMode:options('Normal', 'Acc')
 	state.RangedMode:options('Normal', 'Acc')
-	state.WeaponskillMode:options('Normal', 'Acc')
+	state.WeaponskillMode:options('Match','Normal', 'Acc')
 	state.IdleMode:options('Normal', 'PDT')
 	
 	DefaultAmmo = {['Fomalhaut'] = "Chrono Bullet"}

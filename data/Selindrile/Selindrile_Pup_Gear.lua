@@ -2,7 +2,7 @@
 function user_setup()
     state.OffenseMode:options('Normal','Acc','FullAcc','Fodder')
     state.HybridMode:options('Pet','DT','Normal')
-    state.WeaponskillMode:options('Normal','Acc','FullAcc','Fodder')
+    state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')
     state.PhysicalDefenseMode:options('PDT')
 	state.IdleMode:options('Normal','PDT','Refresh')
 

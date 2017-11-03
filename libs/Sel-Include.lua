@@ -59,7 +59,7 @@ function init_include()
     state.OffenseMode         = M{['description'] = 'Offense Mode'}
     state.HybridMode          = M{['description'] = 'Hybrid Mode'}
     state.RangedMode          = M{['description'] = 'Ranged Mode'}
-    state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode'}
+    state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
     state.CastingMode         = M{['description'] = 'Casting Mode'}
     state.IdleMode            = M{['description'] = 'Idle Mode'}
     state.RestingMode         = M{['description'] = 'Resting Mode'}
@@ -1527,16 +1527,20 @@ function get_weaponskill_set(equipSet, spell, spellMap)
     -- Custom handling for weaponskills
     local ws_mode = state.WeaponskillMode.current
     
-    if ws_mode == 'Normal' then
-        -- If a particular weaponskill mode isn't specified, see if we have a weaponskill mode
+    if ws_mode == 'Match' then
+        -- Weaponskill mode is specified to match, see if we have a weaponskill mode
         -- corresponding to the current offense mode.  If so, use that.
         if spell.skill == 'Archery' or spell.skill == 'Marksmanship' then
             if state.RangedMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.RangedMode.current) then
                 ws_mode = state.RangedMode.current
+			else
+				ws_mode = 'Normal'
             end
         else
             if state.OffenseMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.OffenseMode.current) then
                 ws_mode = state.OffenseMode.current
+			else
+				ws_mode = 'Normal'
             end
         end
     end

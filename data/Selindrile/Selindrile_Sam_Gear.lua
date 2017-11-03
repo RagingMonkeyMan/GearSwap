@@ -2,7 +2,7 @@
 function user_setup()
     state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
     state.HybridMode:options('Normal','DTLite','PDT','Reraise')
-    state.WeaponskillMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder','Proc')
+    state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','FullAcc','Fodder','Proc')
     state.RangedMode:options('Normal', 'Acc')
     state.PhysicalDefenseMode:options('PDT','PDTReraise')
 	state.MagicalDefenseMode:options('MDT','MDTReraise')

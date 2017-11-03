@@ -3,7 +3,7 @@ function user_setup()
     -- Options: Override default values	
 	state.OffenseMode:options('Normal', 'Acc')
     state.HybridMode:options('Tank', 'DDTank', 'BreathTank', 'NoShellTank', 'Reraise', 'Normal')
-    state.WeaponskillMode:options('Normal', 'Acc')
+    state.WeaponskillMode:options('Match','Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
     state.PhysicalDefenseMode:options('PDT', 'PDT_HP', 'PDT_Reraise', 'Tank')
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')

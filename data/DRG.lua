@@ -277,6 +277,10 @@ function check_jump()
 			windower.chat.input('/ja "Soul Jump" <t>')
 			tickdelay = 110
 			return true
+		elseif abil_recasts[162] == 0 then
+			windower.chat.input('/ja "Spirit Link" <me>')
+			tickdelay = 110
+			return true
 		end
 	
 	end
