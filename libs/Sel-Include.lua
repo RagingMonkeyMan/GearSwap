@@ -148,7 +148,7 @@ function init_include()
 	autows = ''
 	autowstp = 1000
 	buffup = false
-	time_offset = -39538
+	time_offset = -39601
 	time_test = false
 	utsusemi_cancel_delay = .5
 	conserveshadows = true

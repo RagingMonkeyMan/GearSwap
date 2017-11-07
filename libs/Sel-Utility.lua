@@ -1073,7 +1073,6 @@ function check_abilities(spell, spellMap, eventArgs)
 end
 
 function stepdown(spell, eventArgs)
-
 	if spell.english == "Aspir III" then 
 		eventArgs.cancel = true
 		windower.send_command('input /ma "Aspir II" "'..spell.target.raw..'"')
@@ -1414,23 +1413,7 @@ end
 function check_cpring()
 	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
 	
-	if time_test then
-		windower.add_to_chat(123,"Capacity Ring Next Use: "..(get_item_next_use('Capacity Ring').next_use_time - CurrentTime).."")
-	end
-
-	if player.equipment.head and player.equipment.head == 'Guide Beret' and (((get_item_next_use(player.equipment.head).next_use_time) - CurrentTime) > 0 or (get_item_next_use(player.equipment.head).charges_remaining == 0)) then
-		enable("head")
-		handle_equipping_gear(player.status)
-		cp_delay = 19
-		return true
-		
-	elseif cprings:contains(player.equipment.left_ring) and (((get_item_next_use(player.equipment.left_ring).next_use_time) - CurrentTime) > 0 or (get_item_next_use(player.equipment.left_ring).charges_remaining == 0)) then
-		enable("left_ring")
-		handle_equipping_gear(player.status)
-		cp_delay = 19
-		return true
-	
-	elseif cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
+	if cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
 		send_command('input /item "'..player.equipment.left_ring..'" <me>')
 		cp_delay = 0
 		return true
@@ -1439,32 +1422,44 @@ function check_cpring()
 		send_command('input /item "'..player.equipment.head..'" <me>')
 		cp_delay = 0
 		return true
-	
-	elseif item_available('Guide Beret') and ((get_item_next_use('Guide Beret').next_use_time) - CurrentTime) < 0 and (get_item_next_use('Guide Beret').charges_remaining > 0) then
+		
+	elseif item_available('Guide Beret') and ((get_item_next_use('Guide Beret').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Guide Beret').charges_remaining > 0) then
 		enable("head")
 		gearswap.equip_sets('equip_command',nil,{head="Guide Beret"})
 		disable("head")
-		cp_delay = 13
+		cp_delay = 10
 		return true
 		
-	elseif item_available('Trizek Ring') and ((get_item_next_use('Trizek Ring').next_use_time) - CurrentTime) < 0 then
+	elseif item_available('Trizek Ring') and ((get_item_next_use('Trizek Ring').next_use_time) - CurrentTime) < 15 then
 		cp_ring_equip('Trizek Ring')
-		cp_delay = 13
+		cp_delay = 10
 		return true
 		
-	elseif item_available('Capacity Ring') and ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime) < 0 and (get_item_next_use('Capacity Ring').charges_remaining > 0) then
+	elseif item_available('Capacity Ring') and ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Capacity Ring').charges_remaining > 0) then
 		cp_ring_equip('Capacity Ring')
-		cp_delay = 13
+		cp_delay = 10
 		return true
 			
-	elseif item_available('Vocation Ring') and ((get_item_next_use('Vocation Ring').next_use_time) - CurrentTime) < 0 and (get_item_next_use('Vocation Ring').charges_remaining > 0) then
+	elseif item_available('Vocation Ring') and ((get_item_next_use('Vocation Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Vocation Ring').charges_remaining > 0) then
 		cp_ring_equip('Vocation Ring')
-		cp_delay = 13
+		cp_delay = 10
 		return true
 	
-	elseif item_available('Facility Ring') and ((get_item_next_use('Facility Ring').next_use_time) - CurrentTime) < 0 and (get_item_next_use('Facility Ring').charges_remaining > 0) then
+	elseif item_available('Facility Ring') and ((get_item_next_use('Facility Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Facility Ring').charges_remaining > 0) then
 		cp_ring_equip('Facility Ring')
-		cp_delay = 13
+		cp_delay = 10
+		return true
+	
+	elseif player.equipment.head and player.equipment.head == 'Guide Beret' and (((get_item_next_use(player.equipment.head).next_use_time) - CurrentTime) > 15 or (get_item_next_use(player.equipment.head).charges_remaining == 0)) then
+		enable("head")
+		handle_equipping_gear(player.status)
+		cp_delay = 19
+		return true
+		
+	elseif cprings:contains(player.equipment.left_ring) and (((get_item_next_use(player.equipment.left_ring).next_use_time) - CurrentTime) > 15 or (get_item_next_use(player.equipment.left_ring).charges_remaining == 0)) then
+		enable("left_ring")
+		handle_equipping_gear(player.status)
+		cp_delay = 19
 		return true
 	
 	end
@@ -1475,7 +1470,12 @@ end
 
 function check_cpring_buff()-- returs true if you do not have the buff from xp cp ring
 	cp_delay = cp_delay + 1
-
+	
+	if time_test then
+		local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
+		windower.add_to_chat(123,"Capacity Ring Next Use: "..(get_item_next_use('Capacity Ring').next_use_time - CurrentTime).."")
+	end
+	
 	if state.Capacity.value and cp_delay > 20 and not moving and not areas.Cities:contains(world.area) then
 	
 		if player.satchel['Mecisto. Mantle'] then send_command('get "Mecisto. Mantle" satchel;wait 2;gs c update') end
