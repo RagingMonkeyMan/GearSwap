@@ -260,6 +260,25 @@ function init_include()
 		end
 	end)
 		
+	-- Uninterruptible Handling
+	
+	state.Uninterruptible = M(false, 'Uninterruptible')
+	fixed_pos = ''
+	fixed_ts = os.time()
+
+	windower.raw_register_event('outgoing chunk',function(id,original,modified,injected,blocked)
+		if not blocked then
+			if id == 0x15 then
+				if (gearswap.cued_packet or midaction()) and fixed_pos ~= '' and state.Uninterruptible.value then
+					return original:sub(1,4)..fixed_pos..original:sub(17)
+				else
+					fixed_pos = original:sub(5,16)
+					fixed_ts = os.time()
+				end
+			end
+		end
+	end)
+		
     -- General var initialization and setup.
     if job_setup then
         job_setup()
