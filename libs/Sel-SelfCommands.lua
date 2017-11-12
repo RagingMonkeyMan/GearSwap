@@ -520,6 +520,10 @@ function handle_moving(cmdParams)
 	if not midaction() and not pet_midaction() then
 		handle_equipping_gear(player.status)
 	end
+	
+	if state.RngHelper.value then
+		send_command('gs rh clear')
+	end
 end
 
 function handle_stopping(cmdParams)
