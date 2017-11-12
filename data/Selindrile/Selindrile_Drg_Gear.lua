@@ -140,21 +140,21 @@ function init_gear_sets()
 	sets.defense.PDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Shadow Mantle",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
+		back="Shadow Mantle",waist="Flume Belt",legs="Arke Cosciales",feet="Amm Greaves"}
 		
 	sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
+		back="Moonbeam Cape",waist="Flume Belt",legs="Arke Cosciales",feet="Amm Greaves"}
 		
 	sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
+		back="Moonbeam Cape",waist="Flume Belt",legs="Arke Cosciales",feet="Amm Greaves"}
 
 	sets.Kiting = {legs="Carmine Cuisses +1"}
 	sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}

@@ -298,23 +298,28 @@ function init_include()
 
 	-- Event register to perform actions on new targets.
 	function target_change(new)
-	  local target = windower.ffxi.get_mob_by_target('t')
-	  local sub= windower.ffxi.get_mob_by_target('st')
-	  if (target ~= nil) and (sub == nil) then
-		if state.AutoCleanupMode.value and math.sqrt(target.distance) < 7 then
-			if target.name == "Runje Desaali" then 
-				for i in pairs(bayld_items) do
-					if player.inventory[bayld_items[i]] then
-						windower.chat.input('/item "'..bayld_items[i]..'" <t>')
-						windower.chat.input:schedule(2,'/targetnpc')
-						return
+	
+		if state.RngHelper.value then
+			send_command('gs rh clear')
+		end
+	
+		local target = windower.ffxi.get_mob_by_target('t')
+		local sub= windower.ffxi.get_mob_by_target('st')
+		if (target ~= nil) and (sub == nil) then
+			if state.AutoCleanupMode.value and math.sqrt(target.distance) < 7 then
+				if target.name == "Runje Desaali" then 
+					for i in pairs(bayld_items) do
+						if player.inventory[bayld_items[i]] then
+							windower.chat.input('/item "'..bayld_items[i]..'" <t>')
+							windower.chat.input:schedule(2,'/targetnpc')
+							return
+						end
 					end
+				elseif target.name == "Sturdy Pyxis" and player.inventory['Forbidden Key'] then
+					windower.chat.input('/item "Forbidden Key" <t>')
 				end
-			elseif target.name == "Sturdy Pyxis" and player.inventory['Forbidden Key'] then
-				windower.chat.input('/item "Forbidden Key" <t>')
 			end
 		end
-	  end
 	end
 	windower.register_event('target change', target_change)
 
