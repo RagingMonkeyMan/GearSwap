@@ -255,7 +255,7 @@ function job_precast(spell, spellMap, eventArgs)
 				equip(sets.precast.JA['Bestial Loyalty'][state.JugMode.value])
 
 -- Define class for Sic and Ready moves.
-        elseif ready_moves_to_check:contains(spell.english) then
+        elseif spell.type == 'Monster' then
                 classes.CustomClass = "WS"
                 if state.PetMode.Value == 'PetOnly' and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
                          equip(sets.midcast.Pet.ReadyRecastNE)
