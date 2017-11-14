@@ -28,7 +28,6 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
 				add_to_chat(123,'Abort: You have four or more shadows.')
                 eventArgs.cancel = true
 			else
-				add_to_chat(123,'Yolo')
 				send_command('@wait '..utsusemi_ni_cancel_delay..';cancel copy image*')
 			end
         elseif spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi' then

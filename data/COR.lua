@@ -33,6 +33,7 @@ function job_setup()
 	
 	autows = 'Leaden Salute'
 	autofood = 'Sublime Sushi'
+	ammostock = 200
 
     define_roll_values()
 	update_combat_form()
@@ -312,22 +313,25 @@ end
 function check_bullets()
 	if state.AutoBulletMode.value and player.equipment.range then
 			if player.equipment.range == 'Fomalhaut' and get_item_next_use(player.equipment.range).usable then
-				if count_total_bullets('Chrono Bullet') < 200 then
+				if count_total_bullets('Chrono Bullet') < ammostock then
 					windower.chat.input('/item "Fomalhaut" <me>')
 					add_to_chat(217,"You're low on Chrono Bullets, using Fomalhaut.")
 					tickdelay = 120
+					return true
 				end
 			elseif player.equipment.range == 'Death Penalty' and get_item_next_use(player.equipment.range).usable then
-				if count_total_bullets('Living Bullet') < 200 then
+				if count_total_bullets('Living Bullet') < ammostock then
 					windower.chat.input('/item "Death Penalty" <me>')
 					add_to_chat(217,"You're low on Living Bullets, using Death Penalty.")
 					tickdelay = 120
+					return true
 				end
 			elseif player.equipment.range == 'Armageddon' and get_item_next_use(player.equipment.range).usable then
-				if count_total_bullets('Devastating Bullet') < 200 then
+				if count_total_bullets('Devastating Bullet') < ammostock then
 					windower.chat.input('/item "Armageddon" <me>')
 					add_to_chat(217,"You're low on Devastating Bullets, using Armageddon.")
 					tickdelay = 120
+					return true
 				end
 			end
 	end
