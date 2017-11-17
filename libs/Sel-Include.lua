@@ -347,7 +347,7 @@ function init_include()
 		if in_action and tickspell.action_type ~= 'Ranged Attack' then return end
 
 		gearswap.refresh_globals(false)
-		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
+		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (midaction() or gearswap.cued_packet or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end
 			end
@@ -952,7 +952,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 		end
 	end
 
-    if not pet_midaction() and (spell.type == 5 or (not (spell.type:startswith('BloodPact') or spell.type == 'Monster')))then
+    if not pet_midaction() and (type(spell.type) ~= 'string' or (not (spell.type:startswith('BloodPact') or spell.type == 'Monster')))then
         handle_equipping_gear(player.status)
     end
 end

@@ -171,9 +171,10 @@ function check_jump()
 			windower.chat.input('/ja "Spirit Link" <me>')
 			tickdelay = 110
 			return true
+		else
+			return false
 		end
-	
 	end
-		
+
 	return false
 end

@@ -211,9 +211,10 @@ function check_hasso()
 			windower.chat.input('/ja "Seigan" <me>')
 			tickdelay = 110
 			return true
+		else
+			return false
 		end
-	
 	end
-		
+
 	return false
 end

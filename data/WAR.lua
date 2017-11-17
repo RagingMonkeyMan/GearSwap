@@ -47,6 +47,15 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp < 2250 and not buffactive['Blood Rage'] then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if abil_recasts[2] == 0 then
+			cast_delay(1.1)
+			send_command('@input /ja "Warcry" <me>')
+			return
+		end
+	end
+
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
@@ -145,6 +154,7 @@ end
 
 function job_tick()
 	if check_hasso() then return true end
+	if check_buff() then return true end
 	return false
 end
 
@@ -211,8 +221,42 @@ function check_hasso()
 			windower.chat.input('/ja "Seigan" <me>')
 			tickdelay = 110
 			return true
+		else
+			return false
 		end
-	
+	end
+
+	return false
+end
+
+function check_buff()
+	if state.AutoBuffMode.value and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+
+		if not buffactive.Retaliation and abil_recasts[8] == 0 then
+			windower.chat.input('/ja "Retaliation" <me>')
+			tickdelay = 110
+			return true		
+		elseif not buffactive.Restraint and abil_recasts[9] == 0 then
+			windower.chat.input('/ja "Restraint" <me>')
+			tickdelay = 110
+			return true
+		elseif not buffactive['Blood Rage'] and abil_recasts[11] == 0 then
+			windower.chat.input('/ja "Blood Rage" <me>')
+			tickdelay = 110
+			return true
+		elseif not buffactive.Berserk and abil_recasts[1] == 0 then
+			windower.chat.input('/ja "Berserk" <me>')
+			tickdelay = 110
+			return true
+		elseif not buffactive.Aggressor and abil_recasts[4] == 0 then
+			windower.chat.input('/ja "Aggressor" <me>')
+			tickdelay = 110
+			return true
+		else
+			return false
+		end
 	end
 		
 	return false
