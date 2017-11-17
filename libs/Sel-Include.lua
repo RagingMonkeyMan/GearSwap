@@ -1933,7 +1933,8 @@ function buff_change(buff, gain)
             enable("left_ring")
 			
 			if time_test and player.equipment.left_ring == 'Capacity Ring' then
-				local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
+				--local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
+				local CurrentTime = (os.time(os.date("!*t")) + time_offset)
 				windower.add_to_chat(123,"USED! ~ Capacity Ring Next Use: "..((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime).."")
 			end
 			

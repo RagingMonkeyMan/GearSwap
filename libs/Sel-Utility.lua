@@ -1396,7 +1396,7 @@ end
 function get_item_next_use(name)--returns time that you can use the item again
     for _,n in pairs({"inventory","wardrobe","wardrobe2","wardrobe3","wardrobe4"}) do
         for _,v in pairs(gearswap.items[n]) do
-            if type(v) == "table" and v.id ~= 0 and res.items[v.id].en == name then
+            if type(v) == "table" and v.id ~= 0 and res.items[v.id].english == name then
                 return extdata.decode(v)
             end
         end
@@ -1410,7 +1410,8 @@ function cp_ring_equip(ring)--equips given ring
 end
 
 function check_cpring()
-	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
+--	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
+	local CurrentTime = (os.time(os.date('!*t')) - time_offset)
 	
 	if cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
 		send_command('input /item "'..player.equipment.left_ring..'" <me>')

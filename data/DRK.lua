@@ -13,6 +13,7 @@ function job_setup()
 
     state.Buff.Souleater = buffactive.Souleater or false
     state.Buff['Dark Seal'] = buffactive['Dark Seal'] or false
+	state.Buff['Nether Void'] = buffactive['Nether Void'] or false
     state.Buff['Aftermath'] = buffactive['Aftermath'] or false
     state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff.Hasso = buffactive.Hasso or false
@@ -37,15 +38,24 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 	
-function job_filtered_action(spell, eventArgs)
-
-end
-
-function job_pretarget(spell, spellMap, eventArgs)
-
-end
-
 function job_precast(spell, spellMap, eventArgs)
+
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if spell.english == 'Entropy' and abil_recasts[95] == 0 then
+			cast_delay(1.1)
+			windower.chat.input('/ja "Consume Mana" <me>')
+			return
+		elseif player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
+			cast_delay(1.1)
+			windower.chat.input('/ja "Sekkanoki" <me>')
+			return
+		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
+			cast_delay(1.1)
+			windower.chat.input('/ja "Meditate" <me>')
+			return
+		end
+	end
 
 end
 
@@ -152,15 +162,19 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if spell.element and sets.element[spell.element] then
 			equip(sets.element[spell.element])
 		end
+	elseif spell.skill == 'Dark Magic' then
+		if spell.english:contains('Absorb') and state.Buff['Dark Seal'] and sets.buff['Dark Seal'] then
+			equip(sets.buff['Dark Seal'])
+		end
+		if spell.english:contains('Absorb') and state.Buff['Nether Void'] and sets.buff['Nether Void'] then
+			equip(sets.buff['Nether Void'])
+		end
     end
-end
-
-function job_self_command(commandArgs, eventArgs)
-
 end
 
 function job_tick()
 	if check_hasso() then return true end
+	if check_buff() then return true end
 	return false
 end
 
@@ -216,5 +230,34 @@ function check_hasso()
 		end
 	end
 
+	return false
+end
+
+function check_buff()
+	if state.AutoBuffMode.value and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+
+		if not buffactive['Last Resort'] and abil_recasts[87] == 0 then
+			windower.chat.input('/ja "Last Resort" <me>')
+			tickdelay = 110
+			return true
+		elseif not buffactive['Scarlet Delirium'] and abil_recasts[44] == 0 then
+			windower.chat.input('/ja "Scarlet Delirium" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+			windower.chat.input('/ja "Berserk" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+			windower.chat.input('/ja "Aggressor" <me>')
+			tickdelay = 110
+			return true
+		else
+			return false
+		end
+	end
+		
 	return false
 end

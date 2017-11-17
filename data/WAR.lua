@@ -37,14 +37,6 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
-function job_filtered_action(spell, eventArgs)
-
-end
-
-function job_pretarget(spell, spellMap, eventArgs)
-
-end
-
 function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
@@ -66,15 +58,6 @@ function job_precast(spell, spellMap, eventArgs)
 
 end
 
-function job_aftercast(spell, spellMap, eventArgs)
-
-end
-
--- Modify the default idle set after it was constructed.
-function job_customize_idle_set(idleSet)
-    return idleSet
-end
-
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
 
@@ -91,10 +74,6 @@ function job_customize_melee_set(meleeSet)
     end
 	
     return meleeSet
-end
-
-function job_customize_defense_set(defenseSet)
-    return defenseSet
 end
 
 -- Run after the general precast() is done.
@@ -156,18 +135,10 @@ function job_post_precast(spell, spellMap, eventArgs)
 
 end
 
-function job_self_command(commandArgs, eventArgs)
-
-end
-
 function job_tick()
 	if check_hasso() then return true end
 	if check_buff() then return true end
 	return false
-end
-
-function job_post_midcast(spell, spellMap, eventArgs)
-
 end
 
 -- Called by the 'update' self-command.
