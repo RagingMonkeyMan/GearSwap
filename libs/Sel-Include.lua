@@ -1239,6 +1239,18 @@ function get_idle_set(petStatus)
 		else 
 			idleSet = set_combine(idleSet, sets.Kiting)
 		end
+
+		if (world.area:contains('Adoulin') or world.area == "Celennia Memorial Library") and item_available("Councilor's Garb") then
+			idleSet = set_combine(idleSet, {body="Councilor's Garb"})
+		elseif (world.area:contains('Bastok') or world.area == "Metalworks") and item_available("Republic Aketon") then
+			idleSet = set_combine(idleSet, {body="Republic Aketon"})
+		elseif (world.area:contains('Windurst') or world.area == "Heavens Tower") and item_available("Federation Aketon") then
+			idleSet = set_combine(idleSet, {body="Federation Aketon"})
+		elseif (world.area:contains("San d'Oria") or world.area == "Chateau d'Oraguille") and item_available("Kingdom Aketon") then
+			idleSet = set_combine(idleSet, {body="Kingdom Aketon"})
+		elseif world.area == "Mog Garden" and item_available("Jubilee Shirt") then
+			idleSet = set_combine(idleSet, {body="Jubilee Shirt"})
+		end
 	end
 
 	if silent_check_disable() and state.DefenseMode.value == 'None' then
