@@ -149,6 +149,13 @@ function init_include()
 	autowstp = 1000
 	buffup = false
 	time_offset = -39601
+	
+	if time_offset then
+		local t = os.time()
+		local offset = os.difftime(os.time(os.date('!*t', t)), t)
+		time_offset = offset - 61201
+	end
+	
 	time_test = false
 	utsusemi_cancel_delay = .5
 	conserveshadows = true
