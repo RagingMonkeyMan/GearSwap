@@ -1411,7 +1411,7 @@ end
 
 function check_cpring()
 --	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
-	local CurrentTime = (os.time(os.date('!*t')) - time_offset)
+	local CurrentTime = (os.time(os.date('!*t')) + time_offset)
 	
 	if cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
 		send_command('input /item "'..player.equipment.left_ring..'" <me>')

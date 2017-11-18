@@ -39,14 +39,6 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
-function job_filtered_action(spell, eventArgs)
-
-end
-
-function job_pretarget(spell, spellMap, eventArgs)
-
-end
-
 function job_filter_precast(spell, spellMap, eventArgs)
 
 	if spell.english == 'Valiance' then
