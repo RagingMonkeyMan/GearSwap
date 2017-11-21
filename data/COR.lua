@@ -63,7 +63,8 @@ function job_precast(spell, spellMap, eventArgs)
     -- Check that proper ammo is available if we're using ranged attacks or similar.
     if spell.type == 'CorsairShot' and not player.inventory['Trump Card'] and player.satchel['Trump Card'] then
 		send_command('get "Trump Card" satchel')
-		cast_delay(1.1)
+		eventArgs.cancel = true
+		windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
 		return
     end
     if spell.action_type == 'Ranged Attack' or spell.type == 'WeaponSkill' or spell.type == 'CorsairShot' then

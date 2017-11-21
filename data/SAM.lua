@@ -34,6 +34,30 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
+function job_precast(spell, spellMap, eventArgs)
+
+	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if player.tp > 1850 and abil_recasts[140] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif abil_recasts[134] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif player.tp < 1500 and not buffactive['Sekkanoki'] and abil_recasts[54] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Hagakure" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		end
+	end
+
+end
+
 function job_filtered_action(spell, eventArgs)
 	if spell.type == 'WeaponSkill' then
 		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
@@ -62,14 +86,6 @@ function job_filtered_action(spell, eventArgs)
             end
         end
 	end
-end
-
-function job_pretarget(spell, spellMap, eventArgs)
-
-end
-
-function job_precast(spell, spellMap, eventArgs)
-
 end
 
 function job_post_precast(spell, spellMap, eventArgs)

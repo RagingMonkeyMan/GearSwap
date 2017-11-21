@@ -51,9 +51,10 @@ function job_precast(spell, spellMap, eventArgs)
 			gear.default.obi_back = gear.obi_nuke_back
 		elseif spellMap == 'StatusRemoval' and not (spell.english == "Erase" or spell.english == "Esuna" or spell.english == "Sacrifice") then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if abil_recasts[32] == 0 and not buffactive['amnesia'] and state.AutoCaress.value then
-				cast_delay(1.1)
-				send_command('@input /ja "Divine Caress" <me>')
+			if abil_recasts[32] == 0 and not silent_check_amnesia() and state.AutoCaress.value then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Divine Caress" <me>')
+				windower.chat.input:schedule(1,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				return
 			end
 		end

@@ -297,7 +297,7 @@ function init_gear_sets()
 
 	sets.Kiting = {feet="Herald's Gaiters"}
 	sets.latent_refresh = {waist="Fucho-no-obi"}
-	sets.DayIdle = {feet=gear.merlinic_refresh_feet}
+	sets.DayIdle = {}
 	sets.NightIdle = {}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {feet=gear.chironic_treasure_feet})
 	

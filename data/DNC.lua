@@ -240,8 +240,9 @@ function auto_presto(spell)
         local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
         
         if player.main_job_level >= 77 and prestoCooldown < 1 and under3FMs then
-            cast_delay(1.1)
-            send_command('@input /ja "Presto" <me>')
+            eventArgs.cancel = true
+			windower.chat.input('/ja "Presto" <me>')
+			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
         end
     end
 end

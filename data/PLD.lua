@@ -61,9 +61,10 @@ function job_precast(spell, spellMap, eventArgs)
 	if spell.name == 'Flash' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		if abil_recasts[80] == 0 and spell_recasts[112] == 0 then
-			cast_delay(1.1)
-			send_command('@input /ja "Divine Emblem" <me>')
+		if abil_recasts[80] == 0 and not silent_check_amnesia() and spell_recasts[112] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Divine Emblem" <me>')
+			windower.chat.input:schedule(1,'/ma "Flash" '..spell.target.raw..'')
 		end
 	end
 

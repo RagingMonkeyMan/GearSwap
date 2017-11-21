@@ -524,6 +524,7 @@ function handle_actions(spell, action)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
+			return
 		end
     end
 	
@@ -532,6 +533,7 @@ function handle_actions(spell, action)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
+			return
 		end
     end
 	
@@ -540,6 +542,7 @@ function handle_actions(spell, action)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
+			return
 		end
     end
 	
@@ -548,6 +551,7 @@ function handle_actions(spell, action)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
+			return
 		end
     end
 	
@@ -559,6 +563,7 @@ function handle_actions(spell, action)
             
             if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
                 cancel_spell()
+				return
             end
         end
 		
@@ -568,6 +573,7 @@ function handle_actions(spell, action)
             
             if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
                 cancel_spell()
+				return
             end
         end
 		
@@ -576,6 +582,7 @@ function handle_actions(spell, action)
             
             if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
                 cancel_spell()
+				return
             end
         end
     
@@ -586,6 +593,7 @@ function handle_actions(spell, action)
 			
 			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 				cancel_spell()
+				return
 			end
         end
 		
@@ -595,6 +603,7 @@ function handle_actions(spell, action)
             
             if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
                 cancel_spell()
+				return
             end
         end
 		

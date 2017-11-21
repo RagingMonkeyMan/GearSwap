@@ -31,6 +31,25 @@ function job_setup()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
+function job_precast(spell, spellMap, eventArgs)
+
+	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		end
+	end
+
+end
+
 function job_post_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' then

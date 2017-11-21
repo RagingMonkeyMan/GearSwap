@@ -39,19 +39,22 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.tp < 2250 and not buffactive['Blood Rage'] and abil_recasts[2] == 0 then
-			cast_delay(1.1)
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Warcry" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		elseif player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
-			cast_delay(1.1)
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
-			cast_delay(1.1)
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
 	end

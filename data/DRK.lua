@@ -28,7 +28,7 @@ function job_setup()
 	
 	update_combat_form()
 	update_melee_groups()
-	
+
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","CastingMode","TreasureMode",})
 end
 	
@@ -40,19 +40,22 @@ end
 	
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if spell.english == 'Entropy' and abil_recasts[95] == 0 then
-			cast_delay(1.1)
+		if spell.english == 'Entropy' and not buffactive['Sekkanoki'] and abil_recasts[95] == 0 then
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Consume Mana" <me>')
+			windower.chat.input:schedule(1,'/ws "Entropy" <t>')
 			return
-		elseif player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
-			cast_delay(1.1)
+		elseif player.sub_job == 'SAM' and not buffactive['Consume Mana'] and player.tp > 1850 and abil_recasts[140] == 0 then
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
-			cast_delay(1.1)
+			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
 	end
