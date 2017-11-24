@@ -56,7 +56,7 @@ function init_gear_sets()
 	-- Item sets.
 	
 	-- Precast sets to enhance JAs
-    sets.precast.JA['Vallation'] = set_combine(sets.Enmity,{body="Runeist's Coat +3", legs="Futhark Trousers +1"})
+    sets.precast.JA['Vallation'] = set_combine(sets.Enmity,{body="Runeist's Coat +3",legs="Futhark Trousers +1"})
     sets.precast.JA['Valiance'] = sets.precast.JA['Vallation']
     sets.precast.JA['Pflug'] = set_combine(sets.Enmity,{feet="Runeist Bottes +1"})
     sets.precast.JA['Battuta'] = set_combine(sets.Enmity,{head="Futhark Bandeau +1"})
@@ -102,7 +102,7 @@ function init_gear_sets()
 	sets.element.Earth = {neck="Quanpur Necklace"}
 
 	-- Pulse sets, different stats for different rune modes, stat aligned.
-    sets.precast.JA['Vivacious Pulse'] = {head="Erilaz Galea +1",neck="Incanter's Torque",ring1="Stikini Ring",ring2="Stikini Ring",legs="Rune. Trousers +1"}
+    sets.precast.JA['Vivacious Pulse'] = {head="Erilaz Galea +1",neck="Incanter's Torque",ring1="Stikini Ring",ring2="Stikini Ring",legs="Rune. Trousers +2"}
     sets.precast.JA['Vivacious Pulse']['Ignis'] = set_combine(sets.precast.JA['Vivacious Pulse'], {})
 	sets.precast.JA['Vivacious Pulse']['Gelus'] = set_combine(sets.precast.JA['Vivacious Pulse'], {})
 	sets.precast.JA['Vivacious Pulse']['Flabra'] = set_combine(sets.precast.JA['Vivacious Pulse'], {})
@@ -290,11 +290,11 @@ function init_gear_sets()
 	sets.defense.MEVA = {ammo="Staunch Tathlum",
         head="Erilaz Galea +1",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
         body="Runeist's Coat +3",hands="Erilaz Gauntlets +1",ring1="Purity Ring",ring2="Vengeful Ring",
-        back="Moonlight Cape",waist="Engraved Belt",legs="Rune. Trousers +1",feet="Erilaz Greaves +1"}
+        back="Moonlight Cape",waist="Engraved Belt",legs="Rune. Trousers +2",feet="Erilaz Greaves +1"}
 	sets.defense.MEVA_HP = {ammo="Staunch Tathlum",
         head="Erilaz Galea +1",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
         body="Runeist's Coat +3",hands="Erilaz Gauntlets +1",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-        back="Moonlight Cape",waist="Engraved Belt",legs="Rune. Trousers +1",feet="Erilaz Greaves +1"}
+        back="Moonlight Cape",waist="Engraved Belt",legs="Rune. Trousers +2",feet="Erilaz Greaves +1"}
 		
 	sets.defense.Death = {}
 		
