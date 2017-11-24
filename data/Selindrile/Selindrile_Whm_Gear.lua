@@ -1,6 +1,6 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('None', 'Normal')
+    state.OffenseMode:options('None', 'Normal','Acc')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT', 'TPEat', 'Regain')
 	state.PhysicalDefenseMode:options('PDT')
@@ -90,7 +90,7 @@ function init_gear_sets()
     sets.precast.WS = {ammo="Hasty Pinion +1",
 		head="Befouled Crown",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Kaykaus Bliaut",hands="Telchine Gloves",ring1="Stikini Ring",ring2="Stikini Ring",
-		back="Rancorous Mantle",waist="Fotia Belt",legs="Assid. Pants +1",feet="Gende. Galosh. +1"}
+		back="Buquwik Cape",waist="Fotia Belt",legs="Assid. Pants +1",feet="Gende. Galosh. +1"}
 
     --sets.precast.WS['Flash Nova'] = {}
 
@@ -101,7 +101,7 @@ function init_gear_sets()
     sets.Kiting = {feet="Herald's Gaiters"}
     sets.latent_refresh = {waist="Fucho-no-obi"}
 	sets.DayIdle = {}
-	sets.NightIdle = {}
+	sets.NightIdle = {back="Umbra Cape"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {feet=gear.chironic_treasure_feet})
 	
 	--Situational sets: Gear that is equipped on certain targets
@@ -314,12 +314,12 @@ function init_gear_sets()
 	sets.idle = {main="Bolelabunga",sub="Genmei Shield",ammo="Homiliary",
 		head="Befouled Crown",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Witching Robe",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+		back="Moonlight Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 
 	sets.idle.PDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+		back="Moonlight Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 		
     sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque",ring2="Karieyh Ring"})
 	sets.idle.Regain = set_combine(sets.idle, {ring2="Karieyh Ring"})
@@ -334,12 +334,12 @@ function init_gear_sets()
 	sets.defense.PDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+		back="Moonlight Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 
 	sets.defense.MDT = {main="Mafic Cudgel",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Inyanga Jubbah +2",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Shadow Ring",
-		back="Moonbeam Cape",waist="Flax Sash",legs="Th. Pantaloons +2",feet="Gende. Galosh. +1"}
+		back="Moonlight Cape",waist="Flax Sash",legs="Th. Pantaloons +2",feet="Gende. Galosh. +1"}
 
     sets.defense.MEVA = {ammo="Staunch Tathlum",
         head="Telchine Cap",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -360,16 +360,36 @@ function init_gear_sets()
 
     -- Basic set for if no TP weapon is defined.
     sets.engaged = {ammo="Staunch Tathlum",
-        head="Aya. Zucchetto +1",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
+        head="Aya. Zucchetto +1",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",Ring2="Ilabrat Ring",
+        back="Kayapa Cape",waist="Windbuffet Belt +1",legs="Aya. Cosciales +2",feet="Battlecast Gaiters"}
+		
+    sets.engaged.Acc = {ammo="Hasty Pinion +1",
+        head="Aya. Zucchetto +1",neck="Combatant's Torque",ear1="Telos Earring",ear2="Brutal Earring",
+		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",Ring2="Ilabrat Ring",
+        back="Kayapa Cape",waist="Olseni Belt",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
+		
+    sets.engaged.DW = {ammo="Staunch Tathlum",
+        head="Aya. Zucchetto +1",neck="Asperity Necklace",ear1="Telos Earring",ear2="Suppanomimi",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",Ring2="Ilabrat Ring",
         back="Kayapa Cape",waist="Shetal Stone",legs="Aya. Cosciales +2",feet="Battlecast Gaiters"}
+		
+    sets.engaged.DW.Acc = {ammo="Hasty Pinion +1",
+        head="Aya. Zucchetto +1",neck="Combatant's Torque",ear1="Telos Earring",ear2="Suppanomimi",
+		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",Ring2="Ilabrat Ring",
+        back="Kayapa Cape",waist="Shetal Stone",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
 
-    -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
+		-- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Divine Caress'] = {hands="Ebers Mitts +1",back="Mending Cape"}
 	
 	sets.HPDown = {head="Pixie Hairpin +1",ear1="Mendicant's Earring",ear2="Evans Earring",
 		body="Zendik Robe",hands="Hieros Mittens",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
 		back="Swith Cape +1",waist="Flax Sash",legs="Shedir Seraweels",feet=""}
+		
+	sets.HPCure = {main="Queller Rod",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
+		head="Blistering Sallet +1",neck="Nodens Gorget",ear1="Etiolation Earring",ear2="Ethereal Earring",
+		body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Kunaji Ring",ring2="Meridian Ring",
+		back="Alaunus's Cape",waist="Eschan Stone",legs="Ebers Pant. +1",feet="Kaykaus Boots"}
 
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 

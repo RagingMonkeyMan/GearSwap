@@ -291,14 +291,14 @@ function init_gear_sets()
 	sets.defense.PDT = {main="Terra's Staff",sub="Umbra Strap",ammo="Impatiens",
 		head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Emet Harness +1",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
 
 	sets.defense.NukeLock = sets.midcast['Elemental Magic']
 		
 	sets.defense.MDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Impatiens",
 		head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
 		
     sets.defense.MEVA = {main="Terra's Staff",sub="Enki Strap",ammo="Pemphredo Tathlum",
         head=empty,neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -341,12 +341,12 @@ function init_gear_sets()
 	sets.engaged.PhysicalDef = {ammo="Ginsen",
 		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Emet Harness +1",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
 		
 	sets.engaged.MagicalDef = {ammo="Ginsen",
 		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
 
 end
 

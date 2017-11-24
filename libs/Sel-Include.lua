@@ -149,6 +149,7 @@ function init_include()
 	autowstp = 1000
 	buffup = false
 	time_offset = -39601
+	curecheat = false
 	
 	if time_offset then
 		local t = os.time()
@@ -897,8 +898,15 @@ function default_post_midcast(spell, spellMap, eventArgs)
 		end
 
 		if spell.target.type == 'SELF' and spellMap then
-			if spellMap:contains('Cure') and sets.Self_Healing then
-				equip(sets.Self_Healing)
+			if spellMap:contains('Cure') then
+				if curecheat then
+					if sets.HPCure then
+						equip(sets.HPCure)
+					end
+					curecheat = false
+				elseif sets.Self_Healing then
+					equip(sets.Self_Healing)
+				end
 			elseif spellMap == 'Refresh' and sets.Self_Refresh then
 				equip(sets.Self_Refresh)
 			end
@@ -1867,7 +1875,7 @@ function state_change(stateField, newValue, oldValue)
         if newValue == 'None' then
             enable('main','sub','range')
         else
-			if stateField == 'Offense Mode' and newValue == 'Normal' and mageJobs:contains(player.main_job) and sets.Weapons then
+			if newValue == 'Normal' and mageJobs:contains(player.main_job) and sets.Weapons then
 				equip(sets.Weapons)
 			end
 			if player.main_job == 'BRD' then
@@ -1908,6 +1916,10 @@ function state_change(stateField, newValue, oldValue)
 		tickdelay = 0
 	elseif stateField == 'Capacity' and newValue == 'false' and cprings:contains(player.equipment.left_ring) then
             enable("left_ring")
+	end
+	
+	if update_combat_form then
+		update_combat_form()
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end

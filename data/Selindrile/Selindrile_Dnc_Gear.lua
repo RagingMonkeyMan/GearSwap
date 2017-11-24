@@ -160,7 +160,7 @@ function init_gear_sets()
     sets.midcast.FastRecast = {
         head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
         body="Dread Jupon",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Rawhide Trousers",feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs="Rawhide Trousers",feet=gear.herculean_dt_feet}
         
     -- Specific spells
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -178,7 +178,7 @@ function init_gear_sets()
     sets.idle = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Sheltered Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 		
     sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
     
@@ -237,27 +237,27 @@ function init_gear_sets()
     sets.engaged.PDT = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Moonbeam Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.engaged.SomeAcc.PDT = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
     sets.engaged.Acc.PDT = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.engaged.FullAcc.PDT = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
     sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
 
     -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Saber Dance'] = {} --legs="Horos Tights"

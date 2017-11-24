@@ -40,7 +40,7 @@ end
 	
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if spell.english == 'Entropy' and not buffactive['Sekkanoki'] and abil_recasts[95] == 0 then
 			eventArgs.cancel = true
@@ -222,11 +222,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = 110
+			tickdelay = 240
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = 110
+			tickdelay = 240
 			return true
 		else
 			return false

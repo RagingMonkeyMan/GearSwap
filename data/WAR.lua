@@ -38,8 +38,7 @@ end
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
 function job_precast(spell, spellMap, eventArgs)
-
-	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.tp < 2250 and not buffactive['Blood Rage'] and abil_recasts[2] == 0 then
 			eventArgs.cancel = true

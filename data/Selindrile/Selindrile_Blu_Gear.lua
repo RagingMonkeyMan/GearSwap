@@ -409,7 +409,7 @@ function init_gear_sets()
 	sets.idle.PDT = {main="Mafic Cudgel",sub="Genmei Shield",ammo="Staunch Tathlum",
 				head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring", ear2="Genmei Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+				back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 
 	sets.idle.DTHippo = set_combine(sets.idle.PDT, {legs="Carmine Cuisses +1",feet="Hippo. Socks +1"})
 
@@ -417,7 +417,7 @@ function init_gear_sets()
 	sets.defense.PDT = {main="Terra's Staff",sub="Umbra Strap",ammo="Staunch Tathlum",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi", ear2="Brutal Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Windbuffet Belt +1",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+				back="Moonlight Cape",waist="Windbuffet Belt +1",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 
 	sets.defense.MDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring", ear2="Sanare Earring",
@@ -534,7 +534,7 @@ function init_gear_sets()
 	sets.engaged.PDT = {ammo="Staunch Tathlum",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 
 	sets.engaged.MinAcc.DTLite = {ammo="Ginsen",
 			    head="Dampening Tam",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Telos Earring",
@@ -544,7 +544,7 @@ function init_gear_sets()
 	sets.engaged.MinAcc.PDT = {ammo="Falcon Eye",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 
 	sets.engaged.SomeAcc.DTLite = {ammo="Ginsen",
 			    head="Dampening Tam",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Telos Earring",
@@ -554,7 +554,7 @@ function init_gear_sets()
 	sets.engaged.SomeAcc.PDT = {ammo="Ginsen",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 
 	sets.engaged.Acc.DTLite = {ammo="Falcon Eye",
 			    head="Dampening Tam",neck="Loricate Torque +1",ear1="Digni. Earring",ear2="Telos Earring",
@@ -564,7 +564,7 @@ function init_gear_sets()
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
 				body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Aya. Cosciales +2",feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Aya. Cosciales +2",feet="Ahosi Leggings"}
 
 	sets.engaged.HighAcc.DTLite = {ammo="Falcon Eye",
 			    head="Carmine Mask +1",neck="Loricate Torque +1",ear1="Digni. Earring",ear2="Telos Earring",
@@ -574,7 +574,7 @@ function init_gear_sets()
 	sets.engaged.HighAcc.PDT = {ammo="Falcon Eye",
 				head="Carmine Mask +1",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
 				body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet="Ahosi Leggings"}
 
 	sets.engaged.FullAcc.DTLite = {ammo="Falcon Eye",
 			    head="Carmine Mask +1",neck="Loricate Torque +1",ear1="Regal Earring",ear2="Telos Earring",
@@ -599,7 +599,7 @@ function init_gear_sets()
 	sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
 		        body="Ayanmo Corazza +2",hands="Assim. Bazu. +3",ring1="Defending Ring",ring2="Patricius Ring",
-				back="Moonbeam Cape",waist="Windbuffet Belt +1",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+				back="Moonlight Cape",waist="Windbuffet Belt +1",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 
 	sets.engaged.MDT = {ammo="Ginsen",
 				head="Dampening Tam",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",

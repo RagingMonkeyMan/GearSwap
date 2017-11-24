@@ -34,7 +34,7 @@ function init_gear_sets()
     sets.Enmity = {ammo="Paeapua",
         head="Dampening Tam",neck="Unmoving Collar +1",ear1="Friomisi Earring",ear2="Trux Earring",
         body="Emet Harness +1",hands="Kurys Gloves",ring1="Petrov Ring",ring2="Vengeful Ring",
-        back="Moonbeam Cape",waist="Goading Belt",legs=gear.herculean_dt_legs,feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Goading Belt",legs=gear.herculean_dt_legs,feet="Amm Greaves"}
 	
     -- Precast sets to enhance JAs
     sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama"
@@ -47,7 +47,7 @@ function init_gear_sets()
     sets.precast.Waltz = {ammo="Yamarang",
         head="Mummu Bonnet +1",neck="Unmoving Collar +1",ear1="Enchntr. Earring +1",ear2="Handler's Earring +1",
         body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
-        back="Moonbeam Cape",waist="Chaac Belt",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
+        back="Moonlight Cape",waist="Chaac Belt",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
 	
     -- Don't need any special gear for Healing Waltz.
     sets.precast.Waltz['Healing Waltz'] = {}
@@ -174,19 +174,19 @@ function init_gear_sets()
     sets.idle = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Hiza. Haramaki +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 
     sets.idle.PDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 		
     sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
 		
     sets.idle.Weak = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
     
     -- Defense sets
     sets.defense.Evasion = {ammo="Togakushi Shuriken",
@@ -197,7 +197,7 @@ function init_gear_sets()
     sets.defense.PDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 
     sets.defense.MDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -266,15 +266,15 @@ function init_gear_sets()
     sets.engaged.PDT = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 		sets.engaged.SomeAcc.PDT = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 	sets.engaged.Acc.PDT = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 	sets.engaged.FullAcc.PDT = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Zennaroi Earring",ear2="Telos Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
@@ -282,7 +282,7 @@ function init_gear_sets()
 	sets.engaged.Fodder.PDT = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 		
     --------------------------------------
     -- Custom buff sets

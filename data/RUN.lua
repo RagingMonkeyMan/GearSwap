@@ -58,6 +58,20 @@ function job_precast(spell, spellMap, eventArgs)
 		return
 	end
 	
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		end
+	end
+	
 end
 
 function job_post_precast(spell, spellMap, eventArgs)

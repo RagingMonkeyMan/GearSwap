@@ -33,7 +33,7 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and not silent_check_amnesia() and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
 			eventArgs.cancel = true

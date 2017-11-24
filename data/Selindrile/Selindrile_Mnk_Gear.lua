@@ -151,7 +151,7 @@ function init_gear_sets()
 	sets.midcast.FastRecast = {ammo="Staunch Tathlum",
 		head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Dread Jupon",hands="Leyline Gloves",ring2="Defending Ring",ring2="Prolix Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 		
 	-- Specific spells
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -166,23 +166,23 @@ function init_gear_sets()
 	sets.idle = {ammo="Staunch Tathlum",
 		head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Sheltered Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 
 	sets.idle.Weak = {ammo="Staunch Tathlum",
 		head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Hesychast's Cyclas",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Sheltered Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 
 	sets.idle.PDT = {ammo="Staunch Tathlum",
 		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}		
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}		
 
 	-- Defense sets
 	sets.defense.PDT = {ammo="Staunch Tathlum",
 		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_acc_feet}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_acc_feet}
 		
 	-- Defense sets
 	sets.defense.HP = {ammo="Staunch Tathlum",
@@ -193,7 +193,7 @@ function init_gear_sets()
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 		head="Dampening Tam",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Shadow Ring",
-		back="Moonbeam Cape",waist="Flax Sash",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Flax Sash",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum",
 		head=empty,neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -235,11 +235,11 @@ function init_gear_sets()
 	sets.engaged.PDT = {ammo="Ginsen",
 		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 	sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
 		head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 		head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Sherida Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Patricius Ring",
@@ -251,7 +251,7 @@ function init_gear_sets()
 	sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum",
 		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 	sets.engaged.PDTOnly = {ammo="Ginsen",
 		head="Genmei Kabuto",neck="Moonbeam Nodowa",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Emet Harness +1",hands="Adhemar Wristbands",ring1="Niqmaddu Ring",ring2="Patricius Ring",

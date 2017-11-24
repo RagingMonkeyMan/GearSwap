@@ -496,6 +496,7 @@ end
 function handle_curecheat(cmdParams)
 	if sets.HPDown then
 		equip(sets.HPDown)
+		curecheat = true
 		send_command('@wait 1;input /ma "Cure IV" <me>')
 	else
 		add_to_chat(123,"You don't have a sets.HPDown to cheat with.")

@@ -62,7 +62,7 @@ function init_gear_sets()
 	sets.precast.FC = {ammo="Impatiens",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Odyss. Chestplate",hands="Leyline Gloves",ring1="Lebeche Ring",ring2="Prolix Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs=gear.odyssean_fc_legs,feet="Odyssean Greaves"}
+		back="Moonlight Cape",waist="Flume Belt",legs=gear.odyssean_fc_legs,feet="Odyssean Greaves"}
 	
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {})
 
@@ -70,7 +70,7 @@ function init_gear_sets()
 	sets.midcast.FastRecast = {ammo="Staunch Tathlum",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Odyss. Chestplate",hands="Leyline Gloves",ring1="Lebeche Ring",ring2="Prolix Ring",
-		back="Moonbeam Cape",waist="Tempus Fugit",legs=gear.odyssean_fc_legs,feet="Odyssean Greaves"}
+		back="Moonlight Cape",waist="Tempus Fugit",legs=gear.odyssean_fc_legs,feet="Odyssean Greaves"}
 	
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
                    
@@ -174,14 +174,14 @@ function init_gear_sets()
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 		
 	sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Sulev. Cuisses +2",feet="Amm Greaves"}
 
 	sets.Kiting = {}
 	sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}

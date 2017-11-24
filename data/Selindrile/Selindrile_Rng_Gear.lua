@@ -46,7 +46,7 @@ function init_gear_sets()
     sets.precast.FC = {
         head="Carmine Mask +1",neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
         body="Dread Jupon",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Lebeche Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
 
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket"})
 
@@ -110,7 +110,7 @@ function init_gear_sets()
     sets.midcast.FastRecast = {
         head="Carmine Mask +1",neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
         body="Dread Jupon",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
 		
 	-- Ranged sets
 
@@ -146,23 +146,23 @@ function init_gear_sets()
     sets.idle = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Karieyh Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.herculean_dt_feet}
     
     -- Defense sets
     sets.defense.PDT = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
 
     sets.defense.MDT = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
     sets.defense.MEVA = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
 	sets.Weapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}

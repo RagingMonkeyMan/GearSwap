@@ -203,12 +203,12 @@ function init_gear_sets()
 	sets.defense.PDT = {main="Terra's Staff", sub="Umbra Strap",range="Gjallarhorn",
 		head="Bihu Roundlet +1",neck="Loricate Torque +1",ear1="Moonshade Earring",ear2="Ethereal Earring",
 		body="Bihu Jstcorps +1",hands="Bihu Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
 
 	sets.defense.MDT = {main="Terra's Staff", sub="Umbra Strap",range="Gjallarhorn",
 		head="Bihu Roundlet +1",neck="Loricate Torque +1",ear1="Moonshade Earring",ear2="Ethereal Earring",
 		body="Bihu Jstcorps +1",hands="Bihu Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonbeam Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
+		back="Moonlight Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
 
 	sets.Kiting = {feet="Aoidos' Cothurnes +2"}
 

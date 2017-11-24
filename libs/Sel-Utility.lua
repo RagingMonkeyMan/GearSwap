@@ -1158,7 +1158,7 @@ end
 function check_nuke()
 	if state.AutoNukeMode.value and player.target.type == "MONSTER" then
 		windower.send_command('input /ma '..autonuke..' <t>')
-		tickdelay = 90
+		tickdelay = 120
 		return true
 	else
 		return false
@@ -1172,11 +1172,11 @@ function check_sub()
 			
 			if available_ws:contains(190) then
 				windower.send_command('input /ws Myrkr <me>')
-				tickdelay = 90
+				tickdelay = 120
 				return true
 			elseif available_ws:contains(173) then
 				windower.send_command('input /ws Dagan <me>')
-				tickdelay = 90
+				tickdelay = 120
 				return true
 			end
 		end
@@ -1184,11 +1184,11 @@ function check_sub()
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] == 0 then
 				windower.send_command('input /ja Sublimation <me>')
-				tickdelay = 90
+				tickdelay = 120
 				return true
 			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] == 0 then
 				windower.send_command('input /ja Sublimation <me>')
-				tickdelay = 90
+				tickdelay = 120
 				return true
 			else
 				return false
@@ -1205,11 +1205,11 @@ function check_cleanup()
 	if state.AutoCleanupMode.value then
 		if player.inventory['Bead Pouch'] then
 			send_command('input /item "Bead Pouch" <me>')
-			tickdelay = 130
+			tickdelay = 150
 			return true
 		elseif player.inventory['Silt Pouch'] then
 			send_command('input /item "Silt Pouch" <me>')
-			tickdelay = 130
+			tickdelay = 150
 			return true
 		end
 
@@ -1251,7 +1251,7 @@ function check_cleanup()
 			for sci, scv in ipairs(shard_count) do
 				if player.inventory[snv..''..scv] then
 					send_command('wait 3.0;input /item "'..snv..''..scv..'" <me>')
-					tickdelay = 130
+					tickdelay = 150
 					return true
 				end
 			end
@@ -1271,27 +1271,27 @@ function check_trust()
 		
 			if spell_recasts[979] == 0 and not have_trust("Selh'teus") then
 				windower.send_command('input /ma "Selh\'teus" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			elseif spell_recasts[1012] == 0 and not have_trust("Nashmeira") then
 				windower.send_command('input /ma "Nashmeira II" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			elseif spell_recasts[1018] == 0 and not have_trust("Iroha") then
 				windower.send_command('input /ma "Iroha II" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			elseif spell_recasts[1017] == 0 and not have_trust("Arciela") then
 				windower.send_command('input /ma "Arciela II" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			elseif spell_recasts[947] == 0 and not have_trust("UkaTotlihn") then
 				windower.send_command('input /ma "Uka Totlihn" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			elseif spell_recasts[1013] == 0 and not have_trust("Lilisette") then
 				windower.send_command('input /ma "Lilisette II" <me>')
-				tickdelay = 250
+				tickdelay = 270
 				return true
 			else
 				return false
@@ -1306,11 +1306,11 @@ function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
 		if player.tp > 999 and (buffactive['Aftermath: Lv.3'] or  not mythic_weapons:contains(player.equipment.main)) then
 			windower.send_command('input /ws "'..autows..'" <t>')
-			tickdelay = 80
+			tickdelay = 110
 			return true
 		elseif player.tp == 3000 then
 			windower.send_command('input /ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = 80
+			tickdelay = 110
 			return true
 		else
 			return false
@@ -1323,11 +1323,11 @@ function check_food()
 	
 		if player.inventory[''..autofood..''] then
 			windower.chat.input('/item "'..autofood..'" <me>')
-			tickdelay = 90
+			tickdelay = 120
 			return true
 		elseif player.satchel[''..autofood..''] then
 			windower.send_command('get "'..autofood..'" satchel')
-			tickdelay = 70
+			tickdelay = 120
 			return true
 		else
 			return false
@@ -1345,17 +1345,17 @@ function check_ws()
 		
 		if player.hpp < 41 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Sanguine Blade" <t>')
-			tickdelay = 80
+			tickdelay = 110
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
 		elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.send_command('input /ws "'..autows..'" <t>')
-			tickdelay = 80
+			tickdelay = 110
 			return true
 		elseif player.tp == 3000 then
 			windower.send_command('input /ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = 80
+			tickdelay = 110
 			return true
 		else
 			return false

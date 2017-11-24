@@ -23,6 +23,8 @@ function job_setup()
 	
 	state.ElementalMode = M{['description'] = 'Elemental Mode','Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water',}
 	
+	update_combat_form()
+
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end
 
@@ -174,9 +176,8 @@ end
 
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
-
+	update_combat_form()
 	if cmdParams[1] == 'user' then check_arts() end
-
 end
 
 
@@ -585,4 +586,12 @@ function handle_elemental(cmdParams)
     else
         add_to_chat(123,'Unrecognized elemental command.')
     end
+end
+
+function update_combat_form()
+	if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
+			state.CombatForm:set('DW')
+	else
+			state.CombatForm:reset()
+	end
 end

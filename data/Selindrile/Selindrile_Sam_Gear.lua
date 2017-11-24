@@ -146,7 +146,7 @@ function init_gear_sets()
     sets.midcast.FastRecast = {
         head="Loess Barbuta +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
         body="Tartarus Platemail",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
-        back="Moonbeam Cape",waist="Tempus Fugit",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Tempus Fugit",legs="Wakido Haidate +3",feet="Amm Greaves"}
 		
     -- Specific spells
     sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -170,7 +170,7 @@ function init_gear_sets()
     sets.resting = {ammo="Staunch Tathlum",
         head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Hiza. Haramaki +1",hands="Sakonji Kote +1",ring1="Defending Ring",ring2="Karieyh Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Flam. Gambieras +2"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Flam. Gambieras +2"}
     
 
     -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
@@ -188,14 +188,14 @@ function init_gear_sets()
     sets.idle = {ammo="Staunch Tathlum",
         head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Hiza. Haramaki +1",hands="Sakonji Kote +1",ring1="Defending Ring",ring2="Karieyh Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
 		
     sets.idle.Reraise = set_combine(sets.idle, sets.Reraise)
 
     sets.idle.Weak = {ammo="Staunch Tathlum",
         head="Twilight Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Twilight Mail",hands="Sakonji Kote +1",ring1="Defending Ring",ring2="Karieyh Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
 		
     sets.idle.Weak.Reraise = set_combine(sets.idle.Weak, sets.Reraise)
 	
@@ -206,7 +206,7 @@ function init_gear_sets()
     sets.defense.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
 
     sets.defense.PDTReraise = set_combine(sets.defense.PDT, sets.Reraise)
 		
@@ -254,23 +254,23 @@ function init_gear_sets()
     sets.engaged.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.SomeAcc.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.Acc.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.FullAcc.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum",
         head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Ioskeha Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
 	sets.engaged.DTLite = {ammo="Staunch Tathlum",
         head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Tartarus Platemail",hands="Wakido Kote +3",ring1="Defending Ring",ring2="Patricius Ring",
@@ -324,15 +324,15 @@ function init_gear_sets()
     sets.engaged.Adoulin.PDT = {ammo="Staunch Tathlum",
         head="Flam. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.Adoulin.SomeAcc.PDT = {ammo="Staunch Tathlum",
         head="Flam. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}	
+        back="Moonlight Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}	
 		sets.engaged.Adoulin.Acc.PDT = {ammo="Staunch Tathlum",
         head="Flam. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Patricius Ring",
-        back="Moonbeam Cape",waist="Olseni Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Olseni Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
     sets.engaged.Adoulin.FullAcc.PDT = {ammo="Staunch Tathlum",
         head="Flam. Zucchetto +2",neck="Loricate Torque +1",ear1="Zennaroi Earring",ear2="Telos Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Patricius Ring",
@@ -340,7 +340,7 @@ function init_gear_sets()
     sets.engaged.Adoulin.Fodder.PDT = {ammo="Staunch Tathlum",
         head="Flam. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Tartarus Platemail",hands=gear.valorous_wsd_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonbeam Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Wakido Haidate +3",feet="Amm Greaves"}
 		
 	sets.engaged.Adoulin.DTLite = sets.engaged.DTLite
     sets.engaged.Adoulin.SomeAcc.DTLite = sets.engaged.SomeAcc.DTLite

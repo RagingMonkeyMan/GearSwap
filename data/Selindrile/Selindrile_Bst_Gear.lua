@@ -72,7 +72,7 @@ function init_gear_sets()
 	sets.precast.Waltz = {
 								head=gear.valorous_pet_head,neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 								body="Tot. Jackcoat +2",hands="Regimen Mittens",ring1="Valseur's Ring",ring2="Asklepian Ring",
-								back="Moonbeam Cape",waist="Chaac Belt",legs="Dashing Subligar",feet="Valorous Greaves"}
+								back="Moonlight Cape",waist="Chaac Belt",legs="Dashing Subligar",feet="Valorous Greaves"}
 
 		-- HEALING WALTZ
 	sets.precast.Waltz['Healing Waltz'] = {}
@@ -99,7 +99,7 @@ function init_gear_sets()
 		sets.midcast.FastRecast = {
 								head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 								body="Taeon Tabard",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
-								back="Moonbeam Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
+								back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
 
@@ -235,7 +235,7 @@ function init_gear_sets()
 	sets.defense.PDT = {ammo="Staunch Tathlum",
 			head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Handler's Earring +1",
 			body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Dark Ring",
-			back="Moonbeam Cape",waist="Flume Belt",legs="Tali'ah Sera. +1",feet="Nukumi Ocreae +1"}
+			back="Moonlight Cape",waist="Flume Belt",legs="Tali'ah Sera. +1",feet="Nukumi Ocreae +1"}
 
 	sets.defense.PetPDT = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
@@ -298,27 +298,27 @@ function init_gear_sets()
 		sets.engaged.PDT = {ammo="Staunch Tathlum",
 				head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 				body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 		sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
 				head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 				body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 				head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 				body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 		sets.engaged.FullAcc.PDT = {ammo="Falcon Eye",
 				head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 				body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 		sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum",
 				head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 				body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
-				back="Moonbeam Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
+				back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 				-- MELEE (DUAL-WIELD) SETS FOR DNC AND NIN SUBJOB
 		sets.engaged.DW = {main="Izizoeksi",sub="Hunahpu",ammo="Ginsen",
