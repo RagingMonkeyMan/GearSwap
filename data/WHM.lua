@@ -189,7 +189,132 @@ end
 
     -- Allow jobs to override this code
 function job_self_command(commandArgs, eventArgs)
+    if commandArgs[1]:lower() == 'smartcure' then
+		eventArgs.handled = true
+		local missingHP
+		local spell_recasts = windower.ffxi.get_spell_recasts()
 
+		-- If curing ourself, get our exact missing HP
+		if player.target.type == "SELF" then
+			missingHP = player.max_hp - player.hp
+		-- If curing someone in our alliance, we can estimate their missing HP
+		elseif player.target.isallymember then
+			local target = find_player_in_alliance(player.target.name)
+			local est_max_hp = target.hp / (target.hpp/100)
+			missingHP = math.floor(est_max_hp - target.hp)
+		elseif player.target.type == 'MONSTER' then
+			return
+		else
+			if player.target.hpp > 95 then
+				if spell_recasts[1] == 0 then
+					windower.chat.input('/ma "Cure" <t>')
+				elseif spell_recasts[2] == 0 then
+					windower.chat.input('/ma "Cure II" <t>')
+				else
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				end
+			elseif player.target.hpp > 85 then
+				if spell_recasts[2] == 0 then
+					windower.chat.input('/ma "Cure II" <t>')
+				elseif spell_recasts[3] == 0 then
+					windower.chat.input('/ma "Cure III" <t>')
+				elseif spell_recasts[1] == 0 then
+					windower.chat.input('/ma "Cure" <t>')
+				else
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				end
+			elseif player.target.hpp > 70 then
+				if spell_recasts[3] == 0 then
+					windower.chat.input('/ma "Cure III" <t>')
+				elseif spell_recasts[4] == 0 then
+					windower.chat.input('/ma "Cure IV" <t>')
+				elseif spell_recasts[5] == 0 then
+					windower.chat.input('/ma "Cure V" <t>')
+				else
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				end
+			elseif player.target.hpp > 50 then
+				if spell_recasts[5] == 0 then
+					windower.chat.input('/ma "Cure V" <t>')
+				elseif spell_recasts[4] == 0 then
+					windower.chat.input('/ma "Cure IV" <t>')
+				elseif spell_recasts[6] == 0 then
+					windower.chat.input('/ma "Cure VI" <t>')
+				elseif spell_recasts[3] == 0 then
+					windower.chat.input('/ma "Cure III" <t>')
+				else
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				end
+			else
+				if spell_recasts[6] == 0 then
+					windower.chat.input('/ma "Cure VI" <t>')
+				elseif spell_recasts[5] == 0 then
+					windower.chat.input('/ma "Cure V" <t>')
+				elseif spell_recasts[4] == 0 then
+					windower.chat.input('/ma "Cure IV" <t>')
+				elseif spell_recasts[3] == 0 then
+					windower.chat.input('/ma "Cure III" <t>')
+				else
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				end
+			end
+			return
+		end
+		
+		if missingHP < 170 then
+			if spell_recasts[1] == 0 then
+				windower.chat.input('/ma "Cure" <t>')
+			elseif spell_recasts[2] == 0 then
+				windower.chat.input('/ma "Cure II" <t>')
+			else
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+			end
+		elseif missingHP < 350 then
+			if spell_recasts[2] == 0 then
+				windower.chat.input('/ma "Cure II" <t>')
+			elseif spell_recasts[3] == 0 then
+				windower.chat.input('/ma "Cure III" <t>')
+			elseif spell_recasts[1] == 0 then
+				windower.chat.input('/ma "Cure" <t>')
+			else
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+			end
+		elseif missingHP < 700 then
+			if spell_recasts[3] == 0 then
+				windower.chat.input('/ma "Cure III" <t>')
+			elseif spell_recasts[4] == 0 then
+				windower.chat.input('/ma "Cure IV" <t>')
+			elseif spell_recasts[5] == 0 then
+				windower.chat.input('/ma "Cure V" <t>')
+			else
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+			end
+		elseif missingHP < 1100 then
+			if spell_recasts[5] == 0 then
+				windower.chat.input('/ma "Cure V" <t>')
+			elseif spell_recasts[4] == 0 then
+				windower.chat.input('/ma "Cure IV" <t>')
+			elseif spell_recasts[6] == 0 then
+				windower.chat.input('/ma "Cure VI" <t>')
+			elseif spell_recasts[3] == 0 then
+				windower.chat.input('/ma "Cure III" <t>')
+			else
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+			end
+		else
+			if spell_recasts[6] == 0 then
+				windower.chat.input('/ma "Cure VI" <t>')
+			elseif spell_recasts[5] == 0 then
+				windower.chat.input('/ma "Cure V" <t>')
+			elseif spell_recasts[4] == 0 then
+				windower.chat.input('/ma "Cure IV" <t>')
+			elseif spell_recasts[3] == 0 then
+				windower.chat.input('/ma "Cure III" <t>')
+			else
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+			end
+		end
+	end
 end
 
 function job_tick()

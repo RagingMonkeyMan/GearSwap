@@ -411,13 +411,12 @@ end
 function job_self_command(commandArgs, eventArgs)
     if commandArgs[1]:lower() == 'curecheat' then
 		if sets.HPDown then
-			eventArgs.handled = true
 			equip(sets.HPDown)
 			send_command('@wait 1;input /ma "Magic Fruit" <me>')
 		else
-			eventArgs.handled = true
 			add_to_chat(123,"You don't have a sets.HPDown to cheat with.")
 		end
+		eventArgs.handled = true
 	end
 end
 
