@@ -11,6 +11,8 @@ sets.precast.Item['Holy Water'] = {}
 
 --Augmented items that you'll use among multiple jobs.
 
+gear.gada_enhancing_club = {name="Gada",augments={'Enh. Mag. eff. dur. +6','STR+3','Mag. Acc.+8','"Mag.Atk.Bns."+17','DMG:+7',}}
+gear.gada_nuking_club = {name="Gada",augments={'VIT+3','Mag. Acc.+22','"Mag.Atk.Bns."+25',}}
 gear.grioavolr_nuke_staff = {name="Grioavolr",augments={'Magic burst dmg.+8%','MP+61','Mag. Acc.+16','"Mag.Atk.Bns."+30','Magic Damage +7',}}
 gear.grioavolr_fc_staff = {name="Grioavolr",augments={'"Fast Cast"+7','MP+20','Mag. Acc.+17','"Mag.Atk.Bns."+10','Magic Damage +5',}}
 gear.grioavolr_pet_staff = {name="Grioavolr",augments={'Blood Pact Dmg.+8','Pet: STR+10','Pet: Mag. Acc.+19','Pet: "Mag.Atk.Bns."+30',}}

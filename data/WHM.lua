@@ -195,7 +195,10 @@ function job_self_command(commandArgs, eventArgs)
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 
 		-- If curing ourself, get our exact missing HP
-		if player.target.type == "SELF" then
+		if player.target.type == 'NONE' then
+			add_to_chat(123,'Abort: You have no target.')
+			return
+		elseif player.target.type == "SELF" then
 			missingHP = player.max_hp - player.hp
 		-- If curing someone in our alliance, we can estimate their missing HP
 		elseif player.target.isallymember then
@@ -211,7 +214,7 @@ function job_self_command(commandArgs, eventArgs)
 				elseif spell_recasts[2] == 0 then
 					windower.chat.input('/ma "Cure II" <t>')
 				else
-					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
 			elseif player.target.hpp > 85 then
 				if spell_recasts[2] == 0 then
@@ -221,7 +224,7 @@ function job_self_command(commandArgs, eventArgs)
 				elseif spell_recasts[1] == 0 then
 					windower.chat.input('/ma "Cure" <t>')
 				else
-					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
 			elseif player.target.hpp > 70 then
 				if spell_recasts[3] == 0 then
@@ -231,7 +234,7 @@ function job_self_command(commandArgs, eventArgs)
 				elseif spell_recasts[5] == 0 then
 					windower.chat.input('/ma "Cure V" <t>')
 				else
-					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
 			elseif player.target.hpp > 50 then
 				if spell_recasts[5] == 0 then
@@ -243,7 +246,7 @@ function job_self_command(commandArgs, eventArgs)
 				elseif spell_recasts[3] == 0 then
 					windower.chat.input('/ma "Cure III" <t>')
 				else
-					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
 			else
 				if spell_recasts[6] == 0 then
@@ -255,7 +258,7 @@ function job_self_command(commandArgs, eventArgs)
 				elseif spell_recasts[3] == 0 then
 					windower.chat.input('/ma "Cure III" <t>')
 				else
-					add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
 			end
 			return
@@ -267,7 +270,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif spell_recasts[2] == 0 then
 				windower.chat.input('/ma "Cure II" <t>')
 			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		elseif missingHP < 350 then
 			if spell_recasts[2] == 0 then
@@ -277,7 +280,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif spell_recasts[1] == 0 then
 				windower.chat.input('/ma "Cure" <t>')
 			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		elseif missingHP < 700 then
 			if spell_recasts[3] == 0 then
@@ -287,7 +290,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif spell_recasts[5] == 0 then
 				windower.chat.input('/ma "Cure V" <t>')
 			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		elseif missingHP < 1100 then
 			if spell_recasts[5] == 0 then
@@ -299,7 +302,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif spell_recasts[3] == 0 then
 				windower.chat.input('/ma "Cure III" <t>')
 			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		else
 			if spell_recasts[6] == 0 then
@@ -311,7 +314,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif spell_recasts[3] == 0 then
 				windower.chat.input('/ma "Cure III" <t>')
 			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown')
+				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		end
 	end
