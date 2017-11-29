@@ -1226,7 +1226,7 @@ function init_gear_sets()
 	
 	--Extra Special Sets
 	
-	sets.Weapons = {main="Hodadenon",sub="Utu Grip"}
+	sets.Weapons = {main="Chango",sub="Utu Grip"}
 	sets.Greatsword = {main="Montante +1",sub="Utu Grip"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Retaliation = {}

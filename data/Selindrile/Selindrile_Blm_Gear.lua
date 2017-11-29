@@ -227,7 +227,7 @@ function init_gear_sets()
 	sets.midcast.Helix.Resistant = sets.midcast['Elemental Magic'].Resistant
 		
 		-- Minimal damage gear, maximum recast gear for procs.
-    sets.midcast['Elemental Magic'].Proc = {main=empty, sub=empty,ammo="Impatiens",
+    sets.midcast['Elemental Magic'].Proc = {main=empty,sub=empty,ammo="Impatiens",
         head="Nahtirah Hat",neck="Loricate Torque +1",ear1="Gifted Earring",ear2="Loquacious Earring",
         body="Spaekona's Coat +3",hands="Hagondes Cuffs +1",ring1="Kishar Ring",ring2="Prolix Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Assid. Pants +1",feet="Regal Pumps +1"}
@@ -323,7 +323,7 @@ function init_gear_sets()
     -- Normal melee group
     sets.engaged = {ammo="Dosis Tathlum",
         head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Sanare Earring",
-		body="Vanya Robe",hands=gear.merlinic_refresh_hands,ring1="Dark Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Dark Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Refoccilation Stone",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
 
 	--Situational sets: Gear that is equipped on certain targets
