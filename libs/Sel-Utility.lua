@@ -184,11 +184,16 @@ function refine_waltz(spell, spellMap, eventArgs)
         local target = find_player_in_alliance(spell.target.name)
         local est_max_hp = target.hp / (target.hpp/100)
         missingHP = math.floor(est_max_hp - target.hp)
+		
+		if buffactive['Contradance'] then
+			missingHP = missingHP / 2
+		end
     end
     
     -- If we have an estimated missing HP value, we can adjust the preferred tier used.
     if missingHP ~= nil then
         if player.main_job == 'DNC' then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
             if missingHP < 40 and spell.target.name == player.name then
                 -- Not worth curing yourself for so little.
                 -- Don't block when curing others to allow for waking them up.
@@ -204,6 +209,11 @@ function refine_waltz(spell, spellMap, eventArgs)
             elseif missingHP < 1100 then
                 newWaltz = 'Curing Waltz III'
                 waltzID = 192
+			elseif state.Contradance.value and abil_recasts[229] == 0 then
+                eventArgs.cancel = true
+				windower.chat.input('/ja "Contradance" <me>')
+				windower.chat.input:schedule(1,'/ja "Curing Waltz IV" '..spell.target.raw..'')
+                return
             elseif missingHP < 1500 then
                 newWaltz = 'Curing Waltz IV'
                 waltzID = 193

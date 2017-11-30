@@ -87,6 +87,7 @@ function init_include()
 	state.AutoCleanupMode  	  = M(false, 'Auto Cleanup Mode')
 	state.DisplayMode  	  	  = M(true, 'Display Mode')
 	state.CancelStoneskin	  = M(true, 'Stoneskin Cancel Mode')
+	state.Contradance		  = M(true, 'Auto Contradance Mode')
 
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
