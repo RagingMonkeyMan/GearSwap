@@ -57,7 +57,7 @@ function job_precast(spell, spellMap, eventArgs)
 		equip(sets.precast.JA['Vivacious Pulse'][state.RuneElement.value])
 		return
 	end
-	
+
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
 			eventArgs.cancel = true

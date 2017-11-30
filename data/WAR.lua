@@ -37,6 +37,24 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
+function job_filtered_action(spell, eventArgs)
+	if spell.type == 'WeaponSkill' then
+		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
+		-- WS 112 is Double Thrust, meaning a Spear is equipped.
+		if available_ws:contains(48) then
+            if spell.english == "Upheaval" then
+				windower.chat.input('/ws "Resolution" '..spell.target.raw)
+                cancel_spell()
+				eventArgs.cancel = true
+            elseif spell.english == "Ukko's Fury" then
+                send_command('@input /ws "Ground Strike" '..spell.target.raw)
+                cancel_spell()
+				eventArgs.cancel = true
+            end
+        end
+	end
+end
+
 function job_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()

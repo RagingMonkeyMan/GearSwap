@@ -106,7 +106,7 @@ function init_gear_sets()
 	--Extra Indi duration on any slot you can't get skill on here.
 	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {back=gear.idle_jse_back,legs="Bagua Pants +1",feet="Azimuth Gaiters +1"})
 		
-    sets.midcast.Cure = {main="Serenity",sub="Curatio Grip",ammo="Hasty Pinion +1",
+    sets.midcast.Cure = {main=gear.gada_healing_club,sub="Sors Shield",ammo="Hasty Pinion +1",
         head="Nahtirah Hat",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Etiolation Earring",
         body="Vanir Cotehardie",hands="Telchine Gloves",ring1="Haoma's Ring",ring2="Sirona's Ring",
         back="Tempered Cape +1",waist="Witful Belt",legs="Geo. Pants +1",feet="Vanya Clogs"}

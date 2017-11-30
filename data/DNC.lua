@@ -44,6 +44,7 @@ function job_setup()
 	
     state.MainStep = M{['description']='Main Step', 'Box Step', 'Quickstep', 'Feather Step', 'Stutter Step'}
     state.AltStep = M{['description']='Alt Step', 'Quickstep', 'Feather Step', 'Stutter Step', 'Box Step'}
+	state.AutoSamba = M{['description']='Auto Samba', 'Off', 'Haste Samba', 'Aspir Samba II', 'Drain Samba III'}
     state.UseAltStep = M(false, 'Use Alt Step')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
@@ -71,7 +72,35 @@ function job_filtered_action(spell, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-    auto_presto(spell)
+
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > 100 then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if under3FMs() and abil_recasts[236] == 0 and player.status == 'Engaged' then
+			eventArgs.cancel = true
+			windower.send_command('gs c step')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif not under3FMs() and not buffactive['Building Flourish'] and abil_recasts[226] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Climactic Flourish" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif not under3FMs() and not buffactive['Climactic Flourish'] and abil_recasts[222] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Building Flourish" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		end
+    elseif spell.type == 'Step' then
+        local abil_recasts = windower.ffxi.get_ability_recasts()
+        local prestoCooldown = abil_recasts[236]
+        
+        if player.main_job_level >= 77 and prestoCooldown < 1 and under3FMs() and player.status == 'Engaged' then
+            eventArgs.cancel = true
+			windower.chat.input('/ja "Presto" <me>')
+			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
+        end
+    end
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
@@ -224,28 +253,13 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-
+	if check_buff() then return true end
 	return false
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-
--- Automatically use Presto for steps when it's available and we have less than 3 finishing moves
-function auto_presto(spell)
-    if spell.type == 'Step' then
-        local allRecasts = windower.ffxi.get_ability_recasts()
-        local prestoCooldown = allRecasts[236]
-        local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
-        
-        if player.main_job_level >= 77 and prestoCooldown < 1 and under3FMs then
-            eventArgs.cancel = true
-			windower.chat.input('/ja "Presto" <me>')
-			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
-        end
-    end
-end
 
 function update_melee_groups()
 	classes.CustomMeleeGroups:clear()
@@ -257,4 +271,44 @@ function update_melee_groups()
 	if player.equipment.main and player.equipment.main == "Terpsichore" and state.Buff['Aftermath: Lv.3'] then
 		classes.CustomMeleeGroups:append('AM')
 	end
+end
+
+function under3FMs()
+	if not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] then
+		return true
+	else
+		return false
+	end
+end
+
+function check_buff()
+
+	if state.AutoBuffMode.value then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+	
+		if not buffactive['Finishing Move 1'] and not buffactive['Finishing Move 2'] and not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] and abil_recasts[223] == 0 then
+			windower.chat.input('/ja "No Foot Rise" <me>')
+			tickdelay = 110
+			return true
+		end
+		
+		if player.in_combat then
+			if not buffactive[''..state.AutoSamba.value..''] and abil_recasts[216] == 0 and state.AutoSamba.value ~= 'Off' and player.tp > 400 then
+				windower.chat.input('/ja "'..state.AutoSamba.value..'" <me>')
+				tickdelay = 110
+				return true
+			elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+				windower.chat.input('/ja "Berserk" <me>')
+				tickdelay = 110
+				return true
+			elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+				windower.chat.input('/ja "Aggressor" <me>')
+				tickdelay = 110
+				return true
+			else
+				return false
+			end
+		end
+	end
+	return false
 end
