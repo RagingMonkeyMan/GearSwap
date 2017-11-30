@@ -3,7 +3,7 @@ function user_setup()
 	-- Options: Override default values
     state.OffenseMode:options('None', 'Normal','DualWield')
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
-    state.IdleMode:options('Normal', 'PDT', 'TPEat', 'Regain')
+    state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock', 'GeoLock', 'PetPDT')
 	state.MagicalDefenseMode:options('MDT', 'NukeLock')
 	state.ResistDefenseMode:options('MEVA')
@@ -108,18 +108,18 @@ function init_gear_sets()
 		
     sets.midcast.Cure = {main=gear.gada_healing_club,sub="Sors Shield",ammo="Hasty Pinion +1",
         head="Nahtirah Hat",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Etiolation Earring",
-        body="Vanir Cotehardie",hands="Telchine Gloves",ring1="Haoma's Ring",ring2="Sirona's Ring",
+        body="Vanir Cotehardie",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Sirona's Ring",
         back="Tempered Cape +1",waist="Witful Belt",legs="Geo. Pants +1",feet="Vanya Clogs"}
 		
     sets.midcast.LightWeatherCure = {main="Chatoyant Staff",sub="Curatio Grip",ammo="Hasty Pinion +1",
         head="Nahtirah Hat",neck="Phalaina Locket",ear1="Gifted Earring",ear2="Etiolation Earring",
-        body="Heka's Kalasiris",hands="Telchine Gloves",ring1="Sirona's Ring",ring2="Lebeche Ring",
+        body="Heka's Kalasiris",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Lebeche Ring",
         back="Twilight Cape",waist="Hachirin-no-Obi",legs="Geo. Pants +1",feet="Vanya Clogs"}
 		
 		--Cureset for if it's not light weather but is light day.
     sets.midcast.LightDayCure = {main="Serenity",sub="Curatio Grip",ammo="Hasty Pinion +1",
         head="Nahtirah Hat",neck="Phalaina Locket",ear1="Gifted Earring",ear2="Etiolation Earring",
-        body="Vanir Cotehardie",hands="Telchine Gloves",ring1="Sirona's Ring",ring2="Lebeche Ring",
+        body="Vanir Cotehardie",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Lebeche Ring",
         back="Twilight Cape",waist="Hachirin-no-Obi",legs="Geo. Pants +1",feet="Vanya Clogs"}
 
     sets.midcast.Curaga = sets.midcast.Cure
@@ -247,8 +247,7 @@ function init_gear_sets()
 		body="Jhakri Robe +2",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Flax Sash",legs="Hagondes Pants +1",feet="Mallquis Clogs +1"}
 		
-	sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque",ring2="Karieyh Ring"})
-	sets.idle.Regain = set_combine(sets.idle, {ring2="Karieyh Ring"})
+	sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque"})
 
 	-- .Pet sets are for when Luopan is present.
 	sets.idle.Pet = {main="Sucellus",sub="Genmei Shield",range="Dunna",

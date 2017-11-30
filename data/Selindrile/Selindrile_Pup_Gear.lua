@@ -174,18 +174,18 @@ function init_gear_sets()
 
     sets.idle = {
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Hiza. Haramaki +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Karieyh Ring",
+        body="Hiza. Haramaki +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Fucho-no-Obi",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 		
 	sets.idle.Refresh = {
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Vrikodara Jupon",hands=gear.herculean_refresh_hands,ring1="Defending Ring",ring2="Karieyh Ring",
+        body="Vrikodara Jupon",hands=gear.herculean_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Fucho-no-Obi",legs="Rawhide Trousers",feet="Hippo. Socks +1"}
 		
     -- Set for idle while pet is out (eg: pet regen gear)
     sets.idle.Pet = {
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-        body="Taeon Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Karieyh Ring",
+        body="Taeon Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Isa Belt",legs="Tali'ah Sera. +1",feet="Hippo. Socks +1"}
 
     -- Idle sets to wear while pet is engaged

@@ -2,7 +2,7 @@
 function user_setup()
     state.OffenseMode:options('None', 'Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
-    state.IdleMode:options('Normal', 'PDT', 'TPEat', 'Regain')
+    state.IdleMode:options('Normal', 'PDT', 'TPEat')
 
     gear.perp_staff = {name="Gridarvor"}
 	
@@ -79,7 +79,7 @@ function init_gear_sets()
 	
     sets.midcast.Cure = {main=gear.gada_healing_club,sub="Sors Shield",ammo="Hasty Pinion +1",
         head="Vanya Hood",neck="Incanter's Torque",ear1="Mendicant's Earring",ear2="Gifted Earring",
-        body="Vrikodara Jupon",hands="Telchine Gloves",ring1="Haoma's Ring",ring2="Sirona's Ring",
+        body="Vrikodara Jupon",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Sirona's Ring",
         back="Tempered Cape +1",waist="Austerity Belt +1",legs="Gyve Trousers",feet="Vanya Clogs"}
 		
 	sets.Self_Healing = {neck="Phalaina Locket",ring1="Kunaji Ring",ring2="Asklepian Ring",waist="Gishdubar Sash"}
@@ -216,8 +216,7 @@ function init_gear_sets()
         body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Regal Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
 		
-	sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque",ring2="Karieyh Ring"})
-	sets.idle.Regain = set_combine(sets.idle, {ring2="Karieyh Ring"})
+	sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque"})
 
     -- perp costs:
     -- spirits: 7
@@ -259,8 +258,7 @@ function init_gear_sets()
         body="Shomonjijoe +1",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Lucidity Sash",legs="Assid. Pants +1",feet="Battlecast Gaiters"}
 		
-	sets.idle.TPEat.Avatar = set_combine(sets.idle.Avatar, {neck="Chrys. Torque",ring2="Karieyh Ring"})
-	sets.idle.Regain.Avatar = set_combine(sets.idle.Avatar, {ring2="Karieyh Ring"})
+	sets.idle.TPEat.Avatar = set_combine(sets.idle.Avatar, {neck="Chrys. Torque"})
 		
 	--Favor always up and head is best in slot idle so no specific items here at the moment.
     sets.idle.Avatar.Favor = {}

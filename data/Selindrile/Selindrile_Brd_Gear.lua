@@ -72,7 +72,7 @@ function init_gear_sets()
 	-- Default set for any weaponskill that isn't any more specifically defined
 	sets.precast.WS = {ammo="Hasty Pinion +1",
 		head="Aya. Zucchetto +1",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
-		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Ilabrat Ring",ring2="Karieyh Ring",
+		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Ilabrat Ring",ring2="Ramuh Ring +1",
 		back="Ground. Mantle +1",waist="Grunfeld Rope",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
 
 	-- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
@@ -134,7 +134,7 @@ function init_gear_sets()
 	-- Other general spells and classes.
 	sets.midcast.Cure = {main="Arka IV",sub='Achaq Grip',
 		head="Gendewitha Caubeen +1",neck="Erra Pendant",ear1="Gifted Earring",ear2="Etiolation Earring",
-		body="Gende. Bilaut +1",hands="Telchine Gloves",ring1="Haoma's Ring",ring2="Haoma's Ring",
+		body="Gende. Bilaut +1",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Haoma's Ring",
 		back="Tempered Cape +1",waist=gear.ElementalObi,legs="Gyve Trousers",feet="Gende. Galosh. +1"}
 		
 	sets.Self_Healing = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}

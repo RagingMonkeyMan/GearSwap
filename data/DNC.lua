@@ -75,10 +75,10 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > 100 then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if under3FMs() and abil_recasts[236] == 0 and player.status == 'Engaged' then
+		if under3FMs() and abil_recasts[220] == 0 and abil_recasts[236] == 0 and player.status == 'Engaged' then
 			eventArgs.cancel = true
 			windower.send_command('gs c step')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(2,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		elseif not under3FMs() and not buffactive['Building Flourish'] and abil_recasts[226] == 0 then
 			eventArgs.cancel = true
@@ -93,9 +93,8 @@ function job_precast(spell, spellMap, eventArgs)
 		end
     elseif spell.type == 'Step' then
         local abil_recasts = windower.ffxi.get_ability_recasts()
-        local prestoCooldown = abil_recasts[236]
-        
-        if player.main_job_level >= 77 and prestoCooldown < 1 and under3FMs() and player.status == 'Engaged' then
+
+        if player.main_job_level >= 77 and abil_recasts[236] == 0 and abil_recasts[220] == 0 and under3FMs() and player.status == 'Engaged' then
             eventArgs.cancel = true
 			windower.chat.input('/ja "Presto" <me>')
 			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')

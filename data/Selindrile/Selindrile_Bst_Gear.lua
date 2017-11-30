@@ -91,12 +91,12 @@ function init_gear_sets()
 								back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
 
 	sets.precast.FC = {ammo="Impatiens",
-	neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
-	body="Jumalik Mail",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Prolix Ring"}
-	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
+								neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
+								body="Jumalik Mail",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Prolix Ring"}
+								sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
 
 		-- MIDCAST SETS
-		sets.midcast.FastRecast = {
+	sets.midcast.FastRecast = {
 								head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 								body="Taeon Tabard",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
 								back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
@@ -105,7 +105,7 @@ function init_gear_sets()
 
 	sets.midcast.Cure = {
 								head="Gavialis Helm",neck="Phalaina Locket",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-								body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Lebeche Ring",ring2="Sirona's Ring",
+								body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Lebeche Ring",ring2="Janniston Ring",
 								back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Curaga = sets.midcast.Cure
