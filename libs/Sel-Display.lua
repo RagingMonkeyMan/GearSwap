@@ -129,6 +129,8 @@ function update_job_states()
 		PactSpamMode = "Pact Spam",
 		EquipShield = "Shield Swap",
 		PetWSGear = "PetWSGear",
+		DanceStance = "DanceStance",
+		Stance = "Stance",
     }
 
     stateBox:clear()
@@ -248,6 +250,14 @@ function update_job_states()
 		elseif n == 'ExtraSongsMode' then
 			if state.ExtraSongsMode.value ~= "None" then
 				stateBox:append(string.format("%sSongs: %s%s", clr.w, clr.h, state.ExtraSongsMode.value))
+			end
+		elseif n == 'DanceStance' then
+			if state.DanceStance.value ~= "None" then
+				stateBox:append(string.format("%sDance: %s%s", clr.w, clr.h, state.DanceStance.value))
+			end
+		elseif n == 'Stance' then
+			if state.Stance.value ~= "None" then
+				stateBox:append(string.format("%sStance: %s%s", clr.w, clr.h, state.Stance.value))
 			end
 		else
 			stateBox:append(string.format("%s%s: ${%s}", clr.w, labels[n], n))

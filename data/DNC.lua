@@ -42,6 +42,7 @@ function job_setup()
 	state.Buff['Building Flourish'] = buffactive['Building Flourish'] or false
 	state.Buff['Presto'] = buffactive['Presto'] or false
 	state.Buff['Saber Dance'] = buffactive['Saber Dance'] or false
+	state.Buff['Fan Dance'] = buffactive['Fan Dance'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	
     state.MainStep = M{['description']='Main Step', 'Box Step', 'Quickstep', 'Feather Step', 'Stutter Step'}
@@ -50,6 +51,7 @@ function job_setup()
     state.UseAltStep = M(false, 'Use Alt Step')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
+	state.DanceStance = M{['description']='Dance Stance','Saber Dance','Fan Dance','None'}
 
     state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
 	
@@ -60,7 +62,7 @@ function job_setup()
 	autofood = 'Soy Ramen'
 	
     update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -85,12 +87,22 @@ function job_precast(spell, spellMap, eventArgs)
 		elseif not under3FMs() and not state.Buff['Building Flourish'] and abil_recasts[226] == 0 then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Climactic Flourish" <me>')
-			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		elseif not under3FMs() and not state.Buff['Climactic Flourish'] and abil_recasts[222] == 0 then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Building Flourish" <me>')
-			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Sekkanoki" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			return
+		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Meditate" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
     elseif spell.type == 'Step' and player.tp > 99 then
@@ -261,6 +273,7 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
+	if check_dance() then return true end
 	if check_buff() then return true end
 	return false
 end
@@ -318,5 +331,27 @@ function check_buff()
 			end
 		end
 	end
+	return false
+end
+
+function check_dance()
+
+	if state.DanceStance.value ~= 'None' and not (state.Buff['Saber Dance'] or state.Buff['Fan Dance']) and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		
+		if state.DanceStance.value == 'Saber Dance' and abil_recasts[219] == 0 then
+			windower.chat.input('/ja "Saber Dance" <me>')
+			tickdelay = 110
+			return true
+		elseif state.DanceStance.value == 'Fan Dance' and abil_recasts[224] == 0 then
+			windower.chat.input('/ja "Fan Dance" <me>')
+			tickdelay = 110
+			return true
+		else
+			return false
+		end
+	end
+
 	return false
 end

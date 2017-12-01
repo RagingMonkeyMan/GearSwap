@@ -17,6 +17,8 @@ function job_setup()
     state.Buff.Yonin = buffactive.Yonin or false
     state.Buff.Innin = buffactive.Innin or false
     state.Buff.Futae = buffactive.Futae or false
+	
+	state.Stance = M{['description']='Stance','Innin','Yonin','None'}
 
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Blade: Hi', 'Blade: Ten'}
@@ -27,7 +29,7 @@ function job_setup()
 	utsusemi_ni_cancel_delay = .1
 	
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -253,7 +255,7 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-
+	if check_stance() then return true end
 	return false
 end
 
@@ -354,4 +356,25 @@ function update_melee_groups()
 				classes.CustomMeleeGroups:append('AM')
 		end
 	end	
+end
+
+function check_stance()
+	if state.Stance.value ~= 'None' and not (state.Buff.Innin or state.Buff.Yonin) and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		
+		if state.Stance.value == 'Innin' and abil_recasts[147] == 0 then
+			windower.chat.input('/ja "Innin" <me>')
+			tickdelay = 240
+			return true
+		elseif state.Stance.value == 'Yonin' and abil_recasts[146] == 0 then
+			windower.chat.input('/ja "Yonin" <me>')
+			tickdelay = 240
+			return true
+		else
+			return false
+		end
+	end
+
+	return false
 end
