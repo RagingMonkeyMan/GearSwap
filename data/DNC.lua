@@ -39,6 +39,8 @@ end
 function job_setup()
 
     state.Buff['Climactic Flourish'] = buffactive['Climactic Flourish'] or false
+	state.Buff['Building Flourish'] = buffactive['Building Flourish'] or false
+	state.Buff['Presto'] = buffactive['Presto'] or false
 	state.Buff['Saber Dance'] = buffactive['Saber Dance'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	
@@ -73,31 +75,31 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > 100 then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > 1099 then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if under3FMs() and abil_recasts[220] == 0 and abil_recasts[236] == 0 and player.status == 'Engaged' then
+		if under3FMs() and abil_recasts[220] == 0 and (abil_recasts[236] == 0 or state.Buff['Presto']) and player.status == 'Engaged' then
 			eventArgs.cancel = true
 			windower.send_command('gs c step')
-			windower.chat.input:schedule(2,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(2.3,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
-		elseif not under3FMs() and not buffactive['Building Flourish'] and abil_recasts[226] == 0 then
+		elseif not under3FMs() and not state.Buff['Building Flourish'] and abil_recasts[226] == 0 then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Climactic Flourish" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
-		elseif not under3FMs() and not buffactive['Climactic Flourish'] and abil_recasts[222] == 0 then
+		elseif not under3FMs() and not state.Buff['Climactic Flourish'] and abil_recasts[222] == 0 then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Building Flourish" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
-    elseif spell.type == 'Step' then
+    elseif spell.type == 'Step' and player.tp > 99 then
         local abil_recasts = windower.ffxi.get_ability_recasts()
 
         if player.main_job_level >= 77 and abil_recasts[236] == 0 and abil_recasts[220] == 0 and under3FMs() and player.status == 'Engaged' then
             eventArgs.cancel = true
 			windower.chat.input('/ja "Presto" <me>')
-			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(1.1,'/ja "'..spell.english..'" '..spell.target.raw..'')
         end
     end
 end
@@ -127,7 +129,14 @@ end
 -- Return true if we handled the aftercast work.  Otherwise it will fall back
 -- to the general aftercast() code in Mote-Include.
 function job_aftercast(spell, spellMap, eventArgs)
-
+    -- Lock feet after using Mana Wall.
+    if not spell.interrupted and spell.type == 'WeaponSkill' and state.Buff['Climactic Flourish'] and not under3FMs() and player.tp < 999 then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if abil_recasts[222] == 0 then
+		windower.chat.input:schedule(3,'/ja "Reverse Flourish" <me>')
+		windower.chat.input('/ja "Reverse Flourish" <me>')
+		end
+    end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -273,7 +282,7 @@ function update_melee_groups()
 end
 
 function under3FMs()
-	if not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] then
+	if not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] and not buffactive['Finishing Move (6+)'] then
 		return true
 	else
 		return false
@@ -285,7 +294,7 @@ function check_buff()
 	if state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 	
-		if not buffactive['Finishing Move 1'] and not buffactive['Finishing Move 2'] and not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] and abil_recasts[223] == 0 then
+		if not buffactive['Finishing Move 1'] and not buffactive['Finishing Move 2'] and not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] and not buffactive['Finishing Move (6+)'] and abil_recasts[223] == 0 then
 			windower.chat.input('/ja "No Foot Rise" <me>')
 			tickdelay = 110
 			return true
