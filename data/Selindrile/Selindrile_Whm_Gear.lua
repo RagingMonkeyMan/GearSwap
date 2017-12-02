@@ -1,4 +1,4 @@
--- Setup vars that are user-dependent.  Can override this function in a sidecar file.
+-- Setup vars that are user-dependent.  Can override this in a sidecar file.
 function user_setup()
     state.OffenseMode:options('None', 'Normal','Acc')
     state.CastingMode:options('Normal', 'Resistant')
