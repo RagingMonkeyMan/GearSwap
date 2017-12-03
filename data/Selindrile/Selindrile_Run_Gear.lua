@@ -144,7 +144,7 @@ function init_gear_sets()
 	-- Weaponskill sets
 	sets.precast.WS = {ammo="Knobkierrie",
             head="Lilitu Headpiece",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
-            body="Adhemar Jacket",hands="Meg. Gloves +2",ring1="Niqmaddu Ring",ring2="Regal Ring",
+            body="Adhemar Jacket +1",hands="Meg. Gloves +2",ring1="Niqmaddu Ring",ring2="Regal Ring",
             back=gear.da_jse_back,waist="Fotia Belt",legs="Meg. Chausses +2",feet=gear.herculean_ta_feet}
 	sets.precast.WS.SomeAcc = {ammo="Seeth. Bomblet +1",
             head="Adhemar Bonnet",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
