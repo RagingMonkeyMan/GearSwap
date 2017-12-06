@@ -137,8 +137,20 @@ function job_get_spell_map(spell, default_spell_map)
 				return 'LightDayCuraga'	
 			end
 		elseif default_spell_map == 'Cure' then
-			if player.status == 'Engaged' then
-				return "CureMelee"
+			if state.OffenseMode.value ~= 'None' then
+				if state.Buff['Afflatus Solace'] then
+					if world.weather_element == 'Light' then
+						return '"MeleeLightWeatherCureSolace'
+					elseif world.day_element == 'Light' then
+						return 'MeleeLightDayCureSolace'
+					else
+						return "MeleeCureSolace"
+					end
+				elseif world.weather_element == 'Light' then
+					return 'MeleeLightWeatherCure'
+				elseif world.day_element == 'Light' then
+					return 'MeleeLightDayCure'
+				end
 			elseif state.Buff['Afflatus Solace'] then
 				if world.weather_element == 'Light' then
 					return 'LightWeatherCureSolace'
