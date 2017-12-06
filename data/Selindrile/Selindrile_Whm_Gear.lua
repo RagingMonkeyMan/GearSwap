@@ -180,30 +180,39 @@ function init_gear_sets()
 		body="Kaykaus Bliaut",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Alaunus's Cape",waist="Luminary Sash",legs="Ebers Pant. +1",feet="Gende. Galosh. +1"}
 		
-	sets.midcast.CureMelee = {ammo="Pemphredo Tathlum",
+	--Melee Curesets are used whenever your OffenseMode is set to anything but None.
+	sets.midcast.MeleeCure = {ammo="Pemphredo Tathlum",
 		head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Glorious Earring",ear2="Nourish. Earring +1",
 		body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Lebeche Ring",
-		back="Alaunus's Cape",waist=gear.ElementalObi,legs="Ebers Pant. +1",feet="Kaykaus Boots"}
+		back="Alaunus's Cape",waist="Luminary Sash",legs="Ebers Pant. +1",feet="Kaykaus Boots"}
 		
-	sets.midcast.MeleeCureSolace = set_combine(sets.midcast.CureMelee, {body="Ebers Bliaud +1"})
-	sets.midcast.MeleeLightWeatherCure.DT = set_combine(sets.midcast.CureMelee, {})
-	sets.midcast.MeleeLightWeatherCureSolace.DT = set_combine(sets.midcast.CureMelee, {body="Ebers Bliaud +1"})
-	sets.midcast.MeleeLightDayCureSolace.DT = set_combine(sets.midcast.CureMelee, {body="Ebers Bliaud +1"})
-	sets.midcast.MeleeLightDayCure.DT = set_combine(sets.midcast.CureMelee, {})
-	sets.midcast.MeleeCuraga.DT = set_combine(sets.midcast.CureMelee, {})
-	sets.midcast.MeleeLightWeatherCuraga.DT = set_combine(sets.midcast.CureMelee, {})
-	sets.midcast.MeleeLightDayCuraga.DT = set_combine(sets.midcast.CureMelee, {})
-	sets.midcast.MeleeCureMelee.DT = set_combine(sets.midcast.CureMelee, {})		
+	sets.midcast.MeleeCureSolace = set_combine(sets.midcast.MeleeCure, {body="Ebers Bliaud +1"})
+	sets.midcast.MeleeLightWeatherCure = set_combine(sets.midcast.MeleeCure, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightWeatherCureSolace = set_combine(sets.midcast.MeleeCure, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCureSolace = set_combine(sets.midcast.MeleeCure, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCure = set_combine(sets.midcast.MeleeCure, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeCuraga = set_combine(sets.midcast.MeleeCure, {})
+	sets.midcast.MeleeLightWeatherCuraga = set_combine(sets.midcast.MeleeCure, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCuraga = set_combine(sets.midcast.MeleeCure, {waist="Hachirin-no-Obi"})
 
 	sets.midcast.CureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1"})
-	sets.midcast.LightWeatherCure.DT = set_combine(sets.midcast.Cure.DT, {})
-	sets.midcast.LightWeatherCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1"})
-	sets.midcast.LightDayCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1"})
-	sets.midcast.LightDayCure.DT = set_combine(sets.midcast.Cure.DT, {})
+	sets.midcast.LightWeatherCure.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.LightWeatherCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.LightDayCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.LightDayCure.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
 	sets.midcast.Curaga.DT = set_combine(sets.midcast.Cure.DT, {})
-	sets.midcast.LightWeatherCuraga.DT = set_combine(sets.midcast.Cure.DT, {})
-	sets.midcast.LightDayCuraga.DT = set_combine(sets.midcast.Cure.DT, {})
-	sets.midcast.CureMelee.DT = set_combine(sets.midcast.Cure.DT, {})
+	sets.midcast.LightWeatherCuraga.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.LightDayCuraga.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeCure.DT = set_combine(sets.midcast.Cure.DT, {})
+	
+	sets.midcast.MeleeCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1"})
+	sets.midcast.MeleeLightWeatherCure.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightWeatherCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCureSolace.DT = set_combine(sets.midcast.Cure.DT, {body="Ebers Bliaud +1",waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCure.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeCuraga.DT = set_combine(sets.midcast.Cure.DT, {})
+	sets.midcast.MeleeLightWeatherCuraga.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
+	sets.midcast.MeleeLightDayCuraga.DT = set_combine(sets.midcast.Cure.DT, {waist="Hachirin-no-Obi"})
 
 	sets.midcast.Cursna = {main=gear.grioavolr_fc_staff,sub="Clemency Grip",ammo="Hasty Pinion +1",
 		head="Ebers Cap +1",neck="Debilis Medallion",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",

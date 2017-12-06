@@ -150,6 +150,8 @@ function job_get_spell_map(spell, default_spell_map)
 					return 'MeleeLightWeatherCure'
 				elseif world.day_element == 'Light' then
 					return 'MeleeLightDayCure'
+				else
+					return 'MeleeCure'
 				end
 			elseif state.Buff['Afflatus Solace'] then
 				if world.weather_element == 'Light' then
