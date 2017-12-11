@@ -11,7 +11,7 @@
 conserveshadows = false
 
 --Display related settings.
-state.DisplayMode.value = true --Set this to false if you don't want to display modes at the bottom of your screen.
+state.DisplayMode = M(true, 'Display Mode') --Set this to false if you don't want to display modes at the bottom of your screen.
 --Uncomment the settings below and change the numbers if you want to move the display to a custom location.
 --displayx = 3
 --displayy = 1062

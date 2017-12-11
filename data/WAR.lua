@@ -165,6 +165,10 @@ end
 function job_update(cmdParams, eventArgs)
     update_combat_form()
     update_melee_groups()
+	
+	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
+		state.Stance:set("None")
+	end
 end
 
 function job_buff_change(buff, gain)
@@ -179,6 +183,8 @@ function update_combat_form()
 			state.CombatForm:set('Bravura')
 		elseif player.equipment.main == "Conqueror" then
 			state.CombatForm:set('Conqueror')
+		elseif player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
+			state.CombatForm:set('DW')
 		else
 			state.CombatForm:reset()
 		end

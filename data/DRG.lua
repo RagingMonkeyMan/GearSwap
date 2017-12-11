@@ -105,6 +105,10 @@ end
 
 function job_update(cmdParams, eventArgs)
     update_melee_groups()
+	
+	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
+		state.Stance:set("None")
+	end
 end
 
 function update_combat_form()

@@ -26,3 +26,4 @@ libs/rev1/*
 *-Globals.lua
 data/export/*
 sounds/*
+libs/closetCleaner.lua

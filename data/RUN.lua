@@ -59,6 +59,7 @@ function job_precast(spell, spellMap, eventArgs)
 	end
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
@@ -165,6 +166,10 @@ end
 
 function job_update(cmdParams, eventArgs)
 	update_melee_groups()
+	
+	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
+		state.Stance:set("None")
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -286,6 +291,7 @@ end
 
 function job_tick()
 	if check_hasso() then return true end
+	if check_buff() then return true end
 	if state.AutoTankMode.value and player.target.type == "MONSTER" and not moving then
 		if check_flash_foil() then return true end
 		windower.send_command('gs c SubJobEnmity')
@@ -338,6 +344,35 @@ function check_hasso()
 			return true
 		end
 	
+	end
+		
+	return false
+end
+
+function check_buff()
+	if state.AutoBuffMode.value and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+
+		if not buffactive['Swordplay'] and abil_recasts[24] == 0 then
+			windower.chat.input('/ja "Swordplay" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] == 0 then
+			windower.chat.input('/ja "Last Resort" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+			windower.chat.input('/ja "Berserk" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+			windower.chat.input('/ja "Aggressor" <me>')
+			tickdelay = 110
+			return true
+		else
+			return false
+		end
 	end
 		
 	return false

@@ -278,7 +278,7 @@ function init_include()
 	windower.raw_register_event('outgoing chunk',function(id,original,modified,injected,blocked)
 		if not blocked then
 			if id == 0x15 then
-				if (gearswap.cued_packet or midaction()) and fixed_pos ~= '' and state.Uninterruptible.value then
+				if state.Uninterruptible.value and not player.status == 'Event' and (gearswap.cued_packet or midaction()) and fixed_pos ~= '' then
 					return original:sub(1,4)..fixed_pos..original:sub(17)
 				else
 					fixed_pos = original:sub(5,16)
@@ -356,6 +356,7 @@ function init_include()
 		if in_action and tickspell.action_type ~= 'Ranged Attack' then return end
 
 		gearswap.refresh_globals(false)
+
 		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (midaction() or gearswap.cued_packet or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end

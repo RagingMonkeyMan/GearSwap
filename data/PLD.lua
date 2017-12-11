@@ -261,6 +261,9 @@ function job_update(cmdParams, eventArgs)
 		RuneDamage = 'Darkness'
 	end
 	
+	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
+		state.Stance:set("None")
+	end	
 end
 
 -- Modify the default idle set after it was constructed.

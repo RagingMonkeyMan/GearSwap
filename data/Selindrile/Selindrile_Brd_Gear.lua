@@ -122,7 +122,7 @@ function init_gear_sets()
 	-- Song-specific recast reduction
 	sets.midcast.SongRecast = {main=gear.maccstaff,sub="Clerisy Strap +1",
 		head="Nahtirah Hat",neck="Voltsurge Torque",ear2="Loquac. Earring",
-		body="Bihu Jstcorps +1",hands="Gendewitha Gages +1",ring1="Prolix Ring",ring2="Veneficium Ring",
+		body="Bihu Jstcorps +1",hands="Gendewitha Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
 		back="Harmony Cape",waist="Corvax Sash",legs="Aoidos' Rhingrave +2",feet="Bihu Slippers +1"}
 
 	-- Cast spell with normal gear, except using Daurdabla instead

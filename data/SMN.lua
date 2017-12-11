@@ -716,6 +716,7 @@ function check_favor()
 		if abil_recasts[176] == 0 then
 			windower.chat.input('/pet "Avatar\'s Favor" <me>')
 			tickdelay = 110
+			return true
 		end
 	end
 	return false
