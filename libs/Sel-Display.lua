@@ -222,7 +222,7 @@ function update_job_states()
 				stateBox:append(string.format("%s%s: ${%s}", clr.w, labels[n], n))
 			end
 		elseif n == 'TreasureMode' then
-			if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' then
+			if (state.TreasureMode.value ~= 'None' or player.main_job == 'THF') and state.DefenseMode.value == 'None' then
 				stateBox:append(string.format("%s   Treasure: %s%s", clr.w, clr.h, state.TreasureMode.value))
 			end
 		elseif n == 'CastingMode' then
