@@ -99,14 +99,14 @@ function init_gear_sets()
 	sets.midcast.FastRecast = {
 								head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 								body="Taeon Tabard",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
-								back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
+								back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
 
 	sets.midcast.Cure = {
 								head="Gavialis Helm",neck="Phalaina Locket",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 								body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Lebeche Ring",ring2="Janniston Ring",
-								back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
+								back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Curaga = sets.midcast.Cure
 
@@ -171,7 +171,7 @@ function init_gear_sets()
 		sets.precast.WS['Primal Rend'] = {ammo="Dosis Tathlum",
 								head="Jumalik Helm",neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
 								body="Jumalik Mail",hands="Leyline Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
-								back="Toro Cape",waist="Fotia Belt",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
+								back="Toro Cape",waist="Fotia Belt",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.precast.WS['Cloudsplitter'] = set_combine(sets.precast.WS['Primal Rend'], {})
 
@@ -216,7 +216,7 @@ function init_gear_sets()
 	sets.idle = {ammo="Staunch Tathlum",
 			head="Jumalik Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Genmei Earring",
 			body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Sheltered Ring",
-			back="Solemnity Cape",waist="Flume Belt",legs="Tali'ah Sera. +1",feet="Skd. Jambeaux +1"}
+			back="Solemnity Cape",waist="Flume Belt",legs="Tali'ah Sera. +2",feet="Skd. Jambeaux +1"}
 
 	sets.idle.Refresh = set_combine(sets.idle, {})
 	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
@@ -224,28 +224,28 @@ function init_gear_sets()
 	sets.idle.Pet = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Sheltered Ring",
-			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +1",feet="Ankusa Gaiters +1"}
+			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.idle.Pet.Engaged = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 			body="Tot. Jackcoat +2",hands="Regimen Mittens",ring1="Defending Ring",ring2="Dark Ring",
-			back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +1",feet="Tot. Gaiters +1"}
+			back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	-- DEFENSE SETS
 	sets.defense.PDT = {ammo="Staunch Tathlum",
 			head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Handler's Earring +1",
 			body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Dark Ring",
-			back="Moonlight Cape",waist="Flume Belt",legs="Tali'ah Sera. +1",feet="Nukumi Ocreae +1"}
+			back="Moonlight Cape",waist="Flume Belt",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
 	sets.defense.PetPDT = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
-			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +1",feet="Ankusa Gaiters +1"}
+			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.defense.PetMDT = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
-			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +1",feet="Ankusa Gaiters +1"}
+			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.defense.PetMEVA = sets.defense.PetMDT
 
@@ -255,7 +255,7 @@ function init_gear_sets()
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 			head="Genmei Kabuto",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",
 			body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Shadow Ring",
-			back="Engulfer Cape +1",waist="Engraved Belt",legs="Tali'ah Sera. +1",feet="Nukumi Ocreae +1"}
+			back="Engulfer Cape +1",waist="Engraved Belt",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
 	sets.defense.MEVA = {
 		head="Gavialis Helm",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",

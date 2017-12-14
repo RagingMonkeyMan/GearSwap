@@ -227,32 +227,30 @@ function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets f
 			equip(sets.midcast.Pet.PhysicalBloodPactRage.AM)
 		end
 	end
+
+	if state.CastingMode.value == 'Resistant' then
+		if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].Acc then
+			equip(sets.midcast.Pet[spell.english].Acc)
+		elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.Acc then
+			equip(sets.midcast.Pet.PhysicalBloodPactRage.Acc)
+		elseif spellMap == 'MagicalBloodPactRage' and sets.midcast.Pet.MagicalBloodPactRage.Acc then
+				equip(sets.midcast.Pet.MagicalBloodPactRage.Acc)
+		end
+	end
 	
 	if spellMap == 'PhysicalBloodPactRage' then
 		if sets.midcast.Pet.PhysicalBloodPactRage[pet.name] then
 			equip(sets.midcast.Pet.PhysicalBloodPactRage[pet.name])
 		end
-		
-		if state.CastingMode.value == 'Resistant' then
-			equip(sets.midcast.Pet.PhysicalBloodPactRage.Acc)
-		end
-	
 	elseif spellMap == 'MagicalBloodPactRage' then
 		if sets.midcast.Pet.MagicalBloodPactRage[pet.name] then
 			equip(sets.midcast.Pet.MagicalBloodPactRage[pet.name])
 		end
-		
-		if state.CastingMode.value == 'Resistant' then
-			equip(sets.midcast.Pet.MagicalBloodPactRage.Acc)
-		end
-	
 	elseif spellMap == 'DebuffBloodPactWard' then
 		if sets.midcast.Pet.BloodPactWard[pet.name] then
 			equip(sets.midcast.Pet.BloodPactWard[pet.name])
 		end
-	
-	end
-
+	end	
 	
 	if state.Buff['Astral Conduit'] and ConduitLock and ConduitLocked == nil then
 		ConduitLocked = spellMap

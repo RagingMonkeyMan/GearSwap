@@ -978,7 +978,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 		end
 	end
 
-    if not pet_midaction() and (type(spell.type) ~= 'string' or (not (spell.type:startswith('BloodPact') or spell.type == 'Monster')))then
+    if not pet_midaction() and (type(spell.type) ~= 'string' or (not (spell.type:startswith('BloodPact') or spell.type == 'Monster'))) then
         handle_equipping_gear(player.status)
     end
 end

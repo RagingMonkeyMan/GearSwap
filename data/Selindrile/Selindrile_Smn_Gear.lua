@@ -164,7 +164,7 @@ function init_gear_sets()
     sets.midcast.Pet.DebuffBloodPactWard = {main="Espiritus",sub="Vox Grip",ammo="Sancus Sachet +1",
         head="Beckoner's Horn +1",neck="Adad Amulet",ear1="Andoaa Earring",ear2="Enmerkar Earring",
         body="Beck. Doublet +1",hands=gear.merlinic_magpact_hands,ring1="Evoker's Ring",ring2="Stikini Ring",
-        back=gear.magic_jse_back,waist="Incarnation Sash",legs="Tali'ah Sera. +1",feet="Beck. Pigaches +1"}
+        back=gear.magic_jse_back,waist="Incarnation Sash",legs="Tali'ah Sera. +2",feet="Beck. Pigaches +1"}
         
     sets.midcast.Pet.DebuffBloodPactWard.Acc = sets.midcast.Pet.DebuffBloodPactWard
     
@@ -194,6 +194,8 @@ function init_gear_sets()
         head="Apogee Crown +1",neck="Adad Amulet",ear1="Gelos Earring",ear2="Lugalbanda Earring",
         body="Con. Doublet +3",hands=gear.merlinic_magpact_hands,ring1="Varar Ring",ring2="Varar Ring",
         back=gear.phys_jse_back,waist="Regal Belt",legs="Apogee Slacks +1",feet="Apogee Pumps +1"}
+		
+	sets.midcast.Pet['Flaming Crush'].Acc = {feet="Convo. Pigaches +3"}
 
     --------------------------------------
     -- Idle/resting/defense/etc sets
