@@ -10,7 +10,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'Suppa', 'DWEarrings', 'DWMax'}
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWEarrings','DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
 
 	gear.da_jse_back = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}}
@@ -23,9 +23,9 @@ function user_setup()
 	send_command('bind !f11 gs c cycle ExtraMeleeMode')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
-	send_command('bind ^backspace gs equip sets.Throwing')
+	send_command('bind ^backspace gs c weapons Throwing;gs c update')
 	send_command('bind !backspace input /ja "Hide" <me>')
-	send_command('bind !r gs equip sets.MagicWeapons;gs c update user')
+	send_command('bind !r gs c weapons MagicWeapons;gs c update')
 	send_command('bind ^\\\\ input /ja "Despoil" <t>')
 	send_command('bind !\\\\ input /ja "Mug" <t>')
 
