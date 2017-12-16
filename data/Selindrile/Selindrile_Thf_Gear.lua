@@ -55,7 +55,7 @@ function init_gear_sets()
 	sets.MagicWeapons = {main="Malevolence",sub="Malevolence"}
 	sets.Throwing = {range="Raider's Bmrng."}
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
-	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Shetal Stone"}
+	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Reiki Yotai"}
 	sets.Ambush = {} --body="Plunderer's Vest +1"
 	
     -- Actions we want to use to tag TH.

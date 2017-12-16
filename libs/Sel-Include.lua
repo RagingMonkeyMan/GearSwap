@@ -819,12 +819,8 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 		
 		elseif spell.action_type == 'Magic' then
-			if spell.english == "Fire" or spell.english == "Blizzard" or spell.english == "Aero" or spell.english == "Stone" or spell.english == "Thunder" or spell.english == "Water" then
-				if state.CastingMode.value == 'Proc' and sets.midcast['Elemental Magic'].Proc then
-					equip(sets.midcast['Elemental Magic'].Proc)
-				else
-					equip(sets.midcast['Elemental Magic'])
-				end
+			if spellMap == 'BarElement' and sets.midcast.BarElement then
+				equip(sets.midcast.BarElement)
 			elseif spell.english:startswith('Utsusemi') then
 				if sets.precast.FC.Shadows and ((spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San') or (spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi')) then
 					equip(sets.precast.FC.Shadows)
@@ -1973,6 +1969,10 @@ function buff_change(buff, gain)
         end
     end
 
+	if (S{'Blink','Third Eye'}:contains(buff) or buff:contains('Copy Image')) and not gain then
+		lastshadow = "None"
+	end
+	
 	if not midaction() and not pet_midaction() then
 		handle_equipping_gear(player.status)
 	end
