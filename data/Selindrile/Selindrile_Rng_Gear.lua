@@ -95,8 +95,8 @@ function init_gear_sets()
         back=gear.wsd_ranger_jse_back,waist="Eschan Stone",legs="Gyve Trousers",feet=gear.herculean_nuke_feet}
 		
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {}
-	sets.precast.AccMaxTP = {}
+	sets.MaxTP = {}
+	sets.AccMaxTP = {}
 
 	-- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 

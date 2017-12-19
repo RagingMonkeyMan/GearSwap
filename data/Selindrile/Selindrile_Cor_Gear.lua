@@ -203,8 +203,8 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {}
-	sets.precast.AccMaxTP = {}
+	sets.MaxTP = {}
+	sets.AccMaxTP = {}
         
     -- Midcast Sets
     sets.midcast.FastRecast = {

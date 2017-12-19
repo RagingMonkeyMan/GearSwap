@@ -129,8 +129,8 @@ function init_gear_sets()
      sets.resting = {}
            
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Lugra Earring +1",ear2="Lugra Earring",}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Lugra Earring +1",ear2="Lugra Earring",}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	sets.AccDayMaxTPWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	sets.DayMaxTPWSEars = {ear1="Ishvara Earring",ear2="Brutal Earring",}
 	sets.AccDayWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}

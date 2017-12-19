@@ -1696,3 +1696,11 @@ function check_rune()
 	
 	return false
 end
+
+function check_ws_acc()
+	if state.WeaponskillMode.value == 'Match' then
+		return state.OffenseMode.value
+	else
+		return state.WeaponskillMode.value
+	end
+end

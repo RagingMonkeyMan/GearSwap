@@ -144,8 +144,8 @@ function init_gear_sets()
 		back="Toro Cape",legs="Nahtirah Trousers"}
 	
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	
 	-- Midcast Sets
 	sets.midcast.FastRecast = {ammo="Staunch Tathlum",

@@ -176,8 +176,8 @@ function init_gear_sets()
 	sets.precast.WS['Cloudsplitter'] = set_combine(sets.precast.WS['Primal Rend'], {})
 
 		-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 
 				-- PET SIC & READY MOVES
 	sets.midcast.Pet.WS = {ammo="Demonry Core",

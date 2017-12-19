@@ -116,8 +116,8 @@ function init_gear_sets()
         back="Toro Cape",waist="Chaac Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_acc_feet}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Lugra Earring",ear2="Lugra Earring +1",}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Lugra Earring",ear2="Lugra Earring +1",}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	sets.AccDayMaxTPWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	sets.DayMaxTPWSEars = {ear1="Cessance Earring",ear2="Brutal Earring",}
 	sets.AccDayWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}

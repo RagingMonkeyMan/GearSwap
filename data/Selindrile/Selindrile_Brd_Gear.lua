@@ -13,7 +13,7 @@ function user_setup()
     info.ExtraSongs = 1
 	
 	-- Set this to false if you don't want to use custom timers.
-    state.UseCustomTimers = M(true, 'Use Custom Timers')
+    state.UseCustomTimers = M(false, 'Use Custom Timers')
 	
 	-- Additional local binds
     send_command('bind ^` gs c cycle ExtraSongsMode')
@@ -179,8 +179,8 @@ function init_gear_sets()
 	sets.resting = {legs="Assid. Pants +1",feet="Chelona Boots +1"}
 	
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Jupiter's Pearl",ear2="Kuwunga Earring"}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Steelflash Earring"}	
+	sets.MaxTP = {ear1="Jupiter's Pearl",ear2="Kuwunga Earring"}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Steelflash Earring"}	
 	
 	-- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
 	sets.idle = {main="Terra's Staff", sub="Achaq Grip",range="Gjallarhorn",

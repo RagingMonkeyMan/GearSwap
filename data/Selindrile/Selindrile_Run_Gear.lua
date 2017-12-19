@@ -301,8 +301,8 @@ function init_gear_sets()
 	sets.defense.Charm = {}
 	
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Brutal Earring"}
-	sets.precast.AccMaxTP = {ear1="Telos Earring"}
+	sets.MaxTP = {ear1="Brutal Earring"}
+	sets.AccMaxTP = {ear1="Telos Earring"}
 
 	--------------------------------------
 	-- Engaged sets

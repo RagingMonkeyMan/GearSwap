@@ -181,8 +181,8 @@ function init_gear_sets()
 			         back=gear.mab_jse_back,waist="Yamabuki-no-Obi",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Cessance Earring",ear2="Brutal Earring"}
-	sets.precast.AccMaxTP = {ear1="Regal Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Cessance Earring",ear2="Brutal Earring"}
+	sets.AccMaxTP = {ear1="Regal Earring",ear2="Telos Earring"}
 
 	-- Midcast Sets
 	sets.midcast.FastRecast = {ammo="Hasty Pinion +1",
@@ -297,6 +297,11 @@ function init_gear_sets()
 	sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"})
 
 	sets.midcast.BarElement = set_combine(sets.precast.FC['Enhancing Magic'], {legs="Shedir Seraweels"})
+	
+	sets.midcast.Protect = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
+	sets.midcast.Protectra = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
+	sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
+	sets.midcast.Shellra = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
 
 	sets.midcast['Divine Magic'] = {ammo="Pemphredo Tathlum",
 			        head="Jhakri Coronal +2",neck="Incanter's Torque",ear1="Regal Earring",ear2="Digni. Earring",
@@ -376,14 +381,6 @@ function init_gear_sets()
 	sets.midcast['Blue Magic']['Battery Charge'] = set_combine(sets.midcast['Blue Magic'].Buff, {head="Amalric Coif",back="Grapevine Cape",waist="Gishdubar Sash"})
 
 	sets.midcast['Blue Magic']['Carcharian Verve'] = set_combine(sets.midcast['Blue Magic'].Buff, {head="Amalric Coif",hands="Regal Cuffs",waist="Emphatikos Rope",legs="Shedir Seraweels"})
-
-	sets.midcast.Protect = {ring2="Sheltered Ring"}
-	sets.midcast.Protectra = {ring2="Sheltered Ring"}
-	sets.midcast.Shell = {ring2="Sheltered Ring"}
-	sets.midcast.Shellra = {ring2="Sheltered Ring"}
-
-
-
 
 	-- Sets to return to when not performing an action.
 

@@ -220,6 +220,7 @@ function job_self_command(commandArgs, eventArgs)
 			local est_max_hp = target.hp / (target.hpp/100)
 			missingHP = math.floor(est_max_hp - target.hp)
 		elseif player.target.type == 'MONSTER' then
+			add_to_chat(123,'Abort: You are targetting a monster.')
 			return
 		else
 			if player.target.hpp > 95 then

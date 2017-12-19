@@ -68,13 +68,13 @@ function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' then
         -- Replace Moonshade Earring if we're at cap TP
         if player.tp == 3000 and moonshade_ws:contains(spell.english) then
-			if state.WeaponskillMode.Current:contains('Acc') then
-				if sets.precast.AccMaxTP then
-					equip(sets.precast.AccMaxTP)
+			if check_ws_acc():contains('Acc') then
+				if sets.AccMaxTP then
+					equip(sets.AccMaxTP)
 				end
 						
-			elseif sets.precast.MaxTP then
-					equip(sets.precast.MaxTP)
+			elseif sets.MaxTP then
+					equip(sets.MaxTP)
 			end
 
 		end

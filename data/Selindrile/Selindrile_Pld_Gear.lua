@@ -184,8 +184,8 @@ function init_gear_sets()
     sets.precast.WS['Spirits Within'].Acc = sets.precast.WS['Atonement']
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.precast.MaxTP = {ear1="Cessance Earring",ear2="Brutal Earring",}
-	sets.precast.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.MaxTP = {ear1="Cessance Earring",ear2="Brutal Earring",}
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 
 
 	--------------------------------------
