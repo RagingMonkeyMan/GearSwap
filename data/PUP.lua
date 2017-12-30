@@ -133,8 +133,8 @@ function display_current_job_state(eventArgs)
 end
 
 function job_customize_passive_set(baseSet)
-	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 then
-		if sets.midcast.Pet.PetWSGear[state.PetMode.value] then
+	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and sets.midcast.Pet then
+		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
 			baseSet = set_combine(baseSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
 		elseif sets.midcast.Pet.PetWSGear then
 			baseSet = set_combine(baseSet, sets.midcast.Pet.PetWSGear)
