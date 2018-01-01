@@ -1090,3 +1090,9 @@ function handle_elemental(cmdParams)
         add_to_chat(123,'Unrecognized elemental command.')
     end
 end
+
+function pet_action(spell, spellMap, eventArgs)
+	if pet_midaction() or spell.type:startswith('BloodPact') or avatars:contains(spell.english) then
+		eventArgs.handled = true
+	end
+end

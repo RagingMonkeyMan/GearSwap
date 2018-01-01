@@ -854,3 +854,9 @@ function get_ready_charge_timer()
 
 	return chargetimer
 end
+
+function pet_action(spell, spellMap, eventArgs)
+	if pet_midaction() or spell.type == 'Monster' or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
+		eventArgs.handled = true
+	end
+end
