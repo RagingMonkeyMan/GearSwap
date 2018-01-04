@@ -17,6 +17,7 @@ function job_setup()
 	
 	state.AutoCaress = M(true, 'Auto Caress Mode')
 	state.Gambanteinn = M(false, 'Gambanteinn Cursna Mode')
+	state.BlockLowDevotion = M(true, 'Block Low Devotion')
 	
 	autows = 'Mystic Boon'
 	autofood = 'Miso Ramen'
@@ -59,6 +60,12 @@ function job_precast(spell, spellMap, eventArgs)
 				windower.chat.input:schedule(1,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				return
 			end
+		end
+	elseif spell.type == 'JobAbility' then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if spell.english == 'Devotion' and state.BlockLowDevotion.value and abil_recasts[28] == 0 and player.hpp < 50 then
+			eventArgs.cancel = true
+			add_to_chat(123,'Abort: Blocking Devotion under 50% HP to prevent inefficient use.')
 		end
 	end
 		
@@ -223,7 +230,7 @@ function job_self_command(commandArgs, eventArgs)
 			add_to_chat(123,'Abort: You are targetting a monster.')
 			return
 		else
-			if player.target.hpp > 95 then
+			if player.target.hpp > 94 then
 				if spell_recasts[1] == 0 then
 					windower.chat.input('/ma "Cure" <t>')
 				elseif spell_recasts[2] == 0 then
@@ -231,7 +238,7 @@ function job_self_command(commandArgs, eventArgs)
 				else
 					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
-			elseif player.target.hpp > 85 then
+			elseif player.target.hpp > 84 then
 				if spell_recasts[2] == 0 then
 					windower.chat.input('/ma "Cure II" <t>')
 				elseif spell_recasts[3] == 0 then
@@ -241,7 +248,7 @@ function job_self_command(commandArgs, eventArgs)
 				else
 					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
-			elseif player.target.hpp > 70 then
+			elseif player.target.hpp > 55 then
 				if spell_recasts[3] == 0 then
 					windower.chat.input('/ma "Cure III" <t>')
 				elseif spell_recasts[4] == 0 then
@@ -251,7 +258,7 @@ function job_self_command(commandArgs, eventArgs)
 				else
 					add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 				end
-			elseif player.target.hpp > 50 then
+			elseif player.target.hpp > 25 then
 				if spell_recasts[5] == 0 then
 					windower.chat.input('/ma "Cure V" <t>')
 				elseif spell_recasts[4] == 0 then
@@ -287,7 +294,7 @@ function job_self_command(commandArgs, eventArgs)
 			else
 				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
-		elseif missingHP < 350 then
+		elseif missingHP < 400 then
 			if spell_recasts[2] == 0 then
 				windower.chat.input('/ma "Cure II" <t>')
 			elseif spell_recasts[3] == 0 then
@@ -297,7 +304,7 @@ function job_self_command(commandArgs, eventArgs)
 			else
 				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
-		elseif missingHP < 700 then
+		elseif missingHP < 900 then
 			if spell_recasts[3] == 0 then
 				windower.chat.input('/ma "Cure III" <t>')
 			elseif spell_recasts[4] == 0 then
@@ -307,7 +314,7 @@ function job_self_command(commandArgs, eventArgs)
 			else
 				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
-		elseif missingHP < 1100 then
+		elseif missingHP < 1400 then
 			if spell_recasts[5] == 0 then
 				windower.chat.input('/ma "Cure V" <t>')
 			elseif spell_recasts[4] == 0 then

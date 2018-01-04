@@ -24,7 +24,7 @@ function job_setup()
 	-- Whether to automatically generate bullets.
 	state.AutoBulletMode = M(true,'Auto Bullet Mode')	
 	-- Whether to use Luzaf's Ring
-    state.LuzafRing = M(false, "Luzaf's Ring")
+	state.LuzafRing = M(true, "Luzaf's Ring")
     -- Whether a warning has been given for low ammo
     state.warned = M(false)
 

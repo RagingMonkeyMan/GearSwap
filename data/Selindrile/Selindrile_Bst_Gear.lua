@@ -59,7 +59,7 @@ function init_gear_sets()
 
 	sets.precast.JA.Reward = {
 								neck="Phalaina Locket",ear1="Etiolation Earring",ear2="Domesticator's Earring", --head="Stout Bonnet"
-								body="Tot. Jackcoat +2",hands="Regimen Mittens",ring1="Stikini Ring",ring2="Sirona's Ring",
+								body="Tot. Jackcoat +3",hands="Regimen Mittens",ring1="Stikini Ring",ring2="Sirona's Ring",
 								back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Ankusa Trousers +1",feet="Ankusa Gaiters +1"}
 
 	sets.precast.JA.Reward.Theta = set_combine(sets.precast.JA.Reward, {ammo="Pet Food Theta"})
@@ -71,7 +71,7 @@ function init_gear_sets()
 	-- CURING WALTZ
 	sets.precast.Waltz = {
 								head=gear.valorous_pet_head,neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-								body="Tot. Jackcoat +2",hands="Regimen Mittens",ring1="Valseur's Ring",ring2="Asklepian Ring",
+								body="Tot. Jackcoat +3",hands="Regimen Mittens",ring1="Valseur's Ring",ring2="Asklepian Ring",
 								back="Moonlight Cape",waist="Chaac Belt",legs="Dashing Subligar",feet="Valorous Greaves"}
 
 		-- HEALING WALTZ
@@ -223,12 +223,12 @@ function init_gear_sets()
 
 	sets.idle.Pet = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Sheltered Ring",
+			body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Sheltered Ring",
 			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.idle.Pet.Engaged = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-			body="Tot. Jackcoat +2",hands="Regimen Mittens",ring1="Defending Ring",ring2="Dark Ring",
+			body="Tot. Jackcoat +3",hands="Regimen Mittens",ring1="Defending Ring",ring2="Dark Ring",
 			back="Pastoralist's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	-- DEFENSE SETS
@@ -239,12 +239,12 @@ function init_gear_sets()
 
 	sets.defense.PetPDT = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
+			body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
 			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.defense.PetMDT = {ammo="Demonry Core",
 			head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-			body="Tot. Jackcoat +2",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
+			body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
 			back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +1"}
 
 	sets.defense.PetMEVA = sets.defense.PetMDT
