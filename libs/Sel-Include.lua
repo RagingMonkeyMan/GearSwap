@@ -1260,7 +1260,9 @@ function get_idle_set(petStatus)
     end
 
     if areas.Cities:contains(world.area) and state.DefenseMode.value == 'None' then
-		if sets.Town then
+		if sets.idle.Town then
+			idleSet = set_combine(idleSet, sets.Kiting, sets.idle.Town)
+		elseif sets.Town then
 			idleSet = set_combine(idleSet, sets.Kiting, sets.Town)
 		else 
 			idleSet = set_combine(idleSet, sets.Kiting)
