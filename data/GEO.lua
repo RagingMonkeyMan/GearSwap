@@ -13,9 +13,6 @@ function job_setup()
 
 	state.Buff.Entrust = buffactive.Entrust or false
 
-    indi_timer = ''
-    indi_duration = 180
-
     LowTierNukes = S{'Stone', 'Water', 'Aero', 'Fire', 'Blizzard', 'Thunder',
         'Stone II', 'Water II', 'Aero II', 'Fire II', 'Blizzard II', 'Thunder II',
         'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}
@@ -144,12 +141,9 @@ function job_aftercast(spell, spellMap, eventArgs)
             if not classes.CustomIdleGroups:contains('Indi') then
                 classes.CustomIdleGroups:append('Indi')
             end
-            send_command('@timers d "'..indi_timer..'"')
-            indi_timer = spell.english
-            send_command('@timers c "'..indi_timer..'" '..indi_duration..' down spells/00136.png')
-        elseif spell.english == 'Sleep' or spell.english == 'Sleepga' then
+        elseif state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
-        elseif spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
+        elseif state.UseCustomTimers.value and spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 90 down spells/00220.png')
         elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
             state.MagicBurstMode:reset()

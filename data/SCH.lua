@@ -149,9 +149,9 @@ function job_aftercast(spell, spellMap, eventArgs)
 		if spell.type == 'Scholar' then
 			windower.send_command:schedule(1,'gs c showcharge')
 		elseif spell.action_type == 'Magic' then
-			if spell.english == 'Sleep' or spell.english == 'Sleepga' then
+			if state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
 				windower.send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
-			elseif spell.english == 'Sleep II' then
+			elseif state.UseCustomTimers.value and spell.english == 'Sleep II' then
 				windower.send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 90 down spells/00220.png')
 			elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
 				state.MagicBurstMode:reset()

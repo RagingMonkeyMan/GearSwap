@@ -86,6 +86,7 @@ function init_include()
 	state.AutoBuffMode 		  = M(false, 'Auto Buff Mode')
 	state.AutoCleanupMode  	  = M(false, 'Auto Cleanup Mode')
 	state.DisplayMode  	  	  = M(true, 'Display Mode')
+	state.UseCustomTimers 	  = M(true, 'Use Custom Timers')
 	state.CancelStoneskin	  = M(true, 'Stoneskin Cancel Mode')
 	state.Contradance		  = M(true, 'Auto Contradance Mode')
 
