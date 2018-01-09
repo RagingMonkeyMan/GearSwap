@@ -324,7 +324,7 @@ function check_maneuver()
 	return false
 end
 
-function pet_action(spell, spellMap, eventArgs)
+function job_aftercast(spell, spellMap, eventArgs)
 	if pet_midaction() or spell.english == 'Activate' or spell.english == 'Deus Ex Automata' then
 		eventArgs.handled = true
 	end

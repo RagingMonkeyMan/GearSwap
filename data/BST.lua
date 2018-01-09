@@ -364,7 +364,9 @@ end
 -- Return true if we handled the aftercast work.  Otherwise it will fall back
 -- to the general aftercast() code in Mote-Include.
 function job_aftercast(spell, spellMap, eventArgs)
-
+	if pet_midaction() or (type(spell.type) == 'string' and (spell.type == 'Monster' or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast')) then
+		eventArgs.handled = true
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -853,10 +855,4 @@ function get_ready_charge_timer()
 	end
 
 	return chargetimer
-end
-
-function pet_action(spell, spellMap, eventArgs)
-	if pet_midaction() or spell.type == 'Monster' or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
-		eventArgs.handled = true
-	end
 end

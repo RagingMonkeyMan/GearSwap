@@ -205,8 +205,14 @@ function job_aftercast(spell, spellMap, eventArgs)
         elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
             state.MagicBurstMode:reset()
 			if state.DisplayMode.value then update_job_states()	end
+		elseif pet_midaction() or (type(spell.type) == 'string' and(spell.type:startswith('BloodPact') or avatars:contains(spell.english))) then
+			eventArgs.handled = true
         end
     end
+end
+
+function pet_action(spell, spellMap, eventArgs)
+
 end
 
 function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets for bloodpacts without lots of messy sets
@@ -1089,10 +1095,4 @@ function handle_elemental(cmdParams)
     else
         add_to_chat(123,'Unrecognized elemental command.')
     end
-end
-
-function pet_action(spell, spellMap, eventArgs)
-	if pet_midaction() or spell.type:startswith('BloodPact') or avatars:contains(spell.english) then
-		eventArgs.handled = true
-	end
 end

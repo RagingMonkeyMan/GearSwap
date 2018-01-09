@@ -129,18 +129,14 @@ function job_post_midcast(spell, spellMap, eventArgs)
 
 end
 
-function job_pet_midcast(spell, spellMap, eventArgs)
-	if spell.name == 'Radial Arcana' and sets.precast.JA['Radial Arcana'] then
-		equip(sets.precast.JA['Radial Arcana'])
-	end
-end
-
 function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
         if spell.english:startswith('Indi') then
             if not classes.CustomIdleGroups:contains('Indi') then
                 classes.CustomIdleGroups:append('Indi')
             end
+		elseif spell.english == "Mending Halation" or spell.english == "Radial Arcana" or spell.english == "Radial Arcana" then
+			eventArgs.handled = true
         elseif state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
         elseif state.UseCustomTimers.value and spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
@@ -149,9 +145,11 @@ function job_aftercast(spell, spellMap, eventArgs)
             state.MagicBurstMode:reset()
 			if state.DisplayMode.value then update_job_states()	end
 		end
-    elseif not player.indi then
-        classes.CustomIdleGroups:clear()
     end
+	
+	if not player.indi then
+        classes.CustomIdleGroups:clear()
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------

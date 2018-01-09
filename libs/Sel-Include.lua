@@ -975,10 +975,6 @@ function default_aftercast(spell, spellMap, eventArgs)
 		end
 	end
 
-	if type(spell.type) == 'string' and pet_action then
-		pet_action(spell, spellMap, eventArgs)
-	end
-	
 	if not eventArgs.handled then
         handle_equipping_gear(player.status)
     end
