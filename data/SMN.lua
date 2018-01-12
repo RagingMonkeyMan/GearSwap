@@ -217,7 +217,7 @@ end
 
 function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets for bloodpacts without lots of messy sets
 
-	if ConduitLocked and ConduitLocked ~= spellMap then
+	if ConduitLocked and ConduitLocked ~= spell.english then
 		ConduitLocked = nil
 		if state.OffenseMode.value == 'None' then
 			enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
@@ -259,9 +259,9 @@ function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets f
 	end	
 	
 	if state.Buff['Astral Conduit'] and ConduitLock and ConduitLocked == nil then
-		ConduitLocked = spellMap
+		ConduitLocked = spell.english
 		disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		add_to_chat(217, "Astral Conduit on, locking your "..spellMap.." set.")
+		add_to_chat(217, "Astral Conduit on, locking your "..spell.english.." set.")
 	end
 end
 
