@@ -66,25 +66,27 @@ function job_filtered_action(spell, eventArgs)
 end
 
 function job_pretarget(spell, spellMap, eventArgs)
-		if spell.targets == S{'Self'} and not spell.target.in_party and not state.Buff['Pianissimo'] then
+    if spell.type == 'BardSong' and not spell.targets.Enemy then
+		if spell.target.raw == '<t>' and (player.target.type == 'NONE' or player.target.type == "MONSTER") and not state.Buff['Pianissimo'] then
 			change_target('<me>')
+			return
 		end
+    end
 end
 
 function job_filter_precast(spell, spellMap, eventArgs)
-
-    if spell.type == 'BardSong' then
+    if spell.type == 'BardSong' and not spell.targets.Enemy then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
         -- Auto-Pianissimo
-        if spell.targets == S{'Self'} and ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC' and spell.target.in_party)) and not state.Buff['Pianissimo'] then
-            if spell_recasts[spell.recast_id] < 50 then
+        if ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC' and spell.target.in_party)) and not state.Buff['Pianissimo'] then
+            if spell_recasts[spell.recast_id] < 10 then
                 send_command('@input /ja "Pianissimo" <me>; wait 1.1; input /ma "'..spell.name..'" '..spell.target.name)
                 eventArgs.cancel = true
                 return
             end
         end
     end
-
 end
 
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
