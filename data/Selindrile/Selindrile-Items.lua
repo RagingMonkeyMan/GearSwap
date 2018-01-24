@@ -51,7 +51,7 @@ gear.merlinic_aspir_feet = {name="Merlinic Crackows",augments={'Mag. Acc.+22 "Ma
 gear.merlinic_treasure_feet = {name="Merlinic Crackows",augments={'Accuracy+5','"Snapshot"+2','"Treasure Hunter"+2','Mag. Acc.+11 "Mag.Atk.Bns."+11',}}
 gear.merlinic_refresh_feet = {name="Merlinic Crackows",augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Sklchn.dmg.+4%','"Refresh"+1',}}
 
-gear.odyssean_wsd_hands = {name="Odyssean Gauntlets",augments={'Accuracy+26','Weapon skill damage +3%','Attack+9',}}
+gear.odyssean_wsd_hands = { name="Odyssean Gauntlets", augments={'Accuracy+26','Weapon skill damage +4%','STR+6','Attack+14',}}
 gear.odyssean_stp_legs = {name="Odyssean Cuisses",augments={'Accuracy+28','"Store TP"+6','DEX+9',}}
 gear.odyssean_fc_legs = {name="Odyssean Cuisses",augments={'"Fast Cast"+6','"Mag.Atk.Bns."+12',}}
 

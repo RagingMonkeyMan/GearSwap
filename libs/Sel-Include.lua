@@ -1854,6 +1854,12 @@ function status_change(newStatus, oldStatus)
 	
     -- Then call individual jobs to handle status change events.
     if not eventArgs.handled then
+        if user_job_status_change then
+            user_job_status_change(newStatus, oldStatus, eventArgs)
+        end
+    end
+	
+    if not eventArgs.handled then
         if job_status_change then
             job_status_change(newStatus, oldStatus, eventArgs)
         end

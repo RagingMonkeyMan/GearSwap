@@ -147,7 +147,7 @@ function init_gear_sets()
 	sets.AccDayMaxTPWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 	sets.DayMaxTPWSEars = {ear1="Ishvara Earring",ear2="Brutal Earring",}
 	sets.AccDayWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
-	sets.DayWSEars = {ear1="Brutal Earring",ear2="Moonshade Earring",}
+	sets.DayWSEars = {ear1="Brutal Earring",ear2="Moonshade Earring"}
 
      -- Sets to return to when not performing an action.
            
