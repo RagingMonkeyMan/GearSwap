@@ -780,8 +780,8 @@ function default_filtered_action(spell, eventArgs)
 			eventArgs.cancel = true
 			return
 		elseif item_available('Silent Oil') then
-			windower.chat.input('/item "Prism Powder" <me>')
-			add_to_chat(217,"You can't cast Sneak, attempting to use Prism Powder instead.")
+			windower.chat.input('/item "Silent Oil" <me>')
+			add_to_chat(217,"You can't cast Sneak, attempting to use Silent Oil instead.")
 			cancel_spell()
 			eventArgs.cancel = true
 			return
