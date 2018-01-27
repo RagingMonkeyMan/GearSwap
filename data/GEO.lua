@@ -23,6 +23,9 @@ function job_setup()
 	autofood = 'Miso Ramen'
 	indispell = 'Torpor'
 	geospell = 'Frailty'
+	
+    indi_timer = ''
+    indi_duration = 180
 
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode"},{"OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
@@ -135,6 +138,11 @@ function job_aftercast(spell, spellMap, eventArgs)
             if not classes.CustomIdleGroups:contains('Indi') then
                 classes.CustomIdleGroups:append('Indi')
             end
+			if state.UseCustomTimers.value then
+				send_command('@timers d "'..spell.target.name..': '..indi_timer..'"')
+				indi_timer = spell.english
+				send_command('@timers c "'..spell.target.name..': '..indi_timer..'" '..indi_duration..' down spells/00136.png')
+			end
 		elseif spell.english == "Mending Halation" or spell.english == "Radial Arcana" or spell.english == "Radial Arcana" then
 			eventArgs.handled = true
         elseif state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
