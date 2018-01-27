@@ -85,7 +85,7 @@ function init_gear_sets()
 
     sets.precast.CorsairShot['Light Shot'] = {ammo=gear.QDbullet,
         head="Carmine Mask +1",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Telos Earring",
-        body="Mummu Jacket +1",hands="Leyline Gloves",ring1="Stikini Ring",ring2="Stikini Ring",
+        body="Mummu Jacket +2",hands="Leyline Gloves",ring1="Stikini Ring",ring2="Stikini Ring",
         back=gear.ranger_wsd_jse_back,waist="Eschan Stone",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"}
 
     sets.precast.CorsairShot['Dark Shot'] = set_combine(sets.precast.CorsairShot['Light Shot'], {feet="Chass. Bottes +1"})
@@ -135,7 +135,7 @@ function init_gear_sets()
 		
     sets.precast.WS.Proc = {
         head="Carmine Mask +1",neck="Combatant's Torque",ear1="Digni. Earring",ear2="Zennaroi Earring",
-        body="Mummu Jacket +1",hands="Floral Gauntlets",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Mummu Jacket +2",hands="Floral Gauntlets",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.tp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet=gear.herculean_acc_feet}
 		
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.

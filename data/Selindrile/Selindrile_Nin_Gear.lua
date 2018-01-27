@@ -1,6 +1,6 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('Normal', 'SomeAcc','Acc','FullAcc','Fodder')
+    state.OffenseMode:options('Normal', 'SomeAcc','Acc','FullAcc','Fodder','Crit')
     state.HybridMode:options('Normal', 'Evasion', 'PDT')
     state.RangedMode:options('Normal', 'Acc')
     state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
@@ -55,7 +55,7 @@ function init_gear_sets()
     -- Set for acc on steps, since Yonin drops acc a fair bit
     sets.precast.Step = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
-        body="Mummu Jacket +1",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back="Andartia's Mantle",waist="Olseni Belt",legs="Mummu Kecks +1",feet=gear.herculean_acc_feet}
 
     sets.precast.Flourish1 = {ammo="Togakushi Shuriken",
@@ -83,13 +83,13 @@ function init_gear_sets()
         back=gear.da_jse_back,waist="Fotia Belt",legs="Samnuha Tights",feet=gear.herculean_wsd_feet}
     sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {head="Dampening Tam","Ken. Samue",legs="Hiza. Hizayoroi +2",ear2="Telos Earring"})
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {head="Ynglinga Sallet",neck="Combatant's Torque",ear2="Telos Earring",body="Ken. Samue",hands="Mummu Wrists +2",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
-	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",body="Mummu Jacket +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",body="Mummu Jacket +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
 	
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
     sets.precast.WS['Blade: Jin'] = set_combine(sets.precast.WS, {head="Adhemar Bonnet +1",ammo="Yetshila",head="Adhemar Bonnet +1",body="Abnoba Kaftan",hands="Ryuo Tekko",ring1="Begrudging Ring",waist="Grunfeld Rope",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"})
     sets.precast.WS['Blade: Jin'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {head="Mummu Bonnet +1",ammo="Yetshila",head="Mummu Bonnet +1",body="Abnoba Kaftan",hands="Ryuo Tekko",waist="Grunfeld Rope",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"})
     sets.precast.WS['Blade: Jin'].Acc = set_combine(sets.precast.WS.Acc, {head="Mummu Bonnet +1",body="Sayadio's Kaftan",hands="Ryuo Tekko",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"})
-    sets.precast.WS['Blade: Jin'].FullAcc = set_combine(sets.precast.WS.FullAcc, {body="Mummu Jacket +1",hands="Ryuo Tekko",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"})
+    sets.precast.WS['Blade: Jin'].FullAcc = set_combine(sets.precast.WS.FullAcc, {body="Mummu Jacket +2",hands="Ryuo Tekko",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"})
     sets.precast.WS['Blade: Jin'].Fodder = set_combine(sets.precast.WS['Blade: Jin'], {head="Adhemar Bonnet +1"})
 	
 	sets.precast.WS['Blade: Hi'] = set_combine(sets.precast.WS, {ammo="Yetshila",head="Adhemar Bonnet +1",ear1="Moonshade Earring",ear2="Brutal Earring",body="Abnoba Kaftan",hands="Ryuo Tekko",ring1="Begrudging Ring",back=gear.wsd_jse_back,legs="Hiza. Hizayoroi +2",feet="Mummu Gamash. +1"})
@@ -173,7 +173,7 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Hiza. Haramaki +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Hiza. Haramaki +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet=gear.herculean_dt_feet}
 
     sets.idle.PDT = {ammo="Togakushi Shuriken",
@@ -241,12 +241,16 @@ function init_gear_sets()
         back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +1",feet=gear.herculean_acc_feet}
     sets.engaged.FullAcc = {ammo="Togakushi Shuriken",
         head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
-        body="Mummu Jacket +1",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +1",feet=gear.herculean_acc_feet}
     sets.engaged.Fodder = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Dedition Earring",ear2="Brutal Earring",
         body="Ken. Samue",hands="Adhemar Wrist. +1",ring1="Petrov Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
+    sets.engaged.Crit = {ammo="Togakushi Shuriken",
+        head="Mummu Bonnet +1",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Petrov Ring",ring2="Epona's Ring",
+        back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"}
     sets.engaged.Evasion = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Emet Harness +1",hands="Adhemar Wrist. +1",ring1="Apate Ring",ring2="Epona's Ring",
@@ -288,7 +292,7 @@ function init_gear_sets()
     -- Custom buff sets
     --------------------------------------
 
-    sets.buff.Migawari = {body="Hattori Ningi +1"}
+    sets.buff.Migawari = {} --body="Hattori Ningi +1"
     sets.buff.Doom = set_combine(sets.buff.Doom, {})
     sets.buff.Yonin = {legs="Hattori Hakama +1"} --
     sets.buff.Innin = {} --head="Hattori Zukin +1"

@@ -174,7 +174,7 @@ function init_gear_sets()
 
     sets.idle = {
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Hiza. Haramaki +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Hiza. Haramaki +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Fucho-no-Obi",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 		
 	sets.idle.Refresh = {

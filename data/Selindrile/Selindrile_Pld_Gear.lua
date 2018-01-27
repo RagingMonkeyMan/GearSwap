@@ -44,7 +44,7 @@ function init_gear_sets()
 	
     sets.Enmity = {ammo="Paeapua",
         head="Loess Barbuta +1",neck="Unmoving Collar +1",ear1="Friomisi Earring",ear2="Trux Earring",
-        body="Souv Cuirass +1",hands="Macabre Gaunt. +1",ring1="Apeile Ring +1",ring2="Apeile Ring",
+        body="Souv. Cuirass +1",hands="Macabre Gaunt. +1",ring1="Apeile Ring +1",ring2="Apeile Ring",
         back=gear.enmity_jse_back,waist="Creed Baudrier",legs="Souv. Diechlings +1",feet="Eschite Greaves"}
 
     sets.Enmity.DT = {ammo="Staunch Tathlum",
@@ -133,7 +133,7 @@ function init_gear_sets()
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {ammo="Paeapua",
-		head="Flam. Zuchetto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
+		head="Flam. Zucchetto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body=gear.valorous_wsd_body,hands=gear.odyssean_wsd_hands,ring1="Regal Ring",ring2="Rufescent Ring",
 		back="Bleating Mantle",waist="Fotia Belt",legs="Sulev. Cuisses +2",feet="Sulev. Leggings +2"}
 		
@@ -163,9 +163,9 @@ function init_gear_sets()
         back="Ground. Mantle +1",waist="Olseni Belt",legs="Carmine Cuisses +1",feet="Founder's Greaves"}
 
 	sets.precast.WS['Flat Blade'].Acc = {ammo="Ginsen",
-        head="Flam. Zuchetto +2",neck="Sanctity Necklace",ear1="Gwati Earring",ear2="Digni. Earring",
-        body="Flamma Korazin +1",hands="Flam. Manopolas +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-        back="Ground. Mantle +1",waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieas +2"}
+        head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Gwati Earring",ear2="Digni. Earring",
+        body="Flamma Korazin +1",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        back="Ground. Mantle +1",waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
 
     sets.precast.WS['Sanguine Blade'] = {ammo="Dosis Tathlum",
         head="Jumalik Helm",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
@@ -218,12 +218,12 @@ function init_gear_sets()
 		
     sets.midcast.Reprisal = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Sanctity Necklace",ear1="Odnowa Earring +1",ear2="Odnowa Earring",
-        body="Souv Cuirass +1",hands="Souv. Handsch. +1",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
+        body="Souv. Cuirass +1",hands="Souv. Handsch. +1",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
         back="Moonlight Cape",waist="Creed Baudrier",legs="Souv. Diechlings +1",feet="Souveran Schuhs +1"}
 
 	sets.Self_Healing = {ammo="Staunch Tathlum",
 		head="Souv. Schaller +1",neck="Loricate Torque +1",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
-		body="Souv Cuirass +1",hands="Macabre Gaunt. +1",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
+		body="Souv. Cuirass +1",hands="Macabre Gaunt. +1",ring1="Moonbeam Ring",ring2="Moonbeam Ring",
 		back="Moonlight Cape",waist="Creed Baudrier",legs="Souv. Diechlings +1",feet="Souveran Schuhs +1"}
 		
 	sets.Self_Healing.DT = {ammo="Staunch Tathlum",
@@ -402,20 +402,20 @@ function init_gear_sets()
 	sets.engaged = {ammo="Ginsen",
 		head="Flam. Zucchetto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body=gear.valorous_wsd_body,hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Petrov Ring",
-		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Flam. Gambieras +2"}
 
     sets.engaged.Acc = {ammo="Hasty Pinion +1",
-        head="Flam. Zuchetto +2",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
+        head="Flam. Zucchetto +2",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
         body=gear.valorous_wsd_body,hands="Sulev. Gauntlets +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back="Ground. Mantle +1",waist="Tempus Fugit",legs="Carmine Cuisses +1",feet="Sulev. Leggings +2"}
 
     sets.engaged.DW = {ammo="Paeapua",
-		head="Flam. Zuchetto +2",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
+		head="Flam. Zucchetto +2",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
 		body=gear.valorous_wsd_body,hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Petrov Ring",
 		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
 
     sets.engaged.DW.Acc = {ammo="Ginsen",
-		head="Flam. Zuchetto +2",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
+		head="Flam. Zucchetto +2",neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
 		body=gear.valorous_wsd_body,hands="Sulev. Gauntlets +2",ring1="Flamma Ring",ring2="Ramuh Ring +1",
 		back="Letalis Mantle",waist="Olseni Belt",legs="Sulev. Cuisses +2",feet="Founder's Greaves"}
 
