@@ -103,7 +103,15 @@ function job_post_midcast(spell, spellMap, eventArgs)
         apply_grimoire_bonuses(spell, action, spellMap, eventArgs)
     end
 	
-    if spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' and spell.english ~= 'Impact' then
+	if spell.skill == 'Enfeebling Magic' then
+		if (buffactive['light arts']  or buffactive['addendum: white']) and sets.buff['Light Arts'] then
+			equip(sets.buff['Light Arts'])
+		elseif (buffactive['dark arts']  or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
+			equip(sets.buff['Dark Arts'])
+		end
+	elseif default_spell_map == 'ElementalEnfeeble' and (buffactive['dark arts']  or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
+		equip(sets.buff['Dark Arts'])
+    elseif spell.skill == 'Elemental Magic' and spell.english ~= 'Impact' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
 		if (state.CastingMode.value == 'Normal' or state.CastingMode.value == 'Fodder') then
 			if spell.element == world.weather_element or spell.element == world.day_element then
@@ -1205,12 +1213,10 @@ function check_arts()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		local needsArts = 
-				player.sub_job:lower() == 'sch' and
 				not buffactive['Light Arts'] and
 				not buffactive['Addendum: White'] and
 				not buffactive['Dark Arts'] and
 				not buffactive['Addendum: Black']
-				
 
 		if needsArts and abil_recasts[228] == 0 then
 			windower.chat.input('/ja "Dark Arts" <me>')
