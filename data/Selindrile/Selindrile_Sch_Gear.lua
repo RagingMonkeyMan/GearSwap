@@ -344,6 +344,8 @@ function init_gear_sets()
 		back="Swith Cape +1",waist="Flax Sash",legs="Shedir Seraweels",feet=""}
 	
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
+	sets.buff['Light Arts'] = {} --legs="Academic's Pants +3"
+	sets.buff['Dark Arts'] = {} --body="Academic's Gown +3"
 
     sets.buff.FullSublimation = {}
     sets.buff.PDTSublimation = {}
