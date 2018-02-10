@@ -1000,6 +1000,7 @@ function filter_precast(spell, spellMap, eventArgs)
 	if check_amnesia(spell, spellMap, eventArgs) then return end
 	if check_abilities(spell, spellMap, eventArgs) then return end
 	if check_silence(spell, spellMap, eventArgs) then return end
+	if check_targets(spell, spellMap, eventArgs) then return end
 	if check_recast(spell, spellMap, eventArgs) then return end
 	if check_cost(spell, spellMap, eventArgs) then return end
 	if check_rnghelper(spell, spellMap, eventArgs) then return end

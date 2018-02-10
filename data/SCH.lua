@@ -104,9 +104,9 @@ function job_post_midcast(spell, spellMap, eventArgs)
     end
 	
 	if spell.skill == 'Enfeebling Magic' then
-		if (buffactive['light arts']  or buffactive['addendum: white']) and sets.buff['Light Arts'] then
+		if (buffactive['light arts'] or buffactive['addendum: white']) and sets.buff['Light Arts'] then
 			equip(sets.buff['Light Arts'])
-		elseif (buffactive['dark arts']  or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
+		elseif (buffactive['dark arts'] or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
 			equip(sets.buff['Dark Arts'])
 		end
 	elseif default_spell_map == 'ElementalEnfeeble' and (buffactive['dark arts']  or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
@@ -1172,36 +1172,8 @@ function handle_strategems(cmdParams)
     end
 end
 
-
 -- Gets the current number of available strategems based on the recast remaining
 -- and the level of the sch.
-function get_current_strategem_count()
-    -- returns recast in seconds.
-    local allRecasts = windower.ffxi.get_ability_recasts()
-    local stratsRecast = allRecasts[231]
-	local StratagemChargeTimer = 240
-	
-	if player.main_job_level > 89 then
-		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 549 then
-			StratagemChargeTimer = 33
-		else
-			StratagemChargeTimer = 48
-		end
-	elseif player.main_job_level > 69 then
-		StratagemChargeTimer = 60
-	elseif player.main_job_level > 49 then
-		StratagemChargeTimer = 80
-	elseif player.main_job_level > 29 then
-		StratagemChargeTimer = 120
-	end
-	
-    local maxStrategems = math.floor((player.main_job_level + 10) / 20)
-
-
-    local currentCharges = math.floor(maxStrategems - (stratsRecast / StratagemChargeTimer))
-    return currentCharges
-end
-
 function job_tick()
 	if check_arts() then return true end
 	return false

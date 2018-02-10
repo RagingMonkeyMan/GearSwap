@@ -1020,6 +1020,32 @@ function check_cost(spell, spellMap, eventArgs)
 	end
 end
 
+function check_targets(spell, spellMap, eventArgs)
+	if spell.action_type == 'Magic' then
+		if spell.english:startswith('Curaga') and not spell.target.in_party then
+			if (buffactive['light arts'] or buffactive['addendum: white']) then
+				if get_current_strategem_count() > 0 then
+					local number = spell.name:match('Curaga ?%a*'):sub(7) or ''
+					eventArgs.cancel = true
+					if buffactive['Accession'] then
+						windower.chat.input('/ma "Cure'..number..'" '..spell.target.name..'')
+					else
+						windower.chat.input('/ja "Accession" <me>')
+						windower.chat.input:schedule(1,'/ma "Cure'..number..'" '..spell.target.name..'')
+					end
+				else
+					windower.add_to_chat(123,"Error: Not enough Stratagems to convert Curaga to Accesion Cure.")
+				end
+			else
+				windower.add_to_chat(123,"Error: You can't Curaga outside of party.")
+			end
+			return true
+		end
+	end
+
+	return false
+end
+
 function check_abilities(spell, spellMap, eventArgs)
 
 	if spell.action_type == 'Ability' then
@@ -1703,4 +1729,40 @@ function check_ws_acc()
 	else
 		return state.WeaponskillMode.value
 	end
+end
+
+function get_current_strategem_count()
+    -- returns recast in seconds.
+    local allRecasts = windower.ffxi.get_ability_recasts()
+    local stratsRecast = allRecasts[231]
+	local StratagemChargeTimer = 240
+	local maxStrategems = 1
+	
+	if player.sub_job == 'SCH' and player.sub_job_level > 29 then
+		StratagemChargeTimer = 120
+	elseif player.main_job_level > 89 then
+		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 549 then
+			StratagemChargeTimer = 33
+		else
+			StratagemChargeTimer = 48
+		end
+	elseif player.main_job_level > 69 then
+		StratagemChargeTimer = 60
+	elseif player.main_job_level > 49 then
+		StratagemChargeTimer = 80
+	elseif player.main_job_level > 29 then
+		StratagemChargeTimer = 120
+	end
+	
+	if player.sub_job == 'SCH' then
+		if player.sub_job_level > 29 then
+			maxStrategems = 2
+		end
+	else
+		maxStrategems = math.floor((player.main_job_level + 10) / 20)
+	end
+
+
+    local currentCharges = math.floor(maxStrategems - (stratsRecast / StratagemChargeTimer))
+    return currentCharges
 end

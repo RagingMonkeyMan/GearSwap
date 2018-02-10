@@ -246,3 +246,28 @@ function check_hasso()
 
 	return false
 end
+
+function check_buff()
+	if state.AutoBuffMode.value and player.in_combat then
+		
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+
+		if player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] == 0 then
+			windower.chat.input('/ja "Last Resort" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+			windower.chat.input('/ja "Berserk" <me>')
+			tickdelay = 110
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+			windower.chat.input('/ja "Aggressor" <me>')
+			tickdelay = 110
+			return true
+		else
+			return false
+		end
+	end
+		
+	return false
+end
