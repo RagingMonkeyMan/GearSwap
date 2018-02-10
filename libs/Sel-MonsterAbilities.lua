@@ -23,7 +23,7 @@ StunAbility = 	  S{"Fulmination", "Breakga", "Death Scissors", "Hell Scissors",
 
 --List of moves to activate physical defense on.
 
-PhysicalAbility = S{"Ripper Fang","Chomp Rush","Scythe Tail","Cyclotail","Delta Thrust",
+PhysicalAbility = S{"Ripper Fang","Chomp Rush","Scythe Tail","Cyclotail","Delta Thrust","Spike Flail",
 					"Head Butt","Tortoise Stomp","Painful Whip","Recoil Dive","Gnash","Deathgnash","Seismic Tail","Big Scissors",
 					"Megascissors","Drill Branch","Pinecone Bomb","Predator Claws","Mountain Buster","Spinning Dive","Chaotic Strike",
 					"Volt Strike","Rush","Flaming Crush","Double Punch","Death Scissors","Velkkan Pygmachia","Barreling Smash",

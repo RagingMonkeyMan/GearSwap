@@ -52,9 +52,9 @@ function init_gear_sets()
 	--------------------------------------
 	-- Precast sets
 	--------------------------------------
-	
+
 	-- Item sets.
-	
+
 	-- Precast sets to enhance JAs
     sets.precast.JA['Vallation'] = set_combine(sets.Enmity,{body="Runeist's Coat +3",legs="Futhark Trousers +1"})
     sets.precast.JA['Valiance'] = sets.precast.JA['Vallation']
@@ -73,7 +73,7 @@ function init_gear_sets()
 	sets.precast.JA['Berserk'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Aggressor'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Animated Flourish'] = set_combine(sets.Enmity, {})
-	
+
     sets.precast.JA['Vallation'].DT = set_combine(sets.Enmity.DT,{body="Runeist's Coat +3", legs="Futhark Trousers +1"})
     sets.precast.JA['Valiance'].DT = sets.precast.JA['Vallation'].DT
     sets.precast.JA['Pflug'].DT = set_combine(sets.Enmity.DT,{feet="Runeist's Boots +3"})
@@ -91,14 +91,14 @@ function init_gear_sets()
 	sets.precast.JA['Berserk'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Aggressor'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Animated Flourish'].DT = set_combine(sets.Enmity.DT, {})
-	
+
     sets.precast.JA['Lunge'] = {ammo="Seeth. Bomblet +1",
         head=gear.herculean_nuke_head,neck="Baetyl Pendant",ear1="Friomisi Earring",ear2="Crematio Earring",
         body="Samnuha Coat",hands="Carmine Fin. Ga. +1",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
         back="Toro Cape",waist="Eschan Stone",legs=gear.herculean_nuke_legs,feet=gear.herculean_nuke_feet}
-			
+
 	sets.precast.JA['Swipe'] = sets.precast.JA['Lunge']
-	
+
 	sets.element.Earth = {neck="Quanpur Necklace"}
 
 	-- Pulse sets, different stats for different rune modes, stat aligned.

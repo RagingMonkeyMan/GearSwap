@@ -91,7 +91,7 @@ function job_pet_midcast(spell, spellMap, eventArgs)
 	end
 end
 
-function job_aftercast(spell, action, spellMap, eventArgs)
+function job_aftercast(spell, spellMap, eventArgs)
 	if pet.isvalid then
 		if (spell.action_type == 'Magic' and player.hpp < Breath_HPP) or (spell.english == 'Restoring Breath' or spell.english == 'Smiting Breath') then
 			eventArgs.handled = true
