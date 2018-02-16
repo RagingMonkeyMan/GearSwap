@@ -1766,3 +1766,11 @@ function get_current_strategem_count()
     local currentCharges = math.floor(maxStrategems - (stratsRecast / StratagemChargeTimer))
     return currentCharges
 end
+
+function arts_active()
+	if buffactive['Light Arts'] or buffactive['Addendum: White'] or buffactive['Dark Arts'] or buffactive['Addendum: Black'] then
+		return true
+	else
+		return false
+	end
+end

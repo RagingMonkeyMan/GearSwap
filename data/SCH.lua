@@ -92,9 +92,12 @@ function job_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-
+	if spell.action_type == 'Magic' then
+		if arts_active() and sets.precast.FC.Arts then
+			equip(sets.precast.FC.Arts)
+		end
+	end
 end
-
 
 -- Run after the general midcast() is done.
 function job_post_midcast(spell, spellMap, eventArgs)
@@ -1180,17 +1183,11 @@ function job_tick()
 end
 
 function check_arts()
-	if state.AutoArts.value and not moving and not areas.Cities:contains(world.area) then
+	if state.AutoArts.value and not moving and not areas.Cities:contains(world.area) and not arts_active() and player.in_combat then
 	
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		local needsArts = 
-				not buffactive['Light Arts'] and
-				not buffactive['Addendum: White'] and
-				not buffactive['Dark Arts'] and
-				not buffactive['Addendum: Black']
-
-		if needsArts and abil_recasts[228] == 0 then
+		if abil_recasts[232] == 0 then
 			windower.chat.input('/ja "Dark Arts" <me>')
 			tickdelay = 30
 			return true

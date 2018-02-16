@@ -343,35 +343,24 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-	if check_arts() then return true end
+	if player.sub_job == 'SCH' and check_arts() then return true end
 	return false
 end
 
 function check_arts()
-	if state.AutoArts and not moving and not areas.Cities:contains(world.area) then
+	if state.AutoArts.value and not moving and not areas.Cities:contains(world.area) and player.in_combat then
 
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if abil_recasts[29] == 0 and not state.Buff['Afflatus Solace'] and not state.Buff['Afflatus Misery'] and player.in_combat then
+		if abil_recasts[29] == 0 and not state.Buff['Afflatus Solace'] and not state.Buff['Afflatus Misery'] then
 			send_command('@input /ja "Afflatus Solace" <me>')
 			tickdelay = 30
 			return true
 
-		else
-			local needsArts = 
-				player.sub_job:lower() == 'sch' and
-				not buffactive['Light Arts'] and
-				not buffactive['Addendum: White'] and
-				not buffactive['Dark Arts'] and
-				not buffactive['Addendum: Black'] and
-				player.in_combat
-				
-
-			if needsArts and abil_recasts[228] == 0 then
-				send_command('@input /ja "Light Arts" <me>')
-				tickdelay = 30
-				return true
-			end
+		elseif not arts_active() and abil_recasts[228] == 0 then
+			send_command('@input /ja "Light Arts" <me>')
+			tickdelay = 30
+			return true
 		end
 		
 	end

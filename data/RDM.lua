@@ -584,7 +584,7 @@ function handle_elemental(cmdParams)
 		
 	elseif strategem == 'enspell' then
 	
-		if  (player.sub_job:lower() == 'nin' or player.sub_job:lower() == 'dnc') then 
+		if  (player.sub_job == 'NIN' or player.sub_job == 'DNC') then 
 			if state.ElementalMode.value == 'Fire' then
 				send_command('input /ma "Enfire" <me>')
 			elseif state.ElementalMode.value == 'Wind' then
@@ -701,12 +701,12 @@ function handle_elemental(cmdParams)
 end
 
 function job_tick()
-	if check_arts() then return true end
+	if player.sub_job == 'SCH' and check_arts() then return true end
 	return false
 end
 
 function check_arts()
-	if state.AutoArts.value and not moving and not areas.Cities:contains(world.area) then
+	if state.AutoArts.value and not moving and not areas.Cities:contains(world.area) and player.in_combat then
 	
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
@@ -719,16 +719,7 @@ function check_arts()
 			end
 		end
 
-		local needsArts = 
-				player.sub_job:lower() == 'sch' and
-				not buffactive['Light Arts'] and
-				not buffactive['Addendum: White'] and
-				not buffactive['Dark Arts'] and
-				not buffactive['Addendum: Black'] and
-				player.in_combat
-				
-
-		if needsArts and abil_recasts[228] == 0 then
+		if not arts_active() and abil_recasts[228] == 0 then
 			send_command('@input /ja "Light Arts" <me>')
 			tickdelay = 30
 			return true
