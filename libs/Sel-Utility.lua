@@ -16,11 +16,12 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
     if cancel_spells_to_check:contains(spell.english) or cancel_types_to_check:contains(spell.type) then
         if spell.english == 'Spectral Jig' and buffactive.sneak then
             cast_delay(0.2)
-            send_command('cancel sneak')
+			send_command('cancel sneak')
+			tickdelay = 122
         elseif spell.english == 'Sneak' and spell.target.type == 'SELF' and buffactive.sneak then
             send_command('cancel sneak')
         elseif spell.english == ('Stoneskin') or spell.english == ('Diamondhide') or spell.english == ('Magic Barrier') then
-            send_command('@wait 1.0;cancel stoneskin')
+            send_command('@wait 1;cancel stoneskin')
         elseif spell.english:startswith('Monomi') then
             send_command('@wait 1.5;cancel sneak')
         elseif spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San' then
@@ -40,9 +41,11 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
         elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['saber dance'] then
             cast_delay(0.2)
             send_command('cancel saber dance')
+			tickdelay = 122
         elseif spell.type=='Samba' and buffactive['fan dance'] then
             cast_delay(0.2)
             send_command('cancel fan dance')
+			tickdelay = 122
         end
     end
 end
