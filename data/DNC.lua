@@ -51,7 +51,7 @@ function job_setup()
     state.UseAltStep = M(false, 'Use Alt Step')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
-	state.DanceStance = M{['description']='Dance Stance','Saber Dance','Fan Dance','None'}
+	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
 
     state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
 	

@@ -86,7 +86,7 @@ function init_gear_sets()
     sets.precast.CorsairShot['Light Shot'] = {ammo=gear.QDbullet,
         head="Carmine Mask +1",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Telos Earring",
         body="Mummu Jacket +2",hands="Leyline Gloves",ring1="Stikini Ring",ring2="Stikini Ring",
-        back=gear.ranger_wsd_jse_back,waist="Eschan Stone",legs="Mummu Kecks +1",feet="Mummu Gamash. +1"}
+        back=gear.ranger_wsd_jse_back,waist="Eschan Stone",legs="Mummu Kecks +1",feet="Mummu Gamash. +2"}
 
     sets.precast.CorsairShot['Dark Shot'] = set_combine(sets.precast.CorsairShot['Light Shot'], {feet="Chass. Bottes +1"})
 
@@ -96,7 +96,7 @@ function init_gear_sets()
         body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
 		
-	sets.Self_Waltz = {head="Mummu Bonnet +1",body="Passion Jacket",ring1="Asklepian Ring"}
+	sets.Self_Waltz = {head="Mummu Bonnet +2",body="Passion Jacket",ring1="Asklepian Ring"}
         
     -- Don't need any special gear for Healing Waltz.
     sets.precast.Waltz['Healing Waltz'] = {}
