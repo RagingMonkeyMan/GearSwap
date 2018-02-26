@@ -143,7 +143,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 				indi_timer = spell.english
 				send_command('@timers c "'..spell.target.name..': '..indi_timer..'" '..indi_duration..' down spells/00136.png')
 			end
-		elseif spell.english == "Mending Halation" or spell.english == "Radial Arcana" or spell.english == "Radial Arcana" then
+		elseif spell.english:startswith('Geo-') or spell.english == "Mending Halation" or spell.english == "Radial Arcana" then
 			eventArgs.handled = true
         elseif state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')

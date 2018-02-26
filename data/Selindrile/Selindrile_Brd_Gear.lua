@@ -4,9 +4,6 @@ function user_setup()
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT')
 
-	gear.mabstaff = {name="Serenity",augments={"DMG:+18", "CHR+1", "Mag.Atk.Bns+27"}}
-	gear.maccstaff = {name="Serenity",augments={"DMG:+12", "MND+2", "Mag. Acc.+22"}}
-	
 	-- Adjust this if using the Terpander (new +song instrument)
     info.ExtraSongInstrument = 'Terpander'
 	-- How many extra songs we can keep from Daurdabla/Terpander
@@ -49,13 +46,12 @@ function init_gear_sets()
 
 	sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
 	
-	sets.precast.Stoneskin = set_combine(sets.precast.FC['Enhancing Magic'], {})
-
 	sets.precast.FC.BardSong = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",range="Linos",ammo=empty,
 		head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Telchine Pigaches"}
 		
+	sets.precast.FC.Mazurka = set_combine(sets.precast.FC.BardSong, {range="Marsyas"})
 	sets.precast.FC['Honor March'] = set_combine(sets.precast.FC.BardSong, {range="Marsyas"})
 
 	sets.precast.FC.Daurdabla = set_combine(sets.precast.FC.BardSong, {range=info.ExtraSongInstrument})
@@ -63,9 +59,9 @@ function init_gear_sets()
 	
 	-- Precast sets to enhance JAs
 	
-	sets.precast.JA.Nightingale = {feet="Bihu Slippers +1"}
-	sets.precast.JA.Troubadour = {body="Bihu Jstcorps +1"}
-	sets.precast.JA['Soul Voice'] = {legs="Bihu Cannions +1"}
+	sets.precast.JA.Nightingale = {} --feet="Bihu Slippers +1"
+	sets.precast.JA.Troubadour = {} --body="Bihu Jstcorps +1"
+	sets.precast.JA['Soul Voice'] = {} --legs="Bihu Cannions +1"
 
 	-- Waltz set (chr and vit)
 	sets.precast.Waltz = {}
@@ -89,19 +85,19 @@ function init_gear_sets()
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Gende. Galosh. +1"}
 
 	-- Gear to enhance certain classes of songs.  No instruments added here since Gjallarhorn is being used.
-	sets.midcast.Ballad = {legs="Aoidos' Rhing. +2"}
-	sets.midcast.Lullaby = {neck="Ainia Collar",hands="Brioso Cuffs +1"}
-	sets.midcast.Madrigal = {head="Fili Calot"}
-	sets.midcast.Paeon = {head="Brioso Roundlet"}
-	sets.midcast.March = {hands="Fili Manchettes"}
+	sets.midcast.Ballad = {}
+	sets.midcast.Lullaby = {}
+	sets.midcast.Madrigal = {}
+	sets.midcast.Paeon = {}
+	sets.midcast.March = {}
 	sets.midcast['Honor March'] = set_combine(sets.midcast.March, {range="Marsyas"})
-	sets.midcast.Minuet = {body="Fili Hongreline"}
+	sets.midcast.Minuet = {}
 	sets.midcast.Minne = {}
 	sets.midcast.Carol = {}
-	sets.midcast["Sentinel's Scherzo"] = {feet="Fili Cothurnes"}
-	sets.midcast['Magic Finale'``] = {}
+	sets.midcast["Sentinel's Scherzo"] = {}
+	sets.midcast['Magic Finale'] = {}
 
-	sets.midcast.Mazurka = {range="Terpander"}
+	sets.midcast.Mazurka = {range="Marsyas"}
 	
 
 	-- For song buffs (duration and AF3 set bonus)
