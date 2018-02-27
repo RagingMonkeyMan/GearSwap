@@ -503,14 +503,8 @@ function handle_siphoning()
             -- weather if not.
             -- If the current weather matches the current avatar's element (being used to reduce
             -- perpetuation), don't change it; just accept the penalty on Siphon.
-            if world.weather_element == elements.weak_to[world.day_element] and
-                (not pet.isvalid or world.weather_element ~= pet.element) then
-                -- We can't cast lightning/dark/light weather, so use a neutral element
-                if S{'Light','Dark','Lightning'}:contains(world.day_element) then
-                    stormElementToUse = 'Wind'
-                else
-                    stormElementToUse = world.day_element
-                end
+            if world.weather_element == elements.weak_to[world.day_element] and (not pet.isvalid or world.weather_element ~= pet.element) then
+				stormElementToUse = world.day_element
             end
         end
     end

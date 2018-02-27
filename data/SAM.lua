@@ -98,15 +98,12 @@ function job_post_precast(spell, spellMap, eventArgs)
         -- Replace Moonshade Earring if we're at cap TP
 		if player.tp > 2900 and (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
 			if wsacc:contains('Acc') and sets.AccMaxTP and not buffactive['Sneak Attack'] then
-				add_to_chat(122, 'Yep')
 				if not sets.AccMaxTP.ear1 then if not sets.AccMaxTP.ear1 then sets.AccMaxTP.ear1 = sets.AccMaxTP.left_ear or '' end end
 				if not sets.AccMaxTP.ear2 then if not sets.AccMaxTP.ear2 then sets.AccMaxTP.ear2 = sets.AccMaxTP.right_ear or '' end end
 				if (sets.AccMaxTP.ear1:startswith("Lugra Earring") or sets.AccMaxTP.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
 					equip(sets.AccDayMaxTPWSEars)
-					add_to_chat(122, 'True')
 				else
 					equip(sets.AccMaxTP)
-					add_to_chat(122, 'False')
 				end
 			elseif sets.MaxTP then
 				if not sets.MaxTP.ear1 then sets.MaxTP.ear1 = sets.MaxTP.left_ear or '' end

@@ -96,7 +96,6 @@ function init_gear_sets()
 	sets.midcast.Carol = {}
 	sets.midcast["Sentinel's Scherzo"] = {}
 	sets.midcast['Magic Finale'] = {}
-
 	sets.midcast.Mazurka = {range="Marsyas"}
 	
 

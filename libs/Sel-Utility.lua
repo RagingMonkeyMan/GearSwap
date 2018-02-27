@@ -1777,3 +1777,54 @@ function arts_active()
 		return false
 	end
 end
+
+-- Movement Handling
+mov = {counter=0}
+moving = false
+
+if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
+	mov.x = windower.ffxi.get_mob_by_index(player.index).x
+	mov.y = windower.ffxi.get_mob_by_index(player.index).y
+	mov.z = windower.ffxi.get_mob_by_index(player.index).z
+end
+
+windower.raw_register_event('prerender',function()
+	mov.counter = mov.counter + 1;
+	if mov.counter > 20 then
+		local pl = windower.ffxi.get_mob_by_index(player.index)
+		if pl and pl.x and mov.x then
+			dist = math.sqrt( (pl.x-mov.x)^2 + (pl.y-mov.y)^2 + (pl.z-mov.z)^2 )
+			if dist > .1 and not moving then
+				send_command('gs c moving')
+				moving = true
+			elseif dist < .1 and moving then
+				send_command('gs c stopping')
+				moving = false
+			end
+		end
+		if pl and pl.x then
+			mov.x = pl.x
+		
+		mov.y = pl.y
+			mov.z = pl.z
+		end
+		mov.counter = 0
+	end
+end)
+		
+-- Uninterruptible Handling
+
+state.Uninterruptible = M(false, 'Uninterruptible')
+fixed_pos = ''
+
+windower.raw_register_event('outgoing chunk',function(id,original,modified,injected,blocked)
+	if not blocked then
+		if id == 0x15 then
+			if state.Uninterruptible.value and player.status ~= 'Event' and (gearswap.cued_packet or midaction()) and fixed_pos ~= '' then
+				return original:sub(1,4)..fixed_pos..original:sub(17)
+			else
+				fixed_pos = original:sub(5,16)
+			end
+		end
+	end
+end)
