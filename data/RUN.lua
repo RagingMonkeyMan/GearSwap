@@ -189,10 +189,10 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_self_command(commandArgs, eventArgs)
-	if commandArgs[1] == 'RuneElement' then
+	if commandArgs[1]:lower() == 'runeelement' then
 		send_command('input /ja "'..state.RuneElement.value..'" <me>')
 
-	elseif commandArgs[1] == 'SubJobEnmity' then
+	elseif commandArgs[1]:lower() == 'subjobenmity' then
 
 		if player.target.type ~= "MONSTER" then
 			add_to_chat(123,'Abort: You are not targeting a monster.')

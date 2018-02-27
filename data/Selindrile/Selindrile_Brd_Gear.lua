@@ -178,23 +178,18 @@ function init_gear_sets()
 	
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = {ear1="Jupiter's Pearl",ear2="Kuwunga Earring"}
-	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Steelflash Earring"}	
+	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}	
 	
 	-- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
-	sets.idle = {main="Terra's Staff", sub="Achaq Grip",range="Gjallarhorn",
-		head=empty,neck="Loricate Torque +1",ear1="Moonshade Earring",ear2="Ethereal Earring",
-		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Woltaris Ring",
-		back="Umbra Cape",waist="Flume Belt",legs="Assiduity Pants",feet="Bihu Slippers +1"}
-
-	sets.idle.Weak = {main="Terra's Staff", sub="Oneiros Grip",range="Gjallarhorn",
-		head=empty,neck="Loricate Torque +1",ear1="Moonshade Earring",ear2="Ethereal Earring",
+	sets.idle = {main="Terra's Staff", sub="Oneiros Grip",ammo="Staunch Tathlum",
+		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",waist="Flume Belt",legs="Assiduity Pants",feet="Bihu Slippers +1"}
-	
-	sets.idle.PDT = {main="Terra's Staff", sub="Oneiros Grip",range="Gjallarhorn",
-		head="Bihu Roundlet +1",neck="Loricate Torque +1",ear1="Moonshade Earring",ear2="Ethereal Earring",
-		body="Gende. Bilaut +1",hands="Bihu Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
+		back="Umbra Cape",waist="Flume Belt",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+
+	sets.idle.PDT = {main="Terra's Staff", sub="Oneiros Grip",ammo="Staunch Tathlum",
+		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
+		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		back="Umbra Cape",waist="Flume Belt",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 	
 	-- Defense sets
 
@@ -208,7 +203,7 @@ function init_gear_sets()
 		body="Bihu Jstcorps +1",hands="Bihu Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt",legs="Bihu Cannions +1",feet="Bihu Slippers +1"}
 
-	sets.Kiting = {feet="Aoidos' Cothurnes +2"}
+	sets.Kiting = {}
 
 	-- Gear for specific elemental nukes.
 	sets.WindNuke = {main="Marin Staff +1"}

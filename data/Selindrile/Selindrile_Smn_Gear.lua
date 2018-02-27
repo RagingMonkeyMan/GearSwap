@@ -33,7 +33,7 @@ function init_gear_sets()
         body="Telchine Chasuble",hands="Baayami Cuffs",ring1="Evoker's Ring",ring2="Stikini Ring",
         back="Conveyance Cape",waist="Kobo Obi",legs="Telchine Braconi",feet="Beck. Pigaches +1"}
 
-    sets.precast.JA['Mana Cede'] = {hands="Caller's Bracers +2"}
+    sets.precast.JA['Mana Cede'] = {hands="Beckoner's Bracers"}
 
     -- Pact delay reduction gear
     sets.precast.BloodPactWard = {main="Espiritus",sub="Vox Grip",ammo="Sancus Sachet +1",
