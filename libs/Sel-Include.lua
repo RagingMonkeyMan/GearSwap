@@ -362,9 +362,13 @@ end
 
 -- Function to bind GearSwap binds when loading a GS script, moved to globals to seperate per character and user.
 function global_on_load()
-		if meleeJobs:contains(player.main_job) then
+	if state.OffenseMode.value ~= 'None' then
+		if (player.main_job == 'DNC' or player.sub_job == 'DNC' or player.main_job == 'NIN' or player.sub_job == 'NIN') and sets.DualWeapons then
+			send_command('@wait 3;gs c weapons dualweapons')
+		else
 			send_command('@wait 3;gs c weapons')
 		end
+	end
 end
 
 -- Function to revert binds when unloading.
@@ -1832,8 +1836,13 @@ function state_change(stateField, newValue, oldValue)
         if newValue == 'None' then
             enable('main','sub','range')
         else
-			if newValue == 'Normal' and mageJobs:contains(player.main_job) and sets.Weapons then
-				equip(sets.Weapons)
+			if newValue == 'Normal' then
+				if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and sets.DualWeapons then
+					equip(sets.DualWeapons)
+				elseif sets.Weapons then
+					equip(sets.Weapons)
+				end
+				
 			end
 			if player.main_job == 'BRD' then
 				disable('main','sub')

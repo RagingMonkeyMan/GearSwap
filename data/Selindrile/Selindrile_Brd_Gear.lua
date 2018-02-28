@@ -30,7 +30,8 @@ function init_gear_sets()
 	-- Start defining the sets
 	--------------------------------------
 	
-	sets.Weapons = {main="Aeneas",sub="Taming Sari"}
+	sets.Weapons = {main="Aeneas",sub="Genmei Shield"}
+	sets.DualWeapons = {main="Aeneas",sub="Taming Sari"}
 	sets.Swords = {main="Vampirism",sub="Vampirism"}
 	sets.NukeWeapons = {main="Malevolence",sub="Malevolence"}
 	
@@ -59,9 +60,9 @@ function init_gear_sets()
 	
 	-- Precast sets to enhance JAs
 	
-	sets.precast.JA.Nightingale = {} --feet="Bihu Slippers +1"
-	sets.precast.JA.Troubadour = {} --body="Bihu Jstcorps +1"
-	sets.precast.JA['Soul Voice'] = {} --legs="Bihu Cannions +1"
+	sets.precast.JA.Nightingale = {feet="Bihu Slippers +1"}
+	sets.precast.JA.Troubadour = {body="Bihu Jstcorps +1"}
+	sets.precast.JA['Soul Voice'] = {legs="Bihu Cannions +1"}
 
 	-- Waltz set (chr and vit)
 	sets.precast.Waltz = {}
