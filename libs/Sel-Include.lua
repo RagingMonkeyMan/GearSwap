@@ -1097,6 +1097,9 @@ function equip_gear_by_status(playerStatus, petStatus)
     if (playerStatus == 'Idle' or playerStatus == '') and player.hp > 0 then
         equip(get_idle_set(petStatus))
     elseif playerStatus == 'Engaged' then
+		if update_combat_form then
+			update_combat_form()
+		end
         equip(get_melee_set(petStatus))
     elseif playerStatus == 'Resting' then
         equip(get_resting_set(petStatus))

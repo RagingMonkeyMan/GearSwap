@@ -125,7 +125,7 @@ function init_gear_sets()
         back="Twilight Cape",waist="Hachirin-no-Obi",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
 		
 	sets.midcast.Cursna =  set_combine(sets.midcast.Cure, {neck="Debilis Medallion",hands="Hieros Mittens",
-		ring1="Haoma's Ring",ring2="Haoma's Ring",back="Tempered Cape +1",waist="Witful Belt",feet="Vanya Clogs"})
+		ring1="Haoma's Ring",ring2="Haoma's Ring",waist="Witful Belt",feet="Vanya Clogs"})
 		
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {main="Oranyan",sub="Clemency Grip"})
 		

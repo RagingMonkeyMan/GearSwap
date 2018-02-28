@@ -375,7 +375,7 @@ end
 
 -- Examine equipment to determine what our current TP weapon is.
 function update_combat_form()
-	if player.equipment.main and (player.sub_job == 'NIN' or player.sub_job == 'DNC') and player.equipment.sub and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or player.equipment.sub:contains('Shield')) then
+	if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
 			state.CombatForm:set('DW')
 	else
 			state.CombatForm:reset()

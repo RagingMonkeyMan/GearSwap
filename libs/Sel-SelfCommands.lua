@@ -277,6 +277,10 @@ end
 
 -- showtp: equip the current TP set for examination.
 function handle_showtp(cmdParams)
+	if update_combat_form then
+		update_combat_form()
+	end
+
     local msg = 'Showing current TP set: ['.. state.OffenseMode.value
     if state.HybridMode.value ~= 'Normal' then
         msg = msg .. '/' .. state.HybridMode.value
@@ -321,8 +325,7 @@ function handle_weapons(cmdParams)
 			elseif player.main_job ~= 'BST' then
 				disable('main','sub','range')
 			end
-	end
-	
+	end	
 end
 
 function handle_showset(cmdParams)
