@@ -1101,10 +1101,11 @@ function equip_gear_by_status(playerStatus, petStatus)
     if (playerStatus == 'Idle' or playerStatus == '') and player.hp > 0 then
         equip(get_idle_set(petStatus))
     elseif playerStatus == 'Engaged' then
-		if update_combat_form then
-			update_combat_form()
+		if player.target.distance < (3.2 + player.target.model_size) then
+			equip(get_melee_set(petStatus))
+		else
+			equip(get_idle_set(petStatus))
 		end
-        equip(get_melee_set(petStatus))
     elseif playerStatus == 'Resting' then
         equip(get_resting_set(petStatus))
     end
@@ -1799,6 +1800,10 @@ function status_change(newStatus, oldStatus)
 
 	if newStatus == 2 or newStatus == 3 and state.RngHelper.value then
 		send_command('gs rh clear')
+	end
+	
+    if newStatus == 1 and update_combat_form then
+		update_combat_form()
 	end
 	
     -- Allow a global function to be called on status change.
