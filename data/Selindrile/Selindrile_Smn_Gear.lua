@@ -3,6 +3,7 @@ function user_setup()
     state.OffenseMode:options('None', 'Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
+	state.Weapons:options('None','Default')
 
     gear.perp_staff = {name="Gridarvor"}
 	

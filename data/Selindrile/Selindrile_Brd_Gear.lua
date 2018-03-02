@@ -3,6 +3,7 @@ function user_setup()
     state.OffenseMode:options('None','Normal','Acc')
     state.CastingMode:options('Normal','Resistant')
     state.IdleMode:options('Normal','PDT')
+	state.Weapons:options('None','Default','DualWeapons','Swords','NukeWeapons')
 
 	-- Adjust this if using the Terpander (new +song instrument)
     info.ExtraSongInstrument = 'Terpander'
@@ -56,6 +57,7 @@ function init_gear_sets()
 	sets.precast.FC['Honor March'] = set_combine(sets.precast.FC.BardSong, {range="Marsyas"})
 
 	sets.precast.FC.Daurdabla = set_combine(sets.precast.FC.BardSong, {range=info.ExtraSongInstrument})
+	sets.precast.DaurdablaDummy = sets.precast.FC.Daurdabla
 		
 	
 	-- Precast sets to enhance JAs
@@ -101,6 +103,7 @@ function init_gear_sets()
 	sets.midcast.Carol = {}
 	sets.midcast["Sentinel's Scherzo"] = {} --feet="Fili Cothurnes +1" Brioso Slippers still provides more Duration
 	sets.midcast['Magic Finale'] = {}
+	sets.midcast['Honor March'] = {range="Marsyas"}
 	sets.midcast.Mazurka = {range="Marsyas"}
 	
 
@@ -111,19 +114,19 @@ function init_gear_sets()
 		back="Intarabus's Cape",waist="Kobo Obi",legs="Inyanga Shalwar +2",feet="Brioso Slippers +1"}
 
 	-- For song defbuffs (duration primary, accuracy secondary)
-	sets.midcast.SongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",
+	sets.midcast.SongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
 		head="Aya. Zucchetto +1",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Fili Hongreline +1",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +1"}
 
 	-- For song defbuffs (accuracy primary, duration secondary)
-	sets.midcast.ResistantSongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",
+	sets.midcast.ResistantSongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
 		head="Aya. Zucchetto +1",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Inyanga Jubbah +2",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Aya. Gambieras +1"}
 
 	-- Song-specific recast reduction
-	sets.midcast.SongRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",range="Terpander",
+	sets.midcast.SongRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",range="Terpander",ammo=empty,
 		head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Inyanga Jubbah +2",hands="Gendewitha Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
 		back="Intarabus's Cape",waist="Witful Belt",legs="Fili Rhingrave +1",feet="Aya. Gambieras +1"}

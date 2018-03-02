@@ -17,7 +17,7 @@ state.DisplayMode = M(true, 'Display Mode') --Set this to false if you don't wan
 --displayy = 1062
 
 --Options for automation.
-state.ReEquip = M(true, 'ReEquip Mode') --Set this to false if you don't want it to reequip sets.Weapons when you aren't wearing any weapons.
+state.ReEquip = M(true, 'ReEquip Mode') --Set this to false if you don't want it to your current Weapon sets (sets.weapons by default) when you aren't wearing any weapons.
 state.AutoArts = M(true, 'AutoArts') --Set this to false if you don't want it to automatically try to keep up Solace/Arts.
 state.CancelStoneskin = M(true, 'Cancel Stone Skin') --Set this to false if you don't want it to automatically cancel stoneskin when you're slept.
 
@@ -34,6 +34,7 @@ state.CancelStoneskin = M(true, 'Cancel Stone Skin') --Set this to false if you 
 
 send_command('bind !@^f7 gs c toggle AutoWSMode') --Turns auto-ws mode on and off.
 send_command('bind !^f7 gs c toggle AutoFoodMode') --Turns auto-ws mode on and off.
+send_command('bind f7 gs c cycle Weapons') --Turns auto-ws mode on and off.
 send_command('bind @f8 gs c toggle AutoNukeMode') --Turns auto-nuke mode on and off.
 send_command('bind ^f8 gs c toggle AutoStunMode') --Turns auto-stun mode off and on.
 send_command('bind !f8 gs c toggle AutoDefenseMode') --Turns auto-defense mode off and on.
@@ -60,7 +61,7 @@ send_command('bind ^@!pause gs org') --Runs organizer.
 send_command('bind ^@!backspace gs c buffup') --Buffup macro because buffs are love.
 send_command('bind ^- gs c toggle selectnpctargets') --Change targets automatically.
 send_command('bind ^= gs c cycle pctargetmode') --Change targets automatically.
-send_command('bind ^r gs c weapons;gs c update') --Requips weapons and gear.
+send_command('bind ^r gs c weapons Default') --Requips weapons and gear.
 send_command('bind ^z gs c toggle Capacity') --Keeps capacity mantle on and uses capacity rings.
 send_command('bind ^y gs c toggle AutoCleanupMode') --Uses certain items and tries to clean up inventory.
 send_command('bind ^t gs c cycle treasuremode') --Toggles hitting htings with your treasure hunter set.

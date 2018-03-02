@@ -1,8 +1,9 @@
 function user_setup()
 	-- Options: Override default values
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
-	state.OffenseMode:options('None', 'Normal')
+	state.OffenseMode:options('Normal')
 	state.IdleMode:options('Normal', 'PDT', 'TPEat','DTHippo')
+	state.Weapons:options('None','Default')
 
 	gear.obi_cure_waist = "Witful Belt"
 	gear.obi_low_nuke_waist = "Sekhmet Corset"

@@ -4,6 +4,7 @@ function user_setup()
     state.CastingMode:options('Normal', 'Resistant', 'Proc')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.HybridMode:options('Normal','PDT')
+	state.Weapons:options('None','Default')
 
 	gear.nuke_jse_back = {name="Lugh's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	

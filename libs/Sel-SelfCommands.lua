@@ -314,18 +314,29 @@ end
 function handle_weapons(cmdParams)
     enable('main','sub','range')
 	if cmdParams[1] ~= nil then
-		equip(sets[cmdParams[1]])
-	elseif sets.Weapons then
+		if cmdParams[1]:lower() == 'default' and sets.Weapons then
+			equip(sets.Weapons)
+		else
+			equip(sets[cmdParams[1]])
+		end
+		if state.Weapons:contains(cmdParams[1]) then
+			state.Weapons:set(cmdParams[1])
+		end
+	elseif state.Weapons.value == 'Default' and sets.Weapons then
 		equip(sets.Weapons)
+	elseif state.Weapons.value and sets[state.Weapons.value] then
+		equip(sets[state.Weapons.value])
 	end
 	
-	if state.OffenseMode.value ~= 'None' then
+	if state.Weapons.value ~= 'None' then
 			if player.main_job == 'BRD' then
 				disable('main','sub')
 			elseif player.main_job ~= 'BST' then
 				disable('main','sub','range')
 			end
-	end	
+	end
+	
+	if state.DisplayMode.value then update_job_states()	end
 end
 
 function handle_showset(cmdParams)

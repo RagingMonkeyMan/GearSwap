@@ -4,6 +4,7 @@ function user_setup()
 	state.RangedMode:options('Normal', 'Acc')
 	state.WeaponskillMode:options('Match','Normal', 'Acc')
 	state.IdleMode:options('Normal', 'PDT')
+	state.Weapons:options('Default','DualWeapons','DualMagicWeapons')
 	
 	DefaultAmmo = {['Fomalhaut'] = "Chrono Bullet"}
 	U_Shot_Ammo = {['Fomalhaut'] = "Animkii Bullet"}
@@ -165,9 +166,9 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
-	sets.Weapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.SingleWeapon = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.MagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.DualWeapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.Weapons = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.DualMagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut",ammo="Chrono Bullet"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
 
@@ -200,7 +201,7 @@ function init_gear_sets()
 	-- Custom buff sets
 	--------------------------------------
 
-	sets.buff.Barrage = set_combine(sets.midcast.RA.Acc, {hands="Orion Bracers +1"})
+	sets.buff.Barrage = {hands="Orion Bracers +1"}
 	sets.buff.Camouflage = {body="Orion Jerkin +1"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 end

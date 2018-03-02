@@ -1,5 +1,5 @@
 function user_setup()
-	state.OffenseMode:options('Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
+	state.OffenseMode:options('Normal', 'SomeAcc','Acc','FullAcc','Fodder')
 	state.HybridMode:options('Normal', 'PDT')
 	state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
 	state.CastingMode:options('Normal')
@@ -8,6 +8,7 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PetPDT', 'PDT', 'Reraise', 'PKiller')
 	state.MagicalDefenseMode:options('PetMDT','MDT', 'MKiller')
 	state.ResistDefenseMode:options('PetMEVA', 'MEVA')
+	state.Weapons:options('None','Default','DualWeapons')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'Knockback', 'Suppa', 'DWEarrings'}
 
 	send_command('bind !f11 gs c cycle ExtraMeleeMode')
@@ -384,7 +385,8 @@ function init_gear_sets()
 				sets.buff.Doom = set_combine(sets.buff.Doom, {})
 		sets.buff.Sleep = {head="Frenzy Sallet"}
 		sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
-		sets.Weapons = {main ="Kerehcatl",sub="Hunahpu"}
+		sets.Weapons = {main ="Kerehcatl"}
+		sets.DualWeapons = {main ="Kerehcatl",sub="Hunahpu"}
 		sets.Knockback = {}
 		sets.SuppaBrutal = {ear1="Suppanomimi", ear2="Sherida Earring"}
 		sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}

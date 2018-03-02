@@ -6,6 +6,7 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
+	state.Weapons:options('None','Default','DualWeapons')
 
 	gear.obi_cure_waist = "Austerity Belt +1"
 	gear.obi_cure_back = "Alaunus's Cape"
@@ -39,7 +40,8 @@ function init_gear_sets()
     -- Start defining the sets
     --------------------------------------
 
-	sets.Weapons = {main="Nehushtan",sub="Nehushtan"}
+	sets.Weapons = {main="Nehushtan",sub="Ammurapi Shield"}
+	sets.DualWeapons = {main="Nehushtan",sub="Nehushtan"}
 	
     -- Precast Sets
 

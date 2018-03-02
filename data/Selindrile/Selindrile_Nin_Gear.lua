@@ -9,6 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
+	state.Weapons:options('Default','MagicWeapons','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
 	
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None','Knockback','SuppaBrutal','DWEarrings','DWMax'}
 	
@@ -307,15 +308,15 @@ function init_gear_sets()
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {legs="Ryuo Hakama"}
 	
-	sets.RedProcDagger = {main="Kustawi"}
-	sets.RedProcSword = {main="Ark Sword"}
-	sets.RedProcGreatSword = {main="Irradiance Blade"}
-	sets.RedProcScythe = {main="Ark Scythe"}
-	sets.RedProcPolearm = {main="Pitchfork +1"}
-	sets.RedProcGreatKatana = {main="Kanaria"}
-	sets.RedProcKatana = {main="Hardwood Katana"}
-	sets.RedProcClub = {main="Dream Bell +1"}
-	sets.RedProcStaff = {main="Terra's Staff"}
+	sets.ProcDagger = {main="Kustawi"}
+	sets.ProcSword = {main="Ark Sword"}
+	sets.ProcGreatSword = {main="Irradiance Blade"}
+	sets.ProcScythe = {main="Ark Scythe"}
+	sets.ProcPolearm = {main="Pitchfork +1"}
+	sets.ProcGreatKatana = {main="Kanaria"}
+	sets.ProcKatana = {main="Hardwood Katana"}
+	sets.ProcClub = {main="Dream Bell +1"}
+	sets.ProcStaff = {main="Terra's Staff"}
 end
 
 -- Select default macro book on initial load or subjob change.

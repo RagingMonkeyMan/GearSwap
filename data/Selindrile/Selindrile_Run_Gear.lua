@@ -8,6 +8,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT','MDT_HP','BDT','BDT_HP')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
 	state.IdleMode:options('Normal','Tank','KiteTank','Sphere')
+	state.Weapons:options('Default','Lionheart','DualWeapons')
 	
 	state.ExtraDefenseMode = M{['description']='Extra Defense Mode','None','MP'}
 
@@ -252,7 +253,7 @@ function init_gear_sets()
 
     -- Extra defense sets.  Apply these on top of melee or defense sets.
 	sets.Weapons = {main="Aettir",sub="Refined Grip +1"}
-	sets.DDWeapons = {main="Lionheart",sub="Utu Grip"}
+	sets.Lionheart = {main="Lionheart",sub="Utu Grip"}
 	sets.DualWeapons = {main="Firangi",sub="Reikiko"}
     sets.Knockback = {}
     sets.MP = {ear2="Ethereal Earring",waist="Flume Belt"}

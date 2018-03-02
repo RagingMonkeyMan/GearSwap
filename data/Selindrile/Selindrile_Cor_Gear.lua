@@ -6,7 +6,8 @@ function user_setup()
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT', 'Refresh')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
-
+	state.Weapons:options('Default','DualWeapons','SavageWeapons','DualRangedWeapons','LeadenWeapons','None',)
+	
     gear.RAbullet = "Chrono Bullet"
     gear.WSbullet = "Chrono Bullet"
     gear.MAbullet = "Orichalc. Bullet" --For MAB WS, do not put single-use bullets here.
@@ -228,7 +229,7 @@ function init_gear_sets()
     -- Ranged gear
     sets.midcast.RA = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
-        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Regal Ring",ring2="Dingir Ring",
+        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Rajas Ring",ring2="Ilabrat Ring",
         back=gear.ranger_wsd_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meg. Jam. +2"}
 
     sets.midcast.RA.Acc = {ammo=gear.RAbullet,
@@ -278,12 +279,11 @@ function init_gear_sets()
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
 	
-	sets.Weapons = {main="Fettering Blade",sub="Blurred Knife +1",range="Fomalhaut"}
+	sets.Weapons = {main="Fettering Blade",sub="Nusku Shield",range="Fomalhaut"}
+	sets.DualWeapons = {main="Fettering Blade",sub="Blurred Knife +1",range="Fomalhaut"}
 	sets.SavageWeapons = {main="Hep. Sapara +1",sub="Blurred Knife +1",range="Ataktos"}
-	sets.SingleWeapon = {main="Fettering Blade",sub="Nusku Shield"}
 	sets.DualRangedWeapons = {main="Fettering Blade",sub="Kustawi +1"}
-	sets.LeadenWeapons = {main="Fettering Blade",sub="Atoyac"}
-	sets.RollWeapons = {range="Compensator"}
+	sets.LeadenWeapons = {main="Fettering Blade",sub="Atoyac",range="Fomalhaut"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Reiki Yotai"}

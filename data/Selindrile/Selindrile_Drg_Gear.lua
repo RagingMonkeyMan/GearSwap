@@ -9,6 +9,7 @@ function user_setup()
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT','Refresh','Reraise')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
+	state.Weapons:options('Default')
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
 	
     update_combat_form()

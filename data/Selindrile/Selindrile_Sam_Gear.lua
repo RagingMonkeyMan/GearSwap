@@ -8,6 +8,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT','MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
     state.IdleMode:options('Normal', 'Reraise')
+	state.Weapons:options('Default','ProcWeapon')
 	
     update_combat_form()
 
@@ -185,7 +186,7 @@ function init_gear_sets()
     sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}
 	
 	sets.Weapons = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
-	sets.MultiWeapon = {main="Norifusa +1",sub="Bloodrain Strap"}
+	sets.ProcWeapon = {main="Norifusa +1",sub="Bloodrain Strap"}
 	sets.Bow = {range="Cibitshavore"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {}

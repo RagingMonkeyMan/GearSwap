@@ -9,7 +9,8 @@ function user_setup()
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
 	state.IdleMode:options('Normal','Tank','KiteTank','PDT','MDT','Refresh','Reraise')
-    
+	state.Weapons:options('Default','DDWeapons','DualWeapons')
+	
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Twilight'}
 	
 	gear.fastcast_jse_back = {name="Rudianos's Mantle",augments={'INT+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10',}}
@@ -307,6 +308,7 @@ function init_gear_sets()
     -- Extra defense sets.  Apply these on top of melee or defense sets.
 	sets.Weapons = {main="Deacon Sword",sub="Aegis"}
 	sets.DDWeapons = {main="Sequence",sub="Blurred Shield"}
+	sets.DualWeapons = {main="Sequence",sub="Demersal Degen +1"}
     sets.Knockback = {}
     sets.MP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt"}
     sets.MP_Knockback = {}

@@ -60,6 +60,7 @@ function init_include()
     state.HybridMode          = M{['description'] = 'Hybrid Mode'}
     state.RangedMode          = M{['description'] = 'Ranged Mode'}
     state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
+	state.Weapons		      = M{['description'] = 'Weapons','Default','None'}
     state.CastingMode         = M{['description'] = 'Casting Mode'}
     state.IdleMode            = M{['description'] = 'Idle Mode'}
     state.RestingMode         = M{['description'] = 'Resting Mode'}
@@ -362,9 +363,9 @@ end
 
 -- Function to bind GearSwap binds when loading a GS script, moved to globals to seperate per character and user.
 function global_on_load()
-	if state.OffenseMode.value ~= 'None' then
+	if state.Weapons.value ~= 'None' then
 		if (player.main_job == 'DNC' or player.sub_job == 'DNC' or player.main_job == 'NIN' or player.sub_job == 'NIN') and sets.DualWeapons then
-			send_command('@wait 3;gs c weapons dualweapons')
+			send_command('@wait 3;gs c set weapons dualweapons')
 		else
 			send_command('@wait 3;gs c weapons')
 		end
@@ -1078,7 +1079,7 @@ function handle_equipping_gear(playerStatus, petStatus)
         job_handle_equipping_gear(playerStatus, eventArgs)
     end
 
-	if player.equipment.main == 'empty' and player.equipment.sub == 'empty' and state.ReEquip.value then
+	if player.equipment.main == 'empty' and player.equipment.sub == 'empty' and state.ReEquip.value and state.Weapons.value ~= 'None' then
 		local commandArgs = {}
 		handle_weapons(commandArgs)
 	end
@@ -1837,23 +1838,12 @@ end
 
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
-    if stateField == 'Offense Mode' then
+    if stateField == 'Weapons' then
         if newValue == 'None' then
             enable('main','sub','range')
         else
-			if newValue == 'Normal' then
-				if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and sets.DualWeapons then
-					equip(sets.DualWeapons)
-				elseif sets.Weapons then
-					equip(sets.Weapons)
-				end
-				
-			end
-			if player.main_job == 'BRD' then
-				disable('main','sub')
-			elseif player.main_job ~= 'BST' then
-				disable('main','sub','range')
-			end
+			local commandArgs = {}
+			handle_weapons(commandArgs)
         end
 	elseif stateField == 'RngHelper' then
 		if newValue == true then
