@@ -1,7 +1,7 @@
 function user_setup()
 
 	-- Options: Override default values
-    state.OffenseMode:options('None', 'Normal','DualWield')
+    state.OffenseMode:options('Normal','DualWield')
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock', 'GeoLock', 'PetPDT')

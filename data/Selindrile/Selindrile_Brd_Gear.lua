@@ -1,6 +1,6 @@
 function user_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('None','Normal','Acc')
+    state.OffenseMode:options('Normal','Acc')
     state.CastingMode:options('Normal','Resistant')
     state.IdleMode:options('Normal','PDT')
 	state.Weapons:options('None','Default','DualWeapons','Swords','NukeWeapons')

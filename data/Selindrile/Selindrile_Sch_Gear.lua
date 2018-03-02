@@ -1,7 +1,7 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('None', 'Normal')
-    state.CastingMode:options('Normal', 'Resistant', 'Proc')
+    state.OffenseMode:options('Normal')
+    state.CastingMode:options('Normal','Resistant','Proc')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.HybridMode:options('Normal','PDT')
 	state.Weapons:options('None','Default')

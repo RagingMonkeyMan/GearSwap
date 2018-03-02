@@ -1,5 +1,5 @@
 function user_setup()
-	state.OffenseMode:options('Normal', 'SomeAcc','Acc','FullAcc','Fodder')
+	state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
 	state.HybridMode:options('Normal', 'PDT')
 	state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
 	state.CastingMode:options('Normal')
@@ -9,7 +9,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('PetMDT','MDT', 'MKiller')
 	state.ResistDefenseMode:options('PetMEVA', 'MEVA')
 	state.Weapons:options('None','Default','DualWeapons')
-	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'Knockback', 'Suppa', 'DWEarrings'}
+	state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Knockback','Suppa','DWEarrings'}
 
 	send_command('bind !f11 gs c cycle ExtraMeleeMode')
 

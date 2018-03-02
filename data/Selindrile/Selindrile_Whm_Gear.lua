@@ -1,8 +1,8 @@
 -- Setup vars that are user-dependent.  Can override this in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('None', 'Normal','Acc')
-    state.CastingMode:options('Normal', 'Resistant')
-    state.IdleMode:options('Normal', 'PDT', 'TPEat')
+    state.OffenseMode:options('Normal','Acc')
+    state.CastingMode:options('Normal','Resistant')
+    state.IdleMode:options('Normal','PDT','TPEat')
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')

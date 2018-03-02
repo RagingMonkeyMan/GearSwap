@@ -1,6 +1,6 @@
 function user_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('None', 'Normal')
+    state.OffenseMode:options('Normal')
     state.HybridMode:options('Normal', 'PhysicalDef', 'MagicalDef')
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
     state.IdleMode:options('Normal', 'PDT', 'MDT', 'TPEat','DTHippo')

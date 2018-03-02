@@ -1,7 +1,7 @@
 function user_setup()
 
     -- Options: Override default values	
-	state.OffenseMode:options('Normal', 'Acc')
+	state.OffenseMode:options('Normal','Acc')
     state.HybridMode:options('Tank', 'DDTank', 'BreathTank', 'NoShellTank', 'Reraise', 'Normal')
     state.WeaponskillMode:options('Match','Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
