@@ -156,6 +156,7 @@ function job_setup()
 
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
+	state.AutoCallPet = M(false, 'Auto Call Pet')
 	state.RewardMode = M{['description']='Reward Mode', 'Theta', 'Zeta', 'Eta'}
     state.JugMode = M{['description']='Jug Mode', 'ScissorlegXerin', 'BlackbeardRandy', 'AttentiveIbuki', 'AgedAngus',
                 'RedolentCandi','DroopyDortwin','WarlikePatrick','HeraldHenry','AlluringHoney','SwoopingZhivago','AcuexFamiliar'}
@@ -723,16 +724,32 @@ end
 
 function check_pet()
 
-	if pet.isvalid and pet.hpp < 34 then
-		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[103] == 0 and not (buffactive.amnesia or buffactive.impairment) then
-			if item_available('Pet Food '..state.RewardMode.value..'') then
-				windower.chat.input('/ja "Reward" <me>')
-				tickdelay = 30
-				return true
-			else
-				return false
+	if pet.isvalid then
+		if pet.hpp < 34 then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			
+			if abil_recasts[103] == 0 and not (buffactive.amnesia or buffactive.impairment) then
+				if item_available('Pet Food '..state.RewardMode.value..'') then
+					windower.chat.input('/ja "Reward" <me>')
+					tickdelay = 30
+					return true
+				else
+					return false
+				end
 			end
+		end
+	elseif state.AutoCallPet.value and not areas.Cities:contains(world.area) then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+		if abil_recasts[94] == 0 then
+			send_command('@input /ja "Bestial Loyalty" <me>')
+			tickdelay = 30
+			return true
+		elseif abil_recasts[104] == 0 then
+			send_command('@input /ja "Call Beast" <me>')
+			tickdelay = 30
+			return true
+		else
+			return false
 		end
 	else
 		return false
@@ -754,23 +771,13 @@ function check_ready()
 			else
 				return false
 			end
-		elseif not areas.Cities:contains(world.area) then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if abil_recasts[94] == 0 then
-				send_command('@input /ja "Bestial Loyalty" <me>')
-				tickdelay = 30
-				return true
-			elseif abil_recasts[104] == 0 then
-				send_command('@input /ja "Call Beast" <me>')
-				tickdelay = 30
-				return true
-			else
-				return false
-			end
+		else
+			return false
 		end
 	else
 		return false
 	end
+
 end
 
 function get_current_ready_count()
