@@ -56,23 +56,22 @@ function init_include()
     -- General melee offense/defense modes, allowing for hybrid set builds, as well as idle/resting/weaponskill.
     -- This just defines the vars and sets the descriptions.  List modes with no values automatically
     -- get assigned a 'Normal' default value.
-    state.OffenseMode         = M{['description'] = 'Offense Mode'}
-    state.HybridMode          = M{['description'] = 'Hybrid Mode'}
-    state.RangedMode          = M{['description'] = 'Ranged Mode'}
-    state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
-	state.Weapons		      = M{['description'] = 'Weapons','Default','None'}
-    state.CastingMode         = M{['description'] = 'Casting Mode'}
-    state.IdleMode            = M{['description'] = 'Idle Mode'}
-    state.RestingMode         = M{['description'] = 'Resting Mode'}
+	state.OffenseMode         = M{['description'] = 'Offense Mode'}
+	state.HybridMode          = M{['description'] = 'Hybrid Mode'}
+	state.RangedMode          = M{['description'] = 'Ranged Mode'}
+	state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
+	state.CastingMode         = M{['description'] = 'Casting Mode'}
+	state.IdleMode            = M{['description'] = 'Idle Mode'}
+	state.RestingMode         = M{['description'] = 'Resting Mode'}
 
-    state.DefenseMode         = M{['description'] = 'Defense Mode', 'None', 'Physical', 'Magical', 'Resist'}
-    state.PhysicalDefenseMode = M{['description'] = 'Physical Defense Mode', 'PDT'}
-    state.MagicalDefenseMode  = M{['description'] = 'Magical Defense Mode', 'MDT'}
+	state.DefenseMode         = M{['description'] = 'Defense Mode', 'None', 'Physical', 'Magical', 'Resist'}
+	state.PhysicalDefenseMode = M{['description'] = 'Physical Defense Mode', 'PDT'}
+	state.MagicalDefenseMode  = M{['description'] = 'Magical Defense Mode', 'MDT'}
 	state.ResistDefenseMode   = M{['description'] = 'Resistance Defense Mode', 'MEVA'}
 	
 	state.Passive   		  = M{['description'] = 'Passive Mode','None'}
-    state.Kiting              = M(false, 'Kiting')
-    state.SelectNPCTargets    = M(false, 'Select NPC Targets')
+	state.Kiting              = M(false, 'Kiting')
+	state.SelectNPCTargets    = M(false, 'Select NPC Targets')
 	state.Capacity 			  = M(false, 'Capacity Mode')
 	state.ReEquip 			  = M(false, 'ReEquip Mode')
 	state.AutoArts	 		  = M(false, 'AutoArts Mode')
@@ -96,12 +95,16 @@ function init_include()
 
 	state.MagicBurstMode 	  = M{['description'] = 'Magic Burst Mode', 'Off', 'Single', 'Lock'}
 	state.SkillchainMode 	  = M{['description'] = 'Skillchain Mode', 'Off', 'Single', 'Lock'}
-    state.PCTargetMode        = M{['description'] = 'PC Target Mode', 'default', 'stpt', 'stal', 'stpc'}
-
-    state.EquipStop           = M{['description'] = 'Stop Equipping Gear', 'off', 'precast', 'midcast', 'pet_midcast'}
-
-    state.CombatWeapon        = M{['description']='Combat Weapon', ['string']=''}
-    state.CombatForm          = M{['description']='Combat Form', ['string']=''}
+	state.PCTargetMode        = M{['description'] = 'PC Target Mode', 'default', 'stpt', 'stal', 'stpc'}
+	state.EquipStop           = M{['description'] = 'Stop Equipping Gear', 'off', 'precast', 'midcast', 'pet_midcast'}
+	state.CombatWeapon        = M{['description']='Combat Weapon', ['string']=''}
+	state.CombatForm          = M{['description']='Combat Form', ['string']=''}
+	
+	if mageJobs:contains(player.main_job) then
+		state.Weapons		  = M{['description'] = 'Weapons','None','Default'}
+	else
+		state.Weapons		  = M{['description'] = 'Weapons','Default','None'}
+	end
 	
     -- Non-mode vars that are used for state tracking.
     state.MaxWeaponskillDistance = 0

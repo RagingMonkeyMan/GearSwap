@@ -53,8 +53,8 @@ function init_gear_sets()
 		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Telchine Pigaches"}
 		
-	sets.precast.FC.Mazurka = set_combine(sets.precast.FC.BardSong, {range="Marsyas"})
-	sets.precast.FC['Honor March'] = set_combine(sets.precast.FC.BardSong, {range="Marsyas"})
+	sets.precast.FC.Mazurka = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
+	sets.precast.FC['Honor March'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
 
 	sets.precast.FC.Daurdabla = set_combine(sets.precast.FC.BardSong, {range=info.ExtraSongInstrument})
 	sets.precast.DaurdablaDummy = sets.precast.FC.Daurdabla
@@ -92,18 +92,17 @@ function init_gear_sets()
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Gende. Galosh. +1"}
 
 	-- Gear to enhance certain classes of songs.  No instruments added here since Gjallarhorn is being used.
-	sets.midcast.FastRecast = sets.precast.FC	
 	sets.midcast.Ballad = {legs="Fili Rhingrave +1"}
 	sets.midcast.Lullaby = {}
 	sets.midcast.Madrigal = {head="Fili Calot +1"}
 	sets.midcast.Paeon = {}
-	sets.midcast.March = {}
+	sets.midcast.March = {hands="Fili Manchettes +1"}
+	sets.midcast['Honor March'] = set_combine(sets.midcast.March,{range="Marsyas"})
 	sets.midcast.Minuet = {body="Fili Hongreline +1"}
 	sets.midcast.Minne = {}
 	sets.midcast.Carol = {}
 	sets.midcast["Sentinel's Scherzo"] = {} --feet="Fili Cothurnes +1" Brioso Slippers still provides more Duration
 	sets.midcast['Magic Finale'] = {}
-	sets.midcast['Honor March'] = {range="Marsyas"}
 	sets.midcast.Mazurka = {range="Marsyas"}
 	
 

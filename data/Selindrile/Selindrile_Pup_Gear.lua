@@ -5,7 +5,7 @@ function user_setup()
     state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')
     state.PhysicalDefenseMode:options('PDT')
 	state.IdleMode:options('Normal','PDT','Refresh')
-	state.Weapons:options('None','PetWeapons','Godhands')
+	state.Weapons:options('None','Default','PetWeapons')
 
     -- Default maneuvers 1, 2, 3 and 4 for each pet mode.
     defaultManeuvers = {
@@ -281,7 +281,7 @@ function init_gear_sets()
         back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
 		
 	sets.PetWeapons = {main="Ohtas",range="Animator P +1",}
-	sets.Godhands = {main="Godhands",range="Animator P +1",}
+	sets.Weapons = {main="Godhands",range="Animator P +1",}
 end
 
 -- Select default macro book on initial load or subjob change.

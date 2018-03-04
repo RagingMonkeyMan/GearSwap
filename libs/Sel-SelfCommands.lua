@@ -321,8 +321,8 @@ function handle_weapons(cmdParams)
 			state.Weapons:set('DualWeapons')
 			equip(sets.DualWeapons)
 		else
-			state.Weapons:set('Default')
-			equip(sets.Weapons)
+			state.Weapons:reset()
+			equip(sets[state.Weapons.Value])
 		end
 	elseif state.Weapons.value == 'Default' and sets.Weapons then
 		equip(sets.Weapons)
