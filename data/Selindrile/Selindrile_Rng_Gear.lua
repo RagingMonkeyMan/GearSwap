@@ -6,8 +6,8 @@ function user_setup()
 	state.IdleMode:options('Normal', 'PDT')
 	state.Weapons:options('Default','DualWeapons','DualMagicWeapons')
 	
-	DefaultAmmo = {['Fomalhaut'] = "Chrono Bullet"}
-	U_Shot_Ammo = {['Fomalhaut'] = "Animkii Bullet"}
+	DefaultAmmo = {['Fomalhaut']="Chrono Bullet"}
+	U_Shot_Ammo = {['Fomalhaut']="Animkii Bullet"}
 	
 	gear.tp_ranger_jse_back = {name="Belenus's Cape",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','"Store TP"+10',}}
 	gear.wsd_ranger_jse_back = {name="Belenus's Cape",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Weapon skill damage +10%',}}
@@ -115,12 +115,12 @@ function init_gear_sets()
 		
 	-- Ranged sets
 
-    sets.midcast.RA = {ammo=gear.RAbullet,
+    sets.midcast.RA = {
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
         body="Meg. Cuirie +2",hands="Carmine Fin. Ga. +1",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meg. Jam. +2"}
 
-    sets.midcast.RA.Acc = {ammo=gear.RAbullet,
+    sets.midcast.RA.Acc = {
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
@@ -144,23 +144,23 @@ function init_gear_sets()
 	sets.resting = {}
 
 	-- Idle sets
-    sets.idle = {ammo=gear.RAbullet,
+    sets.idle = {
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.herculean_dt_feet}
     
     -- Defense sets
-    sets.defense.PDT = {ammo=gear.RAbullet,
+    sets.defense.PDT = {
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
 
-    sets.defense.MDT = {ammo=gear.RAbullet,
+    sets.defense.MDT = {
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
-    sets.defense.MEVA = {ammo=gear.RAbullet,
+    sets.defense.MEVA = {
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}

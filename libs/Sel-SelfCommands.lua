@@ -314,13 +314,15 @@ end
 function handle_weapons(cmdParams)
     enable('main','sub','range')
 	if cmdParams[1] ~= nil then
-		if cmdParams[1]:lower() == 'default' and sets.Weapons then
-			equip(sets.Weapons)
-		else
-			equip(sets[cmdParams[1]])
-		end
-		if state.Weapons:contains(cmdParams[1]) then
+		if state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
 			state.Weapons:set(cmdParams[1])
+			equip(sets[cmdParams[1]])
+		elseif (player.sub_job == 'DNC' or player.sub_job == 'NIN') and sets.DualWeapons then
+			state.Weapons:set('DualWeapons')
+			equip(sets.DualWeapons)
+		else
+			state.Weapons:set('Default')
+			equip(sets.Weapons)
 		end
 	elseif state.Weapons.value == 'Default' and sets.Weapons then
 		equip(sets.Weapons)

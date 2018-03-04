@@ -308,15 +308,15 @@ function init_gear_sets()
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {legs="Ryuo Hakama"}
 	
-	sets.ProcDagger = {main="Kustawi"}
-	sets.ProcSword = {main="Ark Sword"}
-	sets.ProcGreatSword = {main="Irradiance Blade"}
-	sets.ProcScythe = {main="Ark Scythe"}
-	sets.ProcPolearm = {main="Pitchfork +1"}
-	sets.ProcGreatKatana = {main="Kanaria"}
-	sets.ProcKatana = {main="Hardwood Katana"}
-	sets.ProcClub = {main="Dream Bell +1"}
-	sets.ProcStaff = {main="Terra's Staff"}
+	sets.ProcDagger = {main="Kustawi",sub=empty}
+	sets.ProcSword = {main="Ark Sword",sub=empty}
+	sets.ProcGreatSword = {main="Irradiance Blade",sub=empty}
+	sets.ProcScythe = {main="Ark Scythe",sub=empty}
+	sets.ProcPolearm = {main="Pitchfork +1",sub=empty}
+	sets.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
+	sets.ProcKatana = {main="Kanaria",sub=empty}
+	sets.ProcClub = {main="Dream Bell +1",sub=empty}
+	sets.ProcStaff = {main="Terra's Staff",sub=empty}
 end
 
 -- Select default macro book on initial load or subjob change.

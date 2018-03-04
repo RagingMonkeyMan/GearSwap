@@ -250,6 +250,10 @@ function init_include()
         extra_user_setup()
     end
 
+	if state.Weapons.value ~= 'None' then
+			send_command('@wait 3;gs c weapons Default')
+	end
+	
 	-- Event register to make time variables track.
 	windower.register_event('time change', time_change)
 
@@ -363,13 +367,7 @@ end
 
 -- Function to bind GearSwap binds when loading a GS script, moved to globals to seperate per character and user.
 function global_on_load()
-	if state.Weapons.value ~= 'None' then
-		if (player.main_job == 'DNC' or player.sub_job == 'DNC' or player.main_job == 'NIN' or player.sub_job == 'NIN') and sets.DualWeapons then
-			send_command('@wait 3;gs c set weapons dualweapons')
-		else
-			send_command('@wait 3;gs c weapons')
-		end
-	end
+
 end
 
 -- Function to revert binds when unloading.
@@ -631,8 +629,6 @@ function filtered_action(spell, eventArgs)
     end
 
 end
-
-
 
 function pretarget(spell)
     handle_actions(spell, 'pretarget')
