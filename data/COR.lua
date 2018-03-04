@@ -70,6 +70,9 @@ function job_precast(spell, spellMap, eventArgs)
     if spell.action_type == 'Ranged Attack' or spell.type == 'WeaponSkill' or spell.type == 'CorsairShot' then
         do_bullet_checks(spell, spellMap, eventArgs)
     end
+	if spell.action_type == 'Ranged Attack' then
+		state.CombatWeapon:set(player.equipment.range)
+	end
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)
@@ -134,7 +137,11 @@ function get_custom_wsmode(spell, spellMap, default_wsmode)
 end
 
 function job_buff_change(buff, gain)
-
+	if player.equipment.Ranged and buff:contains('Aftermath') then
+		if (player.equipment.Ranged == 'Death Penalty' and buffactive['Aftermath: Lv.3']) then
+			classes.CustomRangedGroups:append('AM')
+		end
+	end
 end
 
 -- Modify the default melee set after it was constructed.
