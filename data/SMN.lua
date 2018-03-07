@@ -219,7 +219,7 @@ function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets f
 
 	if ConduitLocked and ConduitLocked ~= spell.english then
 		ConduitLocked = nil
-		if state.OffenseMode.value == 'None' then
+		if state.Weapons.value == 'None' then
 			enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
 		else
 			enable('range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')

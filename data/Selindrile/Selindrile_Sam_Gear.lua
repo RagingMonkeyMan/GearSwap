@@ -20,7 +20,7 @@ function user_setup()
 	send_command('bind !backspace input /ja "Third Eye" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind !@^` gs c cycle Stance')
-	send_command('bind !r gs c weapons MultiWeapon;gs c set WeaponskillMode Proc;gs c update')
+	send_command('bind !r gs c weapons ProcWeapon;gs c set WeaponskillMode Proc;gs c update')
 	send_command('bind ^r gs c weapons;gs c set WeaponskillMode Normal;gs c update')
 	send_command('bind ^q gs c weapons Bow;gs c update')
 
