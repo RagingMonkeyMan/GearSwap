@@ -287,7 +287,7 @@ function job_buff_change(buff, gain)
 		ConduitLocked = nil
 		add_to_chat(217, "Astral Conduit has worn, enabling all slots.")
 
-		if state.OffenseMode.value == 'None' then
+		if state.Weapons.value == 'None' then
 			enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
 		else
 			enable('range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
