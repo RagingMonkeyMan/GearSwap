@@ -1851,6 +1851,9 @@ function state_change(stateField, newValue, oldValue)
 					disable('main','sub')
 				elseif player.main_job ~= 'BST' then
 					disable('main','sub','range')
+					if sets[newValue] and sets[newValue].ammo then
+						disable('ammo')
+					end
 				end
 			end
 	elseif stateField == 'RngHelper' then

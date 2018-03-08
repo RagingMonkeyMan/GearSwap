@@ -322,21 +322,23 @@ function handle_weapons(cmdParams)
 		end
 	elseif cmdParams[1]:lower() == 'default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.DualWeapons then
-			equip_weaponset('DualWeapons')
 			if state.Weapons.value ~= 'DualWeapons' then
 				state.Weapons:set('DualWeapons')
 			end
+			equip_weaponset('DualWeapons')
 		elseif state.Weapons:contains('Default') and sets.Weapons then
-			equip_weaponset('Weapons')
 			if state.Weapons.value ~= 'Default' then
-					state.Weapons:set('Default')
-				end
+				state.Weapons:set('Default')
 			end
+			equip_weaponset('Weapons')
+		else
+			state.Weapons:reset()
+		end
 	elseif state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
-		equip_weaponset(cmdParams[1])
 		if state.Weapons.value ~= cmdParams[1] then
 			state.Weapons:set(cmdParams[1])
 		end
+		equip_weaponset(cmdParams[1])
 	else
 		state.Weapons:reset()
 	end
@@ -354,6 +356,9 @@ function equip_weaponset(cmdParams)
 			disable('main','sub')
 		elseif player.main_job ~= 'BST' then
 			disable('main','sub','range')
+			if sets[state.Weapons.value] and sets[state.Weapons.value].ammo then
+				disable('ammo')
+			end
 		end
 	end
 end

@@ -187,7 +187,7 @@ function init_gear_sets()
 	
 	sets.Weapons = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
 	sets.ProcWeapon = {main="Norifusa +1",sub="Bloodrain Strap"}
-	sets.Bow = {range="Cibitshavore"}
+	sets.Bow = {range="Cibitshavore",ammo="Eminent Arrow"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {}
 	
