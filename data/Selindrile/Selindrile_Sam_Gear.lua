@@ -8,7 +8,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT','MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
     state.IdleMode:options('Normal', 'Reraise')
-	state.Weapons:options('Default','ProcWeapon')
+	state.Weapons:options('Default','ProcWeapon','Bow')
 	
     update_combat_form()
 
@@ -21,7 +21,7 @@ function user_setup()
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind !@^` gs c cycle Stance')
 	send_command('bind !r gs c weapons ProcWeapon;gs c set WeaponskillMode Proc;gs c update')
-	send_command('bind ^r gs c weapons;gs c set WeaponskillMode Normal;gs c update')
+	send_command('bind ^r gs c weapons Default;gs c set WeaponskillMode Normal;gs c update')
 	send_command('bind ^q gs c weapons Bow;gs c update')
 
     select_default_macro_book()

@@ -254,7 +254,7 @@ function init_include()
     end
 
 	if state.Weapons.value == 'None' then
-		enable('main','sub','range')
+		enable('main','sub','range','ammo')
 	else
 		send_command('@wait 3;gs c weapons Default')
 	end
@@ -1845,7 +1845,13 @@ function state_change(stateField, newValue, oldValue)
 			elseif sets[newValue] then
 				equip_weaponset(newValue)
 			elseif newValue == 'None' then
-				enable('main','sub','range')
+				enable('main','sub','range','ammo')
+			elseif newValue ~= 'None' and oldValue == 'None' then
+				if player.main_job == 'BRD' then
+					disable('main','sub')
+				elseif player.main_job ~= 'BST' then
+					disable('main','sub','range')
+				end
 			end
 	elseif stateField == 'RngHelper' then
 		if newValue == true then

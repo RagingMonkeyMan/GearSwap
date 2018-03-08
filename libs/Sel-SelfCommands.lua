@@ -312,8 +312,14 @@ function handle_naked(cmdParams)
 end
 
 function handle_weapons(cmdParams)
-	if cmdParams[1] == nil and sets[state.Weapons.value] then
-		equip_weaponset(state.Weapons.value)
+	if cmdParams[1] == nil then
+		if state.Weapons.value == 'Default' and sets.Weapons then
+			equip_weaponset('Weapons')
+		elseif sets[state.Weapons.value] then
+			equip_weaponset(state.Weapons.value)
+		else
+			state.Weapons:reset()
+		end
 	elseif cmdParams[1]:lower() == 'default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.DualWeapons then
 			equip_weaponset('DualWeapons')
@@ -326,7 +332,7 @@ function handle_weapons(cmdParams)
 					state.Weapons:set('Default')
 				end
 			end
-	elseif cmdParams[1] ~= nil and state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
+	elseif state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
 		equip_weaponset(cmdParams[1])
 		if state.Weapons.value ~= cmdParams[1] then
 			state.Weapons:set(cmdParams[1])
@@ -339,16 +345,16 @@ function handle_weapons(cmdParams)
 end
 
 function equip_weaponset(cmdParams)
-	enable('main','sub','range')
+	enable('main','sub','range','ammo')
 	if sets[cmdParams] then
 		equip(sets[cmdParams])
 	end
 	if state.Weapons.value ~= 'None' then
-			if player.main_job == 'BRD' then
-				disable('main','sub')
-			elseif player.main_job ~= 'BST' then
-				disable('main','sub','range')
-			end
+		if player.main_job == 'BRD' then
+			disable('main','sub')
+		elseif player.main_job ~= 'BST' then
+			disable('main','sub','range')
+		end
 	end
 end
 
