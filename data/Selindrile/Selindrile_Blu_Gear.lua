@@ -8,7 +8,7 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT', 'NukeLock')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Default','Almace','None','Sequence','MagicWeapons','MaccWeapons','HybridWeapons')
+	state.Weapons:options('Default','Sequence','None','Almace','MagicWeapons','MaccWeapons','HybridWeapons')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'MP','SuppaBrutal', 'DWEarrings','DWMax'}
 
@@ -445,9 +445,9 @@ function init_gear_sets()
 	sets.Weapons = {main="Tizona",sub="Almace"}
 	sets.Almace = {main="Almace",sub="Sequence"}
 	sets.Sequence = {main="Sequence",sub="Almace"}
-	sets.MagicWeapons = {main="Nibiru Cudgel", sub="Nibiru Cudgel"}
-	sets.MaccWeapons = {main="Iris", sub="Iris"}
-	sets.HybridWeapons = {main="Vampirism", sub="Vampirism"}
+	sets.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
+	sets.MaccWeapons = {main="Iris",sub="Iris"}
+	sets.HybridWeapons = {main="Vampirism",sub="Vampirism"}
 
 	-- Engaged sets
 

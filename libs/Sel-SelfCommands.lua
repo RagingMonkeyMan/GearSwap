@@ -312,24 +312,37 @@ function handle_naked(cmdParams)
 end
 
 function handle_weapons(cmdParams)
-    enable('main','sub','range')
-	if cmdParams[1] ~= nil then
-		if state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
+	if cmdParams[1] == nil and sets[state.Weapons.value] then
+		equip_weaponset(state.Weapons.value)
+	elseif cmdParams[1]:lower() == 'default' then
+		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.DualWeapons then
+			equip_weaponset('DualWeapons')
+			if state.Weapons.value ~= 'DualWeapons' then
+				state.Weapons:set('DualWeapons')
+			end
+		elseif state.Weapons:contains('Default') and sets.Weapons and state.Weapons.value ~= 'Default' then
+			equip_weaponset('Weapons')
+			if state.Weapons.value ~= 'Default' then
+					state.Weapons:set('Default')
+				end
+			end
+	elseif cmdParams[1] ~= nil and state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
+		equip_weaponset(cmdParams[1])
+		if state.Weapons.value ~= cmdParams[1] then
 			state.Weapons:set(cmdParams[1])
-			equip(sets[cmdParams[1]])
-		elseif (player.sub_job == 'DNC' or player.sub_job == 'NIN') and sets.DualWeapons then
-			state.Weapons:set('DualWeapons')
-			equip(sets.DualWeapons)
-		else
-			state.Weapons:reset()
-			equip(sets[state.Weapons.Value])
 		end
-	elseif state.Weapons.value == 'Default' and sets.Weapons then
-		equip(sets.Weapons)
-	elseif state.Weapons.value and sets[state.Weapons.value] then
-		equip(sets[state.Weapons.value])
+	else
+		state.Weapons:reset()
 	end
 	
+	if state.DisplayMode.value then update_job_states()	end
+end
+
+function equip_weaponset(cmdParams)
+	enable('main','sub','range')
+	if sets[cmdParams] then
+		equip(sets[cmdParams])
+	end
 	if state.Weapons.value ~= 'None' then
 			if player.main_job == 'BRD' then
 				disable('main','sub')
@@ -337,8 +350,6 @@ function handle_weapons(cmdParams)
 				disable('main','sub','range')
 			end
 	end
-	
-	if state.DisplayMode.value then update_job_states()	end
 end
 
 function handle_showset(cmdParams)

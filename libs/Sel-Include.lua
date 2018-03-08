@@ -253,8 +253,10 @@ function init_include()
         extra_user_setup()
     end
 
-	if state.Weapons.value ~= 'None' then
-			send_command('@wait 3;gs c weapons Default')
+	if state.Weapons.value == 'None' then
+		enable('main','sub','range')
+	else
+		send_command('@wait 3;gs c weapons Default')
 	end
 	
 	-- Event register to make time variables track.
@@ -1838,12 +1840,13 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-        if newValue == 'None' then
-            enable('main','sub','range')
-        else
-			local commandArgs = {}
-			handle_weapons(commandArgs)
-        end
+			if newValue == 'Default' and sets.Weapons then
+				equip_weaponset('Weapons')
+			elseif sets[newValue] then
+				equip_weaponset(newValue)
+			elseif newValue == 'None' then
+				enable('main','sub','range')
+			end
 	elseif stateField == 'RngHelper' then
 		if newValue == true then
 			send_command('gs rh enable')
