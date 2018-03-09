@@ -1915,7 +1915,7 @@ function buff_change(buff, gain)
     if user_buff_change then
         user_buff_change(buff, gain, eventArgs)
     end
-
+	
     -- Allow jobs to handle buff change events.
     if not eventArgs.handled then
         if job_buff_change then
@@ -1923,10 +1923,10 @@ function buff_change(buff, gain)
         end
     end
 	
-    if extra_user_buff_change then
-        extra_user_buff_change(buff, gain, eventArgs)
+    if user_job_buff_change then
+        user_job_buff_change(buff, gain, eventArgs)
     end
-	
+
 	if S{'sleep','Lullaby'}:contains(buff) and state.CancelStoneskin.value then
 		send_command('cancel stoneskin')
 	end
@@ -1953,6 +1953,10 @@ function buff_change(buff, gain)
 	if not midaction() and not pet_midaction() then
 		handle_equipping_gear(player.status)
 	end
+	
+    if extra_user_buff_change then
+        extra_user_buff_change(buff, gain, eventArgs)
+    end
 	
 	if state.DisplayMode.value then update_job_states()	end
 end
