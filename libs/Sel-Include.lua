@@ -1088,9 +1088,9 @@ function handle_equipping_gear(playerStatus, petStatus)
 		end
 	end
 
-	if player.equipment.ammo == 'empty' and sets[state.Weapons.value] and sets[state.Weapons.value].ammo then
+	if player.equipment.ammo == 'empty' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
 		enable('ammo')
-		equip({ammo=sets[state.Weapons.value].ammo})
+		equip({ammo=sets.weapons[state.Weapons.value].ammo})
 		disable('ammo')
 	end
 	
