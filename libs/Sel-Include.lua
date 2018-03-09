@@ -1080,9 +1080,17 @@ function handle_equipping_gear(playerStatus, petStatus)
         job_handle_equipping_gear(playerStatus, eventArgs)
     end
 
-	if player.equipment.main == 'empty' and player.equipment.sub == 'empty' and state.ReEquip.value and state.Weapons.value ~= 'None' then
-		local commandArgs = {}
-		handle_weapons(commandArgs)
+	if state.ReEquip.value and state.Weapons.value ~= 'None' then
+		if player.equipment.main == 'empty' and player.equipment.sub == 'empty' then
+			local commandArgs = {}
+			handle_weapons(commandArgs)
+		end
+	end
+
+	if player.equipment.ammo == 'empty' and sets[state.Weapons.value].ammo then
+		enable('ammo')
+		equip({ammo=sets[state.Weapons.value].ammo})
+		disable('ammo')
 	end
 	
     -- Equip default gear if job didn't handle it.
