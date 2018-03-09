@@ -7,7 +7,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Default','MagicWeapons')
+	state.Weapons:options('Aeneas','MagicWeapons')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWEarrings','DWMax'}
 
 	gear.stp_jse_back = {name="Senuna's Mantle",augments={'DEX+20','Accuracy+20 Attack+20','"Store TP"+10',}}
@@ -36,10 +36,12 @@ function init_gear_sets()
 	
     -- Extra Melee sets.  Apply these on top of melee sets.
 	sets.Suppa = {ear1="Suppanomimi", ear2="Sherida Earring"}
-	sets.Weapons = {main="Aeneas",sub="Taming Sari"}
-	sets.MagicWeapons = {main="Malevolence",sub="Malevolence"}
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Shetal Stone"}
+	
+	-- Weapons sets
+	sets.weapons.Aeneas = {main="Aeneas",sub="Taming Sari"}
+	sets.weapons.MagicWeapons = {main="Malevolence",sub="Malevolence"}
 	
     -- Precast Sets
     

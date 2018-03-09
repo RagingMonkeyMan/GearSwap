@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Default','MagicWeapons')
+	state.Weapons:options('Aeneas','MagicWeapons','Throwing')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWEarrings','DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
@@ -52,12 +52,14 @@ function init_gear_sets()
     -- Extra Melee sets.  Apply these on top of melee sets.
     sets.Knockback = {}
 	sets.Suppa = {ear1="Suppanomimi", ear2="Sherida Earring"}
-	sets.Weapons = {main="Aeneas",sub="Taming Sari"}
-	sets.MagicWeapons = {main="Malevolence",sub="Malevolence"}
-	sets.Throwing = {range="Raider's Bmrng."}
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Reiki Yotai"}
 	sets.Ambush = {} --body="Plunderer's Vest +1"
+	
+	-- Weapons sets
+	sets.weapons.Aeneas = {main="Aeneas",sub="Taming Sari"}
+	sets.weapons.MagicWeapons = {main="Malevolence",sub="Malevolence"}
+	sets.weapons.Throwing = {range="Raider's Bmrng."}
 	
     -- Actions we want to use to tag TH.
     sets.precast.Step = {ammo="Falcon Eye",

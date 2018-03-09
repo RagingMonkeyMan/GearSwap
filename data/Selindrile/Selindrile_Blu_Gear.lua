@@ -8,7 +8,7 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT', 'NukeLock')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Default','Sequence','None','Almace','MagicWeapons','MeleeClubs','MaccWeapons','HybridWeapons')
+	state.Weapons:options('Tizalmace','Sequence','None','Almace','MagicWeapons','MeleeClubs','MaccWeapons','HybridWeapons')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'MP','SuppaBrutal', 'DWEarrings','DWMax'}
 
@@ -442,13 +442,15 @@ function init_gear_sets()
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",waist="Reiki Yotai",legs="Carmine Cuisses +1"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Assault = {ring1="Balrahn's Ring"}
-	sets.Weapons = {main="Tizona",sub="Almace"}
-	sets.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
-	sets.Almace = {main="Almace",sub="Sequence"}
-	sets.Sequence = {main="Sequence",sub="Almace"}
-	sets.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
-	sets.MaccWeapons = {main="Iris",sub="Iris"}
-	sets.HybridWeapons = {main="Vampirism",sub="Vampirism"}
+	
+	-- Weapons sets
+	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
+	sets.weapons.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
+	sets.weapons.Almace = {main="Almace",sub="Sequence"}
+	sets.weapons.Sequence = {main="Sequence",sub="Almace"}
+	sets.weapons.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
+	sets.weapons.MaccWeapons = {main="Iris",sub="Iris"}
+	sets.weapons.HybridWeapons = {main="Vampirism",sub="Vampirism"}
 
 	-- Engaged sets
 

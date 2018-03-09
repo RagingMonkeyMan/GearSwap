@@ -313,12 +313,13 @@ end
 
 function handle_weapons(cmdParams)
 	if cmdParams[1] == nil then
-		if state.Weapons.value == 'Default' and sets.Weapons then
-			equip_weaponset('Weapons')
-		elseif sets[state.Weapons.value] then
+		if sets.weapons[state.Weapons.value] then
 			equip_weaponset(state.Weapons.value)
 		else
 			state.Weapons:reset()
+			if sets.weapons[state.Weapons.value] then
+				equip_weaponset(state.Weapons.value)
+			end
 		end
 	elseif cmdParams[1]:lower() == 'default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.DualWeapons then
@@ -326,21 +327,22 @@ function handle_weapons(cmdParams)
 				state.Weapons:set('DualWeapons')
 			end
 			equip_weaponset('DualWeapons')
-		elseif state.Weapons:contains('Default') and sets.Weapons then
-			if state.Weapons.value ~= 'Default' then
-				state.Weapons:set('Default')
-			end
-			equip_weaponset('Weapons')
 		else
 			state.Weapons:reset()
+			if sets.weapons[state.Weapons.value] then
+				equip_weaponset(state.Weapons.value)
+			end
 		end
-	elseif state.Weapons:contains(cmdParams[1]) and sets[cmdParams[1]] then
+	elseif state.Weapons:contains(cmdParams[1]) and sets.weapons[cmdParams[1]] then
 		if state.Weapons.value ~= cmdParams[1] then
 			state.Weapons:set(cmdParams[1])
 		end
 		equip_weaponset(cmdParams[1])
 	else
 		state.Weapons:reset()
+		if sets.weapons[state.Weapons.value] then
+			equip_weaponset(state.Weapons.value)
+		end
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end
@@ -348,15 +350,15 @@ end
 
 function equip_weaponset(cmdParams)
 	enable('main','sub','range','ammo')
-	if sets[cmdParams] then
-		equip(sets[cmdParams])
+	if sets.weapons[cmdParams] then
+		equip(sets.weapons[cmdParams])
 	end
 	if state.Weapons.value ~= 'None' then
 		if player.main_job == 'BRD' then
 			disable('main','sub')
 		elseif player.main_job ~= 'BST' then
 			disable('main','sub','range')
-			if sets[state.Weapons.value] and sets[state.Weapons.value].ammo then
+			if sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
 				disable('ammo')
 			end
 		end

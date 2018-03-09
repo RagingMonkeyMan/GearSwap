@@ -7,7 +7,7 @@ function user_setup()
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT','Refresh','Reraise')
-	state.Weapons:options('Default','Scythe')
+	state.Weapons:options('Montante','Misanthropy')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
 
@@ -505,12 +505,14 @@ function init_gear_sets()
 	--Extra Special Sets
 	
 	sets.buff.Souleater = {}
-	sets.Weapons = {main="Montante +1",sub="Utu Grip"}
-	sets.Scythe = {main="Misanthropy",sub="Utu Grip"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Sleep = {head="Frenzy Sallet"}
 	sets.latent_refresh = {waist="Fucho-no-Obi"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	
+	-- Weapons sets
+	sets.weapons.Montante = {main="Montante +1",sub="Utu Grip"}
+	sets.weapons.Misanthropy = {main="Misanthropy",sub="Utu Grip"}
 	
     end
 	

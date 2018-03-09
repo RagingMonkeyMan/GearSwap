@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Default','MagicWeapons','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
+	state.Weapons:options('Heishi','MagicWeapons','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
 	
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None','Knockback','SuppaBrutal','DWEarrings','DWMax'}
 	
@@ -303,20 +303,21 @@ function init_gear_sets()
 	sets.SuppaBrutal = {ear1="Suppanomimi", ear2="Brutal Earring"}
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Shetal Stone"}
-	sets.Weapons = {main="Heishi Shorinken",sub="Kanaria"}
-	sets.MagicWeapons = {main="Ochu",sub="Ochu"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {legs="Ryuo Hakama"}
 	
-	sets.ProcDagger = {main="Kustawi",sub=empty}
-	sets.ProcSword = {main="Ark Sword",sub=empty}
-	sets.ProcGreatSword = {main="Irradiance Blade",sub=empty}
-	sets.ProcScythe = {main="Ark Scythe",sub=empty}
-	sets.ProcPolearm = {main="Pitchfork +1",sub=empty}
-	sets.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
-	sets.ProcKatana = {main="Kanaria",sub=empty}
-	sets.ProcClub = {main="Dream Bell +1",sub=empty}
-	sets.ProcStaff = {main="Terra's Staff",sub=empty}
+	-- Weaopns sets
+	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kanaria"}
+	sets.weapons.MagicWeapons = {main="Ochu",sub="Ochu"}
+	sets.weapons.ProcDagger = {main="Kustawi",sub=empty}
+	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
+	sets.weapons.ProcGreatSword = {main="Irradiance Blade",sub=empty}
+	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
+	sets.weapons.ProcPolearm = {main="Pitchfork +1",sub=empty}
+	sets.weapons.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
+	sets.weapons.ProcKatana = {main="Kanaria",sub=empty}
+	sets.weapons.ProcClub = {main="Dream Bell +1",sub=empty}
+	sets.weapons.ProcStaff = {main="Terra's Staff",sub=empty}
 end
 
 -- Select default macro book on initial load or subjob change.

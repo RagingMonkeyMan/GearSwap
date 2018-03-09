@@ -3,7 +3,7 @@ function user_setup()
     state.OffenseMode:options('Normal','Acc')
     state.CastingMode:options('Normal','Resistant')
     state.IdleMode:options('Normal','PDT')
-	state.Weapons:options('None','Default','DualWeapons','Swords','NukeWeapons')
+	state.Weapons:options('None','Aeneas','DualWeapons','Swords','NukeWeapons')
 
 	-- Adjust this if using the Terpander (new +song instrument)
     info.ExtraSongInstrument = 'Terpander'
@@ -30,11 +30,12 @@ function init_gear_sets()
 	--------------------------------------
 	-- Start defining the sets
 	--------------------------------------
-	
-	sets.Weapons = {main="Aeneas",sub="Genmei Shield"}
-	sets.DualWeapons = {main="Aeneas",sub="Taming Sari"}
-	sets.Swords = {main="Vampirism",sub="Vampirism"}
-	sets.NukeWeapons = {main="Malevolence",sub="Malevolence"}
+
+	-- Weapons sets
+	sets.weapons.Aeneas = {main="Aeneas",sub="Genmei Shield"}
+	sets.weapons.DualWeapons = {main="Aeneas",sub="Taming Sari"}
+	sets.weapons.Swords = {main="Vampirism",sub="Vampirism"}
+	sets.weapons.NukeWeapons = {main="Malevolence",sub="Malevolence"}
 	
 	-- Precast Sets
 

@@ -9,7 +9,7 @@ function user_setup()
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT','Refresh','Reraise')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
-	state.Weapons:options('Default')
+	state.Weapons:options('Trishula')
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
 	
     update_combat_form()
@@ -163,10 +163,12 @@ function init_gear_sets()
 	sets.buff.Sleep = {head="Frenzy Sallet"}
 	
     -- Extra defense sets.  Apply these on top of melee or defense sets.
-	sets.Weapons = {main="Trishula",sub="Utu Grip"}
     sets.passive.MP = {ear2="Ethereal Earring",waist="Flume Belt"}
     sets.passive.Twilight = {head="Twilight Helm", body="Twilight Mail"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	
+	-- Weapons sets
+	sets.weapons.Trishula = {main="Trishula",sub="Utu Grip"}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = {ear1="Lugra Earring +1",ear2="Sherida Earring",}

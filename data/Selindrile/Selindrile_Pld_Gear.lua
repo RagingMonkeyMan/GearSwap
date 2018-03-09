@@ -9,7 +9,7 @@ function user_setup()
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
 	state.IdleMode:options('Normal','Tank','KiteTank','PDT','MDT','Refresh','Reraise')
-	state.Weapons:options('Default','DDWeapons','DualWeapons')
+	state.Weapons:options('Deacon','DDWeapons','DualWeapons')
 	
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Twilight'}
 	
@@ -306,14 +306,16 @@ function init_gear_sets()
     --------------------------------------
     
     -- Extra defense sets.  Apply these on top of melee or defense sets.
-	sets.Weapons = {main="Deacon Sword",sub="Aegis"}
-	sets.DDWeapons = {main="Sequence",sub="Blurred Shield"}
-	sets.DualWeapons = {main="Sequence",sub="Demersal Degen +1"}
-    sets.Knockback = {}
+	sets.Knockback = {}
     sets.MP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt"}
     sets.MP_Knockback = {}
     sets.Twilight = {head="Twilight Helm", body="Twilight Mail"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	
+	-- Weapons sets
+	sets.weapons.Deacon = {main="Deacon Sword",sub="Aegis"}
+	sets.weapons.DDWeapons = {main="Sequence",sub="Blurred Shield"}
+	sets.weapons.DualWeapons = {main="Sequence",sub="Demersal Degen +1"}
     
     -- If EquipShield toggle is on (Win+F10 or Win+F11), equip the weapon/shield combos here
     -- when activating or changing defense mode:

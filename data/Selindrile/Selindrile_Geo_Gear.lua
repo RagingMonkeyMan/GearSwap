@@ -7,7 +7,7 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock', 'GeoLock', 'PetPDT')
 	state.MagicalDefenseMode:options('MDT', 'NukeLock')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Default','DualWeapons')
+	state.Weapons:options('None','Nehushtan','DualWeapons')
 
 	gear.nuke_jse_back = {name="Nantosuelta's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	gear.idle_jse_back = {name="Nantosuelta's Cape",augments={'HP+60','Eva.+20 /Mag. Eva.+20','Pet: "Regen"+10'}}
@@ -338,6 +338,9 @@ function init_gear_sets()
     sets.MagicBurst = {head="Ea Hat",neck="Mizu. Kubikazari",body="Ea Houppelande",hands="Ea Cuffs",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
 	sets.RecoverBurst = {head="Ea Hat",neck="Mizu. Kubikazari",body="Seidr Cotehardie",hands="Ea Cuffs",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
 
+	-- Weapons sets
+	sets.weapons.Nehushtan = {main='Nehushtan',sub='Genmei Shield'}
+	sets.weapons.DualWeapons = {main='Nehushtan',sub='Nehushtan'}
 end
 
 -- Select default macro book on initial load or subjob change.

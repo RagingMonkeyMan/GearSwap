@@ -166,11 +166,13 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
-	sets.DualWeapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.Weapons = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.DualMagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut",ammo="Chrono Bullet"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
+	
+	-- Weapons sets
+	sets.weapons.DualWeapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.weapons.Default = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.weapons.DualMagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut",ammo="Chrono Bullet"}
 
 	--------------------------------------
 	-- Engaged sets

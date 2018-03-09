@@ -101,9 +101,9 @@ function init_include()
 	state.CombatForm          = M{['description']='Combat Form', ['string']=''}
 	
 	if mageJobs:contains(player.main_job) then
-		state.Weapons		  = M{['description'] = 'Weapons','None','Default'}
+		state.Weapons		  = M{['description'] = 'Weapons','None','Weapons'}
 	else
-		state.Weapons		  = M{['description'] = 'Weapons','Default','None'}
+		state.Weapons		  = M{['description'] = 'Weapons','Weapons','None'}
 	end
 	
     -- Non-mode vars that are used for state tracking.
@@ -192,6 +192,7 @@ function init_include()
     sets.buff = {}
 	sets.element = {}
 	sets.passive = {}
+	sets.weapons = {}
 
 	sets.DuskIdle = {}
 	sets.DayIdle = {}
@@ -1087,7 +1088,7 @@ function handle_equipping_gear(playerStatus, petStatus)
 		end
 	end
 
-	if player.equipment.ammo == 'empty' and sets[state.Weapons.value].ammo then
+	if player.equipment.ammo == 'empty' and sets[state.Weapons.value] and sets[state.Weapons.value].ammo then
 		enable('ammo')
 		equip({ammo=sets[state.Weapons.value].ammo})
 		disable('ammo')
@@ -1848,20 +1849,14 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-			if newValue == 'Default' and sets.Weapons then
-				equip_weaponset('Weapons')
-			elseif sets[newValue] then
+			if sets.weapons[newValue] then
 				equip_weaponset(newValue)
 			elseif newValue == 'None' then
 				enable('main','sub','range','ammo')
-			elseif newValue ~= 'None' and oldValue == 'None' then
-				if player.main_job == 'BRD' then
-					disable('main','sub')
-				elseif player.main_job ~= 'BST' then
-					disable('main','sub','range')
-					if sets[newValue] and sets[newValue].ammo then
-						disable('ammo')
-					end
+			else
+				state.Weapons:reset()
+				if sets.weapons[state.Weapons.value] then
+					equip_weaponset(state.Weapons.value)
 				end
 			end
 	elseif stateField == 'RngHelper' then

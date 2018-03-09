@@ -5,7 +5,7 @@ function user_setup()
     state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')
     state.PhysicalDefenseMode:options('PDT')
 	state.IdleMode:options('Normal','PDT','Refresh')
-	state.Weapons:options('None','Default','PetWeapons')
+	state.Weapons:options('None','Godhands','PetWeapons')
 
     -- Default maneuvers 1, 2, 3 and 4 for each pet mode.
     defaultManeuvers = {
@@ -280,8 +280,9 @@ function init_gear_sets()
         body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
         back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
 		
-	sets.PetWeapons = {main="Ohtas",range="Animator P +1",}
-	sets.Weapons = {main="Godhands",range="Animator P +1",}
+	-- Weapons sets
+	sets.weapons.PetWeapons = {main="Ohtas",range="Animator P +1",}
+	sets.weapons.Godhands = {main="Godhands",range="Animator P +1",}
 end
 
 -- Select default macro book on initial load or subjob change.

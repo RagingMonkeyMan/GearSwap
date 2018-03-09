@@ -7,7 +7,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT')
-	state.Weapons:options('Default','ProcStaff','ProcClub','None')
+	state.Weapons:options('Godhands','ProcStaff','ProcClub','None')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
 	
@@ -289,12 +289,14 @@ function init_gear_sets()
 	sets.FootworkWS = {feet="Shukuyu Sune-Ate"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
-	sets.Weapons = {main="Godhands"}
-	sets.ProcStaff = {main="Terra's Staff"}
-	sets.ProcClub = {main="Mafic Cudgel"}
     sets.Knockback = {}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {legs="Ryuo Hakama"}
+	
+	-- Weapons sets
+	sets.weapons.Godhands = {main="Godhands"}
+	sets.weapons.ProcStaff = {main="Terra's Staff"}
+	sets.weapons.ProcClub = {main="Mafic Cudgel"}
 end
 
 -- Select default macro book on initial load or subjob change.

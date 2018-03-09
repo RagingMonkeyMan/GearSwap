@@ -3,7 +3,7 @@ function user_setup()
     state.OffenseMode:options('Normal','Acc')
     state.CastingMode:options('Normal','Resistant')
     state.IdleMode:options('Normal', 'PDT','TPEat')
-	state.Weapons:options('None','Default')
+	state.Weapons:options('None','Gridarvor')
 
     gear.perp_staff = {name="Gridarvor"}
 	
@@ -312,7 +312,9 @@ function init_gear_sets()
 	
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Sleep = {neck="Sacrifice Torque"}
-	sets.Weapons = {main="Gridarvor", sub="Elan Strap +1"}
+
+	-- Weapons sets
+	sets.weapons.Gridarvor = {main="Gridarvor", sub="Elan Strap +1"}
     --------------------------------------
     -- Engaged sets
     --------------------------------------

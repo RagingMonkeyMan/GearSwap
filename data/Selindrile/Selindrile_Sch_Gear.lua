@@ -4,7 +4,7 @@ function user_setup()
     state.CastingMode:options('Normal','Resistant','Proc')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.HybridMode:options('Normal','PDT')
-	state.Weapons:options('None','Default')
+	state.Weapons:options('None','Akademos')
 
 	gear.nuke_jse_back = {name="Lugh's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	
@@ -37,7 +37,6 @@ end
 -- Define sets and vars used by this job file.
 function init_gear_sets()
 
-	sets.Weapons = {main="Akademos",sub="Niobid Strap"}
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
@@ -353,6 +352,8 @@ function init_gear_sets()
     sets.buff.FullSublimation = {}
     sets.buff.PDTSublimation = {}
 	
+	-- Weapons sets
+	sets.weapons.Akademos = {main="Akademos",sub="Niobid Strap"}
 end
 
 -- Select default macro book on initial load or subjob change.

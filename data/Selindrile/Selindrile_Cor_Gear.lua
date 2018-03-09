@@ -61,7 +61,7 @@ function init_gear_sets()
     sets.precast.JA['Random Deal'] = {body="Lanun Frac +1"}
     sets.precast.FoldDoubleBust = {hands="Lanun Gants +1"}
     
-    sets.precast.CorsairRoll = {
+    sets.precast.CorsairRoll = {range="Compensator",
         head="Lanun Tricorne +1",neck="Regal Necklace",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Lanun Frac +1",hands="Chasseur's Gants +1",ring1="Defending Ring",ring2="Dark Ring",
         back=gear.tp_jse_back,waist="Flume Belt",legs="Desultor Tassets",feet=gear.herculean_dt_feet}
@@ -278,16 +278,18 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
-	
-	sets.Weapons = {main="Fettering Blade",sub="Nusku Shield",range="Fomalhaut"}
-	sets.DualWeapons = {main="Fettering Blade",sub="Blurred Knife +1",range="Fomalhaut"}
-	sets.SavageWeapons = {main="Hep. Sapara +1",sub="Blurred Knife +1",range="Ataktos"}
-	sets.DualRangedWeapons = {main="Fettering Blade",sub="Kustawi +1"}
-	sets.LeadenWeapons = {main="Fettering Blade",sub="Atoyac",range="Fomalhaut"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
-	
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Reiki Yotai"}
 
+	-- Weapons sets
+	sets.weapons.Default = {main="Fettering Blade",sub="Nusku Shield",range="Fomalhaut"}
+	sets.weapons.DualWeapons = {main="Fettering Blade",sub="Blurred Knife +1",range="Fomalhaut"}
+	sets.weapons.RollMeleeWeapons = {main="Hep. Sapara +1",sub="Blurred Knife +1",range="Compensator"}
+	sets.weapons.RollRangedWeapons = {main="Fettering Blade",sub="Kustawi +1",range="Compensator"}
+	sets.weapons.SavageWeapons = {main="Hep. Sapara +1",sub="Blurred Knife +1",range="Ataktos"}
+	sets.weapons.DualRangedWeapons = {main="Fettering Blade",sub="Kustawi +1"}
+	sets.weapons.LeadenWeapons = {main="Fettering Blade",sub="Atoyac",range="Fomalhaut"}
+	
     -- Engaged sets
 
     -- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous

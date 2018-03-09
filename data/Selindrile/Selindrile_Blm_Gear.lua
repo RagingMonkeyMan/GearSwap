@@ -3,7 +3,7 @@ function user_setup()
 	state.CastingMode:options('Normal','Resistant','Fodder','Proc')
 	state.OffenseMode:options('Normal')
 	state.IdleMode:options('Normal', 'PDT', 'TPEat','DTHippo')
-	state.Weapons:options('None','Default')
+	state.Weapons:options('None','NukeWeapons')
 
 	gear.obi_cure_waist = "Witful Belt"
 	gear.obi_low_nuke_waist = "Sekhmet Corset"
@@ -36,7 +36,8 @@ function init_gear_sets()
     -- Start defining the sets
     --------------------------------------
 	
-	sets.Weapons = {main=gear.grioavolr_nuke_staff,sub="Niobid Strap"}
+	-- Weapons sets
+	sets.weapons.NukeWeapons = {main=gear.grioavolr_nuke_staff,sub="Niobid Strap"}
     
     ---- Precast Sets ----
     

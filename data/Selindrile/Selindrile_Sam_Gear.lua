@@ -8,7 +8,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT','MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
     state.IdleMode:options('Normal', 'Reraise')
-	state.Weapons:options('Default','ProcWeapon','Bow')
+	state.Weapons:options('Dojikiri','ProcWeapon','Bow')
 	
     update_combat_form()
 
@@ -185,9 +185,6 @@ function init_gear_sets()
 
     sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}
 	
-	sets.Weapons = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
-	sets.ProcWeapon = {main="Norifusa +1",sub="Bloodrain Strap"}
-	sets.Bow = {range="Cibitshavore",ammo="Eminent Arrow"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {}
 	
@@ -360,6 +357,12 @@ function init_gear_sets()
     sets.engaged.Adoulin.Fodder.Reraise = set_combine(sets.engaged.Adoulin.Fodder, sets.Reraise)
 ]]--Right now Adoulin sets are the same as non-Adoulin.
 
+	-- Weapons sets
+	sets.weapons.Dojikiri = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
+	sets.weapons.ProcWeapon = {main="Norifusa +1",sub="Bloodrain Strap"}
+	sets.weapons.Bow = {main="Norifusa +1",sub="Utu Grip",range="Cibitshavore",ammo="Eminent Arrow"}
+	
+	-- Buff sets
 	sets.Cure_Received = {hands="Buremte Gloves",waist="Gishdubar Sash",legs="Flamma Dirs +1"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Sleep = {neck="Vim Torque +1"}
