@@ -148,7 +148,7 @@ function job_customize_defense_set(defenseSet)
         defenseSet = set_combine(defenseSet, sets[state.ExtraDefenseMode.value])
     end
     
-	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value:contains('PDT') then 
+	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value == 'Physical' and (not state.PhysicalDefenseMode.value:contains('NoParry')) then 
 		meleeSet = set_combine(sets.buff.Battuta)
 	end
 	

@@ -152,7 +152,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 	(state.DefenseMode.value == 'Physical' and state.PhysicalDefenseMode.value == 'PDTReraise') or
     (state.DefenseMode.value == 'Magical' and state.MagicalDefenseMode.value == 'MDTReraise') then
         equip(sets.Reraise)
-		
     end
 end
 
