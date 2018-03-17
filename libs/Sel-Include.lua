@@ -1198,18 +1198,10 @@ function get_idle_set(petStatus)
         idleSet = set_combine(idleSet, sets.Assault)
     end
 	
-	if state.Capacity.value then 
-		idleSet = set_combine(idleSet, sets.Capacity)
-	end	
-	
     if sets.Reive and buffactive['Reive Mark'] then
         idleSet = set_combine(idleSet, sets.Reive)
     end
-	
-	idleSet = apply_passive(idleSet)
-    idleSet = apply_defense(idleSet)
-    idleSet = apply_kiting(idleSet)
-	
+
     if user_customize_idle_set then
         idleSet = user_customize_idle_set(idleSet)
     end
@@ -1222,7 +1214,7 @@ function get_idle_set(petStatus)
         idleSet = user_job_customize_idle_set(idleSet)
     end
 
-    if areas.Cities:contains(world.area) and state.DefenseMode.value == 'None' then
+    if areas.Cities:contains(world.area) then
 		if sets.idle.Town then
 			idleSet = set_combine(idleSet, sets.Kiting, sets.idle.Town)
 		elseif sets.Town then
@@ -1244,6 +1236,15 @@ function get_idle_set(petStatus)
 		end
 	end
 
+	idleSet = apply_passive(idleSet)
+	
+	if state.Capacity.value then 
+		idleSet = set_combine(idleSet, sets.Capacity)
+	end
+	
+    idleSet = apply_defense(idleSet)
+    idleSet = apply_kiting(idleSet)
+	
 	if silent_check_disable() and state.DefenseMode.value == 'None' then
 		if state.IdleMode.value:contains('MDT') and sets.defense.MDT then
 			idleSet = set_combine(idleSet, sets.defense.MDT)
@@ -1308,10 +1309,6 @@ function get_melee_set()
         end
     end
 
-	meleeSet = apply_passive(meleeSet)
-    meleeSet = apply_defense(meleeSet)
-    meleeSet = apply_kiting(meleeSet)
-
     if user_customize_melee_set then
         meleeSet = user_customize_melee_set(meleeSet)
     end
@@ -1319,6 +1316,19 @@ function get_melee_set()
     if job_customize_melee_set then
         meleeSet = job_customize_melee_set(meleeSet)
     end
+	
+    if user_job_customize_melee_set then
+        meleeSet = user_job_customize_melee_set(meleeSet)
+    end
+	
+	meleeSet = apply_passive(meleeSet)
+	
+	if state.Capacity.value == true then 
+		meleeSet = set_combine(meleeSet, sets.Capacity)
+	end
+	
+    meleeSet = apply_defense(meleeSet)
+    meleeSet = apply_kiting(meleeSet)
 	
 	if silent_check_disable() and state.DefenseMode.value == 'None' then
 		if state.HybridMode.value:contains('MDT') and sets.defense.MDT then
@@ -1331,10 +1341,6 @@ function get_melee_set()
 	if sets.Reive and buffactive['Reive Mark'] then
         meleeSet = set_combine(meleeSet, sets.Reive)
     end
-	
-	if state.Capacity.value == true and state.DefenseMode.value == 'None' then 
-		meleeSet = set_combine(meleeSet, sets.Capacity)
-	end
 	
 	if (buffactive.sleep or buffactive.Lullaby) and sets.buff.Sleep then
         meleeSet = set_combine(meleeSet, sets.buff.Sleep)
@@ -1651,6 +1657,10 @@ function apply_defense(baseSet)
 		
         if job_customize_defense_set then
             defenseSet = job_customize_defense_set(defenseSet)
+        end
+		
+        if user_job_customize_defense_set then
+            defenseSet = user_job_customize_defense_set(defenseSet)
         end
 		
         if user_job_customize_defense_set then

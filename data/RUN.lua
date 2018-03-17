@@ -130,14 +130,10 @@ end
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
 
-	if buffactive['Battuta'] and state.DefenseMode.value == 'None' and sets.buff.Battuta then 
+	if buffactive['Battuta'] and sets.buff.Battuta then 
 		meleeSet = set_combine(sets.buff.Battuta)
 	end
 
-    if state.ExtraDefenseMode.value ~= 'None' and state.DefenseMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraDefenseMode.value])
-    end
-   
     return meleeSet
 
 end
@@ -148,10 +144,14 @@ function job_customize_idle_set(idleSet)
 end
 
 function job_customize_defense_set(defenseSet)
-    if state.ExtraDefenseMode.value ~= 'None' then
+    if state.ExtraDefenseMode.value ~= 'None' and state.DefenseMode.value ~= 'None' then
         defenseSet = set_combine(defenseSet, sets[state.ExtraDefenseMode.value])
     end
     
+	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value:contains('PDT') then 
+		meleeSet = set_combine(sets.buff.Battuta)
+	end
+	
     return defenseSet
 end
 
