@@ -131,7 +131,7 @@ end
 function job_customize_melee_set(meleeSet)
 
 	if buffactive['Battuta'] and sets.buff.Battuta then 
-		meleeSet = set_combine(sets.buff.Battuta)
+		meleeSet = set_combine(meleeSet, sets.buff.Battuta)
 	end
 
     return meleeSet
@@ -147,9 +147,9 @@ function job_customize_defense_set(defenseSet)
     if state.ExtraDefenseMode.value ~= 'None' and state.DefenseMode.value ~= 'None' then
         defenseSet = set_combine(defenseSet, sets[state.ExtraDefenseMode.value])
     end
-    
-	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value == 'Physical' and (not state.PhysicalDefenseMode.value:contains('NoParry')) then 
-		meleeSet = set_combine(sets.buff.Battuta)
+
+	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value == 'Physical' and (not state.PhysicalDefenseMode.value:contains('NoParry')) and (player.target and player.target.distance < (3.2 + player.target.model_size)) then 
+		defenseSet = set_combine(defenseSet, sets.buff.Battuta)
 	end
 	
     return defenseSet
