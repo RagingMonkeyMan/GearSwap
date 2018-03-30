@@ -324,7 +324,7 @@ function init_gear_sets()
             body="Ayanmo Corazza +2",hands="Adhemar Wrist. +1",ring1="Niqmaddu Ring",ring2="Epona's Ring",
             back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet=gear.herculean_ta_feet}
 	sets.engaged.HighAcc = {ammo="Falcon Eye",
-            head="Aya. Zucchetto +1",neck="Combatant's Torque",ear1="Telos Earring",ear2="Sherida Earring",
+            head="Aya. Zucchetto +2",neck="Combatant's Torque",ear1="Telos Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Niqmaddu Ring",ring2="Ilabrat Ring",
             back=gear.stp_jse_back,waist="Grunfeld Rope",legs="Meg. Chausses +2",feet=gear.herculean_acc_feet}
 	sets.engaged.FullAcc = {ammo="Falcon Eye",
@@ -332,23 +332,23 @@ function init_gear_sets()
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
             back=gear.stp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet=gear.herculean_acc_feet}
     sets.engaged.DTLite = {ammo="Yamarang",
-            head="Aya. Zucchetto +1",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
+            head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
             back="Moonlight Cape",waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
     sets.engaged.SomeAcc.DTLite = {ammo="Falcon Eye",
-            head="Aya. Zucchetto +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Sherida Earring",
+            head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
             back="Moonlight Cape",waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 	sets.engaged.Acc.DTLite = {ammo="Falcon Eye",
-            head="Aya. Zucchetto +1",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Sherida Earring",
+            head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
             back="Moonlight Cape",waist="Grunfeld Rope",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 	sets.engaged.HighAcc.DTLite = {ammo="Falcon Eye",
-            head="Aya. Zucchetto +1",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Sherida Earring",
+            head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
             back="Moonlight Cape",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 	sets.engaged.FullAcc.DTLite = {ammo="Falcon Eye",
-            head="Aya. Zucchetto +1",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Zennaroi Earring",
+            head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Zennaroi Earring",
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
             back="Moonlight Cape",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 	

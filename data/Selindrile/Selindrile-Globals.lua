@@ -69,7 +69,7 @@ send_command('bind !t input /target <bt>') --Targets the battle target.
 send_command('bind ^o fillmode') --Lets you see through walls.
 send_command('bind @p gs equip sets.Sheltered') --Equip sheltered ring, for when being Pro/Shelled.
 send_command('bind !p gs equip sets.Cure_Received') --Equip Cure Potency Received set for when being cured.
-send_command('bind @m gs c mount Tulfaire') --Bird is the word.
+send_command('bind @m gs c mount Omega')
 
 --Usable item binds.
 

@@ -73,7 +73,7 @@ function init_gear_sets()
 	-- Weaponskill sets
 	-- Default set for any weaponskill that isn't any more specifically defined
 	sets.precast.WS = {ammo="Hasty Pinion +1",
-		head="Aya. Zucchetto +1",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
+		head="Aya. Zucchetto +2",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Ramuh Ring +1",ring2="Ilabrat Ring",
 		back="Ground. Mantle +1",waist="Grunfeld Rope",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
 		
@@ -115,13 +115,13 @@ function init_gear_sets()
 
 	-- For song defbuffs (duration primary, accuracy secondary)
 	sets.midcast.SongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
-		head="Aya. Zucchetto +1",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
+		head="Aya. Zucchetto +2",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Fili Hongreline +1",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +1"}
 
 	-- For song defbuffs (accuracy primary, duration secondary)
 	sets.midcast.ResistantSongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
-		head="Aya. Zucchetto +1",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
+		head="Aya. Zucchetto +2",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Inyanga Jubbah +2",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Aya. Gambieras +1"}
 
@@ -215,19 +215,19 @@ function init_gear_sets()
 	-- EG: sets.engaged.Dagger.Accuracy.Evasion
 	
 	sets.engaged = {main="Aeneas",sub="Genmei Shield",ammo="Ginsen",
-		head="Aya. Zucchetto +1",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",ring2="Ilabrat Ring",
 		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Aya. Cosciales +2",feet="Battlecast Gaiters"}
 	sets.engaged.Acc = {main="Aeneas",sub="Genmei Shield",ammo="Ginsen",
-		head="Aya. Zucchetto +1",neck="Combatant's Torque",ear1="Digni. Earring",ear2="Telos Earring",
+		head="Aya. Zucchetto +2",neck="Combatant's Torque",ear1="Digni. Earring",ear2="Telos Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Ramuh Ring +1",ring2="Ilabrat Ring",
 		back="Letalis Mantle",waist="Olseni Belt",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
 	sets.engaged.DW = {main="Aeneas",sub="Blurred Knife +1",ammo="Ginsen",
-		head="Aya. Zucchetto +1",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Petrov Ring",ring2="Ilabrat Ring",
 		back="Bleating Mantle",waist="Reiki Yotai",legs="Aya. Cosciales +2",feet="Battlecast Gaiters"}
 	sets.engaged.DW.Acc = {main="Aeneas",sub="Blurred Knife +1",ammo="Ginsen",
-		head="Aya. Zucchetto +1",neck="Combatant's Torque",ear1="Suppanomimi",ear2="Telos Earring",
+		head="Aya. Zucchetto +2",neck="Combatant's Torque",ear1="Suppanomimi",ear2="Telos Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +1",ring1="Ramuh Ring +1",ring2="Ilabrat Ring",
 		back="Bleating Mantle",waist="Reiki Yotai",legs="Aya. Cosciales +2",feet="Battlecast Gaiters"}
 end

@@ -144,7 +144,7 @@ function job_get_spell_map(spell, default_spell_map)
 				return 'LightDayCuraga'	
 			end
 		elseif default_spell_map == 'Cure' then
-			if state.OffenseMode.value ~= 'None' then
+			if state.Weapons.value ~= 'None' then
 				if state.Buff['Afflatus Solace'] then
 					if world.weather_element == 'Light' then
 						return '"MeleeLightWeatherCureSolace'

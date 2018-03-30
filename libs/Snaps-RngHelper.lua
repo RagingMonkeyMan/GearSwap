@@ -177,7 +177,11 @@ local function able_to_use_action()
 end
 
 local function able_to_use_weaponskill()
-    return windower.ffxi.get_player().vitals.tp >= 1000
+    if windower.ffxi.get_player().vitals.tp >= 1000 and not buffactive['amnesia'] then
+		return true
+	else
+		return false
+	end
 end
 
 local function execute_pending_action()

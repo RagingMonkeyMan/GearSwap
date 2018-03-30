@@ -527,13 +527,17 @@ function handle_displayshot()
 end
 
 function handle_curecheat(cmdParams)
-	if sets.HPDown then
+    if sets.HPDown then
+        curecheat = true
 		equip(sets.HPDown)
+        send_command('@wait 1;input /ma "Cure IV" <me>')
+	--If we only have an HighHP set, we assume that this is sufficient.
+	elseif sets.HPCure then
 		curecheat = true
-		send_command('@wait 1;input /ma "Cure IV" <me>')
-	else
-		add_to_chat(123,"You don't have a sets.HPDown to cheat with.")
-	end
+        windower.chat.input('/ma "Cure IV" <me>')
+    else
+        add_to_chat(123,"You don't have a sets.HPDown nor a sets.HPCure to cheat with.")
+    end
 end
 
 function handle_smartcure()

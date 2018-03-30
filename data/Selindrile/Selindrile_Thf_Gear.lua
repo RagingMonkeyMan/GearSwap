@@ -123,7 +123,7 @@ function init_gear_sets()
 
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {ammo="Falcon Eye",
-        head="Dampening Tam",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Sherida Earring",
+        head="Dampening Tam",neck="Caro Necklace",ear1="Brutal Earring",ear2="Sherida Earring",
         body="Adhemar Jacket +1",hands="Meg. Gloves +2",ring1="Ilabrat Ring",ring2="Regal Ring",
         back=gear.da_jse_back,waist="Grunfeld Rope",legs="Samnuha Tights",feet=gear.herculean_wsd_feet}
     sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {neck="Combatant's Torque"})

@@ -14,7 +14,7 @@ function user_setup()
     gear.QDbullet = "Animikii Bullet"
     options.ammo_warning_limit = 15
 
-	gear.tp_ranger_jse_back = {}
+	gear.tp_ranger_jse_back = {name="Camulus's Mantle",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10',}}
 	gear.snapshot_jse_back = {name="Camulus's Mantle",augments={'"Snapshot"+10',}}
 	gear.tp_jse_back = {name="Camulus's Mantle",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}
 	gear.ranger_wsd_jse_back = {name="Camulus's Mantle",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%',}}
@@ -230,12 +230,12 @@ function init_gear_sets()
     sets.midcast.RA = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
         body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Rajas Ring",ring2="Ilabrat Ring",
-        back=gear.ranger_wsd_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meg. Jam. +2"}
+        back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meg. Jam. +2"}
 
     sets.midcast.RA.Acc = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
         body="Laksa. Frac +3",hands="Meg. Gloves +2",ring1="Regal Ring",ring2="Dingir Ring",
-        back=gear.ranger_wsd_jse_back,waist="Yemaya Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
+        back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
 		
 	sets.buff['Triple Shot'] = {body="Chasseur's Frac +1"}
     
