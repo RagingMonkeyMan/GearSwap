@@ -646,7 +646,7 @@ function init_gear_sets()
 	sets.Healing_DWClub = {}
 	sets.Cure_Received = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}
 	sets.Self_Refresh = {back="Grapevine Cape",waist="Gishdubar Sash"}
-	sets.MagicBurst = {body="Samnuha Coat",hands="Amalric Gages",ring1="Mujin Band",ring2="Locus Ring"}
+	sets.MagicBurst = {body="Samnuha Coat",hands="Amalric Gages +1",ring1="Mujin Band",ring2="Locus Ring"}
 
 end
 

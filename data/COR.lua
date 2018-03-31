@@ -188,7 +188,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Ranged Attack' and sets.precast.RA and buffactive.Flurry then
 		if sets.precast.RA.Flurry and lastflurry == 1 then
 			equip(sets.precast.RA.Flurry)
-		elseif sets.precast.RA.Flurry and lastflurry == 2 then
+		elseif sets.precast.RA.Flurry2 and lastflurry == 2 then
 			equip(sets.precast.RA.Flurry2)
 		end
 	elseif (spell.type == 'CorsairRoll' or spell.english == "Double-Up") and state.LuzafRing.value then
