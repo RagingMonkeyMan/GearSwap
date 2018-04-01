@@ -179,14 +179,10 @@ end
 	
 function update_combat_form()
 	if player.equipment.main then
-		if player.equipment.main == "Ragnarok" then
-			state.CombatForm:set('Ragnarok')
-		elseif player.equipment.main == "Bravura" then
-			state.CombatForm:set('Bravura')
-		elseif player.equipment.main == "Conqueror" then
-			state.CombatForm:set('Conqueror')
-		elseif player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
+		if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
 			state.CombatForm:set('DW')
+		elseif sets.engaged[player.equipment.main] then
+			state.CombatForm:set(player.equipment.main)
 		else
 			state.CombatForm:reset()
 		end
