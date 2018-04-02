@@ -182,7 +182,6 @@ function job_setup()
     }
 
 	update_melee_groups()
-	update_combat_form()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","LearningMode","CastingMode","TreasureMode"})
 end
 
@@ -405,8 +404,6 @@ end
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
-    update_melee_groups()
 end
 
 function job_self_command(commandArgs, eventArgs)
@@ -445,16 +442,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-
-function update_combat_form()
-	if player.equipment.sub then
-		if player.equipment.sub:contains('Shield') or player.equipment.sub == 'Culminus' or player.equipment.sub == 'empty' then
-			state.CombatForm:set('Fencer')
-		else
-			state.CombatForm:reset()
-		end
-	end
-end
 
 function update_melee_groups()
 	if player.equipment.main then

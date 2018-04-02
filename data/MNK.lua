@@ -137,21 +137,12 @@ end
 
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
     update_melee_groups()
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-
-function update_combat_form()
-    if buffactive.footwork and not buffactive['hundred fists'] then
-        state.CombatForm:set('Footwork')
-    else
-        state.CombatForm:reset()
-    end
-end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Custom event hooks.
@@ -235,6 +226,10 @@ end
 function update_melee_groups()
     classes.CustomMeleeGroups:clear()
 
+	if buffactive.footwork and not buffactive['hundred fists'] then
+        classes.CustomMeleeGroups:append('Footwork')
+    end
+	
 	if player.equipment.main and player.equipment.main == "Glanzfaust" and state.Buff['Aftermath: Lv.3'] then
 		classes.CustomMeleeGroups:append('AM')
 	end

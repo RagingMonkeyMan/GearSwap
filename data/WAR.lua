@@ -165,7 +165,6 @@ end
 
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
     update_melee_groups()
 	
 	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
@@ -176,19 +175,7 @@ end
 function job_buff_change(buff, gain)
 	update_melee_groups()
 end
-	
-function update_combat_form()
-	if player.equipment.main then
-		if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
-			state.CombatForm:set('DW')
-		elseif sets.engaged[player.equipment.main] then
-			state.CombatForm:set(player.equipment.main)
-		else
-			state.CombatForm:reset()
-		end
-	end
-end
-	
+
 function update_melee_groups()
     if player then
 		classes.CustomMeleeGroups:clear()

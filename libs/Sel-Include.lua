@@ -1823,7 +1823,7 @@ function status_change(newStatus, oldStatus)
 		send_command('gs rh clear')
 	end
 	
-    if newStatus == 1 and update_combat_form then
+    if newStatus == 1 then
 		update_combat_form()
 	end
 	
@@ -1901,10 +1901,6 @@ function state_change(stateField, newValue, oldValue)
 		tickdelay = 0
 	elseif stateField == 'Capacity' and newValue == 'false' and cprings:contains(player.equipment.left_ring) then
             enable("left_ring")
-	end
-	
-	if update_combat_form then
-		update_combat_form()
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end

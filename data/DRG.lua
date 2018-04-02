@@ -26,7 +26,6 @@ function job_setup()
 	autofood = 'Soy Ramen'
 
 	Breath_HPP = 60
-	update_combat_form()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -111,17 +110,13 @@ function job_update(cmdParams, eventArgs)
 	end
 end
 
-function update_combat_form()
-    if areas.Adoulin:contains(world.area) and buffactive.Ionis then
-        state.CombatForm:set('Adoulin')
-    else
-        state.CombatForm:reset()
-    end
-end
-
 function update_melee_groups()
     classes.CustomMeleeGroups:clear()
     
+    if areas.Adoulin:contains(world.area) and buffactive.Ionis then
+		classes.CustomMeleeGroups:append('Adoulin')
+    end
+	
 	if player.equipment.main and player.equipment.main == "Ryunohige" and state.Buff['Aftermath: Lv.3'] then
 		classes.CustomMeleeGroups:append('AM')
 	end

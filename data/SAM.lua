@@ -23,7 +23,6 @@ function job_setup()
 	autows = 'Tachi: Fudo'
 	autofood = 'Soy Ramen'
 
-	update_combat_form()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -190,7 +189,6 @@ end
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
 	update_melee_groups()
 end
 
@@ -204,18 +202,14 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
-function update_combat_form()
-    if areas.Adoulin:contains(world.area) and buffactive.Ionis then
-        state.CombatForm:set('Adoulin')
-    else
-        state.CombatForm:reset()
-    end
-end
-
 function update_melee_groups()
+	classes.CustomMeleeGroups:clear()
+	
+    if areas.Adoulin:contains(world.area) and buffactive.Ionis then
+		classes.CustomMeleeGroups:append('Adoulin')
+    end
+
 	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-		
 		if player.equipment.main == "Kogarasumaru" and state.Buff['Aftermath: Lv.3'] then
 				classes.CustomMeleeGroups:append('AM')
 		end

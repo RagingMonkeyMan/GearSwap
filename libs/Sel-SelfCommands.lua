@@ -272,14 +272,13 @@ function handle_update(cmdParams)
     end
 	
 	update_job_states()
+	update_combat_form()
 end
 
 
 -- showtp: equip the current TP set for examination.
 function handle_showtp(cmdParams)
-	if update_combat_form then
-		update_combat_form()
-	end
+	update_combat_form()
 
     local msg = 'Showing current TP set: ['.. state.OffenseMode.value
     if state.HybridMode.value ~= 'Normal' then
@@ -315,7 +314,7 @@ function handle_weapons(cmdParams)
 	if cmdParams[1] == nil then
 		equip_weaponset(state.Weapons.value)
 	elseif cmdParams[1]:lower() == 'default' then
-		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.DualWeapons then
+		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.weapons.DualWeapons then
 			if state.Weapons.value ~= 'DualWeapons' then
 				state.Weapons:set('DualWeapons')
 			end

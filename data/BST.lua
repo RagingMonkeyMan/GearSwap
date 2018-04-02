@@ -167,7 +167,6 @@ function job_setup()
 	autows = 'Cloudsplitter'
 	autofood = 'Akamochi'
 
-	update_combat_form()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
 end
@@ -441,7 +440,6 @@ end
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-	update_combat_form()
 	update_melee_groups()
 
 	if state.JugMode.value == 'FunguarFamiliar' then
@@ -672,15 +670,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-
-function update_combat_form()
-	if player.equipment.main and (player.sub_job == 'NIN' or player.sub_job == 'DNC') and player.equipment.sub and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or player.equipment.sub:contains('Shield')) then
-			state.CombatForm:set('DW')
-	else
-			state.CombatForm:reset()
-	end
-end
-
 function update_melee_groups()
 	if player.equipment.main then
 		classes.CustomMeleeGroups:clear()

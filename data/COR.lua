@@ -36,7 +36,6 @@ function job_setup()
 	ammostock = 200
 
     define_roll_values()
-	update_combat_form()
 	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode","LuzafRing","AutoBuffMode",},{"Weapons","OffenseMode","RangedMode","WeaponskillMode","ElementalMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -156,15 +155,6 @@ end
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
-end
-
-function update_combat_form()
-	if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
-			state.CombatForm:set('DW')
-	else
-			state.CombatForm:reset()
-	end
 end
 
 function job_post_precast(spell, spellMap, eventArgs)

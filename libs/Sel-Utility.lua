@@ -1734,6 +1734,31 @@ function check_ws_acc()
 	end
 end
 
+-- Generic combat form handling
+function update_combat_form()
+	if sets.engaged[state.Weapons.value] then
+		state.CombatForm:set(state.Weapons.value)
+	elseif not player.equipment.main then
+		if sets.engaged.Unarmed then
+			state.CombatForm:set('Unarmed')
+		else
+			state.CombatForm:reset()
+		end
+	elseif player.equipment.main and sets.engaged.DW and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size) then
+		state.CombatForm:set('DW')
+	elseif sets.engaged[player.equipment.main] then
+		state.CombatForm:set(player.equipment.main)
+	elseif sets.engaged.Fencer and (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size) then
+		state.CombatForm:set('Fencer')
+	else
+		state.CombatForm:reset()
+	end
+end
+
+function item_name_to_id(name)
+    return (player.inventory[name] or player.wardrobe[name] or player.wardrobe2[name] or player.wardrobe3[name] or player.wardrobe4[name] or {}).id
+end
+
 function get_current_strategem_count()
     -- returns recast in seconds.
     local allRecasts = windower.ffxi.get_ability_recasts()

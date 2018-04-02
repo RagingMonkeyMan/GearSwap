@@ -26,7 +26,6 @@ function job_setup()
 	autows = 'Resolution'
 	autofood = 'Soy Ramen'
 	
-	update_combat_form()
 	update_melee_groups()
 
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","CastingMode","TreasureMode",})
@@ -185,25 +184,12 @@ function job_tick()
 end
 
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
     update_melee_groups()
 	
 	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
 		state.Stance:set("None")
 		update_job_states()
 	end
-end
-
-function update_combat_form()
-    if player.equipment.main == "Ragnarok" then
-        state.CombatForm:set('Ragnarok')
-    elseif player.equipment.main == "Apocalypse" then
-        state.CombatForm:set('Apocalypse')
-    elseif player.equipment.main == "Liberator" then
-        state.CombatForm:set('Liberator')
-    else
-        state.CombatForm:reset()
-    end
 end
 
 function job_buff_change(buff, gain)

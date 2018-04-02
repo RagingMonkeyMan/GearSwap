@@ -25,8 +25,6 @@ function job_setup()
 	autofood = 'Soy Ramen'
 	ammostock = 200
 	
-	update_combat_form()
-	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","RangedMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
@@ -54,14 +52,6 @@ function job_precast(spell, spellMap, eventArgs)
 		check_ammo(spell, action, spellMap, eventArgs)
 	end
 
-end
-
-function update_combat_form()
-	if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap')) and not player.equipment.sub:contains('Shield') then
-			state.CombatForm:set('DW')
-	else
-			state.CombatForm:reset()
-	end
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
@@ -139,7 +129,6 @@ function job_update(cmdParams, eventArgs)
             send_command('@input /ja "Velocity Shot" <me>')
         end
     end
-	update_combat_form()
 end
 
 -------------------------------------------------------------------------------------------------------------------

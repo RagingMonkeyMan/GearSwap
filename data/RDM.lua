@@ -25,7 +25,6 @@ function job_setup()
 	autows = "Chant Du Cygne"
 	autofood = 'Pear Crepe'
 	
-	update_combat_form()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
@@ -163,16 +162,7 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_update(cmdParams, eventArgs)
-    update_combat_form()
 	update_melee_groups()
-end
-
-function update_combat_form()
-	if player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or player.equipment.sub:contains('Shield') or player.equipment.sub:contains('Culminus')) then
-			state.CombatForm:set('DW')
-	else
-			state.CombatForm:reset()
-	end
 end
 
     -- Allow jobs to override this code
