@@ -75,15 +75,15 @@ function init_gear_sets()
         back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
 
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
-    sets.precast.WS['Stringing Pummel'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Stringing Pummel'].Acc = set_combine(sets.precast.WS.Acc, {})
-	sets.precast.WS['Stringing Pummel'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Stringing Pummel'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-
-    sets.precast.WS['Victory Smite'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Victory Smite'].Acc = set_combine(sets.precast.WS.Acc, {})
-	sets.precast.WS['Victory Smite'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Victory Smite'].Fodder = set_combine(sets.precast.WS.Fodder, {})
+    sets.precast.WS['Victory Smite'] = set_combine(sets.precast.WS, {body="Abnoba Kaftan"})
+    sets.precast.WS['Victory Smite'].Acc = set_combine(sets.precast.WS.Acc, {body="Sayadio's Kaftan"})
+	sets.precast.WS['Victory Smite'].FullAcc = set_combine(sets.precast.WS.FullAcc, {body="Sayadio's Kaftan"})
+	sets.precast.WS['Victory Smite'].Fodder = set_combine(sets.precast.WS.Fodder, {body="Abnoba Kaftan"})
+	
+    sets.precast.WS['Stringing Pummel'] = set_combine(sets.precast.WS, {body="Abnoba Kaftan"})
+    sets.precast.WS['Stringing Pummel'].Acc = set_combine(sets.precast.WS.FullAcc, {body="Sayadio's Kaftan"})
+	sets.precast.WS['Stringing Pummel'].FullAcc = set_combine(sets.precast.WS.FullAcc, {body="Sayadio's Kaftan"})
+	sets.precast.WS['Stringing Pummel'].Fodder = set_combine(sets.precast.WS.Fodder, {body="Abnoba Kaftan"})
 
     sets.precast.WS['Shijin Spiral'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Shijin Spiral'].Acc = set_combine(sets.precast.WS.Acc, {})
@@ -191,14 +191,14 @@ function init_gear_sets()
 
     -- Idle sets to wear while pet is engaged
     sets.idle.Pet.Engaged = {
-        head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
+        head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Domesticator's Earring",
         body="Taeon Tabard",hands="Regimen Mittens",ring1="Varar Ring",ring2="Varar Ring",
         back="Visucius's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tali'ah Crackows +1"}
 
     sets.idle.Pet.Engaged.Ranged = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.Melee = set_combine(sets.idle.Pet.Engaged, {})
-	sets.idle.Pet.Engaged.Tank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt"})
-	sets.idle.Pet.Engaged.LightTank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt"})
+	sets.idle.Pet.Engaged.Tank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt",ear2="Handler's Earring +1"})
+	sets.idle.Pet.Engaged.LightTank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt",ear2="Handler's Earring +1"})
     sets.idle.Pet.Engaged.Magic = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.Heal = sets.idle.Pet.Engaged.Magic
 	sets.idle.Pet.Engaged.Nuke = sets.idle.Pet.Engaged.Magic
@@ -232,21 +232,21 @@ function init_gear_sets()
     
     -- Normal melee group
     sets.engaged = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Windbuffet Belt +1",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.Acc = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Ramuh Ring +1",
+        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.FullAcc = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet}
 	sets.engaged.Fodder = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Brutal Earring",
+        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Windbuffet Belt +1",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.DT = {
         head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
         body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
@@ -264,21 +264,21 @@ function init_gear_sets()
         body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
         back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
     sets.engaged.Pet = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Klouskap Sash",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.Acc.Pet = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Klouskap Sash",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.FullAcc.Pet = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Klouskap Sash",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
     sets.engaged.Fodder.Pet = {
-        head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Brutal Earring",
-        body=gear.herculean_wsd_body,hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Regal Ring",
-        back="Visucius's Mantle",waist="Grunfeld Rope",legs="Hiza. Hizayoroi +2",feet=gear.herculean_ta_feet}
+        head="Tali'ah Turban +2",neck="Shulmanu Collar",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Sayadio's Kaftan",hands="Ryuo Tekko",ring1="Niqmaddu Ring",ring2="Epona's Ring",
+        back="Visucius's Mantle",waist="Klouskap Sash",legs="Ryuo Hakama",feet=gear.herculean_ta_feet}
 		
 	-- Weapons sets
 	sets.weapons.PetWeapons = {main="Ohtas",range="Animator P +1",}
