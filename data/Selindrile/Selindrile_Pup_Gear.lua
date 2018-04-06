@@ -10,7 +10,7 @@ function user_setup()
     -- Default maneuvers 1, 2, 3 and 4 for each pet mode.
     defaultManeuvers = {
         ['Melee'] = {'Fire Maneuver','Thunder Maneuver','Wind Maneuver','Light Maneuver'},
-        ['Ranged'] = {'Wind Maneuver','Fire Maneuver','Thunder Maneuver','Light Maneuver'},
+        ['Ranged'] = {'Wind Maneuver','Fire Maneuver','Light Maneuver','Thunder Maneuver'},
         ['Tank'] = {'Earth Maneuver','Fire Maneuver', 'Light Maneuver','Dark Maneuver'},
 		['LightTank'] = {'Earth Maneuver','Fire Maneuver','Light Maneuver','Dark Maneuver'},
         ['Magic'] = {'Ice Maneuver','Light Maneuver','Dark Maneuver','Earth Maneuver'},

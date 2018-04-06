@@ -132,16 +132,27 @@ function display_current_job_state(eventArgs)
     display_pet_status()
 end
 
-function job_customize_passive_set(baseSet)
+function job_customize_idle_set(idleSet)
 	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and sets.midcast.Pet then
 		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
-			baseSet = set_combine(baseSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
+			idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
 		elseif sets.midcast.Pet.PetWSGear then
-			baseSet = set_combine(baseSet, sets.midcast.Pet.PetWSGear)
+			idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear)
+		end
+	end
+	return idleSet
+end
+
+function job_customize_melee_set(meleeSet)
+	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and player.tp > 999 and sets.midcast.Pet then
+		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
+			meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
+		elseif sets.midcast.Pet.PetWSGear then
+			meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear)
 		end
 	end
 
-	return baseSet
+    return meleeSet
 end
 -------------------------------------------------------------------------------------------------------------------
 -- User self-commands.
