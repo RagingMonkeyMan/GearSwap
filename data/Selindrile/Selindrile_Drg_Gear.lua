@@ -11,8 +11,6 @@ function user_setup()
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Weapons:options('Trishula')
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
-	
-    update_combat_form()
 
     select_default_macro_book()
 	

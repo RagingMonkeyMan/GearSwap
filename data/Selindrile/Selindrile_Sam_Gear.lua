@@ -9,8 +9,6 @@ function user_setup()
 	state.ResistDefenseMode:options('MEVA')
     state.IdleMode:options('Normal', 'Reraise')
 	state.Weapons:options('Dojikiri','ProcWeapon','Bow')
-	
-    update_combat_form()
 
 	gear.ws_jse_back = {name="Smertrios's Mantle",augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
 	gear.stp_jse_back = {name="Smertrios's Mantle",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}

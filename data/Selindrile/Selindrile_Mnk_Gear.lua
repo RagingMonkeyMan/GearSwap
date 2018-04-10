@@ -10,8 +10,7 @@ function user_setup()
 	state.Weapons:options('Godhands','ProcStaff','ProcClub','None')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
-	
-    update_combat_form()
+
     update_melee_groups()
 	
 	-- Additional local binds
