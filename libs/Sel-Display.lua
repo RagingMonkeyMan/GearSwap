@@ -93,6 +93,7 @@ function update_job_states()
         HybridMode = "Hybrid",
         IdleMode = "Idle",
 		Passive = "Passive",
+		PetMode = "Pet Mode",
         WeaponskillMode = "Weaponskill",
         CastingMode = "Casting",
         MainStep = "Main Step",

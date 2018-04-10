@@ -348,7 +348,7 @@ function equip_weaponset(cmdParams)
 	if state.Weapons.value ~= 'None' then
 		if player.main_job == 'BRD' then
 			disable('main','sub')
-		elseif player.main_job ~= 'BST' then
+		else
 			disable('main','sub','range')
 			if sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
 				disable('ammo')

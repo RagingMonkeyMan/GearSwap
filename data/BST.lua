@@ -157,6 +157,7 @@ function job_setup()
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
 	state.AutoCallPet = M(false, 'Auto Call Pet')
+	state.PetMode = M{['description']='Pet Mode','PetOnly','PetTank','PetDD','BothDD','Normal'}
 	state.RewardMode = M{['description']='Reward Mode', 'Theta', 'Zeta', 'Eta'}
     state.JugMode = M{['description']='Jug Mode', 'ScissorlegXerin', 'BlackbeardRandy', 'AttentiveIbuki', 'AgedAngus',
                 'RedolentCandi','DroopyDortwin','WarlikePatrick','HeraldHenry','AlluringHoney','SwoopingZhivago','AcuexFamiliar'}
@@ -168,7 +169,7 @@ function job_setup()
 	autofood = 'Akamochi'
 
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","PetMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -204,24 +205,18 @@ function job_precast(spell, spellMap, eventArgs)
 
 		elseif spell.english == 'Reward' then
 			equip(sets.precast.JA.Reward[state.RewardMode.value])
-
-			if state.PetMode.value == 'PetOnly' then
-				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-					equip(sets.RewardAxesDW)
-				else
-					equip(sets.RewardAxe)
-				end
+			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+				equip(sets.RewardAxesDW)
+			else
+				equip(sets.RewardAxe)
 			end
 
 		elseif spell.english == 'Spur' then
 			equip(sets.precast.JA.Spur)
-
-			if state.PetMode.value == 'PetOnly' then
-				if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-					equip(sets.SpurAxesDW)
-				else
-					equip(sets.SpurAxe)
-				end
+			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+				equip(sets.SpurAxesDW)
+			else
+				equip(sets.SpurAxe)
 			end
 
 		elseif spell.english == 'Bestial Loyalty' then
@@ -257,10 +252,10 @@ function job_precast(spell, spellMap, eventArgs)
 -- Define class for Sic and Ready moves.
         elseif spell.type == 'Monster' then
                 classes.CustomClass = "WS"
-                if state.PetMode.Value == 'PetOnly' and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
-                         equip(sets.midcast.Pet.ReadyRecastNE)
+                if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+					equip(sets.midcast.Pet.ReadyRecastDW)
                 else
-                         equip(sets.midcast.Pet.ReadyRecast)
+					equip(sets.midcast.Pet.ReadyRecast)
                 end
         end
 end
@@ -311,30 +306,18 @@ function job_post_precast(spell, spellMap, eventArgs)
 end
 
 function job_pet_midcast(spell, spellMap, eventArgs)
-        if state.PetMode.value == 'PetOnly' then
-                if state.OffenseMode.value:contains('Acc') then
-                        equip(sets.midcast.Pet.ReadyNE.Acc)
-                elseif state.OffenseMode.value == 'FullAcc' then
-                        equip(sets.midcast.Pet.FullAcc)
-                else
-                        equip(set_combine(sets.midcast.Pet.ReadyNE, sets.midcast.Pet[state.CorrelationMode.value]))
-                end
-        else
-                if state.OffenseMode.value:contains('Acc') then
-                        equip(sets.midcast.Pet.Acc)
-                elseif state.OffenseMode.value == 'FullAcc' then
-                        equip(sets.midcast.Pet.ReadyNE.Acc)
-                else
-                        equip(set_combine(sets.midcast.Pet.WS, sets.midcast.Pet[state.CorrelationMode.value]))
-                end
-        end
-
         if magic_ready_moves:contains(spell.name) then
-                if state.PetMode.value == 'PetOnly' then
-                        equip(sets.midcast.Pet.MagicReadyNE)
-                else
-                        equip(sets.midcast.Pet.MagicReady)
-                end
+			if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
+				equip(sets.midcast.Pet.MagicReady[state.OffenseMode.value])
+			else
+				equip(sets.midcast.Pet.MagicReady)
+			end
+        else
+			if sets.midcast.Pet[state.OffenseMode.value] then
+				equip(sets.midcast.Pet[state.OffenseMode.value])
+			else
+				equip(sets.midcast.Pet.WS)
+			end
         end
 
         -- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
@@ -374,11 +357,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_customize_idle_set(idleSet)
-
-        if  state.PetMode.value == 'PetOnly' then
-           idleSet = set_combine(idleSet, sets.IdleAxesNE)
-        end
-
     return idleSet
 end
 
@@ -403,20 +381,6 @@ function job_buff_change(buff, gain)
 		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
 		add_to_chat(217, "Unleash has worn, enabling all slots.")
 	end
-end
-
-function job_state_change(stateField, newValue, oldValue)
-        if stateField == 'Correlation Mode' then
-                state.CorrelationMode:set(newValue)
-        elseif stateField == 'Reward Mode' then
-                state.RewardMode:set(newValue)
-        elseif stateField == 'Treasure Mode' then
-                state.TreasureMode:set(newValue)
-        elseif stateField == 'Pet Mode' then
-                state.CombatWeapon:set(newValue)
-        elseif stateField == 'Jug Mode' then
-                state.JugMode:set(newValue)
-        end
 end
 
 function job_status_change(newStatus, oldStatus, eventArgs)
@@ -837,17 +801,25 @@ function get_ready_charge_timer()
 		chargetimer = chargetimer - 5
 	end
 
-	if state.PetMode.Value == 'PetOnly' and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
-		if sets.midcast.Pet.ReadyRecastNE.sub and sets.midcast.Pet.ReadyRecastNE.sub == "Charmer's Merlin" then
+	if state.Weapons.Value == 'None' then
+		if (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
+			if sets.midcast.Pet.ReadyRecastDW.sub and sets.midcast.Pet.ReadyRecastDW.sub == "Charmer's Merlin" then
+				chargetimer = chargetimer - 5
+			end
+
+		elseif sets.midcast.Pet.ReadyRecast.main and sets.midcast.Pet.ReadyRecast.main == "Charmer's Merlin" then
 			chargetimer = chargetimer - 5
 		end
-		if sets.midcast.Pet.ReadyRecastNE.legs and sets.midcast.Pet.ReadyRecastNE.legs == "Desultor Tassets" then
+	end
+	
+	if (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
+		if sets.midcast.Pet.ReadyRecastDW.legs and sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" then
 			chargetimer = chargetimer - 5
 		end
 	else
 		if sets.midcast.Pet.ReadyRecast.legs and sets.midcast.Pet.ReadyRecast.legs == "Desultor Tassets" then
 			chargetimer = chargetimer - 5
-		end
+		end	
 	end
 
 	return chargetimer

@@ -5,10 +5,10 @@
 --List of moves to stun.
 --Seperated move sets are ones that might want to be pulled out in some situations
 
-StunAbility = 	  S{"Fulmination", "Breakga", "Death Scissors", "Hell Scissors",
-					"Smouldering Swarm", "Blackout", "Tempestuous Upheaval", "Vespine Hurricane", "Stinger Volley", "Incisive Denouement",
-					"Incisive Apotheosis", "Death", "Saurian Swamp", "Saurian Slide", "Jungle Wallop", "Velkkan Pygmachia", "Barreling Smash",
-					"Jungle Hoodoo", "Merciless Mauling", "Galumph", "Velkkan Ambush", "Rending Deluge", "Riptide Eupnea", "Sundering Snip",
+StunAbility = 	  S{"Fulmination","Breakga","Death Scissors","Hell Scissors","Tera Slash",
+					"Smouldering Swarm","Blackout","Tempestuous Upheaval", "Vespine Hurricane", "Stinger Volley", "Incisive Denouement",
+					"Incisive Apotheosis","Death","Saurian Swamp","Saurian Slide", "Jungle Wallop", "Velkkan Pygmachia", "Barreling Smash",
+					"Jungle Hoodoo","Merciless Mauling", "Galumph","Velkkan Ambush", "Rending Deluge", "Riptide Eupnea", "Sundering Snip",
 					"Impenetrable Carapace", "Viscid Spindrift", "Venom Shower", "Protolithic Puncture", "Aquatic Lance","Pelagic Cleaver",
 					"Tidal Guillotine", "Mayhem Lantern", "Whirling Inferno","Tarichutoxin", "Calcifying Mist", "Testudo Tremor",
 					"Batholithic Shell", "Volcanic Stasis", "Tyrannical Blow", "Blistering Roar", "Meteor", "Kaustra", "Amnesic Blast",
