@@ -1,6 +1,6 @@
 function user_setup()
 	state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
-	state.HybridMode:options('Normal', 'PDT')
+	state.HybridMode:options('Normal','PDT','PetTank','BothDD')
 	state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
 	state.CastingMode:options('Normal')
 	state.IdleMode:options('Normal', 'Refresh', 'Reraise')
@@ -28,7 +28,7 @@ function user_setup()
 	send_command('bind !f7 gs c cycle CorrelationMode')
 
 	-- Set up Pet Modes for Hybrid sets and keybind 'Windows Key'+F7
-	state.PetMode = M{['description']='Pet Mode','PetOnly','PetTank','PetDD','BothDD','Normal'}
+	state.PetMode = M{['description']='Pet Mode','Tank','DD'}
 	send_command('bind @f7 gs c cycle PetMode')
 
 	-- Set up Reward Modes and keybind Ctrl+Backspace

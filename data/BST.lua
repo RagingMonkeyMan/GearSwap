@@ -1,27 +1,6 @@
 -------------------------------------------------------------------------------------------------------------------
--- Last Revised: May 7th, 2015 (Added a 'PetOnly' Mode - 'Windows Key'+F8 cycles Pet Modes.
--- And a new rule for equipping TP Bonus Hands for TP-based moves.)
---
--- alt+F8 cycles through designated Jug Pets
--- ctrl+F8 toggles Monster Correlation between Neutral and Favorable
--- 'Windows Key'+F8 switches between Pet stances for Master/Pet hybrid gearsets
--- alt+= cycles through Pet Food types
--- ctrl+= can swap in the usage of Chaac Belt for Treasure Hunter on common subjob abilities.
--- ctrl+F11 cycles between Magical Defense Modes
---
--- General Gearswap Commands:
--- F9 cycles Accuracy modes
--- ctrl+F9 cycles Hybrid modes
--- 'Windows Key'+F9 cycles Weapon Skill modes
--- F10 equips Physical Defense
--- alt+F10 toggles Kiting on or off
--- ctrl+F10 cycles Physical Defense modes
--- F11 equips Magical Defense
--- alt+F12 turns off Defense modes
--- ctrl+F12 cycles Idle modes
---
--- Keep in mind that any time you Change Jobs/Subjobs, your Pet/Pet Food/etc. reset to default options.
--- F12 will list your current options.
+-- Much credit goes to Falkirk of Quetzalcoatl for providing a lot of the concepts and
+-- code in this file, as well as, always, Motenten/Kinematics.
 -------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------
@@ -157,7 +136,7 @@ function job_setup()
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
 	state.AutoCallPet = M(false, 'Auto Call Pet')
-	state.PetMode = M{['description']='Pet Mode','PetOnly','PetTank','PetDD','BothDD','Normal'}
+	state.PetMode = M{['description']='Pet Mode','Tank','DD'}
 	state.RewardMode = M{['description']='Reward Mode', 'Theta', 'Zeta', 'Eta'}
     state.JugMode = M{['description']='Jug Mode', 'ScissorlegXerin', 'BlackbeardRandy', 'AttentiveIbuki', 'AgedAngus',
                 'RedolentCandi','DroopyDortwin','WarlikePatrick','HeraldHenry','AlluringHoney','SwoopingZhivago','AcuexFamiliar'}
@@ -168,6 +147,7 @@ function job_setup()
 	autows = 'Cloudsplitter'
 	autofood = 'Akamochi'
 
+	update_pet_groups()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","PetMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
 end
@@ -360,6 +340,24 @@ function job_customize_idle_set(idleSet)
     return idleSet
 end
 
+function job_state_change(stateField, newValue, oldValue)
+	if stateField == 'PetMode' then
+		update_pet_groups()
+	end
+end
+
+function job_pet_change(pet, gain)
+    update_pet_groups()
+end
+
+-- Update custom groups based on the current pet.
+function update_pet_groups()
+    classes.CustomIdleGroups:clear()
+    if pet.isvalid then
+        classes.CustomIdleGroups:append(state.PetMode.value)
+    end
+end
+
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
 
@@ -404,6 +402,7 @@ end
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
+	update_pet_groups()
 	update_melee_groups()
 
 	if state.JugMode.value == 'FunguarFamiliar' then

@@ -34,12 +34,11 @@ function job_setup()
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
 
-    update_pet_mode()
-
-	autows = "Victory Smite"
+    autows = "Victory Smite"
 	autofood = 'Akamochi'
 	lastpettp = 0
 
+	update_pet_mode()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
