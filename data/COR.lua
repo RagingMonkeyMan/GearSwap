@@ -309,7 +309,7 @@ function job_tick()
 end
 
 function check_bullets()
-	if state.AutoBulletMode.value and player.equipment.range then
+	if state.AutoBulletMode.value and player.equipment.range and not world.in_mog_house then
 			if player.equipment.range == 'Fomalhaut' and get_item_next_use(player.equipment.range).usable then
 				if count_total_bullets('Chrono Bullet') < ammostock then
 					windower.chat.input('/item "Fomalhaut" <me>')
