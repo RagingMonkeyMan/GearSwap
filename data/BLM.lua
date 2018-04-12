@@ -56,6 +56,8 @@ function job_precast(spell, spellMap, eventArgs)
 		
         if state.CastingMode.value == 'Proc' then
             classes.CustomClass = 'Proc'
+        elseif state.CastingMode.value == 'OccultAcumen' then
+            classes.CustomClass = 'OccultAcumen'
         end
         if state.DeathMode.value ~= 'Off' then
             classes.CustomClass = 'Death'

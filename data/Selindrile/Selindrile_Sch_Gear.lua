@@ -1,10 +1,10 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
     state.OffenseMode:options('Normal')
-    state.CastingMode:options('Normal','Resistant','Proc')
+    state.CastingMode:options('Normal','Resistant','Proc','OccultAcumen')
     state.IdleMode:options('Normal', 'PDT', 'TPEat')
 	state.HybridMode:options('Normal','PDT')
-	state.Weapons:options('None','Akademos')
+	state.Weapons:options('None','Akademos','Khatvanga')
 
 	gear.nuke_jse_back = {name="Lugh's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	
@@ -18,6 +18,8 @@ function user_setup()
 	send_command('bind ^` gs c cycle ElementalMode')
 	send_command('bind !` gs c scholar power')
 	send_command('bind @` gs c cycle MagicBurstMode')
+	send_command('bind ^q gs c weapons Khatvanga;gs c set CastingMode OccultAcumen')
+	send_command('bind !q gs c weapons default;gs c reset CastingMode')
 	send_command('bind @f10 gs c cycle RecoverMode')
 	send_command('bind @f8 gs c toggle AutoNukeMode')
 	send_command('bind !pause gs c toggle AutoSubMode') --Automatically uses sublimation and Myrkr.
@@ -70,8 +72,8 @@ function init_gear_sets()
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS['Myrkr'] = {ammo="Staunch Tathlum",
-		head="Pixie Hairpin +1",neck="Sanctity Necklace",ear1="Gifted Earring",ear2="Etiolation Earring",
-		body="Amalric Doublet",hands="Telchine Gloves",ring1="Mephitas's Ring",ring2="Mephitas's Ring +1",
+		head="Pixie Hairpin +1",neck="Sanctity Necklace",ear1="Evans Earring",ear2="Etiolation Earring",
+		body="Amalric Doublet",hands="Regal Cuffs",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
 		back="Aurist's Cape +1",waist="Yamabuki-no-Obi",legs="Psycloth Lappas",feet="Medium's Sabots"}
 
     -- Midcast Sets
@@ -234,6 +236,11 @@ function init_gear_sets()
         body="Helios Jacket",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
 		
+    sets.midcast['Elemental Magic'].OccultAcumen = {main="Khatvanga",sub="Bloodrain Strap",ammo="Seraphic Ampulla",
+        head="Welkin Crown",neck="Combatant's Torque",ear1="Dedition Earring",ear2="Telos Earring",
+        body=gear.merlinic_occult_body,hands=gear.merlinic_occult_hands,ring1="Rajas Ring",ring2="Petrov Ring",
+        back=gear.nuke_jse_back,waist="Oneiros Rope",legs="Perdition Slops",feet=gear.merlinic_occult_feet}
+		
     -- Custom refinements for certain nuke tiers
 	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {main="Akademos",sub="Niobid Strap",ammo="Pemphredo Tathlum",ear1="Regal Earring",ear2="Barkaro. Earring",hands="Amalric Gages +1"})
 	sets.midcast['Elemental Magic'].Resistant.HighTierNuke = set_combine(sets.midcast['Elemental Magic'].Resistant, {main=gear.grioavolr_nuke_staff,sub="Niobid Strap",ammo="Pemphredo Tathlum",ear1="Regal Earring",ear2="Barkaro. Earring",hands="Amalric Gages +1"})
@@ -258,8 +265,9 @@ function init_gear_sets()
 		head=empty,neck="Erra Pendant",ear1="Regal Earring",ear2="Barkaro. Earring",
 		body="Twilight Cloak",hands=gear.chironic_enfeeble_hands,ring1="Stikini Ring",ring2="Stikini Ring",
 		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Merlinic Shalwar",feet=gear.merlinic_nuke_feet}
-
-
+		
+    sets.midcast.Impact.OccultAcumen = set_combine(sets.midcast['Elemental Magic'].OccultAcumen, {head=empty,body="Twilight Cloak"})
+		
     -- Sets to return to when not performing an action.
 
      -- Resting sets
@@ -354,6 +362,7 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Akademos = {main="Akademos",sub="Niobid Strap"}
+	sets.weapons.Khatvanga = {main="Khatvanga",sub="Bloodrain Strap"}
 end
 
 -- Select default macro book on initial load or subjob change.

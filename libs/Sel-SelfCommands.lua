@@ -312,7 +312,9 @@ end
 
 function handle_weapons(cmdParams)
 	if cmdParams[1] == nil then
-		equip_weaponset(state.Weapons.value)
+		if sets.weapons[state.Weapons.value] then
+			equip_weaponset(state.Weapons.value)
+		end
 	elseif cmdParams[1]:lower() == 'default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.weapons.DualWeapons then
 			if state.Weapons.value ~= 'DualWeapons' then
@@ -323,6 +325,8 @@ function handle_weapons(cmdParams)
 			state.Weapons:reset()
 			if sets.weapons[state.Weapons.value] then
 				equip_weaponset(state.Weapons.value)
+			else
+				enable('main','sub','range','ammo')
 			end
 		end
 	elseif sets.weapons[cmdParams[1]] then
@@ -332,7 +336,9 @@ function handle_weapons(cmdParams)
 		equip_weaponset(cmdParams[1])
 	else
 		add_to_chat(123,"Error: A weapons set for ["..cmdParams[1].."] does not exist.")
-		equip_weaponset(state.Weapons.value)
+		if sets.weapons[state.Weapons.value] then
+			equip_weaponset(state.Weapons.value)
+		end
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end
