@@ -161,7 +161,13 @@ function job_filter_precast(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-
+	if spell.action_type == 'Magic' then
+		if state.CastingMode.value == 'Proc' then
+            classes.CustomClass = 'Proc'
+        elseif state.CastingMode.value == 'OccultAcumen' then
+            classes.CustomClass = 'OccultAcumen'
+        end
+	end
 end
 
 function job_post_precast(spell, spellMap, eventArgs)

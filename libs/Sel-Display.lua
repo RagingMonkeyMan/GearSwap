@@ -94,6 +94,7 @@ function update_job_states()
         IdleMode = "Idle",
 		Passive = "Passive",
 		PetMode = "Pet Mode",
+		AutoManawell = "Auto Manawell",
         WeaponskillMode = "Weaponskill",
         CastingMode = "Casting",
         MainStep = "Main Step",
