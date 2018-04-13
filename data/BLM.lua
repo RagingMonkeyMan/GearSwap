@@ -136,7 +136,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.element[spell.element])
 			end
 			
-			if state.RecoverMode.value == 'Always' or (state.RecoverMode.value == '60%' and player.mpp < 60) or (state.RecoverMode.value == '35%' and player.mpp < 35) then
+			if state.RecoverMode.value ~= 'Never' and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
 				if state.MagicBurstMode.value ~= 'Off' and sets.RecoverBurst then
 					equip(sets.RecoverBurst)
 				else

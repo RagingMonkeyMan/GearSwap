@@ -146,12 +146,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
             equip(sets.buff['Immanence'])
         end
 		
-		if state.RecoverMode.value == 'Always' then equip(sets.RecoverMP)
-		elseif state.RecoverMode.value == 'Never' then
-		elseif state.RecoverMode.value == '60%' then
-			if player.mpp <60 then equip(sets.RecoverMP) end
-		elseif state.RecoverMode.value == '35%' then
-			if player.mpp <35 then equip(sets.RecoverMP) end
+		if state.RecoverMode.value ~= 'Never' and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
+			if state.MagicBurstMode.value ~= 'Off' and sets.RecoverBurst then
+				equip(sets.RecoverBurst)
+			else
+				equip(sets.RecoverMP)
+			end
 		end
     end
 	

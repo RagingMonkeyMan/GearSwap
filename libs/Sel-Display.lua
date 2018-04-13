@@ -121,6 +121,7 @@ function update_job_states()
 		RngHelper = "RngHelper",
 		Capacity = "Capacity",
 		AutoTankMode = "Auto Tank",
+		CompensatorMode = "Compensator",
 		AutoRuneMode = "Auto Rune: "..state.RuneElement.value.."",
 		PhysicalDefenseMode = "Physical Defense",
 		MagicalDefenseMode = "Magical Defense",
@@ -249,6 +250,10 @@ function update_job_states()
 		elseif n == 'LearningMode' then
 			if state.LearningMode.value and state.DefenseMode.value == 'None' then
 				stateBox:append(string.format("%sLearning Mode: %sOn", clr.w, clr.h))
+			end
+		elseif n == 'CompensatorMode' then
+			if state.CompensatorMode.value ~= 'Never' then
+				stateBox:append(string.format("%sCompensator: %s%s", clr.w, clr.h, state.CompensatorMode.value))
 			end
 		elseif n == 'ExtraSongsMode' then
 			if state.ExtraSongsMode.value ~= "None" then

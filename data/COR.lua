@@ -21,6 +21,8 @@ end
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
+	-- Whether to use Compensator under a certain threshhold even when weapons are locked.
+	state.CompensatorMode = M{'Never','500','1000','Always'}
 	-- Whether to automatically generate bullets.
 	state.AutoBulletMode = M(true,'Auto Bullet Mode')	
 	-- Whether to use Luzaf's Ring
@@ -37,7 +39,7 @@ function job_setup()
 
     define_roll_values()
 	
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode","LuzafRing","AutoBuffMode",},{"Weapons","OffenseMode","RangedMode","WeaponskillMode","ElementalMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode","LuzafRing","AutoBuffMode",},{"Weapons","OffenseMode","RangedMode","WeaponskillMode","ElementalMode","IdleMode","Passive","RuneElement","CompensatorMode","TreasureMode",})
 end
 
 
@@ -59,19 +61,21 @@ function job_pretarget(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
+	if spell.action_type == 'Ranged Attack' then
+		state.CombatWeapon:set(player.equipment.range)
     -- Check that proper ammo is available if we're using ranged attacks or similar.
-    if spell.type == 'CorsairShot' and not player.inventory['Trump Card'] and player.satchel['Trump Card'] then
-		send_command('get "Trump Card" satchel')
-		eventArgs.cancel = true
-		windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
-		return
+    elseif spell.type == 'CorsairShot' then
+		if not player.inventory['Trump Card'] and player.satchel['Trump Card'] then
+			send_command('get "Trump Card" satchel')
+			eventArgs.cancel = true
+			windower.chat.input:schedule(1,'/ja "'..spell.english..'" '..spell.target.raw..'')
+			return
+		end
     end
+	
     if spell.action_type == 'Ranged Attack' or spell.type == 'WeaponSkill' or spell.type == 'CorsairShot' then
         do_bullet_checks(spell, spellMap, eventArgs)
     end
-	if spell.action_type == 'Ranged Attack' then
-		state.CombatWeapon:set(player.equipment.range)
-	end
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)
@@ -117,6 +121,11 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
     if spell.type == 'CorsairRoll' and not spell.interrupted then
+		if state.CompensatorMode.value ~= 'Never' and player.equipment.range and player.equipment.range == 'Compensator' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range and sets.weapons[state.Weapons.value].range ~= 'Compensator' then
+			enable('range')
+			equip({range=sets.weapons[state.Weapons.value].range})
+			disable('range')
+		end
         display_roll_info(spell)
 	elseif spell.type == 'CorsairShot' then
 		equip({ammo=gear.RAbullet})
@@ -181,8 +190,14 @@ function job_post_precast(spell, spellMap, eventArgs)
 		elseif sets.precast.RA.Flurry2 and lastflurry == 2 then
 			equip(sets.precast.RA.Flurry2)
 		end
-	elseif (spell.type == 'CorsairRoll' or spell.english == "Double-Up") and state.LuzafRing.value then
-		equip(sets.precast.LuzafRing)
+	elseif spell.type == 'CorsairRoll' or spell.english == "Double-Up" then
+		if state.LuzafRing.value and item_available("Luzaf's Ring") then
+			equip(sets.precast.LuzafRing)
+		end
+		if spell.type == 'CorsairRoll' and item_available("Compensator") and state.CompensatorMode.value ~= 'Never' and (state.CompensatorMode.value == 'Always' or tonumber(state.CompensatorMode.value) > player.tp) then
+			enable('range')
+			equip({range="Compensator"})
+		end
     elseif spell.english == 'Fold' and buffactive['Bust'] == 2 and sets.precast.FoldDoubleBust then
 		equip(sets.precast.FoldDoubleBust)
 	end
