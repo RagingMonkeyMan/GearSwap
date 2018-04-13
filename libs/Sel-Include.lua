@@ -1859,7 +1859,9 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-			if sets.weapons[newValue] then
+		if (newValue:contains('DW') or newValue:contains('Dual')) and not (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
+			state.Weapons:cycle()
+		elseif sets.weapons[newValue] then
 				equip_weaponset(newValue)
 			elseif newValue == 'None' then
 				enable('main','sub','range','ammo')

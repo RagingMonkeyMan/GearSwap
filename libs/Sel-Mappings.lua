@@ -245,6 +245,7 @@ unbridled_learning_set = {['Thunderbolt']=true,['Harden Shell']=true,['Absolute 
 
 mageJobs = S{'WHM','BLM','SCH','RDM','BRD','SMN','GEO'}
 meleeJobs = S{'WAR','MNK','THF','PLD','DRK','SAM','NIN','BLU','DNC','RUN','COR','PUP','PLD','DRK','BST'}
+dualWieldJobs = S{'THF','BLU','NIN','DNC'}
 	
 -- Item related Mappings.
 
