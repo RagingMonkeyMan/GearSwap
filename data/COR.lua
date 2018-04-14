@@ -121,10 +121,16 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
     if spell.type == 'CorsairRoll' and not spell.interrupted then
-		if state.CompensatorMode.value ~= 'Never' and player.equipment.range and player.equipment.range == 'Compensator' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range and sets.weapons[state.Weapons.value].range ~= 'Compensator' then
-			enable('range')
-			equip({range=sets.weapons[state.Weapons.value].range})
-			disable('range')
+		if state.CompensatorMode.value ~= 'Never' then
+			if player.equipment.range and player.equipment.range == 'Compensator' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range and sets.weapons[state.Weapons.value].range ~= 'Compensator' then
+				enable('range')
+				equip({range=sets.weapons[state.Weapons.value].range})
+				disable('range')
+			elseif player.equipment.ranged and player.equipment.ranged == 'Compensator' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ranged and sets.weapons[state.Weapons.value].ranged ~= 'Compensator' then
+				enable('ranged')
+				equip({range=sets.weapons[state.Weapons.value].ranged})
+				disable('ranged')
+			end
 		end
         display_roll_info(spell)
 	elseif spell.type == 'CorsairShot' then
