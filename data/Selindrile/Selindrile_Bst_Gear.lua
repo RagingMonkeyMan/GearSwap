@@ -207,7 +207,7 @@ function init_gear_sets()
 	-- RESTING
 	sets.resting = {}
 
-	sets.idle = {ammo="Staunch Tathlum",
+	sets.idle = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Staunch Tathlum",
 		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Genmei Earring",
 		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Sheltered Ring",
 		back="Solemnity Cape",waist="Flume Belt",legs="Tali'ah Sera. +2",feet="Skd. Jambeaux +1"}

@@ -152,7 +152,9 @@ function init_include()
 	-- Define and default variables for global functions that can be overwritten.
 	autonuke = 'Fire'
 	autows = ''
+	rangedautows = ''
 	autowstp = 1000
+	rangedautowstp = 1000
 	buffup = false
 	time_offset = -39601
 	curecheat = false
@@ -315,7 +317,7 @@ function init_include()
 
 		gearswap.refresh_globals(false)
 
-		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (midaction() or gearswap.cued_packet or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
+		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (midaction() or pet_midaction() or gearswap.cued_packet or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end
 			end
@@ -1892,12 +1894,12 @@ function state_change(stateField, newValue, oldValue)
 	end
 	
 	if stateField == 'Rune Element' then
-		send_command('wait .1;gs c DisplayRune')
+		send_command('wait .001;gs c DisplayRune')
 	elseif stateField == 'Elemental Mode' then
 		if player.main_job == 'COR' then
-			send_command('wait .1;gs c DisplayShot')
+			send_command('wait .001;gs c DisplayShot')
 		else
-			send_command('wait .1;gs c DisplayElement')
+			send_command('wait .001;gs c DisplayElement')
 		end
 	elseif stateField:contains('Auto') then
 		tickdelay = 0

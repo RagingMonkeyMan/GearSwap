@@ -153,6 +153,12 @@ function update_job_states()
 				else
 					stateBox:append(string.format("%sAuto Buff%s", clr.h, clr.n))
 				end
+			elseif n == 'AutoWSMode' and state.AutoWSMode.value then
+				if state.RngHelper.value then
+					stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", clr.h, clr.n))
+				else
+					stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", clr.h, clr.n))
+				end
 			else
 				stateBox:append(clr.h..labels[n]..clr.n)
 			end

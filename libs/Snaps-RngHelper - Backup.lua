@@ -146,7 +146,7 @@ local function load_profile(name, set_to_default)
     for k, v in pairs(profile.cooldowns) do
         cooldowns["\/%s":format(k)] = v
     end
-    --weaponskill = profile.weaponskill
+    weaponskill = profile.weaponskill
     mode = profile.mode
     if set_to_default then
         settings.default = name
@@ -160,7 +160,7 @@ local function save_profile(name)
     for k, v in pairs(cooldowns) do
         profile.cooldowns[k:sub(2)] = v
     end
-    --profile.weaponskill = weaponskill
+    profile.weaponskill = weaponskill
     profile.mode = mode
     settings.profiles[name] = profile
     settings.default = name
@@ -222,10 +222,10 @@ function process_queue()
     elseif not queue:empty() then
         pending = queue:pop()
     elseif target then
-        if state.AutoWSMode.value and rangedautows ~= '' and able_to_use_weaponskill() then
+        if weaponskill and able_to_use_weaponskill() then
             pending = {
                 ['prefix'] = '/weaponskill',
-                ['english'] = rangedautows,
+                ['english'] = weaponskill,
                 ['target'] = target,
                 ['action_type'] = 'Ability',
             }

@@ -68,6 +68,40 @@ function job_setup()
         'Animated Flourish','Provoke','Dia','Dia II','Flash','Bio','Bio II','Sleep','Sleep II',
         'Drain','Aspir','Dispel','Steal','Mug'}
 
+	pet_info = {['FunguarFamiliar']="Funguar, Plantoid, Warrior",['CourierCarrie']="Crab, Aquan, Paladin",
+				['AmigoSabotender']="Cactuar, Plantoid, Warrior",['NurseryNazuna']="Sheep, Beast, Warrior",
+				['CraftyClyvonne']="Coeurl, Beast, Warrior",['FleetReinhard']="Raptor, Lizard, Warrior",
+				['PrestoJulio']="Flytrap, Plantoid, Warrior",['SwiftSieghard']="Raptor, Lizard, Warrior",
+				['MailbusterCetas']="Fly, Vermin, Warrior",['AudaciousAnna']="Lizard, Lizard, Warrior",
+				['TurbidToloi']="Pugil, Aquan, Warrior",['SlipperySilas']="Toad, Aquan, Warrior",
+				['LuckyLulush']="Rabbit, Beast, Warrior",['DipperYuly']="Ladybug, Vermin, Thief",
+				['FlowerpotMerle']="Mandragora, Plantoid, Monk",['DapperMac']="Apkallu, Bird, Monk",
+				['DiscreetLouise']="Funguar, Plantoid, Warrior",['FatsoFargann']="Leech, Amorph, Warrior",
+				['FaithfulFalcorr']="Hippogryph, Bird, Thief",['BugeyedBroncha']="Eft, Lizard, Warrior",
+				['BloodclawShasra']="Lynx, Beast, Warrior",['GorefangHobs']="Tiger, Beast, Warrior",
+				['GooeyGerard']="Slug, Amorph, Warrior",['CrudeRaphie']="Adamantoise, Lizard, Paladin",
+				['DroopyDortwin']="Rabbit, Beast, Warrior",['PonderingPeter']="HQ Rabbit, Beast, Warrior",
+				['SunburstMalfik']="Crab, Aquan, Paladin",['AgedAngus']="HQ Crab, Aquan, Paladin",
+				['WarlikePatrick']="Lizard, Lizard, Warrior",['MosquitoFamiliar']="Mosquito, Vermin, Dark Knight",
+				['Left-HandedYoko']="Mosquito, Vermin, Dark Knight",['ScissorlegXerin']="Chapuli, Vermin, Warrior",
+				['BouncingBertha']="HQ Chapuli, Vermin, Warrior",['RhymingShizuna']="Sheep, Beast, Warrior",
+				['AttentiveIbuki']="Tulfaire, Bird, Warrior",['SwoopingZhivago']="HQ Tulfaire, Bird, Warrior",
+				['BrainyWaluis']="Funguar, Plantoid, Warrior",['SuspiciousAlice']="Eft, Lizard, Warrior",			
+				['HeadbreakerKen']="Fly, Vermin, Warrior",['RedolentCandi']="Snapweed, Plantoid, Warrior",
+				['AlluringHoney']="HQ Snapweed, Plantoid, Warrior",['CaringKiyomaro']="Raaz, Beast, Monk",
+				['SurgingStorm']="Apkallu, Bird, Monk",['SubmergedIyo']="Apkallu, Bird, Monk",
+				['CursedAnnabelle']="Antlion, Vermin, Warrior",['AnklebiterJedd']="Diremite, Vermin, Dark Knight",
+				['VivaciousVickie']="HQ Raaz, Beast, Monk",['HurlerPercival']="Beetle, Vermin, Paladin",
+				['BlackbeardRandy']="Tiger, Beast, Warrior",['GenerousArthur']="Slug, Amorph, Warrior",
+				['ThreestarLynn']="Ladybug, Vermin, Thief",['BraveHeroGlenn']="Frog, Aquan, Warrior",
+				['SharpwitHermes']="Mandragora, Plantoid, Monk",['ColibriFamiliar']="Colibri, Bird, Red Mage",
+				['ChoralLeera']="HQ Colibri, Bird, Red Mage",['SpiderFamiliar']="Spider, Vermin, Warrior",
+				['GussyHachirobe']="HQ Spider, Vermin, Warrior",['AcuexFamiliar']="Acuex, Amorph, Black Mage",
+				['ChoralLeera']="HQ Colibri, Bird, Red Mage",['SpiderFamiliar']="Spider, Vermin, Warrior",
+				['AmiableRoche']="Pugil, Aquan, Warrior",['HeraldHenry']="Crab, Aquan, Paladin",
+				['FluffyBredo']="HQ Acuex, Amorph, Black Mage",
+				}
+
 	ready_moves = {}
 	ready_moves.default =  {['DroopyDortwin']='Foot Kick',['PonderingPeter']='Foot Kick',['HeraldHenry']='Big Scissors',['CourierCarrie']='Big Scissors',
 							['AgedAngus']='Big Scissors',['SunburstMalfik']='Big Scissors',['WarlikePatrick']='Fireball',['ScissorlegXerin']='Sensilla Blades',
@@ -344,6 +378,10 @@ function job_state_change(stateField, newValue, oldValue)
 	if stateField == 'PetMode' then
 		update_pet_groups()
 	end
+	
+	if 	pet_info[state.JugMode.value] then
+		send_command('wait .001;gs c DisplayPetInfo')
+	end
 end
 
 function job_pet_change(pet, gain)
@@ -404,191 +442,6 @@ end
 function job_update(cmdParams, eventArgs)
 	update_pet_groups()
 	update_melee_groups()
-
-	if state.JugMode.value == 'FunguarFamiliar' then
-			PetInfo = "Funguar, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'CourierCarrie' then
-			PetInfo = "Crab, Aquan"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'AmigoSabotender' then
-			PetInfo = "Cactuar, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'NurseryNazuna' then
-			PetInfo = "Sheep, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'CraftyClyvonne' then
-			PetInfo = "Coeurl, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'FleetReinhard' then
-			PetInfo = "Raptor, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'PrestoJulio' then
-			PetInfo = "Flytrap, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SwiftSieghard' then
-			PetInfo = "Raptor, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'MailbusterCetas' then
-			PetInfo = "Fly, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AudaciousAnna' then
-			PetInfo = "Lizard, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'TurbidToloi' then
-			PetInfo = "Pugil, Aquan"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SlipperySilas' then
-			PetInfo = "Toad, Aquan"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'LuckyLulush' then
-			PetInfo = "Rabbit, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'DipperYuly' then
-			PetInfo = "Ladybug, Vermin"
-			PetJob = 'Thief'
-	elseif state.JugMode.value == 'FlowerpotMerle' then
-			PetInfo = "Mandragora, Plantoid"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'DapperMac' then
-			PetInfo = "Apkallu, Bird"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'DiscreetLouise' then
-			PetInfo = "Funguar, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'FatsoFargann' then
-			PetInfo = "Leech, Amorph"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'FaithfulFalcorr' then
-			PetInfo = "Hippogryph, Bird"
-			PetJob = 'Thief'
-	elseif state.JugMode.value == 'BugeyedBroncha' then
-			PetInfo = "Eft, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'BloodclawShasra' then
-			PetInfo = "Lynx, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'GorefangHobs' then
-			PetInfo = "Tiger, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'GooeyGerard' then
-			PetInfo = "Slug, Amorph"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'CrudeRaphie' then
-			PetInfo = "Adamantoise, Lizard"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'DroopyDortwin' then
-			PetInfo = "Rabbit, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'PonderingPeter' then
-			PetInfo = "HQ Rabbit, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SunburstMalfik' then
-			PetInfo = "Crab, Aquan"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'AgedAngus' then
-			PetInfo = "HQ Crab, Aquan"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'WarlikePatrick' then
-			PetInfo = "Lizard, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'MosquitoFamiliar' then
-			PetInfo = "Mosquito, Vermin"
-			PetJob = 'Dark Knight'
-	elseif state.JugMode.value == 'Left-HandedYoko' then
-			PetInfo = "Mosquito, Vermin"
-			PetJob = 'Dark Knight'
-	elseif state.JugMode.value == 'ScissorlegXerin' then
-			PetInfo = "Chapuli, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'BouncingBertha' then
-			PetInfo = "HQ Chapuli, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'RhymingShizuna' then
-			PetInfo = "Sheep, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AttentiveIbuki' then
-			PetInfo = "Tulfaire, Bird"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SwoopingZhivago' then
-			PetInfo = "HQ Tulfaire, Bird"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AmiableRoche' then
-			PetInfo = "Pugil, Aquan"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'HeraldHenry' then
-			PetInfo = "Crab, Aquan"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'BrainyWaluis' then
-			PetInfo = "Funguar, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SuspiciousAlice' then
-			PetInfo = "Eft, Lizard"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'HeadbreakerKen' then
-			PetInfo = "Fly, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'RedolentCandi' then
-			PetInfo = "Snapweed, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AlluringHoney' then
-			PetInfo = "HQ Snapweed, Plantoid"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'CaringKiyomaro' then
-			PetInfo = "Raaz, Beast"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'SurgingStorm' then
-			PetInfo = "Apkallu, Bird"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'SubmergedIyo' then
-			PetInfo = "Apkallu, Bird"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'CursedAnnabelle' then
-			PetInfo = "Antlion, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AnklebiterJedd' then
-			PetInfo = "Diremite, Vermin"
-			PetJob = 'Dark Knight'
-	elseif state.JugMode.value == 'VivaciousVickie' then
-			PetInfo = "HQ Raaz, Beast"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'HurlerPercival' then
-			PetInfo = "Beetle, Vermin"
-			PetJob = 'Paladin'
-	elseif state.JugMode.value == 'BlackbeardRandy' then
-			PetInfo = "Tiger, Beast"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'GenerousArthur' then
-			PetInfo = "Slug, Amorph"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'ThreestarLynn' then
-			PetInfo = "Ladybug, Vermin"
-			PetJob = 'Thief'
-	elseif state.JugMode.value == 'BraveHeroGlenn' then
-			PetInfo = "Frog, Aquan"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'SharpwitHermes' then
-			PetInfo = "Mandragora, Plantoid"
-			PetJob = 'Monk'
-	elseif state.JugMode.value == 'ColibriFamiliar' then
-			PetInfo = "Colibri, Bird"
-			PetJob = 'Red Mage'
-	elseif state.JugMode.value == 'ChoralLeera' then
-			PetInfo = "HQ Colibri, Bird"
-			PetJob = 'Red Mage'
-	elseif state.JugMode.value == 'SpiderFamiliar' then
-			PetInfo = "Spider, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'GussyHachirobe' then
-			PetInfo = "HQ Spider, Vermin"
-			PetJob = 'Warrior'
-	elseif state.JugMode.value == 'AcuexFamiliar' then
-			PetInfo = "Acuex, Amorph"
-			PetJob = 'Black Mage'
-	elseif state.JugMode.value == 'FluffyBredo' then
-			PetInfo = "HQ Acuex, Amorph"
-			PetJob = 'Black Mage'
-	end
 end
 
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
@@ -621,10 +474,6 @@ function display_current_job_state(eventArgs)
 
     msg = msg .. ', Reward: '..state.RewardMode.value..', Correlation: '..state.CorrelationMode.value
 
-    if state.JugMode.value ~= 'None' then
-        add_to_chat(8,'--- Jug Pet: '.. state.JugMode.value ..' --- ('.. PetInfo ..', '.. PetJob ..')')
-    end
-
     add_to_chat(122, msg)
 
     eventArgs.handled = true
@@ -648,6 +497,8 @@ function job_self_command(commandArgs, eventArgs)
 		if commandArgs[1]:lower() == 'showcharge' then
 			add_to_chat(204, '~~~Current Ready Charges Available: ['..get_current_ready_count()..']~~~')
 
+		elseif commandArgs[1]:lower() == 'displaypetinfo' then
+			add_to_chat(8,''..state.JugMode.value..': '..pet_info[state.JugMode.value]..'')
 		elseif commandArgs[1]:lower() == 'unleashlock' then
 			if UnleashLock == true then
 				UnleashLock = false
@@ -714,7 +565,7 @@ function check_ready()
 		if pet.isvalid then
 			if pet.status == "Engaged" and get_current_ready_count() > 0 then
 				windower.send_command('gs c ready')
-				tickdelay = 85
+				tickdelay = 120
 				return true
 			elseif pet.status == "Idle" and player.target.type == "MONSTER" then
 				windower.chat.input('/pet Fight <t>')

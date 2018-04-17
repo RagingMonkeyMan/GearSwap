@@ -34,6 +34,7 @@ function job_setup()
 	moonshade_ws = S{'Leaden Salute','Wildfire','Last Stand'}
 	
 	autows = 'Leaden Salute'
+	rangedautows = 'Last Stand'
 	autofood = 'Sublime Sushi'
 	ammostock = 200
 

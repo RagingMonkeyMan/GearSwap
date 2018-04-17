@@ -45,7 +45,7 @@ function init_gear_sets()
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Wakido Haidate +3",feet="Founder's Greaves"}
     sets.precast.JA['Violent Flourish'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
-        body="Flamma Korazin +1",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
 
     -- Waltz set (chr and vit)
@@ -118,12 +118,12 @@ function init_gear_sets()
 
     sets.precast.WS['Tachi: Ageha'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
-        body="Flamma Korazin +1",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
 		
     sets.precast.WS['Tachi: Hobaku'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
-        body="Flamma Korazin +1",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
 		
     sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {head=gear.valorous_magical_wsd_head,ear1="Friomisi Earring",body="Found. Breastplate",hands="Founder's Gauntlets",feet="Founder's Greaves"})

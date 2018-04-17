@@ -22,6 +22,7 @@ function job_setup()
 	moonshade_ws = S{'Jishnu\'s Radiance','Empyreal Arrow','Last Stand'}
 	
 	autows = "Last Stand"
+	rangedautows = "Last Stand"
 	autofood = 'Soy Ramen'
 	ammostock = 200
 	

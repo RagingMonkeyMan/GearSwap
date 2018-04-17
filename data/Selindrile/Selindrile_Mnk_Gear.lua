@@ -7,7 +7,7 @@ function user_setup()
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT')
-	state.Weapons:options('Godhands','ProcStaff','ProcClub','None')
+	state.Weapons:options('Godhands','ProcStaff','ProcClub','Barehanded','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
 
@@ -294,8 +294,14 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Godhands = {main="Godhands"}
+	sets.weapons.Barehanded = {main=empty}
 	sets.weapons.ProcStaff = {main="Terra's Staff"}
 	sets.weapons.ProcClub = {main="Mafic Cudgel"}
+	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
+	sets.weapons.ProcGreatSword = {main="Irradiance Blade",sub=empty}
+	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
+	sets.weapons.ProcPolearm = {main="Pitchfork +1",sub=empty}
+	sets.weapons.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
 end
 
 -- Select default macro book on initial load or subjob change.

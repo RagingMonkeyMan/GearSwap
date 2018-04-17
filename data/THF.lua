@@ -39,6 +39,7 @@ function job_setup()
     info.default_u_ja_ids = S{201, 202, 203, 205, 207}
 	
 	autows = "Rudra's Storm"
+	rangedautows = "Last Stand"
 	autofood = 'Soy Ramen'
 	
 	update_melee_groups()

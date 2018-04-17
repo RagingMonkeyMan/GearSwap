@@ -21,6 +21,7 @@ function job_setup()
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 
 	autows = 'Tachi: Fudo'
+	rangedautows = "Apex Arrow"
 	autofood = 'Soy Ramen'
 
 	update_melee_groups()

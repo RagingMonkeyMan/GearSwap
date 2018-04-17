@@ -423,6 +423,16 @@ end
 function handle_autows(cmdParams)
 	if #cmdParams == 0 then
 		add_to_chat(122,'Your must specify a ws to auto-weaponskill with.')
+	elseif state.RngHelper.value then
+		if cmdParams[1] == 'tp' then
+			rangedautowstp = tonumber(cmdParams[2])
+			add_to_chat(122,'Your ranged autows tp value is set to '..rangedautowstp..'.')
+			if state.DisplayMode.value then update_job_states()	end
+		else
+			rangedautows = table.concat(cmdParams, ' '):ucfirst()
+			add_to_chat(122,'Your ranged autows weaponskill is set to '..rangedautows..'.')
+			if state.DisplayMode.value then update_job_states()	end
+		end
 	elseif cmdParams[1] == 'tp' then
 		autowstp = tonumber(cmdParams[2])
 		add_to_chat(122,'Your autows tp value is set to '..autowstp..'.')
