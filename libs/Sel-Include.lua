@@ -1863,16 +1863,17 @@ function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
 		if (newValue:contains('DW') or newValue:contains('Dual')) and not (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
 			state.Weapons:cycle()
+			handle_weapons({})
 		elseif sets.weapons[newValue] then
-				equip_weaponset(newValue)
-			elseif newValue == 'None' then
-				enable('main','sub','range','ammo')
-			else
-				state.Weapons:reset()
-				if sets.weapons[state.Weapons.value] then
-					equip_weaponset(state.Weapons.value)
-				end
+			equip_weaponset(newValue)
+		elseif newValue == 'None' then
+			enable('main','sub','range','ammo')
+		else
+			state.Weapons:reset()
+			if sets.weapons[state.Weapons.value] then
+				equip_weaponset(state.Weapons.value)
 			end
+		end
 	elseif stateField == 'RngHelper' then
 		if newValue == true then
 			send_command('gs rh enable')
