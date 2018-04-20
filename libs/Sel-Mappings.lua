@@ -389,7 +389,7 @@ areas.Cities = S{
     "Metalworks",
     "Aht Urhgan Whitegate",
 	"The Colosseum",
-    "Tavanazian Safehold",
+    "Tavnazian Safehold",
     "Nashmau",
     "Selbina",
     "Mhaura",
