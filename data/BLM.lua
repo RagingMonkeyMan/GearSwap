@@ -62,7 +62,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 			if abil_recasts[35] == 0 and not buffactive['amnesia'] then
 				cancel_spell()
-				send_command('@input /ja "Manawell" <me>;wait 1;input /ma Impact '..spell.target.raw..'')
+				send_command('@input /ja "Manawell" <me>;wait 1;input /ma '..spell.english..' '..spell.target.raw..'')
 				return
 			end
 		end
