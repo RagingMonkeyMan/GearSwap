@@ -309,7 +309,7 @@ function init_gear_sets()
 	-- Weaopns sets
 	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kanaria"}
 	sets.weapons.MagicWeapons = {main="Ochu",sub="Ochu"}
-	sets.weapons.ProcDagger = {main="Kustawi",sub=empty}
+	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
 	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
 	sets.weapons.ProcGreatSword = {main="Irradiance Blade",sub=empty}
 	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}

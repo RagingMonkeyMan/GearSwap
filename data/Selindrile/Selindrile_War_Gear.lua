@@ -1236,7 +1236,7 @@ function init_gear_sets()
 	sets.weapons.Chango = {main="Chango",sub="Utu Grip"}
 	sets.weapons.DualWeapons = {main="Firangi",sub="Reikiko"}
 	sets.weapons.Greatsword = {main="Montante +1",sub="Utu Grip"}
-	sets.weapons.ProcDagger = {main="Kustawi",sub=empty}
+	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
 	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
 	sets.weapons.ProcGreatSword = {main="Irradiance Blade",sub=empty}
 	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
