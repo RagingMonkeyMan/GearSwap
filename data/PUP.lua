@@ -21,7 +21,7 @@ function job_setup()
 
     -- Map automaton heads to combat roles
 
-	state.PartyChatWS = M(false, 'Weaponskills in party chat')
+	state.PartyChatWS = M(false, 'Report pet weaponskills in party chat.')
 
     -- Subset of modes that use magic
     magicPetModes = S{'Nuke','Heal','Magic'}
