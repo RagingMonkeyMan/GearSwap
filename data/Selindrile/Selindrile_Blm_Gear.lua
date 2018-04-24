@@ -3,7 +3,7 @@ function user_setup()
 	state.CastingMode:options('Normal','Resistant','Fodder','Proc','OccultAcumen')
 	state.OffenseMode:options('Normal')
 	state.IdleMode:options('Normal', 'PDT', 'TPEat','DTHippo')
-	state.Weapons:options('None','NukeWeapons','Khatvanga')
+	state.Weapons:options('None','NukeWeapons','Khatvanga','Malevolence')
 
 	gear.obi_cure_waist = "Witful Belt"
 	gear.obi_low_nuke_waist = "Sekhmet Corset"
@@ -44,6 +44,7 @@ function init_gear_sets()
 	-- Weapons sets
 	sets.weapons.NukeWeapons = {main=gear.grioavolr_nuke_staff,sub="Niobid Strap"}
 	sets.weapons.Khatvanga = {main="Khatvanga",sub="Bloodrain Strap"}
+	sets.weapons.Malevolence = {main="Malevolence",sub="Ammurapi Shield"}
     
     ---- Precast Sets ----
     
@@ -328,7 +329,7 @@ function init_gear_sets()
 	
 	-- Gear for specific elemental nukes.
 	sets.element.Wind = {main="Marin Staff +1"}
-	sets.element.Ice = {main="Ngqoqwanb"}
+	--sets.element.Ice = {main="Ngqoqwanb"}
 	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
 	sets.element.Earth = {neck="Quanpur Necklace"}
 

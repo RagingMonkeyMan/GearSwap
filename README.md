@@ -25,8 +25,12 @@ Setting up my Gearswaps and Github updating.
 8.) Optional: If you're new to editing files like this I highly reccomend Notepad++, https://notepad-plus-plus.org/
     and using File: Open Folder as Workspace, and adding your Gearswap\Data folder there.
   
-9.) Optional: Obtain my Cheatsheet and Init file (Goes in Windower\Script folder) from:
+9.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
     https://www.dropbox.com/sh/20vy32liub3glxz/AAAiIVHAasFdwCK1SZdZz7d_a?dl=0
+	and place it in your Windower\Scripts folder (Rename and keep your
+	original just in case)
     
 10.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
     be found in your launcher, I'll list them here: Addons: Shortcuts, Cancel, Itemizer. Plugins: Timers, Run
+
+11.) Read the Cheet Sheet in your Data Folder.

@@ -47,7 +47,9 @@ function job_precast(spell, spellMap, eventArgs)
 		if spellMap == 'Cure' or spellMap == 'Curaga' then
 			gear.default.obi_waist = gear.obi_cure_waist
 			gear.default.obi_back = gear.obi_cure_back
-		elseif spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' then
+		elseif spell.english == 'Holy II' then
+			gear.default.obi_waist = gear.obi_high_nuke_waist
+		elseif spell.english == 'Holy' or (spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble') then
 			gear.default.obi_waist = gear.obi_nuke_waist
 			gear.default.obi_back = gear.obi_nuke_back
 		elseif spellMap == 'StatusRemoval' and not (spell.english == "Erase" or spell.english == "Esuna" or spell.english == "Sacrifice") then
