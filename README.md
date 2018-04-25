@@ -7,7 +7,7 @@ Setting up my Gearswaps and Github updating.
 3.) Take your existing Gearswap folder from inside Windower\Addons and move it to your desktop.
     If you're transitioning to my gearswaps from other gearswaps remove the Gearswap\Data folder
     from the old folder, and place it somewhere you can find to help you edit my gearswaps later, if
-    you're setting up gearswap for the first time you can delete the old Geasrswap\Data folder
+    you're setting up gearswap for the first time you can delete the old Gearswap\Data folder
     altogether.
     
 4.) Open Github Desktop. (As admin if your Gearswap Folder is located in Program Files)
