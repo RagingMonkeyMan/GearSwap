@@ -19,18 +19,23 @@ Setting up my Gearswaps and Github updating.
 6.) Move your old Gearswap folder to the same directory as the new one to merge them,
     make sure not to overwrite any files, choose skip or "do not replace" for any common files.
 
-7.) To update my gearswaps in the future open up Github Desktop and click the third button (Fetch Origin, then
-    push the same button again.
+7.) If you don't have my style Character luas already, then Inside your Gearswap\Data\
+	folder, first copy, then rename the "Selindrile" folder once for each of your
+	characters' names, then within those new folders, rename the "Selindrile" at 
+	the beginning of each of those files to your characters' names.
 
-8.) Optional: If you're new to editing files like this I highly reccomend Notepad++, https://notepad-plus-plus.org/
+8.) To update my gearswaps in the future open up Github Desktop and click the third button (Fetch Origin, then
+    push the same button again.
+	
+9.) Optional: If you're new to editing files like this I highly reccomend Notepad++, https://notepad-plus-plus.org/
     and using File: Open Folder as Workspace, and adding your Gearswap\Data folder there.
   
-9.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
+10.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
     https://www.dropbox.com/sh/20vy32liub3glxz/AAAiIVHAasFdwCK1SZdZz7d_a?dl=0
 	and place it in your Windower\Scripts folder (Rename and keep your
 	original just in case)
     
-10.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
+11.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
     be found in your launcher, I'll list them here: Addons: Shortcuts, Cancel, Itemizer. Plugins: Timers, Run
 
-11.) Read the Cheet Sheet in your Data Folder.
+12.) Read the Cheet Sheet in your Data Folder.
