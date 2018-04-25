@@ -38,4 +38,4 @@ Setting up my Gearswaps and Github updating.
 11.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
     be found in your launcher, I'll list them here: Addons: Shortcuts, Cancel, Itemizer. Plugins: Timers, Run
 
-12.) Read the Cheet Sheet in your Data Folder.
+12.) Read the Cheat Sheet in your Data Folder.
