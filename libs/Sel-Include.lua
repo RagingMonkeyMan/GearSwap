@@ -88,6 +88,7 @@ function init_include()
 	state.DisplayMode  	  	  = M(true, 'Display Mode')
 	state.UseCustomTimers 	  = M(true, 'Use Custom Timers')
 	state.CancelStoneskin	  = M(true, 'Stoneskin Cancel Mode')
+	state.RelicAftermath	  = M(true, 'Maintain Relic Aftermath')
 	state.Contradance		  = M(true, 'Auto Contradance Mode')
 
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}

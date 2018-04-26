@@ -111,6 +111,12 @@ function init_gear_sets()
     sets.precast.WS['Catastrophe'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Catastrophe'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
     sets.precast.WS['Catastrophe'].Fodder = set_combine(sets.precast.WS.Fodder, {})
+	
+    sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {})
+    sets.precast.WS['Torcleaver'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {})
+    sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS.Acc, {})
+    sets.precast.WS['Torcleaver'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+    sets.precast.WS['Torcleaver'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
     sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Entropy'].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {})

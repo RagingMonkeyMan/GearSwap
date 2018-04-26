@@ -1343,7 +1343,11 @@ end
 
 function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
-		if player.tp > 999 and (buffactive['Aftermath: Lv.3'] or  not mythic_weapons:contains(player.equipment.main)) then
+		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
+			windower.send_command('input /ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
+			tickdelay = 110
+			return true
+		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or  not mythic_weapons:contains(player.equipment.main)) then
 			windower.send_command('input /ws "'..autows..'" <t>')
 			tickdelay = 110
 			return true
