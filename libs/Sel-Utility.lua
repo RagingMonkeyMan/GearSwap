@@ -1390,8 +1390,24 @@ function check_ws()
 			windower.send_command('input /ws "Sanguine Blade" <t>')
 			tickdelay = 110
 			return true
+		elseif player.hpp < 41 and available_ws:contains(105) and player.target.distance < (3.2 + player.target.model_size) then
+			windower.send_command('input /ws "Catastrophe" <t>')
+			tickdelay = 110
+			return true
+		elseif player.mpp < 21 and available_ws:contains(109) and player.target.distance < (3.2 + player.target.model_size) then
+			windower.send_command('input /ws "Entropy" <t>')
+			tickdelay = 110
+			return true
+		elseif player.mpp < 21 and available_ws:contains(171) and player.target.distance < (3.2 + player.target.model_size) then
+			windower.send_command('input /ws "Mystic Boon" <t>')
+			tickdelay = 110
+			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
+		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
+			windower.send_command('input /ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
+			tickdelay = 110
+			return true
 		elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.send_command('input /ws "'..autows..'" <t>')
 			tickdelay = 110
