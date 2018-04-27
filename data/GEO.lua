@@ -906,7 +906,7 @@ windower.raw_register_event('prerender', function()
     end
      
     luopan.value = luopan_txtbox
-    if state.ShowDistance and state.ShowDistance.value and ((myluopan and geo_count ~= 0) or (buffactive['Colure Active'] and indi_count ~= 0)) then 
+    if state.ShowDistance.value and ((myluopan and geo_count ~= 0) or (buffactive['Colure Active'] and indi_count ~= 0)) then 
         luopan:visible(true)
     else
         luopan:visible(false)
