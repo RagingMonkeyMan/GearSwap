@@ -228,6 +228,7 @@ function init_include()
     optional_include({'user-globals.lua'})
     optional_include({player.name..'-globals.lua'})
     optional_include({player.name..'-items.lua'})
+	optional_include({player.name..'_Crafting.lua'})
 
 	-- New Display functions, needs to come after globals for user settings.
 	include('Sel-Display.lua')
