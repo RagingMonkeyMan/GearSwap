@@ -285,7 +285,7 @@ function job_self_command(commandArgs, eventArgs)
 			return
 		end
 		
-		if missingHP < 170 then
+		if missingHP < 250 then
 			if spell_recasts[1] == 0 then
 				windower.chat.input('/ma "Cure" <t>')
 			elseif spell_recasts[2] == 0 then
