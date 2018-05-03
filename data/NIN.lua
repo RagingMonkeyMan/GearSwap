@@ -366,11 +366,11 @@ function check_stance()
 		
 		if state.Stance.value == 'Innin' and abil_recasts[147] == 0 then
 			windower.chat.input('/ja "Innin" <me>')
-			tickdelay = 240
+			tickdelay = framerate
 			return true
 		elseif state.Stance.value == 'Yonin' and abil_recasts[146] == 0 then
 			windower.chat.input('/ja "Yonin" <me>')
-			tickdelay = 240
+			tickdelay = framerate
 			return true
 		else
 			return false

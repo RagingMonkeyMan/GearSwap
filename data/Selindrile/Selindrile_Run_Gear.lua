@@ -72,6 +72,7 @@ function init_gear_sets()
 	sets.precast.JA['Warcry'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Defender'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Berserk'] = set_combine(sets.Enmity, {})
+	sets.precast.JA['Last Resort'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Aggressor'] = set_combine(sets.Enmity, {})
 	sets.precast.JA['Animated Flourish'] = set_combine(sets.Enmity, {})
 
@@ -90,6 +91,7 @@ function init_gear_sets()
 	sets.precast.JA['Warcry'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Defender'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Berserk'].DT = set_combine(sets.Enmity.DT, {})
+	sets.precast.JA['Last Resort'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Aggressor'].DT = set_combine(sets.Enmity.DT, {})
 	sets.precast.JA['Animated Flourish'].DT = set_combine(sets.Enmity.DT, {})
 
@@ -415,23 +417,23 @@ function check_trust()
 			
 				if spell_recasts[980] == 0 and not have_trust("Yoran-Oran") then
 					windower.send_command('input /ma "Yoran-Oran (UC)" <me>')
-					tickdelay = 250
+					tickdelay = (framerate * 3)
 					return true
 				elseif spell_recasts[952] == 0 and not have_trust("Koru-Moru") then
 					windower.send_command('input /ma "Koru-Moru" <me>')
-					tickdelay = 250
+					tickdelay = (framerate * 3)
 					return true
 				elseif spell_recasts[979] == 0 and not have_trust("Selh'teus") then
 					windower.send_command('input /ma "Selh\'teus" <me>')
-					tickdelay = 250
+					tickdelay = (framerate * 3)
 					return true
 				elseif spell_recasts[967] == 0 and not have_trust("Qultada") then
 					windower.send_command('input /ma "Qultada" <me>')
-					tickdelay = 250
+					tickdelay = (framerate * 3)
 					return true
 				elseif spell_recasts[914] == 0 and not have_trust("Ulmia") then
 					windower.send_command('input /ma "Ulmia" <me>')
-					tickdelay = 250
+					tickdelay = (framerate * 3)
 					return true
 				else
 					return false

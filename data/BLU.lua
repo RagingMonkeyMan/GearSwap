@@ -430,7 +430,7 @@ function check_arts()
 
 		if abil_recasts[228] == 0 then
 			send_command('@input /ja "Light Arts" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		end
 

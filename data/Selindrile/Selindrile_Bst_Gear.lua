@@ -481,7 +481,7 @@ function user_job_tick()
 
 		if spell_recasts[339] == 0 then
 			send_command('input /ma "Utsusemi: Ni" <me>')
-			tickdelay = 250
+			tickdelay = (framerate * 3)
 			return true
 		end
 

@@ -336,21 +336,21 @@ function check_bullets()
 				if count_total_bullets('Chrono Bullet') < ammostock then
 					windower.chat.input('/item "Fomalhaut" <me>')
 					add_to_chat(217,"You're low on Chrono Bullets, using Fomalhaut.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Death Penalty' and get_item_next_use(player.equipment.range).usable then
 				if count_total_bullets('Living Bullet') < ammostock then
 					windower.chat.input('/item "Death Penalty" <me>')
 					add_to_chat(217,"You're low on Living Bullets, using Death Penalty.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Armageddon' and get_item_next_use(player.equipment.range).usable then
 				if count_total_bullets('Devastating Bullet') < ammostock then
 					windower.chat.input('/item "Armageddon" <me>')
 					add_to_chat(217,"You're low on Devastating Bullets, using Armageddon.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			end

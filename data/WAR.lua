@@ -205,11 +205,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false
@@ -226,23 +226,23 @@ function check_buff()
 
 		if not buffactive.Retaliation and abil_recasts[8] == 0 then
 			windower.chat.input('/ja "Retaliation" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true		
 		elseif not buffactive.Restraint and abil_recasts[9] == 0 then
 			windower.chat.input('/ja "Restraint" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif not buffactive['Blood Rage'] and abil_recasts[11] == 0 then
 			windower.chat.input('/ja "Blood Rage" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif not buffactive.Berserk and abil_recasts[1] == 0 then
 			windower.chat.input('/ja "Berserk" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif not buffactive.Aggressor and abil_recasts[4] == 0 then
 			windower.chat.input('/ja "Aggressor" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false

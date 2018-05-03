@@ -207,42 +207,42 @@ function check_ammo_makers()
 				if count_total_ammo('Chrono Bullet') < ammostock then
 					windower.chat.input('/item "Fomalhaut" <me>')
 					add_to_chat(217,"You're low on Chrono Bullets, using Fomalhaut.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Fail-Not' and get_item_next_use(player.equipment.range).usable then
 				if count_total_ammo('Chrono Arrow') < ammostock then
 					windower.chat.input('/item "Fail-Not" <me>')
 					add_to_chat(217,"You're low on Chrono Arrows, using Fail-Not.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Gandiva' and get_item_next_use(player.equipment.range).usable then
 				if count_total_ammo("Artemis's Arrow") < ammostock then
 					windower.chat.input('/item "Gandiva" <me>')
 					add_to_chat(217,"You're low on Artemis's Arrows, using Gandiva.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Yoichinoyumi' and get_item_next_use(player.equipment.range).usable then
 				if count_total_ammo("Yoichi's Arrow") < ammostock then
 					windower.chat.input('/item "Yoichinoyumi" <me>')
 					add_to_chat(217,"You're low on Yoichi's Arrows, using Yoichinoyumi.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Annihilator' and get_item_next_use(player.equipment.range).usable then
 				if count_total_ammo("Eradicating Bullet") < ammostock then
 					windower.chat.input('/item "Annihilator" <me>')
 					add_to_chat(217,"You're low on Eradicating Bullets, using Annihilator.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			elseif player.equipment.range == 'Armageddon' and get_item_next_use(player.equipment.range).usable then
 				if count_total_ammo("Devastating Bullet") < ammostock then
 					windower.chat.input('/item "Armageddon" <me>')
 					add_to_chat(217,"You're low on Devastating Bullets, using Armageddon.")
-					tickdelay = 120
+					tickdelay = (framerate * 2)
 					return true
 				end
 			end

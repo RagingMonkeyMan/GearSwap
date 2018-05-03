@@ -534,7 +534,7 @@ function check_pet()
 			if abil_recasts[103] == 0 and not (buffactive.amnesia or buffactive.impairment) then
 				if item_available('Pet Food '..state.RewardMode.value..'') then
 					windower.chat.input('/ja "Reward" <me>')
-					tickdelay = 30
+					tickdelay = (framerate * .5)
 					return true
 				else
 					return false
@@ -545,11 +545,11 @@ function check_pet()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if abil_recasts[94] == 0 then
 			send_command('@input /ja "Bestial Loyalty" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		elseif abil_recasts[104] == 0 then
 			send_command('@input /ja "Call Beast" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		else
 			return false
@@ -565,11 +565,11 @@ function check_ready()
 		if pet.isvalid then
 			if pet.status == "Engaged" and get_current_ready_count() > 0 then
 				windower.send_command('gs c ready')
-				tickdelay = 120
+				tickdelay = (framerate * 2)
 				return true
 			elseif pet.status == "Idle" and player.target.type == "MONSTER" then
 				windower.chat.input('/pet Fight <t>')
-				tickdelay = 60
+				tickdelay = framerate
 				return true
 			else
 				return false

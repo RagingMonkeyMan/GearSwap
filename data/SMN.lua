@@ -719,7 +719,7 @@ function check_favor()
 		
 		if abil_recasts[176] == 0 then
 			windower.chat.input('/pet "Avatar\'s Favor" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		end
 	end
@@ -730,11 +730,11 @@ function check_buff()
 	if state.AutoBuffMode.value and not moving then
 		if not pet.isvalid then
 			windower.chat.input('/ma "Titan" <me>')
-			tickdelay = 130
+			tickdelay = (framerate * 2.1)
 			return true
 		elseif not buffactive['Earthen Armor'] then
 			windower.chat.input('/pet "Earthen Armor" <me>')
-			tickdelay = 130
+			tickdelay = (framerate * 2.1)
 			return true 
 		else
 			return false

@@ -6,6 +6,7 @@
 --You want the cap ring offset to be 899 or 900 the MOMENT after using your Capacity ring.
 --time_offset = -39601
 --time_test = true
+--framerate = 75
 
 --If this is set to true it will prevent you from casting shadows when you have more up than that spell would generate.
 conserveshadows = false

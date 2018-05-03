@@ -158,6 +158,7 @@ function init_include()
 	rangedautowstp = 1000
 	buffup = false
 	time_offset = -39601
+	framerate = 75
 	curecheat = false
 	
 	if time_offset then
@@ -242,7 +243,7 @@ function init_include()
 	
 	-- Controls for handling our autmatic functions.
 	
-	tickdelay = 1350
+	tickdelay = (framerate * 20)
 	
 	-- General var initialization and setup.
     if job_setup then
@@ -296,7 +297,7 @@ function init_include()
 
 	-- Event register to prevent auto-modes from spamming after zoning.
 	windower.register_event('zone change', function()
-		tickdelay = 1350
+		tickdelay = (framerate * 20)
 		state.AutoBuffMode:reset()
 		state.AutoSubMode:reset()
 		state.AutoTrustMode:reset()
@@ -350,7 +351,7 @@ function init_include()
 			
 		end
 		
-		tickdelay = 30
+		tickdelay = (framerate / 2)
 
 	end)
 	

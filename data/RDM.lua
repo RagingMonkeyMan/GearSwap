@@ -703,7 +703,7 @@ function check_arts()
 		if not buffactive.Composure then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			if abil_recasts[50] == 0 and player.in_combat then
-				tickdelay = 30
+				tickdelay = (framerate * .5)
 				windower.chat.input('/ja "Composure" <me>')
 				return true
 			end
@@ -711,7 +711,7 @@ function check_arts()
 
 		if not arts_active() and abil_recasts[228] == 0 then
 			send_command('@input /ja "Light Arts" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		end
 

@@ -353,12 +353,12 @@ function check_arts()
 
 		if abil_recasts[29] == 0 and not state.Buff['Afflatus Solace'] and not state.Buff['Afflatus Misery'] then
 			send_command('@input /ja "Afflatus Solace" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 
 		elseif not arts_active() and abil_recasts[228] == 0 then
 			send_command('@input /ja "Light Arts" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		end
 		

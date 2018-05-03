@@ -1191,7 +1191,7 @@ function check_arts()
 
 		if abil_recasts[232] == 0 then
 			windower.chat.input('/ja "Dark Arts" <me>')
-			tickdelay = 30
+			tickdelay = (framerate * .5)
 			return true
 		end
 

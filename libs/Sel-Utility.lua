@@ -17,7 +17,7 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
         if spell.english == 'Spectral Jig' and buffactive.sneak then
             cast_delay(0.2)
 			send_command('cancel sneak')
-			tickdelay = 122
+			tickdelay = (framerate * 1.5)
         elseif spell.english == 'Sneak' and spell.target.type == 'SELF' and buffactive.sneak then
             send_command('cancel sneak')
         elseif spell.english == ('Stoneskin') or spell.english == ('Diamondhide') or spell.english == ('Magic Barrier') then
@@ -41,11 +41,11 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
         elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['saber dance'] then
             cast_delay(0.2)
             send_command('cancel saber dance')
-			tickdelay = 122
+			tickdelay = (framerate * 1.5)
         elseif spell.type=='Samba' and buffactive['fan dance'] then
             cast_delay(0.2)
             send_command('cancel fan dance')
-			tickdelay = 122
+			tickdelay = (framerate * 1.5)
         end
     end
 end
@@ -1197,7 +1197,7 @@ end
 function check_nuke()
 	if state.AutoNukeMode.value and player.target.type == "MONSTER" then
 		windower.send_command('input /ma '..autonuke..' <t>')
-		tickdelay = 120
+		tickdelay = (framerate * 1.5)
 		return true
 	else
 		return false
@@ -1211,11 +1211,11 @@ function check_sub()
 			
 			if available_ws:contains(190) then
 				windower.send_command('input /ws Myrkr <me>')
-				tickdelay = 120
+				tickdelay = (framerate * 1.5)
 				return true
 			elseif available_ws:contains(173) then
 				windower.send_command('input /ws Dagan <me>')
-				tickdelay = 120
+				tickdelay = (framerate * 1.5)
 				return true
 			end
 		end
@@ -1223,11 +1223,11 @@ function check_sub()
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] == 0 then
 				windower.send_command('input /ja Sublimation <me>')
-				tickdelay = 120
+				tickdelay = (framerate * 1.5)
 				return true
 			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] == 0 then
 				windower.send_command('input /ja Sublimation <me>')
-				tickdelay = 120
+				tickdelay = (framerate * 1.5)
 				return true
 			else
 				return false
@@ -1244,11 +1244,11 @@ function check_cleanup()
 	if state.AutoCleanupMode.value then
 		if player.inventory['Bead Pouch'] then
 			send_command('input /item "Bead Pouch" <me>')
-			tickdelay = 175
+			tickdelay = (framerate * 2.3)
 			return true
 		elseif player.inventory['Silt Pouch'] then
 			send_command('input /item "Silt Pouch" <me>')
-			tickdelay = 175
+			tickdelay = (framerate * 2.3)
 			return true
 		end
 
@@ -1290,7 +1290,7 @@ function check_cleanup()
 			for sci, scv in ipairs(shard_count) do
 				if player.inventory[snv..''..scv] then
 					send_command('wait 3.0;input /item "'..snv..''..scv..'" <me>')
-					tickdelay = 150
+					tickdelay = (framerate * 2)
 					return true
 				end
 			end
@@ -1310,27 +1310,27 @@ function check_trust()
 		
 			if spell_recasts[979] == 0 and not have_trust("Selh'teus") then
 				windower.send_command('input /ma "Selh\'teus" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			elseif spell_recasts[1012] == 0 and not have_trust("Nashmeira") then
 				windower.send_command('input /ma "Nashmeira II" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			elseif spell_recasts[1018] == 0 and not have_trust("Iroha") then
 				windower.send_command('input /ma "Iroha II" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			elseif spell_recasts[1017] == 0 and not have_trust("Arciela") then
 				windower.send_command('input /ma "Arciela II" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			elseif spell_recasts[947] == 0 and not have_trust("UkaTotlihn") then
 				windower.send_command('input /ma "Uka Totlihn" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			elseif spell_recasts[1013] == 0 and not have_trust("Lilisette") then
 				windower.send_command('input /ma "Lilisette II" <me>')
-				tickdelay = 270
+				tickdelay = (framerate * 4.5)
 				return true
 			else
 				return false
@@ -1345,15 +1345,15 @@ function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
 		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
 			windower.send_command('input /ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or  not mythic_weapons:contains(player.equipment.main)) then
 			windower.send_command('input /ws "'..autows..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.tp == 3000 then
 			windower.send_command('input /ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false
@@ -1366,11 +1366,11 @@ function check_food()
 	
 		if player.inventory[''..autofood..''] then
 			windower.chat.input('/item "'..autofood..'" <me>')
-			tickdelay = 120
+			tickdelay = (framerate * 1.5)
 			return true
 		elseif player.satchel[''..autofood..''] then
 			windower.send_command('get "'..autofood..'" satchel')
-			tickdelay = 120
+			tickdelay = (framerate * 1.5)
 			return true
 		else
 			return false
@@ -1388,33 +1388,33 @@ function check_ws()
 		
 		if player.hpp < 41 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Sanguine Blade" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.hpp < 41 and available_ws:contains(105) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Catastrophe" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.mpp < 21 and available_ws:contains(109) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Entropy" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.mpp < 21 and available_ws:contains(171) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.send_command('input /ws "Mystic Boon" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
 		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
 			windower.send_command('input /ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.send_command('input /ws "'..autows..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.tp == 3000 then
 			windower.send_command('input /ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false
@@ -1706,13 +1706,13 @@ function check_rune()
 		if player.main_job == 'RUN' and (not buffactive[state.RuneElement.value] or buffactive[state.RuneElement.value] < 3) then
 			if abil_recasts[92] > 0 then return false end		
 			send_command('input /ja "'..state.RuneElement.value..'" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 
 		elseif not buffactive[state.RuneElement.value] or buffactive[state.RuneElement.value] < 2 then
 			if abil_recasts[92] > 0 then return false end		
 			send_command('input /ja "'..state.RuneElement.value..'" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 			
 		elseif not player.in_combat then
@@ -1721,18 +1721,18 @@ function check_rune()
 		elseif not buffactive['Pflug'] then
 			if abil_recasts[59] == 0 then
 				send_command('input /ja "Pflug" <me>')
-				tickdelay = 110
+				tickdelay = (framerate * 1.8)
 				return true
 			end
 			
 		elseif not (buffactive['Vallation'] or buffactive['Valiance']) then
 			if player.main_job == 'RUN' and abil_recasts[113] == 0 then
 				send_command('input /ja "Valiance" <me>')
-				tickdelay = 200
+				tickdelay = (framerate * 1.8)
 				return true
 			elseif abil_recasts[23] == 0 then
 				send_command('input /ja "Vallation" <me>')
-				tickdelay = 110
+				tickdelay = (framerate * 1.8)
 				return true
 			else
 				return false

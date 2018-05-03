@@ -190,7 +190,7 @@ end
 
 function job_self_command(commandArgs, eventArgs)
 	if commandArgs[1]:lower() == 'runeelement' then
-		send_command('input /ja "'..state.RuneElement.value..'" <me>')
+		windower.chat.input('/ja "'..state.RuneElement.value..'" <me>')
 
 	elseif commandArgs[1]:lower() == 'subjobenmity' then
 
@@ -202,36 +202,62 @@ function job_self_command(commandArgs, eventArgs)
 			local spell_recasts = windower.ffxi.get_spell_recasts()
 					
 			if spell_recasts[584] == 0 then
-				send_command('input /ma "Sheep Song" <t>')
+				windower.chat.input('/ma "Sheep Song" <t>')
 			elseif spell_recasts[598] == 0 then
-				send_command('input /ma "Soporific" <t>')
+				windower.chat.input('/ma "Soporific" <t>')
 			elseif spell_recasts[605] == 0 then
-				send_command('input /ma "Geist Wall" <t>')
+				windower.chat.input('/ma "Geist Wall" <t>')
 			elseif spell_recasts[575] == 0 then
-				send_command('input /ma "Jettatura" <t>')
+				windower.chat.input('/ma "Jettatura" <t>')
 			elseif spell_recasts[592] == 0 then
-				send_command('input /ma "Blank Gaze" <t>')
+				windower.chat.input('/ma "Blank Gaze" <t>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
+			end
+			
+		elseif player.sub_job == 'DRK' then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			local spell_recasts = windower.ffxi.get_spell_recasts()
+			
+			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Souleater'] then
+				send_command('cancel souleater')
+			end
+			
+			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Last Resort'] then
+				send_command('cancel last resort')
+			end
+			
+			if spell_recasts[252] == 0 and not silent_check_silence() then
+				windower.chat.input('/ma "Stun" <t>')
+			elseif abil_recasts[85] == 0 then
+				windower.chat.input('/ja "Souleater" <me>')
+			elseif abil_recasts[87] == 0 then
+				windower.chat.input('/ja "Last Resort" <me>')
+			elseif abil_recasts[88] == 0 then
+				windower.chat.input('/ja "Weapon Bash" <t>')
+			elseif abil_recasts[86] == 0 then
+				windower.chat.input('/ja "Arcane Circle" <me>')
+			elseif not check_auto_tank_ws() then
+				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
 			end
 					
 		elseif player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			
-			if state.HybridMode.value ~= 'Normal' and buffactive['Berserk'] then
+			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Berserk'] then
 				send_command('cancel berserk')
 			end
 			
 			if abil_recasts[5] == 0 then
-				send_command('input /ja "Provoke" <t>')
+				windower.chat.input('/ja "Provoke" <t>')
 			elseif abil_recasts[2] == 0 then
-				send_command('input /ja "Warcry" <me>')
+				windower.chat.input('/ja "Warcry" <me>')
 			elseif abil_recasts[3] == 0 then
-				send_command('input /ja "Defender" <me>')
+				windower.chat.input('/ja "Defender" <me>')
 			elseif abil_recasts[4] == 0 then
-				send_command('input /ja "Aggressor" <me>')
+				windower.chat.input('/ja "Aggressor" <me>')
 			elseif abil_recasts[1] == 0 then
-				send_command('input /ja "Berserk" <me>')
+				windower.chat.input('/ja "Berserk" <me>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Warrior Job Abilities on cooldown.') end
 			end
@@ -247,7 +273,7 @@ function job_self_command(commandArgs, eventArgs)
 				return
 				end
 			elseif abil_recasts[221] == 0 then
-				send_command('input /ja "Animated Flourish" <t>')
+				windower.chat.input('/ja "Animated Flourish" <t>')
 				return
 			elseif abil_recasts[220] == 0 and not buffactive['Finishing Move 5'] then
 				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
@@ -295,28 +321,31 @@ function job_tick()
 	if state.AutoTankMode.value and player.target.type == "MONSTER" and not moving then
 		if check_flash_foil() then return true end
 		windower.send_command('gs c SubJobEnmity')
-		tickdelay = 90
+		tickdelay = (framerate * 1.5)
 		return true
 	end
 	return false
 end
 
 function check_flash_foil()
-
+	if silent_check_silence() then return false end
 	local spell_recasts = windower.ffxi.get_spell_recasts()
-
-	if spell_recasts[112] == 0 then
-		send_command('input /ma "Flash" <t>')
-		tickdelay = 120
+	
+	if not buffactive['Enmity Boost'] and spell_recasts[476] == 0 then
+		windower.chat.input('/ma "Crusade" <me>')
+		tickdelay = (framerate * 2)
+		return true
+	elseif spell_recasts[112] == 0 then
+		windower.chat.input('/ma "Flash" <t>')
+		tickdelay = (framerate * 2)
 		return true
 	elseif spell_recasts[840] == 0 then
-		send_command('input /ma "Foil" <me>')
-		tickdelay = 120
+		windower.chat.input('/ma "Foil" <me>')
+		tickdelay = (framerate * 2)
 		return true
 	else
 		return false
 	end
-
 end
 
 function update_melee_groups()
@@ -336,11 +365,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		end
 	
@@ -356,19 +385,19 @@ function check_buff()
 
 		if not buffactive['Swordplay'] and abil_recasts[24] == 0 then
 			windower.chat.input('/ja "Swordplay" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] == 0 then
 			windower.chat.input('/ja "Last Resort" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
 			windower.chat.input('/ja "Berserk" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
 			windower.chat.input('/ja "Aggressor" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false

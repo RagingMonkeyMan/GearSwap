@@ -403,16 +403,16 @@ end
 function check_song()
 	if state.AutoBuffMode.value and not moving and not areas.Cities:contains(world.area) then
 		if not buffactive.march then
-			windower.chat.input('/ma "Victory March" <me>')
-			tickdelay = 90
+			windower.chat.input('/ma "Honor March" <me>')
+			tickdelay = (framerate * 1.5)
 			return true
 		elseif not buffactive.madrigal then
 			windower.chat.input('/ma "Blade Madrigal" <me>')
-			tickdelay = 90
+			tickdelay = (framerate * 1.5)
 			return true
 		elseif not buffactive.minuet then
 			windower.send_command('gs c set ExtraSongsMode Dummy;input /ma "Valor Minuet V" <me>')
-			tickdelay = 90
+			tickdelay = (framerate * 1.5)
 			return true
 		else
 			return false

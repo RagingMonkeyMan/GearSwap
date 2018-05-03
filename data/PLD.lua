@@ -379,7 +379,7 @@ function job_tick()
 		if check_flash() then return true
 		else 
 			windower.send_command('gs c SubJobEnmity')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		end
 	end
@@ -391,7 +391,7 @@ function check_flash()
 
 	if spell_recasts[112] == 0 then
 		send_command('input /ma "Flash" <t>')
-		tickdelay = 120
+		tickdelay = (framerate * 2)
 		return true
 	else
 		return false
@@ -415,11 +415,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = 110
+			tickdelay = (framerate * 1.8)
 			return true
 		else
 			return false
