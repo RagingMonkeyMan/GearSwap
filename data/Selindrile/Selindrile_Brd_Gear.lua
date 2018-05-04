@@ -156,12 +156,12 @@ function init_gear_sets()
 		
 	sets.midcast['Elemental Magic'] = {main="Marin Staff +1",sub="Zuuxowu Grip",ammo="Dosis Tathlum",
 		head="Buremte Hat",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
-		body="Vanir Cotehardie",hands="Helios Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
+		body="Vanir Cotehardie",hands="Volte Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
 		back="Toro Cape",waist="Sekhmet Corset",legs="Artsieq Hose",feet="Helios Boots"}
 		
 	sets.midcast['Elemental Magic'].Resistant = {main="Marin Staff +1",sub="Clerisy Strap +1",ammo="Dosis Tathlum",
 		head="Buremte Hat",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
-		body="Vanir Cotehardie",hands="Helios Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
+		body="Vanir Cotehardie",hands="Volte Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
 		back="Toro Cape",waist="Yamabuki-no-Obi",legs="Artsieq Hose",feet="Helios Boots"}
 		
 	sets.midcast.Helix = sets.midcast['Elemental Magic']

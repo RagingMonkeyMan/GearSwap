@@ -1472,7 +1472,21 @@ function check_cpring()
 --	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
 	local CurrentTime = (os.time(os.date('!*t')) + time_offset)
 	
-	if cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
+	if player.main_job_level < 99 then
+		if player.equipment.left_ring == 'Echad Ring' and get_item_next_use('Echad Ring').usable then
+			send_command('input /item "'..player.equipment.left_ring..'" <me>')
+			cp_delay = 0
+			return true
+		elseif item_available('Echad Ring') and ((get_item_next_use('Echad Ring').next_use_time) - CurrentTime) < 15 then
+			cp_ring_equip('Echad Ring')
+			cp_delay = 10
+			return true
+		else
+			cp_delay = 0
+			return false
+		end
+		
+	elseif cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
 		send_command('input /item "'..player.equipment.left_ring..'" <me>')
 		cp_delay = 0
 		return true
@@ -1543,6 +1557,7 @@ function check_cpring_buff()-- returs true if you do not have the buff from xp c
 		if player.satchel['Vocation Ring'] then send_command('get "Vocation Ring" satchel') end
 		if player.satchel['Facility Ring'] then send_command('get "Facility Ring" satchel') end
 		if player.satchel['Guide Beret'] then send_command('get "Guide Beret" satchel') end
+		if player.satchel['Echad Ring'] and player.main_job_level < 99 then send_command('get "Guide Beret" satchel') end
 	
 		if buffactive['Commitment'] then
 			return false
