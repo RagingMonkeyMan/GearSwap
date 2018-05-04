@@ -19,6 +19,8 @@ end
 function job_setup()
 
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
+	state.Buff['Valiance'] = buffactive['Valiance'] or false
+	state.Buff['Vallation'] = buffactive['Vallation'] or false
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
@@ -43,7 +45,7 @@ function job_filter_precast(spell, spellMap, eventArgs)
 
 	if spell.english == 'Valiance' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[113] > 0 and not buffactive['Valiance'] and abil_recasts[23] == 0 then
+		if abil_recasts[113] > 0 and not state.Buff['Valiance'] and abil_recasts[23] == 0 then
 			eventArgs.cancel = true
 			send_command('@input /ja "Vallation" <me>')
 		end
