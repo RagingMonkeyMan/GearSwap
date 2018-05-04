@@ -90,7 +90,8 @@ function init_include()
 	state.CancelStoneskin	  = M(true, 'Stoneskin Cancel Mode')
 	state.RelicAftermath	  = M(true, 'Maintain Relic Aftermath')
 	state.Contradance		  = M(true, 'Auto Contradance Mode')
-
+	state.ElementalWheel 	  = M(false, 'Elemental Wheel Active')
+	
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
 
@@ -788,7 +789,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 
 		elseif spell.type == 'WeaponSkill' then
 			
-			if not (state.WeaponskillMode.value == 'Proc') and elemental_obi_weaponskills:contains(spell.name) and spell.element and (spell.element == world.weather_element or spell.element == world.day_element) and item_available('Hachirin-no-Obi') then
+			if state.WeaponskillMode.value ~= 'Proc' and elemental_obi_weaponskills:contains(spell.name) and spell.element and (spell.element == world.weather_element or spell.element == world.day_element) and item_available('Hachirin-no-Obi') then
 				equip({waist="Hachirin-no-Obi"})
 			end
 			
@@ -924,10 +925,21 @@ end
 function default_aftercast(spell, spellMap, eventArgs)
 
 	if not spell.interrupted then
-		if is_nuke(spell, spellMap) and state.MagicBurstMode.value == 'Single' then
-			state.MagicBurstMode:reset()
+		if is_nuke(spell, spellMap) then
+			if state.MagicBurstMode.value == 'Single' then MagicBurstMode:reset() end
+			if state.ElementalWheel.value and (spell.skill == 'Elemental Magic' or spellMap:contains('ElementalNinjutsu')) then
+				state.ElementalMode:cycle()
+				if S{"Light","Dark"}:contains(state.ElementalMode.value) then
+					state.ElementalMode:cycle()
+				end
+				if S{"Light","Dark"}:contains(state.ElementalMode.value) then
+					state.ElementalMode:cycle()
+				end
+			end
+			if state.DisplayMode.value then update_job_states()	end
 		elseif spell.type == 'WeaponSkill' and state.SkillchainMode.value == 'Single' then
 			state.SkillchainMode:reset()
+			if state.DisplayMode.value then update_job_states()	end
 		elseif spell.english:startswith('Utsusemi') then
 			lastshadow = spell.english
 		end

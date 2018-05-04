@@ -28,8 +28,10 @@ function job_setup()
 	
 	utsusemi_ni_cancel_delay = .1
 	
+	state.ElementalMode = M{['description'] = 'Elemental Mode','Fire','Water','Lightning','Earth','Wind','Ice','Light','Dark',}
+	
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode","ElementalWheel",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -122,8 +124,10 @@ function job_aftercast(spell, spellMap, eventArgs)
 	if spell.interrupted then return
 	elseif spell.english == "Migawari: Ichi" then
         state.Buff.Migawari = true
-	elseif spellMap == 'ElementalNinjutsu' and state.MagicBurstMode.value == 'Single' then
-            state.MagicBurstMode:reset()
+	elseif spellMap == 'ElementalNinjutsu' then
+            if state.MagicBurstMode.value == 'Single' then
+				state.MagicBurstMode:reset()
+			end
 			if state.DisplayMode.value then update_job_states()	end
     end
 end

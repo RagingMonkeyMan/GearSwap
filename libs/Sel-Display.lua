@@ -103,6 +103,7 @@ function update_job_states()
         TotalHaste = "Haste",
         DelayReduction = "Delay",
 		LearningMode = "Learning",
+		ElementalWheel = "Elemental Wheel",
 		MagicBurstMode = "Magic Burst",
 		RecoverMode = "Recover MP",
 		ElementalMode = "Element",

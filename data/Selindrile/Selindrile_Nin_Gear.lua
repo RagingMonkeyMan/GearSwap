@@ -326,10 +326,10 @@ function select_default_macro_book()
     if player.sub_job == 'WAR' then
         set_macro_page(1, 12)
     elseif player.sub_job == 'RNG' then
-        set_macro_page(7, 5)
+        set_macro_page(1, 12)
     elseif player.sub_job == 'RDM' then
-        set_macro_page(10, 5)
+        set_macro_page(1, 12)
     else
-        set_macro_page(10, 12)
+        set_macro_page(1, 12)
     end
 end

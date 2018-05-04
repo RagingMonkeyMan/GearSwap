@@ -158,9 +158,6 @@ function job_aftercast(spell, spellMap, eventArgs)
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
         elseif spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 90 down spells/00220.png')
-        elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
-            state.MagicBurstMode:reset()
-			if state.DisplayMode.value then update_job_states()	end
 		elseif spell.english == "Death" and state.DeathMode.value == 'Single' then
 			state.DeathMode:reset()
 			if state.DisplayMode.value then update_job_states()	end

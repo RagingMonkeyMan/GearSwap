@@ -323,35 +323,3 @@ function select_default_macro_book()
         set_macro_page(6, 5)
     end
 end
-
---Dynamis Trust Overwrite
-function check_trust()
-	if not moving then
-		if state.AutoTrustMode.value and not areas.Cities:contains(world.area) and (buffactive['Reive Mark'] or not player.in_combat) then
-			local party = windower.ffxi.get_party()
-			if party.p5 == nil then
-				local spell_recasts = windower.ffxi.get_spell_recasts()
-			
-				if spell_recasts[936] == 0 and not have_trust("Karaha-Baruha") then
-					windower.send_command('input /ma "Karaha-Baruha" <me>')
-					return true
-				elseif spell_recasts[952] == 0 and not have_trust("Koru-Moru") then
-					windower.send_command('input /ma "Koru-Moru" <me>')
-					return true
-				elseif spell_recasts[914] == 0 and not have_trust("Ulmia") then
-					windower.send_command('input /ma "Ulmia" <me>')
-					return true
-				elseif spell_recasts[989] == 0 and not have_trust("KingofHearts") then
-					windower.send_command('input /ma "King of Hearts" <me>')
-					return true
-				elseif spell_recasts[968] == 0 and not have_trust("Adelheid") then
-					windower.send_command('input /ma "Adelheid" <me>')
-					return true
-				else
-					return false
-				end
-			end
-		end
-	end
-	return false
-end
