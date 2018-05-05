@@ -261,6 +261,7 @@ end
 
 function job_tick()
 	if check_stance() then return true end
+	if check_buff() then return true end
 	return false
 end
 
@@ -381,5 +382,26 @@ function check_stance()
 		end
 	end
 
+	return false
+end
+
+function check_buff()
+	if state.AutoBuffMode.value and player.in_combat then
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		local abil_recasts = windower.ffxi.get_ability_recasts()
+
+		if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] == 0 then
+			windower.chat.input('/ja "Berserk" <me>')
+			tickdelay = (framerate * 1.8)
+			return true
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and not is_defensive() and abil_recasts[4] == 0 then
+			windower.chat.input('/ja "Aggressor" <me>')
+			tickdelay = (framerate * 1.8)
+			return true
+		else
+			return false
+		end
+	end
+		
 	return false
 end

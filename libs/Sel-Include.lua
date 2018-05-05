@@ -80,6 +80,7 @@ function init_include()
 	state.AutoTankMode 		  = M(false, 'Auto Tank Mode')
 	state.AutoNukeMode 		  = M(false, 'Auto Nuke Mode')
 	state.AutoRuneMode 		  = M(false, 'Auto Rune Mode')
+	state.AutoShadowMode 	  = M(false, 'Auto Shadow Mode')
 	state.AutoWSMode		  = M(false, 'Auto Weaponskill Mode')
 	state.AutoFoodMode		  = M(false, 'Auto Food Mode')
 	state.AutoSubMode 		  = M(false, 'Auto Sublimation Mode')
@@ -1066,6 +1067,7 @@ function pre_tick()
 end
 
 function default_tick()
+	if check_shadows() then return true end
 	if check_sub() then return true end
 	if check_food() then return true end
 	if check_ws() then return true end
