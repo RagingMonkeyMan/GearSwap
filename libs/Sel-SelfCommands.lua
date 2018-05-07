@@ -549,11 +549,23 @@ function handle_curecheat(cmdParams)
     if sets.HPDown then
         curecheat = true
 		equip(sets.HPDown)
-        send_command('@wait 1;input /ma "Cure III" <me>')
+		if player.main_job == 'BLU' then
+			send_command('@wait 1;input /ma "Magic Fruit" <me>')
+		elseif player.main_job == 'WHM' then
+			send_command('@wait 1;input /ma "Cure III" <me>')
+		else
+			send_command('@wait 1;input /ma "Cure IV" <me>')
+		end
 	--If we only have an HighHP set, we assume that this is sufficient.
 	elseif sets.HPCure then
 		curecheat = true
-        windower.chat.input('/ma "Cure III" <me>')
+		if player.main_job == 'BLU' then
+			windower.chat.input('/ma "Magic Fruit" <me>')
+		elseif player.main_job == 'WHM' then
+			windower.chat.input('/ma "Cure III" <me>')
+		else
+			windower.chat.input('/ma "Cure IV" <me>')
+		end
     else
         add_to_chat(123,"You don't have a sets.HPDown nor a sets.HPCure to cheat with.")
     end
