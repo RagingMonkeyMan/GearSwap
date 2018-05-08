@@ -306,7 +306,7 @@ function init_gear_sets()
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	sets.Skillchain = {legs="Ryuo Hakama"}
 	
-	-- Weaopns sets
+	-- Weapons sets
 	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kanaria"}
 	sets.weapons.MagicWeapons = {main="Ochu",sub="Ochu"}
 	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
