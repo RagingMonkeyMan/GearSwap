@@ -21,8 +21,8 @@ Setting up my Gearswaps and Github updating.
 
 7.) If you don't have my style Character luas already, then Inside your Gearswap\Data\
 	folder, first copy, then rename the "Selindrile" folder once for each of your
-	characters' names, then within those new folders, rename the "Selindrile" at 
-	the beginning of each of those files to your characters' names.
+	characters' names, you can click Rename.bat and for the first sequence enter:
+	Selindrile, then enter your character's name for new sequence.
 
 8.) To update my gearswaps in the future open up Github Desktop and click the third button (Fetch Origin, then
     push the same button again.
