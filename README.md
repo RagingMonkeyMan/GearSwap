@@ -1,3 +1,6 @@
+DISCLAIMER: PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, however feel free to shoot me a way to contact you outside of game,
+	through	the game, and I'm happy to help.
+
 Setting up my Gearswaps and Github updating.
 
 1.) Create a Github account if you don't already have one: https://github.com/join
@@ -33,7 +36,7 @@ Setting up my Gearswaps and Github updating.
 10.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
     https://www.dropbox.com/sh/20vy32liub3glxz/AAAiIVHAasFdwCK1SZdZz7d_a?dl=0
 	and place it in your Windower\Scripts folder (Rename and keep your
-	original just in case) I also run many unofficial addons, most of which can be found:
+	original just in case) I also run many unofficial addons, most of which can be found at:
 	https://www.dropbox.com/sh/8l6m0lfpgw59ycc/AABZn4T7gVphpX77wetsAx45a?dl=0
     
 11.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
