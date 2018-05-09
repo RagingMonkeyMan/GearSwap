@@ -927,7 +927,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 
 	if not spell.interrupted then
 		if is_nuke(spell, spellMap) then
-			if state.MagicBurstMode.value == 'Single' then MagicBurstMode:reset() end
+			if state.MagicBurstMode.value == 'Single' then state.MagicBurstMode:reset() end
 			if state.ElementalWheel.value and (spell.skill == 'Elemental Magic' or spellMap:contains('ElementalNinjutsu')) then
 				state.ElementalMode:cycle()
 				if S{"Light","Dark"}:contains(state.ElementalMode.value) then
