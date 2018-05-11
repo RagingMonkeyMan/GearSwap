@@ -81,8 +81,8 @@ end
 function job_pet_aftercast(spell, spellMap, eventArgs)
     if petWeaponskills:contains(spell.english) then
         classes.CustomClass = "Weaponskill"
-		if state.PartyChatWS then
-			send_command('/p '..auto_translate('Automaton')..' '..auto_translate('Weapon Skill')..' '..spell.english..' <scall21>')
+		if state.PartyChatWS.value then
+			windower.chat.input('/p '..auto_translate('Automaton')..' '..auto_translate('Weapon Skill')..' '..spell.english..'')
 		end
     end
 end
