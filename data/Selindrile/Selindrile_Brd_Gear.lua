@@ -78,7 +78,7 @@ function init_gear_sets()
 		back="Ground. Mantle +1",waist="Grunfeld Rope",legs="Aya. Cosciales +2",feet="Aya. Gambieras +1"}
 		
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.MaxTP = {ear1="Jupiter's Pearl",ear2="Kuwunga Earring"}
+	sets.MaxTP = {ear1="Ishvara Earring",ear2="Telos Earring",}
 	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
 
 	-- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
@@ -87,7 +87,7 @@ function init_gear_sets()
 	-- Midcast Sets
 
 	-- General set for recast times.
-	sets.midcast.FastRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Hasty Pinion",
+	sets.midcast.FastRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Hasty Pinion +1",
 		head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
 		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Gende. Galosh. +1"}
@@ -157,12 +157,12 @@ function init_gear_sets()
 	sets.midcast['Elemental Magic'] = {main="Marin Staff +1",sub="Zuuxowu Grip",ammo="Dosis Tathlum",
 		head="Buremte Hat",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
 		body="Vanir Cotehardie",hands="Volte Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
-		back="Toro Cape",waist="Sekhmet Corset",legs="Artsieq Hose",feet="Helios Boots"}
+		back="Toro Cape",waist="Sekhmet Corset",legs="Gyve Trousers",feet=gear.chironic_nuke_feet}
 		
 	sets.midcast['Elemental Magic'].Resistant = {main="Marin Staff +1",sub="Clerisy Strap +1",ammo="Dosis Tathlum",
 		head="Buremte Hat",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
 		body="Vanir Cotehardie",hands="Volte Gloves",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
-		back="Toro Cape",waist="Yamabuki-no-Obi",legs="Artsieq Hose",feet="Helios Boots"}
+		back="Toro Cape",waist="Yamabuki-no-Obi",legs="Gyve Trousers",feet=gear.chironic_nuke_feet}
 		
 	sets.midcast.Helix = sets.midcast['Elemental Magic']
 	sets.midcast.Helix.Resistant = sets.midcast['Elemental Magic'].Fodder
