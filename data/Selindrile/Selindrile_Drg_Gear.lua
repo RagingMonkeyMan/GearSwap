@@ -54,7 +54,7 @@ function init_gear_sets()
 	sets.precast.JA['Call Wyvern'] = {} --body="Ptero. Mail +1"
 	sets.precast.JA['Deep Breathing'] = {} --hands="Ptero. Armet +1"
 	sets.precast.JA['Spirit Surge'] = {} --body="Ptero. Mail +1"
-	sets.precast.JA['Steady Wing'] = {back="Brigantia's Mantle"} --body="Ptero. Mail +1"
+	sets.precast.JA['Steady Wing'] = {}
 	
 	-- Breath sets
 	sets.precast.JA['Restoring Breath'] = {back="Brigantia's Mantle"}
