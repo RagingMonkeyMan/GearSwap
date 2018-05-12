@@ -73,7 +73,7 @@ end
 -- eventArgs is the same one used in job_midcast, in case information needs to be persisted.
 function job_post_midcast(spell, spellMap, eventArgs)
 
-	if spell.action_type == 'Magic' and player.hpp < Breath_HPP and pet.isvalid then
+	if spell.action_type == 'Magic' and player.hpp > 25 and player.hpp < Breath_HPP and pet.isvalid then
 		equip(sets.midcast.HB_Trigger)
 	end
 
