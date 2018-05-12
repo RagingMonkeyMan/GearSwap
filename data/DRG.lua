@@ -26,6 +26,7 @@ function job_setup()
 	autofood = 'Soy Ramen'
 
 	Breath_HPP = 60
+	
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -81,18 +82,15 @@ end
 -- Runs when a pet initiates an action.
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_pet_midcast(spell, spellMap, eventArgs)
-	if spell.english:contains('Breath') then
-		if spell.english:startswith('Healing') or spell.english:startswith('Restoring') then
-			equip(sets.HealingBreath)
-		else 
-			equip(sets.SmitingBreath)
-		end
-	end
+
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
 	if pet.isvalid then
-		if (spell.action_type == 'Magic' and player.hpp < Breath_HPP) or (spell.english == 'Restoring Breath' or spell.english == 'Smiting Breath') then
+		if (spell.action_type == 'Magic' and player.hpp < Breath_HPP) then
+			eventArgs.handled = true
+			equip(sets.HealingBreath)
+		elseif (spell.english == 'Restoring Breath' or spell.english == 'Smiting Breath' or spell.english == 'Steady Wing') then
 			eventArgs.handled = true
 		end
 	end
@@ -104,6 +102,7 @@ end
 
 function job_update(cmdParams, eventArgs)
     update_melee_groups()
+	find_breath_hpp()
 	
 	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
 		state.Stance:set("None")
@@ -220,4 +219,20 @@ function check_buff()
 	end
 		
 	return false
+end
+
+function find_breath_hpp()
+	if S{'WHM','BLM','RDM','SMN','BLU','SCH','GEO'}:contains(player.sub_job) then
+		if sets.midcast.HB_Trigger and (sets.midcast.HB_Trigger.head:contains('Vishap') or sets.midcast.HB_Trigger.head:contains('Drachen')) then
+			Breath_HPP = 65
+		else
+			Breath_HPP = 45
+		end
+	elseif S{'PLD','DRK','BRD','NIN','RUN'}:contains(player.sub_job) then
+		if sets.midcast.HB_Trigger and (sets.midcast.HB_Trigger.head:contains('Vishap') or sets.midcast.HB_Trigger.head:contains('Drachen')) then
+			Breath_HPP = 45
+		else
+			Breath_HPP = 35
+		end
+	end
 end

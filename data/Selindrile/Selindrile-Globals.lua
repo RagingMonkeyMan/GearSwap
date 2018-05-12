@@ -71,6 +71,7 @@ send_command('bind ^o fillmode') --Lets you see through walls.
 send_command('bind @p gs equip sets.Sheltered') --Equip sheltered ring, for when being Pro/Shelled.
 send_command('bind !p gs equip sets.Cure_Received') --Equip Cure Potency Received set for when being cured.
 send_command('bind @m gs c mount Omega')
+send_command('alias ambuseal gs c ambuseal')
 
 --Usable item binds.
 

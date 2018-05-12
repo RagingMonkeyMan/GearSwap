@@ -54,6 +54,13 @@ function init_gear_sets()
 	sets.precast.JA['Call Wyvern'] = {} --body="Ptero. Mail +1"
 	sets.precast.JA['Deep Breathing'] = {} --hands="Ptero. Armet +1"
 	sets.precast.JA['Spirit Surge'] = {} --body="Ptero. Mail +1"
+	sets.precast.JA['Steady Wing'] = {back="Brigantia's Mantle"} --body="Ptero. Mail +1"
+	
+	-- Breath sets
+	sets.precast.JA['Restoring Breath'] = {back="Brigantia's Mantle"}
+	sets.precast.JA['Smiting Breath'] = {back="Brigantia's Mantle"}
+	sets.HealingBreath = {back="Brigantia's Mantle"}
+	sets.SmitingBreath = {back="Brigantia's Mantle"}
 
 	-- Fast cast sets for spells
 	
@@ -83,11 +90,6 @@ function init_gear_sets()
 	-- Put HP+ gear and the AF head to make healing breath trigger more easily with this set.
 	sets.midcast.HB_Trigger = set_combine(sets.midcast.FastRecast, {head="Vishap Armet +1"})
 	
-	-- Breath sets
-	sets.HealingBreath = {back="Brigantia's Mantle"}
-		
-	sets.SmitingBreath = {back="Brigantia's Mantle"}
-		
 	-- Weaponskill sets
 
 	-- Default set for any weaponskill that isn't any more specifically defined
