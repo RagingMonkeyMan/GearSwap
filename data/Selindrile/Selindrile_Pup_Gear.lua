@@ -11,7 +11,7 @@ function user_setup()
     defaultManeuvers = {
         ['Melee'] = {'Fire Maneuver','Thunder Maneuver','Wind Maneuver','Light Maneuver'},
         ['Ranged'] = {'Wind Maneuver','Fire Maneuver','Light Maneuver','Thunder Maneuver'},
-        ['Tank'] = {'Earth Maneuver','Fire Maneuver', 'Light Maneuver','Dark Maneuver'},
+        ['Tank'] = {'Earth Maneuver','Light Maneuver','Dark Maneuver','Fire Maneuver',},
 		['LightTank'] = {'Earth Maneuver','Fire Maneuver','Light Maneuver','Dark Maneuver'},
         ['Magic'] = {'Ice Maneuver','Light Maneuver','Dark Maneuver','Earth Maneuver'},
         ['Heal'] = {'Light Maneuver','Dark Maneuver','Water Maneuver','Earth Maneuver'},
