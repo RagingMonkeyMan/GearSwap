@@ -1869,7 +1869,7 @@ function status_change(newStatus, oldStatus)
     end
 
     -- Handle equipping default gear if the job didn't mark this as handled.
-    if not eventArgs.handled then
+    if not eventArgs.handled and not midaction() and not pet_midaction() then
         handle_equipping_gear(newStatus)
         display_breadcrumbs()
     end
@@ -2012,7 +2012,7 @@ function pet_change(pet, gain)
 
     -- Equip default gear if not handled by the job.
     if not eventArgs.handled then
-        if not midaction() then handle_equipping_gear(player.status) end
+        if not midaction() and not pet_midaction() then handle_equipping_gear(player.status) end
     end
 end
 
