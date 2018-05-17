@@ -205,7 +205,7 @@ function update_job_states()
 					stateBox:append(string.format("%s / %s%s%s", clr.n, clr.h, state.ExtraDefenseMode.current, clr.n))
 				end
 			else
-				stateBox:append(string.format("%s: ${%s}", labels[n], n))
+				stateBox:append(string.format("%s%s: ${%s}", clr.w, labels[n], n))
 				if state.HybridMode then
 					if state.HybridMode.value == 'Normal' then
 						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.w, state.HybridMode.current, clr.n))
