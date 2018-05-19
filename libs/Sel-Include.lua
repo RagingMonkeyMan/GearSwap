@@ -965,6 +965,7 @@ end
 --------------------------------------
 
 function filter_precast(spell, spellMap, eventArgs)
+	if midaction() or pet_midaction() or gearswap.cued_packet then eventArgs.cancel = true return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
 	if check_amnesia(spell, spellMap, eventArgs) then return end

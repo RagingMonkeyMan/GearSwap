@@ -13,7 +13,8 @@ function user_setup()
 	gear.stp_jse_back = {name="Taranus's Cape",augments={'DEX+20','Accuracy+20 Attack+20','"Store TP"+10',}}
 
 		-- Additional local binds
-	send_command('bind ^` gs c cycle ElementalMode')
+	send_command('bind ^` gs c cycle ElementalMode') --Robbiewobbie's idea
+	send_command('bind ~^` gs c cycleback ElementalMode')
 	send_command('bind ^q gs c weapons Khatvanga;gs c set CastingMode OccultAcumen')
 	send_command('bind !q gs c weapons default;gs c reset CastingMode')
 	send_command('bind !\\\\ input /ja "Manawell" <me>')
