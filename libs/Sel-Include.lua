@@ -965,6 +965,7 @@ end
 --------------------------------------
 
 function filter_precast(spell, spellMap, eventArgs)
+	if check_rnghelper(spell, spellMap, eventArgs) then return end
 	if midaction() or pet_midaction() or gearswap.cued_packet then eventArgs.cancel = true return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
@@ -974,7 +975,6 @@ function filter_precast(spell, spellMap, eventArgs)
 	if check_targets(spell, spellMap, eventArgs) then return end
 	if check_recast(spell, spellMap, eventArgs) then return end
 	if check_cost(spell, spellMap, eventArgs) then return end
-	if check_rnghelper(spell, spellMap, eventArgs) then return end
 
 	if spellMap == 'Cure' or spellMap == 'Curaga' then
 		if spell.target.distance > 21 and spell.target.type == 'PLAYER' then
