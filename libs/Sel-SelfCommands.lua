@@ -314,6 +314,8 @@ function handle_weapons(cmdParams)
 	if cmdParams[1] == nil then
 		if sets.weapons[state.Weapons.value] then
 			equip_weaponset(state.Weapons.value)
+		elseif state.Weapons.value == 'None' then
+			enable('main','sub','range','ammo')
 		end
 	elseif cmdParams[1] == 'None' then
 	elseif cmdParams[1]:lower() == 'default' then
