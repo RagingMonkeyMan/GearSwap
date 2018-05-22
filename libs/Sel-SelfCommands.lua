@@ -382,19 +382,40 @@ function handle_showset(cmdParams)
 	end
 end
 
+function handle_useitem(cmdParams)
+	if cmdParams[1] ~= nil then
+		local equipslot = (table.remove(cmdParams, 1)):lower()
+		local useitem = table.concat(cmdParams, ' ')
+		useItem = true
+		if useItemName ~= useitem then
+			add_to_chat(217,"Using "..useitem..", /heal to cancel.")
+		end
+		useItemName = useitem
+		useItemSlot = equipslot
+	else
+		add_to_chat(122,'Syntax error with UseItem command - Use: gs c UseItem equipslot Item Name (Use item for non-equippable items).')
+	end
+end
+
 function handle_forceequip(cmdParams)
 	if cmdParams[1] ~= nil then
-		if cmdParams[2] == 'all' then
-			enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-			equip(cmdParams[1])
-			disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		else
-			enable(cmdParams[2])
+		local equipslot = (table.remove(cmdParams, 1)):lower()
+		if equipslot == 'set' then
+			local slots = T{}
+			for slot,item in pairs(sets[cmdParams[1]]) do
+				slots:append(slot)
+			end
+			enable(slots)
 			equip(sets[cmdParams[1]])
-			disable(cmdParams[2])
+			disable(slots)
+		else
+			local gear = table.concat(cmdParams, ' ')
+			enable(equipslot)
+			equip({[equipslot]=gear})
+			disable(equipslot)
 		end
 	else
-		add_to_chat(122,'Syntax error with ForceEquip command - Use: gs c ForceEquip setname (slot or all).')
+		add_to_chat(122,'Syntax error with ForceEquip command - Use: gs c ForceEquip setname (slot or set).')
 	end
 end
 
@@ -904,6 +925,7 @@ selfCommandMaps = {
 	['stopping'] 		= handle_stopping,
     ['help']     		= handle_help,
     ['forceequip']  	= handle_forceequip,
+	['useitem']			= handle_useitem,
     ['quietenable'] 	= handle_quietenable,
 	['quietdisable']	= handle_quietdisable,
 	['autonuke'] 		= handle_autonuke,

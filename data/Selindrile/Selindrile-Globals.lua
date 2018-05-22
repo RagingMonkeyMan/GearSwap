@@ -71,49 +71,6 @@ send_command('bind ^o fillmode') --Lets you see through walls.
 send_command('bind @p gs equip sets.Sheltered') --Equip sheltered ring, for when being Pro/Shelled.
 send_command('bind !p gs equip sets.Cure_Received') --Equip Cure Potency Received set for when being cured.
 send_command('bind @m gs c mount Omega')
-send_command('alias ambuseal gs c ambuseal')
-
---Usable item binds.
-
---Warp ring binds.
-send_command('bind ^@!h get "Warp Ring" satchel')
-send_command('bind ^h gs c forceequip Warp ring2')
-send_command('bind !h input /item "Warp Ring" <me>')
-send_command('bind ^!h gs c quietenable ring2;put "Warp Ring" satchel')
-
---Nexus Cape binds.
-send_command('bind ^@!n get "Nexus Cape" satchel')
-send_command('bind ^n gs c forceequip Nexus back')
-send_command('bind !n input /item "Nexus Cape" <me>')
-send_command('bind ^!n gs c quietenable back;put "Nexus Cape" satchel')
-
---Dimensional Ring (Holla) binds.
-send_command('bind ^@!, get "Dim. Ring (Holla)" satchel')
-send_command('bind ^, gs c forceequip HollaRing ring2')
-send_command('bind !, input /item "Dim. Ring (Holla)" <me>')
-send_command('bind ^!, gs c quietenable ring2;put "Dim. Ring (Holla)" satchel')
-
---Dimensional Ring (Dem) binds.
-send_command('bind ^@!. get "Dim. Ring (Dem)" satchel')
-send_command('bind ^. gs c forceequip DemRing ring2')
-send_command('bind !. input /item "Dim. Ring (Dem)" <me>')
-send_command('bind ^!. gs c quietenable ring2;put "Dim. Ring (Dem)" satchel')
-
---Dimensional Ring (Mea) binds.
-send_command('bind ^@!/ get "Dim. Ring (Mea)" satchel')
-send_command('bind ^/ gs c forceequip MeaRing ring2')
-send_command('bind !/ input /item "Dim. Ring (Mea)" <me>')
-send_command('bind ^!/ gs c quietenable ring2;put "Dim. Ring (Mea)" satchel')
-
---Reraise Earring binds.
-send_command('bind ^@!u get "Reraise Earring" satchel')
-send_command('bind ^u gs c forceequip RREar ear2')
-send_command('bind !u input /item "Reraise Earring" <me>')
-send_command('bind ^!u gs c quietenable ear2;put "Reraise Earring" satchel')
-
---Capacity item binds.
-send_command('bind ^@!z get "Mecisto. Mantle" satchel;get "Capacity Ring" satchel;wait 1;get "Trizek Ring" satchel;wait 1;get "Vocation Ring" satchel;wait 1;get "Facility Ring" satchel')
-send_command('bind ^!z put "Mecisto. Mantle" satchel;put "Capacity Ring" satchel;wait 1;put "Trizek Ring" satchel;wait 1;put "Vocation Ring" satchel;wait 1;put "Facility Ring" satchel;wait 1;put "Guide Beret" satchel')
 
 --Place to override Tables and other definitions you may want to.
 

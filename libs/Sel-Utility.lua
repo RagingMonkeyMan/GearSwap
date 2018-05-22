@@ -1361,6 +1361,36 @@ function check_auto_tank_ws()
 	end
 end
 
+function check_use_item()
+	if useItem then
+		local CurrentTime = (os.time(os.date('!*t')) + time_offset)
+		if useItemSlot == 'item' and player.inventory[useItemName] then
+			windower.chat.input('/item "'..useItemName..'" <me>')
+			tickdelay = (framerate * 2)
+			return true
+		elseif item_equipped(useItemName) and get_item_next_use(useItemName).usable then
+			windower.chat.input('/item "'..useItemName..'" <me>')
+			tickdelay = (framerate * 3)
+			return true
+		elseif item_available(useItemName) and ((get_item_next_use(useItemName).next_use_time) - CurrentTime) < 10 then
+			windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
+			tickdelay = (framerate * 2)
+			return true
+		elseif player.satchel[useItemName] then
+			windower.send_command('get '..useItemName..'')
+			tickdelay = (framerate * 2)
+			return true
+		else
+			add_to_chat(123,''..useItemName..' not available or ready for use.')
+			useItem = false
+			return false
+		end
+	else
+		return false
+	end
+	return false
+end
+
 function check_food()
 	if state.AutoFoodMode.value and not buffactive['Food'] and not areas.Cities:contains(world.area) then
 	
@@ -1866,6 +1896,15 @@ end
 
 function item_name_to_id(name)
     return (player.inventory[name] or player.wardrobe[name] or player.wardrobe2[name] or player.wardrobe3[name] or player.wardrobe4[name] or {}).id
+end
+
+function item_equipped(item)
+	for k, v in pairs(player.equipment) do
+		if v == item then
+			return true
+		end
+	end
+	return false
 end
 
 function get_current_strategem_count()
