@@ -1368,6 +1368,24 @@ function check_use_item()
 			windower.chat.input('/item "'..useItemName..'" <me>')
 			tickdelay = (framerate * 2)
 			return true
+		elseif useItemSlot == 'set' then
+			if item_equipped(set_to_item(useItemName)) and get_item_next_use(set_to_item(useItemName)).usable then
+				windower.chat.input('/item "'..set_to_item(useItemName)..'" <me>')
+				tickdelay = (framerate * 3)
+				return true
+			elseif item_available(set_to_item(useItemName)) and ((get_item_next_use(set_to_item(useItemName)).next_use_time) - CurrentTime) < 10 then
+				windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
+				tickdelay = (framerate * 2)
+				return true
+			elseif player.satchel[set_to_item(useItemName)] then
+				windower.send_command('get "'..set_to_item(useItemName)..'" satchel')
+				tickdelay = (framerate * 2)
+				return true
+			else
+				add_to_chat(123,''..set_to_item(useItemName)..' not available or ready for use.')
+				useItem = false
+				return false
+			end
 		elseif item_equipped(useItemName) and get_item_next_use(useItemName).usable then
 			windower.chat.input('/item "'..useItemName..'" <me>')
 			tickdelay = (framerate * 3)
@@ -1896,6 +1914,15 @@ end
 
 function item_name_to_id(name)
     return (player.inventory[name] or player.wardrobe[name] or player.wardrobe2[name] or player.wardrobe3[name] or player.wardrobe4[name] or {}).id
+end
+
+function set_to_item(set)
+	for k, v in pairs(sets[set]) do
+		if v ~= empty then
+			return v
+		end
+	end
+	return false
 end
 
 function item_equipped(item)

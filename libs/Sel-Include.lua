@@ -987,7 +987,18 @@ function default_aftercast(spell, spellMap, eventArgs)
 			lastshadow = spell.english
 		elseif spell.action_type == 'Item' and useItem and spell.english == useItemName then
 			useItem = false
-			if useItemSlot ~= 'item' then
+			if useItemSlot == 'item' then
+				windower.send_command('put '..useItemName..' satchel')
+			elseif useItemSlot == 'set' then
+				local slots = T{}
+				for slot,item in pairs(sets[useItemName]) do
+					slots:append(slot)
+				end
+				enable(slots)
+				if player.inventory[useItemName] then
+					windower.send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
+				end
+			else 
 				enable(useItemSlot)
 				if player.inventory[useItemName] then
 					windower.send_command('wait 1;put '..useItemName..' satchel')
@@ -1898,13 +1909,24 @@ function status_change(newStatus, oldStatus)
 		end
 		
 		if useItem then
-			add_to_chat(123,'Cancelling using '..useItemName..'.')
 			useItem = false
-			if useItemSlot ~= 'item' then
+			if useItemSlot == 'item' then
+				windower.send_command('put '..useItemName..' satchel')
+			elseif useItemSlot == 'set' then
+				local slots = T{}
+				for slot,item in pairs(sets[useItemName]) do
+					slots:append(slot)
+				end
+				enable(slots)
+				if player.inventory[useItemName] then
+					windower.send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
+				end
+			else 
 				enable(useItemSlot)
+				if player.inventory[useItemName] then
+					windower.send_command('wait 1;put '..useItemName..' satchel')
+				end
 			end
-			useItemName = ''
-			useItemSlot = ''
 		end
 	end
 	
