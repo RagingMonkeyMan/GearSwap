@@ -112,6 +112,13 @@ function init_include()
     -- Non-mode vars that are used for state tracking.
     state.MaxWeaponskillDistance = 0
     state.Buff = {}
+	
+	--Tracking these here because required quick actions on multiple jobs.
+	state.Buff['Light Arts'] = buffactive['Light Arts'] or false
+	state.Buff['Addendum: White'] = buffactive['Addendum: White'] or false
+	state.Buff['Dark Arts'] = buffactive['Dark Arts'] or false
+	state.Buff['Addendum: Black'] = buffactive['Addendum: Black'] or false
+	state.Buff['Accession'] = buffactive['Accession'] or false
 
     -- Classes describe a 'type' of action.  They are similar to state, but
     -- may have any free-form value, or describe an entire table of mapped values.

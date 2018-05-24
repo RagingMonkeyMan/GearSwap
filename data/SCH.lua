@@ -107,12 +107,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
     end
 	
 	if spell.skill == 'Enfeebling Magic' then
-		if (buffactive['light arts'] or buffactive['addendum: white']) and sets.buff['Light Arts'] then
+		if (state.Buff['Light Arts'] or state.Buff['Addendum: White']) and sets.buff['Light Arts'] then
 			equip(sets.buff['Light Arts'])
-		elseif (buffactive['dark arts'] or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
+		elseif (state.Buff['Dark Arts'] or state.Buff['Addendum: Black']) and sets.buff['Dark Arts'] then
 			equip(sets.buff['Dark Arts'])
 		end
-	elseif default_spell_map == 'ElementalEnfeeble' and (buffactive['dark arts']  or buffactive['addendum: black']) and sets.buff['Dark Arts'] then
+	elseif default_spell_map == 'ElementalEnfeeble' and (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) and sets.buff['Dark Arts'] then
 		equip(sets.buff['Dark Arts'])
     elseif spell.skill == 'Elemental Magic' and spell.english ~= 'Impact' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
@@ -315,7 +315,7 @@ function handle_elemental(cmdParams)
 		
 	local immactive = 0
 		
-	if buffactive['Immanence'] then
+	if state.Buff['Immanence'] then
 		immactive = 1
 	end
 	
@@ -324,9 +324,9 @@ function handle_elemental(cmdParams)
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
 		if state.ElementalMode.value == 'Fire' then
-			if buffactive['addendum: black'] and spell_recasts[148] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[148] == 0 then
 				windower.chat.input('/ma "Fire V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[147] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[147] == 0 then
 				windower.chat.input('/ma "Fire IV" <t>')
 			elseif spell_recasts[146] == 0 then
 				windower.chat.input('/ma "Fire III" <t>')
@@ -337,9 +337,9 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Wind' then
-			if buffactive['addendum: black'] and spell_recasts[158] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[158] == 0 then
 				windower.chat.input('/ma "Aero V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[157] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[157] == 0 then
 				windower.chat.input('/ma "Aero IV" <t>')
 			elseif spell_recasts[156] == 0 then
 				windower.chat.input('/ma "Aero III" <t>')
@@ -350,9 +350,9 @@ function handle_elemental(cmdParams)
 			end
 			
 		elseif state.ElementalMode.value == 'Lightning' then
-			if buffactive['addendum: black'] and spell_recasts[168] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[168] == 0 then
 				windower.chat.input('/ma "Thunder V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[167] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[167] == 0 then
 				windower.chat.input('/ma "Thunder IV" <t>')
 			elseif spell_recasts[166] == 0 then
 				windower.chat.input('/ma "Thunder III" <t>')
@@ -363,9 +363,9 @@ function handle_elemental(cmdParams)
 			end
 
 		elseif state.ElementalMode.value == 'Earth' then
-			if buffactive['addendum: black'] and spell_recasts[163] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[163] == 0 then
 				windower.chat.input('/ma "Stone V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[162] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[162] == 0 then
 				windower.chat.input('/ma "Stone IV" <t>')
 			elseif spell_recasts[161] == 0 then
 				windower.chat.input('/ma "Stone III" <t>')
@@ -376,9 +376,9 @@ function handle_elemental(cmdParams)
 			end
 			
 		elseif state.ElementalMode.value == 'Ice' then
-			if buffactive['addendum: black'] and spell_recasts[153] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[153] == 0 then
 				windower.chat.input('/ma "Blizzard V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[152] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[152] == 0 then
 				windower.chat.input('/ma "Blizzard IV" <t>')
 			elseif spell_recasts[151] == 0 then
 				windower.chat.input('/ma "Blizzard III" <t>')
@@ -389,9 +389,9 @@ function handle_elemental(cmdParams)
 			end
 		
 		elseif state.ElementalMode.value == 'Water' then
-			if buffactive['addendum: black'] and spell_recasts[173] == 0 then
+			if state.Buff['Addendum: Black'] and spell_recasts[173] == 0 then
 				windower.chat.input('/ma "Water V" <t>')
-			elseif buffactive['addendum: black'] and spell_recasts[172] == 0 then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[172] == 0 then
 				windower.chat.input('/ma "Water IV" <t>')
 			elseif spell_recasts[171] == 0 then
 				windower.chat.input('/ma "Water III" <t>')
@@ -689,7 +689,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif (get_current_strategem_count() + immactive) < 2 then
 			add_to_chat(123,'Abort: You have less than two stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		elseif state.ElementalMode.value ~= nil then
@@ -755,7 +755,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif (get_current_strategem_count() + immactive) < 2 then
 			add_to_chat(123,'Abort: You have less than two stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 			
@@ -801,7 +801,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif (get_current_strategem_count() + immactive) < 3 then
 			add_to_chat(123,'Abort: You have less than three stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		elseif state.ElementalMode.value == 'Fire' then
@@ -825,7 +825,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif (get_current_strategem_count() + immactive) < 4 then
 			add_to_chat(123,'Abort: You have less than four stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		else 
@@ -847,7 +847,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif get_current_strategem_count() < 5 then
 			add_to_chat(123,'Abort: You have less than five stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		elseif not buffactive['Immanence'] then
@@ -877,7 +877,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
 		elseif (get_current_strategem_count() + immactive) < 1 then
 			add_to_chat(123,'Abort: You have less than one stratagems available.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		elseif state.ElementalMode.value == 'Fire' then
@@ -951,7 +951,7 @@ function handle_elemental(cmdParams)
 			add_to_chat(123,'Abort: You are not targeting a monster.')
 		elseif buffactive.silence or buffactive.mute or buffactive.paralysis then
 			add_to_chat(123,'You are silenced, muted, or paralyzed, cancelling skillchain.')
-		elseif not (buffactive['dark arts']  or buffactive['addendum: black']) then
+		elseif not (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) then
 			add_to_chat(123,'Can\'t use elemental skillchain commands without Dark Arts - Activating.')
 			windower.chat.input('/ja "Dark Arts" <me>')
 		elseif state.ElementalMode.value == 'Fire' then
@@ -1112,22 +1112,22 @@ function handle_strategems(cmdParams)
     local strategem = cmdParams[2]:lower()
 
     if strategem == 'light' then
-        if buffactive['light arts'] then
+        if state.Buff['Light Arts'] then
             windower.chat.input('/ja "Addendum: White" <me>')
-        elseif buffactive['addendum: white'] then
+        elseif state.Buff['Addendum: White'] then
             add_to_chat(122,'Error: Addendum: White is already active.')
         else
             windower.chat.input('/ja "Light Arts" <me>')
         end
     elseif strategem == 'dark' then
-        if buffactive['dark arts'] then
+        if state.Buff['Dark Arts'] then
             windower.chat.input('/ja "Addendum: Black" <me>')
-        elseif buffactive['addendum: black'] then
+        elseif state.Buff['Addendum: Black'] then
             add_to_chat(122,'Error: Addendum: Black is already active.')
         else
             windower.chat.input('/ja "Dark Arts" <me>')
         end
-    elseif buffactive['light arts'] or buffactive['addendum: white'] then
+    elseif state.Buff['Light Arts'] or state.Buff['Addendum: White'] then
         if strategem == 'cost' then
             windower.chat.input('/ja "Penury" <me>')
         elseif strategem == 'speed' then
@@ -1149,7 +1149,7 @@ function handle_strategems(cmdParams)
         else
             add_to_chat(123,'Error: Unknown strategem ['..strategem..']')
         end
-    elseif buffactive['dark arts']  or buffactive['addendum: black'] then
+    elseif state.Buff['Dark Arts']  or state.Buff['Addendum: Black'] then
         if strategem == 'cost' then
             windower.chat.input('/ja "Parsimony" <me>')
         elseif strategem == 'speed' then
