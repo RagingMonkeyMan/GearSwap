@@ -34,8 +34,6 @@ end
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 	
-	state.Buff['Accession'] = buffactive['Accession'] or false
-	
     LowTierNukes = S{'Stone', 'Water', 'Aero', 'Fire', 'Blizzard', 'Thunder',
         'Stone II', 'Water II', 'Aero II', 'Fire II', 'Blizzard II', 'Thunder II',
         'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}
@@ -270,6 +268,7 @@ end
 
 -- Reset the state vars tracking strategems.
 function update_active_strategems()
+	state.Buff['Accession'] = buffactive['Accession'] or false
     state.Buff['Ebullience'] = buffactive['Ebullience'] or false
     state.Buff['Rapture'] = buffactive['Rapture'] or false
     state.Buff['Perpetuance'] = buffactive['Perpetuance'] or false
