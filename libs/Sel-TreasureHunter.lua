@@ -126,7 +126,6 @@ function TH_for_first_hit()
     end
 end
 
-
 -------------------------------------------------------------------------------------------------------------------
 -- Event handlers to allow tracking TH application.
 -------------------------------------------------------------------------------------------------------------------
@@ -207,10 +206,30 @@ function on_action_for_th(action)
     cleanup_tagged_mobs()
 end
 
+-- Modifying this function for AoE TH Applying Actions, single targets now handled in aftercast.
+function th_action_check(category, param)
+    if category == 2 or -- any ranged attack
+        (category == 4 	and info.th_ma_ids:contains(param)) or  -- Dia/Bio
+        (category == 3 	and info.th_ws_ids:contains(param)) or  -- Aeolian Edge
+        (category == 6 	and info.th_ja_ids:contains(param)) or  -- Provoke, Animated Flourish
+        (category == 14 and info.th_u_ja_ids:contains(param))	-- Quick/Box/Stutter Step, Desperate/Violent Flourish
+        then return true
+    end
+end
+
+-- For th_action_check():
+-- AoE MA IDs for actions that always have TH: Diaga
+info.th_ma_ids = S{33, 34}
+-- AoE WS IDs for actions that always have TH in TH mode: Cyclone, Aeolian Edge
+info.th_ws_ids = S{20, 30}
+-- JA IDs for actions that always have TH: Provoke, Animated Flourish (Should all be handled in aftercast, kept for notes: 35, 204)
+info.th_ja_ids = S{}
+-- Unblinkable JA IDs for actions that always have TH: Quick/Box/Stutter Step, Desperate/Violent Flourish (Should all be handled in aftercast, kept for notes: 201, 202, 203, 205, 207)
+info.th_u_ja_ids = S{}
 
 -- Need to use this event handler to listen for deaths in case Battlemod is loaded,
 -- because Battlemod blocks the 'action message' event.
---
+
 -- This function removes mobs from our tracking table when they die.
 function on_incoming_chunk_for_th(id, data, modified, injected, blocked)
     if id == 0x29 then

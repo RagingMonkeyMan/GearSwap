@@ -837,6 +837,12 @@ function default_post_precast(spell, spellMap, eventArgs)
 					equip(sets.precast.FC.Shadows)
 				end
 			end
+			
+		elseif spell.type == 'JobAbility' then
+		
+			if state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
+				equip(sets.TreasureHunter)
+			end
 
 		elseif spell.type == 'WeaponSkill' then
 			
@@ -854,6 +860,10 @@ function default_post_precast(spell, spellMap, eventArgs)
 			
 			if state.Capacity.value == true then 
 				equip(sets.Capacity)
+			end
+			
+			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] then
+				equip(sets.TreasureHunter)
 			end
 		end
 		
@@ -936,6 +946,10 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			end
 		end
 		
+		if state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
+			equip(sets.TreasureHunter)
+		end
+		
 		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' then
 			if sets.midcast[spell.english] and sets.midcast[spell.english].DT then
 				equip(sets.midcast[spell.english].DT)
@@ -976,6 +990,9 @@ end
 function default_aftercast(spell, spellMap, eventArgs)
 
 	if not spell.interrupted then
+		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
+			info.tagged_mobs[spell.target.id] = os.time()
+		end
 		if is_nuke(spell, spellMap) then
 			if state.MagicBurstMode.value == 'Single' then state.MagicBurstMode:reset() end
 			if state.ElementalWheel.value and (spell.skill == 'Elemental Magic' or spellMap:contains('ElementalNinjutsu')) then
@@ -2125,7 +2142,6 @@ function pet_status_change(newStatus, oldStatus)
 	
 	if not midaction() and not pet_midaction() then handle_equipping_gear(player.status) end
 end
-
 
 -------------------------------------------------------------------------------------------------------------------
 -- Debugging functions.
