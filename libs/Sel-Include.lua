@@ -992,6 +992,9 @@ function default_aftercast(spell, spellMap, eventArgs)
 	if not spell.interrupted then
 		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 			info.tagged_mobs[spell.target.id] = os.time()
+			if player.target.id == spell.target.id and state.th_gear_is_locked then
+				unlock_TH()
+			end
 		end
 		if is_nuke(spell, spellMap) then
 			if state.MagicBurstMode.value == 'Single' then state.MagicBurstMode:reset() end
