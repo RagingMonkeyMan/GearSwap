@@ -15,6 +15,7 @@ function job_setup()
 	state.AutoAmmoMode = M(true,'Auto Ammo Mode')
 	state.Buff.Barrage = buffactive.Barrage or false
 	state.Buff.Camouflage = buffactive.Camouflage or false
+	state.Buff['Double Shot'] = buffactive['Double Shot'] or false
 	state.Buff['Unlimited Shot'] = buffactive['Unlimited Shot'] or false
 	state.Buff['Velocity Shot'] = buffactive['Velocity Shot'] or false
 	
@@ -85,7 +86,14 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_post_midcast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Ranged Attack' then
-		if buffactive['Double Shot'] and sets.buff['Double Shot'] then
+		if state.Buff['Camouflage'] and sets.buff.Camouflage then
+			if sets.buff['Camouflage'][state.RangedMode.value] then
+				equip(sets.buff['Camouflage'][state.RangedMode.value])
+			else
+				equip(sets.buff['Camouflage'])
+			end
+		end
+		if state.Buff['Double Shot'] and sets.buff['Double Shot'] then
 			if sets.buff['Double Shot'][state.RangedMode.value] then
 				equip(sets.buff['Double Shot'][state.RangedMode.value])
 			else
@@ -107,21 +115,15 @@ end
 -- buff == buff gained or lost
 -- gain == true if the buff was gained, false if it was lost.
 function job_buff_change(buff, gain)
-	if buff == "Camouflage" then
-		if gain then
-			equip(sets.buff.Camouflage)
-			disable('body')
-		else
-			enable('body')
-		end
-	end
-	
-	if player.equipment.Ranged and buff:contains('Aftermath') then
-		if (player.equipment.Ranged == 'Armageddon' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
-		or (player.equipment.Ranged == 'Gandiva' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
-		or (player.equipment.Ranged == "Annihilator" and state.Buff['Aftermath'])
-		or (player.equipment.Ranged == "Yoichinoyumi" and state.Buff['Aftermath']) then
-			classes.CustomRangedGroups:append('AM')
+	if buff:contains('Aftermath') then
+		classes.CustomRangedGroups:clear()
+		if player.equipment.Ranged then
+			if (player.equipment.Ranged == 'Armageddon' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
+			or (player.equipment.Ranged == 'Gandiva' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
+			or (player.equipment.Ranged == "Annihilator" and state.Buff['Aftermath'])
+			or (player.equipment.Ranged == "Yoichinoyumi" and state.Buff['Aftermath']) then
+				classes.CustomRangedGroups:append('AM')
+			end
 		end
 	end
 end
