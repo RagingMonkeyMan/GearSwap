@@ -22,6 +22,8 @@ function job_setup()
 	--List of which WS you plan to use TP bonus WS with. (Atonement uses but doesn't need to switch out.)
 	moonshade_ws = S{'Savage Blade', 'Chant du Cygne'}
 	
+	state.AutoEmblem = M(true, 'Auto Emblem')
+	
 	autows = 'Savage Blade'
 	autofood = 'Miso Ramen'
 	
@@ -60,7 +62,7 @@ function job_precast(spell, spellMap, eventArgs)
 	if spell.name == 'Flash' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		if abil_recasts[80] == 0 and not silent_check_amnesia() and spell_recasts[112] == 0 then
+		if abil_recasts[80] == 0 and not silent_check_amnesia() and spell_recasts[112] == 0 and state.AutoEmblem.value then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Divine Emblem" <me>')
 			windower.chat.input:schedule(1,'/ma "Flash" '..spell.target.raw..'')
