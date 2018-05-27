@@ -14,8 +14,19 @@ elements.list = S{'Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water'
 elements.nuke = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
         ['Lightning']='Thunder', ['Water']='Water', ['Light']='Banish', ['Dark']='Bio',}
 		
+elements.enspell = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
+        ['Lightning']='Thunder', ['Water']='Water', ['Light']='Light', ['Dark']='Dark',}
+		
+elements.ninnuke = {['Fire']='Katon', ['Ice']='Hyoton', ['Wind']='Huton', ['Earth']='Doton',
+        ['Lightning']='Raiton', ['Water']='Suiton', ['Dark']='Kurayami',}
+		
 elements.nukega = {['Fire']='Fira', ['Ice']='Blizza', ['Wind']='Aero', ['Earth']='Stone',
         ['Lightning']='Thunda', ['Water']='Water', ['Light']='Banish', ['Dark']='Bio',}
+		
+elements.nukera = {['Fire']='Fi', ['Ice']='Blizza', ['Wind']='Ae', ['Earth']='Stone',
+        ['Lightning']='Thunda', ['Water']='Wate',}
+		
+elements.spikes = {['Fire']='Blaze',['Lightning']='Shock',['Ice']='Ice',['Dark']='Dread'}
 		
 elements.helix = {['Fire']='Pyro', ['Ice']='Cryo', ['Wind']='Anemo', ['Earth']='Geo',
         ['Lightning']='Iono', ['Water']='Hydro', ['Light']='Lumino', ['Dark']='Nocto',}

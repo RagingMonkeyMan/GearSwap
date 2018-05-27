@@ -273,85 +273,24 @@ function handle_elemental(cmdParams)
         add_to_chat(123,'Error: No elemental command given.')
         return
     end
-    local elementalcom = cmdParams[2]:lower()
+    local command = cmdParams[2]:lower()
 
-    if elementalcom == 'nuke' then
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
-		if state.ElementalMode.value == 'Fire' then
-			if silent_can_use(322) and spell_recasts[322] == 0 then
-				windower.chat.input('/ma "Katon: San" <t>')
-			elseif silent_can_use(321) and spell_recasts[321] == 0 then
-				windower.chat.input('/ma "Katon: Ni" <t>')
-			elseif silent_can_use(320) and spell_recasts[320] == 0 then
-				windower.chat.input('/ma "Katon: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Fire Ninjutsu on cooldown.')
+	local spell_recasts = windower.ffxi.get_spell_recasts()
+	
+	if command == 'nuke' then
+		local tiers = {'San','Ni','Ichi'}
+		for k in ipairs(tiers) do
+			if spell_recasts[get_spell_table_by_name(elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'').id] == 0 then
+				windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'" <t>')
+				return
 			end
-			
-		elseif state.ElementalMode.value == 'Wind' then
-			if silent_can_use(328) and spell_recasts[328] == 0 then
-				windower.chat.input('/ma "Huton: San" <t>')
-			elseif silent_can_use(327) and spell_recasts[327] == 0 then
-				windower.chat.input('/ma "Huton: Ni" <t>')
-			elseif silent_can_use(326) and spell_recasts[326] == 0 then
-				windower.chat.input('/ma "Huton: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Wind Ninjutsu on cooldown.')
-			end
-			
-		elseif state.ElementalMode.value == 'Lightning' then
-			if silent_can_use(334) and spell_recasts[334] == 0 then
-				windower.chat.input('/ma "Raiton: San" <t>')
-			elseif silent_can_use(333) and spell_recasts[333] == 0 then
-				windower.chat.input('/ma "Raiton: Ni" <t>')
-			elseif silent_can_use(332) and spell_recasts[332] == 0 then
-				windower.chat.input('/ma "Raiton: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Lightning Ninjutsu on cooldown.')
-			end
-
-		elseif state.ElementalMode.value == 'Earth' then
-			if silent_can_use(331) and spell_recasts[331] == 0 then
-				windower.chat.input('/ma "Doton: San" <t>')
-			elseif silent_can_use(330) and spell_recasts[330] == 0 then
-				windower.chat.input('/ma "Doton: Ni" <t>')
-			elseif silent_can_use(329) and spell_recasts[329] == 0 then
-				windower.chat.input('/ma "Doton: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Earth Ninjutsu on cooldown.')
-			end
-			
-		elseif state.ElementalMode.value == 'Ice' then
-			if silent_can_use(325) and spell_recasts[325] == 0 then
-				windower.chat.input('/ma "Hyoton: San" <t>')
-			elseif silent_can_use(324) and spell_recasts[324] == 0 then
-				windower.chat.input('/ma "Hyoton: Ni" <t>')
-			elseif silent_can_use(323) and spell_recasts[323] == 0 then
-				windower.chat.input('/ma "Hyoton: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Ice Ninjutsu on cooldown.')
-			end
-		
-		elseif state.ElementalMode.value == 'Water' then
-			if silent_can_use(337) and spell_recasts[337] == 0 then
-				windower.chat.input('/ma "Suiton: San" <t>')
-			elseif silent_can_use(336) and spell_recasts[336] == 0 then
-				windower.chat.input('/ma "Suiton: Ni" <t>')
-			elseif silent_can_use(335) and spell_recasts[335] == 0 then
-				windower.chat.input('/ma "Suiton: Ichi" <t>')
-			else
-				add_to_chat(123,'Abort: All Water Ninjutsu on cooldown.')
-			end
-			
-		elseif state.ElementalMode.value == 'Light' then
-			add_to_chat(123,'Error: There are no light Ninjutsu nukes.')
-		elseif state.ElementalMode.value == 'Dark' then
-			add_to_chat(123,'Error: There are no Dark Ninjutsu nukes.')
 		end
-	else
-        add_to_chat(123,'Unrecognized elemental command.')
-    end
+		add_to_chat(123,'Abort: All '..elements.nuke[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
+	elseif S{'San','Ni','Ichi'}:contains(command) then
+		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': '..command..'" <t>')
+	elseif command == 'proc' then
+		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': Ni" <t>')
+	end
 end
 
 function update_melee_groups()

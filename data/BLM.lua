@@ -320,6 +320,10 @@ function handle_elemental(cmdParams)
 			end
 		end
 			
+	elseif command == 'ninjutsu' then
+		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': Ni" <t>')
+	end
+			
 	elseif command == 'smallnuke' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 	
@@ -338,7 +342,7 @@ function handle_elemental(cmdParams)
 		
 		windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..tierlist[command]..'" <t>')
 		
-	elseif command:contains('aga') then
+	elseif command:contains('aga') or command == 'aja' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		local tierkey = {'aja','aga3','aga2','aga1'}
 		local tierlist = {['aja']='ja',['aga3']='ga III',['aga2']='ga II',['aga1']='ga',}
@@ -352,6 +356,9 @@ function handle_elemental(cmdParams)
 		else
 			windower.chat.input('/ma "'..elements.nukega[state.ElementalMode.value]..tierlist[command]..'" <t>')
 		end
+
+	elseif command == 'ara' then
+		windower.chat.input('/ma "'..elements.nukera[state.ElementalMode.value]..'ra" <t>')
 		
 	elseif command == 'helix' then
 		windower.chat.input('/ma "'..elements.helix[state.ElementalMode.value]..'helix" <t>')
@@ -367,6 +374,12 @@ function handle_elemental(cmdParams)
 	
 	elseif command == 'bardsong' then
 		windower.chat.input('/ma "'..elements.threnody[state.ElementalMode.value]..' Threnody" <t>')
+		
+	elseif command == 'spikes' then
+		windower.chat.input('/ma "'..elements.spikes[state.ElementalMode.value]..' Spikes" <me>')
+		
+	elseif command == 'enspell' then
+			windower.chat.input('/ma "En'..elements.enspell[state.ElementalMode.value]..'" <me>')
 	
 	--Leave out target, let shortcuts auto-determine it.
 	elseif command == 'weather' then
@@ -374,10 +387,10 @@ function handle_elemental(cmdParams)
 			windower.chat.input('/ma "Phalanx" <me>')
 		else
 			local spell_recasts = windower.ffxi.get_spell_recasts()
-			if player.target.index == player.index and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+			if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
 				windower.chat.input('/ma "Klimaform" <me>')
 			else
-				windower.chat.input('/ma "'..elements.storm_of[state.ElementalMode.value]..'" <me>')
+				windower.chat.input('/ma "'..elements.storm_of[state.ElementalMode.value]..'"')
 			end
 		end
 		
