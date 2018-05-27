@@ -641,6 +641,50 @@ function add_table_to_chat(table)
     end
 end
 
+function spell_name_to_id(name)
+	for k in pairs(res.spells) do
+		if res.spells[k][language] == name then
+			return k
+		end
+	end
+	return nil
+end
+
+function spell_name_to_actual_cost(name)
+	if buffactive["Manafont"] or buffactive["Manawell"]
+		then return 0
+	else
+		local spell_cost = 0
+		local spell_type = ''
+
+		for k in pairs(res.spells) do
+			if res.spells[k][language] == name then
+				spell_cost = res.spells[k].mp_cost
+				spell_type = res.spells[k].type
+			end
+		end
+		if spell_type == "WhiteMagic" then
+			if buffactive["Penury"] then
+				return spell_cost*.5
+			elseif buffactive["Light Arts"] or buffactive["Addendum: White"] then
+				return spell_cost*.9
+			elseif buffactive["Dark Arts"] or buffactive["Addendum: Black"] then
+				return spell_cost*1.1
+			end
+		elseif spell_type == "BlackMagic" then
+			if buffactive["Parsimony"] then
+				return spell_cost*.5
+			elseif buffactive["Dark Arts"] or buffactive["Addendum: Black"] then
+				return spell_cost*.9
+			elseif buffactive["Light Arts"] or buffactive["Addendum: White"] then
+				return spell_cost*1.1
+			end
+		end
+		
+		return spell_cost
+	end
+end
+
 function silent_can_use(spellid)
 	local available_spells = windower.ffxi.get_spells()
 	local spell_jobs = copy_entry(res.spells[spellid].levels)
