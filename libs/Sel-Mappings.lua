@@ -11,6 +11,24 @@ elements = {}
 
 elements.list = S{'Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water'}
 
+elements.nuke = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
+        ['Lightning']='Thunder', ['Water']='Water', ['Light']='Banish', ['Dark']='Bio',}
+		
+elements.nukega = {['Fire']='Fira', ['Ice']='Blizza', ['Wind']='Aero', ['Earth']='Stone',
+        ['Lightning']='Thunda', ['Water']='Water', ['Light']='Banish', ['Dark']='Bio',}
+		
+elements.helix = {['Fire']='Pyro', ['Ice']='Cryo', ['Wind']='Anemo', ['Earth']='Geo',
+        ['Lightning']='Iono', ['Water']='Hydro', ['Light']='Lumino', ['Dark']='Nocto',}
+		
+elements.threnody = {['Fire']='Ice', ['Ice']='Wind', ['Wind']='Earth', ['Earth']='Ltng.',
+        ['Lightning']='Water', ['Water']='Fire', ['Light']='Dark', ['Dark']='Light',}
+		
+elements.ancient = {['Fire']='Flare', ['Ice']='Freeze', ['Wind']='Tornado', ['Earth']='Quake',
+        ['Lightning']='Burst', ['Water']='Flood', ['Light']='Holy', ['Dark']='Comet',}
+		
+elements.enfeeble = {['Fire']='Burn', ['Ice']='Frost', ['Wind']='Choke', ['Earth']='Rasp',
+        ['Lightning']='Shock', ['Water']='Drown', ['Light']='Dia II', ['Dark']='Bio II',}
+
 elements.weak_to = {['Light']='Dark', ['Dark']='Light', ['Fire']='Ice', ['Ice']='Wind', ['Wind']='Earth', ['Earth']='Lightning',
         ['Lightning']='Water', ['Water']='Fire'}
 
@@ -21,9 +39,7 @@ storms = S{"Aurorastorm", "Voidstorm", "Firestorm", "Sandstorm", "Rainstorm", "W
 		"Aurorastorm II", "Voidstorm II", "Firestorm II", "Sandstorm II", "Rainstorm II", "Windstorm II", "Hailstorm II", "Thunderstorm II"}
 
 elements.storm_of = {['Light']="Aurorastorm", ['Dark']="Voidstorm", ['Fire']="Firestorm", ['Earth']="Sandstorm",
-        ['Water']="Rainstorm", ['Wind']="Windstorm", ['Ice']="Hailstorm", ['Lightning']="Thunderstorm",['Light']="Aurorastorm II",
-		['Dark']="Voidstorm II", ['Fire']="Firestorm II", ['Earth']="Sandstorm II", ['Water']="Rainstorm II", ['Wind']="Windstorm II",
-		['Ice']="Hailstorm II", ['Lightning']="Thunderstorm II"}
+        ['Water']="Rainstorm", ['Wind']="Windstorm", ['Ice']="Hailstorm", ['Lightning']="Thunderstorm",}
 
 spirits = S{"LightSpirit", "DarkSpirit", "FireSpirit", "EarthSpirit", "WaterSpirit", "AirSpirit", "IceSpirit", "ThunderSpirit"}
 elements.spirit_of = {['Light']="Light Spirit", ['Dark']="Dark Spirit", ['Fire']="Fire Spirit", ['Earth']="Earth Spirit",

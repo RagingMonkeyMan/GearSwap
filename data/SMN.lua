@@ -456,11 +456,6 @@ function handle_petweather()
         element = 'Lightning'
     end
     
-    if S{'Light','Dark','Lightning'}:contains(element) then
-        add_to_chat(123, 'You do not have access to '..elements.storm_of[element]..'.')
-        return
-    end 
-    
     local storm = elements.storm_of[element]
     
     if storm then
