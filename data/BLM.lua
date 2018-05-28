@@ -322,7 +322,6 @@ function handle_elemental(cmdParams)
 			
 	elseif command == 'ninjutsu' then
 		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': Ni" <t>')
-	end
 			
 	elseif command == 'smallnuke' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
