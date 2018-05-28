@@ -60,7 +60,7 @@ function init_gear_sets()
     sets.precast.JA['Rampart'] = set_combine(sets.Enmity,{}) --head="Valor Coronet" (Also Vit?)
     sets.precast.JA['Fealty'] = set_combine(sets.Enmity,{body="Cab. Surcoat +1"})
     sets.precast.JA['Divine Emblem'] = set_combine(sets.Enmity,{feet="Chev. Sabatons +1"})
-    sets.precast.JA['Cover'] = set_combine(sets.Enmity, {head="Rev. Coronet +1",body="Cab. Surcoat +1"})
+    sets.precast.JA['Cover'] = set_combine(sets.Enmity, {body="Cab. Surcoat +1"}) --head="Rev. Coronet +1",
 	
     sets.precast.JA['Invincible'].DT = set_combine(sets.Enmity.DT,{legs="Cab. Breeches +1"})
     sets.precast.JA['Holy Circle'].DT = set_combine(sets.Enmity.DT,{feet="Rev. Leggings +1"})
@@ -68,11 +68,11 @@ function init_gear_sets()
     sets.precast.JA['Rampart'].DT = set_combine(sets.Enmity.DT,{}) --head="Valor Coronet" (Also Vit?)
     sets.precast.JA['Fealty'].DT = set_combine(sets.Enmity.DT,{body="Cab. Surcoat +1"})
     sets.precast.JA['Divine Emblem'].DT = set_combine(sets.Enmity.DT,{feet="Chev. Sabatons +1"})
-    sets.precast.JA['Cover'].DT = set_combine(sets.Enmity.DT, {head="Rev. Coronet +1",body="Cab. Surcoat +1"})
+    sets.precast.JA['Cover'].DT = set_combine(sets.Enmity.DT, {body="Cab. Surcoat +1"}) --head="Rev. Coronet +1",
 	
     -- add mnd for Chivalry
     sets.precast.JA['Chivalry'] = {
-		head="Rev. Coronet +1",neck="Phalaina Locket",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
+		head="Sulevia's Mask +2",neck="Phalaina Locket",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
 		body="Rev. Surcoat +3",hands="Cab. Gauntlets +1",ring1="Stikini Ring",ring2="Rufescent Ring",
 		back=gear.enmity_jse_back,waist="Luminary Sash",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
 
@@ -307,7 +307,7 @@ function init_gear_sets()
     
     -- Extra defense sets.  Apply these on top of melee or defense sets.
 	sets.Knockback = {}
-    sets.MP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt"}
+    sets.MP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt",feet="Rev. Leggings +3"}
     sets.MP_Knockback = {}
     sets.Twilight = {head="Twilight Helm", body="Twilight Mail"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
