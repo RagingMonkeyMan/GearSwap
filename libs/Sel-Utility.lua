@@ -979,13 +979,24 @@ function check_doom(spell, spellMap, eventArgs)
 end
 
 function check_midaction(spell, spellMap, eventArgs)
-	local in_action, tickspell = midaction()
-	if (in_action and tickspell.action_type ~= 'Ranged Attack') or pet_midaction() or gearswap.cued_packet then
-		if eventArgs then eventArgs.cancel = true end
-		return true
+	local in_action, midaction = midaction()
+
+	if eventArgs then
+		if (in_action and midaction.action_type == 'Magic') then
+			add_to_chat(123,midaction.action_type)
+			eventArgs.cancel = true
+			return true
+		else
+			return false
+		end
 	else
-		return false
+		if (in_action and midaction.action_type ~= 'Ranged Attack') or pet_midaction() or gearswap.cued_packet then
+			return true
+		else
+			return false
+		end
 	end
+
 end
 
 function check_amnesia(spell, spellMap, eventArgs)
