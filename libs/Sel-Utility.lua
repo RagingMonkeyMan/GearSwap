@@ -983,7 +983,6 @@ function check_midaction(spell, spellMap, eventArgs)
 
 	if eventArgs then
 		if (in_action and midaction.action_type == 'Magic') then
-			add_to_chat(123,midaction.action_type)
 			eventArgs.cancel = true
 			return true
 		else
