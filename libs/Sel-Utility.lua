@@ -687,25 +687,24 @@ function can_use(spell)
                 return false
             elseif not player.inventory[tool_map[spell.english][language]] and not (player.main_job_id == 13 and player.inventory[universal_tool_map[spell.english][language]]) then
 				if player.main_job == 'NIN' and player.satchel[universal_tool_map[spell.english][language]] then
-					windower.send_command('get '..universal_tool_map[spell.english][language]..' satchel 99')
+					windower.send_command('get "'..universal_tool_map[spell.english][language]..'" satchel 99')
 					windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				elseif player.satchel[tool_map[spell.english][language]] then
-					windower.add_to_chat('get '..tool_map[spell.english][language]..' satchel 99')
-					windower.send_command('get '..tool_map[spell.english][language]..' satchel 99')
+					windower.send_command('get "'..tool_map[spell.english][language]..'" satchel 99')
 					windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				elseif player.main_job == 'NIN' and player.inventory[universal_toolbag_map[spell.english][language]] then
-					windower.chat.input('/item '..universal_toolbag_map[spell.english][language]..' <me>')
+					windower.chat.input('/item "'..universal_toolbag_map[spell.english][language]..'" <me>')
 					windower.chat.input:schedule(4,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				elseif player.main_job == 'NIN' and player.satchel[universal_toolbag_map[spell.english][language]] then
-					windower.send_command('get '..universal_toolbag_map[spell.english][language]..' satchel')
-					windower.chat.input:schedule(2,'/item '..universal_toolbag_map[spell.english][language]..' <me>')
+					windower.send_command('get "'..universal_toolbag_map[spell.english][language]..'" satchel 1')
+					windower.chat.input:schedule(2,'/item "'..universal_toolbag_map[spell.english][language]..'" <me>')
 					windower.chat.input:schedule(6,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				elseif player.inventory[toolbag_map[spell.english][language]] then
-					windower.chat.input('/item '..toolbag_map[spell.english][language]..' <me>')
+					windower.chat.input('/item "'..toolbag_map[spell.english][language]..'" <me>')
 					windower.chat.input:schedule(4,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				elseif player.satchel[toolbag_map[spell.english][language]] then
-					windower.send_command('get '..toolbag_map[spell.english][language]..' satchel')
-					windower.chat.input:schedule(2,'/item '..universal_toolbag_map[spell.english][language]..' <me>')
+					windower.send_command('get "'..toolbag_map[spell.english][language]..'" satchel 1')
+					windower.chat.input:schedule(2,'/item "'..universal_toolbag_map[spell.english][language]..'" <me>')
 					windower.chat.input:schedule(6,'/ma "'..spell.english..'" '..spell.target.raw..'')
 				else
 					add_to_chat(123,"Abort: You don't have the proper ninja tool available.")
