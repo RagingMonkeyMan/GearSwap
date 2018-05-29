@@ -979,6 +979,16 @@ function check_doom(spell, spellMap, eventArgs)
 
 end
 
+function check_midaction(spell, spellMap, eventArgs)
+	local in_action, tickspell = midaction()
+	if (in_action and tickspell.action_type ~= 'Ranged Attack') or pet_midaction() or gearswap.cued_packet then
+		if eventArgs then eventArgs.cancel = true end
+		return true
+	else
+		return false
+	end
+end
+
 function check_amnesia(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' or spell.action_type == 'Ability' then

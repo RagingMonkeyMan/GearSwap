@@ -328,13 +328,10 @@ function init_include()
 		tickdelay = tickdelay - 1
 		
 		if not (tickdelay <= 0) then return end
-		
-		local in_action, tickspell = midaction()
-		if in_action and tickspell.action_type ~= 'Ranged Attack' then return end
 
 		gearswap.refresh_globals(false)
 
-		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (midaction() or pet_midaction() or gearswap.cued_packet or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
+		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end
 			end
@@ -363,6 +360,7 @@ function init_include()
 				if extra_user_tick() then return end
 			end
 			
+			tickdelay = (framerate / 4)
 		end
 		
 		tickdelay = (framerate / 2)
@@ -1057,7 +1055,7 @@ end
 
 function filter_precast(spell, spellMap, eventArgs)
 	if check_rnghelper(spell, spellMap, eventArgs) then return end
-	if midaction() or pet_midaction() or gearswap.cued_packet then eventArgs.cancel = true return end
+	if check_midaction(spell, spellMap, eventArgs) then return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
 	if check_amnesia(spell, spellMap, eventArgs) then return end
