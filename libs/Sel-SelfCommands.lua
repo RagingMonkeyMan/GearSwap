@@ -337,7 +337,7 @@ function handle_weapons(cmdParams)
 			state.Weapons:set(cmdParams[1])
 		end
 		equip_weaponset(cmdParams[1])
-	else
+	elseif cmdParams ~= 'None' then
 		add_to_chat(123,"Error: A weapons set for ["..cmdParams[1].."] does not exist.")
 		if sets.weapons[state.Weapons.value] then
 			equip_weaponset(state.Weapons.value)
@@ -351,7 +351,7 @@ function equip_weaponset(cmdParams)
 	enable('main','sub','range','ammo')
 	if sets.weapons[cmdParams] then
 		equip(sets.weapons[cmdParams])
-	else
+	elseif cmdParams ~= 'None' then
 		add_to_chat(123,'Error: A weapons set for ['..cmdParams..'] does not exist.')
 	end
 	if state.Weapons.value ~= 'None' then

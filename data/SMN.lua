@@ -438,13 +438,6 @@ function job_self_command(commandArgs, eventArgs)
     end
 end
 
-function job_self_command(commandArgs, eventArgs)
-	if commandArgs[1]:lower() == 'elemental' then
-		handle_elemental(commandArgs)
-		eventArgs.handled = true			
-	end
-end
-
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
