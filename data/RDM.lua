@@ -13,6 +13,7 @@ end
 function job_setup()
 
     state.Buff.Saboteur = buffactive.Saboteur or false
+	state.Buff.Stymie = buffactive.Stymie or false
 	state.Buff.Chainspell = buffactive.Chainspell or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	
@@ -114,8 +115,22 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			end
 		end
 		
-    elseif spell.skill == 'Enfeebling Magic' and state.Buff.Saboteur then
-        equip(sets.buff.Saboteur)
+    elseif spell.skill == 'Enfeebling Magic' then
+		if state.Buff.Stymie and state.CastingMode.value:contains('Resistant') then
+			if sets.midcast[spell.english] and sets.midcast[spell.english].Fodder then
+				equip(sets.midcast[spell.english].Fodder)
+			elseif sets.midcast[spell.english] then
+				equip(sets.midcast[spell.english])
+			elseif sets.midcast['Enfeebling Magic'].Fodder then
+				equip(sets.midcast['Enfeebling Magic'].Fodder)
+			else
+				equip(sets.midcast['Enfeebling Magic'])
+			end
+		end
+		
+		if state.Buff.Saboteur then
+			equip(sets.buff.Saboteur)
+		end
     elseif spell.skill == 'Enhancing Magic' then
 		equip(sets.midcast['Enhancing Magic'])
 	
