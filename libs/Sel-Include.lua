@@ -320,6 +320,8 @@ function init_include()
 		state.AutoWSMode:reset()
 		state.AutoNukeMode:reset()
 		useItem = false
+		useItemName = ''
+		useItemSlot = ''
 		if state.DisplayMode.value then update_job_states()	end
 	end)
 
@@ -1946,6 +1948,9 @@ function status_change(newStatus, oldStatus)
 					windower.send_command('wait 1;put '..useItemName..' satchel')
 				end
 			end
+			add_to_chat(217,"Cancelling using "..useItemName..".")
+			useItemName = ''
+			useItemSlot = ''
 		end
 	end
 	
