@@ -1933,48 +1933,9 @@ function count_total_ammo(ammo_name)
 end
 
 function check_shadows()
-	if not state.AutoShadowMode.value or moving or areas.Cities:contains(world.area) then return false end
-	local spell_recasts = windower.ffxi.get_spell_recasts()
-	
-	if player.main_job == 'NIN' then
-		if not has_two_shadows() and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] == 0 then
-			windower.chat.input('/ma "Utsusemi: San" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif not has_two_shadows() and spell_recasts[339] == 0 then
-			windower.chat.input('/ma "Utsusemi: Ni" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif not has_two_shadows() and spell_recasts[338] == 0 then
-			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
-			tickdelay = (framerate * 2)
-			return true
-		else
-			return false
-		end
-	elseif player.sub_job == 'NIN' then
-		if not has_two_shadows() and spell_recasts[339] == 0 then
-			windower.chat.input('/ma "Utsusemi: Ni" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif not has_two_shadows() and spell_recasts[338] == 0 then
-			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
-			tickdelay = (framerate * 2)
-			return true
-		else
-			return false
-		end
-	elseif not has_shadows() and silent_can_use(679) and spell_recasts[679] == 0 then
-		windower.chat.input('/ma "Occultation" <me>')
-		tickdelay = (framerate * 2)
-		return true
-	elseif not has_shadows() and silent_can_use(53) and spell_recasts[53] == 0 then
-		windower.chat.input('/ma "Blink" <me>')
-		tickdelay = (framerate * 2)
-		return true
-	elseif not has_shadows() and silent_can_use(647) and spell_recasts[647] == 0 then
-		windower.chat.input('/ma "Zephyr Mantle" <me>')
-		tickdelay = (framerate * 2)
+	if not state.AutoShadowMode.value or moving or areas.Cities:contains(world.area) then 
+		return false
+	elseif handle_shadows() then
 		return true
 	else
 		return false
