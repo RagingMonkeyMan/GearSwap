@@ -18,7 +18,8 @@ function job_setup()
         'Stone II', 'Water II', 'Aero II', 'Fire II', 'Blizzard II', 'Thunder II',
         'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}
 		
-    AutoManawellSpells = S{'Impact','Meteor','Thundaja','Blizzaja','Firaja','Thunder VI','Blizzard VI',}
+    AutoManawellSpells = S{'Impact'}
+	AutoManawellOccultSpells = S{'Impact','Meteor','Thundaja','Blizzaja','Firaja','Thunder VI','Blizzard VI',}
 
 	state.DeathMode 	  = M{['description'] = 'Death Mode', 'Off', 'Single', 'Lock'}
 	state.AutoManawell = M(true, 'Auto Manawell Mode')
@@ -59,7 +60,7 @@ function job_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-		if state.AutoManawell.value and AutoManawellSpells:contains(spell.english) then
+		if state.AutoManawell.value and (AutoManawellSpells:contains(spell.english) or (state.CastingMode.value == 'OccultAcumen' and AutoManawellOccultSpells:contains(spell.english))) then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if abil_recasts[35] == 0 and not buffactive['amnesia'] then
