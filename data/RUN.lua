@@ -94,10 +94,6 @@ function job_post_precast(spell, spellMap, eventArgs)
     
 	elseif spell.english == 'Lunge' or spell.english == 'Swipe' then
         if weather_rune_match() then
-			if item_available('Twilight Cape') and not state.Capacity.value then
-				sets.TwilightCape = {back="Twilight Cape"}
-				equip(sets.TwilightCape)
-			end
 			if item_available('Hachirin-no-Obi') then
 				sets.HachiObi = {waist="Hachirin-no-Obi"}
 				equip(sets.HachiObi)
