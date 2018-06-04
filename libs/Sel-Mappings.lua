@@ -174,7 +174,7 @@ relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura',
 'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
 
 rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
-rema_ranged_weapons_ammo = S{['Fomalhaut'] = 'Chrono Bullet',
+rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',
 								['Death Penalty'] = 'Living Bullet',
 								['Armageddon'] = 'Devastating Bullet',
 								['Fail-Not'] = 'Chrono Arrow',
