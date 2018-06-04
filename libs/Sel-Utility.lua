@@ -1916,7 +1916,6 @@ function count_available_ammo(ammo_name)
 		end
     end
 
-	add_to_chat(123,''..ammo_name..':'..ammo_count..'')
 	return ammo_count
 end
 
