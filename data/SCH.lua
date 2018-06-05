@@ -115,14 +115,20 @@ function job_post_midcast(spell, spellMap, eventArgs)
 	elseif default_spell_map == 'ElementalEnfeeble' and (state.Buff['Dark Arts']  or state.Buff['Addendum: Black']) and sets.buff['Dark Arts'] then
 		equip(sets.buff['Dark Arts'])
     elseif spell.skill == 'Elemental Magic' and spell.english ~= 'Impact' then
-        if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
-		if (state.CastingMode.value == 'Normal' or state.CastingMode.value == 'Fodder') then
+		if state.MagicBurstMode.value ~= 'Off' then
+			if state.CastingMode.value:contains('Resistant') and sets.ResistantMagicBurst then
+				equip(sets.ResistantMagicBurst)
+			else
+				equip(sets.MagicBurst)
+			end
+		end
+		if not state.CastingMode.value:contains('Resistant') then
 			if spell.element == world.weather_element or spell.element == world.day_element then
 				-- if item_available('Twilight Cape') and not LowTierNukes:contains(spell.english) and not state.Capacity.value then
 					-- sets.TwilightCape = {back="Twilight Cape"}
 					-- equip(sets.TwilightCape)
 				-- end
-				if spell.element == world.day_element then
+				if spell.element == world.day_element and state.CastingMode.value == 'Fodder' then
 					if item_available('Zodiac Ring') then
 						sets.ZodiacRing = {ring2="Zodiac Ring"}
 						equip(sets.ZodiacRing)
@@ -145,9 +151,13 @@ function job_post_midcast(spell, spellMap, eventArgs)
         end
 		
 		if state.RecoverMode.value ~= 'Never' and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
-			if state.MagicBurstMode.value ~= 'Off' and sets.RecoverBurst then
-				equip(sets.RecoverBurst)
-			else
+			if state.MagicBurstMode.value ~= 'Off' then
+				if state.CastingMode.value:contains('Resistant') and sets.ResistantRecoverBurst then
+					equip(sets.ResistantRecoverBurst)
+				elseif sets.RecoverBurst then
+					equip(sets.RecoverBurst)
+				end
+			elseif sets.RecoverMP then
 				equip(sets.RecoverMP)
 			end
 		end

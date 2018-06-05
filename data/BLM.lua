@@ -111,7 +111,13 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			end
 
 		elseif is_nuke(spell, spellMap) and spell.english ~= 'Impact' then
-			if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
+			if state.MagicBurstMode.value ~= 'Off' then
+				if state.CastingMode.value:contains('Resistant') and sets.ResistantMagicBurst then
+					equip(sets.ResistantMagicBurst)
+				else
+					equip(sets.MagicBurst)
+				end
+			end
 
 			if player.hpp < 75 and player.tp < 1000 and state.CastingMode.value == 'Fodder' then
 				if item_available("Sorcerer's Ring") then
@@ -140,9 +146,13 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			end
 			
 			if state.RecoverMode.value ~= 'Never' and not (state.Buff['Manafont'] or state.Buff['Manawell']) and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
-				if state.MagicBurstMode.value ~= 'Off' and sets.RecoverBurst then
-					equip(sets.RecoverBurst)
-				else
+				if state.MagicBurstMode.value ~= 'Off' then
+					if state.CastingMode.value:contains('Resistant') and sets.ResistantRecoverBurst then
+						equip(sets.ResistantRecoverBurst)
+					elseif sets.RecoverBurst then
+						equip(sets.RecoverBurst)
+					end
+				elseif sets.RecoverMP then
 					equip(sets.RecoverMP)
 				end
 			end

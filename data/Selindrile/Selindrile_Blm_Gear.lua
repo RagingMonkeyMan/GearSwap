@@ -326,11 +326,13 @@ function init_gear_sets()
 	sets.RecoverMP = {body="Spaekona's Coat +3"}
 	-- Gear for Magic Burst mode.
     sets.MagicBurst = {head="Ea Hat",body="Ea Houppelande",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
+	sets.ResistantMagicBurst = {head="Ea Hat",body="Ea Houppelande",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
 	sets.RecoverBurst = {head="Ea Hat",neck="Mizu. Kubikazari",body="Spaekona's Coat +3",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
+	sets.ResistantRecoverBurst = {head="Ea Hat",neck="Mizu. Kubikazari",body="Spaekona's Coat +3",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
 	
 	-- Gear for specific elemental nukes.
 	sets.element.Wind = {main="Marin Staff +1"}
-	--sets.element.Ice = {main="Ngqoqwanb"}
+	sets.element.Ice = {main="Ngqoqwanb"}
 	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
 	sets.element.Earth = {neck="Quanpur Necklace"}
 
