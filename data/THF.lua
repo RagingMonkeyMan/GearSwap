@@ -251,15 +251,6 @@ function check_buff(buff_name, eventArgs)
     end
 end
 
--- Function to lock the ranged slot if we have a ranged weapon equipped.
-function check_range_lock()
-    if player.equipment.range ~= 'empty' then
-        disable('range', 'ammo')
-    else
-        enable('range', 'ammo')
-    end
-end
-
 function update_melee_groups()
 	if player.equipment.main then
 		classes.CustomMeleeGroups:clear()
