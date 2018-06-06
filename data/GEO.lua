@@ -465,7 +465,7 @@ windower.raw_register_event('prerender', function()
         luopan_txtbox = luopan_txtbox..'\\cs(0,255,0)'..last_geo..':\\cs(255,255,255)\n'
         for i,v in pairs(windower.ffxi.get_mob_array()) do
             local DistanceBetween = ((myluopan.x - v.x)*(myluopan.x-v.x) + (myluopan.y-v.y)*(myluopan.y-v.y)):sqrt()
-            if DistanceBetween < (6 + v.model_size) and (v.status == 1 or v.status == 0) and v.name ~= "" and v.name ~= nil and v.name ~= "Luopan" and v.valid_target and v.model_size > 0 then 
+            if DistanceBetween < (6 + v.model_size) and not (v.status == 2 or v.status == 3) and v.name ~= "" and v.name ~= nil and v.name ~= "Luopan" and v.valid_target and v.model_size > 0 then 
                 if buff_list:contains(last_geo) and v.in_party then
                     luopan_txtbox = luopan_txtbox..v.name.." "..string.format("%.2f",DistanceBetween).."\n"
                     geo_count = geo_count + 1

@@ -348,7 +348,7 @@ function handle_weapons(cmdParams)
 end
 
 function equip_weaponset(cmdParams)
-	enable('main','sub','ammo')
+	enable('main','sub','range','ammo')
 	if sets.weapons[cmdParams] then
 		equip(sets.weapons[cmdParams])
 	elseif cmdParams ~= 'None' then
