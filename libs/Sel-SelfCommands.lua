@@ -348,20 +348,19 @@ function handle_weapons(cmdParams)
 end
 
 function equip_weaponset(cmdParams)
-	enable('main','sub','range','ammo')
+	enable('main','sub','ammo')
 	if sets.weapons[cmdParams] then
 		equip(sets.weapons[cmdParams])
 	elseif cmdParams ~= 'None' then
 		add_to_chat(123,'Error: A weapons set for ['..cmdParams..'] does not exist.')
 	end
 	if state.Weapons.value ~= 'None' then
-		if player.main_job == 'BRD' then
-			disable('main','sub')
-		else
-			disable('main','sub','range')
-			if sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
-				disable('ammo')
-			end
+		disable('main','sub')
+		if sets.weapons[state.Weapons.value] and (sets.weapons[state.Weapons.value].range or sets.weapons[state.Weapons.value].ranged) then
+			disable('range')
+		end
+		if sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
+			disable('ammo')
 		end
 	end
 end

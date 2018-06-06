@@ -116,7 +116,7 @@ function init_gear_sets()
 
 
     -- Ranged snapshot gear
-    sets.precast.RA = {}
+    sets.precast.RA = {range="Comet Tail"}
 
 
     -- Weaponskill sets
