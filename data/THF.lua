@@ -146,9 +146,6 @@ end
 
 -- Called any time we attempt to handle automatic gear equips (ie: engaged or idle gear).
 function job_handle_equipping_gear(playerStatus, eventArgs)
-    -- Check that ranged slot is locked, if necessary
-    check_range_lock()
-
     -- Check for SATA when equipping gear.  If either is active, equip
     -- that gear specifically, and block equipping default gear.
     check_buff('Sneak Attack', eventArgs)
