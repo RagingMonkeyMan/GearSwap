@@ -1258,8 +1258,6 @@ function get_idle_set(petStatus)
 
     if buffactive.weakness then
         idleScope = 'Weak'
-    elseif areas.Cities:contains(world.area) then
-        idleScope = 'Town'
     else
         idleScope = 'Field'
     end

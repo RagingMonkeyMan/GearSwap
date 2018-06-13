@@ -2,14 +2,14 @@ function user_setup()
 
     -- Options: Override default values	
 	state.OffenseMode:options('Normal','Acc')
-    state.HybridMode:options('Tank', 'DDTank', 'BreathTank', 'NoShellTank', 'Reraise', 'Normal')
+    state.HybridMode:options('Tank','DDTank','BreathTank','Dawn','NoShellTank','Normal')
     state.WeaponskillMode:options('Match','Normal', 'Acc')
     state.CastingMode:options('Normal','Resistant')
-    state.PhysicalDefenseMode:options('PDT', 'PDT_HP', 'PDT_Reraise', 'Tank')
+    state.PhysicalDefenseMode:options('PDT','PDT_HP','Tank')
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
 	state.IdleMode:options('Normal','Tank','KiteTank','PDT','MDT','Refresh','Reraise')
-	state.Weapons:options('Deacon','DDWeapons','DualWeapons')
+	state.Weapons:options('Deacon','SequenceAegis','SequenceBlurred')
 	
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Twilight'}
 	
@@ -314,7 +314,8 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Deacon = {main="Deacon Sword",sub="Aegis"}
-	sets.weapons.DDWeapons = {main="Sequence",sub="Blurred Shield"}
+	sets.weapons.SequenceBlurred = {main="Sequence",sub="Blurred Shield"}
+	sets.weapons.SequenceAegis = {main="Sequence",sub="Aegis Shield"}
 	sets.weapons.DualWeapons = {main="Sequence",sub="Demersal Degen +1"}
     
     -- If EquipShield toggle is on (Win+F10 or Win+F11), equip the weapon/shield combos here
@@ -427,6 +428,11 @@ function init_gear_sets()
 		head="Chev. Armet +1",neck="Loricate Torque +1",ear1="Creed Earring",ear2="Thureous Earring",
 		body="Tartarus Platemail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Flume Belt",legs="Chev. Cuisses +1",feet="Souveran Schuhs +1"}
+		
+	sets.engaged.Dawn = {ammo="Staunch Tathlum",
+		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Telos Earring",ear2="Ethereal Earring",
+		body="Jumalik Mail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Shadow Ring",
+		back="Moonlight Cape",waist="Tempus Fugit",legs="Arke Cosciales",feet="Rev. Leggings +3"}
 		
 	sets.engaged.BreathTank = {ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Thureous Earring",ear2="Etiolation Earring",
