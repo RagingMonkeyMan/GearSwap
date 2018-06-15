@@ -1119,11 +1119,12 @@ function check_recast(spell, spellMap, eventArgs)
 end
 
 function check_cost(spell, spellMap, eventArgs)
-	if spell.action_type == 'Magic' and player.mp < actual_cost(spell) then
-		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..actual_cost(spell)..')')
+	local spellCost = actual_cost(spell)
+	if spell.action_type == 'Magic' and player.mp < spellCost then
+		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
 		eventArgs.cancel = true
-	elseif spell.type:startswith('BloodPact') and player.mp < actual_cost(spell) then
-		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..actual_cost(spell)..')')
+	elseif spell.type:startswith('BloodPact') and not buffactive['Astral Conduit'] and player.mp < spellCost then
+		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
 		eventArgs.cancel = true
 	else
 		return false
