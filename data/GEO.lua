@@ -98,6 +98,9 @@ function job_precast(spell, spellMap, eventArgs)
         if state.CastingMode.value == 'Proc' then
             classes.CustomClass = 'Proc'
         end
+	elseif buffactive.Bolster and (spell.english == 'Blaze of Glory' or spell.english == 'Ecliptic Attrition') then
+		eventArgs.cancel = true
+		add_to_chat(123,'Abort: Bolster maxes the strength of bubbles.')
     end
 end
 
