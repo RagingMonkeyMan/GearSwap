@@ -157,7 +157,7 @@ function update_job_states()
         if state[n].index then
 			if n == 'AutoBuffMode' then
 				if player.main_job == 'GEO' then
-					stateBox:append(string.format("%sAuto Buff: Indi-"..indispell.." Geo-"..geospell.."%s", clr.h, clr.n))
+					stateBox:append(string.format("%sAuto Buff: Indi-"..autoindi.." Geo-"..autogeo.."%s", clr.h, clr.n))
 				elseif player.main_job == 'DNC' then
 					stateBox:append(string.format("%sAuto Buff: Samba: %s%s", clr.w, clr.h, state.AutoSamba.value))
 				else
