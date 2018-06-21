@@ -317,15 +317,15 @@ end
 function check_maneuver()
 	if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] == 0 then
 		if not buffactive[defaultManeuvers[state.PetMode.value][1]] then
-			windower.chat.input('/pet '..defaultManeuvers[state.PetMode.value][1]..' <me>')
+			windower.chat.input('/pet "'..defaultManeuvers[state.PetMode.value][1]..'" <me>')
 			tickdelay = (framerate * .5)
 			return true
 		elseif not buffactive[defaultManeuvers[state.PetMode.value][2]] then
-			windower.chat.input('/pet '..defaultManeuvers[state.PetMode.value][2]..' <me>')
+			windower.chat.input('/pet "'..defaultManeuvers[state.PetMode.value][2]..'" <me>')
 			tickdelay = (framerate * .5)
 			return true
 		elseif not buffactive[defaultManeuvers[state.PetMode.value][3]] then
-			windower.chat.input('/pet '..defaultManeuvers[state.PetMode.value][3]..' <me>')
+			windower.chat.input('/pet "'..defaultManeuvers[state.PetMode.value][3]..'" <me>')
 			tickdelay = (framerate * .5)
 			return true
 		end
