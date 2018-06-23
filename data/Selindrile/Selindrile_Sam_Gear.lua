@@ -46,7 +46,7 @@ function init_gear_sets()
     sets.precast.JA['Violent Flourish'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
+        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 
     -- Waltz set (chr and vit)
     sets.precast.Waltz = {
@@ -119,12 +119,12 @@ function init_gear_sets()
     sets.precast.WS['Tachi: Ageha'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
+        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 		
     sets.precast.WS['Tachi: Hobaku'] = {ammo="Pemphredo Tathlum",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Digni. Earring",ear2="Moonshade Earring",
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
+        back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 		
     sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {head=gear.valorous_magical_wsd_head,ear1="Friomisi Earring",body="Found. Breastplate",hands="Founder's Gauntlets",feet="Founder's Greaves"})
 
@@ -189,14 +189,14 @@ function init_gear_sets()
     sets.idle = {ammo="Staunch Tathlum",
         head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Hiza. Haramaki +2",hands="Sakonji Kote +1",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +2",feet="Danzo Sune-ate"}
 		
     sets.idle.Reraise = set_combine(sets.idle, sets.Reraise)
 
     sets.idle.Weak = {ammo="Staunch Tathlum",
         head="Twilight Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Twilight Mail",hands="Sakonji Kote +1",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +1",feet="Danzo Sune-ate"}
+        back="Moonlight Cape",waist="Flume Belt",legs="Flamma Dirs +2",feet="Danzo Sune-ate"}
 		
     sets.idle.Weak.Reraise = set_combine(sets.idle.Weak, sets.Reraise)
 	
@@ -361,7 +361,7 @@ function init_gear_sets()
 	sets.weapons.Bow = {main="Norifusa +1",sub="Utu Grip",range="Cibitshavore",ammo="Eminent Arrow"}
 	
 	-- Buff sets
-	sets.Cure_Received = {hands="Buremte Gloves",waist="Gishdubar Sash",legs="Flamma Dirs +1"}
+	sets.Cure_Received = {hands="Buremte Gloves",waist="Gishdubar Sash",legs="Flamma Dirs +2"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Sleep = {neck="Vim Torque +1"}
 	sets.buff.Hasso = {hands="Wakido Kote +3"}

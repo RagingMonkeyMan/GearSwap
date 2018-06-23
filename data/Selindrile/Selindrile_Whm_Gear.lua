@@ -273,7 +273,7 @@ function init_gear_sets()
 		back="Aurist's Cape +1",waist="Luminary Sash",legs="Chironic Hose",feet=gear.chironic_nuke_feet}
 		
 	sets.midcast.Holy = {main=gear.grioavolr_nuke_staff,sub="Alber Strap",ammo="Pemphredo Tathlum",
-		head="Welkin Crown",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
+		head="Buremte Hat",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
 		body="Witching Robe",hands=gear.chironic_enfeeble_hands,ring1="Shiva Ring +1",ring2="Shiva Ring +1",
 		back="Toro Cape",waist=gear.ElementalObi,legs="Gyve Trousers",feet=gear.chironic_nuke_feet}
 

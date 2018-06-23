@@ -188,8 +188,8 @@ function job_post_precast(spell, spellMap, eventArgs)
 	elseif spell.type == 'CorsairShot' then
 		if state.WeaponskillMode.value == "Proc" and sets.precast.CorsairShot.Proc then
 			equip(sets.precast.CorsairShot.Proc)
-		elseif state.CastingMode.value == 'Resistant' then
-			classes.CustomClass = 'Acc'
+		elseif state.CastingMode.value == 'Fodder' and sets.precast.CorsairShot.Damage then
+			equip(sets.precast.CorsairShot.Damage)
 		end
 	elseif spell.action_type == 'Ranged Attack' and sets.precast.RA and buffactive.Flurry then
 		if sets.precast.RA.Flurry and lastflurry == 1 then

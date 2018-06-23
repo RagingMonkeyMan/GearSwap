@@ -71,7 +71,7 @@ function init_gear_sets()
 	sets.midcast['Enfeebling Magic'] = {ammo="Pemphredo Tathlum",
 		head="Carmine Mask +1",neck="Erra Pendant",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Stikini Ring",ring2="Stikini Ring",
-		back="Toro Cape",waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
+		back="Toro Cape",waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 		   
 	sets.midcast['Dread Spikes'] = set_combine(sets.midcast['Dark Magic'], {})
 	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {back="Ankou Mantle"})

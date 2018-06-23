@@ -82,14 +82,14 @@ function init_gear_sets()
 	sets.precast.Step = {ammo="Hasty Pinion +1",
 		head="Gavialis Helm",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Heartseeker Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 		-- VIOLENT FLOURISH
 	sets.precast.Flourish1 = {}
 	sets.precast.Flourish1['Violent Flourish'] = {ammo="Hasty Pinion +1",
 		head="Gavialis Helm",neck="Combatant's Torque",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.precast.FC = {ammo="Impatiens",
 		neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquacious Earring",
@@ -152,7 +152,7 @@ function init_gear_sets()
 	sets.precast.WS.FullAcc = {ammo="Hasty Pinion +1",
 		head=gear.valorous_pet_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Nukumi Ocreae +1"}
+		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Nukumi Ocreae +1"}
 
 	sets.precast.WS.Fodder = {ammo="Paeapua",
 		head="Gavialis Helm",neck="Fotia Gorget",ear1="Brutal Earring",ear2="Sherida Earring",
@@ -254,7 +254,7 @@ function init_gear_sets()
 	sets.defense.MEVA = {
 		head="Gavialis Helm",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",
 		body="Jumalik Mail",hands="Leyline Gloves",ring1="Vengeful Ring",ring2="Purity Ring",
-		back="Toro Cape",waist="Engraved Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Toro Cape",waist="Engraved Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.defense.MKiller = set_combine(sets.defense.MDT, {body="Nukumi Gausape +1"})
 
@@ -276,12 +276,12 @@ function init_gear_sets()
 	sets.engaged.Acc = {ammo="Falcon Eye",
 		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Brutal Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Petrov Ring",ring2="Epona's Ring",
-		back="Letalis Mantle",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Letalis Mantle",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.FullAcc = {ammo="Falcon Eye",
 		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.Fodder = {ammo="Ginsen",
 		head=gear.valorous_wsd_head,neck="Asperity Necklace",ear1="Trux Earring",ear2="Brutal Earring",
@@ -328,12 +328,12 @@ function init_gear_sets()
 	sets.engaged.DW.Acc = {ammo="Falcon Eye",
 		head="Meghanada Visor +2",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Brutal Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Petrov Ring",ring2="Epona's Ring",
-		back="Letalis Mantle",waist="Grunfeld Rope",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Letalis Mantle",waist="Grunfeld Rope",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.DW.FullAcc = {ammo="Falcon Eye",
 		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
 		body="Mes. Haubergeon",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +1",feet="Valorous Greaves"}
+		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.DW.Fodder = {ammo="Ginsen",
 		head=gear.valorous_wsd_head,neck="Asperity Necklace",ear1="Dudgeon Earring",ear2="Heartseeker Earring",

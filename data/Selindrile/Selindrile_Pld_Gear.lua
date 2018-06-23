@@ -166,19 +166,19 @@ function init_gear_sets()
 	sets.precast.WS['Flat Blade'].Acc = {ammo="Ginsen",
         head="Flam. Zucchetto +2",neck="Sanctity Necklace",ear1="Gwati Earring",ear2="Digni. Earring",
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-        back="Ground. Mantle +1",waist="Eschan Stone",legs="Flamma Dirs +1",feet="Flam. Gambieras +2"}
+        back="Ground. Mantle +1",waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 
     sets.precast.WS['Sanguine Blade'] = {ammo="Dosis Tathlum",
         head="Jumalik Helm",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
         body="Jumalik Mail",hands="Founder's Gauntlets",ring1="Shiva Ring +1",ring2="Archon Ring",
-        back="Toro Cape",waist="Fotia Belt",legs="Flamma Dirs +1",feet="Founder's Greaves"}
+        back="Toro Cape",waist="Fotia Belt",legs="Flamma Dirs +2",feet="Founder's Greaves"}
 
 	sets.precast.WS['Sanguine Blade'].Acc = sets.precast.WS['Sanguine Blade']
 
     sets.precast.WS['Atonement'] = {ammo="Paeapua",
 		head="Loess Barbuta +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Ishvara Earring",
 		body=gear.valorous_wsd_body,hands=gear.odyssean_wsd_hands,ring1="Defending Ring",ring2="Moonbeam Ring",
-		back=gear.enmity_jse_back,waist="Fotia Belt",legs="Flamma Dirs +1",feet="Eschite Greaves"}
+		back=gear.enmity_jse_back,waist="Fotia Belt",legs="Flamma Dirs +2",feet="Eschite Greaves"}
 
     sets.precast.WS['Atonement'].Acc = sets.precast.WS['Atonement']
     sets.precast.WS['Spirits Within'] = sets.precast.WS['Atonement']

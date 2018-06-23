@@ -106,14 +106,14 @@ function init_gear_sets()
 		back="Toro Cape",waist="Sekhmet Corset",legs="Merlinic Shalwar",feet=gear.merlinic_nuke_feet}
 		
     sets.midcast['Elemental Magic'].OccultAcumen = {main="Khatvanga",sub="Bloodrain Strap",ammo="Seraphic Ampulla",
-        head="Welkin Crown",neck="Combatant's Torque",ear1="Dedition Earring",ear2="Telos Earring",
+        head=gear.merlinic_nuke_head,neck="Combatant's Torque",ear1="Dedition Earring",ear2="Telos Earring",
         body=gear.merlinic_occult_body,hands=gear.merlinic_occult_hands,ring1="Rajas Ring",ring2="Petrov Ring",
-        back=gear.stp_jse_back,waist="Oneiros Rope",legs="Perdition Slops",feet=gear.merlinic_occult_feet}
+        back="Toro Cape",waist="Oneiros Rope",legs="Perdition Slops",feet=gear.merlinic_occult_feet}
 		
 	sets.midcast.Impact = {main="Oranyan",sub="Enki Strap",ammo="Pemphredo Tathlum",
 		head=empty,neck="Erra Pendant",ear1="Enchntr. Earring +1",ear2="Gwati Earring",
 		body="Twilight Cloak",hands="Regal Cuffs",ring1="Stikini Ring",ring2="Stikini Ring",
-		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Merlinic Shalwar",feet=gear.merlinic_aspir_feet}
+		back="Toro Cape",waist="Acuity Belt +1",legs="Merlinic Shalwar",feet=gear.merlinic_aspir_feet}
 		
 	sets.midcast.Impact.OccultAcumen = set_combine(sets.midcast['Elemental Magic'].OccultAcumen, {head=empty,body="Twilight Cloak"})
 
