@@ -185,7 +185,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 					equip(sets.MaxTP)
 			end
 		end
-	elseif spell.type == 'CorsairShot' then
+	elseif spell.type == 'CorsairShot' and not (spell.english == 'Light Shot' or spell.english == 'Dark Shot') then
 		if state.WeaponskillMode.value == "Proc" and sets.precast.CorsairShot.Proc then
 			equip(sets.precast.CorsairShot.Proc)
 		elseif state.CastingMode.value == 'Fodder' and sets.precast.CorsairShot.Damage then
