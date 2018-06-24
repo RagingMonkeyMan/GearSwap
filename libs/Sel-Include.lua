@@ -328,7 +328,7 @@ function init_include()
 	-- New implementation of tick.
 	windower.raw_register_event('prerender', function()
 		tickdelay = tickdelay - 1
-		
+
 		if not (tickdelay <= 0) then return end
 
 		gearswap.refresh_globals(false)
@@ -341,11 +341,11 @@ function init_include()
 			if user_job_tick then
 				if user_job_tick() then return end
 			end
-			
+
 			if user_tick then
 				if user_tick() then return end
 			end
-			
+
 			if job_tick then
 				if job_tick() then return end
 			end
@@ -353,18 +353,18 @@ function init_include()
 			if default_tick then
 				if default_tick() then return end
 			end			
-		
+
 			if extra_user_job_tick then
 				if extra_user_job_tick() then return end
 			end
-		
+
 			if extra_user_tick then
 				if extra_user_tick() then return end
 			end
-			
+
 			tickdelay = (framerate / 4)
 		end
-		
+
 		tickdelay = (framerate / 2)
 
 	end)
@@ -867,7 +867,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-		if state.DefenseMode.value ~= 'None' then
+		if state.DefenseMode.value ~= 'None' and player.in_combat then
 			if spell.action_type == 'Magic' then
 				if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DT then
 					equip(sets.precast.FC[spell.english].DT)
@@ -923,10 +923,10 @@ function default_post_midcast(spell, spellMap, eventArgs)
 						equip(sets.HPCure)
 					end
 					curecheat = false
-				elseif sets.Self_Healing then
+				elseif sets.Self_Healing and not (state.CastingMode.value == 'SIRD' and player.in_combat) then
 					equip(sets.Self_Healing)
 				end
-			elseif spellMap == 'Refresh' and sets.Self_Refresh then
+			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value == 'SIRD' and player.in_combat) then
 				equip(sets.Self_Refresh)
 			end
 		end
@@ -950,7 +950,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.TreasureHunter)
 		end
 		
-		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' then
+		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and player.in_combat then
 			if sets.midcast[spell.english] and sets.midcast[spell.english].DT then
 				equip(sets.midcast[spell.english].DT)
 			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DT then
