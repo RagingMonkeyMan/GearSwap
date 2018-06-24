@@ -923,10 +923,10 @@ function default_post_midcast(spell, spellMap, eventArgs)
 						equip(sets.HPCure)
 					end
 					curecheat = false
-				elseif sets.Self_Healing and not (state.CastingMode.value == 'SIRD' and player.in_combat) then
+				elseif sets.Self_Healing and not (state.CastingMode.value:contains('SIRD') and player.in_combat) then
 					equip(sets.Self_Healing)
 				end
-			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value == 'SIRD' and player.in_combat) then
+			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value:contains('SIRD') and player.in_combat) then
 				equip(sets.Self_Refresh)
 			end
 		end
@@ -1267,9 +1267,11 @@ function get_idle_set(petStatus)
         mote_vars.set_breadcrumbs:append(idleScope)
     end
 
-    if idleSet[state.IdleMode.current] then
-        idleSet = idleSet[state.IdleMode.current]
-        mote_vars.set_breadcrumbs:append(state.IdleMode.current)
+    if not player.in_combat and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
+	
+	elseif idleSet[state.IdleMode.current] then
+		idleSet = idleSet[state.IdleMode.current]
+		mote_vars.set_breadcrumbs:append(state.IdleMode.current)
     end
 
     if (pet.isvalid or state.Buff.Pet) and idleSet.Pet then
@@ -1545,7 +1547,8 @@ function get_precast_set(spell, spellMap)
     -- Once we have a named base set, do checks for specialized modes (casting mode, weaponskill mode, etc).
     
     if spell.action_type == 'Magic' then
-        if equipSet[state.CastingMode.current] then
+		if (state.CastingMode.current:contains('SIRD') or state.CastingMode.current:contains('DT')) and not player.in_combat then
+        elseif equipSet[state.CastingMode.current] then
             equipSet = equipSet[state.CastingMode.current]
             mote_vars.set_breadcrumbs:append(state.CastingMode.current)
         end

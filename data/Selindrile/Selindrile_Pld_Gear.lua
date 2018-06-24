@@ -4,7 +4,7 @@ function user_setup()
 	state.OffenseMode:options('Normal','Acc')
     state.HybridMode:options('Tank','DDTank','BreathTank','Dawn','NoShellTank','Normal')
     state.WeaponskillMode:options('Match','Normal', 'Acc')
-    state.CastingMode:options('Normal','Resistant')
+    state.CastingMode:options('Normal','Resistant','SIRD')
     state.PhysicalDefenseMode:options('PDT','PDT_HP','Tank')
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
@@ -211,6 +211,11 @@ function init_gear_sets()
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
 		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Moonbeam Ring",
 		back="Solemnity Cape",waist="Creed Baudrier",legs="Carmine Cuisses +1",feet="Odyssean Greaves"}
+		
+    sets.midcast.Cure.SIRD = {ammo="Staunch Tathlum",
+		head="Souveran Schaller +1",neck="Loricate Torque +1",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Moonbeam Ring",
+		back="Solemnity Cape",waist="Creed Baudrier",legs="Founder's Hose",feet="Odyssean Greaves"}
 		
     sets.midcast.Cure.DT = {ammo="Staunch Tathlum",
         head="Souv. Schaller +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Odnowa Earring",
