@@ -241,15 +241,15 @@ function init_gear_sets()
         back="Shadow Mantle",waist="Flume Belt",legs="Eri. Leg Guards +1",feet="Erilaz Greaves +1"}
 		
 	sets.idle.KiteTank = {ammo="Staunch Tathlum",
-        head="Fu. Bandeau +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
+        head="Fu. Bandeau +1",neck="//fin Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
         body="Futhark Coat +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Moonbeam Ring",
         back="Moonlight Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet="Hippo. Socks +1"}
-	
+
 	sets.idle.Weak = {ammo='Homiliary',
 		head="Rawhide Mask",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
 		body="Runeist's Coat +3",hands=gear.herculean_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt",legs="Rawhide Trousers",feet=gear.herculean_refresh_feet}
-		   
+
 	sets.Kiting = {legs="Carmine Cuisses +1"}
 	
 	sets.latent_refresh = {waist="Fucho-no-obi"}

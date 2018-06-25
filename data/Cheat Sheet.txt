@@ -225,21 +225,16 @@ My scripts\init.txt loads Request, which is an addon that can be used to answer 
 It also loads a few other addons which I've written or found from other sources.
 Non-Official addon mentioned here can be downloaded from: https://www.dropbox.com/sh/qz5rb5je202cbu3/AAAxozfBv_8agarM0NCnPTiZa?dl=0
 
---- Item related combinations. These are defaults, can be changed in Character-Globals.lua ---
+--- Item Handling ---
 
-[Ctrl+Alt+Win+?]	= Obtain the item linked to the ? key from your satchel. (Requires the Itemizer Addon)
-[Ctrl+?]			= Equip (and usually lock) the item in place.
-[Alt+?]				= Use the item. (if usable)
-[Ctrl+Alt+?]		= Unlock, unequip the item, and stow it in satchel. (Requires the Itemizer Addon)
+Items are handled by the useitem command, witht he following syntax:
+gs c useitem slot item name
 
-[H]					= Warp Ring.
-[N]					= Nexus Cape.
-[Z]					= Capacity Cape.
-[Y]					= Capacity Ring.
-[[]					= Trizek Ring.
-[]]					= Echad Ring.
-[K]					= Facility Ring.
-[U]					= Reraise Earring.
+For example:
+windower.send_command('bind ^h gs c useitem ring2 Warp Ring')
+
+As a Macro:
+/console gs c useitem ring2 Warp Ring
 
 [Control + Z] Capacity Mode
 Will automatically use capacity items and keep capacity cape on, for this to work it
