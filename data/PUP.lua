@@ -37,6 +37,8 @@ function job_setup()
     autows = "Victory Smite"
 	autofood = 'Akamochi'
 	lastpettp = 0
+	deactivatehpp = 100
+	repairhpp = 45
 
 	update_pet_mode()
 	update_melee_groups()
@@ -285,7 +287,7 @@ function check_auto_pet()
 		end
 
 	elseif pet.status == "Idle" then
-		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp == 100 and abil_recasts[208] == 0 then
+		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp <= deactivatehpp and abil_recasts[208] == 0 then
 			windower.chat.input('/pet "Deactivate" <me>')
 			tickdelay = (framerate * .5)
 			return true
@@ -301,7 +303,7 @@ end
 
 function check_repair()
 
-	if state.AutoRepairMode.value and pet.isvalid and pet.hpp < 45 then
+	if state.AutoRepairMode.value and pet.isvalid and pet.hpp < repairhpp then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		if abil_recasts[206] == 0 and item_available('Automat. Oil +3') then

@@ -18,6 +18,8 @@ function user_setup()
         ['Nuke'] = {'Ice Maneuver','Dark Maneuver', 'Light Maneuver','Earth Maneuver'}
     }
 
+	deactivatehpp = 85
+	
     select_default_macro_book()
 	
 	send_command('bind @` gs c cycle SkillchainMode')
