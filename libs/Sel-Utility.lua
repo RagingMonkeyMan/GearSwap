@@ -1751,18 +1751,16 @@ function is_defensive()
 end
 
 function has_shadows()
-	if buffactive.Blink or buffactive["Copy Image"] or buffactive["Copy Image (2)"] or buffactive["Copy Image (3)"] or buffactive["Copy Image (4+)"] then
-		return true
+	if  buffactive["Copy Image (4+)"] then
+		return 4
+	elseif buffactive["Copy Image (3)"] then
+		return 3
+	elseif buffactive["Copy Image (2)"] then
+		return 2
+	elseif buffactive.Blink or buffactive["Copy Image"] then
+		return 1
 	else
-		return false
-	end
-end
-
-function has_two_shadows()
-	if buffactive["Copy Image (2)"] or buffactive["Copy Image (3)"] or buffactive["Copy Image (4+)"] then
-		return true
-	else
-		return false
+		return 0
 	end
 end
 

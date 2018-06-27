@@ -449,15 +449,15 @@ end
 function handle_shadows()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 	if player.main_job == 'NIN' then
-		if not has_two_shadows() and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] == 0 then
+		if has_shadows() < 3 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] == 0 then
 			windower.chat.input('/ma "Utsusemi: San" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif not has_two_shadows() and spell_recasts[339] == 0 then
+		elseif has_shadows() < 2 and spell_recasts[339] == 0 then
 			windower.chat.input('/ma "Utsusemi: Ni" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif not has_two_shadows() and spell_recasts[338] == 0 then
+		elseif has_shadows() < 2 and spell_recasts[338] == 0 then
 			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
 			tickdelay = (framerate * 2)
 			return true
@@ -465,11 +465,11 @@ function handle_shadows()
 			return false
 		end
 	elseif player.sub_job == 'NIN' then
-		if not has_two_shadows() and spell_recasts[339] == 0 then
+		if has_shadows() < 2 and spell_recasts[339] == 0 then
 			windower.chat.input('/ma "Utsusemi: Ni" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif not has_two_shadows() and spell_recasts[338] == 0 then
+		elseif has_shadows() < 2 and spell_recasts[338] == 0 then
 			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
 			tickdelay = (framerate * 2)
 			return true
