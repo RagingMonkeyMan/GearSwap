@@ -66,7 +66,10 @@ end
 
 function job_pretarget(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' and not spell.targets.Enemy then
-		if spell.target.raw == '<t>' and (player.target.type == 'NONE' or player.target.type == "MONSTER") and not state.Buff['Pianissimo'] then
+		if state.Buff['Pianissimo'] and ((spell.target.raw == '<t>' and player.target.type == 'NONE') or spell.target.type == 'MONSTER') then
+			eventArgs.cancel = true
+			windower.chat.input('/ma "'..spell.name..'" <stpt>')
+		elseif spell.target.raw == '<t>' and (player.target.type == 'NONE' or player.target.type == "MONSTER") and not state.Buff['Pianissimo'] then
 			change_target('<me>')
 			return
 		end
@@ -82,7 +85,6 @@ function job_filter_precast(spell, spellMap, eventArgs)
             if spell_recasts[spell.recast_id] < 10 then
                 send_command('@input /ja "Pianissimo" <me>; wait 1.1; input /ma "'..spell.name..'" '..spell.target.name)
                 eventArgs.cancel = true
-                return
             end
         end
     end
