@@ -154,6 +154,7 @@ function job_filter_precast(spell, spellMap, eventArgs)
 			windower.chat.input('/ja Sublimation <me>')	
 		elseif player.sub_job == 'RDM' and abil_recasts[49] == 0 and player.mp > 0 and player.hp > 400 and state.AutoConvert.value then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, Converting!')
+			eventArgs.cancel = true
 			windower.chat.input('/ja Convert <me>')
 		end
 	end
