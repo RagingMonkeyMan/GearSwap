@@ -751,22 +751,7 @@ function handle_mount(cmdParams)
 	end
 end
 
-function handle_moving(cmdParams)
-	if not midaction() and not pet_midaction() then
-		handle_equipping_gear(player.status)
-	end
-	
-	if state.RngHelper.value then
-		send_command('gs rh clear')
-	end
-end
-
-function handle_stopping(cmdParams)
-	if not midaction() and not pet_midaction() then
-		handle_equipping_gear(player.status)
-	end
-end
--------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 
 -- Get the state var that matches the requested name.
 -- Only returns mode vars.
@@ -967,8 +952,6 @@ selfCommandMaps = {
     ['naked']    		= handle_naked,
 	['weapons']  		= handle_weapons,
 	['showset']  		= handle_showset,
-	['moving']   		= handle_moving,
-	['stopping'] 		= handle_stopping,
     ['help']     		= handle_help,
     ['forceequip']  	= handle_forceequip,
 	['useitem']			= handle_useitem,
