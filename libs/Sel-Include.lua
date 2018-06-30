@@ -173,6 +173,7 @@ function init_include()
 	time_offset = -39601
 	framerate = 75
 	curecheat = false
+	lastincombat = player.in_combat
 	
 	if time_offset then
 		local t = os.time()
@@ -322,6 +323,7 @@ function init_include()
 		useItem = false
 		useItemName = ''
 		useItemSlot = ''
+		lastincombat = false
 		if state.DisplayMode.value then update_job_states()	end
 	end)
 
@@ -332,7 +334,7 @@ function init_include()
 		if not (tickdelay <= 0) then return end
 
 		gearswap.refresh_globals(false)
-
+		
 		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end
@@ -364,6 +366,14 @@ function init_include()
 
 			tickdelay = (framerate / 4)
 		end
+		
+		if lastincombat == true and not player.in_combat and being_attacked then
+			being_attacked = false
+			if player.status == 'Idle' and not midaction() and not pet_midaction() then
+				handle_equipping_gear(player.status)
+			end
+		end			
+		lastincombat = player.in_combat
 
 		tickdelay = (framerate / 2)
 
@@ -867,7 +877,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-		if state.DefenseMode.value ~= 'None' and player.in_combat then
+		if state.DefenseMode.value ~= 'None' and (player.in_combat or being_attacked) then
 			if spell.action_type == 'Magic' then
 				if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DT then
 					equip(sets.precast.FC[spell.english].DT)
@@ -923,10 +933,10 @@ function default_post_midcast(spell, spellMap, eventArgs)
 						equip(sets.HPCure)
 					end
 					curecheat = false
-				elseif sets.Self_Healing and not (state.CastingMode.value:contains('SIRD') and player.in_combat) then
+				elseif sets.Self_Healing and not (state.CastingMode.value:contains('SIRD') and (player.in_combat or being_attacked)) then
 					equip(sets.Self_Healing)
 				end
-			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value:contains('SIRD') and player.in_combat) then
+			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value:contains('SIRD') and (player.in_combat or being_attacked)) then
 				equip(sets.Self_Refresh)
 			end
 		end
@@ -950,7 +960,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.TreasureHunter)
 		end
 		
-		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and player.in_combat then
+		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and (player.in_combat or being_attacked) then
 			if sets.midcast[spell.english] and sets.midcast[spell.english].DT then
 				equip(sets.midcast[spell.english].DT)
 			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DT then
@@ -1186,7 +1196,7 @@ end
 function handle_equipping_gear(playerStatus, petStatus)
     -- init a new eventArgs
     local eventArgs = {handled = false}
-
+	
     -- Allow jobs to override this code
     if job_handle_equipping_gear then
         job_handle_equipping_gear(playerStatus, eventArgs)
@@ -1267,8 +1277,7 @@ function get_idle_set(petStatus)
         mote_vars.set_breadcrumbs:append(idleScope)
     end
 
-    if not player.in_combat and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
-	
+    if not (player.in_combat or being_attacked) and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
 	elseif idleSet[state.IdleMode.current] then
 		idleSet = idleSet[state.IdleMode.current]
 		mote_vars.set_breadcrumbs:append(state.IdleMode.current)
@@ -1547,7 +1556,7 @@ function get_precast_set(spell, spellMap)
     -- Once we have a named base set, do checks for specialized modes (casting mode, weaponskill mode, etc).
     
     if spell.action_type == 'Magic' then
-		if (state.CastingMode.current:contains('SIRD') or state.CastingMode.current:contains('DT')) and not player.in_combat then
+		if (state.CastingMode.current:contains('SIRD') or state.CastingMode.current:contains('DT')) and not (player.in_combat or being_attacked) then
         elseif equipSet[state.CastingMode.current] then
             equipSet = equipSet[state.CastingMode.current]
             mote_vars.set_breadcrumbs:append(state.CastingMode.current)
@@ -1809,7 +1818,7 @@ end
 -- Function to add kiting gear on top of the base set if kiting state is true.
 -- @param baseSet : The gear set that the kiting gear will be applied on top of.
 function apply_kiting(baseSet)
-	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and state.Passive.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere' or not player.in_combat))) then
+	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and state.Passive.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere' or not (player.in_combat or being_attacked)))) then
 		baseSet = set_combine(baseSet, sets.Kiting)
 	end
 	

@@ -414,7 +414,7 @@ function handle_forceequip(cmdParams)
 			disable(equipslot)
 		end
 	else
-		add_to_chat(122,'Syntax error with ForceEquip command - Use: gs c ForceEquip setname (slot or set).')
+		handle_equipping_gear(player.status)
 	end
 end
 

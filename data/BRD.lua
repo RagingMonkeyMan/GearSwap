@@ -66,7 +66,7 @@ end
 
 function job_pretarget(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' and not spell.targets.Enemy then
-		if state.Buff['Pianissimo'] and ((spell.target.raw == '<t>' and player.target.type == 'NONE') or spell.target.type == 'MONSTER') then
+		if state.Buff['Pianissimo'] and spell.target.raw == '<t>' and (player.target.type == 'NONE' or spell.target.type == 'MONSTER') then
 			eventArgs.cancel = true
 			windower.chat.input('/ma "'..spell.name..'" <stpt>')
 		elseif spell.target.raw == '<t>' and (player.target.type == 'NONE' or player.target.type == "MONSTER") and not state.Buff['Pianissimo'] then
