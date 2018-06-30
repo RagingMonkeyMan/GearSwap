@@ -324,6 +324,7 @@ function init_include()
 		useItemName = ''
 		useItemSlot = ''
 		lastincombat = false
+		being_attacked = false
 		if state.DisplayMode.value then update_job_states()	end
 	end)
 
