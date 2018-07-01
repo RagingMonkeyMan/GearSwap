@@ -2093,7 +2093,7 @@ windower.register_event('outgoing chunk',function(id,data,modified,is_injected,i
         moving = lastlocation ~= modified:sub(5, 16)
         lastlocation = modified:sub(5, 16)
 		
-		if wasmoving ~= moving then
+		if wasmoving ~= moving and not (midaction() or pet_midaction()) then
 			send_command('gs c forceequip')
 		end
 		
