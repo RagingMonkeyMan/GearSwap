@@ -38,30 +38,31 @@ function init_job_states(job_bools,job_modes)
     local settings = windower.get_windower_settings()
 	local x,y
 	
-	if displayx and displayy then
-		x = displayx
-		y = displayy
-	elseif settings["ui_x_res"] == 1920 and settings["ui_y_res"] == 1080 then
+	if settings["ui_x_res"] == 1920 and settings["ui_y_res"] == 1080 then
 		x,y = settings["ui_x_res"]-1917, settings["ui_y_res"]-18 -- -285, -18
 	else
 		x,y = 0, settings["ui_y_res"]-17 -- -285, -18
 	end
+	
+	if displayx then x = displayx end
+	if displayy then y = displayy end
 
-	local font = 'Arial'
-
-	if custom_font then
-		font = custom_font
-	end
+	local font = displayfont or 'Arial'
+	local size = displaysize or 12
+	local bold = displaybold or true
+	local bg = displaybg or 0
+	local strokewidth = displaystroke or 2
+	local stroketransparancy = displaytransparancy or 192
 	
     stateBox = texts.new()
     stateBox:pos(x,y)
     stateBox:font(font)--Arial
-    stateBox:size(12)
-    stateBox:bold(true)
-    stateBox:bg_alpha(0)--128
+    stateBox:size(size)
+    stateBox:bold(bold)
+    stateBox:bg_alpha(bg)--128
     stateBox:right_justified(false)
-    stateBox:stroke_width(2)
-    stateBox:stroke_transparency(192)
+    stateBox:stroke_width(strokewidth)
+    stateBox:stroke_transparency(stroketransparancy)
 
     update_job_states(stateBox)
 

@@ -13,11 +13,15 @@ conserveshadows = false
 
 --Display related settings.
 state.DisplayMode = M(true, 'Display Mode') --Set this to false if you don't want to display modes at the bottom of your screen.
---Uncomment the settings below and change the numbers if you want to move the display to a custom location.
+--Uncomment the settings below and change the values to edit the display's look.
 --displayx = 3
 --displayy = 1062
---If you want to use a custom font or colors, uncomment the settings below
---custom_font = 'Times New Roman'
+--displayfont = 'Arial'
+--displaysize = 12
+--displaybold = true
+--displaybg = 0
+--displaystroke = 2
+--displaytransparancy = 192
 --state.DisplayColors = {
     -- h='\\cs(255, 0, 0)', -- Red for active booleans and non-default modals
     -- w='\\cs(255,255,255)', -- White for labels and default modals
