@@ -5,13 +5,14 @@ function user_setup()
     state.HybridMode:options('Tank','DDTank','BreathTank','Dawn','NoShellTank','Normal')
     state.WeaponskillMode:options('Match','Normal', 'Acc')
     state.CastingMode:options('Normal','Resistant','SIRD')
+	state.Passive:options('None','AbsorbMP')
     state.PhysicalDefenseMode:options('PDT','PDT_HP','Tank')
     state.MagicalDefenseMode:options('BDT','MDT_HP','AegisMDT','AegisNoShellMDT','OchainMDT','OchainNoShellMDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA','MEVA_HP','Death','Charm')
 	state.IdleMode:options('Normal','Tank','KiteTank','PDT','MDT','Refresh','Reraise')
 	state.Weapons:options('Deacon','SequenceAegis','SequenceBlurred')
 	
-    state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Twilight'}
+    state.ExtraDefenseMode = M{['description']='Extra Defense Mode','None','MP','Twilight'}
 	
 	gear.fastcast_jse_back = {name="Rudianos's Mantle",augments={'INT+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10',}}
 	gear.enmity_jse_back = {name="Rudianos's Mantle",augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','HP+20','Enmity+10',}}
@@ -313,6 +314,7 @@ function init_gear_sets()
     -- Extra defense sets.  Apply these on top of melee or defense sets.
 	sets.Knockback = {}
     sets.MP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt",feet="Rev. Leggings +3"}
+	sets.passive.AbsorbMP = {head="Chev. Armet +1",neck="Coatl Gorget +1",ear2="Ethereal Earring",waist="Flume Belt",feet="Rev. Leggings +3"}
     sets.MP_Knockback = {}
     sets.Twilight = {head="Twilight Helm", body="Twilight Mail"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})

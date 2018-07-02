@@ -59,18 +59,24 @@ function handle_set(cmdParams)
         return
     end
     
+	local toggleset
+	if cmdParams[1]:lower() == 'toggle' then
+		toggleset = true
+		table.remove(cmdParams, 1)
+	end
+	
     local state_var = get_state(cmdParams[1])
     
     if state_var then
         local oldVal = state_var.value
         state_var:set(cmdParams[2])
         local newVal = state_var.value
-
-		if state_var ~= state.DefenseMode and newVal == oldVal and not newVal == 'Single' then
+		
+		if toggleset and newVal == oldVal and newVal ~= 'Single' then
 			handle_reset(cmdParams)
 			return
 		end
-        
+		
         local descrip = state_var.description or cmdParams[1]
         if state_change then
             state_change(descrip, newVal, oldVal)
