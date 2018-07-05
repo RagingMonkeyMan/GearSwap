@@ -76,6 +76,14 @@ function job_pretarget(spell, spellMap, eventArgs)
     end
 end
 
+function job_precast(spell, spellMap, eventArgs)
+	if spell.action_type == 'Magic' then
+		if not sets.precast.FC[spell.english] and (spell.type == 'BardSong' and spell.targets.Enemy) then
+			classes.CustomClass = 'SongDebuff'
+		end
+	end
+end
+
 function job_filter_precast(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' and not spell.targets.Enemy then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
@@ -118,7 +126,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 			if generalClass and sets.midcast[generalClass] then
 				if sets.midcast[generalClass][state.CastingMode.value] then
 					equip(sets.midcast[generalClass][state.CastingMode.value])
-				else
+				else 
 					equip(sets.midcast[generalClass])
 				end
             end
