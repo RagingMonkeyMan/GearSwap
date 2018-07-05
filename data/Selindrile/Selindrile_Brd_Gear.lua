@@ -57,8 +57,10 @@ function init_gear_sets()
 	sets.precast.FC.SongDebuff = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
 	sets.precast.FC.SongDebuff.Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
 	sets.precast.FC['Horde Lullaby'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
+	sets.precast.FC['Horde Lullaby'].Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
 	sets.precast.FC['Horde Lullaby'].AoE = set_combine(sets.precast.FC.BardSong,{range="Terpander"})
 	sets.precast.FC['Horde Lullaby II'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
+	sets.precast.FC['Horde Lullaby II'].Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
 	sets.precast.FC['Horde Lullaby II'].AoE = set_combine(sets.precast.FC.BardSong,{range="Terpander"})
 		
 	sets.precast.FC.Mazurka = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
@@ -103,8 +105,10 @@ function init_gear_sets()
 	sets.midcast.Ballad = {legs="Fili Rhingrave +1"}
 	sets.midcast.Lullaby = {}
 	sets.midcast['Horde Lullaby'] = {range="Marsyas"}
+	sets.midcast['Horde Lullaby'].Resistant = {range="Linos"}
 	sets.midcast['Horde Lullaby'].AoE = {range="Terpander"}
 	sets.midcast['Horde Lullaby II'] = {range="Marsyas"}
+	sets.midcast['Horde Lullaby II'].Resistant = {range="Linos"}
 	sets.midcast['Horde Lullaby II'].AoE = {range="Terpander"}
 	sets.midcast.Madrigal = {head="Fili Calot +1"}
 	sets.midcast.Paeon = {}
