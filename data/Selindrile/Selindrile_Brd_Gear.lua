@@ -120,7 +120,7 @@ function init_gear_sets()
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +1"}
 
 	-- For song defbuffs (accuracy primary, duration secondary)
-	sets.midcast.ResistantSongDebuff = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
+	sets.midcast.SongDebuff.Resistant = {main="Kali",sub="Ammurapi Shield",range="Linos",ammo=empty,
 		head="Aya. Zucchetto +2",neck="Moonbow Whistle",ear1="Gwati Earring",ear2="Digni. Earring",
 		body="Inyanga Jubbah +2",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Intarabus's Cape",waist="Luminary Sash",legs="Inyanga Shalwar +2",feet="Aya. Gambieras +1"}

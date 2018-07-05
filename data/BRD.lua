@@ -96,8 +96,12 @@ function job_midcast(spell, spellMap, eventArgs)
         if spell.type == 'BardSong' then
             -- layer general gear on first, then let default handler add song-specific gear.
             local generalClass = get_song_class(spell)
-            if generalClass and sets.midcast[generalClass] then
-                equip(sets.midcast[generalClass])
+			if generalClass and sets.midcast[generalClass] then
+				if sets.midcast[generalClass][state.CastingMode.value] then
+					equip(sets.midcast[generalClass][state.CastingMode.value])
+				else
+					equip(sets.midcast[generalClass])
+				end
             end
         end
     end
@@ -111,17 +115,29 @@ function job_post_precast(spell, spellMap, eventArgs)
 		
 			-- Replicate midcast in precast for nightingale including layering.
             local generalClass = get_song_class(spell)
-            if generalClass and sets.midcast[generalClass] then
-                equip(sets.midcast[generalClass])
+			if generalClass and sets.midcast[generalClass] then
+				if sets.midcast[generalClass][state.CastingMode.value] then
+					equip(sets.midcast[generalClass][state.CastingMode.value])
+				else
+					equip(sets.midcast[generalClass])
+				end
             end
 
 			if sets.midcast[spell.english] then
-				equip(sets.midcast[spell.english])
+				if sets.midcast[spell.english][state.CastingMode.value] then
+					equip(sets.midcast[spell.english][state.CastingMode.value])
+				else
+					equip(sets.midcast[spell.english])
+				end
 			elseif sets.midcast[get_spell_map(spell, default_spell_map)] then
-				equip(sets.midcast[get_spell_map(spell, default_spell_map)])
+				if sets.midcast[get_spell_map(spell, default_spell_map)][state.CastingMode.Value]
+					then equip(sets.midcast[get_spell_map(spell, default_spell_map)][state.CastingMode.Value])
+				else
+					equip(sets.midcast[get_spell_map(spell, default_spell_map)])
+				end
 			end
 			
-			if state.ExtraSongsMode.value == 'Full Length' or state.ExtraSongsMode.value == 'Full Length Lock' then
+			if not spell.targets.Enemy and (state.ExtraSongsMode.value == 'Full Length' or state.ExtraSongsMode.value == 'Full Length Lock') then
 				equip(sets.midcast.Daurdabla)
 			end
 		
@@ -235,12 +251,8 @@ end
 -- Determine the custom class to use for the given song.
 function get_song_class(spell)
     -- Can't use spell.targets:contains() because this is being pulled from resources
-    if set.contains(spell.targets, 'Enemy') then
-        if state.CastingMode.value == 'Resistant' then
-            return 'ResistantSongDebuff'
-        else
-            return 'SongDebuff'
-        end
+    if spell.targets.Enemy then
+		return 'SongDebuff'
     elseif state.ExtraSongsMode.value == 'Dummy' or state.ExtraSongsMode.value == 'Dummy Lock' then
         return 'DaurdablaDummy'
     else
