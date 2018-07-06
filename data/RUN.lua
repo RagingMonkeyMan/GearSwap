@@ -382,7 +382,7 @@ function check_buff()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
-		if not buffactive['Temper'] and not silent_check_silence() and spell_recasts [493] == 0 then
+		if not buffactive['Multi Strikes'] and not silent_check_silence() and spell_recasts [493] == 0 then
 			windower.chat.input('/ma "Temper" <me>')
 			tickdelay = (framerate * 2.2)
 			return true
