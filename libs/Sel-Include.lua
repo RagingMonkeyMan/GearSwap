@@ -936,6 +936,8 @@ function default_post_midcast(spell, spellMap, eventArgs)
 					curecheat = false
 				elseif sets.Self_Healing and not (state.CastingMode.value:contains('SIRD') and (player.in_combat or being_attacked)) then
 					equip(sets.Self_Healing)
+				elseif sets.Self_Healing and sets.Self_Healing.SIRD and state.CastingMode.value:contains('SIRD') then
+					equip(sets.Self_Healing.SIRD)
 				end
 			elseif spellMap == 'Refresh' and sets.Self_Refresh and not (state.CastingMode.value:contains('SIRD') and (player.in_combat or being_attacked)) then
 				equip(sets.Self_Refresh)

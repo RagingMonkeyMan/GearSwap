@@ -222,7 +222,7 @@ function init_gear_sets()
 
 	sets.idle.Pet.Engaged = {ammo="Demonry Core",
 		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Regimen Mittens",ring1="Defending Ring",ring2="Dark Ring",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	-- DEFENSE SETS
