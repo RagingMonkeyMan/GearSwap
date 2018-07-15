@@ -170,16 +170,10 @@ function init_include()
 	autowstp = 1000
 	rangedautowstp = 1000
 	buffup = false
-	time_offset = -39601
+	time_offset = -39602
 	framerate = 75
 	curecheat = false
 	lastincombat = player.in_combat
-	
-	if time_offset then
-		local t = os.time()
-		local offset = os.difftime(os.time(os.date('!*t', t)), t)
-		time_offset = offset - 61201
-	end
 	
 	time_test = false
 	utsusemi_cancel_delay = .5
@@ -2094,8 +2088,26 @@ function buff_change(buff, gain)
 			
 			if time_test and player.equipment.left_ring == 'Capacity Ring' then
 				--local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
-				local CurrentTime = (os.time(os.date("!*t")) + time_offset)
-				windower.add_to_chat(123,"USED! ~ Capacity Ring Next Use: "..((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime).."")
+				local CurrentTime = os.time(os.date("!*t"))
+				time_test = false
+				local CapacityOffset = ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime)
+				local NegativeCapacityOffset = ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime) * -1
+				local CapacityOffsetPlus = CapacityOffset + 900
+				local CapacityOffsetMinus = CapacityOffset - 900
+				local NegativeCapacityOffsetPlus =  NegativeCapacityOffset + 900
+				local NegativeCapacityOffsetMinus = NegativeCapacityOffset - 900
+				if ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetPlus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetPlus)) < 905 then
+					windower.add_to_chat(123,"Capacity Ring Used: Your offset is "..CapacityOffsetPlus.."")
+				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetMinus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetMinus)) < 905 then
+					windower.add_to_chat(123,"Capacity Ring Used: Your offset is "..CapacityOffsetMinus.."")
+				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) < 905 then
+					windower.add_to_chat(123,"Capacity Ring Used: Your offset is "..NegativeCapacityOffsetPlus.."")
+				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) < 905 then
+					windower.add_to_chat(123,"Capacity Ring Used: Your offset is "..CapacityOffsetPlus.."")
+				else
+					windower.add_to_chat(123,"Unable to automatically determine your offset")
+					time_test = true
+				end
 			end
 			
 		elseif gain and player.equipment.head == "Guide Beret" then

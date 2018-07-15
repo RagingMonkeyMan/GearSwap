@@ -3,14 +3,11 @@
 
 --Time Related Settings
 --To determine your offset the first time, uncomment time_offset and set time_test
---Wait for the spam in your log to start, then use the item "Capacity Ring", take note
---of the number in your chatlog right after you use it.
---Take that number, +900 or -900, will be your offset, the positive or negative version.
---For Example: Your number was 100: 100+900 = 1000, 100-900 = -800
---So the four numbers you should try are: 1000, -1000, 800, -800.
---Set one of those numbers into time_offset and reload, if the number spam in your log
---matches up with the cooldown (in seconds) of your capacity ring, your offset is right.
---Otherwise, try one of the other numbers.
+--Equip to ring1 and use a "Capacity Ring", your time_offset should appear in chat.
+--You must not have the commitment buff before doing this.
+--Set time_offset to the number mentioned in your chat and reload.
+--If the number spammed in your chat matches up with the seconds remaining on
+--your Capacity Ring's recast, your time_offset is correct, set time_test to false and reload.
 
 --time_offset = 0
 --time_test = true
