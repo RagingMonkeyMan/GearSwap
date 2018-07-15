@@ -19,6 +19,11 @@ Again PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, however feel 
 	
 For full functionality my gearswap and init files do depend on a few other addons that can be found in your launcher, I'll list them here: 
 	Addons: Shortcuts, Cancel, Itemizer.    Plugins: Timers, Run
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To make use of other types of gearswap files along with mine, place them in the common folder, and make sure to
+name them Character_Job.lua.
 	
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Macros and More~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
