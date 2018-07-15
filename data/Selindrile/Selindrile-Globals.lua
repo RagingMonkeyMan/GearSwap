@@ -1,10 +1,17 @@
 --Place you can overwrite specific functions and settings with your preferences.
 --Extra user functions to change how gearswap functions across jobs.
 
---Time Related Settings (Currently trying to automatically generate offset.)
---Set time_test to true to see and test time settings, change offset to change the settings, requires a capacity ring with uses,
---You want the cap ring offset to be 899 or 900 the MOMENT after using your Capacity ring.
---time_offset = -39601
+--Time Related Settings
+--To determine your offset the first time, uncomment time_offset and set time_test
+--Wait for the spam in your log to start, then use the item "Capacity Ring", take note
+--of the number in your chatlog right after you use it.
+--Take that number, +900 or -900, will be your offset, the positive or negative version.
+--Example: Your number was 100, the 4 possible numbers would be: 1000, -1000, 800, -800
+--Set one of those numbers into time_offset and reload, if the number spam in your log
+--matches up with the cooldown (in seconds) of your capacity ring, your offset is right.
+--Otherwise, try one of the other numbers.
+
+--time_offset = 0
 --time_test = true
 --framerate = 75
 
