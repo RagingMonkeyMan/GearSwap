@@ -6,7 +6,8 @@
 --Wait for the spam in your log to start, then use the item "Capacity Ring", take note
 --of the number in your chatlog right after you use it.
 --Take that number, +900 or -900, will be your offset, the positive or negative version.
---Example: Your number was 100, the 4 possible numbers would be: 1000, -1000, 800, -800
+--For Example: Your number was 100: 100+900 = 1000, 100-900 = -800
+--So the four numbers you should try are: 1000, -1000, 800, -800.
 --Set one of those numbers into time_offset and reload, if the number spam in your log
 --matches up with the cooldown (in seconds) of your capacity ring, your offset is right.
 --Otherwise, try one of the other numbers.
