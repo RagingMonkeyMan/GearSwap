@@ -495,6 +495,22 @@ unify_prefix = {['/ma'] = '/ma', ['/magic']='/ma',['/jobability'] = '/ja',['/ja'
     ['/so']='/ma',['/ninjutsu']='/ma',['/weaponskill']='/ws',['/ws']='/ws',['/ra']='/ra',['/rangedattack']='/ra',['/nin']='/ma',
     ['/throw']='/ra',['/range']='/ra',['/shoot']='/ra',['/monsterskill']='/ms',['/ms']='/ms',['/pet']='/ja',['Monster']='Monster',['/bstpet']='/ja'}	
 	
+	
+spell_stepdown = {
+	['Aspir III'] = 'Aspir II',
+	['Aspir II'] = 'Aspir',
+	['Sleepga II'] = 'Sleepga',
+	['Sleep II'] = 'Sleep',
+	['Arise'] = 'Raise III',
+	['Raise III'] = 'Raise II',
+	['Raise II'] = 'Raise',
+	['Reraise IV'] = 'Reraise III',
+	['Reraise III'] = 'Reraise II',
+	['Reraise II'] = 'Reraise',
+	['Gravity II'] = 'Gravity',
+	['Horde Lullaby II'] = 'Horde Lullaby',
+	['Foe Lullaby II'] = 'Foe Lullaby',
+}
 -------------------------------------------------------------------------------------------------------------------
 -- Tables to specify general area groupings.  Creates the 'areas' table to be referenced in job files.
 -- Zone names provided by world.area/world.zone are currently in all-caps, so defining the same way here.

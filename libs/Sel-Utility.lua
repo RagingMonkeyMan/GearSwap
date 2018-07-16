@@ -1219,63 +1219,13 @@ function check_abilities(spell, spellMap, eventArgs)
 end
 
 function stepdown(spell, eventArgs)
-	if spell.english == "Aspir III" then 
+	if spell_stepdown[spell.english] then
 		eventArgs.cancel = true
-		windower.chat.input('/ma "Aspir II" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Aspir II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Aspir" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Sleepga II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Sleepga" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Sleep II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Sleep" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Arise" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Raise III" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Raise III" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Raise II" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Raise II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Raise" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Reraise IV" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Reraise III" <me>')
-		return true
-	elseif spell.english == "Reraise III" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Reraise II" <me>')
-		return true
-	elseif spell.english == "Reraise II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Reraise" <me>')
-		return true
-	elseif spell.english == "Gravity II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Gravity" "'..spell.target.raw..'"')
-		return true
-	elseif spell.english == "Horde Lullaby II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Horde Lullaby" '..spell.target.raw..'')
-		return true
-	elseif spell.english == "Foe Lullaby II" then 
-		eventArgs.cancel = true
-		windower.chat.input('/ma "Foe Lullaby" '..spell.target.raw..'')
+		windower.chat.input('/ma "'..spell_stepdown[spell.english]..'" '..spell.target.raw..'')
 		return true
 	else
 		return false
 	end
-
-	return false
 end
 
 function actual_cost(spell)
