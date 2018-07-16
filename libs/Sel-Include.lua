@@ -92,6 +92,7 @@ function init_include()
 	state.RelicAftermath	  = M(true, 'Maintain Relic Aftermath')
 	state.Contradance		  = M(true, 'Auto Contradance Mode')
 	state.ElementalWheel 	  = M(false, 'Elemental Wheel')
+	state.MaintainDefense 	  = M(false, 'Maintain Defense')
 	
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}

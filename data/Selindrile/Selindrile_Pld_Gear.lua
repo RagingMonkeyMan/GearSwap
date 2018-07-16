@@ -31,6 +31,7 @@ function user_setup()
 	send_command('bind @` gs c cycle RuneElement')
 	send_command('bind @pause gs c toggle AutoRuneMode')
 	send_command('bind @f8 gs c toggle AutoTankMode')
+	send_command('bind @f10 gs c toggle TankAutoDefense')
 	send_command('bind ^@!` gs c cycle SkillchainMode')
 	
     select_default_macro_book()

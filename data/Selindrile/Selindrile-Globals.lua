@@ -77,8 +77,6 @@ send_command('bind ^@!f12 gs reload') --Reloads gearswap.
 send_command('bind pause gs c update user') --Runs a quick check to make sure you have the right gear on and checks variables.
 send_command('bind ^@!pause gs org') --Runs organizer.
 send_command('bind ^@!backspace gs c buffup') --Buffup macro because buffs are love.
---send_command('bind ^- gs c toggle selectnpctargets') --Change targets automatically.
---send_command('bind ^= gs c cycle pctargetmode') --Change targets automatically.
 send_command('bind ^r gs c weapons Default') --Requips weapons and gear.
 send_command('bind ^z gs c toggle Capacity') --Keeps capacity mantle on and uses capacity rings.
 send_command('bind ^y gs c toggle AutoCleanupMode') --Uses certain items and tries to clean up inventory.

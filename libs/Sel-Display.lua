@@ -170,6 +170,14 @@ function update_job_states()
 				else
 					stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", clr.h, clr.n))
 				end
+			elseif n == 'AutoDefenseMode' then
+				if state.AutoDefenseMode.value then
+					if state.TankAutoDefense.value then
+						stateBox:append(string.format("%sAuto Defense: Tank%s", clr.h, clr.n))
+					else
+						stateBox:append(string.format("%sAuto Defense%s", clr.h, clr.n))
+					end
+				end
 			else
 				stateBox:append(clr.h..labels[n]..clr.n)
 			end

@@ -4,6 +4,7 @@ being_attacked = false
 include('Sel-MonsterAbilities.lua')
 
 state.AutoDefenseMode = M(false, 'Auto Defense Mode')
+state.TankAutoDefense = M(false, 'Maintain Tanking Defense')
 state.AutoEngageMode = M(false, 'Auto Engage Mode')
 state.AutoStunMode = M(false, 'Auto Stun Mode')
 state.BlockWarp = M(false, 'BlockWarp')
@@ -136,7 +137,7 @@ windower.raw_register_event('action', function(act)
 	-- Turn off Defense if needed for things we're targetting.
 	if (curact.category == 3 or curact.category == 4 or curact.category == 11 or curact.category == 13) then
 		if isTarget and player.target.type == "MONSTER" and state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
-			if player.main_job == 'PLD' and state.EquipShield.value then
+			if state.TankAutoDefense.value then
 				if state.DefenseMode.value ~= 'Physical' then
 					send_command('gs c set DefenseMode Physical')
 				end
