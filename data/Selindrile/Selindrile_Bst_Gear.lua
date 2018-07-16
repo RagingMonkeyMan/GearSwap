@@ -474,17 +474,3 @@ function select_default_macro_book()
 		set_macro_page(6, 20)
 	end
 end
-
-function user_job_tick()
-	if state.AutoReadyMode.value and player.sub_job == 'NIN' and not moving and not (buffactive['Copy Image (2)'] or buffactive['Copy Image (3)'] or buffactive['Copy Image (4+)']) then
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-
-		if spell_recasts[339] == 0 then
-			send_command('input /ma "Utsusemi: Ni" <me>')
-			tickdelay = (framerate * 3)
-			return true
-		end
-
-	end
-	return false
-end

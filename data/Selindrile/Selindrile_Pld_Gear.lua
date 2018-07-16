@@ -209,8 +209,11 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Creed Baudrier",legs="Souv. Diechlings +1",feet="Souveran Schuhs +1"}
 
     sets.midcast.Flash = set_combine(sets.Enmity, {})
+	sets.midcast.Flash.SIRD = set_combine(sets.Enmity.SIRD, {})
     sets.midcast.Stun = set_combine(sets.Enmity, {})
+	sets.midcast.Stun.SIRD = set_combine(sets.Enmity.SIRD, {})
 	sets.midcast['Blue Magic'] = set_combine(sets.Enmity, {})
+	sets.midcast['Blue Magic'].SIRD = set_combine(sets.Enmity.SIRD, {})
 
     sets.midcast.Cure = {main="Deacon Sword",ammo="Staunch Tathlum",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Nourish. Earring",ear2="Nourish. Earring +1",
@@ -250,12 +253,12 @@ function init_gear_sets()
 	sets.Cure_Received = {hands="Souv. Handsch. +1",feet="Souveran Schuhs +1"}
 	sets.Self_Refresh = {waist="Gishdubar Sash"}
 
-    sets.midcast['Enhancing Magic'] = {ammo="Staunch Tathlum",
+    sets.midcast['Enhancing Magic'] = {main="Colada",ammo="Staunch Tathlum",
 		head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",ear2="Loquacious Earring",
 		body="Shab. Cuirass +1",hands="Leyline Gloves",ring1="Defending Ring",ring2="Kishar Ring",
 		back="Merciful Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Odyssean Greaves"}
 		
-    sets.midcast['Enhancing Magic'].SIRD = {ammo="Staunch Tathlum",
+    sets.midcast['Enhancing Magic'].SIRD = {main="Colada",ammo="Staunch Tathlum",
 		head="Souv. Schaller +1",neck="Incanter's Torque",ear1="Andoaa Earring",ear2="Odnowa Earring",
 		body="Shab. Cuirass +1",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Moonbeam Ring",
 		back="Merciful Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Odyssean Greaves"}
@@ -265,8 +268,8 @@ function init_gear_sets()
     sets.midcast.Protect = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
     sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
 	
-	sets.midcast.Phalanx = set_combine(sets.midcast['Enhancing Magic'], {hands="Souv. Handsch. +1",back="Weard Mantle",feet="Souveran Schuhs +1"})
-	sets.midcast.Phalanx.SIRD = set_combine(sets.midcast['Enhancing Magic'].SIRD, {hands="Souv. Handsch. +1",back="Weard Mantle",feet="Souveran Schuhs +1"})
+	sets.midcast.Phalanx = set_combine(sets.midcast['Enhancing Magic'], {main="Deacon Sword",hands="Souv. Handsch. +1",back="Weard Mantle",feet="Souveran Schuhs +1"})
+	sets.midcast.Phalanx.SIRD = set_combine(sets.midcast['Enhancing Magic'].SIRD, {main="Deacon Sword",hands="Souv. Handsch. +1",back="Weard Mantle",feet="Souveran Schuhs +1"})
 
 	--------------------------------------
 	-- Idle/resting/defense/etc sets
