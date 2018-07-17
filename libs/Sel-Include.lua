@@ -1001,6 +1001,8 @@ function default_aftercast(spell, spellMap, eventArgs)
 		tickdelay = (framerate * 2.7)
 	elseif spell.action_type == 'Ability' then
 		tickdelay = (framerate * .5)
+	elseif spell.type == 'WeaponSkill' then
+		tickdelay = (framerate * 1.9)
 	elseif 	spell.action_type == 'Item' then
 		tickdelay = (framerate * 1.1)
 	elseif spell.action_type == 'Ranged Attack' then
