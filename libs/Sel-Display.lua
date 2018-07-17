@@ -142,7 +142,6 @@ function update_job_states()
 		AutoPuppetMode = "Auto Puppet",
 		AutoRepairMode = "Auto Repair",
 		PactSpamMode = "Pact Spam",
-		EquipShield = "Shield Swap",
 		PetWSGear = "PetWSGear",
 		DanceStance = "DanceStance",
 		Stance = "Stance",

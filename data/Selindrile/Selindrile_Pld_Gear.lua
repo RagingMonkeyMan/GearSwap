@@ -347,11 +347,6 @@ function init_gear_sets()
 	sets.weapons.SequenceAegis = {main="Sequence",sub="Aegis Shield"}
 	sets.weapons.DualWeapons = {main="Sequence",sub="Demersal Degen +1"}
     
-    -- If EquipShield toggle is on (Win+F10 or Win+F11), equip the weapon/shield combos here
-    -- when activating or changing defense mode:
-    sets.PhysicalShield = {sub="Ochain"}
-    sets.MagicalShield = {sub="Aegis"}
-	
     sets.defense.PDT = {main="Mafic Cudgel",sub="Ochain",ammo="Staunch Tathlum",
 		head="Chev. Armet +1",neck="Diemer Gorget",ear1="Creed Earring",ear2="Thureous Earring",
 		body="Tartarus Platemail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Warden's Ring",

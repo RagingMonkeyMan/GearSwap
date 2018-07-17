@@ -94,7 +94,7 @@ name them Character_Job.lua.
 :Macro:
 Thf:		/console gs c toggle AmbushMode		(Equips Ambush gear on TP and non SA/TA WS)
 Blu:		/console gs c toggle LearningMode	(Locks learning gear in at all times.)
-Pld:		/console gs c toggle EquipShield	(Allows Weapon/Shield to swap with F10/F11)
+Pld/Run:	/console gs c toggle TankAutoDefense (Maintains PDT in autodefense instead of leaving defense altogether)
 Brd:		/console gs c cycle ExtraSongsMode   (Your next song plays as a dummy song.) [Ctrl+~]
 Blm:		/console gs c cycle RecoverMode		(Nukes in converts elemental damage to MP gear)
 Blm2:		/console gs c cycle MagicBurstMode	(Single makes your next spell burst, while lock keeps it bursting until you toggle again.) [Win+~]
