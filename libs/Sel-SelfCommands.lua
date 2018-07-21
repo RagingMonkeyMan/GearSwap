@@ -681,7 +681,7 @@ function handle_smartcure()
 		elseif player.target.hpp > 70 then
 			if spell_recasts[3] == 0 then
 				windower.chat.input('/ma "Cure III" '..cureTarget..'')
-			elseif spell_recasts[4] == 0 then
+			elseif silent_can_use(4) and spell_recasts[4] == 0 then
 				windower.chat.input('/ma "Cure IV" '..cureTarget..'')
 			elseif spell_recasts[2] == 0 then
 				windower.chat.input('/ma "Cure II" '..cureTarget..'')
@@ -689,7 +689,7 @@ function handle_smartcure()
 				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 			end
 		else
-			if spell_recasts[4] == 0 then
+			if silent_can_use(4) and spell_recasts[4] == 0 then
 				windower.chat.input('/ma "Cure IV" '..cureTarget..'')
 			elseif spell_recasts[3] == 0 then
 				windower.chat.input('/ma "Cure III" '..cureTarget..'')
