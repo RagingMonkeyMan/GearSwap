@@ -1268,6 +1268,16 @@ function check_nuke()
 	end
 end
 
+function check_samba()
+	if not buffactive[''..state.AutoSambaMode.value..''] and windower.ffxi.get_ability_recasts()[216] == 0 and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
+		windower.chat.input('/ja "'..state.AutoSambaMode.value..'" <me>')
+		tickdelay = (framerate * 1.8)
+		return true
+	else
+		return false
+	end
+end
+
 function check_sub()
 	if state.AutoSubMode.value and not areas.Cities:contains(world.area) then
 		if player.mpp < 70 and player.tp > 999 then

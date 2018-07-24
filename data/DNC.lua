@@ -62,7 +62,7 @@ function job_setup()
 	autofood = 'Soy Ramen'
 	
     update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -314,11 +314,7 @@ function check_buff()
 		end
 		
 		if player.in_combat then
-			if not buffactive[''..state.AutoSamba.value..''] and abil_recasts[216] == 0 and state.AutoSamba.value ~= 'Off' and player.tp > 400 then
-				windower.chat.input('/ja "'..state.AutoSamba.value..'" <me>')
-				tickdelay = (framerate * 1.8)
-				return true
-			elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+			if player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
 				windower.chat.input('/ja "Berserk" <me>')
 				tickdelay = (framerate * 1.8)
 				return true

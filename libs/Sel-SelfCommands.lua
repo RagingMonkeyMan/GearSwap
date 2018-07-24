@@ -267,6 +267,10 @@ function handle_update(cmdParams)
         job_update(cmdParams, eventArgs)
     end
 
+	if state.AutoSambaMode.value ~= 'Off' and not (player.main_job == 'DNC' or player.sub_job == 'DNC') then
+		state.AutoSambaMode:set("Off")
+	end
+	
     if not eventArgs.handled then
         if handle_equipping_gear then
             handle_equipping_gear(player.status)
