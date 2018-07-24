@@ -16,6 +16,7 @@ function job_setup()
     state.Buff.Sengikori = buffactive.Sengikori or false
     state.Buff['Meikyo Shisui'] = buffactive['Meikyo Shisui'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
+	state.Buff['Third Eye'] = buffactive['Third Eye'] or false
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
@@ -139,6 +140,8 @@ function job_customize_melee_set(meleeSet)
 
     if state.Buff.Hasso and state.DefenseMode.value == 'None' and state.OffenseMode.value ~= 'FullAcc' then
 		meleeSet = set_combine(meleeSet, sets.buff.Hasso)
+	elseif state.Buff.Seigan and state.Buff['Third Eye'] and not state.OffenseMode.value:contains('Acc') then
+		meleeSet = set_combine(meleeSet, sets.buff['Third Eye'])
     end
 
     return meleeSet
@@ -172,6 +175,7 @@ end
 
 function job_tick()
 	if check_hasso() then return true end
+	if check_buff() then return true end
 	return false
 end
 

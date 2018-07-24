@@ -38,14 +38,20 @@ end
 
 function job_filtered_action(spell, eventArgs)
 	if spell.type == 'WeaponSkill' then
-        if player.equipment.main == 'Nibiru Cudgel' then
+		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
+		-- WS 172 is Flash Nova, meaning a Spear is equipped.
+		if available_ws:contains(172) then
             if spell.english == "Chant du Cygne" then
+				send_command('@input /ws "True Strike" '..spell.target.raw)
                 cancel_spell()
-				send_command('@input /ws "Realmrazer" '..spell.target.raw)
+				eventArgs.cancel = true
+            elseif spell.english == "Savage Blade" then
+                send_command('@input /ws "Realmrazer" '..spell.target.raw)
+                cancel_spell()
 				eventArgs.cancel = true
             elseif spell.english == "Sanguine Blade" then
+                send_command('@input /ws "Flash Nova" '..spell.target.raw)
                 cancel_spell()
-				send_command('@input /ws "Flash Nova" '..spell.target.raw)
 				eventArgs.cancel = true
             end
         end

@@ -482,6 +482,10 @@ function handle_shadows()
 		else
 			return false
 		end
+	elseif not has_shadows() and player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] == 0 then
+		windower.chat.input('/ja "Third Eye" <me>')
+		tickdelay = (framerate * .7)
+		return true
 	elseif not has_shadows() and silent_can_use(679) and spell_recasts[679] == 0 then
 		windower.chat.input('/ma "Occultation" <me>')
 		tickdelay = (framerate * 2)
@@ -493,6 +497,10 @@ function handle_shadows()
 	elseif not has_shadows() and silent_can_use(647) and spell_recasts[647] == 0 then
 		windower.chat.input('/ma "Zephyr Mantle" <me>')
 		tickdelay = (framerate * 2)
+		return true
+	elseif not has_shadows() and player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] == 0 then
+		windower.chat.input('/ja "Third Eye" <me>')
+		tickdelay = (framerate * .7)
 		return true
 	else
 		return false
