@@ -297,7 +297,7 @@ function check_auto_pet()
 		end
 
 	elseif pet.status == "Idle" then
-		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp <= deactivatehpp and abil_recasts[208] == 0 then
+		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp >= deactivatehpp and abil_recasts[208] == 0 then
 			windower.chat.input('/pet "Deactivate" <me>')
 			tickdelay = (framerate * .5)
 			return true
