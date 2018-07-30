@@ -23,9 +23,9 @@ function user_setup()
 		},
 		Tank = {
 			{Name='Earth Maneuver',	  Amount=1},
+			{Name='Fire Maneuver',	  Amount=1},
 			{Name='Light Maneuver',	  Amount=1},
-			{Name='Dark Maneuver',	  Amount=1},
-			{Name='Fire Maneuver',	  Amount=0},
+			{Name='Dark Maneuver',	  Amount=0},
 		},
 		LightTank = {
 			{Name='Earth Maneuver',	  Amount=1},

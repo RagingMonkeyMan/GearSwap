@@ -1,5 +1,6 @@
 DISCLAIMER: PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, however feel free to shoot me a way to contact you outside of game,
-	through	the game, and I'm happy to help.
+	through	the game, and I'm happy to help, my preferred way of being contact is Discord, my Stream discord is here:
+	https://discord.gg/ug6xtvQ
 
 Setting up my Gearswaps and Github updating.
 
