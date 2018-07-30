@@ -290,10 +290,10 @@ function init_gear_sets()
 		
 	--Favor always up and head is best in slot idle so no specific items here at the moment.
     sets.idle.Avatar.Favor = {}
-    sets.idle.Avatar.Melee = {}
+    sets.idle.Avatar.Engaged = {}
 	
-	sets.idle.Avatar.Melee.Carbuncle = {}
-	sets.idle.Avatar.Melee['Cait Sith'] = {}
+	sets.idle.Avatar.Engaged.Carbuncle = {}
+	sets.idle.Avatar.Engaged['Cait Sith'] = {}
         
     sets.perp = {}
     -- Caller's Bracer's halve the perp cost after other costs are accounted for.

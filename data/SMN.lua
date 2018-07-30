@@ -373,9 +373,9 @@ function job_customize_idle_set(idleSet)
             idleSet = set_combine(idleSet, sets.idle.Avatar.Favor)
         end
         if pet.status == 'Engaged' then
-            idleSet = set_combine(idleSet, sets.idle.Avatar.Melee)
-			if sets.idle.Avatar.Melee[pet.name] then
-				idleSet = set_combine(idleSet, sets.idle.Avatar.Melee[pet.name])
+            idleSet = set_combine(idleSet, sets.idle.Avatar.Engaged)
+			if sets.idle.Avatar.Engaged[pet.name] then
+				idleSet = set_combine(idleSet, sets.idle.Avatar.Engaged[pet.name])
 			end
         end
     end
