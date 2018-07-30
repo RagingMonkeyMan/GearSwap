@@ -162,17 +162,27 @@ end
 -- Called for custom player commands.
 function job_self_command(commandArgs, eventArgs)
 	if commandArgs[1] == 'maneuver' then
-        if pet.isvalid then
-            local man = defaultManeuvers[state.PetMode.value]
-            if man and tonumber(commandArgs[2]) then
-                man = man[tonumber(commandArgs[2])]
-            end
-
-            if man then
-                send_command('input /pet "'..man..'" <me>')
-            end
+		if pet.isvalid then
+			if commandArgs[2] == nil then
+				for i = 1,4 do
+					local maneuver = defaultManeuvers[state.PetMode.Value][i]
+					if maneuver then
+						local maneuversActive = buffactive[maneuver.Name] or 0
+						if maneuversActive < maneuver.Amount then
+							windower.chat.input('/pet "'..maneuver.Name..'" <me>')
+							return
+						end
+					end
+				end
+				add_to_chat(123,'Current Maneuvers match Default')
+			elseif S{'1','2','3','4'}:contains(commandArgs[2]) then
+				windower.chat.input('/pet "'..defaultManeuvers[state.PetMode.Value][tonumber(commandArgs[2])].Name..'" <me>')
+			else
+				add_to_chat(123,'Error: Maneuver command format is wrong.')
+				add_to_chat(123,commandArgs[2])
+			end
         else
-            add_to_chat(123,'No valid pet.')
+            add_to_chat(123,'Error: No valid pet.')
         end
     end
 end
@@ -317,17 +327,19 @@ function check_repair()
 end
 
 function check_maneuver()
-	if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] == 0 then
-		local elementkey = {'Fire','Ice','Wind','Earth','Thunder','Water','Light','Dark'}
-		
-		for i in ipairs(elementkey) do
-			if autoManeuvers[state.PetMode.Value][elementkey] and autoManeuvers[state.PetMode.Value][elementkey] > buffactive[''..elementkey..' Maneuver'] then
-				windower.chat.input('/pet "'..maneuver..'" <me>')
-				tickdelay = (framerate * .5)
-				return true
-			end
-		end
-	end
+    if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] == 0 then
+        for i = 1,4 do
+            local maneuver = defaultManeuvers[state.PetMode.Value][i]
+            if maneuver then
+                local maneuversActive = buffactive[maneuver.Name] or 0
+                if maneuversActive < maneuver.Amount then
+                    windower.chat.input('/pet "'..maneuver.Name..'" <me>')
+                    tickdelay = (framerate * .5)
+                    return true
+                end
+            end
+        end
+    end
 
 	return false
 end

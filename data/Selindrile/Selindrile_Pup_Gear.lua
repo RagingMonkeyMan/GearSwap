@@ -7,26 +7,50 @@ function user_setup()
 	state.IdleMode:options('Normal','PDT','Refresh')
 	state.Weapons:options('None','Godhands','PetWeapons')
 
-    -- Default maneuvers for each pet mode.  Define at least 3.
-    defaultManeuvers = {
-        ['Melee'] = {'Fire Maneuver','Thunder Maneuver','Wind Maneuver','Light Maneuver'},
-        ['Ranged'] = {'Wind Maneuver','Fire Maneuver','Light Maneuver','Thunder Maneuver'},
-        ['Tank'] = {'Earth Maneuver','Light Maneuver','Dark Maneuver','Fire Maneuver',},
-		['LightTank'] = {'Earth Maneuver','Fire Maneuver','Light Maneuver','Dark Maneuver'},
-        ['Magic'] = {'Ice Maneuver','Light Maneuver','Dark Maneuver','Earth Maneuver'},
-        ['Heal'] = {'Light Maneuver','Dark Maneuver','Water Maneuver','Earth Maneuver'},
-        ['Nuke'] = {'Ice Maneuver','Dark Maneuver','Light Maneuver','Earth Maneuver'}
-    }
-	
-	-- Auto maneuvers will use Default Maneuvers as a priority for which to refresh
-	autoManeuvers = {
-        ['Melee'] 		= {['Fire Maneuver']=1,['Thunder Maneuver']=1,['Wind Maneuver']=1},
-        ['Ranged'] 		= {['Light Maneuver']=1,['Fire Maneuver']=2},
-        ['Tank'] 		= {['Fire Maneuver']=1,['Light Maneuver']=1,['Earth Maneuver']=1},
-		['LightTank'] 	= {['Fire Maneuver']=1,['Light Maneuver']=1,['Water Maneuver']=1},
-        ['Magic'] 		= {['Ice Maneuver']=1,['Light Maneuver']=1,['Dark Maneuver']=1},
-        ['Heal'] 		= {['Light Maneuver']=1,['Dark Maneuver']=1,['Ice Maneuver']=1},
-        ['Nuke'] 		= {['Ice Maneuver']=3}
+    -- Default/Automatic maneuvers for each pet mode.  Define at least 3.
+	defaultManeuvers = {
+		Melee = {
+			{Name='Fire Maneuver', 	  Amount=1},
+			{Name='Thunder Maneuver', Amount=1},
+			{Name='Wind Maneuver', 	  Amount=1},
+			{Name='Light Maneuver',	  Amount=0},
+		},
+		Ranged = {
+			{Name='Wind Maneuver', 	  Amount=1},
+			{Name='Fire Maneuver',	  Amount=1},
+			{Name='Light Maneuver',	  Amount=1},
+			{Name='Thunder Maneuver', Amount=0},
+		},
+		Tank = {
+			{Name='Earth Maneuver',	  Amount=1},
+			{Name='Light Maneuver',	  Amount=1},
+			{Name='Dark Maneuver',	  Amount=1},
+			{Name='Fire Maneuver',	  Amount=0},
+		},
+		LightTank = {
+			{Name='Earth Maneuver',	  Amount=1},
+			{Name='Fire Maneuver',	  Amount=1},
+			{Name='Light Maneuver',	  Amount=1},
+			{Name='Dark Maneuver',	  Amount=0},
+		},
+		Magic = {
+			{Name='Light Maneuver',	  Amount=1},
+			{Name='Ice Maneuver',	  Amount=1},
+			{Name='Dark Maneuver',	  Amount=1},
+			{Name='Earth Maneuver',	  Amount=0},
+		},
+		Heal = {
+			{Name='Light Maneuver',	  Amount=2},
+			{Name='Dark Maneuver',	  Amount=1},
+			{Name='Water Maneuver',	  Amount=0},
+			{Name='Earth Maneuver',	  Amount=0},
+		},
+		Nuke = {
+			{Name='Ice Maneuver',	  Amount=2},
+			{Name='Dark Maneuver',	  Amount=1},
+			{Name='Water Maneuver',	  Amount=0},
+			{Name='Earth Maneuver',	  Amount=0},
+		},
 	}
 
 	deactivatehpp = 85
