@@ -155,7 +155,7 @@ function init_gear_sets()
 		back="Alaunus's Cape",waist="Hachirin-no-Obi",legs="Ebers Pant. +1",feet="Kaykaus Boots"}
 		
 	sets.midcast.LightDayCureSolace = {main="Queller Rod",sub="Sors Shield",ammo="Pemphredo Tathlum",
-		head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Regal Earring +1",ear2="Glorious Earring",
+		head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Regal Earring",ear2="Glorious Earring",
 		body="Ebers Bliaud +1",hands="Theophany Mitts +3",ring1="Janniston Ring",ring2="Sirona's Ring",
 		back="Alaunus's Cape",waist="Hachirin-no-Obi",legs="Ebers Pant. +1",feet="Kaykaus Boots"}
 

@@ -2099,7 +2099,7 @@ function buff_change(buff, gain)
 	end
 	
     if S{'Commitment','Dedication'}:contains(buff) then
-        if gain and cprings:contains(player.equipment.left_ring) then
+        if gain and (cprings:contains(player.equipment.left_ring) or xprings:contains(player.equipment.left_ring)) then
             enable("left_ring")
 			
 			if time_test and player.equipment.left_ring == 'Capacity Ring' then
@@ -2126,7 +2126,7 @@ function buff_change(buff, gain)
 				end
 			end
 			
-		elseif gain and player.equipment.head == "Guide Beret" then
+		elseif gain and (player.equipment.head == "Guide Beret" or player.equipment.head == "Sprout Beret") then
 			enable("head")
         end
     end

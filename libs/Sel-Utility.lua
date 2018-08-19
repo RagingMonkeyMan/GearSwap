@@ -1595,18 +1595,67 @@ function check_cpring()
 	local CurrentTime = (os.time(os.date('!*t')) + time_offset)
 	
 	if player.main_job_level < 99 then
-		if player.equipment.left_ring == 'Echad Ring' and get_item_next_use('Echad Ring').usable then
-			send_command('input /item "'..player.equipment.left_ring..'" <me>')
-			cp_delay = 0
-			return true
-		elseif item_available('Echad Ring') and ((get_item_next_use('Echad Ring').next_use_time) - CurrentTime) < 15 then
-			cp_ring_equip('Echad Ring')
-			cp_delay = 10
-			return true
-		else
-			cp_delay = 0
-			return false
-		end
+			if player.equipment.head and player.equipment.head == 'Sprout Beret' and get_item_next_use(player.equipment.head).usable then
+				send_command('input /item "'..player.equipment.head..'" <me>')
+				cp_delay = 0
+				return true
+			   
+			elseif item_available('Sprout Beret') and ((get_item_next_use('Sprout Beret').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Sprout Beret').charges_remaining > 0) then
+				enable("head")
+				gearswap.equip_sets('equip_command',nil,{head="Sprout Beret"})
+				disable("head")
+				cp_delay = 10
+				return true
+			   
+			elseif player.equipment.left_ring == 'Echad Ring' and get_item_next_use('Echad Ring').usable then
+				send_command('input /item "'..player.equipment.left_ring..'" <me>')
+				cp_delay = 0
+				return true
+			elseif item_available('Echad Ring') and ((get_item_next_use('Echad Ring').next_use_time) - CurrentTime) < 15 then
+				cp_ring_equip('Echad Ring')
+				cp_delay = 10
+				return true
+			   
+			elseif player.equipment.left_ring == 'Caliber Ring' and get_item_next_use('Caliber Ring').usable then
+				send_command('input /item "'..player.equipment.left_ring..'" <me>')
+				cp_delay = 0
+				return true
+			elseif item_available('Caliber Ring') and ((get_item_next_use('Caliber Ring').next_use_time) - CurrentTime) < 15 then
+				cp_ring_equip('Caliber Ring')
+				cp_delay = 10
+				return true
+			   
+			elseif player.equipment.left_ring == 'Emperor Band' and get_item_next_use('Emperor Band').usable then
+				send_command('input /item "'..player.equipment.left_ring..'" <me>')
+				cp_delay = 0
+				return true
+			elseif item_available('Emperor Band') and ((get_item_next_use('Emperor Band').next_use_time) - CurrentTime) < 15 then
+				cp_ring_equip('Emperor Band')
+				cp_delay = 10
+				return true
+				
+			elseif player.equipment.left_ring == 'Empress Band' and get_item_next_use('Empress Band').usable then
+				send_command('input /item "'..player.equipment.left_ring..'" <me>')
+				cp_delay = 0
+				return true
+			elseif item_available('Empress Band') and ((get_item_next_use('Empress Band').next_use_time) - CurrentTime) < 15 then
+				cp_ring_equip('Empress Band')
+				cp_delay = 10
+				return true
+				
+			elseif player.equipment.left_ring == 'Resolution Ring' and get_item_next_use('Resolution Ring').usable then
+				send_command('input /item "'..player.equipment.left_ring..'" <me>')
+				cp_delay = 0
+				return true
+			elseif item_available('Resolution Ring') and ((get_item_next_use('Resolution Ring').next_use_time) - CurrentTime) < 15 then
+				cp_ring_equip('Resolution Ring')
+				cp_delay = 10
+				return true
+	 
+			else
+				cp_delay = 0
+				return false
+			end
 		
 	elseif cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
 		send_command('input /item "'..player.equipment.left_ring..'" <me>')

@@ -295,6 +295,7 @@ bayld_items = {'Tlalpoloani','Macoquetza','Camatlatia','Icoyoca','Tlamini','Suij
 'Uk\'uxkaj Cap'}
 	
 cprings = L{"Trizek Ring","Vocation Ring","Capacity Ring","Facility Ring"}
+xprings = L{"Echad Ring","Calibur Ring","Emporer Band","Empress Band","Resolution Ring"}
 cprings_count = 1
 
 tool_map = {

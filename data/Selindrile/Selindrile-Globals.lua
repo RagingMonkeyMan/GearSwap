@@ -2,15 +2,18 @@
 --Extra user functions to change how gearswap functions across jobs.
 
 --Time Related Settings
---To determine your offset the first time, uncomment time_offset and set time_test
---Equip to ring1 and use a "Capacity Ring", your time_offset should appear in chat.
---You must not have the commitment buff before doing this.
+--To determine your offset the first time, uncomment time_offset and set time_test to true,
+--Also uncomment tickdelay and set to 0 to remove the delay from the clock starting.
+--Once you see delay numbers start spamming your chat, assuming you don't have the
+--Commitment or Dedication buffs then Equip to ring1 and use "Capacity Ring",
+--(Not a Trizek or Calibur ring, "specifically Capacity Ring") your time_offset should appear in chat.
 --Set time_offset to the number mentioned in your chat and reload.
 --If the number spammed in your chat matches up with the seconds remaining on
 --your Capacity Ring's recast, your time_offset is correct, set time_test to false and reload.
 
 --time_offset = 0
 --time_test = true
+--tickdelay = 0
 --framerate = 75
 
 --If this is set to true it will prevent you from casting shadows when you have more up than that spell would generate.

@@ -391,6 +391,7 @@ function init_gear_sets()
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff.Sleep = {head="Frenzy Sallet"}
 	sets.buff.Battuta = {}
+	sets.buff.Embolden = {back="Evasionist's Cape"}
 	
 end
 
