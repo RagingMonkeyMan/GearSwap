@@ -16,7 +16,7 @@ function user_setup()
 	-- Additional local binds
     send_command('bind ^` gs c cycle ExtraSongsMode')
 	send_command('bind !` input /ma "Chocobo Mazurka" <me>')
-	send_command('bind @` gs c cycle MagicBurst')
+	send_command('bind @` gs c cycle MagicBurstMode')
 	send_command('bind @f10 gs c cycle RecoverMode')
 	send_command('bind @f8 gs c toggle AutoNukeMode')
 	send_command('bind !q gs c weapons NukeWeapons;gs c update')
