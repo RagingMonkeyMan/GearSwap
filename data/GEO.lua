@@ -155,6 +155,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
                 equip(sets.buff[buff])
             end
         end
+		
+		if state.Buff.Entrust and spell.english:startswith('Indi-') then
+			if sets.midcast.Geomancy.main == 'Idris' and item_available('Solstice') then
+				equip({main="Solstice"})
+			end
+		end
     end
 
 end
