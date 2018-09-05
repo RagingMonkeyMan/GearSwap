@@ -2064,7 +2064,7 @@ function state_change(stateField, newValue, oldValue)
             enable("left_ring")
 	end
 	
-	if state.DisplayMode.value then update_job_states()	end
+	update_job_states()
 end
 
 -- Called when a player gains or loses a buff.
