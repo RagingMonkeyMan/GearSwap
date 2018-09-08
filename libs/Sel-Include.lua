@@ -1082,22 +1082,18 @@ function filter_precast(spell, spellMap, eventArgs)
 	if check_midaction(spell, spellMap, eventArgs) then return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
-	if check_amnesia(spell, spellMap, eventArgs) then return end
-	if check_abilities(spell, spellMap, eventArgs) then return end
-	if check_silence(spell, spellMap, eventArgs) then return end
-	if check_targets(spell, spellMap, eventArgs) then return end
 	if check_recast(spell, spellMap, eventArgs) then return end
-	if check_cost(spell, spellMap, eventArgs) then return end
-
-	if spellMap == 'Cure' or spellMap == 'Curaga' then
-		if spell.target.distance > 21 and spell.target.type == 'PLAYER' then
-			cancel_spell()
-			eventArgs.cancel = true
-			--Delete the next line and uncomment the line after, if you'd rather it send a tell if they're too far to heal.
-			add_to_chat(123,'Target out of range, too far to heal!')
-			--windower.send_command('input /tell '..spell.target.name..' !!! OUT OF RANGE !!! TOO FAR TO HEAL !!!')
-		end
+	
+	if spell.action_type == 'Magic' then
+		if check_silence(spell, spellMap, eventArgs) then return end
+		if check_spell_targets(spell, spellMap, eventArgs) then return end
+		if check_cost(spell, spellMap, eventArgs) then return end
+		if check_warps(spell, spellMap, eventArgs) then return end
+	elseif spell.action_type == 'Ability' or spell.type == 'WeaponSkill' then
+		if check_amnesia(spell, spellMap, eventArgs) then return end
+		if check_abilities(spell, spellMap, eventArgs) then return end
 	end
+
 end
 
 function filter_midcast(spell, spellMap, eventArgs)
