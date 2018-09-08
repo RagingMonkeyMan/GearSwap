@@ -33,7 +33,7 @@ function init_gear_sets()
 	
     sets.Enmity = {}
 	sets.Knockback = {}
-	sets.passive.Reraise = {head="Twilight Helm",body="Twilight Mail"}
+	sets.passive.Twilight = {head="Twilight Helm",body="Twilight Mail"}
 	
 	-- Precast sets to enhance JAs
 	sets.precast.JA['Berserk'] = {back="Cichol's Mantle"}
