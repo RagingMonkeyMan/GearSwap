@@ -33,7 +33,7 @@ end
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
-    state.ExtraSongsMode = M{['description']='Extra Songs','None','Dummy','Dummy Lock','Full Length','Full Length Lock'}
+    state.ExtraSongsMode = M{['description']='Extra Songs','None','Dummy','DummyLock','FullLength','FullLengthLock'}
 
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff['Pianissimo'] = buffactive['Pianissimo'] or false
@@ -145,7 +145,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 				end
 			end
 			
-			if not spell.targets.Enemy and (state.ExtraSongsMode.value == 'Full Length' or state.ExtraSongsMode.value == 'Full Length Lock') then
+			if not spell.targets.Enemy and state.ExtraSongsMode.value:contains('FullLength') then
 				equip(sets.midcast.Daurdabla)
 			end
 		
@@ -171,11 +171,11 @@ end
 
 function job_post_midcast(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' then
-		if state.ExtraSongsMode.value == 'Full Length' or state.ExtraSongsMode.value == 'Full Length Lock' then
+		if state.ExtraSongsMode.value:contains('FullLength') then
             equip(sets.midcast.Daurdabla)
         end
 
-        if not (state.ExtraSongsMode.value == 'Dummy Lock' or state.ExtraSongsMode.value == 'Full Length Lock') then
+        if not state.ExtraSongsMode.value:contains('Lock') then
 			state.ExtraSongsMode:reset()
 		end
 
@@ -261,7 +261,7 @@ function get_song_class(spell)
     -- Can't use spell.targets:contains() because this is being pulled from resources
     if spell.targets.Enemy then
 		return 'SongDebuff'
-    elseif state.ExtraSongsMode.value == 'Dummy' or state.ExtraSongsMode.value == 'Dummy Lock' then
+    elseif state.ExtraSongsMode.value:contains('Dummy') then
         return 'DaurdablaDummy'
     else
         return 'SongEffect'
