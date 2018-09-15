@@ -280,7 +280,7 @@ end
 -- eventArgs is the same one used in job_midcast, in case information needs to be persisted.
 function job_post_midcast(spell, spellMap, eventArgs)
     -- Add enhancement gear for Chain Affinity, etc.
-    if spell.skill == 'Blue Magic' then
+    if not eventArgs.handled and spell.skill == 'Blue Magic' then
         for buff,active in pairs(state.Buff) do
             if active and sets.buff[buff] then
                 equip(sets.buff[buff])
