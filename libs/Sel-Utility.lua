@@ -960,7 +960,7 @@ end
 -- Checks doom, returns true if we're going to cancel and use an item.
 function check_doom(spell, spellMap, eventArgs)
 
-	if buffactive.doom and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then
+	if buffactive.doom and state.AutoHolyWaterMode.value and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then
 		if player.inventory['Hallowed Water'] then
 			send_command('input /item "Hallowed Water" <me>')
 			add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
