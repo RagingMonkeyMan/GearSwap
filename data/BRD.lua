@@ -171,6 +171,14 @@ end
 
 function job_post_midcast(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' then
+		if spell.targets.Enemy then
+			if sets.midcast[spell.english] then
+				equip(sets.midcast[spell.english])
+			elseif sets.midcast[spellMap] then
+				equip(sets.midcast[spellMap])
+			end
+		end
+		
 		if state.ExtraSongsMode.value:contains('FullLength') then
             equip(sets.midcast.Daurdabla)
         end
