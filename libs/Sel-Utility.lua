@@ -1748,7 +1748,7 @@ function check_cpring_buff()-- returs true if you do not have the buff from xp c
 		if player.satchel['Vocation Ring'] then send_command('get "Vocation Ring" satchel') end
 		if player.satchel['Facility Ring'] then send_command('get "Facility Ring" satchel') end
 		if player.satchel['Guide Beret'] then send_command('get "Guide Beret" satchel') end
-		if player.satchel['Echad Ring'] and player.main_job_level < 99 then send_command('get "Guide Beret" satchel') end
+		if player.satchel['Echad Ring'] and player.main_job_level < 99 then send_command('get "Echad Ring" satchel') end
 	
 		if buffactive['Commitment'] then
 			return false
