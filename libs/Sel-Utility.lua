@@ -608,6 +608,8 @@ function optional_include(filenames)
         if path then
             include(v)
             return true
+		else
+			return false
         end
     end
 end

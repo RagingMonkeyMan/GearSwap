@@ -42,7 +42,7 @@ end
 
 function job_pretarget(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
-		if state.AutoManawell.value and (AutoManawellSpells:contains(spell.english) or (state.CastingMode.value == 'OccultAcumen' and AutoManawellOccultSpells:contains(spell.english) and actual_cost(spell.english) > player.mp)) then
+		if state.AutoManawell.value and (AutoManawellSpells:contains(spell.english) or (state.CastingMode.value == 'OccultAcumen' and AutoManawellOccultSpells:contains(spell.english) and actual_cost(spell) > player.mp)) then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if abil_recasts[35] == 0 and not buffactive['amnesia'] then
