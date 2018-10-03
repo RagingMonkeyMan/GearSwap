@@ -128,6 +128,7 @@ function update_job_states()
 		AutoBuffMode = "Auto Buff",
 		AutoJumpMode = "Auto Jump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
+		AutoShadowMode = "Auto Shadows",
 		AutoFoodMode = "Auto Food: "..autofood.."",
 		RngHelper = "RngHelper",
 		Capacity = "Capacity",
