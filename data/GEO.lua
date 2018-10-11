@@ -26,7 +26,8 @@ function job_setup()
 	last_indi = ''
 	last_geo = ''
 	
-	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance.')
+	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
+	state.AutoEntrust = M(false, 'AutoEntrust Mode')
 	
     indi_timer = ''
     indi_duration = 180
@@ -62,8 +63,22 @@ function job_pretarget(spell, spellMap, eventArgs)
 					add_to_chat(204, 'Entrust active - You can\'t entrust yourself.')
 					eventArgs.cancel = true
 				end
-			elseif spell.target.raw == '<t>' then
-				change_target('<me>')
+			elseif spell.target.type ~= 'SELF' then
+				if state.AutoEntrust.value and ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC')) and spell.target.in_party then
+					local spell_recasts = windower.ffxi.get_spell_recasts()
+					local abil_recasts = windower.ffxi.get_ability_recasts()
+					eventArgs.cancel = true
+					
+					if spell_recasts[spell.recast_id] > 1.5 then
+						add_to_chat(123,'Abort: ['..spell.english..'] waiting on recast. ('..seconds_to_clock(spell_recasts[spell.recast_id]/60)..')')
+					elseif abil_recasts[93] > 0 then
+						add_to_chat(123,'Abort: [Entrust] waiting on recast. ('..seconds_to_clock(abil_recasts[93])..')')
+					else
+						send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "'..spell.name..'" '..spell.target.name)
+					end
+				elseif spell.target.raw == '<t>' then
+					change_target('<me>')
+				end
 			end
 		elseif spell.name:startswith('Geo') then
 			if set.contains(spell.targets, 'Enemy') then

@@ -22,7 +22,7 @@ end
 function job_setup()
 
 	-- Whether to use Compensator under a certain threshhold even when weapons are locked.
-	state.CompensatorMode = M{'Never','500','1000','Always'}
+	state.CompensatorMode = M{'Never','300','1000','Always'}
 	-- Whether to automatically generate bullets.
 	state.AutoAmmoMode = M(true,'Auto Ammo Mode')
 	-- Whether to use Luzaf's Ring
