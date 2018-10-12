@@ -2116,7 +2116,7 @@ function buff_change(buff, gain)
 				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) < 905 then
 					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..NegativeCapacityOffsetPlus.."")
 				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) < 905 then
-					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..CapacityOffsetPlus.."")
+					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..NegativeCapacityOffsetMinus.."")
 				else
 					windower.add_to_chat(123,"Unable to automatically determine your offset")
 					time_test = true
