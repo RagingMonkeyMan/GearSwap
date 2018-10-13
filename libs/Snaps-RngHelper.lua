@@ -353,6 +353,32 @@ register_unhandled_command(function (...)
             pending = nil
             completion = false
             queue:clear()
+        elseif commands[2] and commands[2]:lower() == 'enable' then	
+            if enabled then	
+                --windower.add_to_chat(217, "Rnghelper : Already enabled.")	
+            else	
+                --windower.add_to_chat(217, "Rnghelper : Enabling.")	
+                enabled = true	
+            end	
+        elseif commands[2] and commands[2]:lower() == 'disable' then	
+            if not enabled then	
+                --windower.add_to_chat(217, "Rnghelper : Already disabled.")	
+            else	
+                --windower.add_to_chat(217, "Rnghelper : Disabling.")	
+				target = nil	
+				pending = nil	
+				completion = false	
+				queue:clear()	
+                enabled = false	
+            end	
+        elseif commands[2] and commands[2]:lower() == 'toggle' then	
+            if enabled then	
+                --windower.add_to_chat(217, "Rnghelper : Disabling.")	
+                enabled = false	
+            else	
+                --windower.add_to_chat(217, "Rnghelper : Enabling.")	
+                enabled = true	
+            end
         end
         return true
     end
