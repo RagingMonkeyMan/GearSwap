@@ -1930,7 +1930,7 @@ function face_target()
 end
 
 function check_ammo()
-	if state.AutoAmmoMode.value and player.equipment.range and not player.in_combat and not world.in_mog_house then
+	if state.AutoAmmoMode.value and player.equipment.range and not player.in_combat and not world.in_mog_house and not useItem then
 		if rema_ranged_weapons:contains(player.equipment.range) and count_total_ammo(rema_ranged_weapons_ammo[player.equipment.range]) < ammostock then
 			if get_item_next_use(player.equipment.range).usable then
 				windower.chat.input("/item '"..player.equipment.range.."' <me>")
