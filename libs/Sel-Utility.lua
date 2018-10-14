@@ -1930,6 +1930,7 @@ function face_target()
 end
 
 function check_ammo()
+
 	if state.AutoAmmoMode.value and player.equipment.range and not player.in_combat and not world.in_mog_house and not useItem then
 		if rema_ranged_weapons:contains(player.equipment.range) and count_total_ammo(rema_ranged_weapons_ammo[player.equipment.range]) < ammostock then
 			if get_item_next_use(player.equipment.range).usable then
@@ -1937,15 +1938,15 @@ function check_ammo()
 				add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..player.equipment.range..".")
 				tickdelay = (framerate * 2)
 				return true
-			elseif item_available(rema_ranged_weapons_ammo_pouch[player.equipment.range]) then
-				local CurrentTime = (os.time(os.date('!*t')) + time_offset)
-				if ((get_item_next_use(rema_ranged_weapons_ammo_pouch[player.equipment.range]).next_use_time) - CurrentTime) < 10 then
-					add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..rema_ranged_weapons_ammo_pouch[player.equipment.range]..".")
-					useItem = true
-					useItemName = rema_ranged_weapons_ammo_pouch[player.equipment.range]
-					useItemSlot = 'waist'
-					return true
-				end				
+			-- elseif item_available(rema_ranged_weapons_ammo_pouch[player.equipment.range]) then
+				-- local CurrentTime = (os.time(os.date('!*t')) + time_offset)
+				-- if ((get_item_next_use(rema_ranged_weapons_ammo_pouch[player.equipment.range]).next_use_time) - CurrentTime) < 10 then
+					-- add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..rema_ranged_weapons_ammo_pouch[player.equipment.range]..".")
+					-- useItem = true
+					-- useItemName = rema_ranged_weapons_ammo_pouch[player.equipment.range]
+					-- useItemSlot = 'waist'
+					-- return true
+				-- end				
 			end
 		end
 	end
