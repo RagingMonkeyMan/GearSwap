@@ -174,6 +174,7 @@ relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura',
 'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
 
 rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
+
 rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',
 								['Death Penalty'] = 'Living Bullet',
 								['Armageddon'] = 'Devastating Bullet',
@@ -181,6 +182,14 @@ rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',
 								['Gandiva'] = "Artemis's Arrow",
 								['Yoichinoyumi'] = "Yoichi's Arrow",
 								['Annihilator'] = 'Eradicating Bullet'}
+								
+rema_ranged_weapons_ammo_pouch = {['Fomalhaut'] = 'Chrono Bullet Pouch',
+									['Death Penalty'] = 'Living Bullet Pouch',
+									['Armageddon'] = 'Devastating Bullet Pouch',
+									['Fail-Not'] = 'Chrono Quiver',
+									['Gandiva'] = "Artemis's Quiver",
+									['Yoichinoyumi'] = "Yoichi's Quiver",
+									['Annihilator'] = 'Eradicating Bullet Pouch'}
 
 elemental_obi_weaponskills = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight','Tachi: Jinpu','Flash Nova'}
 
