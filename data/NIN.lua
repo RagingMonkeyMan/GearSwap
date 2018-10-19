@@ -171,15 +171,18 @@ function job_customize_idle_set(idleSet)
         idleSet = set_combine(idleSet, sets.buff.Migawari)
     end
 
-	if player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') then
-		if classes.DuskToDawn and sets.DuskKiting then
-		idleSet = set_combine(idleSet, sets.DuskKiting)
-		end
-	end
-	
     return idleSet
 end
 
+function job_customize_kiting_set(kitingSet)
+	if player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') then
+		if classes.DuskToDawn and sets.DuskKiting then
+		kitingSet = set_combine(idleSet, sets.DuskKiting)
+		end
+	end
+	
+	return kitingSet
+end
 
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
