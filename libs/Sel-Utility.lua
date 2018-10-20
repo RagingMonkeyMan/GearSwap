@@ -962,14 +962,14 @@ end
 -- Checks doom, returns true if we're going to cancel and use an item.
 function check_doom(spell, spellMap, eventArgs)
 
-	if buffactive.doom and state.AutoHolyWaterMode.value and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then
+	if buffactive.doom and state.AutoRemoveDoomMode.value and state.AutoHolyWaterMode.value and not buffactive.muddle and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then
 		if player.inventory['Hallowed Water'] then
-			send_command('input /item "Hallowed Water" <me>')
+			windower.chat.input('/item "Hallowed Water" <me>')
 			add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
 			eventArgs.cancel = true
 			return true
 		elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
-			send_command('input /item "Holy Water" <me>')
+			windower.chat.input('/item "Holy Water" <me>')
 			add_to_chat(123,'Abort: You are doomed, using Holy Water instead.')
 			eventArgs.cancel = true
 			return true
@@ -1070,10 +1070,11 @@ function silent_check_silence()
 
 	elseif buffactive.silence then
 			if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
-				send_command('input /item "Echo Drops" <me>')
+				windoer.chat.input('/item "Echo Drops" <me>')
 			elseif player.inventory["Remedy"] then
-				send_command('input /item "Remedy" <me>')
+				windoer.chat.input('/item "Remedy" <me>')
 			end
+			tickdelay = (framerate * 1.5)
 			return true
 	else
 		return false
@@ -1523,6 +1524,41 @@ function check_food()
 	else
 		return false
 	end
+end
+
+function check_doomed()
+	if buffactive.doom and state.AutoRemoveDoomMode.value then 
+	
+		if (buffactive.mute or buffactive.Omerta or buffactive.silence) or not (silent_can_use(20) and windower.ffxi.get_spell_recasts()[20] < spell_latency) then
+			if state.AutoHolyWaterMode.value and not buffactive.muddle then
+				if player.inventory['Hallowed Water'] then
+					windower.chat.input('/item "Hallowed Water" <me>')
+					add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
+					tickdelay = (framerate * 1.5)
+					return true
+				elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
+					windower.chat.input('/item "Holy Water" <me>')
+					tickdelay = (framerate * 1.5)
+					return true
+				elseif buffactive.silence then
+						if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
+							windoer.chat.input('/item "Echo Drops" <me>')
+						elseif player.inventory["Remedy"] then
+							windoer.chat.input('/item "Remedy" <me>')
+						end
+						tickdelay = (framerate * 1.5)
+						return true
+				end
+			end
+		else
+			windower.chat.input('/ma "Cursna" <me>')
+			tickdelay = (framerate * 1.5)
+			return true
+		end
+	else
+		return false
+	end
+	return false
 end
 
 function check_ws()

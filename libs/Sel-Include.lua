@@ -82,6 +82,7 @@ function init_include()
 	state.AutoRuneMode 		  = M(false, 'Auto Rune Mode')
 	state.AutoShadowMode 	  = M(false, 'Auto Shadow Mode')
 	state.AutoHolyWaterMode   = M(true, 'Auto Holy Water Mode')
+	state.AutoRemoveDoomMode  = M(true, 'Auto Remove Doom Mode')
 	state.AutoWSMode		  = M(false, 'Auto Weaponskill Mode')
 	state.AutoFoodMode		  = M(false, 'Auto Food Mode')
 	state.AutoSubMode 		  = M(false, 'Auto Sublimation Mode')
@@ -1185,6 +1186,7 @@ function pre_tick()
 end
 
 function default_tick()
+	if check_doomed() then return true end
 	if check_shadows() then return true end
 	if check_use_item() then return true end
 	if check_sub() then return true end
