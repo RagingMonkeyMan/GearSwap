@@ -150,7 +150,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 				windower.chat.input:schedule(3,'/ja "Reverse Flourish" <me>')
 				windower.chat.input('/ja "Reverse Flourish" <me>')
 			end
-		elseif spell.english == state[state.CurrentStep.current..'Step'].current then
+		elseif state.UseAltStep.value and spell.english == state[state.CurrentStep.current..'Step'].current then
 			state.CurrentStep:cycle()
 		end
     end
