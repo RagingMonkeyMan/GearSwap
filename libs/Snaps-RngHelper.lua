@@ -169,9 +169,9 @@ end
 
 local function able_to_use_action()
     if pending.action_type == 'Ability' then
-        return windower.ffxi.get_ability_recasts()[res.job_abilities[pending.id].recast_id] == 0
+        return windower.ffxi.get_ability_recasts()[res.job_abilities[pending.id].recast_id] < latency
     elseif pending.action_type == 'Magic' then
-        return windower.ffxi.get_spell_recasts()[res.spells[pending.id].recast_id] == 0
+        return windower.ffxi.get_spell_recasts()[res.spells[pending.id].recast_id] < spell_latency
     end
     return true
 end

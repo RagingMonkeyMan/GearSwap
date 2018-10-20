@@ -212,7 +212,7 @@ function refine_waltz(spell, spellMap, eventArgs)
             elseif missingHP < 1100 then
                 newWaltz = 'Curing Waltz III'
                 waltzID = 192
-			elseif state.Contradance.value and abil_recasts[229] == 0 then
+			elseif state.Contradance.value and abil_recasts[229] < latency then
                 eventArgs.cancel = true
 				windower.chat.input('/ja "Contradance" <me>')
 				windower.chat.input:schedule(1,'/ja "Curing Waltz IV" '..spell.target.raw..'')
@@ -731,7 +731,7 @@ function can_use(spell)
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 					else
 						local abil_recasts = windower.ffxi.get_ability_recasts()
-						if abil_recasts[228] == 0 then
+						if abil_recasts[228] < latency then
 							windower.chat.input('/ja "Light Arts" <me>')
 							windower.chat.input:schedule(1.5,'/ja "Addendum: White" <me>')
 							windower.chat.input:schedule(3.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -748,7 +748,7 @@ function can_use(spell)
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 					else
 						local abil_recasts = windower.ffxi.get_ability_recasts()
-						if abil_recasts[232] == 0 then
+						if abil_recasts[232] < latency then
 							windower.chat.input('/ja "Dark Arts" <me>')
 							windower.chat.input:schedule(1.5,'/ja "Addendum: Black" <me>')
 							windower.chat.input:schedule(3.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -771,7 +771,7 @@ function can_use(spell)
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 					else
 						local abil_recasts = windower.ffxi.get_ability_recasts()
-						if abil_recasts[228] == 0 then
+						if abil_recasts[228] < latency then
 							windower.chat.input('/ja "Light Arts" <me>')
 							windower.chat.input:schedule(1.5,'/ja "Addendum: White" <me>')
 							windower.chat.input:schedule(3.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -788,7 +788,7 @@ function can_use(spell)
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 					else
 						local abil_recasts = windower.ffxi.get_ability_recasts()
-						if abil_recasts[232] == 0 then
+						if abil_recasts[232] < latency then
 							windower.chat.input('/ja "Dark Arts" <me>')
 							windower.chat.input:schedule(1.5,'/ja "Addendum: Black" <me>')
 							windower.chat.input:schedule(3.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -1088,8 +1088,8 @@ function check_recast(spell, spellMap, eventArgs)
 				add_to_chat(123,"Abort: You don't have access to ["..spell.english.."].")
 				eventArgs.cancel = true
 				return true
-            elseif abil_recasts[spell.recast_id] > 0 then
-				if spell.english == "Lunge" and abil_recasts[241] == 0 then
+            elseif abil_recasts[spell.recast_id] > latency then
+				if spell.english == "Lunge" and abil_recasts[241] < latency then
 					eventArgs.cancel = true
 					windower.send_command('@input /ja "Swipe" <t>')
 					return true
@@ -1103,7 +1103,7 @@ function check_recast(spell, spellMap, eventArgs)
             end
         elseif spell.action_type == 'Magic' then
             local spell_recasts = windower.ffxi.get_spell_recasts()
-            if spell_recasts[spell.recast_id] > 0 then
+            if (spell_recasts[spell.recast_id]/60) > spell_latency then
 				if stepdown(spell, eventArgs) then 
 					return true
 				else
@@ -1278,7 +1278,7 @@ function check_nuke()
 	if state.AutoNukeMode.value and player.target.type == "MONSTER" then
 		local spell = res.spells:with('name',autonuke)
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		if spell_recasts[spell.id] == 0 then
+		if spell_recasts[spell.id] < spell_latency then
 			windower.chat.input('/ma '..autonuke..' <t>')
 			tickdelay = (framerate * 1.5)
 			return true
@@ -1291,7 +1291,7 @@ function check_nuke()
 end
 
 function check_samba()
-	if not buffactive[''..state.AutoSambaMode.value..''] and windower.ffxi.get_ability_recasts()[216] == 0 and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
+	if not buffactive[''..state.AutoSambaMode.value..''] and windower.ffxi.get_ability_recasts()[216] and windower.ffxi.get_ability_recasts()[216] < latency and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
 		windower.chat.input('/ja "'..state.AutoSambaMode.value..'" <me>')
 		tickdelay = (framerate * 1.8)
 		return true
@@ -1317,11 +1317,11 @@ function check_sub()
 		end
 		if (player.main_job == 'SCH' or player.sub_job == 'SCH') and not buffactive['Refresh'] then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] == 0 then
+			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] < latency then
 				windower.chat.input('/ja Sublimation <me>')
 				tickdelay = (framerate * 1.5)
 				return true
-			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] == 0 then
+			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] < latency then
 				windower.chat.input('/ja Sublimation <me>')
 				tickdelay = (framerate * 1.5)
 				return true
@@ -1404,27 +1404,27 @@ function check_trust()
 		if party.p5 == nil then
 			local spell_recasts = windower.ffxi.get_spell_recasts()
 		
-			if spell_recasts[979] == 0 and not have_trust("Selh'teus") then
+			if spell_recasts[979] < spell_latency and not have_trust("Selh'teus") then
 				windower.chat.input('/ma "Selh\'teus" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
-			elseif spell_recasts[1012] == 0 and not have_trust("Nashmeira") then
+			elseif spell_recasts[1012] < spell_latency and not have_trust("Nashmeira") then
 				windower.chat.input('/ma "Nashmeira II" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
-			elseif spell_recasts[1018] == 0 and not have_trust("Iroha") then
+			elseif spell_recasts[1018] < spell_latency and not have_trust("Iroha") then
 				windower.chat.input('/ma "Iroha II" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
-			elseif spell_recasts[1017] == 0 and not have_trust("Arciela") then
+			elseif spell_recasts[1017] < spell_latency and not have_trust("Arciela") then
 				windower.chat.input('/ma "Arciela II" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
-			elseif spell_recasts[947] == 0 and not have_trust("UkaTotlihn") then
+			elseif spell_recasts[947] < spell_latency and not have_trust("UkaTotlihn") then
 				windower.chat.input('/ma "Uka Totlihn" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
-			elseif spell_recasts[1013] == 0 and not have_trust("Lilisette") then
+			elseif spell_recasts[1013] < spell_latency and not have_trust("Lilisette") then
 				windower.chat.input('/ma "Lilisette II" <me>')
 				tickdelay = (framerate * 4.5)
 				return true
@@ -2008,18 +2008,18 @@ function check_rune()
 			return false
 			
 		elseif not buffactive['Pflug'] then
-			if abil_recasts[59] == 0 then
+			if abil_recasts[59] < latency then
 				send_command('input /ja "Pflug" <me>')
 				tickdelay = (framerate * 1.8)
 				return true
 			end
 			
 		elseif not (buffactive['Vallation'] or buffactive['Valiance']) then
-			if player.main_job == 'RUN' and abil_recasts[113] == 0 then
+			if player.main_job == 'RUN' and abil_recasts[113] < latency then
 				send_command('input /ja "Valiance" <me>')
 				tickdelay = (framerate * 1.8)
 				return true
-			elseif abil_recasts[23] == 0 then
+			elseif abil_recasts[23] < latency then
 				send_command('input /ja "Vallation" <me>')
 				tickdelay = (framerate * 1.8)
 				return true

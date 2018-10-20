@@ -46,7 +46,7 @@ function job_filter_precast(spell, spellMap, eventArgs)
 
 	if spell.english == 'Valiance' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[113] > 0 and not state.Buff['Valiance'] and abil_recasts[23] == 0 then
+		if abil_recasts[113] > 0 and not state.Buff['Valiance'] and abil_recasts[23] < latency then
 			eventArgs.cancel = true
 			send_command('@input /ja "Vallation" <me>')
 		end
@@ -63,12 +63,12 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] == 0 then
+		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
-		elseif player.sub_job == 'SAM' and abil_recasts[134] == 0 then
+		elseif player.sub_job == 'SAM' and abil_recasts[134] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
@@ -202,15 +202,15 @@ function job_self_command(commandArgs, eventArgs)
 		elseif player.sub_job == 'BLU' then
 			local spell_recasts = windower.ffxi.get_spell_recasts()
 					
-			if spell_recasts[584] == 0 then
+			if spell_recasts[584] < spell_latency then
 				windower.chat.input('/ma "Sheep Song" <t>')
-			elseif spell_recasts[598] == 0 then
+			elseif spell_recasts[598] < spell_latency then
 				windower.chat.input('/ma "Soporific" <t>')
-			elseif spell_recasts[605] == 0 then
+			elseif spell_recasts[605] < spell_latency then
 				windower.chat.input('/ma "Geist Wall" <t>')
-			elseif spell_recasts[575] == 0 then
+			elseif spell_recasts[575] < spell_latency then
 				windower.chat.input('/ma "Jettatura" <t>')
-			elseif spell_recasts[592] == 0 then
+			elseif spell_recasts[592] < spell_latency then
 				windower.chat.input('/ma "Blank Gaze" <t>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
@@ -228,15 +228,15 @@ function job_self_command(commandArgs, eventArgs)
 				send_command('cancel last resort')
 			end
 			
-			if spell_recasts[252] == 0 and not silent_check_silence() then
+			if spell_recasts[252] < spell_latency and not silent_check_silence() then
 				windower.chat.input('/ma "Stun" <t>')
-			elseif abil_recasts[85] == 0 then
+			elseif abil_recasts[85] < latency then
 				windower.chat.input('/ja "Souleater" <me>')
-			elseif abil_recasts[87] == 0 then
+			elseif abil_recasts[87] < latency then
 				windower.chat.input('/ja "Last Resort" <me>')
-			elseif abil_recasts[88] == 0 then
+			elseif abil_recasts[88] < latency then
 				windower.chat.input('/ja "Weapon Bash" <t>')
-			elseif abil_recasts[86] == 0 then
+			elseif abil_recasts[86] < latency then
 				windower.chat.input('/ja "Arcane Circle" <me>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
@@ -249,15 +249,15 @@ function job_self_command(commandArgs, eventArgs)
 				send_command('cancel berserk')
 			end
 			
-			if abil_recasts[5] == 0 then
+			if abil_recasts[5] < latency then
 				windower.chat.input('/ja "Provoke" <t>')
-			elseif abil_recasts[2] == 0 then
+			elseif abil_recasts[2] < latency then
 				windower.chat.input('/ja "Warcry" <me>')
-			elseif abil_recasts[3] == 0 then
+			elseif abil_recasts[3] < latency then
 				windower.chat.input('/ja "Defender" <me>')
-			elseif abil_recasts[4] == 0 then
+			elseif abil_recasts[4] < latency then
 				windower.chat.input('/ja "Aggressor" <me>')
-			elseif abil_recasts[1] == 0 then
+			elseif abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Warrior Job Abilities on cooldown.') end
@@ -268,15 +268,15 @@ function job_self_command(commandArgs, eventArgs)
 			local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
         
 			if under3FMs then
-				if abil_recasts[220] == 0 then
+				if abil_recasts[220] < latency then
 				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
 				state.CurrentStep:cycle()
 				return
 				end
-			elseif abil_recasts[221] == 0 then
+			elseif abil_recasts[221] < latency then
 				windower.chat.input('/ja "Animated Flourish" <t>')
 				return
-			elseif abil_recasts[220] == 0 and not buffactive['Finishing Move 5'] then
+			elseif abil_recasts[220] < latency and not buffactive['Finishing Move 5'] then
 				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
 				state.CurrentStep:cycle()
 				return
@@ -332,15 +332,15 @@ function check_flash_foil()
 	if silent_check_silence() then return false end
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 	
-	if not buffactive['Enmity Boost'] and spell_recasts[476] == 0 then
+	if not buffactive['Enmity Boost'] and spell_recasts[476] < spell_latency then
 		windower.chat.input('/ma "Crusade" <me>')
 		tickdelay = (framerate * 2)
 		return true
-	elseif spell_recasts[112] == 0 then
+	elseif spell_recasts[112] < spell_latency then
 		windower.chat.input('/ma "Flash" <t>')
 		tickdelay = (framerate * 2)
 		return true
-	elseif spell_recasts[840] == 0 then
+	elseif spell_recasts[840] < spell_latency then
 		windower.chat.input('/ma "Foil" <me>')
 		tickdelay = (framerate * 2)
 		return true
@@ -364,11 +364,11 @@ function check_hasso()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
-		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
+		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
+		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
@@ -385,23 +385,23 @@ function check_buff()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
-		if not buffactive['Multi Strikes'] and not silent_check_silence() and spell_recasts [493] == 0 then
+		if not buffactive['Multi Strikes'] and not silent_check_silence() and spell_recasts [493] < spell_latency then
 			windower.chat.input('/ma "Temper" <me>')
 			tickdelay = (framerate * 2.2)
 			return true
-		elseif not buffactive['Swordplay'] and abil_recasts[24] == 0 then
+		elseif not buffactive['Swordplay'] and abil_recasts[24] < latency then
 			windower.chat.input('/ja "Swordplay" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] == 0 then
+		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 			windower.chat.input('/ja "Last Resort" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
 			windower.chat.input('/ja "Berserk" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] < latency then
 			windower.chat.input('/ja "Aggressor" <me>')
 			tickdelay = (framerate * 1.8)
 			return true

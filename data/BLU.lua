@@ -430,7 +430,7 @@ function check_arts()
 	
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if abil_recasts[228] == 0 then
+		if abil_recasts[228] < latency then
 			send_command('@input /ja "Light Arts" <me>')
 			tickdelay = (framerate * .5)
 			return true

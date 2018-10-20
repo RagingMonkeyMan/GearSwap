@@ -291,22 +291,22 @@ function check_auto_pet()
 
 	if not pet.isvalid then
 
-		if abil_recasts[205] == 0 then
+		if abil_recasts[205] < latency then
 			windower.chat.input('/ja "Activate" <me>')
 			tickdelay = (framerate * .5)
 			return true
-		elseif abil_recasts[115] == 0 then
+		elseif abil_recasts[115] < latency then
 			windower.chat.input('/ja "Deus Ex Automata" <me>')
 			tickdelay = (framerate * .5)
 			return true
 		end
 
 	elseif pet.status == "Idle" then
-		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp >= deactivatehpp and abil_recasts[208] == 0 then
+		if pet.max_mp > 50 and pet.mpp < 10 and pet.hpp >= deactivatehpp and abil_recasts[208] < latency then
 			windower.chat.input('/pet "Deactivate" <me>')
 			tickdelay = (framerate * .5)
 			return true
-		elseif player.target.type == "MONSTER" and abil_recasts[207] == 0 then
+		elseif player.target.type == "MONSTER" and abil_recasts[207] < latency then
 			windower.chat.input('/pet "Deploy" <t>')
 			tickdelay = (framerate * .5)
 			return true
@@ -321,7 +321,7 @@ function check_repair()
 	if state.AutoRepairMode.value and pet.isvalid and pet.hpp < repairhpp then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if abil_recasts[206] == 0 and item_available('Automat. Oil +3') then
+		if abil_recasts[206] < latency and item_available('Automat. Oil +3') then
 			windower.chat.input('/ja "Repair" <me>')
 			tickdelay = (framerate * .5)
 			return true
@@ -332,7 +332,7 @@ function check_repair()
 end
 
 function check_maneuver()
-    if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] == 0 then
+    if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
         for i = 1,8 do
             local maneuver = defaultManeuvers[state.PetMode.Value][i]
             if maneuver then

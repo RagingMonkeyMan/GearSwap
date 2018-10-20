@@ -152,7 +152,7 @@ function job_filter_precast(spell, spellMap, eventArgs)
 		elseif player.sub_job == 'SCH' and buffactive['Sublimation: Complete'] then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, using Sublimation!')
 			windower.chat.input('/ja Sublimation <me>')	
-		elseif player.sub_job == 'RDM' and abil_recasts[49] == 0 and player.mp > 0 and player.hp > 400 and state.AutoConvert.value then
+		elseif player.sub_job == 'RDM' and abil_recasts[49] < latency and player.mp > 0 and player.hp > 400 and state.AutoConvert.value then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, Converting!')
 			eventArgs.cancel = true
 			windower.chat.input('/ja Convert <me>')
@@ -272,7 +272,7 @@ end
 function job_pet_aftercast(spell, spellMap, eventArgs)
 	if state.PactSpamMode.value == true and spell.type == 'BloodPactRage'then
 		abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[173] == 0 then
+		if abil_recasts[173] < latency then
 			windower.chat.input('/pet "'..spell.name..'" <t>')
 		end
 	end
@@ -712,7 +712,7 @@ function check_favor()
 	if state.AutoFavor.value and pet.isvalid and not buffactive["Avatar's Favor"] and not (buffactive.amnesia or buffactive.impairment) then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
-		if abil_recasts[176] == 0 then
+		if abil_recasts[176] < latency then
 			windower.chat.input('/pet "Avatar\'s Favor" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
@@ -754,7 +754,7 @@ function handle_elemental(cmdParams)
 	
 		local tiers = {' II',''}
 		for k in ipairs(tiers) do
-			if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] == 0 and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
+			if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
 				windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..''..tiers[k]..'" <t>')
 				return
 			end
@@ -794,7 +794,7 @@ function handle_elemental(cmdParams)
 			windower.chat.input('/ma "Phalanx" <me>')
 		else
 			local spell_recasts = windower.ffxi.get_spell_recasts()
-			if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+			if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] < spell_latency then
 				windower.chat.input('/ma "Klimaform" <me>')
 			else
 				windower.chat.input('/ma "'..elements.storm_of[state.ElementalMode.value]..'"')

@@ -222,11 +222,11 @@ windower.raw_register_event('action', function(act)
 				if not (buffactive.silence or  buffactive.mute or buffactive.Omerta) then
 						local spell_recasts = windower.ffxi.get_spell_recasts()
 				
-					if player.main_job == 'BLM' or player.sub_job == 'BLM' or player.main_job == 'DRK' or player.sub_job == 'DRK' and spell_recasts[252] == 0 then
+					if player.main_job == 'BLM' or player.sub_job == 'BLM' or player.main_job == 'DRK' or player.sub_job == 'DRK' and spell_recasts[252] < spell_latency then
 						windower.chat.input('/ma "Stun" <t>') return
-					elseif player.main_job == 'BLU' and spell_recasts[692] == 0 then
+					elseif player.main_job == 'BLU' and spell_recasts[692] < spell_latency then
 						windower.chat.input('/ma "Sudden Lunge" <t>') return
-					elseif player.sub_job == 'BLU' and spell_recasts[623] == 0 then
+					elseif player.sub_job == 'BLU' and spell_recasts[623] < spell_latency then
 						windower.chat.input('/ma "Head Butt" <t>') return
 					end
 				end
@@ -235,15 +235,15 @@ windower.raw_register_event('action', function(act)
 				
 				if not (buffactive.amnesia or buffactive.impairment) then
 				
-					if (player.main_job == 'PLD' or player.sub_job == 'PLD') and abil_recasts[73] == 0 then
+					if (player.main_job == 'PLD' or player.sub_job == 'PLD') and abil_recasts[73] < latency then
 						windower.chat.input('/ja "Shield Bash" <t>') return
-					elseif (player.main_job == 'DRK' or player.sub_job == 'DRK') and abil_recasts[88] == 0 then
+					elseif (player.main_job == 'DRK' or player.sub_job == 'DRK') and abil_recasts[88] < latency then
 						windower.chat.input('/ja "Weapon Bash" <t>') return
-					elseif player.main_job == 'SMN' and pet.name == "Ramuh" and abil_recasts[174] == 0 then
+					elseif player.main_job == 'SMN' and pet.name == "Ramuh" and abil_recasts[174] < latency then
 						windower.chat.input('/pet "Shock Squall" <t>') return
 					elseif not player.status == 'Engaged' then
 						add_to_chat(123,'No stuns ready! Good luck!')
-					elseif (player.main_job == 'DNC' or player.sub_job == 'DNC') and abil_recasts[221] == 0 then
+					elseif (player.main_job == 'DNC' or player.sub_job == 'DNC') and abil_recasts[221] < latency then
 						windower.chat.input('/ja "Violent Flourish" <t>') return
 					end
 				

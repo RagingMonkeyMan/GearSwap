@@ -333,23 +333,23 @@ function handle_elemental(cmdParams)
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
 		if state.ElementalMode.value == 'Light' then
-			if spell_recasts[29] == 0 and actual_cost(get_spell_table_by_name('Banish II')) < player.mp then
+			if spell_recasts[29] < spell_latency and actual_cost(get_spell_table_by_name('Banish II')) < player.mp then
 				windower.chat.input('/ma "Banish II" <t>')
-			elseif spell_recasts[28] == 0 and actual_cost(get_spell_table_by_name('Banish')) < player.mp then
+			elseif spell_recasts[28] < spell_latency and actual_cost(get_spell_table_by_name('Banish')) < player.mp then
 				windower.chat.input('/ma "Banish" <t>')
 			else
 				add_to_chat(123,'Abort: Banishes on cooldown or not enough MP.')
 			end
 
 		else
-			if state.Buff['Addendum: Black'] and spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' V').id] == 0 and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' V')) < player.mp then
+			if state.Buff['Addendum: Black'] and spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' V').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' V')) < player.mp then
 				windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..' V" <t>')
-			elseif state.Buff['Addendum: Black'] and spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' IV').id] == 0 and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' IV')) < player.mp then
+			elseif state.Buff['Addendum: Black'] and spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' IV').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..' IV')) < player.mp then
 				windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..' IV" <t>')
 			else
 				local tiers = {' III',' II',''}
 				for k in ipairs(tiers) do
-					if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] == 0 and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
+					if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
 						windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..''..tiers[k]..'" <t>')
 						return
 					end
@@ -366,7 +366,7 @@ function handle_elemental(cmdParams)
 	
 		local tiers = {' II',''}
 		for k in ipairs(tiers) do
-			if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] == 0 and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
+			if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
 				windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..''..tiers[k]..'" <t>')
 				return
 			end
@@ -408,7 +408,7 @@ function handle_elemental(cmdParams)
 	elseif command == 'weather' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
-		if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] == 0 then
+		if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] < spell_latency then
 			windower.chat.input('/ma "Klimaform" <me>')
 		elseif player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 then
 			windower.chat.input('/ma "'..elements.storm_of[state.ElementalMode.value]..' II"')
@@ -816,7 +816,7 @@ function check_arts()
 	
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if abil_recasts[232] == 0 then
+		if abil_recasts[232] < latency then
 			windower.chat.input('/ja "Dark Arts" <me>')
 			tickdelay = (framerate * .5)
 			return true

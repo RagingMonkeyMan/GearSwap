@@ -48,7 +48,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBoost.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[16] == 0 then
+		if abil_recasts[16] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Boost" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')

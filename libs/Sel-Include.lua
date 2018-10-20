@@ -174,7 +174,9 @@ function init_include()
 	rangedautowstp = 1000
 	buffup = false
 	time_offset = -39602
-	framerate = 75
+	framerate = 60
+	latency = .75
+	spell_latency = nil
 	curecheat = false
 	lastincombat = player.in_combat
 	
@@ -254,7 +256,13 @@ function init_include()
 	
 	-- Controls for handling our autmatic functions.
 	
-	tickdelay = (framerate * 20)
+	if tickdelay ~= 0 then
+		tickdelay = (framerate * 20)
+	end
+	
+	if spell_latency == nil then
+		spell_latency = (latency + .05)
+	end
 	
 	-- General var initialization and setup.
     if job_setup then

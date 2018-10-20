@@ -388,42 +388,42 @@ function user_job_self_command(commandArgs, eventArgs)
 
 		if not buffactive.Composure then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if abil_recasts[50] == 0 then
+			if abil_recasts[50] < latency then
 				windower.chat.input('/ja "Composure" <me>')
 			else
 				buffup = false
 				add_to_chat(123,'Abort: Composure not ready.')
 			end
 			return
-		elseif not buffactive.Refresh and spell_recasts[894] == 0 then
+		elseif not buffactive.Refresh and spell_recasts[894] < spell_latency then
 			windower.chat.input('/ma "Refresh III" <me>')
-		elseif not buffactive.Haste and spell_recasts[511] == 0 then
+		elseif not buffactive.Haste and spell_recasts[511] < spell_latency then
 			windower.chat.input('/ma "Haste II" <me>')
-		elseif not buffactive.Regen and spell_recasts[110] == 0 then
+		elseif not buffactive.Regen and spell_recasts[110] < spell_latency then
 			windower.chat.input('/ma "Regen II" <me>')
-		elseif not buffactive.Aquaveil and spell_recasts[55] == 0 then
+		elseif not buffactive.Aquaveil and spell_recasts[55] < spell_latency then
 			windower.chat.input('/ma "Aquaveil" <me>')
-		elseif not buffactive.Phalanx and spell_recasts[106] == 0 then
+		elseif not buffactive.Phalanx and spell_recasts[106] < spell_latency then
 			windower.chat.input('/ma "Phalanx" <me>')
-		elseif not buffactive.Stoneskin and spell_recasts[54] == 0 then
+		elseif not buffactive.Stoneskin and spell_recasts[54] < spell_latency then
 			windower.chat.input('/ma "Stoneskin" <me>')
-		elseif not buffactive.Blink and spell_recasts[53] == 0 then
+		elseif not buffactive.Blink and spell_recasts[53] < spell_latency then
 			windower.chat.input('/ma "Blink" <me>')
-		elseif not buffactive['INT Boost'] and spell_recasts[490] == 0 then
+		elseif not buffactive['INT Boost'] and spell_recasts[490] < spell_latency then
 			windower.chat.input('/ma "Gain-INT" <me>')
-		elseif not buffactive.Shell and spell_recasts[52] == 0 then
+		elseif not buffactive.Shell and spell_recasts[52] < spell_latency then
 			windower.chat.input('/ma "Shell V" <me>')
-		elseif not buffactive.Protect and spell_recasts[47] == 0 then
+		elseif not buffactive.Protect and spell_recasts[47] < spell_latency then
 			windower.chat.input('/ma "Protect V" <me>')
-		elseif not buffactive['Shock Spikes'] and spell_recasts[251] == 0 then
+		elseif not buffactive['Shock Spikes'] and spell_recasts[251] < spell_latency then
 			windower.chat.input('/ma "Shock Spikes" <me>')
-		elseif not buffactive['Enthunder II'] and spell_recasts[316] == 0 then
+		elseif not buffactive['Enthunder II'] and spell_recasts[316] < spell_latency then
 			windower.chat.input('/ma "Enthunder II" <me>')
-		elseif not buffactive['Multi Strikes'] and spell_recasts[895] == 0 then
+		elseif not buffactive['Multi Strikes'] and spell_recasts[895] < spell_latency then
 			windower.chat.input('/ma "Temper II" <me>')
-		elseif not buffactive.Barfire and spell_recasts[60] == 0 then
+		elseif not buffactive.Barfire and spell_recasts[60] < spell_latency then
 			windower.chat.input('/ma "Barfire" <me>')
-		elseif not buffactive.Barparalyze and spell_recasts[74] == 0 then
+		elseif not buffactive.Barparalyze and spell_recasts[74] < spell_latency then
 			windower.chat.input('/ma "Barparalyze" <me>')
 		end
 	end

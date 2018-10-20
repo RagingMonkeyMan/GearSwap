@@ -67,7 +67,7 @@ function job_precast(spell, spellMap, eventArgs)
 	if spell.name == 'Flash' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		if abil_recasts[80] == 0 and not silent_check_amnesia() and spell_recasts[112] == 0 and state.AutoEmblem.value then
+		if abil_recasts[80] < latency and not silent_check_amnesia() and spell_recasts[112] < spell_latency and state.AutoEmblem.value then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Divine Emblem" <me>')
 			windower.chat.input:schedule(1,'/ma "Flash" '..spell.target.raw..'')
@@ -160,7 +160,7 @@ function job_self_command(commandArgs, eventArgs)
 		if player.sub_job == 'RUN' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			
-			if abil_recasts[24] == 0 then
+			if abil_recasts[24] < latency then
 				send_command('input /ja "Swordplay" <me>')
 			end
 
@@ -170,15 +170,15 @@ function job_self_command(commandArgs, eventArgs)
 			if player.target.type ~= "MONSTER" then
 				add_to_chat(123,'Abort: You are not targeting a monster.')
 				return
-			elseif spell_recasts[584] == 0 then
+			elseif spell_recasts[584] < spell_latency then
 				send_command('input /ma "Sheep Song" <t>')
-			elseif spell_recasts[598] == 0 then
+			elseif spell_recasts[598] < spell_latency then
 				send_command('input /ma "Soporific" <t>')
-			elseif spell_recasts[605] == 0 then
+			elseif spell_recasts[605] < spell_latency then
 				send_command('input /ma "Geist Wall" <t>')
-			elseif spell_recasts[575] == 0 then
+			elseif spell_recasts[575] < spell_latency then
 				send_command('input /ma "Jettatura" <t>')
-			elseif spell_recasts[592] == 0 then
+			elseif spell_recasts[592] < spell_latency then
 				send_command('input /ma "Blank Gaze" <t>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
@@ -193,15 +193,15 @@ function job_self_command(commandArgs, eventArgs)
 				if buffactive['Berserk'] then send_command('cancel berserk') end
 			end
 			
-			if abil_recasts[5] == 0 and player.target.type == "MONSTER" then
+			if abil_recasts[5] < latency and player.target.type == "MONSTER" then
 				send_command('input /ja "Provoke" <t>')
-			elseif abil_recasts[2] == 0 then
+			elseif abil_recasts[2] < latency then
 				send_command('input /ja "Warcry" <me>')
-			elseif abil_recasts[3] == 0 then
+			elseif abil_recasts[3] < latency then
 				send_command('input /ja "Defender" <me>')
-			elseif abil_recasts[4] == 0 then
+			elseif abil_recasts[4] < latency then
 				send_command('input /ja "Aggressor" <me>')
-			elseif abil_recasts[1] == 0 then
+			elseif abil_recasts[1] < latency then
 				send_command('input /ja "Berserk" <me>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Warrior Job Abilities on cooldown.') end
@@ -212,14 +212,14 @@ function job_self_command(commandArgs, eventArgs)
 			local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
         
 			if under3FMs then
-				if abil_recasts[220] == 0 then
+				if abil_recasts[220] < latency then
 				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
 				return
 				end
-			elseif abil_recasts[221] == 0 then
+			elseif abil_recasts[221] < latency then
 				send_command('input /ja "Animated Flourish" <t>')
 				return
-			elseif abil_recasts[220] == 0 and not buffactive['Finishing Move 5'] then
+			elseif abil_recasts[220] < latency and not buffactive['Finishing Move 5'] then
 				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
 				return
 			elseif not check_auto_tank_ws() then
@@ -383,7 +383,7 @@ end
 function check_flash()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 
-	if spell_recasts[112] == 0 then
+	if spell_recasts[112] < spell_latency then
 		send_command('input /ma "Flash" <t>')
 		tickdelay = (framerate * 2)
 		return true
@@ -407,11 +407,11 @@ function check_hasso()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
-		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
+		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
+		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
 			tickdelay = (framerate * 1.8)
 			return true

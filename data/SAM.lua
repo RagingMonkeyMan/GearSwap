@@ -39,17 +39,17 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if player.tp > 1850 and abil_recasts[140] == 0 then
+		if player.tp > 1850 and abil_recasts[140] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
-		elseif abil_recasts[134] == 0 then
+		elseif abil_recasts[134] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
-		elseif player.tp < 1500 and not buffactive['Sekkanoki'] and abil_recasts[54] == 0 then
+		elseif player.tp < 1500 and not buffactive['Sekkanoki'] and abil_recasts[54] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Hagakure" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
@@ -226,11 +226,11 @@ function check_hasso()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
-		if state.Stance.value == 'Hasso' and abil_recasts[138] == 0 then
+		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif state.Stance.value == 'Seigan' and abil_recasts[139] == 0 then
+		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
@@ -247,15 +247,15 @@ function check_buff()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] == 0 then
+		if player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 			windower.chat.input('/ja "Last Resort" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] == 0 then
+		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
 			windower.chat.input('/ja "Berserk" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] == 0 then
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] < latency then
 			windower.chat.input('/ja "Aggressor" <me>')
 			tickdelay = (framerate * 1.8)
 			return true

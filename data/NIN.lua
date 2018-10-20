@@ -283,7 +283,7 @@ function handle_elemental(cmdParams)
 	if command == 'nuke' then
 		local tiers = {'San','Ni','Ichi'}
 		for k in ipairs(tiers) do
-			if spell_recasts[get_spell_table_by_name(elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'').id] == 0 then
+			if spell_recasts[get_spell_table_by_name(elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'').id] < spell_latency then
 				windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'" <t>')
 				return
 			end
@@ -311,11 +311,11 @@ function check_stance()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
-		if state.Stance.value == 'Innin' and abil_recasts[147] == 0 then
+		if state.Stance.value == 'Innin' and abil_recasts[147] < latency then
 			windower.chat.input('/ja "Innin" <me>')
 			tickdelay = framerate
 			return true
-		elseif state.Stance.value == 'Yonin' and abil_recasts[146] == 0 then
+		elseif state.Stance.value == 'Yonin' and abil_recasts[146] < latency then
 			windower.chat.input('/ja "Yonin" <me>')
 			tickdelay = framerate
 			return true
@@ -332,11 +332,11 @@ function check_buff()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] == 0 then
+		if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] < latency then
 			windower.chat.input('/ja "Berserk" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and not is_defensive() and abil_recasts[4] == 0 then
+		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and not is_defensive() and abil_recasts[4] < latency then
 			windower.chat.input('/ja "Aggressor" <me>')
 			tickdelay = (framerate * 1.8)
 			return true
