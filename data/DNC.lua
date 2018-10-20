@@ -45,10 +45,10 @@ function job_setup()
 	state.Buff['Fan Dance'] = buffactive['Fan Dance'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	
-    state.MainStep = M{['description']='Main Step', 'Box Step', 'Quickstep', 'Feather Step', 'Stutter Step'}
-    state.AltStep = M{['description']='Alt Step', 'Quickstep', 'Feather Step', 'Stutter Step', 'Box Step'}
-	state.AutoSamba = M{['description']='Auto Samba', 'Off', 'Haste Samba', 'Aspir Samba II', 'Drain Samba III'}
-    state.UseAltStep = M(false, 'Use Alt Step')
+    state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step'}
+    state.AltStep = M{['description']='Alt Step', 'Feather Step','Quickstep','Stutter Step','Box Step'}
+	state.AutoSamba = M{['description']='Auto Samba', 'Off', 'Haste Samba','Aspir Samba II','Drain Samba III'}
+    state.UseAltStep = M(true, 'Use Alt Step')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
 	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
@@ -142,11 +142,16 @@ end
 -- to the general aftercast() code in Mote-Include.
 function job_aftercast(spell, spellMap, eventArgs)
     -- Lock feet after using Mana Wall.
-    if not spell.interrupted and spell.type == 'WeaponSkill' and state.Buff['Climactic Flourish'] and not under3FMs() and player.tp < 999 then
-		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[222] == 0 then
-		windower.chat.input:schedule(3,'/ja "Reverse Flourish" <me>')
-		windower.chat.input('/ja "Reverse Flourish" <me>')
+    if not spell.interrupted then
+	
+		if spell.type == 'WeaponSkill' and state.Buff['Climactic Flourish'] and not under3FMs() and player.tp < 999 then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			if abil_recasts[222] == 0 then
+				windower.chat.input:schedule(3,'/ja "Reverse Flourish" <me>')
+				windower.chat.input('/ja "Reverse Flourish" <me>')
+			end
+		elseif spell.english == state[state.CurrentStep.current..'Step'].current then
+			state.CurrentStep:cycle()
 		end
     end
 end
@@ -263,7 +268,6 @@ function job_self_command(commandArgs, eventArgs)
         local doStep = ''
         if state.UseAltStep.value == true then
             doStep = state[state.CurrentStep.current..'Step'].current
-            state.CurrentStep:cycle()
         else
             doStep = state.MainStep.current
         end        
