@@ -78,10 +78,6 @@ function job_precast(spell, spellMap, eventArgs)
 
 end
 
-function job_post_precast(spell, spellMap, eventArgs)
-
-end
-
 -- Run after the default midcast() is done.
 -- eventArgs is the same one used in job_midcast, in case information needs to be persisted.
 function job_post_midcast(spell, spellMap, eventArgs)

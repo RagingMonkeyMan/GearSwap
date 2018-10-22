@@ -847,9 +847,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 		
 		elseif spell.action_type == 'Magic' then
-			if spellMap == 'BarElement' and sets.midcast.BarElement then
-				equip(sets.midcast.BarElement)
-			elseif spell.english:startswith('Utsusemi') then
+			if spell.english:startswith('Utsusemi') then
 				if sets.precast.FC.Shadows and ((spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San') or (spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi')) then
 					equip(sets.precast.FC.Shadows)
 				end
