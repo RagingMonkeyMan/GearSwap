@@ -1968,7 +1968,14 @@ end
 function check_ammo()
 
 	if state.AutoAmmoMode.value and player.equipment.range and not player.in_combat and not world.in_mog_house and not useItem then
-		if rema_ranged_weapons:contains(player.equipment.range) and count_total_ammo(rema_ranged_weapons_ammo[player.equipment.range]) < ammostock then
+		local ammo_to_stock
+		if type(ammostock) == 'table' and ammostock[rema_ranged_weapons_ammo[player.equipment.range]] then
+			ammo_to_stock = ammostock[rema_ranged_weapons_ammo[player.equipment.range]]
+		else
+			ammo_to_stock = ammostock
+		end
+	
+		if rema_ranged_weapons:contains(player.equipment.range) and count_total_ammo(rema_ranged_weapons_ammo[player.equipment.range]) < ammo_to_stock then
 			if get_item_next_use(player.equipment.range).usable then
 				windower.chat.input("/item '"..player.equipment.range.."' <me>")
 				add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..player.equipment.range..".")
