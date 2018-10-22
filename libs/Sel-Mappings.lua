@@ -180,16 +180,18 @@ rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',
 								['Armageddon'] = 'Devastating Bullet',
 								['Fail-Not'] = 'Chrono Arrow',
 								['Gandiva'] = "Artemis's Arrow",
+								['Gastraphetes'] = "Quelling Bolt",
 								['Yoichinoyumi'] = "Yoichi's Arrow",
 								['Annihilator'] = 'Eradicating Bullet'}
 								
-rema_ranged_weapons_ammo_pouch = {['Fomalhaut'] = 'Chrono Bullet Pouch',
-									['Death Penalty'] = 'Living Bullet Pouch',
-									['Armageddon'] = 'Devastating Bullet Pouch',
+rema_ranged_weapons_ammo_pouch = {['Fomalhaut'] = 'Chr. Bul. Pouch',
+									['Death Penalty'] = 'Liv. Bul. Pouch',
+									['Armageddon'] = 'Dev. Bul. Pouch',
 									['Fail-Not'] = 'Chrono Quiver',
 									['Gandiva'] = "Artemis's Quiver",
+									['Gastraphetes'] = "Quelling B. Quiver",
 									['Yoichinoyumi'] = "Yoichi's Quiver",
-									['Annihilator'] = 'Eradicating Bullet Pouch'}
+									['Annihilator'] = 'Era. Bul. Pouch'}
 
 elemental_obi_weaponskills = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight','Tachi: Jinpu','Flash Nova'}
 
