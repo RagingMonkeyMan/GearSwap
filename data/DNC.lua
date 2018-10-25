@@ -47,7 +47,6 @@ function job_setup()
 	
     state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step'}
     state.AltStep = M{['description']='Alt Step', 'Feather Step','Quickstep','Stutter Step','Box Step'}
-	state.AutoSamba = M{['description']='Auto Samba', 'Off', 'Haste Samba','Aspir Samba II','Drain Samba III'}
     state.UseAltStep = M(true, 'Use Alt Step')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
