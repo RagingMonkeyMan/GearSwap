@@ -1292,7 +1292,7 @@ function check_nuke()
 end
 
 function check_samba()
-	if not buffactive[''..state.AutoSambaMode.value..''] and windower.ffxi.get_ability_recasts()[216] and windower.ffxi.get_ability_recasts()[216] < latency and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
+	if not (buffactive['Haste Samba'] or buffactive['Drain Samba'] or buffactive['Aspir Samba']) and windower.ffxi.get_ability_recasts()[216] and windower.ffxi.get_ability_recasts()[216] < latency and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
 		windower.chat.input('/ja "'..state.AutoSambaMode.value..'" <me>')
 		tickdelay = (framerate * 1.8)
 		return true
