@@ -984,7 +984,7 @@ function check_midaction(spell, spellMap, eventArgs)
 	local in_action, midaction = midaction()
 
 	if eventArgs then
-		if (in_action and midaction.action_type == 'Magic') then
+		if (in_action and midaction.action_type == 'Magic') and state.BlockMidaction.value then
 			eventArgs.cancel = true
 			return true
 		else
