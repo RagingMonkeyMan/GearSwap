@@ -313,6 +313,14 @@ function init_include()
 				end
 			end
 		end
+		
+		if user_job_target_change then
+			if user_job_target_change(target) then return end
+		end
+		
+		if user_target_change then
+			if user_job_target_change(target) then return end
+		end
 	end
 	windower.register_event('target change', target_change)
 
