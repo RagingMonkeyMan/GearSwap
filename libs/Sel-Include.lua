@@ -826,7 +826,9 @@ function default_filtered_action(spell, eventArgs)
 end
 
 function extra_default_filtered_action(spell, eventArgs)
-	if not can_use(spell) then
+	if spell.action_type == 'Item' and world.area == "Mog Garden" then
+		return
+	elseif not can_use(spell) then
 		cancel_spell()
 		eventArgs.cancel = true
 		return		
