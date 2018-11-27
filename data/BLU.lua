@@ -233,7 +233,6 @@ function job_filter_precast(spell, spellMap, eventArgs)
 
 	if unbridled_spells:contains(spell.english) and not (state.Buff['Unbridled Learning'] or state.Buff['Unbridled Wisdom']) then
 		eventArgs.cancel = true
-		cancel_spell()
 		add_to_chat(123,'Abort: Unbridled Learning not active.')
 	end
 

@@ -1070,9 +1070,9 @@ function silent_check_silence()
 
 	elseif buffactive.silence then
 			if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
-				windoer.chat.input('/item "Echo Drops" <me>')
+				windower.chat.input('/item "Echo Drops" <me>')
 			elseif player.inventory["Remedy"] then
-				windoer.chat.input('/item "Remedy" <me>')
+				windower.chat.input('/item "Remedy" <me>')
 			end
 			tickdelay = (framerate * 1.5)
 			return true
@@ -1542,9 +1542,9 @@ function check_doomed()
 					return true
 				elseif buffactive.silence then
 						if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
-							windoer.chat.input('/item "Echo Drops" <me>')
+							windower.chat.input('/item "Echo Drops" <me>')
 						elseif player.inventory["Remedy"] then
-							windoer.chat.input('/item "Remedy" <me>')
+							windower.chat.input('/item "Remedy" <me>')
 						end
 						tickdelay = (framerate * 1.5)
 						return true
