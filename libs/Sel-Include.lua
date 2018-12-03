@@ -1101,7 +1101,6 @@ function filter_precast(spell, spellMap, eventArgs)
 	if check_midaction(spell, spellMap, eventArgs) then return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
-	if check_recast(spell, spellMap, eventArgs) then return end
 	
 	if spell.action_type == 'Magic' then
 		if check_silence(spell, spellMap, eventArgs) then return end
@@ -1113,6 +1112,7 @@ function filter_precast(spell, spellMap, eventArgs)
 		if check_abilities(spell, spellMap, eventArgs) then return end
 	end
 
+	if check_recast(spell, spellMap, eventArgs) then return end
 end
 
 function filter_midcast(spell, spellMap, eventArgs)
