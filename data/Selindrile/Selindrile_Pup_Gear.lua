@@ -81,7 +81,7 @@ function init_gear_sets()
     sets.precast.JA['Repair'] = {ammo="Automat. Oil +3"} --feet="Foire Babouches"
 	sets.precast.JA['Maintenance'] = {ammo="Automat. Oil +3"}
 
-    sets.precast.JA.Maneuver = {back="Visucius's Mantle"} --neck="Buffoon's Collar",hands="Foire Dastanas",body="Cirque Farsetto +2",
+    sets.precast.JA.Maneuver = {main="Midnights",back="Visucius's Mantle"} --neck="Buffoon's Collar",hands="Foire Dastanas",body="Cirque Farsetto +2",
 
     -- Waltz set (chr and vit)
     sets.precast.Waltz = {

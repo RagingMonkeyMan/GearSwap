@@ -2060,11 +2060,11 @@ function check_rune()
 		elseif not (buffactive['Vallation'] or buffactive['Valiance']) then
 			if player.main_job == 'RUN' and abil_recasts[113] < latency then
 				send_command('input /ja "Valiance" <me>')
-				tickdelay = (framerate * 1.8)
+				tickdelay = (framerate * 2.5)
 				return true
 			elseif abil_recasts[23] < latency then
 				send_command('input /ja "Vallation" <me>')
-				tickdelay = (framerate * 1.8)
+				tickdelay = (framerate * 2.5)
 				return true
 			else
 				return false
