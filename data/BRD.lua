@@ -173,6 +173,8 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.midcast[spell.english][state.CastingMode.value])
 			elseif sets.midcast[spell.english] then
 				equip(sets.midcast[spell.english])
+			elseif sets.midcast[spellMap][state.CastingMode.value] then
+				equip(sets.midcast[spellMap][state.CastingMode.value])
 			elseif sets.midcast[spellMap] then
 				equip(sets.midcast[spellMap])
 			end
