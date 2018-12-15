@@ -1052,8 +1052,9 @@ function default_aftercast(spell, spellMap, eventArgs)
 			if state.DisplayMode.value then update_job_states()	end
 		elseif spell.english:startswith('Utsusemi') then
 			lastshadow = spell.english
-		elseif spell.action_type == 'Item' and useItem and spell.english == useItemName then
+		elseif spell.action_type == 'Item' and useItem and (spell.english == useItemName or useItemSlot == 'set') then
 			useItem = false
+			windower.add_to_chat(123,useItemName)
 			if useItemSlot == 'item' then
 				windower.send_command('put '..useItemName..' satchel')
 			elseif useItemSlot == 'set' then

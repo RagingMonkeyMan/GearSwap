@@ -21,8 +21,8 @@ function user_setup()
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind !f11 gs c cycle ExtraMeleeMode')
 	
-	utsusemi_cancel_delay = .4
-	utsusemi_ni_cancel_delay = .1
+	utsusemi_cancel_delay = .3
+	utsusemi_ni_cancel_delay = .06
 	
     select_default_macro_book()
 end
