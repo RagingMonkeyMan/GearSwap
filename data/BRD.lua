@@ -182,6 +182,14 @@ function job_post_midcast(spell, spellMap, eventArgs)
 					equip(sets.midcast[spellMap])
 				end
 			end
+			
+			if can_dual_wield() and sets.midcast.SongDebuff.DW then
+				equip(sets.midcast.SongDebuff.DW)
+			end
+		else
+			if can_dual_wield() and sets.midcast.SongEffect.DW then
+				equip(sets.midcast.SongEffect.DW)
+			end
 		end
 		
 		if state.ExtraSongsMode.value:contains('FullLength') then

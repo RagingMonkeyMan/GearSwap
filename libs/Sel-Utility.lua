@@ -2086,6 +2086,22 @@ function check_ws_acc()
 	end
 end
 
+function can_dual_wield()
+	if (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
+		return true
+	else
+		return false
+	end
+end
+
+function is_dual_wielding()
+	if ((player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size))) then
+		return true
+	else
+		return false
+	end
+end
+
 -- Generic combat form handling
 function update_combat_form()
 	if sets.engaged[state.Weapons.value] then
@@ -2096,7 +2112,7 @@ function update_combat_form()
 		else
 			state.CombatForm:reset()
 		end
-	elseif (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) or (state.Weapons.value == 'None' and (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN'))) or ((player.equipment.main and sets.engaged.DW and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size))) then
+	elseif sets.engaged.DW and ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) or (state.Weapons.value == 'None' and can_dual_wield()) or is_dual_wielding()) then
 		state.CombatForm:set('DW')
 	elseif sets.engaged[player.equipment.main] then
 		state.CombatForm:set(player.equipment.main)

@@ -2029,9 +2029,9 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-		if (newValue:contains('DW') or newValue:contains('Dual')) and not (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
+		if (newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield() then
 			local startindex = state.Weapons.index
-			while (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) do
+			while (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield() do
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
