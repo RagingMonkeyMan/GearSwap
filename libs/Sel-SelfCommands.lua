@@ -288,6 +288,7 @@ end
 
 -- showtp: equip the current TP set for examination.
 function handle_showtp(cmdParams)
+	windower.add_to_chat(123,player.equipment.sub)
 	update_combat_form()
 
     local msg = 'Showing current TP set: ['.. state.OffenseMode.value
