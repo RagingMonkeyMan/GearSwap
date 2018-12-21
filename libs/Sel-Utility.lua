@@ -1533,11 +1533,12 @@ function check_doomed()
 			if state.AutoHolyWaterMode.value and not buffactive.muddle then
 				if player.inventory['Hallowed Water'] then
 					windower.chat.input('/item "Hallowed Water" <me>')
-					add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
+					add_to_chat(123,'You are doomed, using Hallowed Water.')
 					tickdelay = (framerate * 1.5)
 					return true
 				elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
 					windower.chat.input('/item "Holy Water" <me>')
+					add_to_chat(123,'You are doomed, using Holy Water.')
 					tickdelay = (framerate * 1.5)
 					return true
 				elseif buffactive.silence then
