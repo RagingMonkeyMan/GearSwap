@@ -42,6 +42,7 @@ state.DisplayMode = M(true, 'Display Mode') --Set this to false if you don't wan
 state.ReEquip = M(true, 'ReEquip Mode') --Set this to false if you don't want it to your current Weapon sets (sets.weapons by default) when you aren't wearing any weapons.
 state.AutoArts = M(true, 'AutoArts') --Set this to false if you don't want it to automatically try to keep up Solace/Arts.
 state.CancelStoneskin = M(true, 'Cancel Stone Skin') --Set this to false if you don't want it to automatically cancel stoneskin when you're slept.
+state.SkipProcWeapons = M(true, 'Skip Proc Weapons') --Set this to false if you want to display weapon sets fulltime rather than just Aby/Voidwatch.
 
 --[[Global binds you may want to change.
 	Bind special characters.

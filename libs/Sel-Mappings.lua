@@ -599,8 +599,10 @@ areas.Assault = S{
     "Bhaflau Remnants",
     "Silver Sea Remnants"
 }
+-- Proc weapon areas, where proc weapon sets in the weapon mode will not be skipped
+areas.ProcZones = S{
 
-
+}
 -------------------------------------------------------------------------------------------------------------------
 -- Lists of certain NPCs.
 -------------------------------------------------------------------------------------------------------------------

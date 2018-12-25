@@ -96,6 +96,7 @@ function init_include()
 	state.Contradance		  = M(true, 'Auto Contradance Mode')
 	state.ElementalWheel 	  = M(false, 'Elemental Wheel')
 	state.MaintainDefense 	  = M(false, 'Maintain Defense')
+	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
 	
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
@@ -340,6 +341,13 @@ function init_include()
 		useItemSlot = ''
 		lastincombat = false
 		being_attacked = false
+		
+		if world.area:contains('Abyssea') or areas.ProcZones:contains(world.area) then
+			state.SkipProcWeapons:set('False')
+		else
+			state.SkipProcWeapons:reset()
+		end
+		
 		if state.DisplayMode.value then update_job_states()	end
 	end)
 
@@ -2031,7 +2039,14 @@ function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
 		if (newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield() then
 			local startindex = state.Weapons.index
-			while (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield() do
+			while (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) do
+				state.Weapons:cycle()
+				if startindex == state.Weapons.index then break end
+			end
+			handle_weapons({})
+		elseif newValue:contains('Proc') and state.SkipProcWeapons.value then
+			local startindex = state.Weapons.index
+			while state.Weapons.value:contains('Proc') do
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
@@ -2109,12 +2124,14 @@ function buff_change(buff, gain)
     if user_job_buff_change then
         user_job_buff_change(buff, gain, eventArgs)
     end
-
-	if S{'sleep','Lullaby'}:contains(buff) and state.CancelStoneskin.value then
-		send_command('cancel stoneskin')
-	end
 	
-    if S{'Commitment','Dedication'}:contains(buff) then
+	if buff == 'Voidwatcher' then
+		state.SkipProcWeapons:set('False')
+	elseif S{'sleep','Lullaby'}:contains(buff) and state.CancelStoneskin.value then
+		send_command('cancel stoneskin')
+	elseif (S{'Blink','Third Eye'}:contains(buff) or buff:contains('Copy Image')) and not gain then
+		lastshadow = "None"
+    elseif S{'Commitment','Dedication'}:contains(buff) then
         if gain and (cprings:contains(player.equipment.left_ring) or xprings:contains(player.equipment.left_ring)) then
             enable("left_ring")
 			
@@ -2147,10 +2164,6 @@ function buff_change(buff, gain)
         end
     end
 
-	if (S{'Blink','Third Eye'}:contains(buff) or buff:contains('Copy Image')) and not gain then
-		lastshadow = "None"
-	end
-	
 	if not midaction() and not pet_midaction() then
 		handle_equipping_gear(player.status)
 	end
