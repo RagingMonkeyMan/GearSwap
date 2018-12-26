@@ -1104,13 +1104,13 @@ function check_recast(spell, spellMap, eventArgs)
             end
         elseif spell.action_type == 'Magic' then
             local spell_recasts = windower.ffxi.get_spell_recasts()
-            if ((spell_recasts[spell.recast_id]/60) > spell_latency) or (player.mp < actual_cost(spell)) then
+            if ((spell_recasts[spell.recast_id]/60) > spell_latency) then
 				if stepdown(spell, eventArgs) then 
 					return true
 				else
-                add_to_chat(123,'Abort: ['..spell.english..'] waiting on recast. ('..seconds_to_clock(spell_recasts[spell.recast_id]/60)..')')
-                eventArgs.cancel = true
-                return true
+					add_to_chat(123,'Abort: ['..spell.english..'] waiting on recast. ('..seconds_to_clock(spell_recasts[spell.recast_id]/60)..')')
+					eventArgs.cancel = true
+					return true
 				end
 			else
 				return false
@@ -1123,11 +1123,16 @@ end
 
 function check_cost(spell, spellMap, eventArgs)
 	local spellCost = actual_cost(spell)
+	
 	if spell.action_type == 'Magic' and player.mp < spellCost then
-		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
-		cancel_spell()
-		eventArgs.cancel = true
-		return true
+		if stepdown(spell, eventArgs) then 
+			return true
+		else
+			add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
+			cancel_spell()
+			eventArgs.cancel = true
+			return true
+		end
 	elseif spell.type:startswith('BloodPact') and not buffactive['Astral Conduit'] and player.mp < spellCost then
 		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
 		cancel_spell()
