@@ -1104,7 +1104,7 @@ function check_recast(spell, spellMap, eventArgs)
             end
         elseif spell.action_type == 'Magic' then
             local spell_recasts = windower.ffxi.get_spell_recasts()
-            if (spell_recasts[spell.recast_id]/60) > spell_latency then
+            if ((spell_recasts[spell.recast_id]/60) > spell_latency) or (player.mp < actual_cost(spell)) then
 				if stepdown(spell, eventArgs) then 
 					return true
 				else
