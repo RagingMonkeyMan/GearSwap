@@ -46,4 +46,6 @@ Setting up my Gearswaps and Github updating.
 11.) Optional: For full functionality my gearswap and init files do depend on a few other addons that can
     be found in your launcher, I'll list them here: Addons: Shortcuts, Cancel, Itemizer. Plugins: Timers, Run
 
+12.) Semi Optional: For item usage commands to function, you'll likely need to set your time offset (Unless you happen to be in Central 	US time) instructions are found in charactername-globals.
+
 12.) Read the Cheat Sheet in your Data Folder.
