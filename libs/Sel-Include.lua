@@ -2037,16 +2037,9 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-		if (newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield() then
+		if ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield()) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
-			while (state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) do
-				state.Weapons:cycle()
-				if startindex == state.Weapons.index then break end
-			end
-			handle_weapons({})
-		elseif newValue:contains('Proc') and state.SkipProcWeapons.value then
-			local startindex = state.Weapons.index
-			while state.Weapons.value:contains('Proc') do
+			while ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield()) or (state.SkipProcWeapons.value and state.Weapons.value:contains('Proc')) do
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
