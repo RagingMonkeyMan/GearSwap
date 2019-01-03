@@ -57,7 +57,6 @@ function init_include()
     -- This just defines the vars and sets the descriptions.  List modes with no values automatically
     -- get assigned a 'Normal' default value.
 	state.OffenseMode         = M{['description'] = 'Offense Mode'}
-	state.ExtraMeleeMode 	  = M{['description'] = 'Extra Melee Mode','None'}
 	state.HybridMode          = M{['description'] = 'Hybrid Mode'}
 	state.RangedMode          = M{['description'] = 'Ranged Mode'}
 	state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
@@ -1479,7 +1478,7 @@ function get_melee_set()
         meleeSet = user_job_customize_melee_set(meleeSet)
     end
 	
-    if state.ExtraMeleeMode.value ~= 'None' then
+    if state.ExtraMeleeMode and state.ExtraMeleeMode.value ~= 'None' then
         meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
     end
 	
