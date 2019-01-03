@@ -230,7 +230,6 @@ function update_job_states()
 					else
 						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.h, state.HybridMode.current, clr.n))
 					end
-					stateBox:append(spc)
 				end
 				if state.ExtraMeleeMode then
 					if state.ExtraMeleeMode.value == 'None' then
@@ -238,8 +237,8 @@ function update_job_states()
 					else
 						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.h, state.ExtraMeleeMode.current, clr.n))
 					end
-					stateBox:append(spc)
 				end
+				stateBox:append(spc)
 			end
 		elseif n == 'AutoSambaMode' then
 			if state.AutoSambaMode.value ~= 'Off' then

@@ -72,6 +72,7 @@ send_command('bind !f10 gs c toggle Kiting') --Keeps your kiting gear on..
 send_command('bind f11 gs c set DefenseMode Magical') --Turns your magical defense set on.
 send_command('bind ^f11 gs c cycle MagicalDefenseMode') --Changes your magical defense set.
 send_command('bind @f11 gs c cycle CastingMode') --Changes your castingmode options such as magic accuracy.
+send_command('bind !f11 gs c cycle ExtraMeleeMode') --Adds another set layered on top of your engaged set.
 send_command('bind ^f12 gs c cycle ResistDefenseMode') --Changes your resist defense set.
 send_command('bind f12 gs c set DefenseMode Resist') --Turns your resist defense set on.
 send_command('bind @f12 gs c cycle IdleMode') --Changes your idle mode options such as refresh.

@@ -83,11 +83,6 @@ end
 
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
-
-    if state.ExtraMeleeMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
-    end
-
     if state.Buff.Souleater and state.DefenseMode.current == 'None' then
         meleeSet = set_combine(meleeSet, sets.buff.Souleater)
     end

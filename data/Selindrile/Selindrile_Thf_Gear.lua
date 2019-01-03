@@ -20,7 +20,6 @@ function user_setup()
     -- Additional local binds
     send_command('bind ^` input /ja "Flee" <me>')
     send_command('bind !` input /ra <t>')
-	send_command('bind !f11 gs c cycle ExtraMeleeMode')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
 	send_command('bind ^backspace gs c weapons Throwing;gs c update')

@@ -186,17 +186,19 @@ end
 
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
-	if state.ExtraMeleeMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
+
+	if state.Buff.Yonin then 
+		if state.DefenseMode.value == 'None' or state.DefenseMode.value == 'Evasion' then
+			meleeSet = set_combine(meleeSet, sets.buff.Yonin)
+		end
+	elseif state.Buff.Innin
+		if (state.OffenseMode.value == 'Normal' or state.OffenseMode.value == 'Fodder') and state.DefenseMode.value == 'None' then
+			meleeSet = set_combine(meleeSet, sets.buff.Innin)
+		end
     end
+	
 	if state.Buff.Migawari then
         meleeSet = set_combine(meleeSet, sets.buff.Migawari)
-    end
-	if state.Buff.Yonin and (state.DefenseMode.value == 'None' or state.DefenseMode.value == 'Evasion') then
-		meleeSet = set_combine(meleeSet, sets.buff.Yonin)
-    end
-	if state.Buff.Innin and (state.OffenseMode.value == 'Normal' or state.OffenseMode.value == 'Fodder') and state.DefenseMode.value == 'None' then
-		meleeSet = set_combine(meleeSet, sets.buff.Innin)
     end
 
     return meleeSet

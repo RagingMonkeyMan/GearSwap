@@ -17,7 +17,6 @@ function user_setup()
 	send_command('bind ^` input /ja "Boost" <me>')
 	send_command('bind !` input /ja "Perfect Counter" <me>')
 	send_command('bind ^backspace input /ja "Mantra" <me>')
-    send_command('bind !f11 gs c cycle ExtraMeleeMode')
 	send_command('bind @` gs c cycle SkillchainMode')
 	
 	select_default_macro_book()

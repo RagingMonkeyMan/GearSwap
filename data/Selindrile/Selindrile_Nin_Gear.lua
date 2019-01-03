@@ -19,7 +19,6 @@ function user_setup()
 	send_command('bind ^` input /ja "Innin" <me>')
     send_command('bind !` input /ja "Yonin" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
-	send_command('bind !f11 gs c cycle ExtraMeleeMode')
 	
 	utsusemi_cancel_delay = .3
 	utsusemi_ni_cancel_delay = .06

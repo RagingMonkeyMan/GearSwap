@@ -88,10 +88,6 @@ function job_customize_melee_set(meleeSet)
 	if not state.OffenseMode.value:contains('Acc') and state.HybridMode.value == 'Normal' and buffactive['Restraint'] then
 		meleeSet = set_combine(meleeSet, sets.buff.Restraint)
 	end
-
-    if state.ExtraMeleeMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
-    end
 	
     return meleeSet
 end

@@ -106,11 +106,6 @@ end
 
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
-
-    if state.ExtraMeleeMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
-    end
-	
     if buffactive.Impetus and state.DefenseMode.value == 'None' and state.OffenseMode.value ~= 'FullAcc' then
 		meleeSet = set_combine(meleeSet, sets.buff.Impetus)
     end
@@ -123,10 +118,6 @@ function job_customize_melee_set(meleeSet)
 end
 
 function job_customize_defense_set(defenseSet)
-    if state.ExtraMeleeMode.value ~= 'None' then
-        defenseSet = set_combine(defenseSet, sets[state.ExtraMeleeMode.value])
-    end
-
     return defenseSet
 end
 
