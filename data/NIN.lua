@@ -191,7 +191,7 @@ function job_customize_melee_set(meleeSet)
 		if state.DefenseMode.value == 'None' or state.DefenseMode.value == 'Evasion' then
 			meleeSet = set_combine(meleeSet, sets.buff.Yonin)
 		end
-	elseif state.Buff.Innin
+	elseif state.Buff.Innin then
 		if (state.OffenseMode.value == 'Normal' or state.OffenseMode.value == 'Fodder') and state.DefenseMode.value == 'None' then
 			meleeSet = set_combine(meleeSet, sets.buff.Innin)
 		end
