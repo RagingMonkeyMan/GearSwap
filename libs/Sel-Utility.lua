@@ -945,13 +945,7 @@ end
 
 function silent_check_disable()
 
-	if buffactive.terror then
-		return true
-	elseif buffactive.petrification then
-		return true
-	elseif buffactive.sleep or buffactive.Lullaby then
-		return true
-	elseif buffactive.stun then
+	if buffactive.terror or buffactive.petrification or buffactive.sleep or buffactive.Lullaby or buffactive.stun then
 		return true
 	else
 		return false
@@ -981,23 +975,18 @@ function check_doom(spell, spellMap, eventArgs)
 end
 
 function check_midaction(spell, spellMap, eventArgs)
-	local in_action, midaction = midaction()
-
-	if eventArgs then
-		if (in_action and midaction.action_type == 'Magic') and state.BlockMidaction.value then
+	if os.clock() < next_cast then
+		if eventArgs then
 			eventArgs.cancel = true
-			return true
-		else
-			return false
+			if delayed_cast == '' then
+				delayed_cast = spell.english
+				windower.send_command:schedule((next_cast - os.clock()),'"'..delayed_cast..'" '..spell.target.raw..'')
+			end
 		end
+		return true
 	else
-		if (in_action and midaction.action_type ~= 'Ranged Attack') or pet_midaction() or gearswap.cued_packet then
-			return true
-		else
-			return false
-		end
+		return false
 	end
-
 end
 
 function check_amnesia(spell, spellMap, eventArgs)

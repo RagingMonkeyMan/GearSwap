@@ -182,6 +182,8 @@ function init_include()
 	spell_latency = nil
 	curecheat = false
 	lastincombat = player.in_combat
+	next_cast = 0
+	delayed_cast = ''
 	
 	time_test = false
 	utsusemi_cancel_delay = .5
@@ -706,6 +708,7 @@ function aftercast(spell)
     if state.Buff[spell.english:ucfirst()] ~= nil and spell.target.type == 'SELF' then
         state.Buff[spell.english:ucfirst()] = not spell.interrupted or buffactive[spell.english] or false
     end
+	
     handle_actions(spell, 'aftercast')
 end
 
@@ -855,7 +858,21 @@ function default_precast(spell, spellMap, eventArgs)
 		cancel_spell()
 	else
 		equip(get_precast_set(spell, spellMap))
-	end	
+	end
+	
+	if spell.action_type == 'Magic' then
+		tickdelay = (framerate * 3)
+		next_cast = os.clock() + 3.5 - latency
+	elseif spell.type == 'WeaponSkill' then
+		tickdelay = (framerate * 2.4)
+		next_cast = os.clock() + 2.5 - latency
+	elseif 	spell.action_type == 'Item' then
+		tickdelay = (framerate * 1.5)
+		next_cast = os.clock() + 1.35 - latency
+	elseif spell.action_type == 'Ranged Attack' then
+		tickdelay = (framerate * 1.4)
+		next_cast = os.clock() + 1.05 - latency
+	end
 end
 
 function default_post_precast(spell, spellMap, eventArgs)
@@ -1024,20 +1041,35 @@ function default_post_pet_midcast(spell, spellMap, eventArgs)
 end
 
 function default_aftercast(spell, spellMap, eventArgs)
-	
-	if spell.action_type == 'Magic' then
-		tickdelay = (framerate * 2.7)
+	if spell.interrupted then
+		if spell.type:contains('Magic') then
+			tickdelay = (framerate * 2.5)
+			next_cast = os.clock() + 3 - latency
+		else
+			tickdelay = (framerate * 1)
+			next_cast = os.clock() + 1.75 - latency
+		end
+	elseif spell.action_type == 'Magic' then
+		tickdelay = (framerate * 2.95)
+		next_cast = os.clock() + 3.45 - latency
 	elseif spell.action_type == 'Ability' then
 		tickdelay = (framerate * .5)
+		next_cast = os.clock() + .85 - latency
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 1.9)
+		next_cast = os.clock() + 2 - latency
 	elseif 	spell.action_type == 'Item' then
-		tickdelay = (framerate * 1.1)
+		tickdelay = (framerate * .5)
+		next_cast = os.clock() + .85 - latency
 	elseif spell.action_type == 'Ranged Attack' then
 		tickdelay = (framerate * 1.1)
+		next_cast = os.clock() + .85 - latency
 	end
 	
 	if not spell.interrupted then
+		if delayed_cast == spell.english then
+			delayed_cast = '' 
+		end
 		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 			info.tagged_mobs[spell.target.id] = os.time()
 			if player.target.id == spell.target.id and state.th_gear_is_locked then
