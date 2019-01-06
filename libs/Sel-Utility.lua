@@ -50,6 +50,17 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
     end
 end
 
+
+function notify_buffs(buff, gain)
+	if state.NotifyBuffs.value and NotifyBuffs:contains(buff) then
+		if gain then
+			windower.chat.input('/p I just got hit with '..buff..'.')
+		else
+			windower.chat.input('/p '..buff..' is off now.')
+		end
+	end
+end
+
 -- Function to make auto-translate work in windower.
 -- Usage: windower.add_to_chat(207, 'Test ' .. auto_translate(command))
 

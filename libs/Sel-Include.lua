@@ -97,6 +97,7 @@ function init_include()
 	state.ElementalWheel 	  = M(false, 'Elemental Wheel')
 	state.MaintainDefense 	  = M(false, 'Maintain Defense')
 	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
+	state.NotifyBuffs		  = M(false, 'Notify Buffs')
 	
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
@@ -108,6 +109,8 @@ function init_include()
 	state.EquipStop           = M{['description'] = 'Stop Equipping Gear', 'off', 'precast', 'midcast', 'pet_midcast'}
 	state.CombatWeapon        = M{['description']='Combat Weapon', ['string']=''}
 	state.CombatForm          = M{['description']='Combat Form', ['string']=''}
+	
+	NotifyBuffs = S{}
 	
 	if mageJobs:contains(player.main_job) then
 		state.Weapons		  = M{['description'] = 'Weapons','None','Weapons'}
@@ -2196,6 +2199,8 @@ function buff_change(buff, gain)
 	if not midaction() and not pet_midaction() then
 		handle_equipping_gear(player.status)
 	end
+	
+	notify_buffs(buff, gain)
 	
     if extra_user_buff_change then
         extra_user_buff_change(buff, gain, eventArgs)
