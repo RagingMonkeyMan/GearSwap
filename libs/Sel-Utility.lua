@@ -1044,7 +1044,7 @@ function check_silence(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			return true
 		elseif buffactive.silence then
-			if buffactive.paralyze then
+			if buffactive.paralysis then
 				if player.inventory["Remedy"] then
 					send_command('input /item "Remedy" <me>')
 				elseif player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
