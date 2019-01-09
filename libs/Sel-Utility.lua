@@ -1044,12 +1044,22 @@ function check_silence(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			return true
 		elseif buffactive.silence then
-			if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
-				send_command('input /item "Echo Drops" <me>')
-			elseif player.inventory["Remedy"] then
-				send_command('input /item "Remedy" <me>')
+			if buffactive.paralyze then
+				if player.inventory["Remedy"] then
+					send_command('input /item "Remedy" <me>')
+				elseif player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
+					send_command('input /item "Echo Drops" <me>')
+				else
+					add_to_chat(123,'Abort: You are silenced.')
+				end
 			else
-				add_to_chat(123,'Abort: You are silenced.')
+				if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
+					send_command('input /item "Echo Drops" <me>')
+				elseif player.inventory["Remedy"] then
+					send_command('input /item "Remedy" <me>')
+				else
+					add_to_chat(123,'Abort: You are silenced.')
+				end
 			end
 			
 			eventArgs.cancel = true
