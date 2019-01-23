@@ -1455,7 +1455,7 @@ end
 
 function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
-		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
+		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
 			tickdelay = (framerate * 1.8)
 			return true
@@ -1600,7 +1600,7 @@ function check_ws()
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
-		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath and (not buffactive['Aftermath']) then
+		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
 			tickdelay = (framerate * 1.8)
 			return true

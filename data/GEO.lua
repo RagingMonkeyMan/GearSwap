@@ -22,6 +22,8 @@ function job_setup()
 	autows = 'Realmrazer'
 	autofood = 'Miso Ramen'
 	autoindi = 'Torpor'
+	autoentrust = 'Fury'
+	autoentrustee = '<p1>'
 	autogeo = 'Frailty'
 	last_indi = ''
 	last_geo = ''
@@ -302,6 +304,14 @@ function job_self_command(commandArgs, eventArgs)
 			autogeo = commandArgs[2]:ucfirst()
 			add_to_chat(122,'Your Auto Geo- spell is set to '..autogeo..'.')
 			if state.DisplayMode.value then update_job_states()	end
+		elseif commandArgs[1] == 'autoentrust' and commandArgs[2] then
+			autoentrust = commandArgs[2]:ucfirst()
+			add_to_chat(122,'Your Auto Entrust Indi- spell is set to '..autoentrust..'.')
+			if state.DisplayMode.value then update_job_states()	end
+		elseif commandArgs[1] == 'autoentrustee' and commandArgs[2] then
+			autoentrustee = commandArgs[2]:ucfirst()
+			add_to_chat(122,'Your Auto Entrustee target is set to '..autoentrustee..'.')
+			if state.DisplayMode.value then update_job_states()	end
 		elseif commandArgs[1]:lower() == 'elemental' then
 			handle_elemental(commandArgs)
 			eventArgs.handled = true
@@ -431,6 +441,10 @@ function check_geo()
 			windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
 			tickdelay = (framerate * 2.1)
 			return true
+		elseif autoentrust ~= 'None' and windower.ffxi.get_ability_recasts()[93] < latency then
+			send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..autoentrustee)
+			tickdelay = (framerate * 3.5)
+			return true
 		elseif pet.isvalid then
 			local pet = windower.ffxi.get_mob_by_target("pet")
 			if pet.distance:sqrt() > 50 then --If pet is greater than detectable.
@@ -442,7 +456,7 @@ function check_geo()
 			end
 		elseif not pet.isvalid and autogeo ~= 'None' and (windower.ffxi.get_mob_by_target('bt') or geo_buffs:contains(autogeo)) then
 			windower.chat.input('/ma "Geo-'..autogeo..'" <bt>')
-			tickdelay = (framerate * 2)
+			tickdelay = (framerate * 3.1)
 			return true
 		else
 			return false
