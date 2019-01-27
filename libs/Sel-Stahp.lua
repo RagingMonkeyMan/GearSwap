@@ -215,8 +215,8 @@ windower.raw_register_event('action', function(act)
 	end
 	
 	-- Make sure this is our target. 	send_command('input /echo Actor:'..actor.id..' Target:'..player.target.id..'')
-	if isTarget and state.AutoStunMode.value and player.target.type == "MONSTER" and not moving then
-		if curact.param == 24931 then
+	if curact.param == 24931 then
+		if isTarget and state.AutoStunMode.value and player.target.type == "MONSTER" and not moving then
 			if StunAbility:contains(act_info.name) and not midaction() and not pet_midaction() then
 				gearswap.refresh_globals(false)				
 				if not (buffactive.silence or  buffactive.mute or buffactive.Omerta) then
@@ -241,8 +241,10 @@ windower.raw_register_event('action', function(act)
 						windower.chat.input('/ja "Weapon Bash" <t>') return
 					elseif player.main_job == 'SMN' and pet.name == "Ramuh" and abil_recasts[174] < latency then
 						windower.chat.input('/pet "Shock Squall" <t>') return
+					elseif (player.main_job == 'SAM') and player.merits.blade_bash and abil_recasts[137] < latency then
+						windower.chat.input('/ja "Blade Bash" <t>') return
 					elseif not player.status == 'Engaged' then
-						add_to_chat(123,'No stuns ready! Good luck!')
+					
 					elseif (player.main_job == 'DNC' or player.sub_job == 'DNC') and abil_recasts[221] < latency then
 						windower.chat.input('/ja "Violent Flourish" <t>') return
 					end
@@ -264,18 +266,27 @@ windower.raw_register_event('action', function(act)
 				end
 			end
 		end
-	end
-	
-	if state.AutoDefenseMode.value and (targetsMe or (((otherTarget.in_alliance and targetsDistance < 10) or targetsSelf) and AoEAbility:contains(act_info.name))) then
-		if curact.param == 24931 then
+		if state.AutoDefenseMode.value and (targetsMe or (((otherTarget.in_alliance and targetsDistance < 10) or targetsSelf) and AoEAbility:contains(act_info.name))) then
+			local defensive_action = false
+			if not midaction() then
+				local abil_recasts = windower.ffxi.get_ability_recasts()
+				if (player.main_job == 'DRG') and state.AutoJumpMode.value and abil_recasts[160] < latency then
+					windower.chat.input('/ja "Super Jump" <t>')
+					defensive_action = true
+				elseif (player.main_job == 'SAM' or player.sub_job == 'SAM') and PhysicalAbility:contains(act_info.name) and abil_recasts[133] < latency then
+					windower.chat.input('/ja "Third Eye" <me>')
+					defensive_action = true
+				end
+			end
 			if PhysicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Physical' then
 				state.DefenseMode:set('Physical')
 			elseif MagicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Magical'  then
 				state.DefenseMode:set('Magical')
 			elseif ResistAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Resist'  then
 				state.DefenseMode:set('Resist')
+			elseif defensive_action == false then
+				send_command('gs c forceequip')
 			end
-			send_command('gs c forceequip')
 			if state.DisplayMode.value then update_job_states()	end
 		end
 	end

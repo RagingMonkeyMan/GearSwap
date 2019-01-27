@@ -168,28 +168,34 @@ function check_hasso()
 end
 
 function check_jump()
-	if state.AutoJumpMode.value and player.status == 'Engaged' and player.tp < 501 then
-		
-		local abil_recasts = windower.ffxi.get_ability_recasts()
-		
-		if abil_recasts[158] < latency then
-			windower.chat.input('/ja "Spirit Jump" <t>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif abil_recasts[159] < latency then
-			windower.chat.input('/ja "Soul Jump" <t>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif abil_recasts[162] < latency then
-			windower.chat.input('/ja "Spirit Link" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		else
-			return false
-		end
-	end
+    if state.AutoJumpMode.value and player.status == 'Engaged' and player.tp < 501 then
 
-	return false
+        local abil_recasts = windower.ffxi.get_ability_recasts()
+
+        if abil_recasts[166] < latency then
+            windower.chat.input('/ja "Spirit Jump" <t>')
+            tickdelay = (framerate * 1.8)
+            return true
+        elseif abil_recasts[167] < latency then
+            windower.chat.input('/ja "Soul Jump" <t>')
+            tickdelay = (framerate * 1.8)
+            return true
+        elseif abil_recasts[158] < latency then
+            windower.chat.input('/ja "Jump" <t>')
+            tickdelay = (framerate * 1.8)
+            return true
+        elseif abil_recasts[159] < latency then
+            windower.chat.input('/ja "High Jump" <t>')
+            tickdelay = (framerate * 1.8)
+            return true
+        elseif pet.isvalid and abil_recasts[162] < latency and pet.tp > 350 then
+            windower.chat.input('/ja "Spirit Link" <me>')
+            tickdelay = (framerate * 1.8)
+            return true
+        else
+            return false
+        end
+    end
 end
 
 function check_buff()
