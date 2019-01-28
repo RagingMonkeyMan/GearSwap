@@ -456,6 +456,16 @@ function handle_autonuke(cmdParams)
 	end
 end
 
+function handle_buffup(cmdParams)
+	if #cmdParams == 0 then
+		buffup = 'Default'
+	elseif not buff_spell_lists[cmdParams[1]] then
+		add_to_chat(123, ''..cmdParams[1]..' is not a buff list!')
+	else
+		buffup = cmdParams[1]
+	end
+end
+
 function handle_shadows()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 	if player.main_job == 'NIN' then
@@ -961,4 +971,5 @@ selfCommandMaps = {
 	['smartcure']		= handle_smartcure,
 	['mount'] 			= handle_mount,
 	['shadows']			= handle_shadows,
+	['buffup']			= handle_buffup,
 	}

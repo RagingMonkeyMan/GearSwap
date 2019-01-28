@@ -267,6 +267,7 @@ end
 function job_tick()
 	if check_stance() then return true end
 	if check_buff() then return true end
+	if check_buffup() then return true end
 	return false
 end
 
@@ -330,22 +331,75 @@ function check_stance()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value and player.in_combat then
+	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		local abil_recasts = windower.ffxi.get_ability_recasts()
+		for i in pairs(buff_spell_lists['Auto']) do
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
+				tickdelay = (framerate * 2)
+				return true
+			end
+		end
+		
+		if player.in_combat then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] < latency then
-			windower.chat.input('/ja "Berserk" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and not is_defensive() and abil_recasts[4] < latency then
-			windower.chat.input('/ja "Aggressor" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		else
-			return false
+			if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] < latency then
+				windower.chat.input('/ja "Berserk" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			elseif player.sub_job == 'WAR' and not buffactive.Aggressor and not is_defensive() and abil_recasts[4] < latency then
+				windower.chat.input('/ja "Aggressor" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			else
+				return false
+			end
 		end
 	end
 		
 	return false
 end
+
+function check_buffup()
+	if buffup ~= '' then
+		local needsbuff = false
+		for i in pairs(buff_spell_lists[buffup]) do
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) then
+				needsbuff = true
+				break
+			end
+		end
+	
+		if not needsbuff then
+			add_to_chat(217, 'All '..buffup..' buffs are up!')
+			buffup = ''
+			return false
+		end
+		
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
+		for i in pairs(buff_spell_lists[buffup]) do
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
+				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
+				tickdelay = (framerate * 2)
+				return true
+			end
+		end
+		
+		return false
+	else
+		return false
+	end
+end
+
+buff_spell_lists = {
+	Auto = {	
+		{Name='Migawari: Ichi',Buff='Migawari',SpellID=510},
+	},
+	
+	Default = {
+		{Name='Myoshu: Ichi',Buff='Subtle Blow Plus',SpellID=507},
+		{Name='Kakka: Ichi',Buff='Store TP',SpellID=509},
+	},
+}

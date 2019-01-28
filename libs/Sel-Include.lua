@@ -178,11 +178,11 @@ function init_include()
 	rangedautows = ''
 	autowstp = 1000
 	rangedautowstp = 1000
-	buffup = false
 	time_offset = -39602
 	framerate = 60
 	latency = .75
 	spell_latency = nil
+	buffup = ''
 	curecheat = false
 	lastincombat = player.in_combat
 	next_cast = 0

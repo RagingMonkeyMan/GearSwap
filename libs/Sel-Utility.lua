@@ -675,8 +675,9 @@ function silent_can_use(spellid)
 		(spell_jobs[player.main_job_id] >= 100 and number_of_jps(player.job_points[(res.jobs[player.main_job_id].ens):lower()]) >= spell_jobs[player.main_job_id]) ) ) and
 		(not spell_jobs[player.sub_job_id] or not (spell_jobs[player.sub_job_id] <= player.sub_job_level)) then
 		return false
+	elseif res.spells[spellid].type == 'BlueMagic' and not ((player.main_job_id == 16 and (unbridled_learning_set[res.spells[spellid].en] or table.contains(windower.ffxi.get_mjob_data().spells,spellid))) or (player.sub_job_id == 16 and table.contains(windower.ffxi.get_sjob_data().spells,spellid))) then	
+		return false
 	else
-  
 		return true
 	end
 end
@@ -2215,8 +2216,14 @@ windower.register_event('outgoing chunk',function(id,data,modified,is_injected,i
         moving = lastlocation ~= modified:sub(5, 16)
         lastlocation = modified:sub(5, 16)
 		
-		if wasmoving ~= moving and not (midaction() or pet_midaction()) then
-			send_command('gs c forceequip')
+		if wasmoving ~= moving then
+			if moving and buffup~= '' then
+				buffup = ''
+				add_to_chat(123,'Buffup cancelled due to movement.')
+			end
+			if not (midaction() or pet_midaction()) then
+				send_command('gs c forceequip')
+			end
 		end
 		
 		if moving and state.RngHelper.value then

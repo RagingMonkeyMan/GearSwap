@@ -319,6 +319,7 @@ end
 function job_tick()
 	if check_hasso() then return true end
 	if check_buff() then return true end
+	if check_buffup() then return true end
 	if state.AutoTankMode.value and player.target.type == "MONSTER" and not moving then
 		if check_flash_foil() then return true end
 		windower.send_command('gs c SubJobEnmity')
@@ -380,35 +381,92 @@ function check_hasso()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value and player.in_combat then
-		
-		local abil_recasts = windower.ffxi.get_ability_recasts()
+	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
+		for i in pairs(buff_spell_lists['Auto']) do
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
+				tickdelay = (framerate * 2)
+				return true
+			end
+		end
 		
-		if not buffactive['Multi Strikes'] and not silent_check_silence() and spell_recasts [493] < spell_latency then
-			windower.chat.input('/ma "Temper" <me>')
-			tickdelay = (framerate * 2.2)
-			return true
-		elseif not buffactive['Swordplay'] and abil_recasts[24] < latency then
-			windower.chat.input('/ja "Swordplay" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
-			windower.chat.input('/ja "Last Resort" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
-			windower.chat.input('/ja "Berserk" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] < latency then
-			windower.chat.input('/ja "Aggressor" <me>')
-			tickdelay = (framerate * 1.8)
-			return true
-		else
-			return false
+		if player.in_combat then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			
+			if not buffactive['Swordplay'] and abil_recasts[24] < latency then
+				windower.chat.input('/ja "Swordplay" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
+				windower.chat.input('/ja "Last Resort" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
+				windower.chat.input('/ja "Berserk" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] < latency then
+				windower.chat.input('/ja "Aggressor" <me>')
+				tickdelay = (framerate * 1.8)
+				return true
+			else
+				return false
+			end
 		end
 	end
 		
 	return false
 end
+
+function check_buffup()
+	if buffup ~= '' then
+		local needsbuff = false
+		for i in pairs(buff_spell_lists[buffup]) do
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) then
+				needsbuff = true
+				break
+			end
+		end
+	
+		if not needsbuff then
+			add_to_chat(217, 'All '..buffup..' buffs are up!')
+			buffup = ''
+			return false
+		end
+		
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		
+		for i in pairs(buff_spell_lists[buffup]) do
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
+				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
+				tickdelay = (framerate * 2)
+				return true
+			end
+		end
+		
+		return false
+	else
+		return false
+	end
+end
+
+buff_spell_lists = {
+	Auto = {	
+		{Name='Crusade',Buff='Enmity Boost',SpellID=476},
+		{Name='Temper',Buff='Multi Strikes',SpellID=493},
+		{Name='Phalanx',Buff='Phalanx',SpellID=106},
+	},
+	
+	Default = {
+		{Name='Crusade',Buff='Enmity Boost',SpellID=476},
+		{Name='Temper',Buff='Multi Strikes',SpellID=493},
+		{Name='Haste',Buff='Haste',SpellID=57},
+		{Name='Refresh',Buff='Refresh',SpellID=109},
+		{Name='Aquaveil',Buff='Aquaveil',SpellID=55},
+		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
+		{Name='Blink',Buff='Blink',SpellID=53},
+		{Name='Regen',Buff='Regen',SpellID=108},
+		{Name='Phalanx',Buff='Phalanx',SpellID=106},
+	},
+}
