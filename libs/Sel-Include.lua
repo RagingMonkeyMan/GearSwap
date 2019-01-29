@@ -2171,19 +2171,20 @@ function buff_change(buff, gain)
 				--local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
 				local CurrentTime = os.time(os.date("!*t"))
 				time_test = false
-				local CapacityOffset = ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime)
-				local NegativeCapacityOffset = ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime) * -1
+				local CapacityNextUse = get_item_next_use('Capacity Ring').next_use_time
+				local CapacityOffset = CapacityNextUse - CurrentTime
+				local NegativeCapacityOffset = (CapacityNextUse - CurrentTime) * -1
 				local CapacityOffsetPlus = CapacityOffset + 900
 				local CapacityOffsetMinus = CapacityOffset - 900
 				local NegativeCapacityOffsetPlus =  NegativeCapacityOffset + 900
 				local NegativeCapacityOffsetMinus = NegativeCapacityOffset - 900
-				if ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetPlus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetPlus)) < 905 then
+				if (CapacityNextUse - (CurrentTime + CapacityOffsetPlus)) > 895 and (CapacityNextUse - (CurrentTime + CapacityOffsetPlus)) < 905 then
 					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..CapacityOffsetPlus.."")
-				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetMinus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + CapacityOffsetMinus)) < 905 then
+				elseif (CapacityNextUse - (CurrentTime + CapacityOffsetMinus)) > 895 and (CapacityNextUse - (CurrentTime + CapacityOffsetMinus)) < 905 then
 					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..CapacityOffsetMinus.."")
-				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetPlus)) < 905 then
+				elseif (CapacityNextUse - (CurrentTime + NegativeCapacityOffsetPlus)) > 895 and (CapacityNextUse - (CurrentTime + NegativeCapacityOffsetPlus)) < 905 then
 					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..NegativeCapacityOffsetPlus.."")
-				elseif ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) > 895 and ((get_item_next_use('Capacity Ring').next_use_time) - (CurrentTime + NegativeCapacityOffsetMinus)) < 905 then
+				elseif (CapacityNextUse - (CurrentTime + NegativeCapacityOffsetMinus)) > 895 and (CapacityNextUse - (CurrentTime + NegativeCapacityOffsetMinus)) < 905 then
 					windower.add_to_chat(123,"Capacity Ring Used: Your offset is: "..NegativeCapacityOffsetMinus.."")
 				else
 					windower.add_to_chat(123,"Unable to automatically determine your offset")
