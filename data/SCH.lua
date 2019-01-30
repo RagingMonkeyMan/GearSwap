@@ -833,7 +833,7 @@ function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -877,23 +877,23 @@ function check_buffup()
 end
 
 buff_spell_lists = {
-	Auto = {
-		{Name='Reraise',Buff='Reraise',SpellID=113},
-		{Name='Haste',Buff='Haste',SpellID=57},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Klimaform',Buff='Klimaform',SpellID=287},
+	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
+		{Name='Reraise',	Buff='Reraise',		SpellID=113,	When='Always'},
+		{Name='Haste',		Buff='Haste',		SpellID=57,		When='Always'},
+		{Name='Refresh',	Buff='Refresh',		SpellID=109,	When='Always'},
+		{Name='Stoneskin',	Buff='Stoneskin',	SpellID=54,		When='Always'},
+		{Name='Klimaform',	Buff='Klimaform',	SpellID=287,	When='Combat'},
 	},
 	
 	Default = {
-		{Name='Reraise',Buff='Reraise',SpellID=113},
-		{Name='Haste',Buff='Haste',SpellID=57},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Aquaveil',Buff='Aquaveil',SpellID=55},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Klimaform',Buff='Klimaform',SpellID=287},
-		{Name='Blink',Buff='Blink',SpellID=53},
-		{Name='Regen',Buff='Regen',SpellID=108},
-		{Name='Phalanx',Buff='Phalanx',SpellID=106},
+		{Name='Reraise',	Buff='Reraise',		SpellID=113,	Reapply=false},
+		{Name='Haste',		Buff='Haste',		SpellID=57,		Reapply=false},
+		{Name='Refresh',	Buff='Refresh',		SpellID=109,	Reapply=false},
+		{Name='Aquaveil',	Buff='Aquaveil',	SpellID=55,		Reapply=false},
+		{Name='Stoneskin',	Buff='Stoneskin',	SpellID=54,		Reapply=false},
+		{Name='Klimaform',	Buff='Klimaform',	SpellID=287,	Reapply=false},
+		{Name='Blink',		Buff='Blink',		SpellID=53,		Reapply=false},
+		{Name='Regen',		Buff='Regen',		SpellID=108,	Reapply=false},
+		{Name='Phalanx',	Buff='Phalanx',		SpellID=106,	Reapply=false},
 	},
 }

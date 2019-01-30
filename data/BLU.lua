@@ -470,7 +470,7 @@ function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) and (not unbridled_spells:contains(buff_spell_lists['Auto'][i].Name) or unbridled_ready()) then
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -485,7 +485,7 @@ function check_buffup()
 	if buffup ~= '' then
 		local needsbuff = false
 		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and (not unbridled_spells:contains(buff_spell_lists[buffup][i].Name) or unbridled_ready()) then
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) then
 				needsbuff = true
 				break
 			end
@@ -500,7 +500,7 @@ function check_buffup()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
 		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency and (not unbridled_spells:contains(buff_spell_lists[buffup][i].Name) or unbridled_ready()) then
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
 				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -514,37 +514,37 @@ function check_buffup()
 end
 
 buff_spell_lists = {
-	Auto = {	
-		{Name='Erratic Flutter',Buff='Haste',SpellID=710},
-		{Name='Battery Charge',Buff='Refresh',SpellID=662},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Nat. Meditation',Buff='Attack Boost',SpellID=700},
-		{Name='Mighty Guard',Buff='Mighty Guard',SpellID=750},
+	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
+		{Name='Erratic Flutter',	Buff='Haste',			SpellID=710,	When='Always'},
+		{Name='Battery Charge',		Buff='Refresh',			SpellID=662,	When='Idle'},
+		{Name='Refresh',			Buff='Refresh',			SpellID=109,	When='Idle'},
+		{Name='Nat. Meditation',	Buff='Attack Boost',	SpellID=700,	When='Engaged'},
+		{Name='Mighty Guard',		Buff='Mighty Guard',	SpellID=750,	When='Combat'},
 	},
 	
 	Default = {
-		{Name='Erratic Flutter',Buff='Haste',SpellID=710},
-		{Name='Battery Charge',Buff='Refresh',SpellID=662},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Phalanx',Buff='Phalanx',SpellID=106},
-		{Name='Barrier Tusk',Buff='Phalanx',SpellID=685},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Occultation',Buff='Blink',SpellID=679},
-		{Name='Blink',Buff='Blink',SpellID=53},
-		{Name='Mighty Guard',Buff='Mighty Guard',SpellID=750},
-		{Name='Nat. Meditation',Buff='Attack Boost',SpellID=700},
+		{Name='Erratic Flutter',	Buff='Haste',			SpellID=710,	Reapply=false},
+		{Name='Battery Charge',		Buff='Refresh',			SpellID=662,	Reapply=false},
+		{Name='Refresh',			Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Phalanx',			Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Barrier Tusk',		Buff='Phalanx',			SpellID=685,	Reapply=false},
+		{Name='Stoneskin',			Buff='Stoneskin',		SpellID=54,		Reapply=false},
+		{Name='Occultation',		Buff='Blink',			SpellID=679,	Reapply=false},
+		{Name='Blink',				Buff='Blink',			SpellID=53,		Reapply=false},
+		{Name='Mighty Guard',		Buff='Mighty Guard',	SpellID=750,	Reapply=false},
+		{Name='Nat. Meditation',	Buff='Attack Boost',	SpellID=700,	Reapply=false},
 	},
 	
 	Cleave = {
-		{Name='Erratic Flutter',Buff='Haste',SpellID=710},
-		{Name='Battery Charge',Buff='Refresh',SpellID=662},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Phalanx',Buff='Phalanx',SpellID=106},
-		{Name='Barrier Tusk',Buff='Phalanx',SpellID=685},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Occultation',Buff='Blink',SpellID=679},
-		{Name='Blink',Buff='Blink',SpellID=53},
-		{Name='Carcharian Verve',Buff='Aquaveil',SpellID=745},
-		{Name='Memento Mori',Buff='Magic Atk. Boost',SpellID=538},
+		{Name='Erratic Flutter',	Buff='Haste',			SpellID=710,	Reapply=false},
+		{Name='Battery Charge',		Buff='Refresh',			SpellID=662,	Reapply=false},
+		{Name='Refresh',			Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Phalanx',			Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Barrier Tusk',		Buff='Phalanx',			SpellID=685,	Reapply=false},
+		{Name='Stoneskin',			Buff='Stoneskin',		SpellID=54,		Reapply=false},
+		{Name='Occultation',		Buff='Blink',			SpellID=679,	Reapply=false},
+		{Name='Blink',				Buff='Blink',			SpellID=53,		Reapply=false},
+		{Name='Carcharian Verve',	Buff='Aquaveil',		SpellID=745,	Reapply=false},
+		{Name='Memento Mori',		Buff='Magic Atk. Boost',SpellID=538,	Reapply=false},
 	},
 }

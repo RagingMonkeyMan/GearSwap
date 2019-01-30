@@ -226,7 +226,7 @@ function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -294,10 +294,10 @@ end
 
 buff_spell_lists = {
 	Auto = {	
-		{Name='Dread Spikes',Buff='Dread Spikes',SpellID=277},
+		{Name='Dread Spikes',Buff='Dread Spikes',SpellID=277,When='Combat'},
 	},
 	
 	Default = {
-		{Name='Dread Spikes',Buff='Dread Spikes',SpellID=277},
+		{Name='Dread Spikes',Buff='Dread Spikes',SpellID=277,Reapply=false},
 	},
 }

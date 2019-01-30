@@ -453,7 +453,7 @@ function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -497,26 +497,26 @@ function check_buffup()
 end
 
 buff_spell_lists = {
-	Auto = {	
-		{Name='Reraise III',Buff='Reraise',SpellID=142},
-		{Name='Haste',Buff='Haste',SpellID=57},
-		{Name='Aurorastorm',Buff='Aurorastorm',SpellID=119},
-		{Name='Refresh',Buff='Refresh',SpellID=109},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
+	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
+		{Name='Reraise III',	Buff='Reraise',		SpellID=142,	When='Always'},
+		{Name='Haste',			Buff='Haste',		SpellID=57,		When='Always'},
+		{Name='Aurorastorm',	Buff='Aurorastorm',	SpellID=119,	When='Always'},
+		{Name='Refresh',		Buff='Refresh',		SpellID=109,	When='Always'},
+		{Name='Stoneskin',		Buff='Stoneskin',	SpellID=54,		When='Always'},
 	},
 	
 	Default = {
-		{Name='Reraise III',Buff='Reraise',SpellID=142},
-		{Name='Haste',Buff='Haste',SpellID=57},
-		{Name='Aquaveil',Buff='Aquaveil',SpellID=55},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Blink',Buff='Blink',SpellID=53},
-		{Name='Regen IV',Buff='Regen',SpellID=477},
-		{Name='Phalanx',Buff='Phalanx',SpellID=106},
-		{Name='Boost-MND',Buff='MND Boost',SpellID=484},
-		{Name='Shellra V',Buff='Shell',SpellID=134},
-		{Name='Protectra V',Buff='Protect',SpellID=129},
-		{Name='Barthundra',Buff='Barthunder',SpellID=70},
-		{Name='Barparalyzra',Buff='Barparalyze',SpellID=88},
+		{Name='Reraise III',	Buff='Reraise',		SpellID=142,	Reapply=false},
+		{Name='Haste',			Buff='Haste',		SpellID=57,		Reapply=false},
+		{Name='Aquaveil',		Buff='Aquaveil',	SpellID=55,		Reapply=false},
+		{Name='Stoneskin',		Buff='Stoneskin',	SpellID=54,		Reapply=false},
+		{Name='Blink',			Buff='Blink',		SpellID=53,		Reapply=false},
+		{Name='Regen IV',		Buff='Regen',		SpellID=477,	Reapply=false},
+		{Name='Phalanx',		Buff='Phalanx',		SpellID=106,	Reapply=false},
+		{Name='Boost-MND',		Buff='MND Boost',	SpellID=484,	Reapply=false},
+		{Name='Shellra V',		Buff='Shell',		SpellID=134,	Reapply=false},
+		{Name='Protectra V',	Buff='Protect',		SpellID=129,	Reapply=false},
+		{Name='Barthundra',		Buff='Barthunder',	SpellID=70,		Reapply=false},
+		{Name='Barparalyzra',	Buff='Barparalyze',	SpellID=88,		Reapply=false},
 	},
 }

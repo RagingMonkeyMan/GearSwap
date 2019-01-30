@@ -355,7 +355,7 @@ function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
+			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
 				tickdelay = (framerate * 2)
 				return true
@@ -398,31 +398,6 @@ function check_buffup()
 	end
 end
 
-function check_arts()
-	if buffup ~= '' or (state.AutoArts.value and not areas.Cities:contains(world.area) and (player.in_combat or state.AutoBuffMode.value)) then
-	
-		local abil_recasts = windower.ffxi.get_ability_recasts()
-		
-		if not buffactive.Composure then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if abil_recasts[50] < latency then
-				tickdelay = (framerate * 1)
-				windower.chat.input('/ja "Composure" <me>')
-				return true
-			end
-		end
-
-		if player.sub_job == 'SCH' and not arts_active() and abil_recasts[228] < latency then
-			send_command('@input /ja "Light Arts" <me>')
-			tickdelay = (framerate * 1)
-			return true
-		end
-
-	end
-	
-	return false
-end
-
 function update_melee_groups()
 	if player.equipment.main then
 		classes.CustomMeleeGroups:clear()
@@ -435,34 +410,34 @@ end
 
 buff_spell_lists = {
 	Auto = {
-		{Name='Refresh III',Buff='Refresh',SpellID=894},
-		{Name='Haste II',Buff='Haste',SpellID=511},
-		{Name='Aurorastorm',Buff='Aurorastorm',SpellID=119},
+		{Name='Refresh III',	Buff='Refresh',		SpellID=894,	When='Always'},
+		{Name='Haste II',		Buff='Haste',		SpellID=511,	When='Always'},
+		{Name='Aurorastorm',	Buff='Aurorastorm',	SpellID=119,	When='Idle'},
 	},
 	
 	Default = {
-		{Name='Refresh III',Buff='Refresh',SpellID=894},
-		{Name='Haste II',Buff='Haste',SpellID=511},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Shell V',Buff='Shell',SpellID=52},
-		{Name='Protect V',Buff='Protect',SpellID=47},
+		{Name='Refresh III',	Buff='Refresh',		SpellID=894,	Reapply=false},
+		{Name='Haste II',		Buff='Haste',		SpellID=511,	Reapply=false},
+		{Name='Stoneskin',		Buff='Stoneskin',	SpellID=54,		Reapply=false},
+		{Name='Shell V',		Buff='Shell',		SpellID=52,		Reapply=false},
+		{Name='Protect V',		Buff='Protect',		SpellID=47,		Reapply=false},
 	},
 	
 	MeleeBuff = {
-		{Name='Refresh III',Buff='Refresh',SpellID=894},
-		{Name='Haste II',Buff='Haste',SpellID=511},
-		{Name='Regen II',Buff='Regen',SpellID=110},
-		{Name='Aquaveil',Buff='Aquaveil',SpellID=55},
-		{Name='Phalanx',Buff='Phalanx',SpellID=106},
-		{Name='Stoneskin',Buff='Stoneskin',SpellID=54},
-		{Name='Blink',Buff='Blink',SpellID=53},
-		{Name='Gain-INT',Buff='INT Boost',SpellID=490},
-		{Name='Shell V',Buff='Shell',SpellID=52},
-		{Name='Protect V',Buff='Protect',SpellID=47},
-		{Name='Shock Spikes',Buff='Shock Spikes',SpellID=251},
-		{Name='Enthunder II',Buff='Enthunder II',SpellID=316},
-		{Name='Temper II',Buff='Multi Strikes',SpellID=895},
-		{Name='Barfire',Buff='Barfire',SpellID=60},
-		{Name='Barparalyze',Buff='Barparalyze',SpellID=74},
+		{Name='Refresh III',	Buff='Refresh',			SpellID=894,	Reapply=false},
+		{Name='Haste II',		Buff='Haste',			SpellID=511,	Reapply=false},
+		{Name='Regen II',		Buff='Regen',			SpellID=110,	Reapply=false},
+		{Name='Aquaveil',		Buff='Aquaveil',		SpellID=55,		Reapply=false},
+		{Name='Phalanx',		Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Stoneskin',		Buff='Stoneskin',		SpellID=54,		Reapply=false},
+		{Name='Blink',			Buff='Blink',			SpellID=53,		Reapply=false},
+		{Name='Gain-INT',		Buff='INT Boost',		SpellID=490,	Reapply=false},
+		{Name='Shell V',		Buff='Shell',			SpellID=52,		Reapply=false},
+		{Name='Protect V',		Buff='Protect',			SpellID=47,		Reapply=false},
+		{Name='Shock Spikes',	Buff='Shock Spikes',	SpellID=251,	Reapply=false},
+		{Name='Enthunder II',	Buff='Enthunder II',	SpellID=316,	Reapply=false},
+		{Name='Temper II',		Buff='Multi Strikes',	SpellID=895,	Reapply=false},
+		{Name='Barfire',		Buff='Barfire',			SpellID=60,		Reapply=false},
+		{Name='Barparalyze',	Buff='Barparalyze',		SpellID=74,		Reapply=false},
 	},
 }

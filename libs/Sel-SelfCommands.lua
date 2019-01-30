@@ -461,8 +461,16 @@ function handle_buffup(cmdParams)
 		buffup = 'Default'
 	elseif not buff_spell_lists[cmdParams[1]] then
 		add_to_chat(123, ''..cmdParams[1]..' is not a buff list!')
+		return
 	else
 		buffup = cmdParams[1]
+	end
+	
+	for i in pairs(buff_spell_lists[buffup]) do
+		if buff_spell_lists[buffup][i].Reapply then
+			windower.send_command('cancel '..buff_spell_lists[buffup][i].Buff..'')
+			tickdelay = (framerate * 1.65)
+		end
 	end
 end
 
