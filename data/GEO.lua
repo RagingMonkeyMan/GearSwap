@@ -30,6 +30,7 @@ function job_setup()
 	
 	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
 	state.AutoEntrust = M(false, 'AutoEntrust Mode')
+	state.CombatEntrustOnly = M(true, 'Combat Entrust Only Mode')
 	
     indi_timer = ''
     indi_duration = 180
@@ -443,7 +444,7 @@ function check_geo()
 			windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
 			tickdelay = (framerate * 2.1)
 			return true
-		elseif autoentrust ~= 'None' and windower.ffxi.get_ability_recasts()[93] < latency then
+		elseif autoentrust ~= 'None' and windower.ffxi.get_ability_recasts()[93] < latency and (player.in_combat or state.CombatEntrustOnly.value == false) then
 			send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..autoentrustee)
 			tickdelay = (framerate * 3.5)
 			return true
