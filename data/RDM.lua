@@ -351,6 +351,31 @@ function job_tick()
 	return false
 end
 
+function check_arts()	
+	if buffup ~= '' or (state.AutoArts.value and not areas.Cities:contains(world.area) and (player.in_combat or state.AutoBuffMode.value)) then	
+
+ 		local abil_recasts = windower.ffxi.get_ability_recasts()	
+
+ 		if not buffactive.Composure then	
+			local abil_recasts = windower.ffxi.get_ability_recasts()	
+			if abil_recasts[50] < latency then	
+				tickdelay = (framerate * 1)	
+				windower.chat.input('/ja "Composure" <me>')	
+				return true	
+			end	
+		end	
+
+ 		if player.sub_job == 'SCH' and not arts_active() and abil_recasts[228] < latency then	
+			send_command('@input /ja "Light Arts" <me>')	
+			tickdelay = (framerate * 1)	
+			return true	
+		end	
+
+ 	end	
+
+ 	return false	
+end
+
 function check_buff()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
