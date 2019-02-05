@@ -842,6 +842,9 @@ end
 function extra_default_filtered_action(spell, eventArgs)
 	if spell.action_type == 'Item' and world.area == "Mog Garden" then
 		return
+	elseif not silent_can_use(spell.recast_id) and stepdown(spell, eventArgs) then
+		cancel_spell()
+		return
 	elseif not can_use(spell) then
 		cancel_spell()
 		eventArgs.cancel = true
@@ -1154,7 +1157,6 @@ function filter_precast(spell, spellMap, eventArgs)
 		if check_amnesia(spell, spellMap, eventArgs) then return end
 		if check_abilities(spell, spellMap, eventArgs) then return end
 	end
-
 	if check_recast(spell, spellMap, eventArgs) then return end
 end
 
