@@ -967,23 +967,43 @@ end
 
 -- Checks doom, returns true if we're going to cancel and use an item.
 function check_doom(spell, spellMap, eventArgs)
-
-	if buffactive.doom and state.AutoRemoveDoomMode.value and state.AutoHolyWaterMode.value and not buffactive.muddle and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then
-		if player.inventory['Hallowed Water'] then
-			windower.chat.input('/item "Hallowed Water" <me>')
-			add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
-			eventArgs.cancel = true
-			return true
-		elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
-			windower.chat.input('/item "Holy Water" <me>')
-			add_to_chat(123,'Abort: You are doomed, using Holy Water instead.')
+	if buffactive.doom and state.AutoRemoveDoomMode.value and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then 
+	
+		if (buffactive.mute or buffactive.Omerta or buffactive.silence) or not (silent_can_use(20) and windower.ffxi.get_spell_recasts()[20] < spell_latency) then
+			if state.AutoHolyWaterMode.value and not buffactive.muddle then
+				if player.inventory['Hallowed Water'] then
+					windower.chat.input('/item "Hallowed Water" <me>')
+					add_to_chat(123,'Abort: You are doomed, using Hallowed Water instead.')
+					eventArgs.cancel = true
+					return true
+				elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
+					windower.chat.input('/item "Holy Water" <me>')
+					add_to_chat(123,'Abort: You are doomed, using Holy Water instead.')
+					eventArgs.cancel = true
+					return true
+				elseif buffactive.silence then
+					if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
+						windower.chat.input('/item "Echo Drops" <me>')
+						eventArgs.cancel = true
+						return true
+					elseif player.inventory["Remedy"] then
+						windower.chat.input('/item "Remedy" <me>')
+						eventArgs.cancel = true
+						return true
+					end
+					return false
+				end
+			end
+		else
+			windower.chat.input('/ma "Cursna" <me>')
+			add_to_chat(123,'Abort: You are doomed, using Cursna instead.')
 			eventArgs.cancel = true
 			return true
 		end
 	else
 		return false
 	end
-
+	return false
 end
 
 function check_midaction(spell, spellMap, eventArgs)

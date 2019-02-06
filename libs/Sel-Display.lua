@@ -134,6 +134,7 @@ function update_job_states()
 		Capacity = "Capacity",
 		AutoTankMode = "Auto Tank",
 		CompensatorMode = "Compensator",
+		DrainSwapWeaponMode = "Drain Swap",
 		AutoRuneMode = "Auto Rune: "..state.RuneElement.value.."",
 		AutoSambaMode = "Auto Samba: "..state.AutoSambaMode.value.."",
 		PhysicalDefenseMode = "Physical Defense",
@@ -290,6 +291,10 @@ function update_job_states()
 		elseif n == 'CompensatorMode' then
 			if state.CompensatorMode.value ~= 'Never' then
 				stateBox:append(string.format("%sCompensator: %s%s    ", clr.w, clr.h, state.CompensatorMode.value))
+			end
+		elseif n == 'DrainSwapWeaponMode' then
+			if state.DrainSwapWeaponMode.value ~= 'Never' then
+				stateBox:append(string.format("%sDrain Swap: %s%s    ", clr.w, clr.h, state.DrainSwapWeaponMode.value))
 			end
 		elseif n == 'ExtraSongsMode' then
 			if state.ExtraSongsMode.value ~= "None" then

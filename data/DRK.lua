@@ -19,6 +19,7 @@ function job_setup()
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
+	state.DrainSwapWeaponMode = M{'Never','300','1000','Always'}
 	
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Savage Blade','Requiescat','Resolution'}
@@ -28,7 +29,7 @@ function job_setup()
 	
 	update_melee_groups()
 
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","DrainSwapWeaponMode","CastingMode","TreasureMode",})
 end
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -63,7 +64,13 @@ end
 
 function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
-        if state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
+		if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
+			if player.equipment.main and sets.DrainWeapon and player.equipment.main == sets.DrainWeapon.main and player.equipment.main ~= sets.weapons[state.Weapons.value].main then
+				enable('main','sub','range','ammo')
+				equip(sets.weapons[state.Weapons.value])
+				disable('main','sub','range','ammo')
+			end
+        elseif state.UseCustomTimers.value and (spell.english == 'Sleep' or spell.english == 'Sleepga') then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
         elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
             state.MagicBurstMode:reset()
@@ -164,6 +171,13 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		end
 		if spell.english:contains('Absorb') and state.Buff['Nether Void'] and sets.buff['Nether Void'] then
 			equip(sets.buff['Nether Void'])
+		end
+		
+		if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
+			if sets.DrainWeapon and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
+				enable('main','sub','range','ammo')
+				equip(sets.DrainWeapon)
+			end
 		end
     end
 end

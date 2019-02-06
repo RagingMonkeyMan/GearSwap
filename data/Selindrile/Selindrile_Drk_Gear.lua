@@ -10,6 +10,7 @@ function user_setup()
 	state.Weapons:options('Montante','Anguta')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
+	state.DrainSwapWeaponMode = M{'300','1000','Never','Always'}
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
@@ -81,6 +82,8 @@ function init_gear_sets()
 		back="Toro Cape",waist="Eschan Stone",legs="Eschite Cuisses",feet="Flam. Gambieras +2"}
                    
 	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {ring1="Evanescence Ring",ring2="Archon Ring",back="Niht Mantle"})
+	
+	sets.DrainWeapon = {main="Anguta",sub="Alber Strap"}
                    
 	sets.midcast.Aspir = sets.midcast.Drain
 	
