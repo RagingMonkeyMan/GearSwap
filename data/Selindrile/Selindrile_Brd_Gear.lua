@@ -220,12 +220,8 @@ function init_gear_sets()
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Flume Belt",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 
-	sets.Kiting = {}
+	sets.Kiting = {feet="Fili Cothurnes +1"}
 
-	-- Gear for specific elemental nukes.
-	sets.WindNuke = {main="Marin Staff +1"}
-	sets.IceNuke = {main="Ngqoqwanb"}
-	
 	-- Engaged sets
 
 	-- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous

@@ -453,12 +453,21 @@ end
 
 buff_spell_lists = {
 	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
-		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	When='Always'},
-		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	When='Always'},
+		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	When='Combat'},
+		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	When='Engaged'},
 		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	When='Always'},
+		{Name='Refresh',	Buff='Refresh',			SpellID=109,	When='Idle'},
+	},
+
+	Default = {
+		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	Reapply=false},
+		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	Reapply=false},
+		{Name='Haste',		Buff='Haste',			SpellID=57,		Reapply=false},
+		{Name='Refresh',	Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
 	},
 	
-	Default = {
+	Full = {
 		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	Reapply=false},
 		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	Reapply=false},
 		{Name='Haste',		Buff='Haste',			SpellID=57,		Reapply=false},
@@ -466,7 +475,7 @@ buff_spell_lists = {
 		{Name='Aquaveil',	Buff='Aquaveil',		SpellID=55,		Reapply=false},
 		{Name='Stoneskin',	Buff='Stoneskin',		SpellID=54,		Reapply=false},
 		{Name='Blink',		Buff='Blink',			SpellID=53,		Reapply=false},
-		{Name='Regen',		Buff='Regen',			SpellID=108,	Reapply=false},
+		{Name='Regen IV',	Buff='Regen',			SpellID=477,	Reapply=false},
 		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
 	},
 }

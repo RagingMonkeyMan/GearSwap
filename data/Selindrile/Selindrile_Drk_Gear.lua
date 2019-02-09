@@ -10,7 +10,7 @@ function user_setup()
 	state.Weapons:options('Montante','Anguta')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
-	state.DrainSwapWeaponMode = M{'Never','300','1000','Always'}
+	state.DrainSwapWeaponMode = M{'Always','Never','300','1000'}
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')

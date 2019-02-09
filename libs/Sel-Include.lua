@@ -869,6 +869,9 @@ function default_precast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
 		tickdelay = (framerate * 3)
 		next_cast = os.clock() + 3.5 - latency
+	elseif spell.action_type == 'Ability' then
+		tickdelay = (framerate * .3)
+		next_cast = os.clock() + .80 - latency
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 2.4)
 		next_cast = os.clock() + 2.5 - latency
@@ -878,6 +881,10 @@ function default_precast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Ranged Attack' then
 		tickdelay = (framerate * 1.4)
 		next_cast = os.clock() + 1.05 - latency
+	end
+	
+	if areas.LaggyZones:contains(world.area) then
+		next_cast = next_cast - .25
 	end
 end
 
@@ -1059,8 +1066,8 @@ function default_aftercast(spell, spellMap, eventArgs)
 		tickdelay = (framerate * 2.95)
 		next_cast = os.clock() + 3.45 - latency
 	elseif spell.action_type == 'Ability' then
-		tickdelay = (framerate * .5)
-		next_cast = os.clock() + .85 - latency
+		tickdelay = (framerate * .3)
+		next_cast = os.clock() + .80 - latency
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 1.9)
 		next_cast = os.clock() + 2 - latency
@@ -1070,6 +1077,10 @@ function default_aftercast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Ranged Attack' then
 		tickdelay = (framerate * 1.1)
 		next_cast = os.clock() + .85 - latency
+	end
+	
+	if areas.LaggyZones:contains(world.area) then
+		next_cast = next_cast - .25
 	end
 	
 	if not spell.interrupted then

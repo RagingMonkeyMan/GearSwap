@@ -603,6 +603,16 @@ areas.Assault = S{
 areas.ProcZones = S{
 
 }
+-- Laggy zones where latency will be increased.
+areas.LaggyZones = S{
+	"Dynamis - San d'Oria [D]",
+	"Dynamis - Bastok [D]",
+	"Dynamis - Windurst [D]",
+	"Dynamis - Jeuno [D]",
+	"Reisenjima Henge",
+	"Outer Ra'Kaznar [U]",
+}
+
 -------------------------------------------------------------------------------------------------------------------
 -- Lists of certain NPCs.
 -------------------------------------------------------------------------------------------------------------------
