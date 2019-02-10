@@ -870,7 +870,7 @@ function default_precast(spell, spellMap, eventArgs)
 		tickdelay = (framerate * 3)
 		next_cast = os.clock() + 3.5 - latency
 	elseif spell.action_type == 'Ability' then
-		tickdelay = (framerate * .3)
+		tickdelay = (framerate * .8)
 		next_cast = os.clock() + .80 - latency
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 2.4)
@@ -1066,7 +1066,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 		tickdelay = (framerate * 2.95)
 		next_cast = os.clock() + 3.45 - latency
 	elseif spell.action_type == 'Ability' then
-		tickdelay = (framerate * .3)
+		tickdelay = (framerate * .8)
 		next_cast = os.clock() + .80 - latency
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 1.9)

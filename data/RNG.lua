@@ -70,7 +70,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 			end
 
 		end
-	elseif spell.action_type == 'Ranged Attack' and sets.precast.RA and buffactive.Flurry then
+	elseif spell.action_type == 'Ranged Attack' and buffactive.Flurry then
 		if lastflurry == 1 then
 			if sets.precast.RA[state.Weapons.value] and sets.precast.RA[state.Weapons.value].Flurry then
 				equip(sets.precast.RA[state.Weapons.value].Flurry)

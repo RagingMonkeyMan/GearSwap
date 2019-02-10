@@ -375,7 +375,7 @@ function job_tick()
 		if check_flash() then return true
 		else 
 			windower.send_command('gs c SubJobEnmity')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 1)
 			return true
 		end
 	end
