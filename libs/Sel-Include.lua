@@ -875,7 +875,7 @@ function default_precast(spell, spellMap, eventArgs)
 	elseif spell.type == 'WeaponSkill' then
 		tickdelay = (framerate * 2.4)
 		next_cast = os.clock() + 2.5 - latency
-	elseif 	spell.action_type == 'Item' then
+	elseif spell.action_type == 'Item' then
 		tickdelay = (framerate * 1.5)
 		next_cast = os.clock() + 1.35 - latency
 	elseif spell.action_type == 'Ranged Attack' then
@@ -890,24 +890,13 @@ end
 
 function default_post_precast(spell, spellMap, eventArgs)
 	if not eventArgs.handled then
-		if spell.type == 'Waltz' then
-			if spell.target.type == 'SELF' and sets.Self_Waltz and not (spell.english == "Healing Waltz" or spell.english == "Divine Waltz" or spell.english == "Divine Waltz II") then
-				equip(sets.Self_Waltz)
-			end
-		
-		elseif spell.action_type == 'Magic' then
+		if spell.action_type == 'Magic' then
 			if spell.english:startswith('Utsusemi') then
 				if sets.precast.FC.Shadows and ((spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San') or (spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi')) then
 					equip(sets.precast.FC.Shadows)
 				end
 			end
 			
-		elseif spell.type == 'JobAbility' then
-		
-			if state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
-				equip(sets.TreasureHunter)
-			end
-
 		elseif spell.type == 'WeaponSkill' then
 			
 			if state.WeaponskillMode.value ~= 'Proc' and elemental_obi_weaponskills:contains(spell.name) and spell.element and (spell.element == world.weather_element or spell.element == world.day_element) and item_available('Hachirin-no-Obi') then
@@ -927,6 +916,15 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 			
 			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] then
+				equip(sets.TreasureHunter)
+			end
+			
+		elseif spell.action_type == 'Ability' then
+			if spell.type == 'Waltz' then
+				if spell.target.type == 'SELF' and sets.Self_Waltz and not (spell.english == "Healing Waltz" or spell.english == "Divine Waltz" or spell.english == "Divine Waltz II") then
+					equip(sets.Self_Waltz)
+				end
+			elseif state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 				equip(sets.TreasureHunter)
 			end
 		end
