@@ -684,7 +684,7 @@ function handle_smartcure()
 	if player.target.type == "SELF" or player.target.type == 'MONSTER' or player.target.type == 'NONE' then
 		missingHP = player.max_hp - player.hp
 		cureTarget = '<me>'
-	elseif player.target.status:contains('Dead') then
+	elseif player.target.status:lower():contains('dead') then
 		windower.chat.input('/ma "Raise III" '..cureTarget..'')
 		return
 	-- If curing someone in our alliance, we can estimate their missing HP

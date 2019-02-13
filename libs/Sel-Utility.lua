@@ -823,9 +823,19 @@ function can_use(spell)
         if category == 7 and not S(available.weapon_skills)[spell.id] then
             add_to_chat(123,"Abort: You don't have access to ["..(res.weapon_skills[spell.id][language] or spell.id).."].")
             return false
-        elseif category == 9 and not S(available.job_abilities)[spell.id] then
-            add_to_chat(123,"Abort: You don't have access to ["..(res.job_abilities[spell.id][language] or spell.id).."].")
-            return false
+        elseif category == 9 then
+			if not S(available.job_abilities)[spell.id] then
+				add_to_chat(123,"Abort: You don't have access to ["..(res.job_abilities[spell.id][language] or spell.id).."].")
+				return false
+			elseif spell.type == 'CorsairShot' and not player.inventory['Trump Card'] then
+				if player.inventory['Trump Card Case'] then
+					windower.chat.input('/item "Trump Card Case" <me>')
+				elseif player.satchel['Trump Card Case'] then
+					windower.send_command('get "Trump Card Case" satchel')
+					windower.chat.input:schedule(1.5,'/item "Trump Card Case" <me>')
+				end
+				return false
+			end
         end
     elseif category == 25 and (not player.main_job_id == 23 or not windower.ffxi.get_mjob_data().species or
         not res.monstrosity[windower.ffxi.get_mjob_data().species] or not res.monstrosity[windower.ffxi.get_mjob_data().species].tp_moves[spell.id] or
@@ -967,7 +977,7 @@ end
 
 -- Checks doom, returns true if we're going to cancel and use an item.
 function check_doom(spell, spellMap, eventArgs)
-	if buffactive.doom and state.AutoRemoveDoomMode.value and not (spell.english == 'Cursna' or spell.name == 'Hallowed Water' or spell.name == 'Holy Water') then 
+	if buffactive.doom and state.AutoRemoveDoomMode.value and not (spell.english == 'Cursna' or spell.english == 'Hallowed Water' or spell.english == "Light Arts" or spell.english "Addendum: White" or spell.english == 'Holy Water') then 
 	
 		if (buffactive.mute or buffactive.Omerta or buffactive.silence) or not (silent_can_use(20) and windower.ffxi.get_spell_recasts()[20] < spell_latency) then
 			if state.AutoHolyWaterMode.value and not buffactive.muddle then
@@ -994,7 +1004,7 @@ function check_doom(spell, spellMap, eventArgs)
 					return false
 				end
 			end
-		else
+		elseif silent_can_use(20) then
 			windower.chat.input('/ma "Cursna" <me>')
 			add_to_chat(123,'Abort: You are doomed, using Cursna instead.')
 			eventArgs.cancel = true

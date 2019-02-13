@@ -307,7 +307,7 @@ function job_tick()
 end
 
 function check_song()
-	if state.AutoBuffMode.value and not moving and not areas.Cities:contains(world.area) then
+	if state.AutoBuffMode.value then
 		if not buffactive.march then
 			windower.chat.input('/ma "Honor March" <me>')
 			tickdelay = (framerate * 1.5)
