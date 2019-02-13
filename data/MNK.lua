@@ -16,7 +16,7 @@ function job_setup()
     state.Buff['Hundred Fists'] = buffactive['Hundred Fists'] or false
 	state.Buff['Impetus'] = buffactive['Impetus'] or false
 	
-	state.AutoBoost = M(true, 'Auto Boost Mode')
+	state.AutoBoost = M(false, 'Auto Boost Mode')
 	
 	--List of which WS you plan to use TP bonus WS with.
 	moonshade_ws = S{'Victory Smite'}
