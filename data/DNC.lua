@@ -48,6 +48,7 @@ function job_setup()
     state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step'}
     state.AltStep = M{['description']='Alt Step', 'Feather Step','Quickstep','Stutter Step','Box Step'}
     state.UseAltStep = M(true, 'Use Alt Step')
+	state.AutoPresto = M(true, 'AutoPresto')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
 	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
@@ -104,10 +105,10 @@ function job_precast(spell, spellMap, eventArgs)
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
-    elseif spell.type == 'Step' and player.tp > 99 then
+    elseif spell.type == 'Step' and player.main_job_level >= 77 and state.AutoPresto.value and player.tp > 99 and player.status == 'Engaged' and under3FMs() then
         local abil_recasts = windower.ffxi.get_ability_recasts()
 
-        if player.main_job_level >= 77 and abil_recasts[236] < latency and abil_recasts[220] < latency and under3FMs() and player.status == 'Engaged' then
+        if abil_recasts[236] < latency and abil_recasts[220] < latency then
             eventArgs.cancel = true
 			windower.chat.input('/ja "Presto" <me>')
 			windower.chat.input:schedule(1.1,'/ja "'..spell.english..'" '..spell.target.raw..'')
