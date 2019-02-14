@@ -26,5 +26,4 @@ libs/rev1/*
 *-Globals.lua
 data/export/*
 data/common/*
-data/User/*
 libs/closetCleaner.lua
