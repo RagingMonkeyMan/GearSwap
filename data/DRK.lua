@@ -66,9 +66,7 @@ function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
 		if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
 			if player.equipment.main and sets.DrainWeapon and player.equipment.main == sets.DrainWeapon.main and player.equipment.main ~= sets.weapons[state.Weapons.value].main then
-				enable('main','sub','range','ammo')
-				equip(sets.weapons[state.Weapons.value])
-				disable('main','sub','range','ammo')
+				handle_weapons(state.Weapons.value)
 			end
         elseif state.UseCustomTimers.value and (spell.english == 'Sleep' or spell.english == 'Sleepga') then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
