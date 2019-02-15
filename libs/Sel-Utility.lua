@@ -1488,15 +1488,15 @@ function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
 		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2)
 			return true
 		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) then
 			windower.chat.input('/ws "'..autows..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2)
 			return true
 		elseif player.tp == 3000 then
 			windower.chat.input('/ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2)
 			return true
 		else
 			return false
@@ -1615,33 +1615,33 @@ function check_ws()
 		
 		if player.hpp < 41 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Sanguine Blade" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif player.hpp < 41 and available_ws:contains(105) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Catastrophe" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif player.mpp < 21 and available_ws:contains(109) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Entropy" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif player.mpp < 21 and available_ws:contains(171) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Mystic Boon" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
 		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.chat.input('/ws "'..autows..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		elseif player.tp == 3000 then
 			windower.chat.input('/ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = (framerate * 2.8)
 			return true
 		else
 			return false

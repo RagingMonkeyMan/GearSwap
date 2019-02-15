@@ -869,12 +869,12 @@ function default_precast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
 		if tickdelay < (framerate * 3) then tickdelay = (framerate * 3) end
 		next_cast = os.clock() + 3.5 - latency
+	elseif spell.type == 'WeaponSkill' then
+		if tickdelay < (framerate * 2.8) then tickdelay = (framerate * 2.8) end
+		next_cast = os.clock() + 2.5 - latency
 	elseif spell.action_type == 'Ability' then
 		if tickdelay < (framerate * .75) then tickdelay = (framerate * .75) end
 		next_cast = os.clock() + .75 - latency
-	elseif spell.type == 'WeaponSkill' then
-		if tickdelay < (framerate * 2.4) then tickdelay = (framerate * 2.4) end
-		next_cast = os.clock() + 2.5 - latency
 	elseif spell.action_type == 'Item' then
 		if tickdelay < (framerate * 1.5) then tickdelay = (framerate * 1.5) end
 		next_cast = os.clock() + 1.35 - latency
@@ -1063,12 +1063,12 @@ function default_aftercast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Magic' then
 		if tickdelay < (framerate * 2.95) then tickdelay = (framerate * 2.95) end
 		next_cast = os.clock() + 3.45 - latency
+	elseif spell.type == 'WeaponSkill' then
+		if tickdelay < (framerate * 2.7) then tickdelay = (framerate * 2.7) end
+		next_cast = os.clock() + 2 - latency
 	elseif spell.action_type == 'Ability' then
 		if tickdelay < (framerate * .75) then tickdelay = (framerate * .75) end
 		next_cast = os.clock() + .75 - latency
-	elseif spell.type == 'WeaponSkill' then
-		if tickdelay < (framerate * 1.9) then tickdelay = (framerate * 1.9) end
-		next_cast = os.clock() + 2 - latency
 	elseif 	spell.action_type == 'Item' then
 		if tickdelay < (framerate * .5) then tickdelay = (framerate * .5) end
 		next_cast = os.clock() + .85 - latency
