@@ -323,9 +323,9 @@ end
 function handle_weapons(cmdParams)
 	local weaponSet
 	if type(cmdParams) == 'string' then
-		weaponSet = cmdParams:lower():ucfirst()
+		weaponSet = cmdParams
 	elseif type(cmdParams) == 'table' then
-		weaponSet = cmdParams[1]:lower():ucfirst()
+		weaponSet = cmdParams[1]
 	end
 	if weaponSet == nil then
 		if sets.weapons[state.Weapons.value] then
@@ -333,7 +333,7 @@ function handle_weapons(cmdParams)
 		elseif state.Weapons.value == 'None' then
 			enable('main','sub','range','ammo')
 		end
-	elseif weaponSet == 'Default' then
+	elseif weaponSet:lower() == 'default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.weapons.DualWeapons then
 			if state.Weapons.value ~= 'DualWeapons' then
 				state.Weapons:set('DualWeapons')
@@ -352,7 +352,7 @@ function handle_weapons(cmdParams)
 			state.Weapons:set(weaponSet)
 		end
 		equip_weaponset(weaponSet)
-	elseif weaponSet == 'None' then
+	elseif weaponSet:lower() == 'none' then
 		if state.Weapons:contains('None') then
 			enable('main','sub','range','ammo')
 			state.Weapons:set('None')
