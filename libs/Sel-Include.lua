@@ -1286,9 +1286,8 @@ function handle_equipping_gear(playerStatus, petStatus)
     end
 
 	if state.ReEquip.value and state.Weapons.value ~= 'None' then
-		if player.equipment.main == 'empty' and player.equipment.sub == 'empty' then
-			local commandArgs = {}
-			handle_weapons(commandArgs)
+		if player.equipment.main == 'empty' or player.equipment.sub == 'empty' then
+			handle_weapons()
 		end
 	end
 
@@ -2093,7 +2092,7 @@ function state_change(stateField, newValue, oldValue)
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
-			handle_weapons({})
+			handle_weapons()
 		elseif sets.weapons[newValue] then
 			equip_weaponset(newValue)
 		elseif newValue == 'None' then

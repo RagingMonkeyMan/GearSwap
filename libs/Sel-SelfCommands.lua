@@ -321,14 +321,19 @@ function handle_naked(cmdParams)
 end
 
 function handle_weapons(cmdParams)
-	if cmdParams[1] == nil then
+	local weaponSet
+	if type(cmdParams) == 'string' then
+		weaponSet = cmdParams:lower():ucfirst()
+	elseif type(cmdParams) == 'table' then
+		weaponSet = cmdParams[1]:lower():ucfirst()
+	end
+	if weaponSet == nil then
 		if sets.weapons[state.Weapons.value] then
 			equip_weaponset(state.Weapons.value)
 		elseif state.Weapons.value == 'None' then
 			enable('main','sub','range','ammo')
 		end
-	elseif cmdParams[1] == 'None' then
-	elseif cmdParams[1]:lower() == 'default' then
+	elseif weaponSet == 'Default' then
 		if (player.sub_job == 'DNC' or player.sub_job == 'NIN') and state.Weapons:contains('DualWeapons') and sets.weapons.DualWeapons then
 			if state.Weapons.value ~= 'DualWeapons' then
 				state.Weapons:set('DualWeapons')
@@ -338,20 +343,25 @@ function handle_weapons(cmdParams)
 			state.Weapons:reset()
 			if sets.weapons[state.Weapons.value] then
 				equip_weaponset(state.Weapons.value)
-			else
+			elseif state.Weapons.value == 'None' then
 				enable('main','sub','range','ammo')
 			end
 		end
-	elseif sets.weapons[cmdParams[1]] then
-		if state.Weapons:contains(cmdParams[1]) and state.Weapons.value ~= cmdParams[1] then
-			state.Weapons:set(cmdParams[1])
+	elseif sets.weapons[weaponSet] then
+		if state.Weapons:contains(weaponSet) and state.Weapons.value ~= weaponSet then
+			state.Weapons:set(weaponSet)
 		end
-		equip_weaponset(cmdParams[1])
-	elseif cmdParams ~= 'None' then
-		add_to_chat(123,"Error: A weapons set for ["..cmdParams[1].."] does not exist.")
+		equip_weaponset(weaponSet)
+	elseif weaponSet == 'None' then
+		if state.Weapons:contains('None') then
+			enable('main','sub','range','ammo')
+			state.Weapons:set('None')
+		end
+	else
 		if sets.weapons[state.Weapons.value] then
 			equip_weaponset(state.Weapons.value)
 		end
+		add_to_chat(123,"Error: A weapons set for ["..weaponSet.."] does not exist.")
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end
