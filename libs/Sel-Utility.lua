@@ -1507,9 +1507,9 @@ end
 function check_use_item()
 	if useItem then
 		local CurrentTime = (os.time(os.date('!*t')) + time_offset)
-		if useItemSlot == 'item' and player.inventory[useItemName] then
+		if useItemSlot == 'item' and (player.inventory[useItemName] or player.temporary[useItemName]) then
 			windower.chat.input('/item "'..useItemName..'" <me>')
-			tickdelay = (framerate * 2)
+			tickdelay = (framerate * 3.5)
 			return true
 		elseif useItemSlot == 'set' then
 			if item_equipped(set_to_item(useItemName)) and get_item_next_use(set_to_item(useItemName)).usable then

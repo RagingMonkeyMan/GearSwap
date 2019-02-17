@@ -265,7 +265,7 @@ function init_include()
 	-- Controls for handling our autmatic functions.
 	
 	if tickdelay ~= 0 then
-		tickdelay = (framerate * 20)
+		tickdelay = (framerate * 3)
 	end
 	
 	if spell_latency == nil then
@@ -291,6 +291,16 @@ function init_include()
 	else
 		send_command('@wait 3;gs c weapons Default')
 	end
+	
+	-- Event register to watch incoming items.
+	windower.register_event('add item', function(bag, index, id, count)
+		if id == 4146 and world.area == "Ghoyu's Reverie" then --4146 Revitalizer ID
+			useItem = true
+			useItemName = 'Revitalizer'
+			useItemSlot = 'item'
+			add_to_chat(217,"Revitalizer added to inventory, using, /heal to cancel.")
+		end
+	end)
 	
 	-- Event register to make time variables track.
 	windower.register_event('time change', time_change)
@@ -2134,8 +2144,6 @@ function state_change(stateField, newValue, oldValue)
 		else
 			send_command('wait .001;gs c DisplayElement')
 		end
-	elseif stateField:contains('Auto') then
-		tickdelay = 0
 	elseif stateField == 'Capacity' and newValue == 'false' and cprings:contains(player.equipment.left_ring) then
             enable("left_ring")
 	end
