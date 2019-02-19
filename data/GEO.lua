@@ -297,26 +297,27 @@ function display_current_job_state(eventArgs)
 end
 
 function job_self_command(commandArgs, eventArgs)
-		if commandArgs[1] == 'autoindi' and commandArgs[2] then
-			autoindi = commandArgs[2]:ucfirst()
-			add_to_chat(122,'Your Auto Indi- spell is set to '..autoindi..'.')
-			if state.DisplayMode.value then update_job_states()	end
-		elseif commandArgs[1] == 'autogeo' and commandArgs[2] then
-			autogeo = commandArgs[2]:ucfirst()
-			add_to_chat(122,'Your Auto Geo- spell is set to '..autogeo..'.')
-			if state.DisplayMode.value then update_job_states()	end
-		elseif commandArgs[1] == 'autoentrust' and commandArgs[2] then
-			autoentrust = commandArgs[2]:ucfirst()
-			add_to_chat(122,'Your Auto Entrust Indi- spell is set to '..autoentrust..'.')
-			if state.DisplayMode.value then update_job_states()	end
-		elseif commandArgs[1] == 'autoentrustee' and commandArgs[2] then
-			autoentrustee = commandArgs[2]:ucfirst()
-			add_to_chat(122,'Your Auto Entrustee target is set to '..autoentrustee..'.')
-			if state.DisplayMode.value then update_job_states()	end
-		elseif commandArgs[1]:lower() == 'elemental' then
-			handle_elemental(commandArgs)
-			eventArgs.handled = true
-		end
+	local lowerCommand = commandArgs[1]:lower()
+	if lowerCommand == 'autoindi' and commandArgs[2] then
+		autoindi = commandArgs[2]:ucfirst()
+		add_to_chat(122,'Your Auto Indi- spell is set to '..autoindi..'.')
+		if state.DisplayMode.value then update_job_states()	end
+	elseif lowerCommand == 'autogeo' and commandArgs[2] then
+		autogeo = commandArgs[2]:ucfirst()
+		add_to_chat(122,'Your Auto Geo- spell is set to '..autogeo..'.')
+		if state.DisplayMode.value then update_job_states()	end
+	elseif lowerCommand == 'autoentrust' and commandArgs[2] then
+		autoentrust = commandArgs[2]:ucfirst()
+		add_to_chat(122,'Your Auto Entrust Indi- spell is set to '..autoentrust..'.')
+		if state.DisplayMode.value then update_job_states()	end
+	elseif lowerCommand:contains('trustee') and commandArgs[2] then
+		autoentrustee = commandArgs[2]:ucfirst()
+		add_to_chat(122,'Your Auto Entrustee target is set to '..autoentrustee..'.')
+		if state.DisplayMode.value then update_job_states()	end
+	elseif lowerCommand == 'elemental' then
+		handle_elemental(commandArgs)
+		eventArgs.handled = true
+	end
 end
 
 -- Handling Elemental spells within Gearswap.
