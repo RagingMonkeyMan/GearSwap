@@ -1486,11 +1486,11 @@ end
 
 function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
-		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
+		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
 			tickdelay = (framerate * 2)
 			return true
-		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) then
+		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or not state.MaintainAftermath.value or not mythic_weapons:contains(player.equipment.main)) then
 			windower.chat.input('/ws "'..autows..'" <t>')
 			tickdelay = (framerate * 2)
 			return true
@@ -1631,11 +1631,11 @@ function check_ws()
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
-		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
+		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
 			tickdelay = (framerate * 2.8)
 			return true
-		elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
+		elseif (buffactive['Aftermath: Lv.3'] or not state.MaintainAftermath.value or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.chat.input('/ws "'..autows..'" <t>')
 			tickdelay = (framerate * 2.8)
 			return true

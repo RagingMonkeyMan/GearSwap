@@ -3,7 +3,7 @@ function user_setup()
     state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder','Crit')
     state.HybridMode:options('Normal','Evasion','PDT')
     state.RangedMode:options('Normal','Acc')
-    state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
+    state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','FullAcc','Fodder','Proc')
     state.CastingMode:options('Normal','Proc','Resistant')
     state.IdleMode:options('Normal', 'PDT', 'Sphere')
     state.PhysicalDefenseMode:options('PDT')
@@ -19,6 +19,8 @@ function user_setup()
 	send_command('bind ^` input /ja "Innin" <me>')
     send_command('bind !` input /ja "Yonin" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
+	send_command('bind !r gs c set WeaponskillMode Proc;gs c set CastingMode Proc;gs c update')
+	send_command('bind ^r gs c set WeaponskillMode Normal;gs c set CastingMode Normal;gs c update')
 	
 	utsusemi_cancel_delay = .3
 	utsusemi_ni_cancel_delay = .06
@@ -85,6 +87,10 @@ function init_gear_sets()
     sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {head="Dampening Tam","Ken. Samue",legs="Hiza. Hizayoroi +2",ear2="Telos Earring"})
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {head="Ynglinga Sallet",neck="Combatant's Torque",ear2="Telos Earring",body="Ken. Samue",hands="Mummu Wrists +2",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
 	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",body="Mummu Jacket +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet=gear.herculean_acc_feet})
+	sets.precast.WS.Proc = {ammo="Togakushi Shuriken",
+        head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
+        body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+        back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +2",feet=gear.herculean_acc_feet}
 	
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
     sets.precast.WS['Blade: Jin'] = set_combine(sets.precast.WS, {head="Adhemar Bonnet +1",ammo="Yetshila",head="Adhemar Bonnet +1",body="Abnoba Kaftan",hands="Ryuo Tekko",ring1="Begrudging Ring",waist="Grunfeld Rope",legs="Mummu Kecks +2",feet="Mummu Gamash. +2"})
