@@ -173,6 +173,12 @@ mythic_weapons = S{'Conqueror','Glanzfaust','Yagrush','Laevateinn','Murgleis','V
 relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura','Apocalypse',
 'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
 
+aeonic_weapons = S{'Dojikiri Yasutsuna','Chango','Trishula','Sequence','Aeneas','Lionheart',
+'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
+
+magian_tp_bonus_melee_weapons = S{}
+magian_tp_bonus_ranged_weapons = S{}
+
 rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
 
 rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',

@@ -223,7 +223,7 @@ function refine_waltz(spell, spellMap, eventArgs)
             elseif missingHP < 1100 then
                 newWaltz = 'Curing Waltz III'
                 waltzID = 192
-			elseif state.Contradance.value and abil_recasts[229] < latency then
+			elseif state.AutoContradanceMode.value and abil_recasts[229] < latency then
                 eventArgs.cancel = true
 				windower.chat.input('/ja "Contradance" <me>')
 				windower.chat.input:schedule(1,'/ja "Curing Waltz IV" '..spell.target.raw..'')
@@ -2149,6 +2149,19 @@ function is_dual_wielding()
 	end
 end
 
+function is_fencing()
+	if main_weapon_is_one_handed() and (player.equipment.sub == 'empty' or res.items[item_name_to_id(player.equipment.sub)].shield_size) then
+		return true
+	else
+		return false
+	end
+end
+
+function main_weapon_is_one_handed()
+	if player.equipment.main == nil then return false end
+	return S{2,3,5,9,11}:contains(res.items[item_name_to_id(player.equipment.main)].skill) or false
+end
+
 -- Generic combat form handling
 function update_combat_form()
 	if sets.engaged[state.Weapons.value] then
@@ -2280,3 +2293,113 @@ windower.raw_register_event('outgoing chunk',function(id,original,modified,injec
 		end
 	end
 end)
+
+--TP Bonus Handling
+function get_effective_player_tp(WSset)
+	local effective_tp = player.tp
+	if is_fencing() then effective_tp = effective_tp + get_fencer_tp_bonus(WSset) end
+	if buffactive['Crystal Blessing'] then effective_tp = effective_tp + 250 end
+	if aeonic_weapons:contains(player.equipment.main) then effective_tp = effective_tp + 500 end
+	if magian_tp_bonus_melee_weapons:contains(player.equipment.main) then effective_tp = effective_tp + 1000 end
+	if magian_tp_bonus_ranged_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 1000 end
+	if state.Buff['Warcry'] and player.main_job == "WAR" and lastwarcry == player.name then effective_tp = effective_tp + warcry_tp_bonus end
+	if WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring" then effective_tp = effective_tp + 250 end
+
+	return effective_tp
+end
+
+function standardize_set(set)
+	if not set.ear1 then set.ear1 = set.left_ear or '' end
+	if not set.ear2 then set.ear2 = set.right_ear or '' end
+	if not set.ring1 then set.ring1 = set.left_ring or '' end
+	if not set.ring2 then set.ring2 = set.right_right or '' end
+	
+	for slot in pairs(set) do
+		if type(slot) == 'table' and slot.name then slot = slot.name end
+	end
+	
+	return set
+end
+
+function get_fencer_tp_bonus(WSset)
+	local fencer_tp_bonus = 0
+	local fencer_tier_bonuses = {[0]=0,[1]=200,[2]=300,[3]=400,[4]=450,[5]=500,[6]=550,[7]=600,[8]=660,[9]=730}
+	local fencer_tp_bonus = fencer_tier_bonuses[base_fencer_tier] + jp_fencer_tp_bonus
+	
+	if WSset.legs then
+		if WSset.legs == 'Boii Cuisses' then fencer_tp_bonus = fencer_tp_bonus + 50 
+		elseif WSset.legs and WSset.legs == 'Boii Cuisses +1' then fencer_tp_bonus = fencer_tp_bonus + 100
+		end
+	end
+	if WSset.neck then
+		if WSset.neck:contains('War. Beads') or WSset.neck:contains("Warrior's Beads") then
+			fencer_tp_bonus = fencer_tp_bonus + 50
+		end
+	end
+	
+	if player.equipment.sub and player.equipment.sub == 'Blurred Shield +1' then fencer_tp_bonus = fencer_tp_bonus + 50 end
+	
+	return fencer_tp_bonus
+end
+
+function get_fencer_gifts()
+	local war_fencer_gift_tiers = {[80]=50,[405]=50,[980]=60,[1805]=70}
+	local bst_fencer_gift_tiers = {[150]=50,[500]=50,[1125]=60,[2000]=70}
+	local jp_spent_on_war = windower.ffxi.get_player().job_points[string.lower(player.main_job)].jp_spent
+	local tp_bonus_from_jp = 0
+	
+	if player.main_job == "WAR" then
+		for tier_threshold,tp_bonus in ipairs(war_fencer_gift_tiers) do
+			if jp_spent_on_war >= tier_threshold then
+				tp_bonus_from_jp = tp_bonus_from_jp + tp_bonus
+			end
+		end
+	elseif player.main_job == "BST" then
+		for tier_threshold,tp_bonus in ipairs(bst_fencer_gift_tiers) do
+			if jp_spent_on_war >= tier_threshold then
+				tp_bonus_from_jp = tp_bonus_from_jp + tp_bonus
+			end
+		end
+	end
+	
+	return tp_bonus_from_jp
+end
+
+function get_base_fencer_tier()
+	local fencer_jobs_level_thresholds = {['BRD'] = {85,95},['BST'] = {80,87,94},['WAR'] = {45,58,71,84,97}}
+	local fencer_tier_level = 0
+
+	if fencer_jobs_level_thresholds[player.main_job] ~= nil then
+		for _,level_threshold in ipairs(fencer_jobs_level_thresholds[player.main_job]) do
+			if player.main_job_level >= level_threshold then
+				fencer_tier_level = fencer_tier_level + 1
+			end
+		end
+
+	elseif player.sub_job == 'WAR' and player.sub_job_level >= 45 then
+		fencer_tier_level = 1
+	end
+
+	return fencer_tier_level
+end
+
+base_fencer_tier = get_base_fencer_tier()
+jp_fencer_tp_bonus = get_fencer_gifts()
+
+function get_warcry_tp_bonus()
+	local tp_bonus = 0
+	
+	if player.main_job == 'WAR' then
+		local savagery_merits = windower.ffxi.get_player().merits.savagery and windower.ffxi.get_player().merits.savagery or 0
+		tp_bonus = tp_bonus + (100 * savagery_merits)
+			
+		local relic_bonus_per_merit = 40
+		if sets.precast.JA.Warcry and sets.precast.JA.Warcry.head and sets.precast.JA.Warcry.head:contains('Agoge Mask') then
+			tp_bonus = tp_bonus + (relic_bonus_per_merit * savagery_merits)
+		end
+	end
+	
+	return tp_bonus
+end
+
+warcry_tp_bonus = get_warcry_tp_bonus()

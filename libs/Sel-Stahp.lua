@@ -298,3 +298,17 @@ windower.raw_register_event('action', function(act)
 		end
 	end
 end)
+
+windower.register_event('incoming chunk', function(id, data)
+    if state.AutoAcceptRaiseMode.value and id == 0xF9 and data:byte(11) == 1 then
+        local player = windower.ffxi.get_mob_by_target('me')
+        if player then
+			packets.inject(packets.new('outgoing', 0x01A, {
+				['Target'] = player.id,
+				['Target Index'] = player.index,
+				['Category'] = 0x0D,
+			}))
+            return true
+        end
+    end
+end)

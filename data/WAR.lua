@@ -97,26 +97,22 @@ function job_post_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' then
 
-		local WSset = get_precast_set(spell, spellMap)
-		if not WSset.ear1 then WSset.ear1 = WSset.left_ear or '' end
-		if not WSset.ear2 then WSset.ear2 = WSset.right_ear or '' end
-		
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
 		local wsacc = check_ws_acc()
 
         -- Replace Moonshade Earring if we're at cap TP
-		if player.tp > 2950 and (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+		if get_effective_player_tp(WSset) > 3200 and (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
 			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
-				if not sets.AccMaxTP.ear1 then sets.AccMaxTP.ear1 = sets.AccMaxTP.left_ear or '' end
-				if not sets.AccMaxTP.ear2 then sets.AccMaxTP.ear2 = sets.AccMaxTP.right_ear or '' end
-				if (sets.AccMaxTP.ear1:startswith("Lugra Earring") or sets.AccMaxTP.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
+				local AccMaxTPset = standardize_set(sets.AccMaxTP)
+
+				if (AccMaxTPset.ear1:startswith("Lugra Earring") or AccMaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
 					equip(sets.AccDayMaxTPWSEars)
 				else
 					equip(sets.AccMaxTP)
 				end
 			elseif sets.MaxTP then
-				if not sets.MaxTP.ear1 then sets.MaxTP.ear1 = sets.MaxTP.left_ear or '' end
-				if not sets.MaxTP.ear2 then sets.MaxTP.ear2 = sets.MaxTP.right_ear or '' end
-				if (sets.MaxTP.ear1:startswith("Lugra Earring") or sets.MaxTP.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
+				local MaxTPset = standardize_set(sets.MaxTP)
+				if (MaxTPset.ear1:startswith("Lugra Earring") or MaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
 					equip(sets.DayMaxTPWSEars)
 				else
 					equip(sets.MaxTP)
@@ -168,7 +164,22 @@ function job_update(cmdParams, eventArgs)
 	end
 end
 
+function job_aftercast(spell, spellMap, eventArgs)
+	if not spell.interrupted then
+		if spell.english == 'Warcry' then
+			lastwarcry = player.name
+		end
+	end
+end
+
 function job_buff_change(buff, gain)
+	if buff == 'Warcry' then
+		if gain and windower.ffxi.get_ability_recasts()[2] > 297 then
+			lastwarcry = player.name
+		else
+			lastwarcry = ''
+		end
+	end
 	update_melee_groups()
 end
 

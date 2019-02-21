@@ -76,8 +76,10 @@ function init_include()
 	state.ReEquip 			  = M(false, 'ReEquip Mode')
 	state.AutoArts	 		  = M(false, 'AutoArts Mode')
 	state.AutoTrustMode 	  = M(false, 'Auto Trust Mode')
+	state.AutoContradanceMode = M(true, 'Auto Contradance Mode')
 	state.RngHelper		 	  = M(false, 'RngHelper')
 	state.AutoTankMode 		  = M(false, 'Auto Tank Mode')
+	state.AutoAcceptRaiseMode = M(false, 'Auto Accept Raise Mode')
 	state.AutoNukeMode 		  = M(false, 'Auto Nuke Mode')
 	state.AutoRuneMode 		  = M(false, 'Auto Rune Mode')
 	state.AutoShadowMode 	  = M(false, 'Auto Shadow Mode')
@@ -93,7 +95,6 @@ function init_include()
 	state.CancelStoneskin	  = M(true, 'Auto Cancel Stoneskin')
 	state.BlockMidaction	  = M(true, 'Block Midaction')
 	state.MaintainAftermath	  = M(true, 'Maintain Aftermath')
-	state.Contradance		  = M(true, 'Auto Contradance Mode')
 	state.ElementalWheel 	  = M(false, 'Elemental Wheel')
 	state.MaintainDefense 	  = M(false, 'Maintain Defense')
 	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
@@ -128,6 +129,7 @@ function init_include()
 	state.Buff['Dark Arts'] = buffactive['Dark Arts'] or false
 	state.Buff['Addendum: Black'] = buffactive['Addendum: Black'] or false
 	state.Buff['Accession'] = buffactive['Accession'] or false
+	state.Buff['Warcry'] = buffactive['Warcry'] or false
 
     -- Classes describe a 'type' of action.  They are similar to state, but
     -- may have any free-form value, or describe an entire table of mapped values.
@@ -194,6 +196,7 @@ function init_include()
 	
 	-- Buff tracking that buffactive can't detect
 	lastshadow = "Utsusemi: San"
+	lastwarcry = ''
 	lasthaste = 1
 	lastflurry = 1
 	
