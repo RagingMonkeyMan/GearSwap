@@ -2254,7 +2254,7 @@ lastlocation = 'fff':pack(0,0,0)
 moving = false
 wasmoving = false
 
-windower.register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
+windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
         moving = lastlocation ~= modified:sub(5, 16)
         lastlocation = modified:sub(5, 16)
@@ -2283,13 +2283,11 @@ state.Uninterruptible = M(false, 'Uninterruptible')
 fixed_pos = ''
 
 windower.raw_register_event('outgoing chunk',function(id,original,modified,injected,blocked)
-	if not blocked then
-		if id == 0x15 then
-			if state.Uninterruptible.value and player.status ~= 'Event' and (gearswap.cued_packet or midaction()) and fixed_pos ~= '' then
-				return original:sub(1,4)..fixed_pos..original:sub(17)
-			else
-				fixed_pos = original:sub(5,16)
-			end
+	if not blocked and id == 0x15 and state.Uninterruptible.value then
+		if player.status ~= 'Event' and (gearswap.cued_packet or midaction()) and fixed_pos ~= '' then
+			return original:sub(1,4)..fixed_pos..original:sub(17)
+		else
+			fixed_pos = original:sub(5,16)
 		end
 	end
 end)

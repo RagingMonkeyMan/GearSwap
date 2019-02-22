@@ -323,8 +323,8 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 -- Register events to allow us to manage TH application.
-windower.register_event('status change', on_status_change_for_th)
-windower.register_event('target change', on_target_change_for_th)
+windower.raw_register_event('status change', on_status_change_for_th)
+windower.raw_register_event('target change', on_target_change_for_th)
 windower.raw_register_event('action', on_action_for_th)
 windower.raw_register_event('incoming chunk', on_incoming_chunk_for_th)
 windower.raw_register_event('zone change', on_zone_change_for_th)

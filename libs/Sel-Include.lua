@@ -296,7 +296,7 @@ function init_include()
 	end
 	
 	-- Event register to watch incoming items.
-	windower.register_event('add item', function(bag, index, id, count)
+	windower.raw_register_event('add item', function(bag, index, id, count)
 		if id == 4146 and world.area == "Ghoyu's Reverie" then --4146 Revitalizer ID
 			useItem = true
 			useItemName = 'Revitalizer'
@@ -306,7 +306,7 @@ function init_include()
 	end)
 	
 	-- Event register to make time variables track.
-	windower.register_event('time change', time_change)
+	windower.raw_register_event('time change', time_change)
 
 	-- Event register to perform actions on new targets.
 	function target_change(new)
@@ -341,7 +341,7 @@ function init_include()
 			if user_job_target_change(target) then return end
 		end
 	end
-	windower.register_event('target change', target_change)
+	windower.raw_register_event('target change', target_change)
 
 	-- Event register to prevent auto-modes from spamming after zoning.
 	windower.register_event('zone change', function()
