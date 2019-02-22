@@ -176,8 +176,12 @@ relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura',
 aeonic_weapons = S{'Dojikiri Yasutsuna','Chango','Trishula','Sequence','Aeneas','Lionheart',
 'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
 
-magian_tp_bonus_melee_weapons = S{}
-magian_tp_bonus_ranged_weapons = S{}
+--Only tracking 1-handed weapons for offhanding as they're all that's used in meta.
+magian_tp_bonus_melee_weapons = S{'Sphyras','Barracudas +3','Barracudas +2','Centovente','Fusetto +3','Fusetto +2',
+'Thibron','Machaera +3','Machaera +2','Fernagu',"Renaud's Axe +3","Renaud's Axe +2",'Hitaki','Uzura +3','Uzura +2',
+'Ukaldi','Makhila +3','Makhila +2'}
+
+magian_tp_bonus_ranged_weapons = S{'Ataktos','Anarchy +3','Anarchy +2','Accipiter','Sparrowhawk +3','Sparrowhawk +2'}
 
 rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
 
