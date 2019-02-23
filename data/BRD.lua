@@ -113,7 +113,6 @@ function job_midcast(spell, spellMap, eventArgs)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-
 	if spell.type == 'BardSong' then
 	
 		if state.Buff['Nightingale'] then
@@ -149,21 +148,21 @@ function job_post_precast(spell, spellMap, eventArgs)
 		end
 
 	elseif spell.type == 'WeaponSkill' then
-        -- Replace Moonshade Earring if we're at cap TP
-        if player.tp == 3000 and moonshade_ws:contains(spell.english) then
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		local wsacc = check_ws_acc()
 		
-			if check_ws_acc():contains('Acc') or (state.Buff['Sneak Attack'] or state.Buff['Trick Attack']) then
-				if sets.AccMaxTP then
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
 					equip(sets.AccMaxTP)
-				end
-			else
-				if sets.MaxTP then
+				elseif sets.MaxTP then
 					equip(sets.MaxTP)
+				else
 				end
 			end
 		end
 	end
-
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)

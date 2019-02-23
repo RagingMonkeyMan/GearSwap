@@ -60,34 +60,39 @@ end
 
 function job_post_precast(spell, spellMap, eventArgs)
     
-	if  state.AmbushMode.value == true and spell.type == 'WeaponSkill' then
-		if  state.Buff['Sneak Attack'] == false and state.Buff['Trick Attack'] == false then
-			equip(sets.Ambush)
+	if spell.type == 'WeaponSkill' then
+		if (spell.english == 'Aeolian Edge' or spell.english == 'Cyclone') and state.TreasureMode.value ~= 'None' then
+			equip(sets.TreasureHunter)
+			return
+		end
+	
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		local wsacc = check_ws_acc()
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not state.Buff['Sneak Attack'] and not state.Buff['Trick Attack'] and sets.AccMaxTP then
+					equip(sets.AccMaxTP)
+				elseif sets.MaxTP then
+					equip(sets.MaxTP)
+				else
+				end
+			end
+		end
+
+		if state.AmbushMode.value == true and sets.Ambush then
+			if state.Buff['Sneak Attack'] == false and state.Buff['Trick Attack'] == false then
+				equip(sets.Ambush)
+			end
 		end
 	end
-	
-	if (spell.english == 'Aeolian Edge' or spell.english == 'Cyclone') and state.TreasureMode.value ~= 'None' then
-        equip(sets.TreasureHunter)
-    elseif spell.english == 'Sneak Attack' or spell.english == 'Trick Attack' or spell.type == 'WeaponSkill' then
+
+    if spell.english == 'Sneak Attack' or spell.english == 'Trick Attack' or spell.type == 'WeaponSkill' then
         if state.TreasureMode.value == 'SATA' or state.TreasureMode.value == 'Fulltime' then
             equip(sets.TreasureHunter)
         end
     end
-	
-	if spell.type == 'WeaponSkill' then
-        -- Replace Moonshade Earring if we're at cap TP
-        if player.tp == 3000 and moonshade_ws:contains(spell.english) then
-			if not check_ws_acc():contains('Acc') or (state.Buff['Sneak Attack'] or state.Buff['Trick Attack']) then
-				if sets.AccMaxTP then
-					equip(sets.MaxTP)
-				end
-			else
-				if sets.MaxTP then
-					equip(sets.AccMaxTP)
-				end
-			end
-		end
-	end
 	
 end
 

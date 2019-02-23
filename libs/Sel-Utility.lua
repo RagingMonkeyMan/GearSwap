@@ -1629,7 +1629,7 @@ function check_ws()
 			windower.chat.input('/ws "Mystic Boon" <t>')
 			tickdelay = (framerate * 2.8)
 			return true
-		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
+		elseif player.target.distance > (3.2 + player.target.model_size) and not ranged_weaponskills:contains(autows) then
 			return false
 		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
@@ -2293,15 +2293,20 @@ windower.raw_register_event('outgoing chunk',function(id,original,modified,injec
 end)
 
 --TP Bonus Handling
-function get_effective_player_tp(WSset)
+function get_effective_player_tp(spell, WSset)
 	local effective_tp = player.tp
 	if is_fencing() then effective_tp = effective_tp + get_fencer_tp_bonus(WSset) end
 	if buffactive['Crystal Blessing'] then effective_tp = effective_tp + 250 end
-	if aeonic_weapons:contains(player.equipment.main) then effective_tp = effective_tp + 500 end
 	if magian_tp_bonus_melee_weapons:contains(player.equipment.sub) then effective_tp = effective_tp + 1000 end
 	if magian_tp_bonus_ranged_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 1000 end
 	if state.Buff['Warcry'] and player.main_job == "WAR" and lastwarcry == player.name then effective_tp = effective_tp + warcry_tp_bonus end
 	if WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring" then effective_tp = effective_tp + 250 end
+	
+	if S{25,26}:contains(spell.skill) then
+		if aeonic_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 500 end
+	else
+		if aeonic_weapons:contains(player.equipment.main) then effective_tp = effective_tp + 500 end
+	end
 
 	return effective_tp
 end

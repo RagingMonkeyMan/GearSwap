@@ -22,9 +22,6 @@ function job_setup()
     state.Buff['Unbridled Learning'] = buffactive['Unbridled Learning'] or false
 	state.Buff['Unbridled Wisdom'] = buffactive['Unbridled Wisdom'] or false
 	
-	--List of which WS you plan to use TP bonus WS equipment with.
-	moonshade_ws = S{'Chant du Cygne', 'Savage Blade','Requiescat'}
-	
 	state.LearningMode = M(false, 'Learning Mode')
 	state.AutoUnbridled = M(false, 'Auto Unbridled Learning Mode')
 	autows = 'Chant Du Cygne'
@@ -262,17 +259,21 @@ end
 function job_post_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' then
-        -- Replace Moonshade Earring if we're at cap TP
-        if player.tp == 3000 and moonshade_ws:contains(spell.english) then
-
-			if check_ws_acc():contains('Acc') then
-				if sets.AccMaxTP then
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		local wsacc = check_ws_acc()
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
 					equip(sets.AccMaxTP)
-				end
-			elseif sets.MaxTP then
+				elseif sets.MaxTP then
 					equip(sets.MaxTP)
+				else
+				end
 			end
 		end
+
 	end
 
     -- If in learning mode, keep on gear intended to help with that, regardless of action.

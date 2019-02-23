@@ -855,7 +855,7 @@ end
 function extra_default_filtered_action(spell, eventArgs)
 	if spell.action_type == 'Item' and world.area == "Mog Garden" then
 		return
-	elseif not silent_can_use(spell.recast_id) and stepdown(spell, eventArgs) then
+	elseif spell.action_type == 'Magic' and not silent_can_use(spell.recast_id) and stepdown(spell, eventArgs) then
 		cancel_spell()
 		return
 	elseif not can_use(spell) then

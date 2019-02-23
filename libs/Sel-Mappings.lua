@@ -159,49 +159,49 @@ data.weaponskills.empyrean = {
     ["Armageddon"] = "Wildfire"}
 	
 -- Weaponskills that can be used at range.
-data.weaponskills.ranged = S{"Flaming Arrow","Piercing Arrow","Dulling Arrow","Sidewinder","Arching Arrow",
+ranged_weaponskills = S{"Flaming Arrow","Piercing Arrow","Dulling Arrow","Sidewinder","Arching Arrow",
     "Empyreal Arrow","Refulgent Arrow","Apex Arrow","Namas Arrow","Jishnu's Radiance",
     "Hot Shot","Split Shot","Sniper Shot","Slug Shot","Heavy Shot","Detonator","Last Stand",
     "Coronach","Trueflight","Leaden Salute","Wildfire","Myrkr"}
 
-ranged_weaponskills = data.weaponskills.ranged
-
 mythic_weapons = S{'Conqueror','Glanzfaust','Yagrush','Laevateinn','Murgleis','Vajra','Burtgang','Liberator',
-'Aymur','Carnwenhan','Gastraphetes','Kogarasumaru','Nagi','Ryunohige','Nirvana','Tizona','Death Penalty','Kenkonken',
-'Terpsichore','Tupsimati','Idris','Epeolatry'}
+	'Aymur','Carnwenhan','Gastraphetes','Kogarasumaru','Nagi','Ryunohige','Nirvana','Tizona','Death Penalty','Kenkonken',
+	'Terpsichore','Tupsimati','Idris','Epeolatry'}
 
 relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura','Apocalypse',
-'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
+	'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
 
 aeonic_weapons = S{'Dojikiri Yasutsuna','Chango','Trishula','Sequence','Aeneas','Lionheart',
-'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
+	'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
 
 --Only tracking 1-handed weapons for offhanding as they're all that's used in meta.
 magian_tp_bonus_melee_weapons = S{'Sphyras','Barracudas +3','Barracudas +2','Centovente','Fusetto +3','Fusetto +2',
-'Thibron','Machaera +3','Machaera +2','Fernagu',"Renaud's Axe +3","Renaud's Axe +2",'Hitaki','Uzura +3','Uzura +2',
-'Ukaldi','Makhila +3','Makhila +2'}
+	'Thibron','Machaera +3','Machaera +2','Fernagu',"Renaud's Axe +3","Renaud's Axe +2",'Hitaki','Uzura +3','Uzura +2',
+	'Ukaldi','Makhila +3','Makhila +2'}
 
 magian_tp_bonus_ranged_weapons = S{'Ataktos','Anarchy +3','Anarchy +2','Accipiter','Sparrowhawk +3','Sparrowhawk +2'}
 
 rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
 
-rema_ranged_weapons_ammo = {['Fomalhaut'] = 'Chrono Bullet',
-								['Death Penalty'] = 'Living Bullet',
-								['Armageddon'] = 'Devastating Bullet',
-								['Fail-Not'] = 'Chrono Arrow',
-								['Gandiva'] = "Artemis's Arrow",
-								['Gastraphetes'] = "Quelling Bolt",
-								['Yoichinoyumi'] = "Yoichi's Arrow",
-								['Annihilator'] = 'Eradicating Bullet'}
-								
-rema_ranged_weapons_ammo_pouch = {['Fomalhaut'] = 'Chr. Bul. Pouch',
-									['Death Penalty'] = 'Liv. Bul. Pouch',
-									['Armageddon'] = 'Dev. Bul. Pouch',
-									['Fail-Not'] = 'Chrono Quiver',
-									['Gandiva'] = "Artemis's Quiver",
-									['Gastraphetes'] = "Quelling B. Quiver",
-									['Yoichinoyumi'] = "Yoichi's Quiver",
-									['Annihilator'] = 'Era. Bul. Pouch'}
+rema_ranged_weapons_ammo = {
+	['Fomalhaut'] = 'Chrono Bullet',
+	['Death Penalty'] = 'Living Bullet',
+	['Armageddon'] = 'Devastating Bullet',
+	['Fail-Not'] = 'Chrono Arrow',
+	['Gandiva'] = "Artemis's Arrow",
+	['Gastraphetes'] = "Quelling Bolt",
+	['Yoichinoyumi'] = "Yoichi's Arrow",
+	['Annihilator'] = 'Eradicating Bullet'}
+
+rema_ranged_weapons_ammo_pouch = {
+	['Fomalhaut'] = 'Chr. Bul. Pouch',
+	['Death Penalty'] = 'Liv. Bul. Pouch',
+	['Armageddon'] = 'Dev. Bul. Pouch',
+	['Fail-Not'] = 'Chrono Quiver',
+	['Gandiva'] = "Artemis's Quiver",
+	['Gastraphetes'] = "Quelling B. Quiver",
+	['Yoichinoyumi'] = "Yoichi's Quiver",
+	['Annihilator'] = 'Era. Bul. Pouch'}
 
 elemental_obi_weaponskills = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight','Tachi: Jinpu','Flash Nova'}
 

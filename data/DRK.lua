@@ -103,47 +103,43 @@ end
 function job_post_precast(spell, spellMap, eventArgs)
 	
 	if spell.type == 'WeaponSkill' then
-	
-		local WSset = get_precast_set(spell, spellMap)
-		if not WSset.ear1 then WSset.ear1 = WSset.left_ear or '' end
-		if not WSset.ear2 then WSset.ear2 = WSset.right_ear or '' end
-		
+
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
 		local wsacc = check_ws_acc()
 		
-        -- Replace Moonshade Earring if we're at cap TP
-		if player.tp > 2950 and (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
-			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
-				if not sets.AccMaxTP.ear1 then sets.AccMaxTP.ear1 = sets.AccMaxTP.left_ear or '' end
-				if not sets.AccMaxTP.ear2 then sets.AccMaxTP.ear2 = sets.AccMaxTP.right_ear or '' end
-				if (sets.AccMaxTP.ear1:startswith("Lugra Earring") or sets.AccMaxTP.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
-					equip(sets.AccDayMaxTPWSEars)
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
+					local AccMaxTPset = standardize_set(sets.AccMaxTP)
+
+					if (AccMaxTPset.ear1:startswith("Lugra Earring") or AccMaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
+						equip(sets.AccDayMaxTPWSEars)
+					else
+						equip(sets.AccMaxTP)
+					end
+				elseif sets.MaxTP then
+					local MaxTPset = standardize_set(sets.MaxTP)
+					if (MaxTPset.ear1:startswith("Lugra Earring") or MaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
+						equip(sets.DayMaxTPWSEars)
+					else
+						equip(sets.MaxTP)
+					end
 				else
-					equip(sets.AccMaxTP)
-				end
-			elseif sets.MaxTP then
-				if not sets.MaxTP.ear1 then sets.MaxTP.ear1 = sets.MaxTP.left_ear or '' end
-				if not sets.MaxTP.ear2 then sets.MaxTP.ear2 = sets.MaxTP.right_ear or '' end
-				if (sets.MaxTP.ear1:startswith("Lugra Earring") or sets.MaxTP.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
-					equip(sets.DayMaxTPWSEars)
-				else
-					equip(sets.MaxTP)
 				end
 			else
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayWSEars then
+					equip(sets.AccDayWSEars)
+				elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayWSEars then
+					equip(sets.DayWSEars)
+				end
 			end
-		else
-			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayWSEars then
-				equip(sets.AccDayWSEars)
-			elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayWSEars then
-				equip(sets.DayWSEars)
+			
+			if state.Buff.Souleater then   
+					equip(sets.buff.Souleater)
 			end
 		end
-		
-		if state.DefenseMode.current == 'None' and state.Buff.Souleater then   
-				equip(sets.buff.Souleater)
-		end
-	
 	end
-	
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)

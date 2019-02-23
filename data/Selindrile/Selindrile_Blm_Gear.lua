@@ -101,9 +101,11 @@ function init_gear_sets()
 		back=gear.nuke_jse_back,waist="Fotia Belt",legs="Hagondes Pants +1",feet=gear.merlinic_nuke_feet}
 
     sets.precast.WS['Myrkr'] = {ammo="Staunch Tathlum",
-		head="Pixie Hairpin +1",neck="Sanctity Necklace",ear1="Evans Earring",ear2="Etiolation Earring",
+		head="Pixie Hairpin +1",neck="Sanctity Necklace",ear1="Moonshade Earring",ear2="Etiolation Earring",
 		body="Amalric Doublet",hands="Regal Cuffs",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
 		back="Aurist's Cape +1",waist="Yamabuki-no-Obi",legs="Psycloth Lappas",feet="Medium's Sabots"}
+		
+	sets.MaxTPMyrkr = {ear1="Evans Earring",ear2="Etiolation Earring"}
     
     
     ---- Midcast Sets ----

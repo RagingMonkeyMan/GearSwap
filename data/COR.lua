@@ -124,12 +124,10 @@ function job_aftercast(spell, spellMap, eventArgs)
     if spell.type == 'CorsairRoll' and not spell.interrupted then
 		if state.CompensatorMode.value ~= 'Never' then
 			if ((player.equipment.range and player.equipment.range == 'Compensator') or (player.equipment.ranged and player.equipment.ranged == 'Compensator')) and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range and sets.weapons[state.Weapons.value].range ~= 'Compensator' then
-				enable('range')
 				equip({range=sets.weapons[state.Weapons.value].range})
 				disable('range')
 			end
-			if (player.equipment.main and player.equipment.main == 'Rostam') and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main and sets.weapons[state.Weapons.value].main ~= 'Rostam' then
-				enable('main')
+			if (player.equipment.main and player.equipment.main == 'Rostam') and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main and sets.weapons[state.Weapons.value].main ~= sets.precast.CorsairRoll.main then
 				equip({main=sets.weapons[state.Weapons.value].main})
 				disable('main')
 			end
@@ -173,14 +171,27 @@ end
 
 function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' then
-        -- Replace Moonshade Earring if we're at cap TP
-        if player.tp == 3000 and moonshade_ws:contains(spell.english) then
-			if check_ws_acc():contains('Acc') then
-				if sets.AccMaxTP then
-					equip(sets.AccMaxTP)
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		local wsacc = check_ws_acc()
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if spell.skill == 26 then
+					if wsacc:contains('Acc') and sets.RangedAccMaxTP then
+						equip(sets.RangedAccMaxTP)
+					elseif sets.RangedMaxTP then
+						equip(sets.RangedMaxTP)
+					else
+					end
+				else
+					if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
+						equip(sets.AccMaxTP)
+					elseif sets.MaxTP then
+						equip(sets.MaxTP)
+					else
+					end
 				end
-			elseif sets.MaxTP then
-					equip(sets.MaxTP)
 			end
 		end
 	elseif spell.type == 'CorsairShot' and not (spell.english == 'Light Shot' or spell.english == 'Dark Shot') then
@@ -204,9 +215,10 @@ function job_post_precast(spell, spellMap, eventArgs)
 				enable('range')
 				equip({range="Compensator"})
 			end
-			if item_available("Rostam") then
+			local RollSet = standardize_set(sets.precast.CorsairRoll)
+			if RollSet.main == 'Rostam' then
 				enable('main')
-				equip({main="Rostam"})
+				equip({main=sets.precast.CorsairRoll.main})
 			end
 		end
     elseif spell.english == 'Fold' and buffactive['Bust'] == 2 and sets.precast.FoldDoubleBust then

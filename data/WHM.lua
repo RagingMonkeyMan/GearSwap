@@ -75,7 +75,16 @@ function job_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-
+	if spell.type == 'WeaponSkill' then
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if spell.english == 'Myrkr' and get_effective_player_tp(spell, WSset) > 3200 and sets.MaxTPMyrkr then
+				equip(sets.MaxTPMyrkr)
+			end
+		end
+	end
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)

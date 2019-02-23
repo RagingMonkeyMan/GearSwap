@@ -117,25 +117,30 @@ function job_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-    if spell.type == "WeaponSkill" then
-        if state.Buff['Climactic Flourish'] then
+	if spell.type == 'WeaponSkill' then
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		local wsacc = check_ws_acc()
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
+					equip(sets.AccMaxTP)
+				elseif sets.MaxTP then
+					equip(sets.MaxTP)
+				else
+				end
+			end
+		end
+--[[
+		if state.Buff['Building Flourish'] and sets.buff['Building Flourish'] then
+			equip(sets.buff['Building Flourish'])
+		end
+]]
+        if state.Buff['Climactic Flourish'] and sets.buff['Climactic Flourish'] then
             equip(sets.buff['Climactic Flourish'])
         end
-
-		-- Replace Moonshade Earring if we're at cap TP
-        if player.tp == 3000 and moonshade_ws:contains(spell.english) then
-			if check_ws_acc():contains('Acc') then
-				if sets.AccMaxTP then
-					equip(sets.AccMaxTP)
-				end
-						
-			elseif sets.MaxTP then
-					equip(sets.MaxTP)
-			end
-
-		end
-    end
-	
+	end
 end
 
 -- Return true if we handled the aftercast work.  Otherwise it will fall back

@@ -56,13 +56,14 @@ function init_gear_sets()
 
 	sets.precast.FC.SongDebuff = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
 	sets.precast.FC.SongDebuff.Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
-	sets.precast.FC['Magic Finale'] = set_combine(sets.precast.FC.BardSong,{range="Linos"})
-	sets.precast.FC['Horde Lullaby'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
-	sets.precast.FC['Horde Lullaby'].Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
-	sets.precast.FC['Horde Lullaby'].AoE = set_combine(sets.precast.FC.BardSong,{range="Terpander"})
-	sets.precast.FC['Horde Lullaby II'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
-	sets.precast.FC['Horde Lullaby II'].Resistant = set_combine(sets.precast.FC.BardSong,{range="Linos"})
-	sets.precast.FC['Horde Lullaby II'].AoE = set_combine(sets.precast.FC.BardSong,{range="Terpander"})
+	sets.precast.FC.Lullaby = {range="Marsyas"}
+	sets.precast.FC.Lullaby.Resistant = {range="Linos"}
+	sets.precast.FC['Horde Lullaby'] = {range="Marsyas"}
+	sets.precast.FC['Horde Lullaby'].Resistant = {range="Linos"}
+	sets.precast.FC['Horde Lullaby'].AoE = {range="Terpander"}
+	sets.precast.FC['Horde Lullaby II'] = {range="Marsyas"}
+	sets.precast.FC['Horde Lullaby II'].Resistant = {range="Linos"}
+	sets.precast.FC['Horde Lullaby II'].AoE = {range="Terpander"}
 		
 	sets.precast.FC.Mazurka = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
 	sets.precast.FC['Honor March'] = set_combine(sets.precast.FC.BardSong,{range="Marsyas"})
@@ -102,9 +103,10 @@ function init_gear_sets()
 		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
 		back="Intarabus's Cape",waist="Witful Belt",legs="Aya. Cosciales +2",feet="Gende. Galosh. +1"}
 
-	-- Gear to enhance certain classes of songs.  No instruments added here since Gjallarhorn is being used.
+	-- Gear to enhance certain classes of songs
 	sets.midcast.Ballad = {legs="Fili Rhingrave +1"}
-	sets.midcast.Lullaby = {}
+	sets.midcast.Lullaby = {range="Marsyas"}
+	sets.midcast.Lullaby.Resistant = {range="Linos"}
 	sets.midcast['Horde Lullaby'] = {range="Marsyas"}
 	sets.midcast['Horde Lullaby'].Resistant = {range="Linos"}
 	sets.midcast['Horde Lullaby'].AoE = {range="Terpander"}

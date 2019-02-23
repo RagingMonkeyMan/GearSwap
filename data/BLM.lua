@@ -85,6 +85,15 @@ function job_post_precast(spell, spellMap, eventArgs)
 
 	if spell.action_type == 'Magic' and state.DeathMode.value ~= 'Off' then
 		equip(sets.precast.FC.Death)
+	elseif spell.type == 'WeaponSkill' then
+		local WSset = standardize_set(get_precast_set(spell, spellMap))
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if spell.english == 'Myrkr' and get_effective_player_tp(spell, WSset) > 3200 and sets.MaxTPMyrkr then
+				equip(sets.MaxTPMyrkr)
+			end
+		end
 	end
 	
 	if state.Buff['Mana Wall'] and (state.IdleMode.value:contains('DT') or state.DefenseMode.value ~= 'None') then

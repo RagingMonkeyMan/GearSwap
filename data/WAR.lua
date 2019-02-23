@@ -94,39 +94,40 @@ end
 
 -- Run after the general precast() is done.
 function job_post_precast(spell, spellMap, eventArgs)
-
 	if spell.type == 'WeaponSkill' then
 
 		local WSset = standardize_set(get_precast_set(spell, spellMap))
 		local wsacc = check_ws_acc()
+		
+		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
+			-- Replace Moonshade Earring if we're at cap TP
+			if get_effective_player_tp(spell, WSset) > 3200 then
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
+					local AccMaxTPset = standardize_set(sets.AccMaxTP)
 
-        -- Replace Moonshade Earring if we're at cap TP
-		if get_effective_player_tp(WSset) > 3200 and (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
-			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
-				local AccMaxTPset = standardize_set(sets.AccMaxTP)
-
-				if (AccMaxTPset.ear1:startswith("Lugra Earring") or AccMaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
-					equip(sets.AccDayMaxTPWSEars)
+					if (AccMaxTPset.ear1:startswith("Lugra Earring") or AccMaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
+						equip(sets.AccDayMaxTPWSEars)
+					else
+						equip(sets.AccMaxTP)
+					end
+				elseif sets.MaxTP then
+					local MaxTPset = standardize_set(sets.MaxTP)
+					if (MaxTPset.ear1:startswith("Lugra Earring") or MaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
+						equip(sets.DayMaxTPWSEars)
+					else
+						equip(sets.MaxTP)
+					end
 				else
-					equip(sets.AccMaxTP)
-				end
-			elseif sets.MaxTP then
-				local MaxTPset = standardize_set(sets.MaxTP)
-				if (MaxTPset.ear1:startswith("Lugra Earring") or MaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
-					equip(sets.DayMaxTPWSEars)
-				else
-					equip(sets.MaxTP)
 				end
 			else
-			end
-		else
-			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayWSEars then
-				equip(sets.AccDayWSEars)
-			elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayWSEars then
-				equip(sets.DayWSEars)
+				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayWSEars then
+					equip(sets.AccDayWSEars)
+				elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayWSEars then
+					equip(sets.DayWSEars)
+				end
 			end
 		end
-
+		
 		if wsacc:contains('Acc') and not buffactive['Sneak Attack'] then
 			if state.Buff.Charge and state.Buff.Mighty and sets.ACCWSMightyCharge then
 				equip(sets.ACCWSMightyCharge)
