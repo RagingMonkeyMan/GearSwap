@@ -587,41 +587,13 @@ function set_macro_page(set,book)
 end
 
 
--------------------------------------------------------------------------------------------------------------------
--- Utility functions for including local user files.
--------------------------------------------------------------------------------------------------------------------
-
--- Attempt to load user gear files in place of default gear sets.
--- Return true if one exists and was loaded.
-function load_sidecar(job)
-    if not job then return false end
-    
-    -- filename format example for user-local files: whm_gear.lua, or playername_whm_gear.lua
-    local filenames = {player.name..'_'..job..'_gear.lua', job..'_gear.lua',
-        'gear/'..player.name..'_'..job..'_gear.lua', 'gear/'..job..'_gear.lua',
-        'gear/'..player.name..'_'..job..'.lua', 'gear/'..job..'.lua'}
-    return optional_include(filenames)
-end
-
--- Attempt to include user-globals.  Return true if it exists and was loaded.
-function load_user_globals()
-    local filenames = {player.name..'-globals.lua', 'user-globals.lua'}
-    return optional_include(filenames)
-end
-
--- Optional version of include().  If file does not exist, does not
--- attempt to load, and does not throw an error.
--- filenames takes an array of possible file names to include and checks
--- each one.
-function optional_include(filenames)
-    for _,v in pairs(filenames) do
-        local path = gearswap.pathsearch({v})
-        if path then
-            include(v)
-            return true
-		else
-			return false
-        end
+-- Function for optionally including files if they exist.
+function optional_include(filename)
+	local path = gearswap.pathsearch({filename})
+	if path then
+		include(filename)
+	else
+		return false
     end
 end
 
