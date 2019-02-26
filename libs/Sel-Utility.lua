@@ -993,9 +993,10 @@ function check_midaction(spell, spellMap, eventArgs)
 		if eventArgs then
 			eventArgs.cancel = true
 			if delayed_cast == '' then
-				delayed_cast = spell.english
-				windower.send_command:schedule((next_cast - os.clock()),'"'..delayed_cast..'" '..spell.target.raw..'')
+				windower.send_command:schedule((next_cast - os.clock()),'gs c delayedcast')
 			end
+			delayed_cast = spell.english
+			delayed_target = spell.target.id
 		end
 		return true
 	else
@@ -2241,8 +2242,12 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
 			end
 		end
 		
-		if moving and state.RngHelper.value then
-			send_command('gs rh clear')
+		if moving then
+			if state.RngHelper.value then
+				send_command('gs rh clear')
+			end
+			
+			if not state.Uninterruptible.value then delayed_cast = '' end
 		end
 		
 		wasmoving = moving

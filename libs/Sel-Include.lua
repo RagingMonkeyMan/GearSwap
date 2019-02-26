@@ -189,6 +189,7 @@ function init_include()
 	lastincombat = player.in_combat
 	next_cast = 0
 	delayed_cast = ''
+	delayed_target = ''
 	
 	time_test = false
 	utsusemi_cancel_delay = .5
@@ -1097,7 +1098,8 @@ function default_aftercast(spell, spellMap, eventArgs)
 	
 	if not spell.interrupted then
 		if delayed_cast == spell.english then
-			delayed_cast = '' 
+			delayed_cast = ''
+			delayed_target = ''
 		end
 		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 			info.tagged_mobs[spell.target.id] = os.time()

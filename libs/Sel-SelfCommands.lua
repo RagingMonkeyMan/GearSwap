@@ -456,6 +456,12 @@ function handle_quietenable(cmdParams)
 	end
 end
 
+function handle_delayedcast()
+	if delayed_cast ~= '' and delayed_target ~= '' then
+		windower.send_command(''..delayed_cast..' '..delayed_target..'')
+	end
+end
+
 function handle_autonuke(cmdParams)
 	if #cmdParams == 0 then
 		add_to_chat(122,'Your must specify a spell to autonuke with.')
@@ -993,4 +999,5 @@ selfCommandMaps = {
 	['mount'] 			= handle_mount,
 	['shadows']			= handle_shadows,
 	['buffup']			= handle_buffup,
+	['delayedcast']		= handle_delayedcast,
 	}
