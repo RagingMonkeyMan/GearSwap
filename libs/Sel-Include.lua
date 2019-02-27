@@ -913,11 +913,11 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 			
 		elseif spell.type == 'WeaponSkill' then
-			
+		
 			if state.WeaponskillMode.value ~= 'Proc' and elemental_obi_weaponskills:contains(spell.name) then
-			
 				local orpheus_avail = item_available("Orpheus's Sash")
 				local hachirin_avail = item_available('Hachirin-no-Obi')
+				
 				if hachirin_avail and spell.element == world.weather_element and gearswap.res.weather[world.weather_id].intensity == 2 then
 					equip({waist="Hachirin-no-Obi"})
 				elseif orpheus_avail and spell.target.distance < (1.7 + spell.target.model_size) then
@@ -926,7 +926,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 					equip({waist="Hachirin-no-Obi"})
 				elseif orpheus_avail and spell.target.distance < (7 + spell.target.model_size) then
 					equip({waist="Orpheus's Sash"})
-				elseif item_available('Hachirin-no-Obi') and spell.element == world.day_element then
+				elseif hachirin_avail and spell.element == world.day_element then
 					equip({waist="Hachirin-no-Obi"})
 				end
 			end
