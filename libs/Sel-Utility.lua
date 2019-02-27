@@ -2308,11 +2308,14 @@ function standardize_set(set)
 	standardized_set.ear1 = standardized_set.ear1 or standardized_set.left_ear or standardized_set.lear or ''
 	standardized_set.ear2 = standardized_set.ear2 or standardized_set.right_ear or standardized_set.rear or ''
 	standardized_set.ring1 = standardized_set.ring1 or standardized_set.left_ring or standardized_set.rring or ''
-	standardized_set.ring2 = standardized_set.ring2 or standardized_set.right_right or standardized_set.lring or ''
+	standardized_set.ring2 = standardized_set.ring2 or standardized_set.right_ring or standardized_set.lring or ''
 	
-	for slot in pairs(standardized_set) do
-		if type(slot) == 'table' and slot.name then slot = slot.name end
-	end
+    for slot, inner in pairs(standardized_set) do
+        if type(inner) == 'table' then
+            standardized_set[slot] = inner.name
+        end
+    end
+
 	return standardized_set
 end
 
