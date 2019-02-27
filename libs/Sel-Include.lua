@@ -924,7 +924,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 					equip({waist="Orpheus's Sash"})
 				elseif hachirin_avail and spell.element and spell.element == world.weather_element then
 					equip({waist="Hachirin-no-Obi"})
-				elseif orpheus_avail and spell.target.distance < (7 + spell.target.model_size) then
+				elseif orpheus_avail and spell.target.distance < (8 + spell.target.model_size) then
 					equip({waist="Orpheus's Sash"})
 				elseif hachirin_avail and spell.element == world.day_element then
 					equip({waist="Hachirin-no-Obi"})
