@@ -928,8 +928,6 @@ function default_post_precast(spell, spellMap, eventArgs)
 					equip({waist="Orpheus's Sash"})
 				elseif item_available('Hachirin-no-Obi') and spell.element == world.day_element then
 					equip({waist="Hachirin-no-Obi"})
-				elseif orpheus_avail then
-					equip({waist="Orpheus's Sash"})
 				end
 			end
 			
