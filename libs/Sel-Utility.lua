@@ -17,7 +17,7 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
         if spell.english == 'Spectral Jig' and buffactive.sneak then
             cast_delay(0.2)
 			send_command('cancel sneak')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
         elseif spell.english == 'Sneak' and spell.target.type == 'SELF' and buffactive.sneak then
             send_command('cancel sneak')
         elseif spell.english == ('Stoneskin') or spell.english == ('Diamondhide') or spell.english == ('Magic Barrier') then
@@ -41,11 +41,11 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
         elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['saber dance'] then
             cast_delay(0.2)
             send_command('cancel saber dance')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.7
         elseif spell.type=='Samba' and buffactive['fan dance'] then
             cast_delay(0.2)
             send_command('cancel fan dance')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.7
         end
     end
 end
@@ -1103,7 +1103,7 @@ function silent_check_silence()
 			elseif player.inventory["Remedy"] then
 				windower.chat.input('/item "Remedy" <me>')
 			end
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
 			return true
 	else
 		return false
@@ -1315,7 +1315,7 @@ function check_nuke()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		if spell_recasts[spell.id] < spell_latency then
 			windower.chat.input('/ma '..autonuke..' <t>')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
 			return true
 		else
 			return false
@@ -1328,7 +1328,7 @@ end
 function check_samba()
 	if not (buffactive['Haste Samba'] or buffactive['Drain Samba'] or buffactive['Aspir Samba']) and windower.ffxi.get_ability_recasts()[216] and windower.ffxi.get_ability_recasts()[216] < latency and state.AutoSambaMode.value ~= 'Off' and player.tp > 400 then
 		windower.chat.input('/ja "'..state.AutoSambaMode.value..'" <me>')
-		tickdelay = (framerate * 1.8)
+		tickdelay = os.clock() + 1.8
 		return true
 	else
 		return false
@@ -1342,11 +1342,11 @@ function check_sub()
 			
 			if available_ws:contains(190) then
 				windower.chat.input('/ws Myrkr <me>')
-				tickdelay = (framerate * 1.5)
+				tickdelay = os.clock() + 1.5
 				return true
 			elseif available_ws:contains(173) then
 				windower.chat.input('/ws Dagan <me>')
-				tickdelay = (framerate * 1.5)
+				tickdelay = os.clock() + 1.5
 				return true
 			end
 		end
@@ -1354,11 +1354,11 @@ function check_sub()
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] < latency then
 				windower.chat.input('/ja Sublimation <me>')
-				tickdelay = (framerate * 1.5)
+				tickdelay = os.clock() + 1.5
 				return true
 			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] < latency then
 				windower.chat.input('/ja Sublimation <me>')
-				tickdelay = (framerate * 1.5)
+				tickdelay = os.clock() + 1.5
 				return true
 			else
 				return false
@@ -1375,11 +1375,11 @@ function check_cleanup()
 	if state.AutoCleanupMode.value then
 		if player.inventory['Bead Pouch'] then
 			send_command('input /item "Bead Pouch" <me>')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		elseif player.inventory['Silt Pouch'] then
 			send_command('input /item "Silt Pouch" <me>')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		end
 
@@ -1412,7 +1412,7 @@ function check_cleanup()
 			if player.inventory['Guide Beret'] then send_command('put "Guide Beret" satchel') moveditem = true end
 		end
 		
-		if moveditem then tickdelay = (framerate * 2.3) return true end
+		if moveditem then tickdelay = os.clock() + 2.3 return true end
 		
 		local shard_name = {'C. Ygg. Shard ','Z. Ygg. Shard ','A. Ygg. Shard ','P. Ygg. Shard '}
 		
@@ -1421,7 +1421,7 @@ function check_cleanup()
 			for sci, scv in ipairs(shard_count) do
 				if player.inventory[snv..''..scv] then
 					send_command('wait 3.0;input /item "'..snv..''..scv..'" <me>')
-					tickdelay = (framerate * 2)
+					tickdelay = os.clock() + 2
 					return true
 				end
 			end
@@ -1441,27 +1441,27 @@ function check_trust()
 		
 			if spell_recasts[979] < spell_latency and not have_trust("Selh'teus") then
 				windower.chat.input('/ma "Selh\'teus" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			elseif spell_recasts[1012] < spell_latency and not have_trust("Nashmeira") then
 				windower.chat.input('/ma "Nashmeira II" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			elseif spell_recasts[1018] < spell_latency and not have_trust("Iroha") then
 				windower.chat.input('/ma "Iroha II" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			elseif spell_recasts[1017] < spell_latency and not have_trust("Arciela") then
 				windower.chat.input('/ma "Arciela II" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			elseif spell_recasts[947] < spell_latency and not have_trust("UkaTotlihn") then
 				windower.chat.input('/ma "Uka Totlihn" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			elseif spell_recasts[1013] < spell_latency and not have_trust("Lilisette") then
 				windower.chat.input('/ma "Lilisette II" <me>')
-				tickdelay = (framerate * 4.5)
+				tickdelay = os.clock() + 4.5
 				return true
 			else
 				return false
@@ -1476,15 +1476,15 @@ function check_auto_tank_ws()
 	if state.AutoWSMode.value and state.AutoTankMode.value and player.target.type == "MONSTER" and not moving and player.status == 'Engaged' and not silent_check_amnesia() then
 		if player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		elseif player.tp > 999 and (buffactive['Aftermath: Lv.3'] or not state.MaintainAftermath.value or not mythic_weapons:contains(player.equipment.main)) then
 			windower.chat.input('/ws "'..autows..'" <t>')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		elseif player.tp == 3000 then
 			windower.chat.input('/ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		else
 			return false
@@ -1497,20 +1497,20 @@ function check_use_item()
 		local CurrentTime = (os.time(os.date('!*t')) + time_offset)
 		if useItemSlot == 'item' and (player.inventory[useItemName] or player.temporary[useItemName]) then
 			windower.chat.input('/item "'..useItemName..'" <me>')
-			tickdelay = (framerate * 3.5)
+			tickdelay = os.clock() + 3.5
 			return true
 		elseif useItemSlot == 'set' then
 			if item_equipped(set_to_item(useItemName)) and get_item_next_use(set_to_item(useItemName)).usable then
 				windower.chat.input('/item "'..set_to_item(useItemName)..'" <me>')
-				tickdelay = (framerate * 3)
+				tickdelay = os.clock() + 3
 				return true
 			elseif item_available(set_to_item(useItemName)) and ((get_item_next_use(set_to_item(useItemName)).next_use_time) - CurrentTime) < 10 then
 				windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
-				tickdelay = (framerate * 2)
+				tickdelay = os.clock() + 2
 				return true
 			elseif player.satchel[set_to_item(useItemName)] then
 				windower.send_command('get "'..set_to_item(useItemName)..'" satchel')
-				tickdelay = (framerate * 2)
+				tickdelay = os.clock() + 2
 				return true
 			else
 				add_to_chat(123,''..set_to_item(useItemName)..' not available or ready for use.')
@@ -1519,15 +1519,15 @@ function check_use_item()
 			end
 		elseif item_equipped(useItemName) and get_item_next_use(useItemName).usable then
 			windower.chat.input('/item "'..useItemName..'" <me>')
-			tickdelay = (framerate * 3)
+			tickdelay = os.clock() + 3
 			return true
 		elseif item_available(useItemName) and ((get_item_next_use(useItemName).next_use_time) - CurrentTime) < 10 then
 			windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		elseif player.satchel[useItemName] then
 			windower.send_command('get '..useItemName..'')
-			tickdelay = (framerate * 2)
+			tickdelay = os.clock() + 2
 			return true
 		else
 			add_to_chat(123,''..useItemName..' not available or ready for use.')
@@ -1545,11 +1545,11 @@ function check_food()
 	
 		if player.inventory[''..autofood..''] then
 			windower.chat.input('/item "'..autofood..'" <me>')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
 			return true
 		elseif player.satchel[''..autofood..''] then
 			windower.send_command('get "'..autofood..'" satchel')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
 			return true
 		else
 			return false
@@ -1568,12 +1568,12 @@ function check_doomed()
 				if player.inventory['Hallowed Water'] then
 					windower.chat.input('/item "Hallowed Water" <me>')
 					add_to_chat(123,'You are doomed, using Hallowed Water.')
-					tickdelay = (framerate * 1.5)
+					tickdelay = os.clock() + 1.5
 					return true
 				elseif player.inventory['Holy Water'] or player.satchel['Holy Water'] then
 					windower.chat.input('/item "Holy Water" <me>')
 					add_to_chat(123,'You are doomed, using Holy Water.')
-					tickdelay = (framerate * 1.5)
+					tickdelay = os.clock() + 1.5
 					return true
 				elseif buffactive.silence then
 						if player.inventory['Echo Drops'] or player.satchel['Echo Drops'] then
@@ -1581,13 +1581,13 @@ function check_doomed()
 						elseif player.inventory["Remedy"] then
 							windower.chat.input('/item "Remedy" <me>')
 						end
-						tickdelay = (framerate * 1.5)
+						tickdelay = os.clock() + 1.5
 						return true
 				end
 			end
 		else
 			windower.chat.input('/ma "Cursna" <me>')
-			tickdelay = (framerate * 1.5)
+			tickdelay = os.clock() + 1.5
 			return true
 		end
 	else
@@ -1603,33 +1603,33 @@ function check_ws()
 		
 		if player.hpp < 41 and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Sanguine Blade" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif player.hpp < 41 and available_ws:contains(105) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Catastrophe" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif player.mpp < 21 and available_ws:contains(109) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Entropy" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif player.mpp < 21 and available_ws:contains(171) and player.target.distance < (3.2 + player.target.model_size) then
 			windower.chat.input('/ws "Mystic Boon" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif player.target.distance > (3.2 + player.target.model_size) and not ranged_weaponskills:contains(autows) then
 			return false
 		elseif player.tp > 999 and relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif (buffactive['Aftermath: Lv.3'] or not state.MaintainAftermath.value or not mythic_weapons:contains(player.equipment.main)) and player.tp >= autowstp then
 			windower.chat.input('/ws "'..autows..'" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		elseif player.tp == 3000 then
 			windower.chat.input('/ws "'..data.weaponskills.mythic[player.equipment.main]..'" <t>')
-			tickdelay = (framerate * 2.8)
+			tickdelay = os.clock() + 2.8
 			return true
 		else
 			return false
@@ -2014,7 +2014,7 @@ function check_ammo()
 			if get_item_next_use(player.equipment.range).usable then
 				windower.chat.input("/item '"..player.equipment.range.."' <me>")
 				add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..player.equipment.range..".")
-				tickdelay = (framerate * 2)
+				tickdelay = os.clock() + 2
 				return true
 			elseif item_available(rema_ranged_weapons_ammo_pouch[player.equipment.range]) then
 				local CurrentTime = (os.time(os.date('!*t')) + time_offset)
@@ -2073,13 +2073,13 @@ function check_rune()
 		if player.main_job == 'RUN' and (not buffactive[state.RuneElement.value] or buffactive[state.RuneElement.value] < 3) then
 			if abil_recasts[92] > 0 then return false end		
 			send_command('input /ja "'..state.RuneElement.value..'" <me>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = os.clock() + 1.8
 			return true
 
 		elseif not buffactive[state.RuneElement.value] or buffactive[state.RuneElement.value] < 2 then
 			if abil_recasts[92] > 0 then return false end		
 			send_command('input /ja "'..state.RuneElement.value..'" <me>')
-			tickdelay = (framerate * 1.8)
+			tickdelay = os.clock() + 1.8
 			return true
 			
 		elseif not player.in_combat then
@@ -2088,18 +2088,18 @@ function check_rune()
 		elseif not buffactive['Pflug'] then
 			if abil_recasts[59] < latency then
 				send_command('input /ja "Pflug" <me>')
-				tickdelay = (framerate * 1.8)
+				tickdelay = os.clock() + 1.8
 				return true
 			end
 			
 		elseif not (buffactive['Vallation'] or buffactive['Valiance']) then
 			if player.main_job == 'RUN' and abil_recasts[113] < latency then
 				send_command('input /ja "Valiance" <me>')
-				tickdelay = (framerate * 2.5)
+				tickdelay = os.clock() + 2.5
 				return true
 			elseif abil_recasts[23] < latency then
 				send_command('input /ja "Vallation" <me>')
-				tickdelay = (framerate * 2.5)
+				tickdelay = os.clock() + 2.5
 				return true
 			else
 				return false

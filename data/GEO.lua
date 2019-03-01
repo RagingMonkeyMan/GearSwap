@@ -443,24 +443,24 @@ function check_geo()
 	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
 		if not player.indi and autoindi ~= 'None' then
 			windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
-			tickdelay = (framerate * 2.1)
+			tickdelay = os.clock() + 2.1
 			return true
 		elseif autoentrust ~= 'None' and windower.ffxi.get_ability_recasts()[93] < latency and (player.in_combat or state.CombatEntrustOnly.value == false) then
 			send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..autoentrustee)
-			tickdelay = (framerate * 3.5)
+			tickdelay = os.clock() + 3.5
 			return true
 		elseif pet.isvalid then
 			local pet = windower.ffxi.get_mob_by_target("pet")
 			if pet.distance:sqrt() > 50 then --If pet is greater than detectable.
 				windower.chat.input('/ja "Full Circle" <me>')
-				tickdelay = (framerate * 1.8)
+				tickdelay = os.clock() + 1.8
 				return true
 			else
 				return false
 			end
 		elseif not pet.isvalid and autogeo ~= 'None' and (windower.ffxi.get_mob_by_target('bt') or geo_buffs:contains(autogeo)) then
 			windower.chat.input('/ma "Geo-'..autogeo..'" <bt>')
-			tickdelay = (framerate * 3.1)
+			tickdelay = os.clock() + 3.1
 			return true
 		else
 			return false
@@ -555,7 +555,7 @@ function check_buff()
 		for i in pairs(buff_spell_lists['Auto']) do
 			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
-				tickdelay = (framerate * 2)
+				tickdelay = os.clock() + 2
 				return true
 			end
 		end
@@ -585,7 +585,7 @@ function check_buffup()
 		for i in pairs(buff_spell_lists[buffup]) do
 			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
 				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
-				tickdelay = (framerate * 2)
+				tickdelay = os.clock() + 2
 				return true
 			end
 		end

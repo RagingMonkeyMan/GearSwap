@@ -269,9 +269,7 @@ function init_include()
 	
 	-- Controls for handling our autmatic functions.
 	
-	if tickdelay ~= 0 then
-		tickdelay = (framerate * 3)
-	end
+	tickdelay = os.clock() + 5
 	
 	if spell_latency == nil then
 		spell_latency = (latency + .05)
@@ -347,7 +345,7 @@ function init_include()
 
 	-- Event register to prevent auto-modes from spamming after zoning.
 	windower.register_event('zone change', function()
-		tickdelay = (framerate * 10)
+		tickdelay = os.clock() + 10
 		state.AutoBuffMode:reset()
 		state.AutoSubMode:reset()
 		state.AutoTrustMode:reset()
@@ -373,10 +371,8 @@ function init_include()
 
 	-- New implementation of tick.
 	windower.raw_register_event('prerender', function()
-		tickdelay = tickdelay - 1
-
-		if not (tickdelay <= 0) then return end
-
+		if not (os.clock() > tickdelay) then return end
+		
 		gearswap.refresh_globals(false)
 		
 		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
@@ -407,9 +403,10 @@ function init_include()
 			if extra_user_tick then
 				if extra_user_tick() then return end
 			end
-
-			tickdelay = (framerate / 4)
+			
 		end
+
+		tickdelay = os.clock() + .5
 		
 		if lastincombat == true and not player.in_combat and being_attacked then
 			being_attacked = false
@@ -418,9 +415,6 @@ function init_include()
 			end
 		end			
 		lastincombat = player.in_combat
-
-		tickdelay = (framerate / 2)
-
 	end)
 	
     -- Load up all the gear sets.
@@ -882,25 +876,19 @@ function default_precast(spell, spellMap, eventArgs)
 	end
 	
 	if spell.action_type == 'Magic' then
-		if tickdelay < (framerate * 3) then tickdelay = (framerate * 3) end
 		next_cast = os.clock() + 3.5 - latency
 	elseif spell.type == 'WeaponSkill' then
-		if tickdelay < (framerate * 2.8) then tickdelay = (framerate * 2.8) end
 		next_cast = os.clock() + 2.5 - latency
 	elseif spell.action_type == 'Ability' then
-		if tickdelay < (framerate * .75) then tickdelay = (framerate * .75) end
 		next_cast = os.clock() + .75 - latency
 	elseif spell.action_type == 'Item' then
-		if tickdelay < (framerate * 1.5) then tickdelay = (framerate * 1.5) end
 		next_cast = os.clock() + 1.35 - latency
 	elseif spell.action_type == 'Ranged Attack' then
-		if tickdelay < (framerate * 1.3) then tickdelay = (framerate * 1.3) end
 		next_cast = os.clock() + 1.05 - latency
 	end
 	
-	if areas.LaggyZones:contains(world.area) then
-		next_cast = next_cast - .25
-	end
+	if tickdelay < next_cast then tickdelay = next_cast end
+	if areas.LaggyZones:contains(world.area) then next_cast = next_cast - .25 end
 end
 
 function default_post_precast(spell, spellMap, eventArgs)
@@ -1082,28 +1070,23 @@ end
 function default_aftercast(spell, spellMap, eventArgs)
 	if spell.interrupted then
 		if spell.type:contains('Magic') then
-			if tickdelay < (framerate * 2.5) then tickdelay = (framerate * 2.5) end
 			next_cast = os.clock() + 3 - latency
 		else
-			if tickdelay < (framerate * 1) then tickdelay = (framerate * 1) end
 			next_cast = os.clock() + 1.75 - latency
 		end
 	elseif spell.action_type == 'Magic' then
-		if tickdelay < (framerate * 2.95) then tickdelay = (framerate * 2.95) end
 		next_cast = os.clock() + 3.45 - latency
 	elseif spell.type == 'WeaponSkill' then
-		if tickdelay < (framerate * 2.7) then tickdelay = (framerate * 2.7) end
 		next_cast = os.clock() + 2 - latency
 	elseif spell.action_type == 'Ability' then
-		if tickdelay < (framerate * .75) then tickdelay = (framerate * .75) end
 		next_cast = os.clock() + .75 - latency
 	elseif 	spell.action_type == 'Item' then
-		if tickdelay < (framerate * .5) then tickdelay = (framerate * .5) end
 		next_cast = os.clock() + .85 - latency
 	elseif spell.action_type == 'Ranged Attack' then
-		if tickdelay < (framerate * 1) then tickdelay = (framerate * 1) end
 		next_cast = os.clock() + .85 - latency
 	end
+	
+	if tickdelay < next_cast then tickdelay = next_cast end
 	
 	if areas.LaggyZones:contains(world.area) then
 		next_cast = next_cast - .25
