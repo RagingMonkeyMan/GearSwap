@@ -86,7 +86,7 @@ function init_gear_sets()
         head="Amalric Coif +1",neck="Voltsurge Torque",ear1="Enchanter Earring +1",ear2="Loquacious Earring",
         body=gear.merlinic_nuke_body,hands="Volte Gloves",ring1="Mephitas's Ring +1",ring2="Lebeche Ring",
         back="Perimede Cape",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
-		
+
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {ammo="Dosis Tathlum",

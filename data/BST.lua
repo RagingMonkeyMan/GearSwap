@@ -358,7 +358,10 @@ end
 -- Return true if we handled the aftercast work.  Otherwise it will fall back
 -- to the general aftercast() code in Mote-Include.
 function job_aftercast(spell, spellMap, eventArgs)
-	if pet_midaction() or (type(spell.type) == 'string' and (spell.type == 'Monster' or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast')) then
+	if type(spell.type) == 'string' and spell.type == 'Monster' and state.DefenseMode.value == 'None' then
+		equip(get_pet_midcast_set(spell, spellMap))
+		eventArgs.handled = true
+	elseif pet_midaction() or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
 		eventArgs.handled = true
 	end
 end

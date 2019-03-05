@@ -1150,7 +1150,9 @@ function default_aftercast(spell, spellMap, eventArgs)
 end
 
 function default_pet_midcast(spell, spellMap, eventArgs)
-    equip(get_pet_midcast_set(spell, spellMap))
+	if not (type(spell.type) == 'string' and (spell.type:startswith('BloodPact') or spell.type == 'Monster')) then
+		equip(get_pet_midcast_set(spell, spellMap))
+	end
 end
 
 function default_pet_aftercast(spell, spellMap, eventArgs)

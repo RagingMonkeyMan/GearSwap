@@ -212,76 +212,71 @@ end
 
 function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
-        if state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
+		if state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
         elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
             state.MagicBurstMode:reset()
 			if state.DisplayMode.value then update_job_states()	end
-		elseif pet_midaction() or (type(spell.type) == 'string' and(spell.type:startswith('BloodPact') or avatars:contains(spell.english))) then
+		elseif type(spell.type) == 'string' and spell.type:startswith('BloodPact') and state.DefenseMode.value == 'None' then
+			if ConduitLocked and ConduitLocked ~= spell.english then
+				ConduitLocked = nil
+				if state.Weapons.value == 'None' then
+					enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+				else
+					enable('range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+				end
+			end
+			windower.add_to_chat(123,'yolo')
+			equip(get_pet_midcast_set(spell, spellMap))
+			if state.Buff['Aftermath: Lv.3'] then
+				if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].AM then
+					equip(sets.midcast.Pet[spell.english].AM)
+				elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.AM then
+					equip(sets.midcast.Pet.PhysicalBloodPactRage.AM)
+				end
+			end
+
+			if state.CastingMode.value == 'Resistant' then
+				if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].Acc then
+					equip(sets.midcast.Pet[spell.english].Acc)
+				elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.Acc then
+					equip(sets.midcast.Pet.PhysicalBloodPactRage.Acc)
+				elseif spellMap == 'MagicalBloodPactRage' and sets.midcast.Pet.MagicalBloodPactRage.Acc then
+						equip(sets.midcast.Pet.MagicalBloodPactRage.Acc)
+				end
+			end
+			
+			if spellMap == 'PhysicalBloodPactRage' then
+				if sets.midcast.Pet.PhysicalBloodPactRage[pet.name] then
+					equip(sets.midcast.Pet.PhysicalBloodPactRage[pet.name])
+				end
+			elseif spellMap == 'MagicalBloodPactRage' then
+				if sets.midcast.Pet.MagicalBloodPactRage[pet.name] then
+					equip(sets.midcast.Pet.MagicalBloodPactRage[pet.name])
+				end
+			elseif spellMap == 'DebuffBloodPactWard' then
+				if sets.midcast.Pet.BloodPactWard[pet.name] then
+					equip(sets.midcast.Pet.BloodPactWard[pet.name])
+				end
+			end	
+			
+			if state.Buff['Astral Conduit'] and ConduitLock and ConduitLocked == nil then
+				ConduitLocked = spell.english
+				disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+				add_to_chat(217, "Astral Conduit on, locking your "..spell.english.." set.")
+			end
+			eventArgs.handled = true
+		elseif pet_midaction() or avatars:contains(spell.english) then
 			eventArgs.handled = true
         end
     end
-end
-
-function pet_action(spell, spellMap, eventArgs)
-
-end
-
-function job_post_pet_midcast(spell, spellMap, eventArgs)--override equip sets for bloodpacts without lots of messy sets
-
-	if ConduitLocked and ConduitLocked ~= spell.english then
-		ConduitLocked = nil
-		if state.Weapons.value == 'None' then
-			enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		else
-			enable('range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		end
-	end
-
-	if state.Buff['Aftermath: Lv.3'] then
-		if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].AM then
-			equip(sets.midcast.Pet[spell.english].AM)
-		elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.AM then
-			equip(sets.midcast.Pet.PhysicalBloodPactRage.AM)
-		end
-	end
-
-	if state.CastingMode.value == 'Resistant' then
-		if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].Acc then
-			equip(sets.midcast.Pet[spell.english].Acc)
-		elseif spellMap == 'PhysicalBloodPactRage' and sets.midcast.Pet.PhysicalBloodPactRage.Acc then
-			equip(sets.midcast.Pet.PhysicalBloodPactRage.Acc)
-		elseif spellMap == 'MagicalBloodPactRage' and sets.midcast.Pet.MagicalBloodPactRage.Acc then
-				equip(sets.midcast.Pet.MagicalBloodPactRage.Acc)
-		end
-	end
-	
-	if spellMap == 'PhysicalBloodPactRage' then
-		if sets.midcast.Pet.PhysicalBloodPactRage[pet.name] then
-			equip(sets.midcast.Pet.PhysicalBloodPactRage[pet.name])
-		end
-	elseif spellMap == 'MagicalBloodPactRage' then
-		if sets.midcast.Pet.MagicalBloodPactRage[pet.name] then
-			equip(sets.midcast.Pet.MagicalBloodPactRage[pet.name])
-		end
-	elseif spellMap == 'DebuffBloodPactWard' then
-		if sets.midcast.Pet.BloodPactWard[pet.name] then
-			equip(sets.midcast.Pet.BloodPactWard[pet.name])
-		end
-	end	
-	
-	if state.Buff['Astral Conduit'] and ConduitLock and ConduitLocked == nil then
-		ConduitLocked = spell.english
-		disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		add_to_chat(217, "Astral Conduit on, locking your "..spell.english.." set.")
-	end
 end
 
 -- Runs when pet completes an action.
 function job_pet_aftercast(spell, spellMap, eventArgs)
 	if state.PactSpamMode.value == true and spell.type == 'BloodPactRage'then
 		abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[173] < latency then
+		if abil_recasts[173] == 0 then
 			windower.chat.input('/pet "'..spell.name..'" <t>')
 		end
 	end
