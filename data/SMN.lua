@@ -226,7 +226,6 @@ function job_aftercast(spell, spellMap, eventArgs)
 					enable('range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
 				end
 			end
-			windower.add_to_chat(123,'yolo')
 			equip(get_pet_midcast_set(spell, spellMap))
 			if state.Buff['Aftermath: Lv.3'] then
 				if sets.midcast.Pet[spell.english] and sets.midcast.Pet[spell.english].AM then
