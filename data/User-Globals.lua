@@ -1,1 +1,0 @@
---Place for settings and custom functions to work across all characters, all jobs.
