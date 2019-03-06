@@ -506,7 +506,7 @@ end
 
 buff_spell_lists = {
 	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
-		{Name='Reraise III',	Buff='Reraise',		SpellID=142,	When='Always'},
+		{Name='Reraise IV',		Buff='Reraise',		SpellID=848,	When='Always'},
 		{Name='Haste',			Buff='Haste',		SpellID=57,		When='Always'},
 		{Name='Aurorastorm',	Buff='Aurorastorm',	SpellID=119,	When='Always'},
 		{Name='Refresh',		Buff='Refresh',		SpellID=109,	When='Always'},
@@ -514,7 +514,7 @@ buff_spell_lists = {
 	},
 	
 	Default = {
-		{Name='Reraise III',	Buff='Reraise',		SpellID=142,	Reapply=false},
+		{Name='Reraise IV',		Buff='Reraise',		SpellID=848,	Reapply=false},
 		{Name='Haste',			Buff='Haste',		SpellID=57,		Reapply=false},
 		{Name='Aquaveil',		Buff='Aquaveil',	SpellID=55,		Reapply=false},
 		{Name='Stoneskin',		Buff='Stoneskin',	SpellID=54,		Reapply=false},
@@ -526,5 +526,13 @@ buff_spell_lists = {
 		{Name='Protectra V',	Buff='Protect',		SpellID=129,	Reapply=false},
 		{Name='Barthundra',		Buff='Barthunder',	SpellID=70,		Reapply=false},
 		{Name='Barparalyzra',	Buff='Barparalyze',	SpellID=88,		Reapply=false},
+	},
+	Melee = {
+		{Name='Reraise IV',		Buff='Reraise',		SpellID=848,	Reapply=false},
+		{Name='Haste',			Buff='Haste',		SpellID=57,		Reapply=false},
+		{Name='Boost-STR',		Buff='STR Boost',	SpellID=479,	Reapply=false},
+		{Name='Shellra V',		Buff='Shell',		SpellID=134,	Reapply=false},
+		{Name='Protectra V',	Buff='Protect',		SpellID=129,	Reapply=false},
+		{Name='Auspice',		Buff='Auspice',		SpellID=96,		Reapply=false},
 	},
 }
