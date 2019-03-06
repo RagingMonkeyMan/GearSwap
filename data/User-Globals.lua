@@ -1,6 +1,6 @@
 --Place for settings and custom functions to work across all characters, all jobs.
 
---Time Related Settings
+--Time Related Settings:
 --To determine your offset the first time, uncomment time_offset and set time_test to true,
 --Once you see delay numbers start spamming your chat, (Must be outside of town.)
 --(Also you can't have Commitment or Dedication Buffs) then Equip to ring1 and use "Capacity Ring",
