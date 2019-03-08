@@ -127,7 +127,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 				equip({range=sets.weapons[state.Weapons.value].range})
 				disable('range')
 			end
-			if (player.equipment.main and player.equipment.main == 'Rostam') and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main and sets.weapons[state.Weapons.value].main ~= sets.precast.CorsairRoll.main then
+			if (sets.precast.CorsairRoll.main and sets.precast.CorsairRoll.main == player.equipment.main) and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main and sets.weapons[state.Weapons.value].main ~= sets.precast.CorsairRoll.main then
 				equip({main=sets.weapons[state.Weapons.value].main})
 				disable('main')
 			end
@@ -222,8 +222,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 				enable('range')
 				equip({range="Compensator"})
 			end
-			local RollSet = standardize_set(sets.precast.CorsairRoll)
-			if RollSet.main == 'Rostam' then
+			if sets.precast.CorsairRoll.main and sets.precast.CorsairRoll.main ~= player.equipment.main then
 				enable('main')
 				equip({main=sets.precast.CorsairRoll.main})
 			end
