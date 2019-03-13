@@ -36,10 +36,10 @@ function user_setup()
 	send_command('bind ^@!\\\\ gs c toggle LuzafRing')
 	send_command('bind @f7 gs c toggle RngHelper')
 
-	send_command('bind !r gs c weapons SingleWeapon;gs c update')
+	send_command('bind !r gs c weapons DualSavageWeapons;gs c update')
 	send_command('bind @q gs c weapons MaccWeapons;gs c update')
-	send_command('bind ^q gs c weapons DualRangedWeapons;gs c update')
-	send_command('bind !q gs c weapons SavageWeapons;gs c update')
+	send_command('bind ^q gs c weapons DualKustawi;gs c update')
+	send_command('bind !q gs c weapons DualLeadenRanged;gs c update')
 	send_command('bind @pause roller roll')
 
     select_default_macro_book()
