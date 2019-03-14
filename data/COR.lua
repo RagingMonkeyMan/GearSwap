@@ -123,11 +123,11 @@ end
 function job_aftercast(spell, spellMap, eventArgs)
     if spell.type == 'CorsairRoll' and not spell.interrupted then
 		if state.CompensatorMode.value ~= 'Never' then
-			if ((player.equipment.range and player.equipment.range == 'Compensator') or (player.equipment.ranged and player.equipment.ranged == 'Compensator')) and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range and sets.weapons[state.Weapons.value].range ~= 'Compensator' then
+			if (player.equipment.range and player.equipment.range == 'Compensator') and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range then
 				equip({range=sets.weapons[state.Weapons.value].range})
 				disable('range')
 			end
-			if (sets.precast.CorsairRoll.main and sets.precast.CorsairRoll.main == player.equipment.main) and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main and sets.weapons[state.Weapons.value].main ~= sets.precast.CorsairRoll.main then
+			if sets.precast.CorsairRoll.main and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main then
 				equip({main=sets.weapons[state.Weapons.value].main})
 				disable('main')
 			end
