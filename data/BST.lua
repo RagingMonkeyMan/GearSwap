@@ -287,24 +287,24 @@ function job_post_precast(spell, spellMap, eventArgs)
 					local AccMaxTPset = standardize_set(sets.AccMaxTP)
 
 					if (AccMaxTPset.ear1:startswith("Lugra Earring") or AccMaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayMaxTPWSEars then
-						equip(sets.AccDayMaxTPWSEars)
+						equip(sets.AccDayMaxTPWSEars[spell.english] or sets.AccDayMaxTPWSEars)
 					else
-						equip(sets.AccMaxTP)
+						equip(sets.AccMaxTP[spell.english] or sets.AccMaxTP)
 					end
 				elseif sets.MaxTP then
 					local MaxTPset = standardize_set(sets.MaxTP)
 					if (MaxTPset.ear1:startswith("Lugra Earring") or MaxTPset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayMaxTPWSEars then
-						equip(sets.DayMaxTPWSEars)
+						equip(sets.DayMaxTPWSEars[spell.english] or sets.DayMaxTPWSEars)
 					else
-						equip(sets.MaxTP)
+						equip(sets.MaxTP[spell.english] or sets.MaxTP)
 					end
 				else
 				end
 			else
 				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.AccDayWSEars then
-					equip(sets.AccDayWSEars)
+					equip(sets.AccDayWSEars[spell.english] or sets.AccDayWSEars)
 				elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn and sets.DayWSEars then
-					equip(sets.DayWSEars)
+					equip(sets.DayWSEars[spell.english] or sets.DayWSEars)
 				end
 			end
 		end

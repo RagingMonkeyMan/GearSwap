@@ -87,9 +87,9 @@ function job_post_precast(spell, spellMap, eventArgs)
 			-- Replace Moonshade Earring if we're at cap TP
 			if get_effective_player_tp(spell, WSset) > 3200 then
 				if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
-					equip(sets.AccMaxTP)
+					equip(sets.AccMaxTP[spell.english] or sets.AccMaxTP)
 				elseif sets.MaxTP then
-					equip(sets.MaxTP)
+					equip(sets.MaxTP[spell.english] or sets.MaxTP)
 				else
 				end
 			end

@@ -66,23 +66,23 @@ function job_post_precast(spell, spellMap, eventArgs)
 			if get_effective_player_tp(spell, WSset) > 3200 then
 				if elemental_obi_weaponskills:contains(spell.english) then
 					if wsacc:contains('Acc') and sets.MagicalAccMaxTP then
-						equip(sets.MagicalAccMaxTP)
+						equip(sets.MagicalAccMaxTP[spell.english] or sets.MagicalAccMaxTP)
 					elseif sets.MagicalMaxTP then
-						equip(sets.MagicalMaxTP)
+						equip(sets.MagicalMaxTP[spell.english] or sets.MagicalMaxTP)
 					else
 					end
 				elseif S{25,26}:contains(spell.skill) then
 					if wsacc:contains('Acc') and sets.RangedAccMaxTP then
-						equip(sets.RangedAccMaxTP)
+						equip(sets.RangedAccMaxTP[spell.english] or sets.RangedAccMaxTP)
 					elseif sets.RangedMaxTP then
-						equip(sets.RangedMaxTP)
+						equip(sets.RangedMaxTP[spell.english] or sets.RangedMaxTP)
 					else
 					end
 				else
 					if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
-						equip(sets.AccMaxTP)
+						equip(sets.AccMaxTP[spell.english] or sets.AccMaxTP)
 					elseif sets.MaxTP then
-						equip(sets.MaxTP)
+						equip(sets.MaxTP[spell.english] or sets.MaxTP)
 					else
 					end
 				end
