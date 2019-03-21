@@ -57,6 +57,9 @@ function init_gear_sets()
 	-- Indi Duration in slots that would normally have skill here to make entrust more efficient.
 	sets.buff.Entrust = {}
 	
+	-- Relic hat for Blaze of Glory HP increase.
+	sets.buff['Blaze of Glory'] = {}
+	
 	-- Fast cast sets for spells
 
 	sets.precast.FC = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Impatiens",
