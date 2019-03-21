@@ -16,6 +16,12 @@ function user_setup()
 			{Name='Light Maneuver',	  Amount=0},
 		},
 		Ranged = {
+			{Name='Wind Maneuver', 	  Amount=3},
+			{Name='Fire Maneuver',	  Amount=0},
+			{Name='Light Maneuver',	  Amount=0},
+			{Name='Thunder Maneuver', Amount=0},
+		},
+		HybridRanged = {
 			{Name='Wind Maneuver', 	  Amount=1},
 			{Name='Fire Maneuver',	  Amount=1},
 			{Name='Light Maneuver',	  Amount=1},

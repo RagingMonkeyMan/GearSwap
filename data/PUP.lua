@@ -27,7 +27,7 @@ function job_setup()
     magicPetModes = S{'Nuke','Heal','Magic'}
 
     -- Var to track the current pet mode.
-    state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','Tank','LightTank','Magic','Heal','Nuke'}
+    state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
 
 	state.AutoPuppetMode = M(false, 'Auto Puppet Mode')
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
@@ -230,7 +230,11 @@ end
 function get_pet_mode()
     if pet.isvalid then
 		if pet.frame == 'Sharpshot Frame' then
-			return 'Ranged'
+			if pet.head == 'Valoredge Head' or 'Harlequin Head'
+				return 'HybridRanged'
+			else
+				return 'Ranged'
+			end
 		elseif pet.frame == 'Valoredge Frame' then
 			if pet.head == 'Soulsoother Head' then
 				return 'Tank'
