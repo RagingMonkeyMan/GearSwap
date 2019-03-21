@@ -230,7 +230,7 @@ end
 function get_pet_mode()
     if pet.isvalid then
 		if pet.frame == 'Sharpshot Frame' then
-			if pet.head == 'Valoredge Head' or 'Harlequin Head'
+			if pet.head == 'Valoredge Head' or 'Harlequin Head' then
 				return 'HybridRanged'
 			else
 				return 'Ranged'
