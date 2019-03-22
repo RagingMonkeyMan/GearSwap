@@ -8,6 +8,7 @@ gearswap.lua
 helper_functions.lua
 packet_parsing.lua
 readme.md
+README.md
 refresh.lua
 statics.lua
 targets.lua
@@ -29,3 +30,5 @@ data/common/*
 data/User/*
 libs/closetCleaner.lua
 Rename.bat
+Modes.lua
+organizer-lib.lua
