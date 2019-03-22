@@ -179,11 +179,8 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		end
 
     elseif spell.skill == 'Geomancy' then
-		windower.add_to_chat('Test A')
 		if spell.english:startswith('Geo-') then
-			windower.add_to_chat('Test B')
 			if state.Buff['Blaze of Glory'] and sets.buff['Blaze of Glory'] then
-				windower.add_to_chat('Test C')
 				equip(sets.buff['Blaze of Glory'])
 				disable('head')
 				blazelocked = true
