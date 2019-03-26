@@ -26,8 +26,8 @@ function job_setup()
 	autoentrust = 'Fury'
 	autoentrustee = '<p1>'
 	autogeo = 'Frailty'
-	last_indi = {}
-	last_geo = {}
+	last_indi = nil
+	last_geo = nil
 	blazelocked = false
 
 	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
@@ -198,9 +198,7 @@ function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
         if spell.english:startswith('Indi-') then
             if spell.target.type == 'SELF' then
-                last_indi.name = string.sub(spell.english,6)
-				windower.add_to_chat(123,last_indi.name)
-				last_indi.id = spell.id
+                last_indi = string.sub(spell.english,6)
             end
             if not classes.CustomIdleGroups:contains('Indi') then
                 classes.CustomIdleGroups:append('Indi')
@@ -213,9 +211,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 		elseif spell.english:startswith('Geo-') or spell.english == "Mending Halation" or spell.english == "Radial Arcana" then
 			eventArgs.handled = true
 			if spell.english:startswith('Geo-') then
-				last_geo.name = string.sub(spell.english,5)
-				windower.add_to_chat(123,last_geo.name)
-				last_geo.id = spell.id
+				last_geo = string.sub(spell.english,5)
 			end
         elseif state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
@@ -525,13 +521,13 @@ windower.raw_register_event('prerender', function()
     local indi_count = 0
     local geo_count = 0
 
-    if myluopan and last_geo.name then
-        luopan_txtbox = luopan_txtbox..'\\cs(0,255,0)'..last_geo.name..':\\cs(255,255,255)\n'
+    if myluopan and last_geo then
+        luopan_txtbox = luopan_txtbox..'\\cs(0,255,0)'..last_geo..':\\cs(255,255,255)\n'
         local battle_target = windower.ffxi.get_mob_by_target('bt')
         for i,v in pairs(windower.ffxi.get_mob_array()) do
             local DistanceBetween = ((myluopan.x - v.x)*(myluopan.x-v.x) + (myluopan.y-v.y)*(myluopan.y-v.y)):sqrt()
             if DistanceBetween < (6 + v.model_size) and not (v.status == 2 or v.status == 3) and v.name ~= "" and v.name ~= nil and v.name ~= "Luopan" and v.valid_target and v.model_size > 0 then
-                if debuff_list:contains(last_geo.name) then
+                if debuff_list:contains(last_geo) then
 					if not v.in_party and v.is_npc and ignore_list:contains(v.name) == false then
 						if v.id == battle_target.id then
 						  luopan_txtbox = luopan_txtbox..'\\cs(230,118,116)'..v.name.." "..string.format("%.2f",DistanceBetween).."\\cs(255,255,255)\n"
@@ -550,16 +546,16 @@ windower.raw_register_event('prerender', function()
         end
     end
 
-    if buffactive['Colure Active'] and last_indi.name then
+    if buffactive['Colure Active'] and last_indi then
         if myluopan then
             luopan_txtbox = luopan_txtbox..'\n'
         end
-        luopan_txtbox = luopan_txtbox..'\\cs(0,255,0)'..last_indi.name..'\\cs(255,255,255)\n'
+        luopan_txtbox = luopan_txtbox..'\\cs(0,255,0)'..last_indi..'\\cs(255,255,255)\n'
         local battle_target = windower.ffxi.get_mob_by_target('bt')
         for i,v in pairs(windower.ffxi.get_mob_array()) do
             local DistanceBetween = ((s.x - v.x)*(s.x-v.x) + (s.y-v.y)*(s.y-v.y)):sqrt()
             if DistanceBetween < (6 + v.model_size) and (v.status == 1 or v.status == 0) and v.name ~= "" and v.name ~= nil and v.name ~= "Luopan" and v.name ~= s.name and v.valid_target and v.model_size > 0 then
-                if debuff_list:contains(last_indi.name) then
+                if debuff_list:contains(last_indi) then
 					if not v.in_party == false and v.is_npc and not ignore_list:contains(v.name) then
 						if v.id == battle_target.id then
 							luopan_txtbox = luopan_txtbox..'\\cs(230,118,116)'..v.name.." "..string.format("%.2f",DistanceBetween).."\\cs(255,255,255)\n"
