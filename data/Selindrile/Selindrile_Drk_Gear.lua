@@ -74,7 +74,7 @@ function init_gear_sets()
 		back="Toro Cape",waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 		   
 	sets.midcast['Dread Spikes'] = set_combine(sets.midcast['Dark Magic'], {})
-	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {back="Ankou Mantle"})
+	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {back="Ankou's Mantle"})
            
 	sets.midcast.Stun = {ammo="Pemphredo Tathlum",
 		head="Carmine Mask +1",neck="Erra Pendant",ear1="Gwati Earring",ear2="Digni. Earring",
