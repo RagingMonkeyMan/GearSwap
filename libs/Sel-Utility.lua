@@ -964,7 +964,7 @@ end
 
 -- Checks doom, returns true if we're going to cancel and use an item.
 function check_doom(spell, spellMap, eventArgs)
-	if buffactive.doom and state.AutoRemoveDoomMode.value and not (spell.english == 'Cursna' or spell.english == 'Hallowed Water' or spell.english == "Light Arts" or spell.english == "Addendum: White" or spell.english == 'Holy Water') then 
+	if buffactive.doom and state.AutoRemoveDoomMode.value and not (spell.english == 'Divine Caress' or spell.english == 'Cursna' or spell.english == 'Hallowed Water' or spell.english == "Light Arts" or spell.english == "Addendum: White" or spell.english == 'Holy Water') then 
 	
 		if (buffactive.mute or buffactive.Omerta or buffactive.silence) or not (silent_can_use(20) and windower.ffxi.get_spell_recasts()[20] < spell_latency) then
 			if state.AutoHolyWaterMode.value and not buffactive.muddle then
