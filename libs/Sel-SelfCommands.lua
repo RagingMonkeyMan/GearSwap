@@ -490,6 +490,10 @@ function handle_buffup(cmdParams)
 	end
 end
 
+function handle_runeelement()
+	windower.chat.input('/ja "'..state.RuneElement.value..'" <me>')
+end
+
 function handle_shadows()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 	if player.main_job == 'NIN' then
@@ -1000,4 +1004,5 @@ selfCommandMaps = {
 	['shadows']			= handle_shadows,
 	['buffup']			= handle_buffup,
 	['delayedcast']		= handle_delayedcast,
+	['runeelement']		= handle_runeelement,
 	}
