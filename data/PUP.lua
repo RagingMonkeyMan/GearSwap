@@ -148,6 +148,17 @@ function display_current_job_state(eventArgs)
     display_pet_status()
 end
 
+-- Custom spell mapping.
+function job_get_spell_map(spell, default_spell_map)
+	if  default_spell_map == 'Cure' or default_spell_map == 'Curaga'  then
+		if world.weather_element == 'Light' then
+                return 'LightWeatherCure'
+		elseif world.day_element == 'Light' then
+                return 'LightDayCure'
+        end
+	end	
+end
+
 function job_customize_idle_set(idleSet)
 	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and sets.midcast.Pet then
 		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
