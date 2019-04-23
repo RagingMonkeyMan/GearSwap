@@ -28,6 +28,7 @@ libs/rev1/*
 data/export/*
 data/common/*
 data/User/*
+data/Extras/*
 libs/closetCleaner.lua
 Rename.bat
 Modes.lua
