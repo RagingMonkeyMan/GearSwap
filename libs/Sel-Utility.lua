@@ -2304,18 +2304,24 @@ function get_effective_player_tp(spell, WSset)
 end
 
 function standardize_set(set)
-	local standardized_set = table.copy(set)
-	standardized_set.ear1 = standardized_set.ear1 or standardized_set.left_ear or standardized_set.lear or ''
-	standardized_set.ear2 = standardized_set.ear2 or standardized_set.right_ear or standardized_set.rear or ''
-	standardized_set.ring1 = standardized_set.ring1 or standardized_set.left_ring or standardized_set.rring or ''
-	standardized_set.ring2 = standardized_set.ring2 or standardized_set.right_ring or standardized_set.lring or ''
+	local standardized_set = {}
 	
-    for slot, inner in pairs(standardized_set) do
-        if type(inner) == 'table' then
-            standardized_set[slot] = inner.name
-        end
+    for slot, inner in pairs(set) do
+		if slot_names:contains(slot) then
+			if type(inner) == 'table' then
+				standardized_set[slot] = inner.name
+			else
+				standardized_set[slot] = inner
+			end
+		end
     end
 
+	standardized_set.ear1 = standardized_set.ear1 or standardized_set.left_ear or standardized_set.lear or nil
+	standardized_set.ear2 = standardized_set.ear2 or standardized_set.right_ear or standardized_set.rear or nil
+	standardized_set.ring1 = standardized_set.ring1 or standardized_set.left_ring or standardized_set.rring or nil
+	standardized_set.ring2 = standardized_set.ring2 or standardized_set.right_ring or standardized_set.lring or nil
+	standardized_set.range = standardized_set.range or standardized_set.ranged or nil
+	
 	return standardized_set
 end
 

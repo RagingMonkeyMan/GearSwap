@@ -314,6 +314,8 @@ dualWieldJobs = S{'THF','BLU','NIN','DNC'}
 -- Item related Mappings.
 bayld_items = {}
 
+slot_names = S{'main','sub','range','ranged','ammo','head','neck','ear1','lear','left_ear','ear2','rear','right_ear','ring1','lring','left_ring','ring2','rring','right_ring','back','waist','legs','feet'}
+
 --[[
 bayld_items = {'Tlalpoloani','Macoquetza','Camatlatia','Icoyoca','Tlamini','Suijingiri Kanemitsu','Zoquittihuitz',
 'Quauhpilli Helm','Chocaliztli Mask','Xux Hat','Quauhpilli Gloves','Xux Trousers','Chocaliztli Boots','Maochinoli',
