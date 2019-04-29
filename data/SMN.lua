@@ -218,6 +218,8 @@ function job_aftercast(spell, spellMap, eventArgs)
             state.MagicBurstMode:reset()
 			if state.DisplayMode.value then update_job_states()	end
 		elseif type(spell.type) == 'string' and spell.type:startswith('BloodPact') and state.DefenseMode.value == 'None' then
+			petWillAct = os.clock()
+			windower.add_to_chat(123,petWillAct)
 			if ConduitLocked and ConduitLocked ~= spell.english then
 				ConduitLocked = nil
 				if state.Weapons.value == 'None' then

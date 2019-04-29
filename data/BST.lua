@@ -360,6 +360,7 @@ end
 function job_aftercast(spell, spellMap, eventArgs)
 	if type(spell.type) == 'string' and spell.type == 'Monster' and state.DefenseMode.value == 'None' then
 		equip(get_pet_midcast_set(spell, spellMap))
+		petWillAct = os.clock()
 		eventArgs.handled = true
 	elseif pet_midaction() or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
 		eventArgs.handled = true
