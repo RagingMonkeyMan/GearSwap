@@ -77,12 +77,13 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > 1099 then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > (999 + step_cost()) then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if under3FMs() and abil_recasts[220] < latency and (abil_recasts[236] < latency or state.Buff['Presto']) and player.status == 'Engaged' then
 			eventArgs.cancel = true
 			windower.send_command('gs c step')
 			windower.chat.input:schedule(2.3,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 4.3
 			return
 		elseif not under3FMs() and not state.Buff['Building Flourish'] and abil_recasts[226] < latency then
 			eventArgs.cancel = true
@@ -359,4 +360,20 @@ function check_dance()
 	end
 
 	return false
+end
+
+function step_cost()
+	local cost = 100
+	
+	if player.equipment.main == 'Setan Kober' then cost = cost - 40 end
+	if player.equipment.sub == 'Setan Kober' then cost = cost - 40 end
+	if sets.precast.Step and sets.precast.Step.feet:startswith('Horos T. Shoes') then
+		if sets.precast.Step.feet:endswith('+2') then
+			cost = cost - 10
+		elseif sets.precast.Step.feet:endswith('+3') then
+			cost = cost - 20
+		end
+	end
+	
+	return cost
 end
