@@ -1405,6 +1405,7 @@ function check_cleanup()
 		
 		if not state.Capacity.value then
 			if player.inventory['Mecisto. Mantle'] then send_command('put "Mecisto. Mantle" satchel') moveditem = true end
+      if player.inventory['Endorsement Ring'] then send_command('put "Endorsement Ring" satchel')  moveditem = true end
 			if player.inventory['Trizek Ring'] then send_command('put "Trizek Ring" satchel')  moveditem = true end
 			if player.inventory['Capacity Ring'] then send_command('put "Capacity Ring" satchel') moveditem = true end
 			if player.inventory['Vocation Ring'] then send_command('put "Vocation Ring" satchel')  moveditem = true end
@@ -1766,6 +1767,11 @@ function check_cpring()
 		disable("head")
 		cp_delay = 10
 		return true
+  
+  elseif item_available('Endorsement Ring') and ((get_item_next_use('Endorsement Ring').next_use_time) - CurrentTime) < 15 then
+		cp_ring_equip('Endorsement Ring')
+		cp_delay = 10
+		return true
 		
 	elseif item_available('Trizek Ring') and ((get_item_next_use('Trizek Ring').next_use_time) - CurrentTime) < 15 then
 		cp_ring_equip('Trizek Ring')
@@ -1816,6 +1822,7 @@ function check_cpring_buff()-- returs true if you do not have the buff from xp c
 	if state.Capacity.value and cp_delay > 20 and not moving and not areas.Cities:contains(world.area) then
 	
 		if player.satchel['Mecisto. Mantle'] then send_command('get "Mecisto. Mantle" satchel;wait 2;gs c update') end
+    if player.satchel['Endorsement Ring'] then send_command('get "Endorsement Ring" satchel') end
 		if player.satchel['Trizek Ring'] then send_command('get "Trizek Ring" satchel') end
 		if player.satchel['Capacity Ring'] then send_command('get "Capacity Ring" satchel') end
 		if player.satchel['Vocation Ring'] then send_command('get "Vocation Ring" satchel') end
