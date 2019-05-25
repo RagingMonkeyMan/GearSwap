@@ -427,6 +427,10 @@ end
 -- versions of this function.
 if not file_unload then
     file_unload = function()
+        if user_job_unload then
+            user_job_unload()
+		end
+		
         if user_unload then
             user_unload()
 		end
