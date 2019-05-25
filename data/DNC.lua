@@ -367,7 +367,7 @@ function step_cost()
 	
 	if player.equipment.main == 'Setan Kober' then cost = cost - 40 end
 	if player.equipment.sub == 'Setan Kober' then cost = cost - 40 end
-	if sets.precast.Step and sets.precast.Step.feet:startswith('Horos T. Shoes') then
+	if sets.precast.Step and sets.precast.Step.feet and sets.precast.Step.feet:startswith('Horos T. Shoes') then
 		if sets.precast.Step.feet:endswith('+2') then
 			cost = cost - 10
 		elseif sets.precast.Step.feet:endswith('+3') then
