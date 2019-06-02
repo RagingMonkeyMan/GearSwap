@@ -962,7 +962,7 @@ function silent_check_disable()
 
 end
 
--- Checks doom, returns true if we're going to cancel and use an item.
+-- Checks doom, returns true if we're going to cancel and use an or cursna.
 function check_doom(spell, spellMap, eventArgs)
 	if buffactive.doom and state.AutoRemoveDoomMode.value and not cursna_exceptions:contains(spell.english) then
 	

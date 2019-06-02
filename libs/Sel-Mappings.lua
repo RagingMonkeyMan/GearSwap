@@ -78,6 +78,8 @@ elements.recast_staff_of = {['Light']='Arka II', ['Dark']='Xsaeta II', ['Fire']=
 elements.perpetuance_staff_of = {['Light']='Arka III', ['Dark']='Xsaeta III', ['Fire']='Atar III', ['Ice']='Vourukasha III',
     ['Wind']='Vayuvata III', ['Earth']='Vishrava III', ['Lightning']='Apamajas III', ['Water']='Haoma III', ['Thunder']='Apamajas III'}
 
+--Cursna actions
+cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water'}
 
 -- Elements for skillchain names
 skillchain_elements = {}
