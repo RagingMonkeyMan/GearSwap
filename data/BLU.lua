@@ -121,7 +121,12 @@ function job_setup()
     blue_magic_maps.MagicalDex = S{
         'Charged Whisker','Gates of Hades'
     }
-            
+
+    -- Magical spells with an Agi stat mod
+    blue_magic_maps.MagicalAgi = S{
+        'Crashing Thunder'
+    }
+
     -- Magical spells (generally debuffs) that we want to focus on magic accuracy over damage.
     -- Add Int for damage where available, though.
     blue_magic_maps.MagicAccuracy = S{
