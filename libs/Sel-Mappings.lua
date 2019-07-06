@@ -14,6 +14,9 @@ elements.list = S{'Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water'
 elements.nuke = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
         ['Lightning']='Thunder', ['Water']='Water', ['Light']='Banish', ['Dark']='Bio',}
 		
+elements.quickdraw = {['Fire']='Fire', ['Ice']='Ice', ['Wind']='Wind', ['Earth']='Earth',
+        ['Lightning']='Thunder', ['Water']='Water', ['Light']='Light', ['Dark']='Dark',}
+		
 elements.enspell = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
         ['Lightning']='Thunder', ['Water']='Water', ['Light']='Light', ['Dark']='Dark',}
 		

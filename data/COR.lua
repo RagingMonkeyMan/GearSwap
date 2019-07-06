@@ -97,24 +97,7 @@ end
 
 function job_self_command(commandArgs, eventArgs)
 		if commandArgs[1]:lower() == 'elemental' and commandArgs[2]:lower() == 'quickdraw' then
-			if state.ElementalMode.value == 'Fire' then
-				windower.chat.input('/ma "Fire Shot" <t>')
-			elseif state.ElementalMode.value == 'Wind' then
-				windower.chat.input('/ma "Wind Shot" <t>')
-			elseif state.ElementalMode.value == 'Lightning' then
-				windower.chat.input('/ma "Thunder Shot" <t>')
-			elseif state.ElementalMode.value == 'Earth' then
-				windower.chat.input('/ma "Earth Shot" <t>')
-			elseif state.ElementalMode.value == 'Ice' then
-				windower.chat.input('/ma "Ice Shot" <t>')
-			elseif state.ElementalMode.value == 'Water' then
-				windower.chat.input('/ma "Water Shot" <t>')
-			elseif state.ElementalMode.value == 'Light' then
-				windower.chat.input('/ma "Light Shot" <t>')
-			elseif state.ElementalMode.value == 'Dark' then
-				windower.chat.input('/ma "Dark Shot" <t>')
-			end
-
+			windower.chat.input('/ja "'..elements.quickdraw[state.ElementalMode.Value]..' Shot" <t>')
 			eventArgs.handled = true			
 		end
 end
