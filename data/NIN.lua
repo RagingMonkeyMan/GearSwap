@@ -20,9 +20,6 @@ function job_setup()
 	
 	state.Stance = M{['description']='Stance','Innin','Yonin','None'}
 
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Blade: Hi', 'Blade: Ten'}
-	
 	autows = "Blade: Shun"
 	autofood = 'Soy Ramen'
 	

@@ -18,9 +18,6 @@ function job_setup()
 	
 	state.AutoBoost = M(false, 'Auto Boost Mode')
 	
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Victory Smite'}
-	
 	autows = 'Victory Smite'
 	autofood = 'Soy Ramen'
 	

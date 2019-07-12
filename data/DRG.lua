@@ -18,9 +18,6 @@ function job_setup()
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 	state.AutoJumpMode = M(false, 'Auto Jump Mode')
-	
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Stardiver'}
 
 	autows = 'Stardiver'
 	autofood = 'Soy Ramen'

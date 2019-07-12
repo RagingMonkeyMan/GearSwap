@@ -19,9 +19,6 @@ function job_setup()
 	state.Buff['Unlimited Shot'] = buffactive['Unlimited Shot'] or false
 	state.Buff['Velocity Shot'] = buffactive['Velocity Shot'] or false
 	
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Jishnu\'s Radiance','Empyreal Arrow','Last Stand'}
-	
 	autows = "Last Stand"
 	rangedautows = "Last Stand"
 	autofood = 'Soy Ramen'

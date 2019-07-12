@@ -21,9 +21,6 @@ function job_setup()
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
-	
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Savage Blade','Upheaval','Ruinator','Resolution','Rampage','Raging Rush',"Ukko's Fury",}
 
 	autows = "Ukko's Fury"
 	autofood = 'Soy Ramen'

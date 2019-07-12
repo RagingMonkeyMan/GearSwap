@@ -29,9 +29,6 @@ function job_setup()
 	state.LuzafRing = M(true, "Luzaf's Ring")
     -- Whether a warning has been given for low ammo
     state.warned = M(false)
-
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Leaden Salute','Wildfire','Last Stand'}
 	
 	autows = 'Leaden Salute'
 	rangedautows = 'Last Stand'

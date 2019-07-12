@@ -164,9 +164,6 @@ function job_setup()
 							['SharpwitHermes']='Head Butt',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
 							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
 
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Rampage','Calamity'}
-
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
 	state.AutoCallPet = M(false, 'Auto Call Pet')

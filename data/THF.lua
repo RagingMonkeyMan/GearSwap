@@ -28,9 +28,6 @@ function job_setup()
     state.Buff['Trick Attack'] = buffactive['Trick Attack'] or false
     state.Buff['Feint'] = buffactive['Feint'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
-    
-	--List of which WS you plan to use TP bonus WS with.
-	moonshade_ws = S{'Rudra\'s Storm'}
 	
 	autows = "Rudra's Storm"
 	rangedautows = "Last Stand"
