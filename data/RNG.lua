@@ -143,6 +143,7 @@ function job_buff_change(buff, gain)
 		if player.equipment.Ranged then
 			if (player.equipment.Ranged == 'Armageddon' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
 			or (player.equipment.Ranged == 'Gandiva' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3']))
+			or (player.equipment.Ranged == "Gastraphetes" and state.Buff['Aftermath: Lv.3'])
 			or (player.equipment.Ranged == "Annihilator" and state.Buff['Aftermath'])
 			or (player.equipment.Ranged == "Yoichinoyumi" and state.Buff['Aftermath']) then
 				classes.CustomRangedGroups:append('AM')
