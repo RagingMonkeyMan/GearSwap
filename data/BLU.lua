@@ -176,6 +176,9 @@ function job_setup()
         'Zephyr Mantle'
     }
     
+    aoe_blue_magic_healing = S{
+        'Healing Breeze','White Wind'
+    }
     
     -- Spells that require Unbridled Learning to cast.
     unbridled_spells = S{
@@ -302,20 +305,11 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			if spell.element == 'None' and sets.NonElementalCure then
 				equip(sets.NonElementalCure)
 			end
-			if spell.target.type == 'SELF' then
-				if ((player.equipment.main == 'Nibiru Cudgel' and player.equipment.sub == 'Nibiru Cudgel') or state.OffenseMode.value == 'None') and sets.Self_Healing_DWClub then
-					equip(sets.Self_Healing_DWClub)
-				elseif player.equipment.main == 'Nibiru Cudgel' or player.equipment.main == 'Nibiru Cudgel' and sets.Self_Healing_Club then
-					equip(sets.Self_Healing_Club)
-				elseif sets.Self_Healing then
-					equip(sets.Self_Healing)
-				end
-			elseif player.equipment.main == 'Nibiru Cudgel' and player.equipment.main == 'Nibiru Cudgel' and sets.Healing_DWClub then
-				equip(sets.Healing_DWClub)
-			elseif player.equipment.main == 'Nibiru Cudgel' or player.equipment.main == 'Nibiru Cudgel' and sets.Healing_Club then
-				equip(sets.Healing_Club)
+		
+			if spell.target.type == 'SELF' and sets.Self_Healing and not aoe_blue_magic_healing:contains(spell.english) then
+				equip(sets.Self_Healing)
 			end
-			
+				
 		elseif spellMap:contains('Magical') then
 			if state.MagicBurstMode.value ~= 'Off' and (state.Buff['Burst Affinity'] or state.Buff['Azure Lore']) then
 					equip(sets.MagicBurst)
