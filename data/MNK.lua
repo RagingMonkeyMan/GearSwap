@@ -22,7 +22,7 @@ function job_setup()
 	autofood = 'Soy Ramen'
 	
     info.impetus_hit_count = 0
-    windower.raw_register_event('action', on_action_for_impetus)
+    --windower.raw_register_event('action', on_action_for_impetus)
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -135,7 +135,7 @@ end
 -- Custom event hooks.
 -------------------------------------------------------------------------------------------------------------------
 
--- Keep track of the current hit count while Impetus is up.
+--[[ Keep track of the current hit count while Impetus is up.
 function on_action_for_impetus(action)
     if state.Buff.Impetus then
         -- count melee hits by player
@@ -200,6 +200,7 @@ function on_action_for_impetus(action)
     end
     
 end
+]]
 
 function job_self_command(commandArgs, eventArgs)
 
