@@ -33,12 +33,17 @@ function job_setup()
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
+	state.PetEnmityGear	 = M(true, 'Pet WS Gear')
 
     autows = "Victory Smite"
 	autofood = 'Akamochi'
 	lastpettp = 0
 	deactivatehpp = 100
 	repairhpp = 45
+	PupFlashReady = 0
+	PupVokeReady = 0
+	PupFlashRecast = 40
+	PupVokeRecast = 25
 
 	update_pet_mode()
 	update_melee_groups()
@@ -84,6 +89,7 @@ end
 
 -- Called when pet is about to perform an action
 function job_pet_midcast(spell, spellMap, eventArgs)
+--[[ Not working due to delay, preserving in case it does in the future.
     if petWeaponskills:contains(spell.english) then
         classes.CustomClass = "Weaponskill"
 
@@ -93,11 +99,15 @@ function job_pet_midcast(spell, spellMap, eventArgs)
 			equip(sets.midcast.Pet.WeaponSkill)
 		end
     end
+]]
 end
 
 function job_pet_aftercast(spell, spellMap, eventArgs)
-    if petWeaponskills:contains(spell.english) then
-        classes.CustomClass = "Weaponskill"
+	if spell.english = 'Provoke' then
+		PupVokeReady = os.clock() +	PupVokeRecast
+	elseif spell.english = 'Flash' then
+		PupFlashReady = os.clock() + PupFlashRecast
+    elseif petWeaponskills:contains(spell.english) then
 		if state.PartyChatWS.value then
 			windower.chat.input('/p '..auto_translate('Automaton')..' '..auto_translate('Weapon Skill')..' '..spell.english..'')
 		end
@@ -160,11 +170,18 @@ function job_get_spell_map(spell, default_spell_map)
 end
 
 function job_customize_idle_set(idleSet)
-	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and sets.midcast.Pet then
-		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
-			idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
-		elseif sets.midcast.Pet.PetWSGear then
-			idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear)
+	if pet.isvalid and and sets.midcast.Pet then
+		if state.PetWSGear.value and pet.tp and pet.tp > 999 then
+			if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
+				idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
+			elseif sets.midcast.Pet.PetWSGear then
+				idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear)
+			end
+		elseif state.PetEnmityGear.value then
+			local now = os.clock()
+			if (PupFlashReady < now or PupVokeReady < now) and sets.midcast.Pet.PetEnmityGear then
+				idleSet = set_combine(idleSet, sets.midcast.Pet.PetEnmityGear)
+			end
 		end
 	end
 	return idleSet
