@@ -42,8 +42,8 @@ function job_setup()
 	repairhpp = 45
 	PupFlashReady = 0
 	PupVokeReady = 0
-	PupFlashRecast = 40
-	PupVokeRecast = 25
+	PupFlashRecast = 38
+	PupVokeRecast = 23
 
 	update_pet_mode()
 	update_melee_groups()
