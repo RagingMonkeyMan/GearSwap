@@ -44,6 +44,7 @@ function job_setup()
 	PupVokeReady = 0
 	PupFlashRecast = 38
 	PupVokeRecast = 23
+	PuppetID = ''
 
 	update_pet_mode()
 	update_melee_groups()
@@ -102,13 +103,18 @@ function job_pet_midcast(spell, spellMap, eventArgs)
 ]]
 end
 
-function job_pet_aftercast(spell, spellMap, eventArgs)
-	add_to_chat(123,spell.english)
-	if spell.english == 'Provoke' then
+windower.register_event('action message',function (actor_id, target_id, actor_index, target_index, message_id, param_1, param_2, param_3)
+	if actor_id == PuppetID then
+		add_to_chat(123,''..message_id..':'..param_1..'|'..param_2..'|'..param_3..'')
+--[[	if spell.english == 'Provoke' then
 		PupVokeReady = os.clock() +	PupVokeRecast
 	elseif spell.english == 'Flash' then
-		PupFlashReady = os.clock() + PupFlashRecast
-    elseif petWeaponskills:contains(spell.english) then
+		PupFlashReady = os.clock() + PupFlashRecast]]
+	end
+end)
+
+function job_pet_aftercast(spell, spellMap, eventArgs)
+	if petWeaponskills:contains(spell.english) then
 		if state.PartyChatWS.value then
 			windower.chat.input('/p '..auto_translate('Automaton')..' '..auto_translate('Weapon Skill')..' '..spell.english..'')
 		end
@@ -126,6 +132,9 @@ end
 -- pet == pet gained or lost
 -- gain == true if the pet was gained, false if it was lost.
 function job_pet_change(pet, gain)
+	if gain then
+		PuppetID = pet.id
+	end
     update_pet_mode()
 end
 
