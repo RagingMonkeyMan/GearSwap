@@ -33,7 +33,7 @@ function job_setup()
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
-	state.PetEnmityGear	 = M(true, 'Pet WS Gear')
+	state.PetEnmityGear	 = M(true, 'Pet Enmity Gear')
 
     autows = "Victory Smite"
 	autofood = 'Akamochi'
