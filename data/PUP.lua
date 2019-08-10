@@ -105,13 +105,17 @@ end
 windower.raw_register_event('action', function(act)
 	if pet.isvalid and pet.id == act.actor_id then
 		windower.add_to_chat(123,'category:'..act.category..'   param:'..act.param..'')
+		if act.category == 11 then
+			if act.param == 1945 then
+				PupVokeReady = os.clock() +	PupVokeRecast
+				windower.add_to_chat(123,'This is Voke.')
+			elseif act.param == 1947 then
+				PupFlashReady = os.clock() + PupFlashRecast
+				windower.add_to_chat(123,'This is Flash.')
+			end
+		end
 	end
 end)
-
---[[	if spell.english == 'Provoke' then
-		PupVokeReady = os.clock() +	PupVokeRecast
-	elseif spell.english == 'Flash' then
-		PupFlashReady = os.clock() + PupFlashRecast]]
 
 function job_pet_aftercast(spell, spellMap, eventArgs)
 	if petWeaponskills:contains(spell.english) then
