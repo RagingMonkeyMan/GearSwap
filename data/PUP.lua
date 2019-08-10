@@ -189,7 +189,7 @@ function job_customize_idle_set(idleSet)
 			end
 		elseif state.PetEnmityGear.value then
 			local now = os.clock()
-			if sets.midcast.Pet.PetEnmityGear and ((PupFlashReady < now and buffactive['Light Maneuver']) or (PupVokeReady < now and buffactive['Fire Maneuver']) then
+			if sets.midcast.Pet.PetEnmityGear and ((PupFlashReady < now and buffactive['Light Maneuver']) or (PupVokeReady < now and buffactive['Fire Maneuver'])) then
 				idleSet = set_combine(idleSet, sets.midcast.Pet.PetEnmityGear)
 			end
 		end
