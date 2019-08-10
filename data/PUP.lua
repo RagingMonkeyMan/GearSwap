@@ -104,7 +104,7 @@ end
 
 windower.register_event('action message',function (actor_id, target_id, actor_index, target_index, message_id, param_1, param_2, param_3)
 	if pet.isvalid and pet.ID == actor_id then
-		add_to_chat(123,''..message_id..':'..param_1..'|'..param_2..'|'..param_3..'')
+		add_to_chat(123,''..message_id..':'..param_1..'|'..param_2..'')
 --[[	if spell.english == 'Provoke' then
 		PupVokeReady = os.clock() +	PupVokeRecast
 	elseif spell.english == 'Flash' then
