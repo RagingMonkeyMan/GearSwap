@@ -108,11 +108,10 @@ windower.raw_register_event('action', function(act)
 		if act.category == 11 then
 			if act.param == 1945 then
 				PupVokeReady = os.clock() +	PupVokeRecast
-				windower.add_to_chat(123,'This is Voke.')
 			elseif act.param == 1947 then
 				PupFlashReady = os.clock() + PupFlashRecast
-				windower.add_to_chat(123,'This is Flash.')
 			end
+			send_command('gs c forceequip')
 		end
 	end
 end)
