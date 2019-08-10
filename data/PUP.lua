@@ -104,11 +104,7 @@ end
 
 windower.raw_register_event('action', function(act)
 	if pet.isvalid and pet.id == act.actor_id then
-		if act.category == 4 then
-			windower.add_to_chat(123,'4:'..act.param..'')
-		elseif act.category == 6 then
-			windower.add_to_chat(123,'6:'..act.param..'')
-		end
+		windower.add_to_chat(123,'category:'..act.category..'   param:'..act.param..'')
 	end
 end)
 
