@@ -48,7 +48,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.action_type == 'Ranged Attack' or
 	  (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) then
-		check_ammo(spell, action, spellMap, eventArgs)
+		check_ammo_precast(spell, action, spellMap, eventArgs)
 	end
 
 end
@@ -175,7 +175,7 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 -- Check for proper ammo when shooting or weaponskilling
-function check_ammo(spell, action, spellMap, eventArgs)
+function check_ammo_precast(spell, action, spellMap, eventArgs)
 	-- Filter ammo checks depending on Unlimited Shot
 	if state.Buff['Unlimited Shot'] then
 		if player.equipment.ammo ~= U_Shot_Ammo[player.equipment.range] then
