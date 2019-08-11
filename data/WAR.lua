@@ -72,7 +72,6 @@ function job_precast(spell, spellMap, eventArgs)
 			return
 		end
 	end
-
 end
 
 -- Modify the default melee set after it was constructed.
