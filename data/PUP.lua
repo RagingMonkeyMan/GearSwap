@@ -104,7 +104,6 @@ end
 
 windower.raw_register_event('action', function(act)
 	if pet.isvalid and pet.id == act.actor_id then
-		windower.add_to_chat(123,'category:'..act.category..'   param:'..act.param..'')
 		if act.category == 11 then
 			if act.param == 1945 then
 				PupVokeReady = os.clock() +	PupVokeRecast
