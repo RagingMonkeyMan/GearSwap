@@ -179,17 +179,19 @@ end
 
 function job_customize_idle_set(idleSet)
 	if pet.isvalid and pet.status == 'Engaged' and sets.midcast.Pet then
+		local now = os.clock()
 		if state.PetWSGear.value and pet.tp and pet.tp > 999 then
 			if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
 				idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
 			elseif sets.midcast.Pet.PetWSGear then
 				idleSet = set_combine(idleSet, sets.midcast.Pet.PetWSGear)
 			end
-		elseif state.PetEnmityGear.value then
-			local now = os.clock()
-			if sets.midcast.Pet.PetEnmityGear and ((PupFlashReady < now and buffactive['Light Maneuver']) or (PupVokeReady < now and buffactive['Fire Maneuver'])) then
-				idleSet = set_combine(idleSet, sets.midcast.Pet.PetEnmityGear)
-			end
+		elseif state.PetEnmityGear.value and sets.midcast.Pet.PetEnmityGear and ((PupFlashReady < now and buffactive['Light Maneuver']) or (PupVokeReady < now and buffactive['Fire Maneuver'])) then
+			idleSet = set_combine(idleSet, sets.midcast.Pet.PetEnmityGear)
+		elseif sets.idle.Pet.Engaged[state.PetMode.value] then
+			idleSet = set_combine(idleSet, sets.idle.Pet.Engaged[state.PetMode.value])
+		else
+			idleSet = set_combine(idleSet, sets.idle.Pet.Engaged)
 		end
 	end
 	return idleSet
