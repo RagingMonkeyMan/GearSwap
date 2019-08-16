@@ -198,14 +198,19 @@ function job_customize_idle_set(idleSet)
 end
 
 function job_customize_melee_set(meleeSet)
-	if pet.isvalid and state.PetWSGear.value and pet.tp and pet.tp > 999 and player.tp > 999 and sets.midcast.Pet then
-		if sets.midcast.Pet.PetWSGear and sets.midcast.Pet.PetWSGear[state.PetMode.value] then
-			meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
-		elseif sets.midcast.Pet.PetWSGear then
-			meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear)
+	if pet.isvalid and pet.status == 'Engaged' and sets.midcast.Pet then
+		local now = os.clock()
+		if state.PetWSGear.value and pet.tp and pet.tp > 999 and player.tp < 999 and sets.midcast.Pet and sets.midcast.Pet.PetWSGear then
+			if sets.midcast.Pet.PetWSGear[state.PetMode.value] then
+				meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear[state.PetMode.value])
+			else
+				meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetWSGear)
+			end
+		elseif state.PetEnmityGear.value and sets.midcast.Pet.PetEnmityGear and ((PupFlashReady < now and buffactive['Light Maneuver']) or (PupVokeReady < now and buffactive['Fire Maneuver'])) then
+			meleeSet = set_combine(meleeSet, sets.midcast.Pet.PetEnmityGear)
 		end
 	end
-
+	
     return meleeSet
 end
 -------------------------------------------------------------------------------------------------------------------
@@ -242,6 +247,10 @@ function job_self_command(commandArgs, eventArgs)
         else
             add_to_chat(123,'Error: No valid pet.')
         end
+	elseif commandArgs[1] == 'petmode' then
+		if commandArgs[2] == 'reset' then
+			update_pet_mode()
+		end
     end
 end
 
@@ -320,7 +329,7 @@ end
 -- Display current pet status.
 function display_pet_status()
     if pet.isvalid then
-        local petInfoString = pet.name..' ['..pet.head..']['..pet.frame..']: '..tostring(pet.status)..'  TP='..tostring(pet.tp)..'  HP%='..tostring(pet.hpp)
+        local petInfoString = pet.name..' ['..pet.head..']['..pet.frame..']('..state.PetMode.Value..'): '..tostring(pet.status)..'  TP='..tostring(pet.tp)..'  HP%='..tostring(pet.hpp)
 
         if magicPetModes:contains(state.PetMode.value) then
             petInfoString = petInfoString..'  MP%='..tostring(pet.mpp)
