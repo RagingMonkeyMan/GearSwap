@@ -212,11 +212,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = framerate
+			tickdelay = os.clock() + 1.8
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = framerate
+			tickdelay = os.clock() + 1.8
 			return true
 		else
 			return false

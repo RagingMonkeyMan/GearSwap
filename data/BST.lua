@@ -562,7 +562,7 @@ function check_ready()
 				return true
 			elseif pet.status == "Idle" and player.target.type == "MONSTER" then
 				windower.chat.input('/pet Fight <t>')
-				tickdelay = framerate
+				tickdelay = os.clock() + 1.8
 				return true
 			else
 				return false
