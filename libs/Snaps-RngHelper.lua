@@ -177,7 +177,7 @@ local function able_to_use_action()
 end
 
 local function able_to_use_weaponskill()
-    if windower.ffxi.get_player().vitals.tp >= rangedautowstp and not buffactive['amnesia'] then
+    if player.tp >= rangedautowstp and not buffactive['amnesia'] then
 		return true
 	else
 		return false
@@ -223,21 +223,21 @@ function process_queue()
         pending = queue:pop()
     elseif target then
         if state.AutoWSMode.value and rangedautows ~= '' and able_to_use_weaponskill() then
-			if relic_weapons:contains(player.equipment.range) and state.RelicAftermath.value and (not buffactive['Aftermath']) then
+			if relic_weapons:contains(player.equipment.range) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = data.weaponskills.relic[player.equipment.range],
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}	
-			elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.range)) and windower.ffxi.get_player().vitals.tp >= autowstp then
+			elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.range)) and player.tp >= autowstp then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = rangedautows,
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}
-			elseif windower.ffxi.get_player().vitals.tp == 3000 then
+			elseif player.tp == 3000 then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = data.weaponskills.mythic[player.equipment.range],
