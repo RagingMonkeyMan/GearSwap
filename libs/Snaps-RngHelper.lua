@@ -230,7 +230,7 @@ function process_queue()
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}	
-			elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.range)) and player.tp >= autowstp then
+			elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = rangedautows,
