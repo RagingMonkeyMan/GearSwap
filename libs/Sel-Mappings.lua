@@ -186,7 +186,7 @@ magian_tp_bonus_melee_weapons = S{'Sphyras','Barracudas +3','Barracudas +2','Cen
 
 magian_tp_bonus_ranged_weapons = S{'Ataktos','Anarchy +3','Anarchy +2','Accipiter','Sparrowhawk +3','Sparrowhawk +2'}
 
-rema_ranged_weapons = S{'Fomalhaut','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
+rema_ranged_weapons = S{'Fomalhaut','Gastraphetes','Death Penalty','Armageddon','Fail-Not','Gandiva','Yoichinoyumi','Annihilator'}
 
 rema_ranged_weapons_ammo = {
 	['Fomalhaut'] = 'Chrono Bullet',
