@@ -270,7 +270,7 @@ function do_bullet_checks(spell, spellMap, eventArgs)
     
     if spell.type == 'WeaponSkill' then
         if spell.skill == "Marksmanship" then
-            if elemental_obi_weaponskills:contains(spell.name) then
+            if elemental_obi_weaponskills:contains(spell.english) then
                 -- magical weaponskills
                 bullet_name = gear.MAbullet
             else

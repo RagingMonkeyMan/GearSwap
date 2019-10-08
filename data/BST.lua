@@ -210,7 +210,7 @@ end
 function job_precast(spell, spellMap, eventArgs)
         cancel_conflicting_buffs(spell, action, spellMap, eventArgs)
 
-        if spell.type == "WeaponSkill" and spell.name ~= 'Mistral Axe' and spell.name ~= 'Bora Axe' and spell.target.distance > target_distance then
+        if spell.type == "WeaponSkill" and spell.english ~= 'Mistral Axe' and spell.english ~= 'Bora Axe' and spell.target.distance > target_distance then
                 eventArgs.cancel = true
                 add_to_chat(123, spell.name..' Canceled: [Out of Range]')
 
@@ -314,7 +314,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 end
 
 function job_pet_midcast(spell, spellMap, eventArgs)
-        if magic_ready_moves:contains(spell.name) then
+        if magic_ready_moves:contains(spell.english) then
 			if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
 				equip(sets.midcast.Pet.MagicReady[state.OffenseMode.value])
 			else
@@ -329,11 +329,11 @@ function job_pet_midcast(spell, spellMap, eventArgs)
         end
 
         -- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
-        if tp_based_ready_moves:contains(spell.name) and PetJob == 'Warrior' then
+        if tp_based_ready_moves:contains(spell.english) and PetJob == 'Warrior' then
                 if pet.tp < 1900 then
                         equip(sets.midcast.Pet.TPBonus)
                 end
-        elseif tp_based_ready_moves:contains(spell.name) and PetJob ~= 'Warrior' then
+        elseif tp_based_ready_moves:contains(spell.english) and PetJob ~= 'Warrior' then
                 if pet.tp < 2400 then
                         equip(sets.midcast.Pet.TPBonus)
                 end

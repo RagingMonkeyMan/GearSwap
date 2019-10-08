@@ -909,7 +909,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			
 		elseif spell.type == 'WeaponSkill' then
 		
-			if state.WeaponskillMode.value ~= 'Proc' and elemental_obi_weaponskills:contains(spell.name) then
+			if state.WeaponskillMode.value ~= 'Proc' and elemental_obi_weaponskills:contains(spell.english) then
 				local orpheus_avail = item_available("Orpheus's Sash")
 				local hachirin_avail = item_available('Hachirin-no-Obi')
 				
@@ -1206,7 +1206,7 @@ end
 function filter_aftercast(spell, spellMap, eventArgs)
     if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' or state.EquipStop.value == 'pet_midcast' then
         eventArgs.cancel = true
-    elseif spell.name == 'Unknown Interrupt' then
+    elseif spell.english == 'Unknown Interrupt' then
         eventArgs.cancel = true
     end
 end

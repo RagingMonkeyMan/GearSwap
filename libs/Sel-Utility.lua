@@ -654,7 +654,7 @@ function silent_can_use(spellid)
 	local available_spells = windower.ffxi.get_spells()
 	local spell_jobs = copy_entry(res.spells[spellid].levels)
         
-	-- Filter for spells that you do not know. Exclude Impact and Dispelga.
+	-- Filter for spells that you do not know. Exclude Impact, Honor March and Dispelga.
 	if not available_spells[spellid] and not (spellid == 503 or spellid == 417 or spellid == 360) then
 		return false
 	-- Filter for spells that you know, but do not currently have access to
@@ -1193,7 +1193,7 @@ function check_spell_targets(spell, spellMap, eventArgs)
 		elseif spell.english:startswith('Curaga') and not spell.target.in_party then
 			if (buffactive['light arts'] or buffactive['addendum: white']) then
 				if get_current_strategem_count() > 0 then
-					local number = spell.name:match('Curaga ?%a*'):sub(7) or ''
+					local number = spell.english:match('Curaga ?%a*'):sub(7) or ''
 					eventArgs.cancel = true
 					if buffactive['Accession'] then
 						windower.chat.input('/ma "Cure'..number..'" '..spell.target.name..'')

@@ -62,7 +62,7 @@ end
 
 function job_pretarget(spell, spellMap, eventArgs)
     if spell.type == 'Geomancy' then
-		if spell.name:startswith('Indi') then
+		if spell.english:startswith('Indi') then
 			if state.Buff.Entrust then
 				if spell.target.type == 'SELF' then
 					add_to_chat(204, 'Entrust active - You can\'t entrust yourself.')
@@ -85,7 +85,7 @@ function job_pretarget(spell, spellMap, eventArgs)
 					change_target('<me>')
 				end
 			end
-		elseif spell.name:startswith('Geo') then
+		elseif spell.english:startswith('Geo') then
 			if set.contains(spell.targets, 'Enemy') then
 				if ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC' and spell.target.in_party)) then
 					eventArgs.cancel = true
