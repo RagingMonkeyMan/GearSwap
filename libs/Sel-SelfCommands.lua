@@ -496,54 +496,67 @@ end
 
 function handle_shadows()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
+	local currentshadows = has_shadows()
 	if player.main_job == 'NIN' then
-		if has_shadows() < 3 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] < spell_latency then
+		if currentshadows < 3 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] < spell_latency then
 			windower.chat.input('/ma "Utsusemi: San" <me>')
 			tickdelay = os.clock() + 1.8
 			return true
-		elseif has_shadows() < 2 and spell_recasts[339] < spell_latency then
-			windower.chat.input('/ma "Utsusemi: Ni" <me>')
-			tickdelay = os.clock() + 1.8
-			return true
-		elseif has_shadows() < 2 and spell_recasts[338] < spell_latency then
-			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
-			tickdelay = os.clock() + 2
-			return true
+		elseif currentshadows < 2 then
+			if spell_recasts[339] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ni" <me>')
+				tickdelay = os.clock() + 1.8
+				return true
+			elseif spell_recasts[338] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ichi" <me>')
+				tickdelay = os.clock() + 2
+				return true
+			else
+				return false
+			end
 		else
 			return false
 		end
 	elseif player.sub_job == 'NIN' then
-		if has_shadows() < 2 and spell_recasts[339] < spell_latency then
-			windower.chat.input('/ma "Utsusemi: Ni" <me>')
-			tickdelay = os.clock() + 1.8
+		if currentshadows < 2 then
+			if spell_recasts[339] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ni" <me>')
+				tickdelay = os.clock() + 1.8
+				return true
+			elseif spell_recasts[338] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ichi" <me>')
+				tickdelay = os.clock() + 2
+				return true
+			else
+				return false
+			end
+		else
+			return false
+		end
+	elseif currentshadows == 0 then
+		if player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+			windower.chat.input('/ja "Third Eye" <me>')
+			tickdelay = os.clock() + .7
 			return true
-		elseif has_shadows() < 2 and spell_recasts[338] < spell_latency then
-			windower.chat.input('/ma "Utsusemi: Ichi" <me>')
+		elseif silent_can_use(679) and spell_recasts[679] < spell_latency then
+			windower.chat.input('/ma "Occultation" <me>')
 			tickdelay = os.clock() + 2
+			return true
+		elseif silent_can_use(53) and spell_recasts[53] < spell_latency then
+			windower.chat.input('/ma "Blink" <me>')
+			tickdelay = os.clock() + 2
+			return true
+		elseif silent_can_use(647) and spell_recasts[647] < spell_latency then
+			windower.chat.input('/ma "Zephyr Mantle" <me>')
+			tickdelay = os.clock() + 2
+			return true
+		elseif player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+			windower.chat.input('/ja "Third Eye" <me>')
+			tickdelay = os.clock() + .7
 			return true
 		else
 			return false
 		end
-	elseif not has_shadows() > 0 and player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
-		windower.chat.input('/ja "Third Eye" <me>')
-		tickdelay = os.clock() + .7
-		return true
-	elseif not has_shadows() > 0 and silent_can_use(679) and spell_recasts[679] < spell_latency then
-		windower.chat.input('/ma "Occultation" <me>')
-		tickdelay = os.clock() + 2
-		return true
-	elseif not has_shadows() > 0 and silent_can_use(53) and spell_recasts[53] < spell_latency then
-		windower.chat.input('/ma "Blink" <me>')
-		tickdelay = os.clock() + 2
-		return true
-	elseif not has_shadows() > 0 and silent_can_use(647) and spell_recasts[647] < spell_latency then
-		windower.chat.input('/ma "Zephyr Mantle" <me>')
-		tickdelay = os.clock() + 2
-		return true
-	elseif not has_shadows() > 0 and player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
-		windower.chat.input('/ja "Third Eye" <me>')
-		tickdelay = os.clock() + .7
-		return true
 	else
 		return false
 	end
