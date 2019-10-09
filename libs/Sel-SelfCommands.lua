@@ -524,23 +524,23 @@ function handle_shadows()
 		else
 			return false
 		end
-	elseif not has_shadows() and player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+	elseif not has_shadows() > 0 and player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
 		windower.chat.input('/ja "Third Eye" <me>')
 		tickdelay = os.clock() + .7
 		return true
-	elseif not has_shadows() and silent_can_use(679) and spell_recasts[679] < spell_latency then
+	elseif not has_shadows() > 0 and silent_can_use(679) and spell_recasts[679] < spell_latency then
 		windower.chat.input('/ma "Occultation" <me>')
 		tickdelay = os.clock() + 2
 		return true
-	elseif not has_shadows() and silent_can_use(53) and spell_recasts[53] < spell_latency then
+	elseif not has_shadows() > 0 and silent_can_use(53) and spell_recasts[53] < spell_latency then
 		windower.chat.input('/ma "Blink" <me>')
 		tickdelay = os.clock() + 2
 		return true
-	elseif not has_shadows() and silent_can_use(647) and spell_recasts[647] < spell_latency then
+	elseif not has_shadows() > 0 and silent_can_use(647) and spell_recasts[647] < spell_latency then
 		windower.chat.input('/ma "Zephyr Mantle" <me>')
 		tickdelay = os.clock() + 2
 		return true
-	elseif not has_shadows() and player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+	elseif not has_shadows() > 0 and player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
 		windower.chat.input('/ja "Third Eye" <me>')
 		tickdelay = os.clock() + .7
 		return true
