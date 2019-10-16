@@ -547,6 +547,12 @@ spell_stepdown = {
 	['Horde Lullaby II'] = 'Horde Lullaby',
 	['Foe Lullaby II'] = 'Foe Lullaby',
 }
+
+item_stepdown = {
+	['Warp Ring'] = {'Treat Staff','main'},
+	['Treat Staff'] = {'Warp Cudgel','main'},
+	['Warp Cudgel'] = {'Instant Warp','item'}
+}
 -------------------------------------------------------------------------------------------------------------------
 -- Tables to specify general area groupings.  Creates the 'areas' table to be referenced in job files.
 -- Zone names provided by world.area/world.zone are currently in all-caps, so defining the same way here.

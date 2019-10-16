@@ -1530,6 +1530,10 @@ function check_use_item()
 			windower.send_command('get '..useItemName..'')
 			tickdelay = os.clock() + 2
 			return true
+		elseif item_stepdown[useItemName] then
+			useItemName = item_stepdown[useItemName][1]
+			useItemSlot = item_stepdown[useItemName][2]
+			return false
 		else
 			add_to_chat(123,''..useItemName..' not available or ready for use.')
 			useItem = false
@@ -2171,7 +2175,7 @@ function update_combat_form()
 		state.CombatForm:set('DW')
 	elseif sets.engaged[player.equipment.main] then
 		state.CombatForm:set(player.equipment.main)
-	elseif sets.engaged.Fencer and (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size) then
+	elseif sets.engaged.Fencer and is_fencing() then
 		state.CombatForm:set('Fencer')
 	else
 		state.CombatForm:reset()

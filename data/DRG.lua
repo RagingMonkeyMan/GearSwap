@@ -18,7 +18,8 @@ function job_setup()
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 	state.AutoJumpMode = M(false, 'Auto Jump Mode')
-
+	state.AutoBondMode = M(true, 'Auto Bond Mode')
+	
 	autows = 'Stardiver'
 	autofood = 'Soy Ramen'
 
@@ -43,8 +44,16 @@ function job_precast(spell, spellMap, eventArgs)
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			return
 		end
+	elseif spell.action_type == 'Ability' then
+		if spell.english == 'Restoring Breath' and state.AutoBondMode.value then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			if pet.isvalid and pet.hpp < 75 and abil_recasts[134] < latency and abil_recasts[149] < latency and spell.target.hpp > 44 then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Spirit Bond" <me>')
+				windower.chat.input:schedule(1,'/ja "Restoring Breath" '..spell.target.raw..'')
+			end
+		end
 	end
-
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
@@ -80,6 +89,12 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_pet_midcast(spell, spellMap, eventArgs)
 
+end
+
+function job_pet_aftercast(spell, spellMap, eventArgs)
+	if spell.english == 'Restoring Breath' and state.AutoBondMode.value then
+		windower.send_command('cancel spirit bond')
+	end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
