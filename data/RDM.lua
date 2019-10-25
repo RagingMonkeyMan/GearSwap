@@ -25,6 +25,7 @@ function job_setup()
 	
 	autows = "Chant Du Cygne"
 	autofood = 'Pear Crepe'
+	enspell2 = false
 	
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
@@ -186,6 +187,13 @@ function job_aftercast(spell, spellMap, eventArgs)
 end
 
 function job_buff_change(buff, gain)
+	if buff:startswith('En') and buff:endswith('II') then
+		if gain then
+			enspell2 = true
+		else
+			enspell2 = false
+		end
+	end
 	update_melee_groups()
 end
 
@@ -443,12 +451,14 @@ function check_buffup()
 end
 
 function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-		
-		if player.equipment.main == "Murgleis" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
-		end
+	classes.CustomMeleeGroups:clear()
+	
+	if enspell2 then
+		classes.CustomMeleeGroups:append('Enspell2')
+	end
+	
+	if player.equipment.main and player.equipment.main == "Murgleis" and state.Buff['Aftermath: Lv.3'] then
+		classes.CustomMeleeGroups:append('AM')
 	end	
 end
 
