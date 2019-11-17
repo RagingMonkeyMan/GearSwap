@@ -359,18 +359,28 @@ function check_dance()
 	return false
 end
 
+function calculate_step_feet_reduction()
+	local tp_reduction = 0
+	
+	if sets.precast.Step and sets.precast.Step.feet and standardize_set(sets.precast.Step).feet:startswith('Horos T. Shoes') then
+		if sets.precast.Step.feet:endswith('+2') then
+			tp_reduction = 10
+		elseif sets.precast.Step.feet:endswith('+3') then
+			tp_reduction = 20
+		end
+	end
+	
+	return tp_reduction 
+end
+
+step_feet_reduction = calculate_step_feet_reduction()
+
 function step_cost()
 	local cost = 100
 	
 	if player.equipment.main == 'Setan Kober' then cost = cost - 40 end
 	if player.equipment.sub == 'Setan Kober' then cost = cost - 40 end
-	if sets.precast.Step and sets.precast.Step.feet and sets.precast.Step.feet:startswith('Horos T. Shoes') then
-		if sets.precast.Step.feet:endswith('+2') then
-			cost = cost - 10
-		elseif sets.precast.Step.feet:endswith('+3') then
-			cost = cost - 20
-		end
-	end
+	if state.DefenseMode.value == 'None' then cost = cost - step_feet_reduction end
 	
 	return cost
 end

@@ -174,12 +174,6 @@ function refine_waltz(spell, spellMap, eventArgs)
 		return
     end
 
-	if sets.precast.Waltz and sets.precast.Waltz.legs and (sets.precast.Waltz.legs == "Desultor Tassets" or sets.precast.Waltz.legs == "Blitzer Poleyn" or sets.precast.Waltz.legs == "Tatsumaki Sitagoromo") then
-		waltz_tp_cost = {['Curing Waltz'] = 150, ['Curing Waltz II'] = 300, ['Curing Waltz III'] = 450, ['Curing Waltz IV'] = 600, ['Curing Waltz V'] = 750}
-	else
-		waltz_tp_cost = {['Curing Waltz'] = 200, ['Curing Waltz II'] = 350, ['Curing Waltz III'] = 500, ['Curing Waltz IV'] = 650, ['Curing Waltz V'] = 800}
-	end
-	
     -- Don't modify anything for Healing Waltz or Divine Waltzes
     if spell.english == "Healing Waltz" or spell.english == "Divine Waltz" or spell.english == "Divine Waltz II" then
         return
@@ -258,7 +252,14 @@ function refine_waltz(spell, spellMap, eventArgs)
         end
     end
 
-    local tpCost = waltz_tp_cost[newWaltz]
+	local tpCost = waltz_tp_cost[newWaltz]
+
+	if state.DefenseMode.value == 'None' and sets.precast.Waltz and sets.precast.Waltz.legs then
+		local waltz_legs = standardize_set(sets.precast.Waltz).legs
+		if (waltz_legs == "Desultor Tassets" or waltz_legs == "Blitzer Poleyn" or waltz_legs == "Tatsumaki Sitagoromo") then
+			tpCost = tpCost - 50
+		end
+	end
 
     local downgrade
     
