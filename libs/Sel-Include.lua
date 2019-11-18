@@ -252,7 +252,6 @@ function init_include()
     -- Include general user globals, such as custom binds or gear tables.
     -- Load Sel-Globals first, followed by User-Globals, followed by <character>-Globals.
     -- Any functions re-defined in the later includes will overwrite the earlier versions.
-    include('Sel-GlobalItems')
     optional_include('user-globals.lua')
     optional_include(player.name..'-globals.lua')
     optional_include(player.name..'-items.lua')
@@ -268,6 +267,8 @@ function init_include()
     -- Load sidecar file
 	include(player.name..'_'..player.main_job..'_gear.lua')
 
+	-- Load items into variable after determining what is owned as needed.
+	include('Sel-GlobalItems')
 	
 	-- Controls for handling our autmatic functions.
 	

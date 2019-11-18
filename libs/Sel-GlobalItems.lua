@@ -1,4 +1,4 @@
--- Universal items that are the same for all characters, and logic to determine which item choices from quests have been made.
+-- Universal items that are the same for all characters, and logic to determine if some specific items are owned and used.
 sets.EndorsementRing = {ring2="Endorsement Ring"}
 sets.TrizekRing = {ring2="Trizek Ring"}
 sets.EchadRing = {ring2="Echad Ring"}
@@ -21,4 +21,12 @@ elseif player.inventory["Ygnas's Resolve +1"] or player.safe["Ygnas's Resolve +1
 	sets.Reive = {neck="Ygnas's Resolve +1"}
 else
 	sets.Reive = {}
+end
+
+uses_waltz_legs = false
+if sets.precast.Waltz and sets.precast.Waltz.legs then
+	waltz_legs = standardize_set(sets.precast.Waltz).legs
+	if (waltz_legs == "Desultor Tassets" or waltz_legs == "Blitzer Poleyn" or waltz_legs == "Tatsumaki Sitagoromo") then
+		uses_waltz_legs	= true
+	end
 end

@@ -58,6 +58,22 @@ function job_setup()
 	autows = "Rudra's Storm"
 	autofood = 'Soy Ramen'
 	
+	function calculate_step_feet_reduction()
+		local tp_reduction = 0
+		
+		if sets.precast.Step and sets.precast.Step.feet and standardize_set(sets.precast.Step).feet:startswith('Horos T. Shoes') then
+			if sets.precast.Step.feet:endswith('+2') then
+				tp_reduction = 10
+			elseif sets.precast.Step.feet:endswith('+3') then
+				tp_reduction = 20
+			end
+		end
+		
+		return tp_reduction 
+	end
+
+	step_feet_reduction = calculate_step_feet_reduction()
+	
     update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
 end
@@ -364,13 +380,7 @@ function step_cost()
 	
 	if player.equipment.main == 'Setan Kober' then cost = cost - 40 end
 	if player.equipment.sub == 'Setan Kober' then cost = cost - 40 end
-	if state.DefenseMode.value == 'None' and sets.precast.Step and sets.precast.Step.feet and standardize_set(sets.precast.Step).feet:startswith('Horos T. Shoes') then
-		if sets.precast.Step.feet:endswith('+2') then
-			cost = cost - 10
-		elseif sets.precast.Step.feet:endswith('+3') then
-			cost = cost - 20
-		end
-	end
+	if state.DefenseMode.value == 'None' then cost = cost - step_feet_reduction end
 	
 	return cost
 end

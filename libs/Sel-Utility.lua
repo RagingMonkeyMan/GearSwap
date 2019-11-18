@@ -254,11 +254,8 @@ function refine_waltz(spell, spellMap, eventArgs)
 
 	local tpCost = waltz_tp_cost[newWaltz]
 
-	if state.DefenseMode.value == 'None' and sets.precast.Waltz and sets.precast.Waltz.legs then
-		local waltz_legs = standardize_set(sets.precast.Waltz).legs
-		if (waltz_legs == "Desultor Tassets" or waltz_legs == "Blitzer Poleyn" or waltz_legs == "Tatsumaki Sitagoromo") then
-			tpCost = tpCost - 50
-		end
+	if state.DefenseMode.value == 'None' and uses_waltz_legs then
+		tpCost = tpCost - 50
 	end
 
     local downgrade
@@ -609,6 +606,7 @@ function optional_include(filename)
 	if path then
 		include(filename)
 	else
+		print('Missing optional file: '..filename..'')
 		return false
     end
 end
