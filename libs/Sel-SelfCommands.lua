@@ -689,7 +689,7 @@ function handle_curecheat(cmdParams)
 		equip(sets.HPDown)
 		if player.main_job == 'BLU' then
 			send_command('@wait 1;input /ma "Magic Fruit" <me>')
-		elseif player.main_job == 'WHM' then
+		elseif player.main_job == 'WHM' or not silent_can_use(4) then
 			send_command('@wait 1;input /ma "Cure III" <me>')
 		else
 			send_command('@wait 1;input /ma "Cure IV" <me>')
@@ -699,7 +699,7 @@ function handle_curecheat(cmdParams)
 		curecheat = true
 		if player.main_job == 'BLU' then
 			windower.chat.input('/ma "Magic Fruit" <me>')
-		elseif player.main_job == 'WHM' then
+		elseif player.main_job == 'WHM' or not silent_can_use(4) then
 			windower.chat.input('/ma "Cure III" <me>')
 		else
 			windower.chat.input('/ma "Cure IV" <me>')
@@ -797,7 +797,7 @@ function handle_smartcure()
 			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
 	else
-		if spell_recasts[4] < spell_latency then
+		if silent_can_use(4) and spell_recasts[4] < spell_latency then
 			windower.chat.input('/ma "Cure IV" '..cureTarget..'')
 		elseif spell_recasts[3] < spell_latency then
 			windower.chat.input('/ma "Cure III" '..cureTarget..'')
