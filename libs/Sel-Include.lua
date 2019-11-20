@@ -1385,6 +1385,9 @@ function get_idle_set(petStatus)
     end
 
     if not (player.in_combat or being_attacked) and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
+		if state.NonCombatIdleMode and idleSet[state.NonCombatIdleMode.current]
+		idleSet = idleSet[state.NonCombatIdleMode.current]
+		mote_vars.set_breadcrumbs:append(state.NonCombatIdleMode.current)
 	elseif idleSet[state.IdleMode.current] then
 		idleSet = idleSet[state.IdleMode.current]
 		mote_vars.set_breadcrumbs:append(state.IdleMode.current)
