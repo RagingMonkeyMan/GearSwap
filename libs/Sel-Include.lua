@@ -1371,27 +1371,19 @@ function get_idle_set(petStatus)
     mote_vars.set_breadcrumbs:append('sets')
     mote_vars.set_breadcrumbs:append('idle')
     
-    local idleScope
-
-    if buffactive.weakness then
-        idleScope = 'Weak'
-    else
-        idleScope = 'Field'
-    end
-
-    if idleSet[idleScope] then
-        idleSet = idleSet[idleScope]
-        mote_vars.set_breadcrumbs:append(idleScope)
-    end
+    if buffactive.weakness and sets.idle.Weak then
+		idleSet = sets.idle.Weak
+		mote_vars.set_breadcrumbs:append('Weak')
+	end
 
     if not (player.in_combat or being_attacked) and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
 		if state.NonCombatIdleMode and idleSet[state.NonCombatIdleMode.current] then
 			idleSet = idleSet[state.NonCombatIdleMode.current]
 			mote_vars.set_breadcrumbs:append(state.NonCombatIdleMode.current)
-		elseif idleSet[state.IdleMode.current] then
-			idleSet = idleSet[state.IdleMode.current]
-			mote_vars.set_breadcrumbs:append(state.IdleMode.current)
 		end
+	elseif idleSet[state.IdleMode.current] then
+		idleSet = idleSet[state.IdleMode.current]
+		mote_vars.set_breadcrumbs:append(state.IdleMode.current)
     end
 
     if (pet.isvalid or state.Buff.Pet) and idleSet.Pet then
