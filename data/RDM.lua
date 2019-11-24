@@ -25,7 +25,7 @@ function job_setup()
 	
 	autows = "Chant Du Cygne"
 	autofood = 'Pear Crepe'
-	enspell2 = false
+	enspell = ''
 	
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
@@ -187,11 +187,11 @@ function job_aftercast(spell, spellMap, eventArgs)
 end
 
 function job_buff_change(buff, gain)
-	if buff:startswith('En') and buff:endswith('II') then
+	if enspell_lookup:contains(buff) then
 		if gain then
-			enspell2 = true
+			enspell = buff
 		else
-			enspell2 = false
+			enspell = ''
 		end
 	end
 	update_melee_groups()
@@ -224,6 +224,15 @@ function job_customize_idle_set(idleSet)
     end
     
     return idleSet
+end
+
+function job_customize_melee_set(meleeSet)
+
+	if enspell ~= '' and sets.element.enspell and sets.element.enspell[enspell_lookup.enspell]] then
+		meleeSet = set_combine(meleeSet, sets.element.enspell[enspell_lookup.enspell]])
+	end
+
+    return meleeSet
 end
 
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
@@ -453,8 +462,12 @@ end
 function update_melee_groups()
 	classes.CustomMeleeGroups:clear()
 	
-	if enspell2 then
-		classes.CustomMeleeGroups:append('Enspell2')
+	if enspell ~= '' then
+		if endspell:endswith('II') then
+			classes.CustomMeleeGroups:append('Enspell2')
+		else
+			classes.CustomMeleeGroups:append('Enspell')
+		end
 	end
 	
 	if player.equipment.main and player.equipment.main == "Murgleis" and state.Buff['Aftermath: Lv.3'] then
