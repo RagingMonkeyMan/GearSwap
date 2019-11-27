@@ -228,8 +228,8 @@ end
 
 function job_customize_melee_set(meleeSet)
 
-	if enspell ~= '' and sets.element.enspell and sets.element.enspell[enspell_lookup.enspell]] then
-		meleeSet = set_combine(meleeSet, sets.element.enspell[enspell_lookup.enspell]])
+	if enspell ~= '' and sets.element.enspell and sets.element.enspell[enspell_lookup.enspell] then
+		meleeSet = set_combine(meleeSet, sets.element.enspell[enspell_lookup.enspell])
 	end
 
     return meleeSet
