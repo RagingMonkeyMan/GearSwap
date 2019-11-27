@@ -463,7 +463,7 @@ function update_melee_groups()
 	classes.CustomMeleeGroups:clear()
 	
 	if enspell ~= '' then
-		if endspell:endswith('II') then
+		if enspell:endswith('II') then
 			classes.CustomMeleeGroups:append('Enspell2')
 		else
 			classes.CustomMeleeGroups:append('Enspell')
