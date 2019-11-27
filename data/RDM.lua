@@ -187,7 +187,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 end
 
 function job_buff_change(buff, gain)
-	if enspell_lookup:contains(buff) then
+	if enspells:contains(buff) then
 		if gain then
 			enspell = buff
 		else
