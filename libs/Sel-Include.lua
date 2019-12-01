@@ -267,9 +267,6 @@ function init_include()
     -- Load sidecar file
 	include(player.name..'_'..player.main_job..'_gear.lua')
 
-	-- Load items into variable after determining what is owned as needed.
-	include('Sel-GlobalItems')
-	
 	-- Controls for handling our autmatic functions.
 	
 	tickdelay = os.clock() + 5
@@ -422,6 +419,9 @@ function init_include()
 	
     -- Load up all the gear sets.
     init_gear_sets()
+	
+	-- Load generic items into sets and determine settings after checking what is owned as needed.
+	include('Sel-GlobalItems')
 end
 
 -- Called when this job file is unloaded (eg: job change)
@@ -445,9 +445,15 @@ if not file_unload then
     end
 end
 
--- Function to bind GearSwap binds when loading a GS script, moved to globals to seperate per character and user.
+-- Non item-based global settings to check on load.
 function global_on_load()
-
+	if world.area then
+		if world.area:contains('Abyssea') or areas.ProcZones:contains(world.area) then
+			state.SkipProcWeapons:set('False')
+		else
+			state.SkipProcWeapons:reset()
+		end
+	end
 end
 
 -- Function to revert binds when unloading.

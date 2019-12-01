@@ -923,6 +923,14 @@ function item_available(item)
 	end
 end
 
+function item_owned(item)
+	if player.inventory[item] or player.wardrobe[item] or player.wardrobe2[item] or player.wardrobe3[item] or player.wardrobe4[item] or player.safe[item] or player.safe2[item] or player.storage[item] or player.locker[item] or player.satchel[item] or player.sack[item] or player.case[item] then
+		return true
+	else
+		return false
+	end
+end
+
 function check_disable(spell, spellMap, eventArgs)
 
 	if player.hp == 0 then
