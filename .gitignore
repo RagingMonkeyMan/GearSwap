@@ -27,6 +27,7 @@ libs/rev1/*
 *-Globals.lua
 data/export/*
 data/common/*
+data/Sounds/*
 data/User/*
 data/Extras/*
 libs/closetCleaner.lua
