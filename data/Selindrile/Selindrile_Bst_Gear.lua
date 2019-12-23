@@ -64,6 +64,9 @@ function init_gear_sets()
 	sets.precast.JA.Reward.Theta = set_combine(sets.precast.JA.Reward, {ammo="Pet Food Theta"})
 	sets.precast.JA.Reward.Zeta = set_combine(sets.precast.JA.Reward, {ammo="Pet Food Zeta"})
 	sets.precast.JA.Reward.Eta = set_combine(sets.precast.JA.Reward, {ammo="Pet Food Eta"})
+	
+	sets.RewardAxe = {}
+	sets.RewardAxesDW = {}
 
 	sets.precast.JA.Charm = {}
 
@@ -199,9 +202,6 @@ function init_gear_sets()
 	sets.midcast.Pet.Favorable = {head="Nukumi Cabasset"}
 	sets.midcast.Pet.TPBonus = {hands="Nukumi Manoplas +1"}
 
-	sets.RewardAxe = {}
-	sets.RewardAxesDW = {}
-
 	-- RESTING
 	sets.resting = {}
 
@@ -218,7 +218,12 @@ function init_gear_sets()
 		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Sheltered Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
-	sets.idle.Pet.Engaged = {ammo="Demonry Core",
+	sets.idle.Pet.Engaged = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Demonry Core",
+		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
+
+	sets.idle.Pet.Engaged.DW = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Demonry Core",
 		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
 		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}

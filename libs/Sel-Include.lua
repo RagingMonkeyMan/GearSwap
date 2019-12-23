@@ -131,6 +131,13 @@ function init_include()
 	state.Buff['Addendum: Black'] = buffactive['Addendum: Black'] or false
 	state.Buff['Accession'] = buffactive['Accession'] or false
 	state.Buff['Warcry'] = buffactive['Warcry'] or false
+	
+	--Defining Variables here on load that won't change without a reload to save processing.
+	if (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
+		can_dual_wield = true
+	else
+		can_dual_wield = false
+	end
 
     -- Classes describe a 'type' of action.  They are similar to state, but
     -- may have any free-form value, or describe an entire table of mapped values.
@@ -2114,7 +2121,7 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
-		if ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield()) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
+		if ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
 			while ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield()) or (state.SkipProcWeapons.value and state.Weapons.value:contains('Proc')) do
 				state.Weapons:cycle()

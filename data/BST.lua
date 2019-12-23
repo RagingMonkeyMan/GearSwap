@@ -43,7 +43,7 @@ function job_setup()
 
 	tp_based_ready_moves = S{'Sic','Somersault ','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
         'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
-        'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Geist Wall','Numbing Noise','Frogkick',
+        'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Geist Wall','Numbing Noise','Frog Kick',
         'Nimble Snap','Cyclotail','Spoil','Rhino Guard','Rhino Attack','Hi-Freq Field','Sandpit','Sandblast',
         'Mandibular Bite','Metallic Body','Bubble Shower','Bubble Curtain','Scissor Guard','Grapple','Spinning Top',
         'Double Claw','Filamented Hold','Spore','Blockhead','Secretion','Fireball','Tail Blow','Plague Breath',
@@ -216,7 +216,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 		elseif spell.english == 'Reward' then
 			equip(sets.precast.JA.Reward[state.RewardMode.value])
-			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+			if can_dual_wield then
 				equip(sets.RewardAxesDW)
 			else
 				equip(sets.RewardAxe)
@@ -224,7 +224,7 @@ function job_precast(spell, spellMap, eventArgs)
 
 		elseif spell.english == 'Spur' then
 			equip(sets.precast.JA.Spur)
-			if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+			if can_dual_wield then
 				equip(sets.SpurAxesDW)
 			else
 				equip(sets.SpurAxe)
@@ -263,7 +263,7 @@ function job_precast(spell, spellMap, eventArgs)
 -- Define class for Sic and Ready moves.
         elseif spell.type == 'Monster' then
                 classes.CustomClass = "WS"
-                if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+                if can_dual_wield then
 					equip(sets.midcast.Pet.ReadyRecastDW)
                 else
 					equip(sets.midcast.Pet.ReadyRecast)
@@ -329,14 +329,10 @@ function job_pet_midcast(spell, spellMap, eventArgs)
         end
 
         -- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
-        if tp_based_ready_moves:contains(spell.english) and PetJob == 'Warrior' then
-                if pet.tp < 1900 then
-                        equip(sets.midcast.Pet.TPBonus)
-                end
-        elseif tp_based_ready_moves:contains(spell.english) and PetJob ~= 'Warrior' then
-                if pet.tp < 2400 then
-                        equip(sets.midcast.Pet.TPBonus)
-                end
+        if tp_based_ready_moves:contains(spell.english) then
+			if pet.tp < 1900 or (PetJob ~= 'Warrior' and pet.tp < 2400) then
+				equip(sets.midcast.Pet.TPBonus)
+			end
         end
 end
 
@@ -369,6 +365,10 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_customize_idle_set(idleSet)
+	if pet.isvalid and pet.status == 'Engaged' and can_dual_wield and sets.idle.Pet.Engaged.DW then
+		equip(sets.idle.Pet.Engaged.DW)
+	end
+	
     return idleSet
 end
 
@@ -645,7 +645,7 @@ function get_ready_charge_timer()
 	end
 
 	if state.Weapons.Value == 'None' then
-		if (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
+		if can_dual_wield then
 			if sets.midcast.Pet.ReadyRecastDW.sub and sets.midcast.Pet.ReadyRecastDW.sub == "Charmer's Merlin" then
 				chargetimer = chargetimer - 5
 			end
@@ -655,7 +655,7 @@ function get_ready_charge_timer()
 		end
 	end
 	
-	if (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
+	if can_dual_wield then
 		if sets.midcast.Pet.ReadyRecastDW.legs and sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" then
 			chargetimer = chargetimer - 5
 		end

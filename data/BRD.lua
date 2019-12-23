@@ -179,11 +179,11 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				end
 			end
 			
-			if can_dual_wield() and sets.midcast.SongDebuff.DW then
+			if can_dual_wield and sets.midcast.SongDebuff.DW then
 				equip(sets.midcast.SongDebuff.DW)
 			end
 		else
-			if can_dual_wield() and sets.midcast.SongEffect.DW then
+			if can_dual_wield and sets.midcast.SongEffect.DW then
 				equip(sets.midcast.SongEffect.DW)
 			end
 		end
