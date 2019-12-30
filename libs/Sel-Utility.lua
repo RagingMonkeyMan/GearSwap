@@ -1534,7 +1534,7 @@ function check_use_item()
 			tickdelay = os.clock() + 2
 			return true
 		elseif player.satchel[useItemName] then
-			windower.send_command('get '..useItemName..'')
+			windower.send_command('get "'..useItemName..'" satchel')
 			tickdelay = os.clock() + 2
 			return true
 		elseif item_stepdown[useItemName] then
