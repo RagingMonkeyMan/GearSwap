@@ -429,6 +429,19 @@ function check_buff()
 				return true
 			end
 		end
+		
+		if player.in_combat then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+
+			if not buffactive['Majesty'] and abil_recasts[150] < latency then
+				windower.chat.input('/ja "Majesty" <me>')
+				tickdelay = os.clock() + 1.8
+				return true
+			else
+				return false
+			end
+		end
+		
 	else
 		return false
 	end
