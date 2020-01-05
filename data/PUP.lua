@@ -32,6 +32,7 @@ function job_setup()
 	state.AutoPuppetMode = M(false, 'Auto Puppet Mode')
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
+	state.AutoPetMode 	 = M(true, 'Auto Pet Mode')
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
 	state.PetEnmityGear	 = M(true, 'Pet Enmity Gear')
 
@@ -247,10 +248,6 @@ function job_self_command(commandArgs, eventArgs)
         else
             add_to_chat(123,'Error: No valid pet.')
         end
-	elseif commandArgs[1] == 'petmode' then
-		if commandArgs[2] == 'reset' then
-			update_pet_mode()
-		end
     end
 end
 
@@ -274,8 +271,8 @@ end
 
 -- Get the pet mode value based on the equipped frame of the automaton.
 -- Returns nil if pet is not valid.
-function get_pet_mode()
-    if pet.isvalid then
+function update_pet_mode()
+    if pet.isvalid and state.AutoPetMode.value then
 		if pet.frame == 'Sharpshot Frame' then
 			if pet.head == 'Valoredge Head' or pet.head == 'Harlequin Head' then
 				return 'HybridRanged'
@@ -310,12 +307,7 @@ function get_pet_mode()
     else
         return 'None'
     end
-end
-
--- Update state.PetMode, as well as functions that use it for set determination.
-function update_pet_mode()
-    state.PetMode:set(get_pet_mode())
-    update_custom_groups()
+	update_custom_groups()
 end
 
 -- Update custom groups based on the current pet.
