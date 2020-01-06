@@ -1904,10 +1904,6 @@ function apply_defense(baseSet)
         if user_job_customize_defense_set then
             defenseSet = user_job_customize_defense_set(defenseSet)
         end
-		
-        if user_job_customize_defense_set then
-            defenseSet = extra_user_customize_defense_set(defenseSet)
-        end
 
         baseSet = set_combine(baseSet, defenseSet)
     end
