@@ -272,42 +272,45 @@ end
 -- Get the pet mode value based on the equipped frame of the automaton.
 -- Returns nil if pet is not valid.
 function update_pet_mode()
-    if pet.isvalid and state.AutoPetMode.value then
-		if pet.frame == 'Sharpshot Frame' then
-			if pet.head == 'Valoredge Head' or pet.head == 'Harlequin Head' then
-				return 'HybridRanged'
-			else
-				return 'Ranged'
-			end
-		elseif pet.frame == 'Valoredge Frame' then
-			if pet.head == 'Soulsoother Head' then
-				return 'Tank'
-			else
-				return 'Melee'
-			end
-		elseif pet.head == 'Sharpshot Head' or pet.head == 'Stormwaker Head' then
-			return 'Magic'
-		elseif pet.head == 'Spiritreaver Head' then
-			return 'Nuke'
-		elseif pet.frame == 'Harlequin Frame' then
-			if pet.head == 'Harlequin Head' then
-				return 'Melee'
-			else
-				return 'LightTank'
-			end
-		else
-				if pet.head == 'Soulsoother Head' then
-					return 'Heal'
-				elseif pet.head == 'Valoredge Head' then
-					return 'Melee'
-				else
-					return 'Magic'
-				end
-		end
-    else
-        return 'None'
-    end
+	if pet.isvalid and state.AutoPetMode.value then
+		state.PetMode:set(get_pet_mode())
+	end
+	
 	update_custom_groups()
+end
+
+function get_pet_mode()
+	if pet.frame == 'Sharpshot Frame' then
+		if pet.head == 'Valoredge Head' or pet.head == 'Harlequin Head' then
+			return 'HybridRanged'
+		else
+			return 'Ranged'
+		end
+	elseif pet.frame == 'Valoredge Frame' then
+		if pet.head == 'Soulsoother Head' then
+			return 'Tank'
+		else
+			return 'Melee'
+		end
+	elseif pet.head == 'Sharpshot Head' or pet.head == 'Stormwaker Head' then
+		return 'Magic'
+	elseif pet.head == 'Spiritreaver Head' then
+		return 'Nuke'
+	elseif pet.frame == 'Harlequin Frame' then
+		if pet.head == 'Harlequin Head' then
+			return 'Melee'
+		else
+			return 'LightTank'
+		end
+	else
+			if pet.head == 'Soulsoother Head' then
+				return 'Heal'
+			elseif pet.head == 'Valoredge Head' then
+				return 'Melee'
+			else
+				return 'Magic'
+			end
+	end
 end
 
 -- Update custom groups based on the current pet.
