@@ -1538,8 +1538,8 @@ function check_use_item()
 			tickdelay = os.clock() + 2
 			return true
 		elseif item_stepdown[useItemName] then
-			useItemName = item_stepdown[useItemName][1]
 			useItemSlot = item_stepdown[useItemName][2]
+			useItemName = item_stepdown[useItemName][1]
 			return false
 		else
 			add_to_chat(123,''..useItemName..' not available or ready for use.')
