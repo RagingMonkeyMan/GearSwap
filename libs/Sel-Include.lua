@@ -415,7 +415,7 @@ function init_include()
 
 		tickdelay = os.clock() + .5
 		
-		if lastincombat == true and not player.in_combat and being_attacked then
+		if lastincombat == true and not player.in_combat then
 			being_attacked = false
 			if player.status == 'Idle' and not midaction() and not (pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2))) then
 				handle_equipping_gear(player.status)
