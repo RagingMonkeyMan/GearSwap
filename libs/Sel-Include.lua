@@ -420,6 +420,10 @@ function init_include()
 			if player.status == 'Idle' and not midaction() and not (pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2))) then
 				handle_equipping_gear(player.status)
 			end
+			if state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
+				state.DefenseMode:reset()
+				if state.DisplayMode.value then update_job_states()	end
+			end
 		end			
 		lastincombat = player.in_combat
 	end)
