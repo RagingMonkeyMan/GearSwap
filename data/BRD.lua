@@ -235,6 +235,26 @@ function job_buff_change(buff, gain)
 	update_melee_groups()
 end
 
+function job_get_spell_map(spell, default_spell_map)
+
+	if  default_spell_map == 'Cure' or default_spell_map == 'Curaga'  then
+		if world.weather_element == 'Light' then
+                return 'LightWeatherCure'
+		elseif world.day_element == 'Light' then
+                return 'LightDayCure'
+        end
+
+	elseif spell.skill == "Enfeebling Magic" then
+		if spell.english:startswith('Dia') then
+			return "Dia"
+		elseif spell.type == "WhiteMagic" or spell.english:startswith('Frazzle') or spell.english:startswith('Distract') then
+			return 'MndEnfeebles'
+		else
+			return 'IntEnfeebles'
+		end
+	end
+end
+
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------

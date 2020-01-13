@@ -165,6 +165,8 @@ function job_post_midcast(spell, spellMap, eventArgs)
 					equip(sets.ResistantRecoverBurst)
 				elseif sets.RecoverBurst then
 					equip(sets.RecoverBurst)
+				elseif sets.RecoverMP then
+					equip(sets.RecoverMP)
 				end
 			elseif sets.RecoverMP then
 				equip(sets.RecoverMP)

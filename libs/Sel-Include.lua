@@ -1970,7 +1970,6 @@ function get_spell_map(spell)
     return jobSpellMap or defaultSpellMap
 end
 
-
 -- Select the equipment set to equip from a given starting table, based on standard
 -- selection order: custom class, spell name, spell map, spell skill, and spell type.
 -- Spell skill and spell type may further refine their selections based on
@@ -2000,7 +1999,6 @@ function select_specific_set(equipSet, spell, spellMap)
     return namedSet or equipSet
 end
 
-
 -- Simple utility function to handle a portion of the equipment set determination.
 -- It attempts to select a sub-table of the provided equipment set based on the
 -- standard search order of custom class, spell name, and spell map.
@@ -2021,7 +2019,6 @@ function get_named_set(equipSet, spell, spellMap)
         end
     end
 end
-
 
 -------------------------------------------------------------------------------------------------------------------
 -- Hooks for other events.
