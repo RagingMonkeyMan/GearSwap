@@ -151,8 +151,6 @@ function init_gear_sets()
 	
 	sets.MagicBurst = {ring1="Mujin Band",ring2="Locus Ring"}
 	
-	sets.element.Earth = {neck="Quanpur Necklace"}
-
     sets.midcast.NinjutsuDebuff = {ammo="Dosis Tathlum",
         head="Dampening Tam",neck="Incanter's Torque",ear1="Gwati Earring",ear2="Digni. Earring",
         body="Mekosu. Harness",hands="Mochizuki Tekko +1",ring1="Stikini Ring",ring2="Stikini Ring",

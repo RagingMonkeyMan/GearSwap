@@ -901,7 +901,7 @@ function default_precast(spell, spellMap, eventArgs)
 	end
 	
 	if spell.action_type == 'Magic' then
-		next_cast = os.clock() + 3.5 - latency
+		next_cast = os.clock() + 3.6 - latency
 	elseif spell.type == 'WeaponSkill' then
 		next_cast = os.clock() + 2.5 - latency
 	elseif spell.action_type == 'Ability' then

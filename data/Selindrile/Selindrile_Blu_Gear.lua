@@ -325,7 +325,6 @@ function init_gear_sets()
 	sets.midcast.Helix.Resistant = sets.midcast['Elemental Magic'].Resistant
 
 	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
-	sets.element.Earth = {neck="Quanpur Necklace"}
 	sets.element.Light = {} --ring2="Weatherspoon Ring"
 
 	sets.midcast.Cure = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",

@@ -470,7 +470,17 @@ buff_spell_lists = {
 		{Name='Aquaveil',	Buff='Aquaveil',		SpellID=55,		Reapply=false},
 		{Name='Stoneskin',	Buff='Stoneskin',		SpellID=54,		Reapply=false},
 		{Name='Blink',		Buff='Blink',			SpellID=53,		Reapply=false},
-		{Name='Regen IV',	Buff='Regen',			SpellID=477,	Reapply=false},
 		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Regen IV',	Buff='Regen',			SpellID=477,	Reapply=false},
+	},
+	Melee = {
+		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	Reapply=false},
+		{Name='Haste',		Buff='Haste',			SpellID=57,		Reapply=false},
+		{Name='Refresh',	Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Aquaveil',	Buff='Aquaveil',		SpellID=55,		Reapply=false},
+		{Name='Stoneskin',	Buff='Stoneskin',		SpellID=54,		Reapply=false},
+		{Name='Blink',		Buff='Blink',			SpellID=53,		Reapply=false},
+		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Regen IV',	Buff='Regen',			SpellID=477,	Reapply=false},
 	},
 }

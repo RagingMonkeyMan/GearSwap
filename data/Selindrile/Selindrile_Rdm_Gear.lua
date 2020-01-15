@@ -1,7 +1,7 @@
 function user_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Normal')
-    state.HybridMode:options('Normal', 'PhysicalDef', 'MagicalDef')
+    state.OffenseMode:options('Normal','Acc','FullAcc')
+    state.HybridMode:options('Normal','PDT','MDT')
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
     state.IdleMode:options('Normal', 'PDT', 'MDT', 'TPEat','DTHippo')
     state.PhysicalDefenseMode:options('PDT', 'NukeLock')
@@ -98,11 +98,6 @@ function init_gear_sets()
 	-- Gear for Magic Burst mode.
     sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Alber Strap",head="Ea Hat",neck="Mizu. Kubikazari",body="Ea Houppelande",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
 	
-	-- Gear for specific elemental nukes.
-	sets.element.Wind = {main="Marin Staff +1"}
-	sets.element.Ice = {main="Ngqoqwanb"}
-	sets.element.Earth = {neck="Quanpur Necklace"}
-
 	sets.midcast.FastRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Hasty Pinion +1",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
 		body="Zendik Robe",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
@@ -258,7 +253,7 @@ function init_gear_sets()
 	-- Sets to return to when not performing an action.
 	
 	-- Resting sets
-	sets.resting = {main="Bolelabunga",sub="Genmei Shield",ammo="Impatiens",
+	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",ammo="Impatiens",
 		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Sheltered Ring",
 		back="Umbra Cape",waist="Flume Belt",legs="Lengo Pants",feet=gear.chironic_refresh_feet}
@@ -272,10 +267,10 @@ function init_gear_sets()
 		
 	sets.idle.PDT = {main="Terra's Staff",sub="Oneiros Grip",ammo="Staunch Tathlum",
 		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Emet Harness +1",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
 		
-	sets.idle.MDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum",
+	sets.idle.MDT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Viti. Chapeau +1",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Shadow Ring",
 		back="Engulfer Cape +1",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
@@ -290,20 +285,20 @@ function init_gear_sets()
 	-- Defense sets
 	sets.defense.PDT = {main="Terra's Staff",sub="Umbra Strap",ammo="Impatiens",
 		head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Emet Harness +1",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
 
 	sets.defense.NukeLock = sets.midcast['Elemental Magic']
 		
 	sets.defense.MDT = {main="Bolelabunga",sub="Genmei Shield",ammo="Impatiens",
 		head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Gende. Galosh. +1"}
 		
-    sets.defense.MEVA = {main="Terra's Staff",sub="Enki Strap",ammo="Pemphredo Tathlum",
-        head=empty,neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Respite Cloak",hands="Telchine Gloves",ring1="Vengeful Ring",Ring2="Purity Ring",
-        back="Sucellos's Cape",waist="Luminary Sash",legs="Leth. Fuseau +1",feet="Telchine Pigaches"}
+    sets.defense.MEVA = {main="Daybreak",sub="Genmei Shield",ammo="Pemphredo Tathlum",
+        head="Ea Hat",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+		body="Malignance Tabard",hands="Telchine Gloves",ring1="Vengeful Ring",Ring2="Purity Ring",
+        back="Sucellos's Cape",waist="Luminary Sash",legs="Leth. Fuseau +1",feet="Vitiation Boots +3"}
 		
 	sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque"})
 
@@ -324,7 +319,7 @@ function init_gear_sets()
 	-- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous
 	-- sets if more refined versions aren't defined.
 	-- If you create a set with both offense and defense modes, the offense mode should be first.
-	-- EG: sets.engaged.Dagger.Accuracy.Evasion
+	-- EG: sets.Dagger.Accuracy.Evasion
 	
 	-- Normal melee group
 --	sets.engaged = {ammo="Ginsen",
@@ -336,22 +331,91 @@ function init_gear_sets()
 		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
 		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Jhakri Slops +2",feet="Carmine Greaves +1"}
+		
+	sets.engaged.Acc = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Jhakri Slops +2",feet="Carmine Greaves +1"}		
+		
+	sets.engaged.FullAcc = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Jhakri Slops +2",feet="Carmine Greaves +1"}
 
+	sets.engaged.PDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
+	sets.engaged.Acc.PDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
+	sets.engaged.FullAcc.PDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
+	sets.engaged.MDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
+	sets.engaged.Acc.MDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
+	sets.engaged.FullAcc.MDT = {ammo="Ginsen",
+		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+		
 	sets.engaged.DW = {ammo="Ginsen",
 		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
 		body="Ayanmo Corazza +2",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
 		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
 		
-	sets.engaged.PhysicalDef = {ammo="Ginsen",
-		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-		body="Emet Harness +1",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+	sets.engaged.DW.Acc = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
 		
-	sets.engaged.MagicalDef = {ammo="Ginsen",
-		head="Viti. Chapeau +1",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-		body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Flume Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
-
+	sets.engaged.DW.FullAcc = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Petrov Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.PDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.Acc.PDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.FullAcc.PDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.MDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.Acc.MDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		
+	sets.engaged.DW.FullAcc.MDT = {ammo="Ginsen",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Aya. Manopolas +2",ring1="Defending Ring",ring2="Ilabrat Ring",
+		back="Bleating Mantle",waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
 end
 
 -- Select default macro book on initial load or subjob change.

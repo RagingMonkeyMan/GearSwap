@@ -107,7 +107,8 @@ function init_gear_sets()
 
 	sets.precast.JA['Swipe'] = sets.precast.JA['Lunge']
 
-	sets.element.Earth = {neck="Quanpur Necklace"}
+	-- Gear for specific elemental nukes.
+	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
 
 	-- Pulse sets, different stats for different rune modes, stat aligned.
     sets.precast.JA['Vivacious Pulse'] = {head="Erilaz Galea +1",neck="Incanter's Torque",ring1="Stikini Ring",ring2="Stikini Ring",legs="Rune. Trousers +3"}
