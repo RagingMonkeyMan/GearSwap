@@ -126,6 +126,7 @@ function update_job_states()
 		RewardMode = "Reward",
 		AutoNukeMode = "Auto Nuke: "..autonuke.."",
 		AutoBuffMode = "Auto Buff",
+		AutoSongMode = "Auto Song",
 		AutoJumpMode = "Auto Jump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
 		AutoShadowMode = "Auto Shadows",
