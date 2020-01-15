@@ -353,11 +353,9 @@ function check_buff()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists['Auto']) do
 			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
-				if not unbridled_spells:contains(buff_spell_lists['Auto'][i].Name) or unbridled_ready() then
-					windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
-					tickdelay = os.clock() + 2
-					return true
-				end
+				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
+				tickdelay = os.clock() + 2
+				return true
 			end
 		end
 	else
@@ -396,3 +394,18 @@ function check_buffup()
 		return false
 	end
 end
+
+buff_spell_lists = {
+	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
+		{Name='Refresh',			Buff='Refresh',			SpellID=109,	When='Idle'},
+		{Name='Phalanx',			Buff='Phalanx',			SpellID=106,	When='Idle'},
+		{Name='Stoneskin',			Buff='Stoneskin',		SpellID=54,		When='Idle'},
+		{Name='Blink',				Buff='Blink',			SpellID=53,		When='Idle'},
+	},
+	Default = {
+		{Name='Refresh',			Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Phalanx',			Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Stoneskin',			Buff='Stoneskin',		SpellID=54,		Reapply=false},
+		{Name='Blink',				Buff='Blink',			SpellID=53,		Reapply=false},
+	},
+}
