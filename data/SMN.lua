@@ -362,6 +362,8 @@ function job_customize_idle_set(idleSet)
     if buffactive['Sublimation: Activated'] then
         if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and sets.buff.Sublimation then
             idleSet = set_combine(idleSet, sets.buff.Sublimation)
+        elseif state.IdleMode.value:contains('DT') and sets.buff.DTSublimation then
+            idleSet = set_combine(idleSet, sets.buff.DTSublimation)
         end
     end
 
