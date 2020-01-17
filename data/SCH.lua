@@ -200,11 +200,6 @@ end
 -- Called when a player gains or loses a buff.
 -- buff == buff gained or lost
 -- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff, gain)
-    if buff == "Sublimation: Activated" then
-        if not midaction() then handle_equipping_gear(player.status) end
-    end
-end
 
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements standard library decisions.
@@ -239,15 +234,20 @@ end
 
 function job_customize_idle_set(idleSet)
     if state.Buff['Sublimation: Activated'] then
-        if state.IdleMode.value == 'Normal' then
-            idleSet = set_combine(idleSet, sets.buff.FullSublimation)
-        elseif state.IdleMode.value == 'PDT' then
-            idleSet = set_combine(idleSet, sets.buff.PDTSublimation)
+        if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and sets.buff.Sublimation then
+            idleSet = set_combine(idleSet, sets.buff.Sublimation)
         end
     end
 
-    if player.mpp < 51 and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') and state.DefenseMode.value == 'None' then
-        idleSet = set_combine(idleSet, sets.latent_refresh)
+    if player.mpp < 51 and (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) then
+		if sets.latent_refresh then
+			idleSet = set_combine(idleSet, sets.latent_refresh)
+		end
+		
+		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
+		if available_ws:contains(176) and sets.latent_refresh_grip then
+			idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+		end
     end
 
     return idleSet

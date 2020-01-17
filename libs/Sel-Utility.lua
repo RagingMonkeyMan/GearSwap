@@ -724,15 +724,17 @@ function can_use(spell)
             
             if addendum_white[spell.id] then
 				if state.AutoArts.value and not buffactive["Addendum: White"] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
-					if buffactive["Light Arts"] then
+					if state.Buff['Light Arts'] then
 						windower.chat.input('/ja "Addendum: White" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
+						tickdelay = os.clock() + 5
 					else
 						local abil_recasts = windower.ffxi.get_ability_recasts()
 						if abil_recasts[228] < latency then
 							windower.chat.input('/ja "Light Arts" <me>')
 							windower.chat.input:schedule(1.5,'/ja "Addendum: White" <me>')
 							windower.chat.input:schedule(3.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
+							tickdelay = os.clock() + 6.5
 						end
 					end
 				else
@@ -764,7 +766,7 @@ function can_use(spell)
                         
             if addendum_white[spell.id] then
 				if state.AutoArts.value and not buffactive["Addendum: White"] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
-					if buffactive["Light Arts"] then
+					if state.Buff['Light Arts'] then
 						windower.chat.input('/ja "Addendum: White" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
 					else
@@ -1198,7 +1200,7 @@ function check_spell_targets(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			add_to_chat(123,'Target out of range, too far to heal!')
 		elseif spell.english:startswith('Curaga') and not spell.target.in_party then
-			if (buffactive['light arts'] or buffactive['addendum: white']) then
+			if (state.Buff['Light Arts'] or state.Buff['Addendum: White']) then
 				if get_current_strategem_count() > 0 then
 					local number = spell.english:match('Curaga ?%a*'):sub(7) or ''
 					eventArgs.cancel = true
@@ -1224,58 +1226,62 @@ end
 function check_abilities(spell, spellMap, eventArgs)
 
 	if spell.action_type == 'Ability' then
-		if spell.english == "Light Arts" and buffactive['Light Arts'] then
+		if spell.english == "Light Arts" and state.Buff['Light Arts'] then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Addendum: White" <me>')
 			return true
-		elseif spell.english == "Dark Arts" and buffactive['Dark Arts'] then
+		elseif spell.english == "Dark Arts" and state.Buff['Dark Arts'] then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Addendum: Black" <me>')
-			return true
-		elseif spell.english == "Penury" and buffactive['Dark Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Parsimony" <me>')
-			return true
-		elseif spell.english == "Parsimony" and buffactive['Light Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Penury" <me>')
-			return true
-		elseif spell.english == "Celerity" and buffactive['Dark Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Alacrity" <me>')
-			return true
-		elseif spell.english == "Alacrity" and buffactive['Light Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Celerity" <me>')
-			return true
-		elseif spell.english == "Accession" and buffactive['Dark Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Manifestation" <me>')
-			return true
-		elseif spell.english == "Rapture" and buffactive['Dark Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Ebullience" <me>')
-			return true
-		elseif spell.english == "Ebullience" and buffactive['Light Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Rapture" <me>')
-			return true
-		elseif spell.english == "Manifestation" and buffactive['Light Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Accession" <me>')
-			return true
-		elseif spell.english == "Altruism" and buffactive['Dark Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Focalization" <me>')
-			return true
-		elseif spell.english == "Focalization" and buffactive['Light Arts'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Altruism" <me>')
 			return true
 		elseif spell.english == "Seigan" and buffactive['Seigan'] then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Third Eye" <me>')
 			return true
+		elseif state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
+			if spell.english == "Penury" then
+				windower.chat.input('/ja "Parsimony" <me>')
+				eventArgs.cancel = true
+				return true
+			elseif spell.english == "Celerity" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Alacrity" <me>')
+				return true
+			elseif spell.english == "Accession" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Manifestation" <me>')
+				return true
+			elseif spell.english == "Rapture" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Ebullience" <me>')
+				return true
+			elseif spell.english == "Altruism" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Focalization" <me>')
+				return true
+			end
+		elseif state.Buff['Light Arts'] or state.Buff['Addendum: White'] then
+			if spell.english == "Parsimony" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Penury" <me>')
+				return true
+			elseif spell.english == "Alacrity" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Celerity" <me>')
+				return true
+			elseif spell.english == "Ebullience" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Rapture" <me>')
+				return true
+			elseif spell.english == "Manifestation"  then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Accession" <me>')
+				return true
+			elseif spell.english == "Focalization" then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Altruism" <me>')
+				return true
+			end
 		end
 	end
 
@@ -1299,17 +1305,17 @@ function actual_cost(spell)
     elseif spell.type=="WhiteMagic" then
         if buffactive["Penury"] then
             return cost*.5
-        elseif buffactive["Light Arts"] or buffactive["Addendum: White"] then
+        elseif state.Buff['Light Arts'] or state.Buff['Addendum: White'] then
             return cost*.9
-        elseif buffactive["Dark Arts"] or buffactive["Addendum: Black"] then
+        elseif state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
             return cost*1.1
         end
     elseif spell.type=="BlackMagic" then
         if buffactive["Parsimony"] then
             return cost*.5
-        elseif buffactive["Dark Arts"] or buffactive["Addendum: Black"] then
+        elseif state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
             return cost*.9
-        elseif buffactive["Light Arts"] or buffactive["Addendum: White"] then
+        elseif state.Buff['Light Arts'] or state.Buff['Addendum: White'] then
             return cost*1.1
         end
     end
@@ -2240,7 +2246,7 @@ function get_current_strategem_count()
 end
 
 function arts_active()
-	if buffactive['Light Arts'] or buffactive['Addendum: White'] or buffactive['Dark Arts'] or buffactive['Addendum: Black'] then
+	if state.Buff['Light Arts'] or state.Buff['Addendum: White'] or state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
 		return true
 	else
 		return false

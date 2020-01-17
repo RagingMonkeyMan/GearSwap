@@ -39,7 +39,7 @@ function init_include()
     include('Sel-Mappings')
     
     -- Modes is the include for a mode-tracking variable class.  Used for state vars, below.
-    include('Modes')
+    include('Sel-Modes')
 	
 	-- Adding Organizer for gear management.
 	include('organizer-lib.lua')
@@ -1112,12 +1112,12 @@ function default_aftercast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Ranged Attack' then
 		next_cast = os.clock() + .85 - latency
 	end
+
+	if areas.LaggyZones:contains(world.area) then
+		next_cast = next_cast - .15
+	end
 	
 	if tickdelay < next_cast then tickdelay = next_cast end
-	
-	if areas.LaggyZones:contains(world.area) then
-		next_cast = next_cast - .25
-	end
 	
 	if not spell.interrupted then
 		if delayed_cast == spell.english then
