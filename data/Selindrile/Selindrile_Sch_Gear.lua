@@ -355,8 +355,8 @@ function init_gear_sets()
 	sets.buff['Light Arts'] = {} --legs="Academic's Pants +3"
 	sets.buff['Dark Arts'] = {} --body="Academic's Gown +3"
 
-    sets.buff.FullSublimation = {}
-    sets.buff.PDTSublimation = {}
+    sets.buff.Sublimation = {}
+    sets.buff.DTSublimation = {}
 	
 	-- Weapons sets
 	sets.weapons.Akademos = {main="Akademos",sub="Enki Strap"}
