@@ -24,7 +24,7 @@ function job_setup()
     info.impetus_hit_count = 0
     --windower.raw_register_event('action', on_action_for_impetus)
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ function job_tick()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value and player.in_combat then
+	if state.AutoBuffMode.value ~= 'Off' and player.in_combat then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		if player.hpp < 51 and abil_recasts[15] < latency then

@@ -48,7 +48,7 @@ function job_setup()
 
 	update_pet_mode()
 	update_melee_groups()
-	init_job_states({"Capacity","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -393,7 +393,7 @@ function check_repair()
 end
 
 function check_maneuver()
-    if state.AutoBuffMode.value and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
+    if state.AutoBuffMode.value ~= 'Off' and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
         for i = 1,8 do
             local maneuver = defaultManeuvers[state.PetMode.Value][i]
             if maneuver then

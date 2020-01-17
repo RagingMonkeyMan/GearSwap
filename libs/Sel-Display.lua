@@ -110,6 +110,7 @@ function update_job_states()
         MainStep = "Main Step",
         AltStep = "Alt Step",
         TreasureMode = "Treasure",
+		AutoBuffMode = "Auto Buff",
         TotalHaste = "Haste",
         DelayReduction = "Delay",
 		LearningMode = "Learning",
@@ -125,7 +126,6 @@ function update_job_states()
 		JugMode = "Pet",
 		RewardMode = "Reward",
 		AutoNukeMode = "Auto Nuke: "..autonuke.."",
-		AutoBuffMode = "Auto Buff",
 		AutoSongMode = "Auto Song",
 		AutoJumpMode = "Auto Jump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
@@ -159,17 +159,7 @@ function update_job_states()
 
         -- Define color for modal state
         if state[n].index then
-			if n == 'AutoBuffMode' then
-				if player.main_job == 'GEO' then
-					stateBox:append(string.format("%sAuto Buff: Indi-"..autoindi.." Geo-"..autogeo.."%s", clr.h, clr.n))
-					if autoentrust ~= 'None' then
-						stateBox:append(string.format("%s  Auto Entrust: "..autoentrust.."  Entrustee: "..autoentrustee.."%s", clr.h, clr.n))
-					end
-				else
-					stateBox:append(string.format("%sAuto Buff%s", clr.h, clr.n))
-				end
-				stateBox:append(spc)
-			elseif n == 'AutoWSMode' and state.AutoWSMode.value then
+			if n == 'AutoWSMode' and state.AutoWSMode.value then
 				if state.RngHelper.value then
 					stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", clr.h, clr.n))
 				else
@@ -216,7 +206,18 @@ function update_job_states()
 
 
         -- Add additional information for active hybrid defense mode
-		if n == 'OffenseMode' then
+		if n == 'AutoBuffMode' then
+			if state.AutoBuffMode.value ~= 'Off' then
+				if player.main_job == 'GEO' then
+					stateBox:append(string.format("%sAuto Buff: Indi-"..autoindi.." Geo-"..autogeo.."%s  ", clr.h, clr.n))
+					if autoentrust ~= 'None' then
+						stateBox:append(string.format("%sAuto Entrust: "..autoentrust.."  Entrustee: "..autoentrustee.."%s  ", clr.h, clr.n))
+					end
+				end
+				stateBox:append(string.format("%sAuto Buff: %s%s", clr.w, clr.h, state.AutoBuffMode.value))
+				stateBox:append(spc)
+			end
+		elseif n == 'OffenseMode' then
 			if state.DefenseMode.value ~= 'None' then
 				stateBox:append(string.format("%sDefense Active: ", clr.w))
 				if state.DefenseMode.value == 'Physical' then
@@ -265,7 +266,7 @@ function update_job_states()
 			end
 		elseif n == 'TreasureMode' then
 			if (state.TreasureMode.value ~= 'None' or player.main_job == 'THF') and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%s   Treasure: %s%s    ", clr.w, clr.h, state.TreasureMode.value))
+				stateBox:append(string.format("%sTreasure: %s%s    ", clr.w, clr.h, state.TreasureMode.value))
 			end
 		elseif n == 'CastingMode' then
 			stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))

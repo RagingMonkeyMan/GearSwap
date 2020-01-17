@@ -28,7 +28,7 @@ function job_setup()
 	enspell = ''
 	
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -390,7 +390,7 @@ function job_tick()
 end
 
 function check_arts()	
-	if buffup ~= '' or (not areas.Cities:contains(world.area) and ((state.AutoArts.value and player.in_combat) or state.AutoBuffMode.value)) then
+	if buffup ~= '' or (not areas.Cities:contains(world.area) and ((state.AutoArts.value and player.in_combat) or state.AutoBuffMode.value ~= 'Off')) then
 
  		local abil_recasts = windower.ffxi.get_ability_recasts()	
 
@@ -415,11 +415,11 @@ function check_arts()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value and not areas.Cities:contains(world.area) then
+	if state.AutoBuffMode.value ~= 'Off' and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
-		for i in pairs(buff_spell_lists['Auto']) do
-			if not buffactive[buff_spell_lists['Auto'][i].Buff] and (buff_spell_lists['Auto'][i].When == 'Always' or (buff_spell_lists['Auto'][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists['Auto'][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists['Auto'][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists['Auto'][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists['Auto'][i].SpellID] < latency and silent_can_use(buff_spell_lists['Auto'][i].SpellID) then
-				windower.chat.input('/ma "'..buff_spell_lists['Auto'][i].Name..'" <me>')
+		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
+			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
+				windower.chat.input('/ma "'..buff_spell_lists[state.AutoBuffMode.Value][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true
 			end

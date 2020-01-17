@@ -26,12 +26,12 @@ function job_setup()
 	Breath_HPP = 60
 	
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoJumpMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value ~= 'Off' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] < latency then
 			eventArgs.cancel = true
@@ -213,7 +213,7 @@ function check_jump()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value and player.in_combat then
+	if state.AutoBuffMode.value ~= 'Off' and player.in_combat then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 

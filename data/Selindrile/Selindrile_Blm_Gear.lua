@@ -261,8 +261,8 @@ function init_gear_sets()
     -- Resting sets
     sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Ethereal Earring",ear2="Sanare Earring",
-		body="Vrikodara Jupon",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",waist="Refoccilation Stone",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		back="Umbra Cape",waist="Fucho-no-obi",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
     
 
     -- Idle sets

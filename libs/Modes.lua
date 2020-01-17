@@ -348,8 +348,8 @@ end
 _meta.M.__methods['toggle'] = function(m)	
     if m._track._type == 'boolean' then	
         m._track._current = not m._track._current	
-    else	
-        error("Can only toggle a boolean mode.", 2)	
+    elseif m._track._type == 'list' then	
+		m._track._current = (m._track._current % m._track._count) + 1	
     end	
 
      return m.Current	

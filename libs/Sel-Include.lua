@@ -89,7 +89,6 @@ function init_include()
 	state.AutoWSRestore		  = M(true, 'Auto Weaponskill Restore Mode')
 	state.AutoFoodMode		  = M(false, 'Auto Food Mode')
 	state.AutoSubMode 		  = M(false, 'Auto Sublimation Mode')
-	state.AutoBuffMode 		  = M(false, 'Auto Buff Mode')
 	state.AutoCleanupMode  	  = M(false, 'Auto Cleanup Mode')
 	state.DisplayMode  	  	  = M(true, 'Display Mode')
 	state.UseCustomTimers 	  = M(true, 'Use Custom Timers')
@@ -100,7 +99,8 @@ function init_include()
 	state.MaintainDefense 	  = M(false, 'Maintain Defense')
 	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
 	state.NotifyBuffs		  = M(false, 'Notify Buffs')
-	
+
+	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
 	state.AutoSambaMode 	  = M{['description']= 'Auto Samba Mode', 'Off', 'Haste Samba', 'Aspir Samba', 'Drain Samba II'}

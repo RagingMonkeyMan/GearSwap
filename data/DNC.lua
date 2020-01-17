@@ -75,7 +75,7 @@ function job_setup()
 	step_feet_reduction = calculate_step_feet_reduction()
 	
     update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoBuffMode",},{"AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value and player.tp > (999 + step_cost()) then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value ~= 'Off' and player.tp > (999 + step_cost()) then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if under3FMs() and abil_recasts[220] < latency and (abil_recasts[236] < latency or state.Buff['Presto']) and player.status == 'Engaged' then
 			eventArgs.cancel = true
@@ -327,7 +327,7 @@ end
 
 function check_buff()
 
-	if state.AutoBuffMode.value then
+	if state.AutoBuffMode.value ~= 'Off' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 	
 		if not buffactive['Finishing Move 1'] and not buffactive['Finishing Move 2'] and not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5'] and not buffactive['Finishing Move (6+)'] and abil_recasts[223] < latency then
