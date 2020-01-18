@@ -191,7 +191,7 @@ function init_include()
 	rangedautowstp = 1000
 	time_offset = -39602
 	framerate = 60
-	latency = .75
+	latency = .7
 	spell_latency = nil
 	buffup = ''
 	curecheat = false

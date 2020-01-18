@@ -66,7 +66,7 @@ function job_pretarget(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-
+	windower.add_to_chat(spell.name)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
@@ -400,7 +400,7 @@ function check_maneuver()
                 local maneuversActive = buffactive[maneuver.Name] or 0
                 if maneuversActive < maneuver.Amount then
                     windower.chat.input('/pet "'..maneuver.Name..'" <me>')
-                    tickdelay = os.clock() + .7
+                    tickdelay = os.clock() + 1.1
                     return true
                 end
 			else
