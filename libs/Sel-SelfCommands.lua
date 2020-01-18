@@ -536,7 +536,7 @@ function handle_shadows()
 	elseif currentshadows == 0 then
 		if player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
 			windower.chat.input('/ja "Third Eye" <me>')
-			tickdelay = os.clock() + .7
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif silent_can_use(679) and spell_recasts[679] < spell_latency then
 			windower.chat.input('/ma "Occultation" <me>')
@@ -552,7 +552,7 @@ function handle_shadows()
 			return true
 		elseif player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
 			windower.chat.input('/ja "Third Eye" <me>')
-			tickdelay = os.clock() + .7
+			tickdelay = os.clock() + 1.1
 			return true
 		else
 			return false

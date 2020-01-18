@@ -405,11 +405,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		else
 			return false
@@ -435,7 +435,7 @@ function check_buff()
 
 			if not buffactive['Majesty'] and abil_recasts[150] < latency then
 				windower.chat.input('/ja "Majesty" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			else
 				return false
@@ -466,7 +466,7 @@ function check_buffup()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
 		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < spell_latency then
 				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true

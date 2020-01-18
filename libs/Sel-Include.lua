@@ -279,7 +279,7 @@ function init_include()
 	tickdelay = os.clock() + 5
 	
 	if spell_latency == nil then
-		spell_latency = (latency + .05)
+		spell_latency = (latency - .1) * 100
 	end
 	
 	-- General var initialization and setup.
@@ -905,7 +905,7 @@ function default_precast(spell, spellMap, eventArgs)
 	elseif spell.type == 'WeaponSkill' then
 		next_cast = os.clock() + 2.5 - latency
 	elseif spell.action_type == 'Ability' then
-		next_cast = os.clock() + .75 - latency
+		next_cast = os.clock() + .95 - latency
 	elseif spell.action_type == 'Item' then
 		next_cast = os.clock() + 1.35 - latency
 	elseif spell.action_type == 'Ranged Attack' then
@@ -1106,7 +1106,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 	elseif spell.type == 'WeaponSkill' then
 		next_cast = os.clock() + 2 - latency
 	elseif spell.action_type == 'Ability' then
-		next_cast = os.clock() + .75 - latency
+		next_cast = os.clock() + .8 - latency
 	elseif 	spell.action_type == 'Item' then
 		next_cast = os.clock() + .85 - latency
 	elseif spell.action_type == 'Ranged Attack' then

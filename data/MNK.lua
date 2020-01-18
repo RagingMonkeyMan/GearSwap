@@ -48,11 +48,13 @@ function job_precast(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Boost" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 1.25
 			return
 		elseif player.sub_job == 'WAR' and abil_recasts[2] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Warcry" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 1.25
 			return
 		end
 	end
@@ -221,24 +223,24 @@ function check_buff()
 
 		if player.hpp < 51 and abil_recasts[15] < latency then
 			windower.chat.input('/ja "Chakra" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif not buffactive.Impetus and abil_recasts[31] < latency then
 			windower.chat.input('/ja "Impetus" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif not (buffactive.Aggressor or buffactive.Focus) and abil_recasts[13] < latency then
 			windower.chat.input('/ja "Focus" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif player.sub_job == 'WAR' then
 			if not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			elseif not (buffactive.Aggressor or buffactive.Focus) and abil_recasts[4] < latency then
 				windower.chat.input('/ja "Aggressor" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			else
 				return false

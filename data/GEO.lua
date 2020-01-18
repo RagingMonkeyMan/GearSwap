@@ -490,7 +490,7 @@ function check_geo()
 			local pet = windower.ffxi.get_mob_by_target("pet")
 			if pet.distance:sqrt() > 50 then --If pet is greater than detectable.
 				windower.chat.input('/ja "Full Circle" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			else
 				return false
@@ -605,7 +605,7 @@ function check_buff()
 	if state.AutoBuffMode.value ~= 'Off' and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
-			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
+			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < spell_latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists[state.AutoBuffMode.Value][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true
@@ -635,7 +635,7 @@ function check_buffup()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 
 		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < spell_latency then
 				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true

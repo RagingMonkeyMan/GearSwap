@@ -64,11 +64,13 @@ function job_precast(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 1.25
 			return
 		elseif player.sub_job == 'SAM' and abil_recasts[134] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 1.25
 			return
 		end
 	end
@@ -362,11 +364,11 @@ function check_hasso()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = os.clock() + 1.8
+			tickdelay = os.clock() + 1.1
 			return true
 		end
 	
@@ -379,7 +381,7 @@ function check_buff()
 	if state.AutoBuffMode.value ~= 'Off' and not areas.Cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
-			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
+			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < spell_latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
 				windower.chat.input('/ma "'..buff_spell_lists[state.AutoBuffMode.Value][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true
@@ -391,19 +393,19 @@ function check_buff()
 			
 			if not buffactive['Swordplay'] and abil_recasts[24] < latency then
 				windower.chat.input('/ja "Swordplay" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 				windower.chat.input('/ja "Last Resort" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			elseif player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			elseif player.sub_job == 'WAR' and not buffactive.Aggressor and abil_recasts[4] < latency then
 				windower.chat.input('/ja "Aggressor" <me>')
-				tickdelay = os.clock() + 1.8
+				tickdelay = os.clock() + 1.1
 				return true
 			else
 				return false
@@ -433,7 +435,7 @@ function check_buffup()
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		
 		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < latency then
+			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < spell_latency then
 				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
 				tickdelay = os.clock() + 2
 				return true
