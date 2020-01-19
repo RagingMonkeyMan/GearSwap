@@ -317,10 +317,19 @@ function apply_grimoire_bonuses(spell, action, spellMap)
         equip(sets.buff['Rapture'])
     end
 
-    if state.Buff.Penury then equip(sets.buff['Penury']) end
-    if state.Buff.Parsimony then equip(sets.buff['Parsimony']) end
-    if state.Buff.Celerity then equip(sets.buff['Celerity']) end
-    if state.Buff.Alacrity then equip(sets.buff['Alacrity']) end
+    if state.Buff.Penury then
+		equip(sets.buff['Penury'])
+    elseif state.Buff.Parsimony then
+		equip(sets.buff['Parsimony'])
+	end
+	
+	if spell.element == world.weather_element then
+		if state.Buff.Celerity then
+			equip(sets.buff['Celerity'])
+		elseif state.Buff.Alacrity then
+			equip(sets.buff['Alacrity'])
+		end
+	end
 end
 
 -- Handling Elemental spells within Gearswap.
