@@ -106,7 +106,7 @@ function job_precast(spell, spellMap, eventArgs)
 			gear.default.obi_back = gear.obi_cure_back
 			gear.default.obi_waist = gear.obi_cure_waist
 		elseif spell.skill == 'Elemental Magic' then
-			if LowTierNukes:contains(spell.english) then
+			if LowTierNukes:contains(spell.english) or spell.english:endswith('helix') then
 				gear.default.obi_back = gear.obi_low_nuke_back
 				gear.default.obi_waist = gear.obi_low_nuke_waist
 			else

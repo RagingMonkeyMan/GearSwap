@@ -475,28 +475,39 @@ function set_elemental_obi_cape_ring(spell)
     if spell.element == 'None' then
         return
     end
-	
+
 	if spell.element == world.weather_element or spell.element == world.day_element then
 		gear.ElementalCape.name = "Twilight Cape"
-		local orpheus_avail = item_available("Orpheus's Sash")
-		local hachirin_avail = item_available('Hachirin-no-Obi')
-		if hachirin_avail and spell.element == world.weather_element and gearswap.res.weather[world.weather_id].intensity == 2 then
-			gear.ElementalObi.name = "Hachirin-no-Obi"
-		elseif orpheus_avail and spell.target.distance < (1.7 + spell.target.model_size) then
-			gear.ElementalObi.name ="Orpheus's Sash"
-		elseif hachirin_avail and spell.element and spell.element == world.weather_element then
-			gear.ElementalObi.name = "Hachirin-no-Obi"
-		elseif orpheus_avail and spell.target.distance < (8 + spell.target.model_size) then
-			gear.ElementalObi.name ="Orpheus's Sash"
-		elseif hachirin_avail then
-			gear.ElementalObi.name = "Hachirin-no-Obi"
-		else
-			gear.ElementalObi.name = gear.default.obi_waist
-		end
-
+		gear.ElementalObi.name = "Hachirin-no-Obi"
 	else
 		gear.ElementalObi.name = gear.default.obi_waist
 		gear.ElementalCape.name = gear.default.obi_back
+	end
+	
+	if is_nuke(spell, spellMap) then
+		local orpheus_avail = item_available("Orpheus's Sash")
+		if spell.english:endswith('helix') then
+			if orpheus_avail and spell.target.distance < 13 then
+				gear.ElementalObi.name = "Orpheus's Sash"
+			end
+		else
+			local hachirin_avail = item_available('Hachirin-no-Obi')
+			if hachirin_avail and spell.element == world.weather_element and gearswap.res.weather[world.weather_id].intensity == 2 then
+				gear.ElementalObi.name = "Hachirin-no-Obi"
+			elseif orpheus_avail and spell.target.distance < 3 then
+				gear.ElementalObi.name = "Orpheus's Sash"
+			elseif hachirin_avail and spell.element == world.weather_element and spell.element == world.day_element then
+				gear.ElementalObi.name = "Hachirin-no-Obi"
+			elseif orpheus_avail and spell.target.distance < 8 then
+				equip({waist="Orpheus's Sash"})
+			elseif hachirin_avail and (spell.element == world.weather_element or spell.element == world.day_element) then
+				equip({waist="Hachirin-no-Obi"})
+			elseif orpheus_avail and spell.target.distance < 13 then
+				gear.ElementalObi.name = "Orpheus's Sash"
+			else
+				gear.ElementalObi.name = gear.default.obi_waist
+			end
+		end
 	end
 	
 	if spell.element == world.day_element and spell.english ~= 'Impact' and not S{'Divine Magic','Dark Magic','Healing Magic'}:contains(spell.skill) then
@@ -504,29 +515,6 @@ function set_elemental_obi_cape_ring(spell)
 	else
 		gear.ElementalRing.name = gear.default.obi_ring
 	end
-
---[[
-    local world_elements = S{world.day_element}
-    if world.weather_element ~= 'None' then
-        world_elements:add(world.weather_element)
-    end
-	
-    local obi_name = get_elemental_item_name("obi", S{spell.element}, world_elements)
-    gear.ElementalObi.name = obi_name or gear.default.obi_waist  or ""
-    
-    if obi_name then
-        if player.inventory['Twilight Cape'] or player.wardrobe['Twilight Cape'] or player.wardrobe2['Twilight Cape'] then
-            gear.ElementalCape.name = "Twilight Cape"
-        end
-        if (player.inventory['Zodiac Ring'] or player.wardrobe['Zodiac Ring'] or player.wardrobe2['Twilight Cape']) and spell.english ~= 'Impact' and
-            not S{'Divine Magic','Dark Magic','Healing Magic'}:contains(spell.skill) then
-            gear.ElementalRing.name = "Zodiac Ring"
-        end
-    else
-        gear.ElementalCape.name = gear.default.obi_back
-        gear.ElementalRing.name = gear.default.obi_ring
-    end
-]]-- Old Text
 
 end
 
