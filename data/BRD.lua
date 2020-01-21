@@ -345,15 +345,15 @@ function check_song()
 	if state.AutoSongMode.value then
 		if not buffactive.march then
 			windower.chat.input('/ma "Honor March" <me>')
-			tickdelay = os.clock() + 1.5
+			tickdelay = os.clock() + 2
 			return true
 		elseif not buffactive.minuet then
 			windower.chat.input('/ma "Valor Minuet V" <me>')
-			tickdelay = os.clock() + 1.5
+			tickdelay = os.clock() + 2
 			return true
 		elseif not buffactive.madrigal then
 			windower.send_command('gs c set ExtraSongsMode FullLength;input /ma "Blade Madrigal" <me>')
-			tickdelay = os.clock() + 1.5
+			tickdelay = os.clock() + 2
 			return true
 		else
 			return false

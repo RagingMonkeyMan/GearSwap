@@ -279,7 +279,7 @@ function init_include()
 	tickdelay = os.clock() + 5
 	
 	if spell_latency == nil then
-		spell_latency = (latency - .1) * 100
+		spell_latency = (latency * 60) + 18
 	end
 	
 	-- General var initialization and setup.
@@ -1096,13 +1096,13 @@ end
 
 function default_aftercast(spell, spellMap, eventArgs)
 	if spell.interrupted then
-		if spell.type:contains('Magic') then
-			next_cast = os.clock() + 3 - latency
+		if spell.type:contains('Magic') or spell.type == 'Ninjutsu' or spell.type == 'BardSong' then
+			next_cast = os.clock() + 3.35 - latency
 		else
 			next_cast = os.clock() + 1.75 - latency
 		end
 	elseif spell.action_type == 'Magic' then
-		next_cast = os.clock() + 3.45 - latency
+		next_cast = os.clock() + 3.35 - latency
 	elseif spell.type == 'WeaponSkill' then
 		next_cast = os.clock() + 2 - latency
 	elseif spell.action_type == 'Ability' then
