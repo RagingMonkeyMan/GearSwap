@@ -282,14 +282,20 @@ function job_customize_idle_set(idleSet)
         end
     end
 
-    if player.mpp < 51 and (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) then
-		if sets.latent_refresh then
-			idleSet = set_combine(idleSet, sets.latent_refresh)
+    if state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') then
+		if player.mpp < 51 then
+			if sets.latent_refresh then
+				idleSet = set_combine(idleSet, sets.latent_refresh)
+			end
+			
+			local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
+			if available_ws:contains(176) and sets.latent_refresh_grip then
+				idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+			end
 		end
 		
-		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
-		if available_ws:contains(176) and sets.latent_refresh_grip then
-			idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+		if player.tp > 10 and state.Weapons.value == 'None' and sets.TPEat then
+			idleSet = set_combine(idleSet, sets.TPEat)
 		end
     end
 
