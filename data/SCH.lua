@@ -900,9 +900,7 @@ end
 
 buff_spell_lists = {
 	Auto = {--Options for When are: Always, Engaged, Idle, OutOfCombat, Combat
-		{Name='Reraise',	Buff='Reraise',		SpellID=113,	When='Always'},
 		{Name='Haste',		Buff='Haste',		SpellID=57,		When='Always'},
-		{Name='Refresh',	Buff='Refresh',		SpellID=109,	When='Always'},
 		{Name='Stoneskin',	Buff='Stoneskin',	SpellID=54,		When='Always'},
 		{Name='Klimaform',	Buff='Klimaform',	SpellID=287,	When='Combat'},
 	},
