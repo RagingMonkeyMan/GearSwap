@@ -1464,6 +1464,10 @@ function get_idle_set(petStatus)
 
 	--Apply time based gear.
     if (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') and not pet.isvalid then
+	    if player.hpp < 80 then
+			if sets.ExtraRegen then idleSet = set_combine(idleSet, sets.ExtraRegen) end
+		end
+	
 		if classes.DuskToDawn then
 			if sets.DuskIdle then idleSet = set_combine(idleSet, sets.DuskIdle) end
 		end

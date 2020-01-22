@@ -56,6 +56,7 @@ function job_setup()
     state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff['Hundred Fists'] = buffactive['Hundred Fists'] or false
 	state.Buff['Impetus'] = buffactive['Impetus'] or false
+	state.Buff['Boost'] = buffactive['Boost'] or false
 	
 	state.AutoBoost = M(false, 'Auto Boost Mode')
 	
@@ -165,7 +166,10 @@ function job_customize_defense_set(defenseSet)
 end
 
 function job_customize_idle_set(idleSet)
-
+    if state.Buff['Boost'] and sets.buff.Boost then
+        idleSet = set_combine(idleSet, sets.buff.Boost)
+    end
+	
     return idleSet
 end
 

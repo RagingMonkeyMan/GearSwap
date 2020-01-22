@@ -257,9 +257,9 @@ function init_gear_sets()
 
     -- Idle sets
     sets.idle = {ammo=gear.RAbullet,
-        head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Carmine Cuisses +1",feet=gear.herculean_dt_feet}
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Flax Sash",legs="Carmine Cuisses +1",feet="Malignance Boots"}
 		
     sets.idle.Refresh = {ammo=gear.RAbullet,
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
@@ -268,19 +268,19 @@ function init_gear_sets()
     
     -- Defense sets
     sets.defense.PDT = {ammo=gear.RAbullet,
-        head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet=gear.herculean_dt_feet}
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
+        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        back="Shadow Mantle",waist="Flume Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo=gear.RAbullet,
-        head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Shadow Ring",
+        back="Moonlight Cape",waist="Flax Sash",legs="Mummu Kecks +2",feet="Malignance Boots"}
 		
     sets.defense.MEVA = {ammo=gear.RAbullet,
-        head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
+        head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Shadow Ring",
+        back="Moonlight Cape",waist="Flax Sash",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
