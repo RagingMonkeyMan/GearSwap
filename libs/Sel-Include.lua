@@ -1463,7 +1463,7 @@ function get_idle_set(petStatus)
     end
 
 	--Apply time based gear.
-    if (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') and not pet.isvalid then
+    if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and not pet.isvalid then
 	    if player.hpp < 80 then
 			if sets.ExtraRegen then idleSet = set_combine(idleSet, sets.ExtraRegen) end
 		end
@@ -1984,7 +1984,7 @@ end
 -- Function to add kiting gear on top of the base set if kiting state is true.
 -- @param baseSet : The gear set that the kiting gear will be applied on top of.
 function apply_kiting(baseSet)
-	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and state.Passive.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere' or not (player.in_combat or being_attacked)))) then
+	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and state.Passive.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') or not (player.in_combat or being_attacked)))) then
 		baseSet = set_combine(baseSet, sets.Kiting)
 	end
 	

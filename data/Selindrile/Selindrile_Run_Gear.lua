@@ -261,6 +261,7 @@ function init_gear_sets()
 	sets.Kiting = {legs="Carmine Cuisses +1"}
 	
 	sets.latent_refresh = {waist="Fucho-no-obi"}
+	sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
 

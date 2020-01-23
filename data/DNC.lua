@@ -242,10 +242,6 @@ end
 
 
 function job_customize_idle_set(idleSet)
-    if player.hpp < 80 and not areas.Cities:contains(world.area) then
-        idleSet = set_combine(idleSet, sets.ExtraRegen)
-    end
-    
     return idleSet
 end
 

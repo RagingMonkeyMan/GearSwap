@@ -224,6 +224,7 @@ function init_gear_sets()
 
 	sets.Kiting = {feet="Fili Cothurnes +1"}
 	sets.latent_refresh = {waist="Fucho-no-obi"}
+	sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	sets.TPEat = {neck="Chrys. Torque"}
 
 	-- Engaged sets

@@ -306,8 +306,8 @@ end
 -- Modify the default idle set after it was constructed.
 function job_customize_idle_set(idleSet)
 
-    if state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere' then
-		if sets.latent_refresh then
+    if state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') then
+		if player.mpp < 51 and sets.latent_refresh then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
 		

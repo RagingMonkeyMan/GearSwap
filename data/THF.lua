@@ -197,10 +197,6 @@ end
 
 
 function job_customize_idle_set(idleSet)
-    if (state.IdleMode.value == 'Normal' or state.IdleMode.value == 'Sphere') and state.DefenseMode.value == 'None' and not (player.in_combat or being_attacked) and player.hpp < 80 then
-        idleSet = set_combine(idleSet, sets.ExtraRegen)
-    end
-
     return idleSet
 end
 

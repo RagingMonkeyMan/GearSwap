@@ -328,6 +328,7 @@ function init_gear_sets()
 		
     sets.Kiting = {feet="Herald's Gaiters"}
     sets.latent_refresh = {waist="Fucho-no-obi"}
+	sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	sets.TPEat = {neck="Chrys. Torque"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}

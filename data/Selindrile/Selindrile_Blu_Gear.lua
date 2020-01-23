@@ -402,6 +402,7 @@ function init_gear_sets()
 	-- Sets to return to when not performing an action.
 
 	sets.latent_refresh = {waist="Fucho-no-obi"}
+	sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
 
