@@ -1003,7 +1003,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			
 		elseif spell.action_type == 'Ability' then
 			if spell.type == 'Waltz' then
-				if spell.target.type == 'SELF' and sets.Self_Waltz and not (spell.english == "Healing Waltz" or spell.english == "Divine Waltz" or spell.english == "Divine Waltz II") then
+				if spell.target.type == 'SELF' and sets.Self_Waltz and spell.english:startswith('Curing') then
 					equip(sets.Self_Waltz)
 				end
 			elseif state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
