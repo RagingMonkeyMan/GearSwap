@@ -352,6 +352,9 @@ function init_include()
 		
 			local lower_original = original:lower()
 			local lower_original_table = T(lower_original:split(' '))
+			
+			if not lower_original_table[2] then return end
+			
 			local lower_first = (table.remove(lower_original_table, 1)):lower()
 			local lower_second = (table.remove(lower_original_table, 1)):lower()
 
