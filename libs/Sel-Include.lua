@@ -345,7 +345,7 @@ function init_include()
 	end
 
 	if not selindrile_warned then
-		naughty_list = {'lua','gearswap','file','windower','plugin','addon','program'}
+		naughty_list = {'lua','gearswap','file','windower','plugin','addon','program','hack','bot'}
 		-- Event register to watch outgoing chat.
 		windower.raw_register_event('outgoing text', function(original,modified,blocked)
 			if res.servers[windower.ffxi.get_info().server].en ~= 'Asura' then return end
