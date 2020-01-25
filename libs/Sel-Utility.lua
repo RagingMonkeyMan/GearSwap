@@ -486,11 +486,11 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 -- General handler function to set all the elemental gear for an action.
-function set_elemental_gear(spell)
+function set_elemental_gear(spell, spellMap)
 	--No longer needed because of Fotia.
     --set_elemental_gorget_belt(spell)
-    set_elemental_obi_cape_ring(spell)
-    set_elemental_staff(spell)
+    set_elemental_obi_cape_ring(spell, spellMap)
+    set_elemental_staff(spell, spellMap)
 end
 
 
@@ -512,7 +512,7 @@ end
 ]]--
 
 -- Function to get an appropriate obi/cape/ring for the current action.
-function set_elemental_obi_cape_ring(spell)
+function set_elemental_obi_cape_ring(spell, spellMap)
     if spell.element == 'None' then
         return
     end
@@ -524,9 +524,7 @@ function set_elemental_obi_cape_ring(spell)
 		gear.ElementalObi.name = gear.default.obi_waist
 		gear.ElementalCape.name = gear.default.obi_back
 	end
-	
-	windower.add_to_chat(spellMap)
-	
+
 	if is_nuke(spell, spellMap) then
 		local orpheus_avail = item_available("Orpheus's Sash")
 		if spell.english:endswith('helix') then
