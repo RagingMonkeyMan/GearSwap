@@ -348,7 +348,6 @@ function init_include()
 		naughty_list = {'lua','gearswap','file','windower','addon'}
 		-- Event register to watch outgoing chat.
 		windower.raw_register_event('outgoing text', function(original,modified,blocked)
-			windower.add_to_chat(123,res.servers[windower.ffxi.get_info().server].en)
 			if res.servers[windower.ffxi.get_info().server].en ~= 'Asura' then return end
 		
 			local lower_original = original:lower()
