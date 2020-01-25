@@ -525,6 +525,8 @@ function set_elemental_obi_cape_ring(spell)
 		gear.ElementalCape.name = gear.default.obi_back
 	end
 	
+	windower.add_to_chat(spellMap)
+	
 	if is_nuke(spell, spellMap) then
 		local orpheus_avail = item_available("Orpheus's Sash")
 		if spell.english:endswith('helix') then
