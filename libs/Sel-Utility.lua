@@ -540,9 +540,9 @@ function set_elemental_obi_cape_ring(spell)
 			elseif hachirin_avail and spell.element == world.weather_element and spell.element == world.day_element then
 				gear.ElementalObi.name = "Hachirin-no-Obi"
 			elseif orpheus_avail and spell.target.distance < 8 then
-				equip({waist="Orpheus's Sash"})
+				gear.ElementalObi.name = "Orpheus's Sash"
 			elseif hachirin_avail and (spell.element == world.weather_element or spell.element == world.day_element) then
-				equip({waist="Hachirin-no-Obi"})
+				gear.ElementalObi.name = "Hachirin-no-Obi"
 			elseif orpheus_avail and spell.target.distance < 13 then
 				gear.ElementalObi.name = "Orpheus's Sash"
 			else
