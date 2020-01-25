@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Aeneas','MagicWeapons','LowBuff','Throwing')
+	state.Weapons:options('Aeneas','MagicWeapons','LowBuff','Bow')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWEarrings','DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
@@ -22,7 +22,7 @@ function user_setup()
     send_command('bind !` input /ra <t>')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
-	send_command('bind ^backspace gs c weapons Throwing;gs c update')
+	send_command('bind ^backspace gs c weapons Bow;gs c update')
 	send_command('bind !backspace input /ja "Hide" <me>')
 	send_command('bind !r gs c weapons MagicWeapons;gs c update')
 	send_command('bind ^\\\\ input /ja "Despoil" <t>')
@@ -58,7 +58,8 @@ function init_gear_sets()
 	sets.weapons.Aeneas = {main="Aeneas",sub="Taming Sari"}
 	sets.weapons.LowBuff = {main="Aeneas",sub="Blurred Knife +1"}
 	sets.weapons.MagicWeapons = {main="Malevolence",sub="Malevolence"}
-	sets.weapons.Throwing = {main="Aeneas",sub="Taming Sari",range="Comet Tail",ammo=empty}
+	sets.weapons.Throwing = {main="Aeneas",sub="Taming Sari",range="Raider's Bmrng.",ammo=empty}
+	sets.weapons.Bow = {main="Aeneas",sub="Taming Sari",range="Kaja Bow"}
 	
     -- Actions we want to use to tag TH.
     sets.precast.Step = {ammo="Falcon Eye",
@@ -115,7 +116,7 @@ function init_gear_sets()
 
 
     -- Ranged snapshot gear
-    sets.precast.RA = {range="Comet Tail"}
+    sets.precast.RA = {}
 
 
     -- Weaponskill sets

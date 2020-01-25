@@ -70,8 +70,10 @@
 -------------------------------------------------------------------------------------------------------------------
 
 function init_include()
-	extdata = require("extdata")
-	res = require ("resources")
+	extdata = require('extdata')
+	require('queues')
+	res = require ('resources')
+	packets = require('packets')
 	
 	--Snaps's Rnghelper extension for automatic ranged attacks that should be superior to my implementation.
 	require('Snaps-RngHelper')
@@ -346,26 +348,19 @@ function init_include()
 
 	if not selindrile_warned then
 		naughty_list = {'lua','gearswap','file','windower','plugin','addon','program','hack','bot'}
-		-- Event register to watch outgoing chat.
-		windower.raw_register_event('outgoing text', function(original,modified,blocked)
-			if res.servers[windower.ffxi.get_info().server].en ~= 'Asura' then return end
 		
-			local lower_original = original:lower()
-			local lower_original_table = T(lower_original:split(' '))
-			
-			if not lower_original_table[2] then return end
-			
-			local lower_first = (table.remove(lower_original_table, 1)):lower()
-			local lower_second = (table.remove(lower_original_table, 1)):lower()
-
-			if (lower_first == '/t' or lower_first == '/tell') and (lower_second == 'selindrile' or (lower_second == '<t>' and player.target and player.target.name == 'Selindrile')) then
-				for i in pairs(naughty_list) do 
-					if lower_original:contains(naughty_list[i]) then
-						windower.add_to_chat(123,'Message Aborted: Please do not message me about anything third party ingame.')
-						windower.add_to_chat(123,'Contact me on Discord: KalesAndRancor#5410 or https://discord.gg/ug6xtvQ')
-						return true
+		windower.raw_register_event('outgoing chunk', function(id, data, modified, injected, blocked)
+			if id == 0x0B6 and res.servers[windower.ffxi.get_info().server].en == 'Asura' then
+                local p = packets.parse('outgoing',data)
+                if p['Target Name'] == 'Selindrile' then
+					for i in pairs(naughty_list) do 
+						if p['Message']:contains(naughty_list[i]) then
+							windower.add_to_chat(123,'Message Aborted: Please do not message me about anything third party ingame.')
+							windower.add_to_chat(123,'Contact me on Discord: KalesAndRancor#5410 or https://discord.gg/ug6xtvQ')
+							return true
+						end
 					end
-				end
+                end
 			end
 		end)
 	end
