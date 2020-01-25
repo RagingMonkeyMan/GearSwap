@@ -180,11 +180,13 @@ windower.raw_register_event('action', function(act)
 		if isTarget and player.target.type == "MONSTER" and state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
 			if state.TankAutoDefense.value then
 				if state.DefenseMode.value ~= 'Physical' then
-					send_command('gs c set DefenseMode Physical')
+					state.DefenseMode:set('Physical')
+					send_command('gs c forceequip')
 				end
 				return
 			else
 				state.DefenseMode:reset()
+				send_command('gs c forceequip')
 				if state.DisplayMode.value then update_job_states()	end
 				return
 			end
@@ -311,7 +313,7 @@ windower.raw_register_event('action', function(act)
 			local defensive_action = false
 			if not midaction() then
 				local abil_recasts = windower.ffxi.get_ability_recasts()
-				if (player.main_job == 'DRG') and state.AutoJumpMode.value and abil_recasts[160] < latency then
+				if player.main_job == 'DRG' and state.AutoJumpMode.value and abil_recasts[160] < latency then
 					windower.chat.input('/ja "Super Jump" <t>')
 					defensive_action = true
 				elseif (player.main_job == 'SAM' or player.sub_job == 'SAM') and PhysicalAbility:contains(act_info.name) and abil_recasts[133] < latency then
@@ -321,10 +323,13 @@ windower.raw_register_event('action', function(act)
 			end
 			if PhysicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Physical' then
 				state.DefenseMode:set('Physical')
+				send_command('gs c forceequip')
 			elseif MagicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Magical'  then
 				state.DefenseMode:set('Magical')
+				send_command('gs c forceequip')
 			elseif ResistAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Resist'  then
 				state.DefenseMode:set('Resist')
+				send_command('gs c forceequip')
 			elseif defensive_action == false then
 				send_command('gs c forceequip')
 			end

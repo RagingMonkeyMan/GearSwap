@@ -64,7 +64,7 @@ function init_gear_sets()
     sets.precast.CorsairRoll = {range="Compensator",
         head="Lanun Tricorne +1",neck="Regal Necklace",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Lanun Frac +1",hands="Chasseur's Gants +1",ring1="Defending Ring",ring2="Dark Ring",
-        back=gear.tp_jse_back,waist="Flume Belt",legs="Desultor Tassets",feet=gear.herculean_dt_feet}
+        back=gear.tp_jse_back,waist="Flume Belt",legs="Desultor Tassets",feet="Malignance Boots"}
 
     sets.precast.LuzafRing = {ring2="Luzaf's Ring"}
     
@@ -258,7 +258,7 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flax Sash",legs="Carmine Cuisses +1",feet="Malignance Boots"}
 		
     sets.idle.Refresh = {ammo=gear.RAbullet,
@@ -269,17 +269,17 @@ function init_gear_sets()
     -- Defense sets
     sets.defense.PDT = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Flume Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Shadow Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
         back="Moonlight Cape",waist="Flax Sash",legs="Mummu Kecks +2",feet="Malignance Boots"}
 		
     sets.defense.MEVA = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Shadow Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
         back="Moonlight Cape",waist="Flax Sash",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
@@ -333,9 +333,9 @@ function select_default_macro_book()
 		set_macro_page(1, 11)
     elseif player.sub_job == 'RNG' then
         set_macro_page(9, 11)
+    elseif player.sub_job == 'DRG' then
+        set_macro_page(5, 11)
     else
         set_macro_page(10, 11)
     end   
-
-
 end

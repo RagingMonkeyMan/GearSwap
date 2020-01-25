@@ -633,9 +633,9 @@ function get_current_ready_count()
     return currentCharges
 end
 
-windower.register_event('zone change', function()
+function job_zone_change(new_id,old_id)
 	state.AutoReadyMode:reset()
-end)
+end
 
 function handle_ready(commandArgs)
     if areas.Cities:contains(world.area) then

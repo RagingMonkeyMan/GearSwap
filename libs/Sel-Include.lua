@@ -242,6 +242,7 @@ function init_include()
 	delayed_target = ''
 	
 	time_test = false
+	selindrile_warned = false
 	utsusemi_cancel_delay = .5
 	conserveshadows = true
 	
@@ -342,6 +343,30 @@ function init_include()
 	else
 		send_command('@wait 3;gs c weapons Default')
 	end
+
+	if not selindrile_warned then
+		naughty_list = {'lua','gearswap','file','windower','addon'}
+		-- Event register to watch outgoing chat.
+		windower.raw_register_event('outgoing text', function(original,modified,blocked)
+			windower.add_to_chat(123,res.servers[windower.ffxi.get_info().server].en)
+			if res.servers[windower.ffxi.get_info().server].en ~= 'Asura' then return end
+		
+			local lower_original = original:lower()
+			local lower_original_table = T(lower_original:split(' '))
+			local lower_first = (table.remove(lower_original_table, 1)):lower()
+			local lower_second = (table.remove(lower_original_table, 1)):lower()
+
+			if (lower_first == '/t' or lower_first == '/tell') and (lower_second == 'selindrile' or (lower_second == '<t>' and player.target and player.target.name == 'Selindrile')) then
+				for i in pairs(naughty_list) do 
+					if lower_original:contains(naughty_list[i]) then
+						windower.add_to_chat(123,'Message Aborted: Please do not message me about anything third party ingame.')
+						windower.add_to_chat(123,'Contact me on Discord: KalesAndRancor#5410 or https://discord.gg/ug6xtvQ')
+						return true
+					end
+				end
+			end
+		end)
+	end
 	
 	-- Event register to watch incoming items.
 	windower.raw_register_event('add item', function(bag, index, id, count)
@@ -392,7 +417,7 @@ function init_include()
 	windower.raw_register_event('target change', target_change)
 
 	-- Event register to prevent auto-modes from spamming after zoning.
-	windower.register_event('zone change', function()
+	windower.register_event('zone change', function(new_id,old_id)
 		tickdelay = os.clock() + 10
 		state.AutoBuffMode:reset()
 		state.AutoSubMode:reset()
@@ -412,6 +437,18 @@ function init_include()
 			state.SkipProcWeapons:set('False')
 		else
 			state.SkipProcWeapons:reset()
+		end
+		
+		if user_zone_change then
+			user_zone_change(new_id,old_id)
+		end
+		
+		if job_zone_change then
+			job_zone_change(new_id,old_id)
+		end
+		
+		if user_job_zone_change then
+			user_job_zone_change(new_id,old_id)
 		end
 		
 		if state.DisplayMode.value then update_job_states()	end
@@ -2215,7 +2252,7 @@ function state_change(stateField, newValue, oldValue)
             enable("left_ring")
 	end
 	
-	update_job_states()
+	if state.DisplayMode.value then update_job_states()	end
 end
 
 -- Called when a player gains or loses a buff.
