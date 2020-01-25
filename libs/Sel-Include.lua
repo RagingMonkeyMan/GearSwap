@@ -345,7 +345,7 @@ function init_include()
 	end
 
 	if not selindrile_warned then
-		naughty_list = {'lua','gearswap','file','windower','addon'}
+		naughty_list = {'lua','gearswap','file','windower','plugin','addon','program'}
 		-- Event register to watch outgoing chat.
 		windower.raw_register_event('outgoing text', function(original,modified,blocked)
 			if res.servers[windower.ffxi.get_info().server].en ~= 'Asura' then return end
@@ -970,15 +970,15 @@ function default_pretarget(spell, spellMap, eventArgs)
 end
 
 function default_precast(spell, spellMap, eventArgs)
-    cancel_conflicting_buffs(spell, spellMap, eventArgs)
-    refine_waltz(spell, spellMap, eventArgs)
-
 	if eventArgs.cancel then
 		cancel_spell()
 		return
 	else
 		equip(get_precast_set(spell, spellMap))
 	end
+	
+    cancel_conflicting_buffs(spell, spellMap, eventArgs)
+    refine_waltz(spell, spellMap, eventArgs)
 	
 	if spell.action_type == 'Magic' then
 		next_cast = os.clock() + 3.6 - latency

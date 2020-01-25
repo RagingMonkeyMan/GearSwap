@@ -249,8 +249,6 @@ function job_filter_precast(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-        cancel_conflicting_buffs(spell, action, spellMap, eventArgs)
-
         if spell.type == "WeaponSkill" and spell.english ~= 'Mistral Axe' and spell.english ~= 'Bora Axe' and spell.target.distance > target_distance then
                 eventArgs.cancel = true
                 add_to_chat(123, spell.name..' Canceled: [Out of Range]')
