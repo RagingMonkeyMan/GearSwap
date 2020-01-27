@@ -5,6 +5,7 @@ function user_setup()
     state.WeaponskillMode:options('Match','Normal', 'Acc','Proc')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT', 'Refresh')
+	state.HybridMode:options('Normal','DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
 	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualLeadenMeleeAcc','DualKustawi','None')
 	state.CompensatorMode:options('300','1000','Never','Always')
@@ -310,19 +311,38 @@ function init_gear_sets()
     
     sets.engaged.Acc = {
 		head="Carmine Mask +1",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Telos Earring",
-		body="Meg. Cuirie +2",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
+		body="Meg. Cuirie +2",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Ramuh Ring +1",
 		back=gear.tp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet=gear.herculean_acc_feet}
+		
+    sets.engaged.DT = {
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Petrov Ring",
+        back=gear.tp_jse_back,waist="Windbuffet Belt +1",legs="Mummu Kecks +2",feet="Malignance Boots"}
+    
+    sets.engaged.Acc.DT = {
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
+        back=gear.tp_jse_back,waist="Olseni Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
     sets.engaged.DW = {
-		head="Dampening Tam",neck="Iskur Gorget",ear1="Cessance Earring",ear2="Brutal Earring",
+		head="Dampening Tam",neck="Iskur Gorget",ear1="Suppanomimi",ear2="Brutal Earring",
 		body="Adhemar Jacket +1",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
-		back=gear.tp_jse_back,waist="Reiki Yotai",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
+		back=gear.tp_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
     
     sets.engaged.DW.Acc = {
 		head="Carmine Mask +1",neck="Combatant's Torque",ear1="Digni. Earring",ear2="Telos Earring",
-		body="Meg. Cuirie +2",hands="Floral Gauntlets",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+		body="Malignance Tabard",hands="Floral Gauntlets",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
 		back=gear.tp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet=gear.herculean_acc_feet}
-
+		
+    sets.engaged.DW.DT = {
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Petrov Ring",
+        back=gear.tp_jse_back,waist="Reiki Yotai",legs="Mummu Kecks +2",feet="Malignance Boots"}
+    
+    sets.engaged.DW.Acc.DT = {
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
+        back=gear.tp_jse_back,waist="Reiki Yotai",legs="Mummu Kecks +2",feet="Malignance Boots"}
 end
 
 -- Select default macro book on initial load or subjob change.

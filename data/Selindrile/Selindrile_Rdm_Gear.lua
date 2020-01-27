@@ -64,6 +64,7 @@ function init_gear_sets()
 		back="Perimede Cape",waist="Witful Belt",legs="Psycloth Lappas",feet=gear.merlinic_aspir_feet}
 		
 	sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Twilight Cloak"})
+	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak",sub="Genmei Shield"})
        
 	-- Weaponskill sets
 	-- Default set for any weaponskill that isn't any more specifically defined
