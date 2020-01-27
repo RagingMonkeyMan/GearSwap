@@ -147,6 +147,12 @@ function job_post_precast(spell, spellMap, eventArgs)
 					equip(sets.DayWSEars[spell.english] or sets.DayWSEars)
 				end
 			end
+		elseif (WSset.ear1:startswith("Lugra Earring") or WSset.ear2:startswith("Lugra Earring")) and not classes.DuskToDawn then
+			if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccDayWSEars then
+				equip(sets.AccDayWSEars[spell.english] or sets.AccDayWSEars)
+			elseif sets.DayWSEars then
+				equip(sets.DayWSEars[spell.english] or sets.DayWSEars)
+			end
 		end
 	end
 end
