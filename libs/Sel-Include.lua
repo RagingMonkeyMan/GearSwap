@@ -225,7 +225,7 @@ function init_include()
 	useItem = false
 	useItemName = ''
 	useItemSlot = ''
-	petWillAct = false
+	petWillAct = 0
 	
 	autonuke = 'Fire'
 	autows = ''
@@ -492,7 +492,7 @@ function init_include()
 		
 		if lastincombat == true and not player.in_combat then
 			being_attacked = false
-			if player.status == 'Idle' and not midaction() and not (pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2))) then
+			if player.status == 'Idle' and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
 				handle_equipping_gear(player.status)
 			end
 			if state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
@@ -1259,7 +1259,7 @@ end
 
 function default_pet_aftercast(spell, spellMap, eventArgs)
     if not midaction() then handle_equipping_gear(player.status) end
-	petWillAct = false
+	petWillAct = 0
 end
 
 --------------------------------------
@@ -1342,7 +1342,7 @@ end
 function cleanup_aftercast(spell, spellMap, eventArgs)
     -- Reset custom classes after all possible precast/midcast/aftercast/job-specific usage of the value.
     -- If we're in the middle of a pet action, pet_aftercast will handle clearing it.
-    if not pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2)) then
+    if not pet_midaction() or ((petWillAct + 2) > os.clock()) then
         reset_transitory_classes()
     end
 end
@@ -2188,7 +2188,7 @@ function status_change(newStatus, oldStatus)
     end
 
     -- Handle equipping default gear if the job didn't mark this as handled.
-    if not eventArgs.handled and not midaction() and not (pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2))) then
+    if not eventArgs.handled and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
         handle_equipping_gear(newStatus)
         display_breadcrumbs()
     end
@@ -2337,7 +2337,7 @@ end
 -- pet == pet gained or lost
 -- gain == true if the pet was gained, false if it was lost.
 function pet_change(pet, gain)
-	petWillAct = false
+	petWillAct = 0
     -- Init a new eventArgs
     local eventArgs = {handled = false}
 

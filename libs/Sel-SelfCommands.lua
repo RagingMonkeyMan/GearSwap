@@ -312,7 +312,7 @@ function handle_update(cmdParams)
 		state.AutoSambaMode:set("Off")
 	end
 	
-    if state.DefenseMode.value ~= 'None' or (not eventArgs.handled and not midaction() and not (pet_midaction() or (petWillAct and petWillAct < (os.clock() + 2)))) then
+    if state.DefenseMode.value ~= 'None' or (not eventArgs.handled and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock()))) then
         if handle_equipping_gear then
             handle_equipping_gear(player.status)
         end
