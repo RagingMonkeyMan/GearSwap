@@ -74,7 +74,7 @@ function init_gear_sets()
 		legs="Rawhide Trousers",feet="Mochi. Kyahan +1"}
 		
     sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket",feet="Hattori Kyahan +1"})
-	sets.precast.FC.Shadows = set_combine(sets.precast.FC.Utsusemi, {ammo="Staunch Tathlum",ring1="Prolix Ring"})
+	sets.precast.FC.Shadows = set_combine(sets.precast.FC.Utsusemi, {ammo="Staunch Tathlum +1",ring1="Prolix Ring"})
 
     -- Snapshot for ranged
     sets.precast.RA = {legs="Nahtirah Trousers"}

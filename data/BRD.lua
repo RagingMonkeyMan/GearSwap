@@ -306,6 +306,10 @@ end
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
 
+function job_zone_change(new_id,old_id)
+	state.AutoSongMode:reset()
+end
+
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
 	update_melee_groups()

@@ -424,6 +424,7 @@ function init_include()
 		state.AutoFoodMode:reset()
 		state.AutoWSMode:reset()
 		state.AutoNukeMode:reset()
+		state.RngHelper:reset()
 		useItem = false
 		useItemName = ''
 		useItemSlot = ''
