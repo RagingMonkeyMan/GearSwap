@@ -989,7 +989,6 @@ function default_precast(spell, spellMap, eventArgs)
 	end
 	
 	if tickdelay < next_cast then tickdelay = next_cast end
-	if areas.LaggyZones:contains(world.area) then next_cast = next_cast - .25 end
 end
 
 function default_post_precast(spell, spellMap, eventArgs)
@@ -1187,10 +1186,6 @@ function default_aftercast(spell, spellMap, eventArgs)
 		next_cast = os.clock() + .85 - latency
 	elseif spell.action_type == 'Ranged Attack' then
 		next_cast = os.clock() + .85 - latency
-	end
-
-	if areas.LaggyZones:contains(world.area) then
-		next_cast = next_cast - .15
 	end
 	
 	if tickdelay < next_cast then tickdelay = next_cast end

@@ -285,7 +285,7 @@ function init_gear_sets()
     sets.engaged.PDT = {ammo="Staunch Tathlum +1",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Sherida Earring",
         body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Moonbeam Ring",
-        back="Moonlight Cape",waist="Reiki Yotai",legs="Mummu Kecks +2",feet="Malignance Boots"}
+        back="Moonlight Cape",waist="Reiki Yotai",legs="Meg. Chausses +2",feet="Malignance Boots"}
 
     sets.engaged.SomeAcc.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
