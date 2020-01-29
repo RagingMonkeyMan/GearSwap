@@ -173,6 +173,7 @@ function init_include()
 	state.Buff['Dark Arts'] = buffactive['Dark Arts'] or false
 	state.Buff['Addendum: Black'] = buffactive['Addendum: Black'] or false
 	state.Buff['Accession'] = buffactive['Accession'] or false
+	state.Buff['Manifestation'] = buffactive['Manifestation'] or false
 	state.Buff['Warcry'] = buffactive['Warcry'] or false
 	
 	--Defining Variables here on load that won't change without a reload to save processing.
