@@ -23,11 +23,11 @@ Setting up my Gearswaps and Github updating.
 6.) Move your old Gearswap folder to the same directory as the new one to merge them,
     make sure not to overwrite any files, choose skip or "do not replace" for any common files.
 
-7.) If you don't have my style Character luas already, then Inside your Gearswap\Data\
+7.) If you don't have my style Character luas already, then inside your Gearswap\Data\
 	folder, first copy, then rename the "Selindrile" folder once for each of your
 	characters' names, you can click Rename.bat and for the first sequence enter:
 	Selindrile, then enter your character's name for new sequence. (If it doesn't work
-	you will have to rename these files namually, then delete Rename.bat in all folders
+	you will have to rename these files manually, then delete Rename.bat in all folders
 	except the Selindrile folder.
 	
 

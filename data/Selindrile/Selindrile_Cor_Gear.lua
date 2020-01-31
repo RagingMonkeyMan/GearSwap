@@ -357,5 +357,5 @@ function select_default_macro_book()
         set_macro_page(5, 11)
     else
         set_macro_page(10, 11)
-    end   
+    end
 end

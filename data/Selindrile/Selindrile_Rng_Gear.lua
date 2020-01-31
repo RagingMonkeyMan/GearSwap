@@ -75,22 +75,22 @@ function init_gear_sets()
         body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.wsd_ranger_jse_back,waist="Fotia Belt",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
 
-    sets.precast.WS['Wildfire'] = {
+    sets.precast.WS['Wildfire'] = {ammo="Orichalc. Bullet",
         head=gear.herculean_nuke_head,neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
         body="Samnuha Coat",hands="Carmine Fin. Ga. +1",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.wsd_ranger_jse_back,waist="Eschan Stone",legs="Gyve Trousers",feet=gear.herculean_nuke_feet}
 
-    sets.precast.WS['Wildfire'].Acc = {
+    sets.precast.WS['Wildfire'].Acc = {ammo="Orichalc. Bullet",
         head=gear.herculean_nuke_head,neck="Sanctity Necklace",ear1="Crematio Earring",ear2="Friomisi Earring",
         body="Samnuha Coat",hands="Leyline Gloves",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.wsd_ranger_jse_back,waist="Eschan Stone",legs="Gyve Trousers",feet=gear.herculean_nuke_feet}
 		
-    sets.precast.WS['Trueflight'] = {
+    sets.precast.WS['Trueflight'] = {ammo="Orichalc. Bullet",
         head=gear.herculean_nuke_head,neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
         body="Samnuha Coat",hands="Carmine Fin. Ga. +1",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.wsd_ranger_jse_back,waist="Eschan Stone",legs="Gyve Trousers",feet=gear.herculean_nuke_feet}
 
-    sets.precast.WS['Trueflight'].Acc = {
+    sets.precast.WS['Trueflight'].Acc = {ammo="Orichalc. Bullet",
         head=gear.herculean_nuke_head,neck="Sanctity Necklace",ear1="Crematio Earring",ear2="Friomisi Earring",
         body="Samnuha Coat",hands="Leyline Gloves",ring1="Regal Ring",ring2="Dingir Ring",
         back=gear.wsd_ranger_jse_back,waist="Eschan Stone",legs="Gyve Trousers",feet=gear.herculean_nuke_feet}
@@ -174,9 +174,9 @@ function init_gear_sets()
 	sets.NightIdle = {}
 	
 	-- Weapons sets
-	sets.weapons.DualWeapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.weapons.Default = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut",ammo="Chrono Bullet"}
-	sets.weapons.DualMagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut",ammo="Chrono Bullet"}
+	sets.weapons.DualWeapons = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut"}
+	sets.weapons.Default = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut"}
+	sets.weapons.DualMagicWeapons = {main="Malevolence",sub="Malevolence",range="Fomalhaut"}
 
 	--------------------------------------
 	-- Engaged sets
@@ -211,5 +211,13 @@ end
 
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
-	set_macro_page(1, 19)
+    if player.sub_job == 'NIN' then
+        set_macro_page(1, 19)
+    elseif player.sub_job == 'DNC' then
+		set_macro_page(1, 11)
+    elseif player.sub_job == 'DRG' then
+        set_macro_page(3, 19)
+    else
+        set_macro_page(1, 19)
+    end
 end
