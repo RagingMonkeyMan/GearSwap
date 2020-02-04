@@ -82,6 +82,7 @@ function job_setup()
     state.Buff['Climactic Flourish'] = buffactive['Climactic Flourish'] or false
 	state.Buff['Building Flourish'] = buffactive['Building Flourish'] or false
 	state.Buff['Presto'] = buffactive['Presto'] or false
+	state.Buff['Contradance'] = buffactive['Contradance'] or false
 	state.Buff['Saber Dance'] = buffactive['Saber Dance'] or false
 	state.Buff['Fan Dance'] = buffactive['Fan Dance'] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false

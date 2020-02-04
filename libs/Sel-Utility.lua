@@ -207,7 +207,7 @@ waltz_tp_cost = {['Curing Waltz'] = 200, ['Curing Waltz II'] = 350, ['Curing Wal
 -- Utility function for automatically adjusting the waltz spell being used to match HP needs and TP limits.
 -- Handle spell changes before attempting any precast stuff.
 function refine_waltz(spell, spellMap, eventArgs)
-    if spell.type ~= 'Waltz' then
+    if not state.RefineWaltz.value or spell.type ~= 'Waltz' then
         return
 	elseif player.tp < 150 then
 		add_to_chat(123, 'Abort: Insufficient TP ['..tostring(player.tp)..'] to waltz.')
@@ -234,15 +234,15 @@ function refine_waltz(spell, spellMap, eventArgs)
         local est_max_hp = target.hp / (target.hpp/100)
         missingHP = math.floor(est_max_hp - target.hp)
 		
-		if buffactive['Contradance'] then
+		if player.main_job == 'DNC' and state.Buff['Contradance'] then
 			missingHP = missingHP / 2
 		end
     end
     
     -- If we have an estimated missing HP value, we can adjust the preferred tier used.
     if missingHP ~= nil then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
         if player.main_job == 'DNC' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
             if missingHP < 40 and spell.target.name == player.name then
                 -- Not worth curing yourself for so little.
                 -- Don't block when curing others to allow for waking them up.
@@ -250,25 +250,62 @@ function refine_waltz(spell, spellMap, eventArgs)
                 eventArgs.cancel = true
                 return
             elseif missingHP < 200 then
-                newWaltz = 'Curing Waltz'
-                waltzID = 190
+				if abil_recasts[217] < latency then
+					newWaltz = 'Curing Waltz'
+					waltzID = 190
+				elseif abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				end
             elseif missingHP < 600 then
-                newWaltz = 'Curing Waltz II'
-                waltzID = 191
+				if abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				elseif abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				elseif abil_recasts[217] < latency then
+					newWaltz = 'Curing Waltz'
+					waltzID = 190
+				end
             elseif missingHP < 1100 then
-                newWaltz = 'Curing Waltz III'
-                waltzID = 192
+				if abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				elseif abil_recasts[188] < latency then	
+					newWaltz = 'Curing Waltz IV'
+					waltzID = 193
+				elseif abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				end
 			elseif state.AutoContradanceMode.value and abil_recasts[229] < latency then
                 eventArgs.cancel = true
 				windower.chat.input('/ja "Contradance" <me>')
-				windower.chat.input:schedule(1,'/ja "Curing Waltz IV" '..spell.target.raw..'')
+				windower.chat.input:schedule(.5,'/ja "Curing Waltz III" '..spell.target.raw..'')
                 return
             elseif missingHP < 1500 then
-                newWaltz = 'Curing Waltz IV'
-                waltzID = 193
+				if abil_recasts[188] < latency then	
+					newWaltz = 'Curing Waltz IV'
+					waltzID = 193
+				elseif abil_recasts[189] < latency then	
+					newWaltz = 'Curing Waltz V'
+					waltzID = 311
+				elseif abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				end
             else
-                newWaltz = 'Curing Waltz V'
-                waltzID = 311
+				if abil_recasts[189] < latency then	
+					newWaltz = 'Curing Waltz V'
+					waltzID = 311
+				elseif abil_recasts[188] < latency then	
+					newWaltz = 'Curing Waltz IV'
+					waltzID = 193
+				elseif abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				end
             end
         elseif player.sub_job == 'DNC' then
             if missingHP < 40 and spell.target.name == player.name then
@@ -278,14 +315,29 @@ function refine_waltz(spell, spellMap, eventArgs)
                 eventArgs.cancel = true
                 return
             elseif missingHP < 150 then
-                newWaltz = 'Curing Waltz'
-                waltzID = 190
+				if abil_recasts[217] < latency then
+					newWaltz = 'Curing Waltz'
+					waltzID = 190
+				elseif abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				end
             elseif missingHP < 300 then
-                newWaltz = 'Curing Waltz II'
-                waltzID = 191
+				if abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				elseif abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				end
             else
-                newWaltz = 'Curing Waltz III'
-                waltzID = 192
+				if abil_recasts[187] < latency then
+					newWaltz = 'Curing Waltz III'
+					waltzID = 192
+				elseif abil_recasts[186] < latency then
+					newWaltz = 'Curing Waltz II'
+					waltzID = 191
+				end
             end
         else
             -- Not dnc main or sub; bail out
@@ -300,7 +352,7 @@ function refine_waltz(spell, spellMap, eventArgs)
 	end
 
     local downgrade
-    
+
     -- Downgrade the spell to what we can afford
     if player.tp < tpCost and not buffactive.trance then
         --[[ Costs:
@@ -312,17 +364,39 @@ function refine_waltz(spell, spellMap, eventArgs)
             Divine Waltz:     400 TP
             Divine Waltz II:  800 TP
         --]]
-        
-		if player.tp < 350 then
-            newWaltz = 'Curing Waltz'
-        elseif player.tp < 500 then
-            newWaltz = 'Curing Waltz II'
-        elseif player.tp < 650 then
-            newWaltz = 'Curing Waltz III'
-        elseif player.tp < 800 then
-            newWaltz = 'Curing Waltz IV'
+		local effective_tp
+		if state.DefenseMode.value == 'None' and uses_waltz_legs then
+			effective_tp = player.tp + 50
         end
-        
+
+		if effective_tp < 350 and abil_recasts[217] < latency then
+            newWaltz = 'Curing Waltz'
+        elseif effective_tp < 500 then
+			if abil_recasts[186] < latency then
+				newWaltz = 'Curing Waltz II'
+			elseif abil_recasts[217] < latency then
+				newWaltz = 'Curing Waltz'
+			end
+        elseif effective_tp < 650 then
+			if abil_recasts[187] < latency then
+				newWaltz = 'Curing Waltz III'
+			elseif abil_recasts[186] < latency then
+				newWaltz = 'Curing Waltz II'
+			elseif abil_recasts[217] < latency then
+				newWaltz = 'Curing Waltz'
+			end
+        elseif effective_tp < 800 then
+			if abil_recasts[188] < latency then	
+				newWaltz = 'Curing Waltz IV'
+			elseif abil_recasts[187] < latency then
+				newWaltz = 'Curing Waltz III'
+			elseif abil_recasts[186] < latency then
+				newWaltz = 'Curing Waltz II'
+			elseif abil_recasts[217] < latency then
+				newWaltz = 'Curing Waltz'
+			end
+        end
+
         downgrade = 'Insufficient TP ['..tostring(player.tp)..']. Downgrading to '..newWaltz..'.'
     end
 
