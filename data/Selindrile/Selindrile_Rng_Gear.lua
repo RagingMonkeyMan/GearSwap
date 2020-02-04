@@ -191,7 +191,7 @@ function init_gear_sets()
     sets.engaged.Acc = {
 		head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Telos Earring",
 		body="Meg. Cuirie +2",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
-		back=gear.tp_ranger_jse_back,waist="Olseni Belt",legs="Samnuha Tights",feet=gear.herculean_acc_feet}
+		back=gear.tp_ranger_jse_back,waist="Olseni Belt",legs="Samnuha Tights",feet="Malignance Boots"}
 
     sets.engaged.DW = {
 		head="Dampening Tam",neck="Asperity Necklace",ear1="Cessance Earring",ear2="Brutal Earring",
@@ -201,7 +201,7 @@ function init_gear_sets()
     sets.engaged.DW.Acc = {
 		head="Dampening Tam",neck="Combatant's Torque",ear1="Digni. Earring",ear2="Telos Earring",
 		body="Adhemar Jacket +1",hands="Floral Gauntlets",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
-		back=gear.tp_ranger_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet=gear.herculean_acc_feet}
+		back=gear.tp_ranger_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}
 
 	--------------------------------------
 	-- Custom buff sets
