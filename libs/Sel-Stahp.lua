@@ -139,15 +139,15 @@ windower.raw_register_event('action', function(act)
 	
 	if curact.category == 1 then
 		if targetsMe then
-			windower.add_to_chat('distance: '..actor.distance..' model_size:'..actor.model_size..'')
-			if state.AutoEngageMode.value and actor.race == 0 and actor.distance < 3.6 and player.status == 'Idle' and not (moving or engaging > os.clock() or actor.name:contains("'s ")) then
+			if state.AutoEngageMode.value and actor.race == 0 and math.sqrt(actor.distance) < (3.2 + actor.model_size) and player.status == 'Idle' and not (moving or engaging > os.clock() or actor.name:contains("'s ")) then
 				engaging = os.clock() + 2
-				packets.inject(packets.new('incoming', 0x058, {
-					['Player'] = player.id,
+				
+				packets.inject(packets.new('outgoing', 0x1a, {
 					['Target'] = actor.id,
-					['Player Index'] = player.index,
+					['Target Index'] = actor.index,
+					['Category']     = 0x02,
 				}))
-				windower.chat.input:schedule(1,'/attack')
+				
 			elseif player.status == 'Idle' and not (being_attacked or midaction() or pet_midaction()) then
 				being_attacked = true
 				windower.send_command('gs c forceequip')
