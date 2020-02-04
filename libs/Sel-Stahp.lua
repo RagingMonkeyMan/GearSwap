@@ -139,6 +139,7 @@ windower.raw_register_event('action', function(act)
 	
 	if curact.category == 1 then
 		if targetsMe then
+			windower.add_to_chat('distance: '..actor.distance..' model_size:'..actor.model_size..'')
 			if state.AutoEngageMode.value and actor.race == 0 and actor.distance < 3.6 and player.status == 'Idle' and not (moving or engaging > os.clock() or actor.name:contains("'s ")) then
 				engaging = os.clock() + 2
 				packets.inject(packets.new('incoming', 0x058, {
