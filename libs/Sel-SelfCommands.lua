@@ -505,7 +505,7 @@ end
 
 function handle_autonuke(cmdParams)
 	if #cmdParams == 0 then
-		add_to_chat(122,'Your must specify a spell to autonuke with.')
+		add_to_chat(122,'You must specify a spell to autonuke with.')
 	else
 		autonuke = table.concat(cmdParams, ' '):ucfirst()
 		add_to_chat(122,'Your autonuke spell is set to '..autonuke..'.')
@@ -605,7 +605,7 @@ end
 
 function handle_autows(cmdParams)
 	if #cmdParams == 0 then
-		add_to_chat(122,'Your must specify a ws to auto-weaponskill with.')
+		add_to_chat(122,'You must specify a ws to auto-weaponskill with.')
 	elseif state.RngHelper.value then
 		if cmdParams[1] == 'tp' then
 			rangedautowstp = tonumber(cmdParams[2])
@@ -629,7 +629,7 @@ end
 
 function handle_autofood(cmdParams)
 	if #cmdParams == 0 then
-		add_to_chat(122,'Your must specify a food to automatically eat.')
+		add_to_chat(122,'You must specify a food to automatically eat.')
 	else
 		autofood = table.concat(cmdParams, ' '):ucfirst()
 		add_to_chat(122,'Your autofood item is set to '..autofood..'.')
@@ -855,7 +855,7 @@ function handle_mount(cmdParams)
 		windower.chat.input('/dismount')
 	else
 		if #cmdParams == 0 then
-			add_to_chat(123,'Your must specify a mount to ride.')
+			add_to_chat(123,'You must specify a mount to ride.')
 			return
 		else
 			local mount = table.concat(cmdParams, ' '):ucfirst()

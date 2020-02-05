@@ -1,11 +1,11 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
     state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder','Crit')
-    state.HybridMode:options('Normal','Evasion','PDT')
+    state.HybridMode:options('Normal','DT')
     state.RangedMode:options('Normal','Acc')
     state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','FullAcc','Fodder','Proc')
     state.CastingMode:options('Normal','Proc','Resistant')
-    state.IdleMode:options('Normal', 'PDT', 'Sphere')
+    state.IdleMode:options('Normal','Sphere')
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
@@ -57,7 +57,7 @@ function init_gear_sets()
 
     -- Set for acc on steps, since Yonin drops acc a fair bit
     sets.precast.Step = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
+        head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Mache Earring +1",ear2="Telos Earring",
         body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back="Andartia's Mantle",waist="Olseni Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
 
@@ -86,9 +86,9 @@ function init_gear_sets()
         back=gear.da_jse_back,waist="Fotia Belt",legs="Samnuha Tights",feet=gear.herculean_wsd_feet}
     sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {head="Dampening Tam","Ken. Samue",legs="Hiza. Hizayoroi +2",ear2="Telos Earring"})
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {head="Ynglinga Sallet",neck="Combatant's Torque",ear2="Telos Earring",body="Ken. Samue",hands="Mummu Wrists +2",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet="Malignance Boots"})
-	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",body="Mummu Jacket +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet="Malignance Boots"})
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="Yamarang",head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Mache Earring +1",ear2="Telos Earring",body="Mummu Jacket +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",waist="Olseni Belt",legs="Hiza. Hizayoroi +2",feet="Malignance Boots"})
 	sets.precast.WS.Proc = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
+        head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Mache Earring +1",ear2="Telos Earring",
         body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
 	
@@ -124,10 +124,10 @@ function init_gear_sets()
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = {ear1="Lugra Earring",ear2="Lugra Earring +1",}
-	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
-	sets.AccDayMaxTPWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.AccMaxTP = {ear1="Mache Earring +1",ear2="Telos Earring"}
+	sets.AccDayMaxTPWSEars = {ear1="Mache Earring +1",ear2="Telos Earring"}
 	sets.DayMaxTPWSEars = {ear1="Cessance Earring",ear2="Brutal Earring",}
-	sets.AccDayWSEars = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.AccDayWSEars = {ear1="Mache Earring +1",ear2="Telos Earring"}
 	sets.DayWSEars = {ear1="Moonshade Earring",ear2="Brutal Earring",}
 
     
@@ -178,29 +178,13 @@ function init_gear_sets()
     sets.resting = {}
 
     -- Idle sets
-    sets.idle = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Hiza. Haramaki +2",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+    sets.idle = {ammo="Staunch Tathlum +1",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Flume Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
-    sets.idle.PDT = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
-		
     sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
-		
-    sets.idle.Weak = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
     
-    -- Defense sets
-    sets.defense.Evasion = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Apate Ring",
-        back="Andartia's Mantle",waist="Shetal Stone",legs="Nahtirah Trousers",feet="Malignance Boots"}
-
     sets.defense.PDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Dark Ring",
@@ -238,62 +222,56 @@ function init_gear_sets()
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Ken. Samue",hands="Adhemar Wrist. +1",ring1="Petrov Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
+		
     sets.engaged.SomeAcc = {ammo="Seki Shuriken",
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Ken. Samue",hands="Adhemar Wrist. +1",ring1="Ilabrat Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
+		
     sets.engaged.Acc = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Digni. Earring",ear2="Telos Earring",
         body="Ken. Samue",hands="Adhemar Wrist. +1",ring1="Ilabrat Ring",ring2="Regal Ring",
         back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
+		
     sets.engaged.FullAcc = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Zennaroi Earring",ear2="Telos Earring",
+        head="Ynglinga Sallet",neck="Moonbeam Nodowa",ear1="Mache Earring +1",ear2="Telos Earring",
         body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.da_jse_back,waist="Olseni Belt",legs="Mummu Kecks +2",feet="Malignance Boots"}
+		
     sets.engaged.Fodder = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Dedition Earring",ear2="Brutal Earring",
         body="Ken. Samue",hands="Adhemar Wrist. +1",ring1="Petrov Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
+		
     sets.engaged.Crit = {ammo="Togakushi Shuriken",
         head="Mummu Bonnet +2",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Mummu Jacket +2",hands="Mummu Wrists +2",ring1="Petrov Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Mummu Kecks +2",feet="Mummu Gamash. +2"}
-    sets.engaged.Evasion = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands="Adhemar Wrist. +1",ring1="Apate Ring",ring2="Epona's Ring",
-        back=gear.da_jse_back,waist="Shetal Stone",legs="Nahtirah Trousers",feet="Malignance Boots"}
-		sets.engaged.SomeAcc.Evasion = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands="Buremte Gloves",ring1="Apate Ring",ring2="Epona's Ring",
-        back=gear.da_jse_back,waist="Shetal Stone",legs="Samnuha Tights",feet="Malignance Boots"}
-    sets.engaged.Acc.Evasion = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Mekosu. Harness",hands="Buremte Gloves",ring1="Apate Ring",ring2="Ramuh Ring +1",
-        back=gear.da_jse_back,waist="Olseni Belt",legs="Samnuha Tights",feet="Malignance Boots"}
-    sets.engaged.FullAcc.Evasion = {ammo="Togakushi Shuriken",
-        head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Mekosu. Harness",hands="Buremte Gloves",ring1="Apate Ring",ring2="Ramuh Ring +1",
-        back=gear.da_jse_back,waist="Olseni Belt",legs="Samnuha Tights",feet="Malignance Boots"}
-    sets.engaged.PDT = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
-		sets.engaged.SomeAcc.PDT = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
-	sets.engaged.Acc.PDT = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
-	sets.engaged.FullAcc.PDT = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Zennaroi Earring",ear2="Telos Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back=gear.da_jse_back,waist="Olseni Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
-	sets.engaged.Fodder.PDT = {ammo="Togakushi Shuriken",
-        head="Ynglinga Sallet",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Emet Harness +1",hands=gear.herculean_dt_hands,ring1="Defending Ring",ring2="Epona's Ring",
-        back="Moonlight Cape",waist="Flume Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+		
+    sets.engaged.DT = {ammo="Togakushi Shuriken",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
+		
+		sets.engaged.SomeAcc.DT = {ammo="Togakushi Shuriken",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Telos Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
+		
+	sets.engaged.Acc.DT = {ammo="Togakushi Shuriken",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Mache Earring +1",ear2="Telos Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
+		
+	sets.engaged.FullAcc.DT = {ammo="Togakushi Shuriken",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Mache Earring +1",ear2="Odr Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
+        back=gear.da_jse_back,waist="Olseni Belt",legs="Malignance Tights",feet="Malignance Boots"}
+		
+	sets.engaged.Fodder.DT = {ammo="Togakushi Shuriken",
+        head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 		
     --------------------------------------
     -- Custom buff sets

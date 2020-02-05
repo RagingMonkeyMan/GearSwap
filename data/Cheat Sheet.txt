@@ -85,7 +85,7 @@ name them Character_Job.lua.
 [Win+F7]	= Automatic ranged attacks, to change what weaponskill, use //gs c autows while Rnghelper is active
 			  as well as using //gs c toggle autowsmode to turn on and off auto WS during Rnghelper
 			  
-:Macro:		/console gs c toggle rnghelper
+:Macro:		/console gs c toggle RngHelper
 		
 [Win+F10]	= Toggle job specific modes, different depending on jobs some examples:
 				Also sometimes Ctrl/Alt/Win + Grave/Tilde (` or ~) or even Backspace, Backslash, Delete, Dash or Equals.
@@ -163,7 +163,7 @@ Melees:		/console gs c cycle ExtraMeleeMode
 
 [Ctrl+T]	= Change treasurehunter mode, Tag: Equips TH gear for one hit, Fulltime keeps it on always, SATA for Sneak/Trick Attack.
 
-:Macro:		/console gs c cycle treasuremode
+:Macro:		/console gs c cycle TreasureMode
 
 
 [Alt+T]		= Target battle target. (Red mob claimed by party.)

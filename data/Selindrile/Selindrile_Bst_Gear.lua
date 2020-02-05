@@ -81,7 +81,7 @@ function init_gear_sets()
 
 		-- STEPS
 	sets.precast.Step = {ammo="Hasty Pinion +1",
-		head="Gavialis Helm",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Heartseeker Earring",
+		head="Gavialis Helm",neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Heartseeker Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
 		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
@@ -151,7 +151,7 @@ function init_gear_sets()
 		back="Letalis Mantle",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Nukumi Ocreae +1"}
 
 	sets.precast.WS.FullAcc = {ammo="Hasty Pinion +1",
-		head=gear.valorous_pet_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
+		head=gear.valorous_pet_head,neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Telos Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
 		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Nukumi Ocreae +1"}
 
@@ -179,7 +179,7 @@ function init_gear_sets()
 
 		-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
-	sets.AccMaxTP = {ear1="Zennaroi Earring",ear2="Telos Earring"}
+	sets.AccMaxTP = {ear1="Mache Earring +1",ear2="Telos Earring"}
 
 				-- PET SIC & READY MOVES
 	sets.midcast.Pet.WS = {main=gear.PHYKumbha1,sub=gear.PHYKumbha2,ammo="Demonry Core",
@@ -277,12 +277,12 @@ function init_gear_sets()
 		back="Letalis Mantle",waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.Acc = {ammo="Falcon Eye",
-		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Brutal Earring",
+		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Brutal Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Petrov Ring",ring2="Epona's Ring",
 		back="Letalis Mantle",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.FullAcc = {ammo="Falcon Eye",
-		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
+		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Telos Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
 		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
@@ -329,12 +329,12 @@ function init_gear_sets()
 		back="Letalis Mantle",waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.DW.Acc = {ammo="Falcon Eye",
-		head="Meghanada Visor +2",neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Brutal Earring",
+		head="Meghanada Visor +2",neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Brutal Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Petrov Ring",ring2="Epona's Ring",
 		back="Letalis Mantle",waist="Grunfeld Rope",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
 	sets.engaged.DW.FullAcc = {ammo="Falcon Eye",
-		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Zennaroi Earring",ear2="Telos Earring",
+		head=gear.valorous_wsd_head,neck="Combatant's Torque",ear1="Mache Earring +1",ear2="Telos Earring",
 		body="Malignance Tabard",hands="Leyline Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
 		back="Ground. Mantle +1",waist="Olseni Belt",legs="Flamma Dirs +2",feet="Valorous Greaves"}
 
