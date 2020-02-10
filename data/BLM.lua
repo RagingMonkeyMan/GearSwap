@@ -62,9 +62,11 @@ function job_setup()
     AutoManawellSpells = S{'Impact'}
 	AutoManawellOccultSpells = S{'Impact','Meteor','Thundaja','Blizzaja','Firaja','Thunder VI','Blizzard VI',}
 
-	state.DeathMode 	  = M{['description'] = 'Death Mode', 'Off', 'Single', 'Lock'}
+	state.DeathMode = M{['description'] = 'Death Mode', 'Off', 'Single', 'Lock'}
 	state.AutoManawell = M(true, 'Auto Manawell Mode')
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
+	state.SelfWarp2Block = M(true, 'Block Warp2 on Self')
+	
 	autows = 'Vidohunir'
 	autofood = 'Pear Crepe'
 	
@@ -83,10 +85,16 @@ end
 
 function job_pretarget(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
-		if state.AutoManawell.value and (AutoManawellSpells:contains(spell.english) or (state.CastingMode.value == 'OccultAcumen' and AutoManawellOccultSpells:contains(spell.english) and actual_cost(spell) > player.mp)) then
+		if spell.english == 'Warp II' and spell.target.name == player.name and state.SelfWarp2Block.value then
+			eventArgs.cancel = true
+			cancel_spell()
+			add_to_chat(123,'Blocking Warp2 on self, use Warp instead or disable the SelfWarp2Block state.')
+			return
+		elseif state.AutoManawell.value and (AutoManawellSpells:contains(spell.english) or (state.CastingMode.value == 'OccultAcumen' and AutoManawellOccultSpells:contains(spell.english) and actual_cost(spell) > player.mp)) then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if abil_recasts[35] < latency and not buffactive['amnesia'] then
+				eventArgs.cancel = true
 				cancel_spell()
 				send_command('@input /ja "Manawell" <me>;wait 1;input /ma '..spell.english..' '..spell.target.raw..'')
 				return

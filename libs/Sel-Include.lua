@@ -1221,7 +1221,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 			lastshadow = spell.english
 		elseif spell.action_type == 'Item' and useItem and (spell.english == useItemName or useItemSlot == 'set') then
 			useItem = false
-			if useItemSlot == 'item' then
+			if useItemSlot == 'item' and not (time_test and useItemName == 'Capacity Ring') then
 				windower.send_command('put '..useItemName..' satchel')
 			elseif useItemSlot == 'set' then
 				local slots = T{}
