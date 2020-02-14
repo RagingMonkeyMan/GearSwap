@@ -442,14 +442,13 @@ function init_gear_sets()
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",waist="Reiki Yotai",legs="Carmine Cuisses +1"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
-	sets.Assault = {ring1="Balrahn's Ring"}
 	
 	-- Weapons sets
 	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
 	sets.weapons.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
 	sets.weapons.Almace = {main="Almace",sub="Sequence"}
 	sets.weapons.Sequence = {main="Sequence",sub="Almace"}
-	sets.weapons.Kaja = {main="Kaja Sword",sub="Almace"}
+	sets.weapons.Kaja = {main="Naegling",sub="Almace"}
 	sets.weapons.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
 	sets.weapons.MaccWeapons = {main="Iris",sub="Iris"}
 	sets.weapons.HybridWeapons = {main="Vampirism",sub="Vampirism"}
@@ -500,7 +499,7 @@ function init_gear_sets()
 	sets.engaged.DT = {main="Tizona",sub="Almace",ammo="Ginsen",
 			    head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
 			    body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Petrov Ring",
-			    back=gear.da_jse_back,waist="Windbuffet Belt",legs="Malignance Tights",feet="Malignance Boots"}
+			    back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.DT.AM = {main="Tizona",sub="Almace",ammo="Ginsen",
 			    head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
