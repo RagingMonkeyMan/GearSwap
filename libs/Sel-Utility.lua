@@ -2360,7 +2360,6 @@ end
 lastlocation = 'fff':pack(0,0,0)
 moving = false
 wasmoving = false
-state.ShowMoving = M(false, 'ShowMoving')
 
 windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
@@ -2368,15 +2367,15 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
         lastlocation = modified:sub(5, 16)
 		
 		if wasmoving ~= moving then
-			if state.ShowMoving.value then
-				windower.add_to_chat(tostring(moving))
-			end
 			if not (player.status == 'Event' or check_midaction() or pet_midaction()) then
 				send_command('gs c forceequip')
 			end
 		end
-		
+
 		if moving then
+			if player.movement_speed <= 5 and sets.Kiting and not (player.status == 'Event' or check_midaction() or pet_midaction()) then
+				send_command('gs c forceequip')
+			end
 			if state.RngHelper.value then
 				send_command('gs rh clear')
 			end
