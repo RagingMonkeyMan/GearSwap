@@ -7,7 +7,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Sequence','Almace','DualWeapons','DualClubs','DualAlmace')
+	state.Weapons:options('None','Naegling','Sequence','Almace','DualWeapons','DualClubs','DualAlmace')
 	
 	gear.obi_cure_back = "Tempered Cape +1"
 	gear.obi_cure_waist = "Witful Belt"
@@ -311,8 +311,9 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield"}
+	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield"}
 	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield"}
-	sets.weapons.DualWeapons = {main="Sequence",sub="Almace"}
+	sets.weapons.DualWeapons = {main="Naegling",sub="Almace"}
 	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan"}
 	sets.weapons.DualAlmace = {main="Almace",sub="Sequence"}
 	

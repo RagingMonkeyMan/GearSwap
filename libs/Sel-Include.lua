@@ -426,6 +426,7 @@ function init_include()
 		state.AutoFoodMode:reset()
 		state.AutoWSMode:reset()
 		state.AutoNukeMode:reset()
+		send_command('gs rh disable')
 		state.RngHelper:reset()
 		useItem = false
 		useItemName = ''

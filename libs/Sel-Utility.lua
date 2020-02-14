@@ -1116,7 +1116,7 @@ function check_doom(spell, spellMap, eventArgs)
 end
 
 function check_midaction(spell, spellMap, eventArgs)
-	if os.clock() < next_cast then
+	if os.clock() < next_cast and not state.RngHelper.value then
 		if eventArgs then
 			eventArgs.cancel = true
 			if delayed_cast == '' then
@@ -2367,10 +2367,7 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
         lastlocation = modified:sub(5, 16)
 		
 		if wasmoving ~= moving then
-			if moving and buffup~= '' then
-				buffup = ''
-				add_to_chat(123,'Buffup cancelled due to movement.')
-			end
+			windower.add_to_chat(tostring(moving))
 			if not (midaction() or pet_midaction()) then
 				send_command('gs c forceequip')
 			end
@@ -2379,6 +2376,11 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
 		if moving then
 			if state.RngHelper.value then
 				send_command('gs rh clear')
+			end
+			
+			if buffup~= '' then
+				buffup = ''
+				add_to_chat(123,'Buffup cancelled due to movement.')
 			end
 			
 			if not state.Uninterruptible.value then delayed_cast = '' end
