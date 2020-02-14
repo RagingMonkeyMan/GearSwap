@@ -417,7 +417,6 @@ register_unhandled_command(function (...)
 			enabled = true	
         elseif commands[2] and commands[2]:lower() == 'disable' then	
             if not enabled then	
-                return
             else	
 				target = nil	
 				pending = nil	

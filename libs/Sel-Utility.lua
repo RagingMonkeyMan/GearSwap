@@ -2360,6 +2360,7 @@ end
 lastlocation = 'fff':pack(0,0,0)
 moving = false
 wasmoving = false
+state.ShowMoving = M(false, 'ShowMoving')
 
 windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
@@ -2367,8 +2368,10 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
         lastlocation = modified:sub(5, 16)
 		
 		if wasmoving ~= moving then
-			windower.add_to_chat(tostring(moving))
-			if not (midaction() or pet_midaction()) then
+			if state.ShowMoving.value then
+				windower.add_to_chat(tostring(moving))
+			end
+			if not (player.status == 'Event' or check_midaction() or pet_midaction()) then
 				send_command('gs c forceequip')
 			end
 		end
@@ -2397,7 +2400,7 @@ fixed_pos = ''
 
 windower.raw_register_event('outgoing chunk',function(id,original,modified,injected,blocked)
 	if not blocked and id == 0x15 and state.Uninterruptible.value then
-		if player.status ~= 'Event' and (gearswap.cued_packet or midaction()) and fixed_pos ~= '' then
+		if player.status ~= 'Event' and (gearswap.cued_packet or check_midaction()) and fixed_pos ~= '' then
 			return original:sub(1,4)..fixed_pos..original:sub(17)
 		else
 			fixed_pos = original:sub(5,16)
