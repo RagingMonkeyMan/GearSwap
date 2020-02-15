@@ -1612,6 +1612,11 @@ end
 function check_use_item()
 	if useItem then
 		local Offset = 18000-os.time()
+		
+		if time_test then
+			windower.add_to_chat(tostring(seconds_to_clock(get_usable_item('Warp Ring').next_use_time + Offset)))
+		end
+		
 		if useItemSlot == 'item' and (player.inventory[useItemName] or player.temporary[useItemName]) then
 			windower.chat.input('/item "'..useItemName..'" <me>')
 			tickdelay = os.clock() + 3.5
@@ -1979,10 +1984,6 @@ end
 
 function check_cpring_buff()-- returs true if you do not have the buff from xp cp ring
 	cp_delay = cp_delay + 1
-	
-	if time_test then
-		windower.add_to_chat(tostring(get_usable_item('Capacity Ring').next_use_time+18000-os.time()))
-	end
 	
 	if state.Capacity.value and cp_delay > 20 and not moving and not areas.Cities:contains(world.area) then
 	
