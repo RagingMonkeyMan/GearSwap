@@ -1521,7 +1521,7 @@ function check_cleanup()
 		
 		if not state.Capacity.value then
 			if player.inventory['Mecisto. Mantle'] then send_command('put "Mecisto. Mantle" satchel') moveditem = true end
-      if player.inventory['Endorsement Ring'] then send_command('put "Endorsement Ring" satchel')  moveditem = true end
+			if player.inventory['Endorsement Ring'] then send_command('put "Endorsement Ring" satchel')  moveditem = true end
 			if player.inventory['Trizek Ring'] then send_command('put "Trizek Ring" satchel')  moveditem = true end
 			if player.inventory['Capacity Ring'] then send_command('put "Capacity Ring" satchel') moveditem = true end
 			if player.inventory['Vocation Ring'] then send_command('put "Vocation Ring" satchel')  moveditem = true end
@@ -1611,17 +1611,17 @@ end
 
 function check_use_item()
 	if useItem then
-		local CurrentTime = (os.time(os.date('!*t')) + time_offset)
+		local Offset = 18000-os.time()
 		if useItemSlot == 'item' and (player.inventory[useItemName] or player.temporary[useItemName]) then
 			windower.chat.input('/item "'..useItemName..'" <me>')
 			tickdelay = os.clock() + 3.5
 			return true
 		elseif useItemSlot == 'set' then
-			if item_equipped(set_to_item(useItemName)) and get_item_next_use(set_to_item(useItemName)).usable then
+			if item_equipped(set_to_item(useItemName)) and get_usable_item(set_to_item(useItemName)).usable then
 				windower.chat.input('/item "'..set_to_item(useItemName)..'" <me>')
 				tickdelay = os.clock() + 3
 				return true
-			elseif item_available(set_to_item(useItemName)) and ((get_item_next_use(set_to_item(useItemName)).next_use_time) - CurrentTime) < 10 then
+			elseif item_available(set_to_item(useItemName)) and ((get_usable_item(set_to_item(useItemName)).next_use_time) + Offset) < 10 then
 				windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
 				tickdelay = os.clock() + 2
 				return true
@@ -1634,11 +1634,11 @@ function check_use_item()
 				useItem = false
 				return false
 			end
-		elseif item_equipped(useItemName) and get_item_next_use(useItemName).usable then
+		elseif item_equipped(useItemName) and get_usable_item(useItemName).usable then
 			windower.chat.input('/item "'..useItemName..'" <me>')
 			tickdelay = os.clock() + 3
 			return true
-		elseif item_available(useItemName) and ((get_item_next_use(useItemName).next_use_time) - CurrentTime) < 10 then
+		elseif item_available(useItemName) and ((get_usable_item(useItemName).next_use_time) + Offset) < 10 then
 			windower.send_command('gs c forceequip '..useItemSlot..' '..useItemName..'')
 			tickdelay = os.clock() + 2
 			return true
@@ -1788,7 +1788,7 @@ function is_party_member(playerid)
 	return false
 end
 
-function get_item_next_use(name)--returns time that you can use the item again
+function get_usable_item(name)--returns time that you can use the item again
     for _,n in pairs({"inventory","wardrobe","wardrobe2","wardrobe3","wardrobe4"}) do
         for _,v in pairs(gearswap.items[n]) do
             if type(v) == "table" and v.id ~= 0 and res.items[v.id].english:lower() == name:lower() then
@@ -1805,126 +1805,172 @@ function cp_ring_equip(ring)--equips given ring
 end
 
 function check_cpring()
---	local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
-	local CurrentTime = (os.time(os.date('!*t')) + time_offset)
+	local Offset = 18000-os.time()
 	
-	if player.main_job_level < 99 then
-			if player.equipment.head and player.equipment.head == 'Sprout Beret' and get_item_next_use(player.equipment.head).usable then
-				send_command('input /item "'..player.equipment.head..'" <me>')
+	if player.main_job_level < 99 or buffactive["Emporox's Gift"] then
+
+		if xprings:contains(player.equipment.left_ring) and get_usable_item(player.equipment.left_ring).usable then
+			send_command('input /item "'..player.equipment.left_ring..'" <me>')
+			cp_delay = 0
+			return true
+		end
+
+		if item_available('Sprout Beret') then
+			local sprout_beret = get_usable_item('Sprout Beret')
+			if player.equipment.head and player.equipment.head == 'Sprout Beret' and sprout_beret.usable then
+				windower.chat.input('/item "'..player.equipment.head..'" <me>')
 				cp_delay = 0
 				return true
 			   
-			elseif item_available('Sprout Beret') and ((get_item_next_use('Sprout Beret').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Sprout Beret').charges_remaining > 0) then
+			elseif ((sprout_beret.next_use_time + Offset) < 6 and sprout_beret.charges_remaining > 0) then
 				enable("head")
 				gearswap.equip_sets('equip_command',nil,{head="Sprout Beret"})
 				disable("head")
 				cp_delay = 10
 				return true
-			   
-			elseif player.equipment.left_ring == 'Echad Ring' and get_item_next_use('Echad Ring').usable then
-				send_command('input /item "'..player.equipment.left_ring..'" <me>')
-				cp_delay = 0
-				return true
-			elseif item_available('Echad Ring') and ((get_item_next_use('Echad Ring').next_use_time) - CurrentTime) < 15 then
+			end
+		end
+		
+		if item_available('Echad Ring') then
+			local echad_ring = get_usable_item('Echad Ring')
+		
+			if ((echad_ring.next_use_time + Offset) < 6 and echad_ring.charges_remaining > 0) then
 				cp_ring_equip('Echad Ring')
 				cp_delay = 10
 				return true
+			end
+		end
 			   
-			elseif player.equipment.left_ring == 'Caliber Ring' and get_item_next_use('Caliber Ring').usable then
-				send_command('input /item "'..player.equipment.left_ring..'" <me>')
-				cp_delay = 0
-				return true
-			elseif item_available('Caliber Ring') and ((get_item_next_use('Caliber Ring').next_use_time) - CurrentTime) < 15 then
+		if item_available('Caliber Ring') then
+			local caliber_ring = get_usable_item('Caliber Ring')
+		
+			if ((caliber_ring.next_use_time + Offset) < 6 and caliber_ring.charges_remaining > 0) then
 				cp_ring_equip('Caliber Ring')
 				cp_delay = 10
 				return true
-			   
-			elseif player.equipment.left_ring == 'Emperor Band' and get_item_next_use('Emperor Band').usable then
-				send_command('input /item "'..player.equipment.left_ring..'" <me>')
-				cp_delay = 0
-				return true
-			elseif item_available('Emperor Band') and ((get_item_next_use('Emperor Band').next_use_time) - CurrentTime) < 15 then
+			end
+		end
+
+		if item_available('Emperor Band') then
+			local emperor_band = get_usable_item('Emperor Band')
+		
+			if ((emperor_band.next_use_time + Offset) < 6 and emperor_band.charges_remaining > 0) then
 				cp_ring_equip('Emperor Band')
 				cp_delay = 10
 				return true
-				
-			elseif player.equipment.left_ring == 'Empress Band' and get_item_next_use('Empress Band').usable then
-				send_command('input /item "'..player.equipment.left_ring..'" <me>')
-				cp_delay = 0
-				return true
-			elseif item_available('Empress Band') and ((get_item_next_use('Empress Band').next_use_time) - CurrentTime) < 15 then
+			end
+		end
+
+		if item_available('Empress Band') then
+			local empress_band = get_usable_item('Empress Band')
+		
+			if ((empress_band.next_use_time + Offset) < 6 and empress_band.charges_remaining > 0) then
 				cp_ring_equip('Empress Band')
 				cp_delay = 10
 				return true
-				
-			elseif player.equipment.left_ring == 'Resolution Ring' and get_item_next_use('Resolution Ring').usable then
-				send_command('input /item "'..player.equipment.left_ring..'" <me>')
-				cp_delay = 0
-				return true
-			elseif item_available('Resolution Ring') and ((get_item_next_use('Resolution Ring').next_use_time) - CurrentTime) < 15 then
+			end
+		end
+		
+		if item_available('Resolution Ring') then
+			local resolution_ring = get_usable_item('Resolution Ring')
+		
+			if ((resolution_ring.next_use_time + Offset) < 6 and resolution_ring.charges_remaining > 0) then
 				cp_ring_equip('Resolution Ring')
 				cp_delay = 10
 				return true
-	 
-			else
-				cp_delay = 0
-				return false
 			end
-		
-	elseif cprings:contains(player.equipment.left_ring) and get_item_next_use(player.equipment.left_ring).usable then
-		send_command('input /item "'..player.equipment.left_ring..'" <me>')
-		cp_delay = 0
-		return true
+		end
+	end
+
+	if player.main_job_level == 99 then
 	
-	elseif player.equipment.head and player.equipment.head == 'Guide Beret' and get_item_next_use(player.equipment.head).usable then
-		send_command('input /item "'..player.equipment.head..'" <me>')
-		cp_delay = 0
-		return true
+		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent == 2100 then
+			if item_available("Emporox's Ring") then
+				local emporox_ring = get_usable_item("Emporox's Ring")
+				if player.equipment.ring1 and player.equipment.ring1 == "Emporox's Ring" and emporox_ring.usable then
+					windower.chat.input('/item "'..player.equipment.left_ring..'" <me>')
+					cp_delay = 0
+					return true
+				   
+				elseif ((emporox_ring.next_use_time + Offset) < 6 and emporox_ring.charges_remaining > 0) then
+					cp_ring_equip("Emporox's Ring")
+					cp_delay = 10
+					return true
+				end
+			end
+		end
 		
-	elseif item_available('Guide Beret') and ((get_item_next_use('Guide Beret').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Guide Beret').charges_remaining > 0) then
-		enable("head")
-		gearswap.equip_sets('equip_command',nil,{head="Guide Beret"})
-		disable("head")
-		cp_delay = 10
-		return true
-  
-  elseif item_available('Endorsement Ring') and ((get_item_next_use('Endorsement Ring').next_use_time) - CurrentTime) < 15 then
-		cp_ring_equip('Endorsement Ring')
-		cp_delay = 10
-		return true
+		if cprings:contains(player.equipment.left_ring) and get_usable_item(player.equipment.left_ring).usable then
+			send_command('input /item "'..player.equipment.left_ring..'" <me>')
+			cp_delay = 0
+			return true
+		end
 		
-	elseif item_available('Trizek Ring') and ((get_item_next_use('Trizek Ring').next_use_time) - CurrentTime) < 15 then
-		cp_ring_equip('Trizek Ring')
-		cp_delay = 10
-		return true
+		if item_available('Guide Beret') then
+			local guide_beret = get_usable_item('Guide Beret')
+			if player.equipment.head and player.equipment.head == 'Guide Beret' and guide_beret.usable then
+				windower.chat.input('/item "'..player.equipment.head..'" <me>')
+				cp_delay = 0
+				return true
+			   
+			elseif ((guide_beret.next_use_time + Offset) < 6 and guide_beret.charges_remaining > 0) then
+				enable("head")
+				gearswap.equip_sets('equip_command',nil,{head="Guide Beret"})
+				disable("head")
+				cp_delay = 10
+				return true
+			end
+		end
+
+		if item_available('Endorsement Ring') then
+			local endorsement_ring = get_usable_item('Endorsement Ring')
 		
-	elseif item_available('Capacity Ring') and ((get_item_next_use('Capacity Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Capacity Ring').charges_remaining > 0) then
-		cp_ring_equip('Capacity Ring')
-		cp_delay = 10
-		return true
-			
-	elseif item_available('Vocation Ring') and ((get_item_next_use('Vocation Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Vocation Ring').charges_remaining > 0) then
-		cp_ring_equip('Vocation Ring')
-		cp_delay = 10
-		return true
+			if ((endorsement_ring.next_use_time + Offset) < 6 and endorsement_ring.charges_remaining > 0) then
+				cp_ring_equip('Endorsement Ring')
+				cp_delay = 10
+				return true
+			end
+		end
+
+		if item_available('Trizek Ring') then
+			local trizek_ring = get_usable_item('Trizek Ring')
+		
+			if ((trizek_ring.next_use_time + Offset) < 6 and trizek_ring.charges_remaining > 0) then
+				cp_ring_equip('Trizek Ring')
+				cp_delay = 10
+				return true
+			end
+		end
+
+		if item_available('Capacity Ring') then
+			local capacity_ring = get_usable_item('Capacity Ring')
+		
+			if ((capacity_ring.next_use_time + Offset) < 6 and capacity_ring.charges_remaining > 0) then
+				cp_ring_equip('Capacity Ring')
+				cp_delay = 10
+				return true
+			end
+		end
 	
-	elseif item_available('Facility Ring') and ((get_item_next_use('Facility Ring').next_use_time) - CurrentTime) < 15 and (get_item_next_use('Facility Ring').charges_remaining > 0) then
-		cp_ring_equip('Facility Ring')
-		cp_delay = 10
-		return true
-	
-	elseif player.equipment.head and player.equipment.head == 'Guide Beret' and (((get_item_next_use(player.equipment.head).next_use_time) - CurrentTime) > 15 or (get_item_next_use(player.equipment.head).charges_remaining == 0)) then
-		enable("head")
-		handle_equipping_gear(player.status)
-		cp_delay = 19
-		return true
+		if item_available('Vocation Ring') then
+			local vocation_ring = get_usable_item('Vocation Ring')
 		
-	elseif cprings:contains(player.equipment.left_ring) and (((get_item_next_use(player.equipment.left_ring).next_use_time) - CurrentTime) > 15 or (get_item_next_use(player.equipment.left_ring).charges_remaining == 0)) then
-		enable("left_ring")
-		handle_equipping_gear(player.status)
-		cp_delay = 19
-		return true
-	
+			if ((vocation_ring.next_use_time + Offset) < 6 and vocation_ring.charges_remaining > 0) then
+				cp_ring_equip('Vocation Ring')
+				cp_delay = 10
+				return true
+			end
+		end
+
+		if item_available('Facility Ring') then
+			local facility_ring = get_usable_item('Facility Ring')
+		
+			if ((facility_ring.next_use_time + Offset) < 6 and facility_ring.charges_remaining > 0) then
+				cp_ring_equip('Facility Ring')
+				cp_delay = 10
+				return true
+			end
+		end
 	end
 	
 	cp_delay = 0
@@ -1935,20 +1981,24 @@ function check_cpring_buff()-- returs true if you do not have the buff from xp c
 	cp_delay = cp_delay + 1
 	
 	if time_test then
-		local CurrentTime = (os.time(os.date("!*t", os.time())) + time_offset)
-		windower.add_to_chat(123,"Capacity Ring Next Use: "..(get_item_next_use('Capacity Ring').next_use_time - CurrentTime).."")
+		windower.add_to_chat(tostring(get_usable_item('Capacity Ring').next_use_time+18000-os.time()))
 	end
 	
 	if state.Capacity.value and cp_delay > 20 and not moving and not areas.Cities:contains(world.area) then
 	
 		if player.satchel['Mecisto. Mantle'] then send_command('get "Mecisto. Mantle" satchel;wait 2;gs c update') end
-    if player.satchel['Endorsement Ring'] then send_command('get "Endorsement Ring" satchel') end
+		if player.satchel['Endorsement Ring'] then send_command('get "Endorsement Ring" satchel') end
 		if player.satchel['Trizek Ring'] then send_command('get "Trizek Ring" satchel') end
 		if player.satchel['Capacity Ring'] then send_command('get "Capacity Ring" satchel') end
 		if player.satchel['Vocation Ring'] then send_command('get "Vocation Ring" satchel') end
 		if player.satchel['Facility Ring'] then send_command('get "Facility Ring" satchel') end
 		if player.satchel['Guide Beret'] then send_command('get "Guide Beret" satchel') end
-		if player.satchel['Echad Ring'] and player.main_job_level < 99 then send_command('get "Echad Ring" satchel') end
+		if player.main_job_level < 99 or buffactive["Emporox's Gift"] then
+			if player.satchel['Echad Ring'] then send_command('get "Echad Ring" satchel') end
+			if player.satchel['Caliber Ring'] then send_command('get "Caliber Ring" satchel') end
+		elseif player.satchel["Emporox's Ring"] and player.main_job_level == 99 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent == 2100 then
+			send_command('get "Emporox\'s Ring" satchel')
+		end
 	
 		if buffactive['Commitment'] then
 			return false
@@ -2138,14 +2188,13 @@ function check_ammo()
 		end
 	
 		if rema_ranged_weapons:contains(player.equipment.range) and count_total_ammo(rema_ranged_weapons_ammo[player.equipment.range]) < ammo_to_stock then
-			if get_item_next_use(player.equipment.range).usable then
+			if get_usable_item(player.equipment.range).usable then
 				windower.chat.input("/item '"..player.equipment.range.."' <me>")
 				add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..player.equipment.range..".")
 				tickdelay = os.clock() + 2
 				return true
 			elseif item_available(rema_ranged_weapons_ammo_pouch[player.equipment.range]) then
-				local CurrentTime = (os.time(os.date('!*t')) + time_offset)
-				if ((get_item_next_use(rema_ranged_weapons_ammo_pouch[player.equipment.range]).next_use_time) - CurrentTime) < 10 then
+				if ((get_usable_item(rema_ranged_weapons_ammo_pouch[player.equipment.range]).next_use_time) + 18000 -os.time()) < 10 then
 					add_to_chat(217,"You're low on "..rema_ranged_weapons_ammo[player.equipment.range]..", using "..rema_ranged_weapons_ammo_pouch[player.equipment.range]..".")
 					useItem = true
 					useItemName = rema_ranged_weapons_ammo_pouch[player.equipment.range]
@@ -2379,7 +2428,6 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
 			if state.RngHelper.value then
 				send_command('gs rh clear')
 			end
-			
 			if buffup~= '' then
 				buffup = ''
 				add_to_chat(123,'Buffup cancelled due to movement.')
