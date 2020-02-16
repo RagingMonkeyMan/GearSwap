@@ -2316,7 +2316,7 @@ function is_fencing()
 end
 
 function main_weapon_is_one_handed()
-	if player.equipment.main == nil then return false end
+	if player.equipment.main == nil or player.equipment.main == 'empty' then return false end
 	return S{2,3,5,9,11}:contains(res.items[item_name_to_id(player.equipment.main)].skill) or false
 end
 
