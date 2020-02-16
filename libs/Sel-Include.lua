@@ -1239,7 +1239,6 @@ function default_aftercast(spell, spellMap, eventArgs)
 			useItemName = ''
 			useItemSlot = ''
 		end
-	else
 	end
 
 	if not eventArgs.handled then
@@ -2241,8 +2240,8 @@ function state_change(stateField, newValue, oldValue)
 		else
 			send_command('wait .001;gs c DisplayElement')
 		end
-	elseif stateField == 'Capacity' and newValue == 'false' and cprings:contains(player.equipment.left_ring) then
-            enable("left_ring")
+	elseif stateField == 'Capacity' and newValue == 'false' and cprings:contains(player.equipment.ring1) then
+            enable("ring1")
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end
@@ -2282,8 +2281,8 @@ function buff_change(buff, gain)
 	elseif (S{'Blink','Third Eye'}:contains(buff) or buff:contains('Copy Image')) and not gain then
 		lastshadow = "None"
     elseif S{'Commitment','Dedication'}:contains(buff) then
-        if gain and (cprings:contains(player.equipment.left_ring) or xprings:contains(player.equipment.left_ring)) then
-            enable("left_ring")			
+        if gain and (cprings:contains(player.equipment.ring1) or xprings:contains(player.equipment.ring1)) then
+            enable("ring1")			
 		elseif gain and (player.equipment.head == "Guide Beret" or player.equipment.head == "Sprout Beret") then
 			enable("head")
         end

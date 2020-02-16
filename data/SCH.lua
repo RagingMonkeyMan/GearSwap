@@ -637,7 +637,11 @@ function handle_elemental(cmdParams)
 					windower.chat.input:schedule(1.3,'/ma "Luminohelix" <t>')
 					windower.chat.input:schedule(6.6,'/ja "Immanence" <me>')
 					windower.chat.input:schedule(7.9,'/p '..auto_translate('Distortion')..' -<t>- MB: '..auto_translate('ice')..' '..auto_translate('Water')..' <scall21> CLOSE!')
-					windower.chat.input:schedule(7.9,'/ma "Stone" <t>')
+					if windower.ffxi.get_spell_recasts()[278] < (spell_latency + 6) then
+						windower.chat.input:schedule(7.9,'/ma "Geohelix" <t>')
+					else
+						windower.chat.input:schedule(7.9,'/ma "Stone" <t>')
+					end
 				end
 			else
 				add_to_chat(123,'Abort: '..state.ElementalMode.value..' is not an Elemental Mode with a skillchain1 command!')
@@ -665,7 +669,11 @@ function handle_elemental(cmdParams)
 			windower.chat.input:schedule(6.9,'/ma "Fire" <t>')
 			windower.chat.input:schedule(13,'/ja "Immanence" <me>')
 			windower.chat.input:schedule(14.3,'/p '..auto_translate('Fusion')..' -<t>- MB: '..auto_translate('Fire')..' '..auto_translate('Light')..' <scall21> CLOSE!')
-			windower.chat.input:schedule(14.3,'/ma "Thunder" <t>')
+			if windower.ffxi.get_spell_recasts()[283] < (spell_latency + 12) then
+				windower.chat.input:schedule(14.3,'/ma "Ionohelix" <t>')
+			else
+				windower.chat.input:schedule(14.3,'/ma "Thunder" <t>')
+			end
 		else
 			add_to_chat(123,'Abort: Fire is the only element with a consecutive 3-step skillchain.')
 		end

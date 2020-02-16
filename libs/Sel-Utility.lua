@@ -1804,9 +1804,9 @@ function get_usable_item(name)--returns time that you can use the item again
 end
 
 function cp_ring_equip(ring)--equips given ring
-	enable("left_ring")
-    gearswap.equip_sets('equip_command',nil,{left_ring=ring})
-    disable("left_ring")
+	enable("ring1")
+    gearswap.equip_sets('equip_command',nil,{ring1=ring})
+    disable("ring1")
 end
 
 function check_cpring()
@@ -1814,8 +1814,8 @@ function check_cpring()
 	
 	if player.main_job_level < 99 or buffactive["Emporox's Gift"] then
 
-		if xprings:contains(player.equipment.left_ring) and get_usable_item(player.equipment.left_ring).usable then
-			send_command('input /item "'..player.equipment.left_ring..'" <me>')
+		if xprings:contains(player.equipment.ring1) and get_usable_item(player.equipment.ring1).usable then
+			send_command('input /item "'..player.equipment.ring1..'" <me>')
 			cp_delay = 0
 			return true
 		end
@@ -1892,8 +1892,9 @@ function check_cpring()
 		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent == 2100 then
 			if item_available("Emporox's Ring") then
 				local emporox_ring = get_usable_item("Emporox's Ring")
+				windower.add_to_chat(tostring(player.equipment.ring1))
 				if player.equipment.ring1 and player.equipment.ring1 == "Emporox's Ring" and emporox_ring.usable then
-					windower.chat.input('/item "'..player.equipment.left_ring..'" <me>')
+					windower.chat.input('/item "Emporox\'s Ring" <me>')
 					cp_delay = 0
 					return true
 				   
@@ -1905,8 +1906,8 @@ function check_cpring()
 			end
 		end
 		
-		if cprings:contains(player.equipment.left_ring) and get_usable_item(player.equipment.left_ring).usable then
-			send_command('input /item "'..player.equipment.left_ring..'" <me>')
+		if cprings:contains(player.equipment.ring1) and get_usable_item(player.equipment.ring1).usable then
+			send_command('input /item "'..player.equipment.ring1..'" <me>')
 			cp_delay = 0
 			return true
 		end
