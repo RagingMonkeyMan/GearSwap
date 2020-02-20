@@ -84,23 +84,22 @@ function job_pretarget(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-	if spell.type == 'WeaponSkill' and state.AutoBoost.value then
+	if spell.type == 'WeaponSkill' and (state.AutoBoost.value or AutoBuffMode.value ~= 'Off') then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if abil_recasts[16] < latency then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Boost" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
-			tickdelay = os.clock() + 1.25
-			return
-		elseif player.sub_job == 'WAR' and abil_recasts[2] < latency then
+		if state.AutoBoost.value and player.sub_job == 'WAR' and abil_recasts[2] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Warcry" <me>')
 			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			tickdelay = os.clock() + 1.25
 			return
+		elseif state.AutoBoost.value and abil_recasts[16] < latency then
+			eventArgs.cancel = true
+			windower.chat.input('/ja "Boost" <me>')
+			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			tickdelay = os.clock() + 1.25
+			return
 		end
 	end
-
 end
 
 -- Run after the general precast() is done.

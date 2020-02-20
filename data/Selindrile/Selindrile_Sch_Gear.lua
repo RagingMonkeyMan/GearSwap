@@ -119,7 +119,7 @@ function init_gear_sets()
 	sets.midcast.Cursna = {main=gear.grioavolr_fc_staff,sub="Clemency Grip",ammo="Hasty Pinion +1",
 		head="Amalric Coif +1",neck="Debilis Medallion",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
 		body="Zendik Robe",hands="Hieros Mittens",ring1="Haoma's Ring",ring2="Menelaus's Ring",
-		back="Swith Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Vanya Clogs"}
+		back="Oretan. Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Vanya Clogs"}
 		
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {main=gear.grioavolr_fc_staff,sub="Clemency Grip"})
 
