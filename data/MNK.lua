@@ -84,7 +84,7 @@ function job_pretarget(spell, spellMap, eventArgs)
 end
 
 function job_precast(spell, spellMap, eventArgs)
-	if spell.type == 'WeaponSkill' and (state.AutoBoost.value or AutoBuffMode.value ~= 'Off') then
+	if spell.type == 'WeaponSkill' and (state.AutoBoost.value or state.AutoBuffMode.value ~= 'Off') then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if state.AutoBoost.value and player.sub_job == 'WAR' and abil_recasts[2] < latency then
 			eventArgs.cancel = true

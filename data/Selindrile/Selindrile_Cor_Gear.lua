@@ -291,7 +291,7 @@ function init_gear_sets()
 	sets.weapons.Default = {main="Fettering Blade",sub="Nusku Shield",range="Fomalhaut"}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Blurred Knife +1",range="Fomalhaut"}
 	sets.weapons.DualSavageWeapons = {main="Naegling",sub="Blurred Knife +1",range="Ataktos"}
-	sets.weapons.DualLeadenRanged = {main="Naegling",sub="Kaja Knife",range="Fomalhaut"}
+	sets.weapons.DualLeadenRanged = {main="Naegling",sub="Tauret",range="Fomalhaut"}
 	sets.weapons.DualLeadenMelee = {main="Naegling",sub="Atoyac",range="Fomalhaut"}
 	sets.weapons.DualLeadenMeleeAcc = {main="Naegling",sub="Blurred Knife +1",range="Fomalhaut"}
 	sets.weapons.DualKustawi = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut"}
