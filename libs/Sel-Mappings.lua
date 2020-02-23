@@ -61,6 +61,9 @@ elements.quickdraw = {['Fire']='Fire', ['Ice']='Ice', ['Wind']='Wind', ['Earth']
 elements.enspell = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
         ['Lightning']='Thunder', ['Water']='Water', ['Light']='Light', ['Dark']='Dark',}
 
+elements.runes = {['Lux']='Light', ['Tenebrae']='Dark', ['Ignis']='Fire', ['Gelus']='Ice', ['Flabra']='Wind',
+     ['Tellus']='Earth', ['Sulpor']='Lightning', ['Unda']='Water'}
+
 enspells = S{'Enthunder','Enstone','Enaero','Enblizzard','Enfire','Enwater','Enlight','Endark',
 		'Enthunder II','Enstone II','Enaero II','Enblizzard II','Enfire II','Enwater II','Enlight II','Endark II',}
 
