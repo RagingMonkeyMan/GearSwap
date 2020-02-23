@@ -1,8 +1,27 @@
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, however feel free to send me a way to contact you outside of game,
-	through	the game, and I'm happy to help, my preferred way of being contact is Discord, my Stream discord is here:
-	https://discord.gg/ug6xtvQ
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+
+feel free to send me a way to contact you outside of game,and I'm happy to help, my preferred way of being contact is Discord, my Stream discord is here: https://discord.gg/ug6xtvQ
 
 Setting up my Gearswaps and Github updating.
+
+0.) DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME.
 
 1.) Create a Github account if you don't already have one: https://github.com/join
 
@@ -48,5 +67,8 @@ Setting up my Gearswaps and Github updating.
 
 12.) Semi Optional: For item usage commands to function, you'll likely need to set your time offset (Unless you happen to be in Central 	US time) instructions are found in charactername-globals.
 
-12.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again
-	PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+12.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME, You will be either ignored or blacklisted if you message multiple times.
