@@ -20,7 +20,7 @@ PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
 
 You will be either ignored or blacklisted if you message multiple times.
 
-feel free to send me a way to contact you outside of game,and I'm happy to help, my preferred way of being contact is Discord, my Stream discord is here: https://discord.gg/ug6xtvQ
+Feel free to send me a way to contact you outside of game,and I'm happy to help, my preferred way of being contact is Discord, my Stream discord is here: https://discord.gg/ug6xtvQ
 
 Setting up my Gearswaps and Github updating.
 
