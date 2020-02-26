@@ -292,6 +292,8 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kanaria"}
+	sets.weapons.Savage = {main="Naegling",sub="Kanaria"}
+	sets.weapons.Evisceration = {main="Tauret",sub="Kanaria"}
 	sets.weapons.LowBuff = {main="Heishi Shorinken",sub="Blurred Knife +1"}
 	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
 	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}

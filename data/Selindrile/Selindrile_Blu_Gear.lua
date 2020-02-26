@@ -450,6 +450,7 @@ function init_gear_sets()
 	
 	-- Weapons sets
 	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
+	sets.weapons.Tizbron = {main="Tizona",sub="Thibron"}
 	sets.weapons.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
 	sets.weapons.Almace = {main="Almace",sub="Sequence"}
 	sets.weapons.Sequence = {main="Sequence",sub="Almace"}

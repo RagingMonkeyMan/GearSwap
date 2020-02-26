@@ -70,6 +70,7 @@ function job_setup()
     -- Var to track the current pet mode.
     state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
 
+	state.AutoManeuvers = M{['description']='Pet Mode', 'Default','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
 	state.AutoPuppetMode = M(false, 'Auto Puppet Mode')
 	state.AutoRepairMode = M(true, 'Auto Repair Mode')
 	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
@@ -442,7 +443,12 @@ end
 function check_maneuver()
     if state.AutoBuffMode.value ~= 'Off' and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
         for i = 1,8 do
-            local maneuver = defaultManeuvers[state.PetMode.Value][i]
+			local maneuver
+			if state.AutoManeuvers.value == 'Default' then
+				maneuver = defaultManeuvers[state.PetMode.Value][i]
+			else
+				maneuver = defaultManeuvers[state.AutoManeuvers.value][i]
+			end
             if maneuver then
                 local maneuversActive = buffactive[maneuver.Name] or 0
                 if maneuversActive < maneuver.Amount then

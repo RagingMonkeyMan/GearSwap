@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Naegling','Sequence','Almace','DualWeapons','DualClubs','DualAlmace')
+	state.Weapons:options('None','Naegling','Sequence','Almace','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAlmace')
 	
 	gear.obi_cure_back = "Tempered Cape +1"
 	gear.obi_cure_waist = "Witful Belt"
@@ -332,12 +332,14 @@ function init_gear_sets()
 	sets.NightIdle = {}
 	
 	-- Weapons sets
-	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield"}
-	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield"}
-	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield"}
-	sets.weapons.DualWeapons = {main="Naegling",sub="Almace"}
-	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan"}
-	sets.weapons.DualAlmace = {main="Almace",sub="Sequence"}
+	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield",range=empty}
+	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield",range=empty}
+	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield",range=empty}
+	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron",range=empty}
+	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace",range=empty}
+	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace",range=empty}
+	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan",range=empty}
+	sets.weapons.DualAlmace = {main="Almace",sub="Sequence",range=empty}
 	
     sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}

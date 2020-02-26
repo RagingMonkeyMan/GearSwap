@@ -257,14 +257,6 @@ function init_gear_sets()
     -- Max useful -perp gear is 1 less than the perp cost (can't be reduced below 1)
     -- Aim for -14 perp, and refresh in other slots.
     
-    -- -perp gear:
-    -- Gridarvor: -5
-    -- Glyphic Horn: -4
-    -- Caller's Doublet +2/Glyphic Doublet: -4
-    -- Evoker's Ring: -1
-    -- Con. Pigaches +1: -4
-    -- total: -18
-    
     -- Can make due without either the head or the body, and use +refresh items in those slots.
     
     sets.idle.Avatar = {main="Gridarvor",sub="Oneiros Grip",ammo="Sancus Sachet +1",
