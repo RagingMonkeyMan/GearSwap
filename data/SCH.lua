@@ -414,7 +414,7 @@ function handle_elemental(cmdParams)
 		else
 			local tiers = {' V',' IV',' III',' II',''}
 			for k in ipairs(tiers) do
-				if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp and (state.Buff['Addendum: Black'] or not tiers[k]:contains('V')) then
+				if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp and (state.Buff['Addendum: Black'] or not tiers[k]:endswith('V')) then
 					windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..''..tiers[k]..'" <t>')
 					return
 				end

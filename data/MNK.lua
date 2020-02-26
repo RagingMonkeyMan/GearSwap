@@ -120,9 +120,9 @@ function job_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-        if buffactive.Impetus and (spell.english == "Ascetic's Fury" or spell.english == "Victory Smite") then
+        if state.Buff['Impetus'] and (spell.english == "Ascetic's Fury" or spell.english == "Victory Smite") then
 			equip(sets.buff.Impetus)
-		elseif buffactive.Footwork and (spell.english == "Dragon Kick" or spell.english == "Tornado Kick") then
+		elseif buffactive.Footwork and (spell.english == "Dragon Kick" or spell.english	 == "Tornado Kick") then
 			equip(sets.FootworkWS)
 		end
 	end
@@ -149,7 +149,7 @@ end
 
 -- Modify the default melee set after it was constructed.
 function job_customize_melee_set(meleeSet)
-    if buffactive.Impetus and state.DefenseMode.value == 'None' and state.OffenseMode.value ~= 'FullAcc' then
+    if state.Buff['Impetus'] and state.DefenseMode.value == 'None' and state.OffenseMode.value ~= 'FullAcc' then
 		meleeSet = set_combine(meleeSet, sets.buff.Impetus)
     end
 	

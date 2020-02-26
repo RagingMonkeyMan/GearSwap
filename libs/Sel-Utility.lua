@@ -1889,7 +1889,7 @@ function check_cpring()
 
 	if player.main_job_level == 99 then
 	
-		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent == 2100 then
+		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent == 2100 and not buffactive["Emporox's Gift"] then
 			if item_available("Emporox's Ring") then
 				local emporox_ring = get_usable_item("Emporox's Ring")
 				if player.equipment.left_ring and player.equipment.left_ring == "Emporox's Ring" and emporox_ring.usable then

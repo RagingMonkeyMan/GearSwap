@@ -2286,6 +2286,10 @@ function buff_change(buff, gain)
 		elseif gain and (player.equipment.head == "Guide Beret" or player.equipment.head == "Sprout Beret") then
 			enable("head")
         end
+	elseif buff == "Emporox's Gift" and gain then
+		if player.equipment.left_ring == "Emporox's Ring" then
+			enable("ring1")
+		end
     end
 
 	if not midaction() and not pet_midaction() then
