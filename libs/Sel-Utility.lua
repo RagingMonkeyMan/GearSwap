@@ -2579,3 +2579,11 @@ function get_warcry_tp_bonus()
 end
 
 warcry_tp_bonus = get_warcry_tp_bonus()
+
+function set_dual_wield()
+	if (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
+		can_dual_wield = true
+	else
+		can_dual_wield = false
+	end
+end

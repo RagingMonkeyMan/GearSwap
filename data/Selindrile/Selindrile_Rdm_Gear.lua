@@ -163,8 +163,10 @@ function init_gear_sets()
 	sets.midcast.Refresh = {head="Amalric Coif +1",body="Atrophy Tabard +3",legs="Leth. Fuseau +1"}
 	sets.midcast.Aquaveil = {head="Amalric Coif +1",hands="Regal Cuffs",waist="Emphatikos Rope",legs="Shedir Seraweels"}
 	sets.midcast.BarElement = {legs="Shedir Seraweels"}
-	sets.midcast['Temper II'] = {head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
-	sets.midcast.Enspell = {head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast['Temper II'].DW = set_combine(sets.midcast['Temper II'], {sub="Pukulatmuj"})
+	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast.Enspell.DW = set_combine(sets.midcast.Enspell, {sub="Pukulatmuj"})
 	sets.midcast.Stoneskin = {neck="Nodens Gorget",ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"}
 	sets.midcast.Protect = {ring2="Sheltered Ring"}
 	sets.midcast.Shell = {ring2="Sheltered Ring"}
@@ -391,19 +393,19 @@ function init_gear_sets()
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
 		
 	sets.engaged.DW = {ammo="Ginsen",
-		head="Malignance Chapeau",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Sherida Earring",
-		body="Ayanmo Corazza +2",hands="Malignance Gloves",ring1="Petrov Ring",ring2="Ilabrat Ring",
-		back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		head="Malignance Chapeau",neck="Anu Torque",ear1="Suppanomimi",ear2="Sherida Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Petrov Ring",ring2="Ilabrat Ring",
+		back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Malignance Boots"}
 		
 	sets.engaged.DW.Acc = {ammo="Ginsen",
-		head="Malignance Chapeau",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Sherida Earring",
-		body="Ayanmo Corazza +2",hands="Malignance Gloves",ring1="Petrov Ring",ring2="Ilabrat Ring",
-		back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		head="Malignance Chapeau",neck="Combatant's Torque",ear1="Suppanomimi",ear2="Sherida Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Ramuh Ring +1",ring2="Ilabrat Ring",
+		back=gear.stp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet="Malignance Boots"}
 		
 	sets.engaged.DW.FullAcc = {ammo="Ginsen",
-		head="Malignance Chapeau",neck="Asperity Necklace",ear1="Suppanomimi",ear2="Sherida Earring",
-		body="Ayanmo Corazza +2",hands="Malignance Gloves",ring1="Petrov Ring",ring2="Ilabrat Ring",
-		back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"}
+		head="Malignance Chapeau",neck="Combatant's Torque",ear1="Suppanomimi",ear2="Telos Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
+		back=gear.stp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet="Malignance Boots"}
 		
 	sets.engaged.DW.DT = {ammo="Ginsen",
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Sherida Earring",
@@ -416,8 +418,8 @@ function init_gear_sets()
 		back="Moonlight Cape",waist="Reiki Yotai",legs="Malignance Tights",feet="Malignance Boots"}
 		
 	sets.engaged.DW.FullAcc.DT = {ammo="Ginsen",
-		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Sherida Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ilabrat Ring",
+		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Telos Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
 		back="Moonlight Cape",waist="Reiki Yotai",legs="Malignance Tights",feet="Malignance Boots"}
 end
 

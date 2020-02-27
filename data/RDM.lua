@@ -207,13 +207,16 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if buffactive.Composure and spell.target.type == 'PLAYER' then
 			equip(sets.buff.ComposureOther)
 		end
-		
-		if sets.midcast[spell.english] then
+
+		if state.Weapons.value == 'None' and can_dual_wield and sets.midcast[spell.english].DW then
+			equip(sets.midcast[spell.english].DW)
+		elseif state.Weapons.value == 'None' and can_dual_wield and sets.midcast[spellMap].DW then
+			equip(sets.midcast[spellMap].DW)
+		elseif sets.midcast[spell.english] then
 			equip(sets.midcast[spell.english])
 		elseif sets.midcast[spellMap] then
 			equip(sets.midcast[spellMap])
 		end
-		
     end
 	
 	if spell.skill == 'Enfeebling Magic' or default_spell_map == 'ElementalEnfeeble' or spell.english == 'Impact' then

@@ -177,13 +177,6 @@ function init_include()
 	state.Buff['Manifestation'] = buffactive['Manifestation'] or false
 	state.Buff['Warcry'] = buffactive['Warcry'] or false
 	
-	--Defining Variables here on load that won't change without a reload to save processing.
-	if (dualWieldJobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
-		can_dual_wield = true
-	else
-		can_dual_wield = false
-	end
-
     -- Classes describe a 'type' of action.  They are similar to state, but
     -- may have any free-form value, or describe an entire table of mapped values.
     classes = {}
@@ -534,6 +527,7 @@ end
 
 -- Non item-based global settings to check on load.
 function global_on_load()
+	set_dual_wield()
 	if world.area then
 		if world.area:contains('Abyssea') or areas.ProcZones:contains(world.area) then
 			state.SkipProcWeapons:set('False')
@@ -2104,6 +2098,7 @@ end
 
 -- Called when the player's subjob changes.
 function sub_job_change(newSubjob, oldSubjob)
+	set_dual_wield()
     if user_setup then
         user_setup()
     end
