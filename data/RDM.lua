@@ -64,7 +64,7 @@ function job_setup()
 	
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 	
-	autows = "Chant Du Cygne"
+	autows = "Savage Blade"
 	autofood = 'Pear Crepe'
 	enspell = ''
 	
@@ -200,7 +200,8 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if state.Buff.Saboteur then
 			equip(sets.buff.Saboteur)
 		end
-    elseif spell.skill == 'Enhancing Magic' then
+
+	elseif spell.skill == 'Enhancing Magic' then
 		equip(sets.midcast['Enhancing Magic'])
 	
 		if buffactive.Composure and spell.target.type == 'PLAYER' then
@@ -214,6 +215,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		end
 		
     end
+	
+	if spell.skill == 'Enfeebling Magic' or default_spell_map == 'ElementalEnfeeble' or spell.english == 'Impact' then
+		if state.Weapons.value ~= 'None' and not sets.weapons[state.Weapons.value].range and item_available('Regal Gem') then
+			equip({range=empty,ammo="Regal Gem"})
+		end
+	end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
