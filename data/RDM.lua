@@ -208,7 +208,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.buff.ComposureOther)
 		end
 
-		if state.Weapons.value == 'None' and can_dual_wield and sets.midcast[spell.english].DW then
+		if state.Weapons.value == 'None' and can_dual_wield and sets.midcast[spell.english] and sets.midcast[spell.english].DW then
 			equip(sets.midcast[spell.english].DW)
 		elseif state.Weapons.value == 'None' and can_dual_wield and sets.midcast[spellMap].DW then
 			equip(sets.midcast[spellMap].DW)

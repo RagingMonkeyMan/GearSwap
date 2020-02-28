@@ -52,7 +52,7 @@ function init_gear_sets()
 	-- Precast Sets
 	
 	-- Precast sets to enhance JAs
-	sets.precast.JA['Chainspell'] = {body="Viti. Tabard +1"}
+	sets.precast.JA['Chainspell'] = {body="Viti. Tabard +3"}
 	
 
 	-- Waltz set (chr and vit)
@@ -65,7 +65,7 @@ function init_gear_sets()
 	
 	sets.precast.FC = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",range=empty,ammo="Impatiens",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Zendik Robe",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Lebeche Ring",
+		body="Viti. Tabard +3",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Lebeche Ring",
 		back="Perimede Cape",waist="Witful Belt",legs="Psycloth Lappas",feet=gear.merlinic_aspir_feet}
 		
 	sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Twilight Cloak"})
@@ -98,7 +98,7 @@ function init_gear_sets()
 
 	sets.precast.WS['Savage Blade'] = {range=empty,ammo="Regal Gem",
 		head="Jhakri Coronal +2",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
-		body="Jhakri Robe +2",hands="Atrophy Gloves +3",ring1="Ifrit Ring +1",ring2="Rufescent Ring",
+		body="Viti. Tabard +3",hands="Atrophy Gloves +3",ring1="Ifrit Ring +1",ring2="Rufescent Ring",
 		back=gear.stp_jse_back,waist="Grunfeld Rope",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 		
 	sets.precast.WS['Sanguine Blade'] = {range=empty,ammo="Pemphredo Tathlum",
@@ -124,7 +124,7 @@ function init_gear_sets()
 
     sets.midcast.Cure = {main="Daybreak",sub="Sors Shield",range=empty,ammo="Hasty Pinion +1",
         head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Mendi. Earring",
-        body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Menelaus's Ring",
+        body="Viti. Tabard +3",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Menelaus's Ring",
         back="Tempered Cape +1",waist="Luminary Sash",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
 		
     sets.midcast.LightWeatherCure = {main="Chatoyant Staff",sub="Curatio Grip",range=empty,ammo="Hasty Pinion +1",
@@ -150,7 +150,7 @@ function init_gear_sets()
 
 	sets.midcast['Enhancing Magic'] = {main="Colada",sub="Ammurapi Shield",range=empty,ammo="Hasty Pinion +1",
 		head="Telchine Cap",neck="Dls. Torque +2",ear1="Andoaa Earring",ear2="Gifted Earring",
-		body="Telchine Chas.",hands="Atrophy Gloves +3",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
+		body="Viti. Tabard +3",hands="Atrophy Gloves +3",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back=gear.nuke_jse_back,waist="Embla Sash",legs="Telchine Braconi",feet="Leth. Houseaux +1"}
 
 	--Atrophy Gloves are better than Lethargy for me despite the set bonus for duration on others.		
@@ -163,9 +163,9 @@ function init_gear_sets()
 	sets.midcast.Refresh = {head="Amalric Coif +1",body="Atrophy Tabard +3",legs="Leth. Fuseau +1"}
 	sets.midcast.Aquaveil = {head="Amalric Coif +1",hands="Regal Cuffs",waist="Emphatikos Rope",legs="Shedir Seraweels"}
 	sets.midcast.BarElement = {legs="Shedir Seraweels"}
-	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
 	sets.midcast['Temper II'].DW = set_combine(sets.midcast['Temper II'], {sub="Pukulatmuj"})
-	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",body="Viti. Tabard +1",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
 	sets.midcast.Enspell.DW = set_combine(sets.midcast.Enspell, {sub="Pukulatmuj"})
 	sets.midcast.Stoneskin = {neck="Nodens Gorget",ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"}
 	sets.midcast.Protect = {ring2="Sheltered Ring"}
@@ -257,7 +257,7 @@ function init_gear_sets()
 		
 	sets.midcast.Stun = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",range=empty,ammo="Hasty Pinion +1",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Zendik Robe",hands="Gende. Gages +1",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
+		body="Viti. Tabard +3",hands="Gende. Gages +1",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back=gear.nuke_jse_back,waist="Witful Belt",legs="Psycloth Lappas",feet=gear.merlinic_aspir_feet}
 		
 	sets.midcast.Stun.Resistant = {main="Daybreak",sub="Ammurapi Shield",range="Kaja Bow",ammo=empty,
