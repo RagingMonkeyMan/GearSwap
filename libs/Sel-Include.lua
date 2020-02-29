@@ -234,6 +234,7 @@ function init_include()
 	next_cast = 0
 	delayed_cast = ''
 	delayed_target = ''
+	equipped = 0
 	
 	time_test = false
 	selindrile_warned = false
@@ -1383,6 +1384,13 @@ end
 -- Central point to call to equip gear based on status.
 -- Status - Player status that we're using to define what gear to equip.
 function handle_equipping_gear(playerStatus, petStatus)
+	local current_time = os.clock()
+	if current_time < equipped then
+		return
+	else
+		equipped = current_time + .1
+	end
+	
     -- init a new eventArgs
     local eventArgs = {handled = false}
 	
@@ -1392,7 +1400,7 @@ function handle_equipping_gear(playerStatus, petStatus)
     end
 
 	if state.ReEquip.value and state.Weapons.value ~= 'None' then
-		if player.equipment.main == 'empty' or player.equipment.sub == 'empty' then
+		if player.equipment.main ~= sets.weapons[state.Weapons.value].main or (sets.weapons[state.Weapons.value].sub and player.equipment.sub ~= sets.weapons[state.Weapons.value].sub) or (sets.weapons[state.Weapons.value].range and player.equipment.range ~= sets.weapons[state.Weapons.value].range) then
 			handle_weapons()
 		end
 	end
