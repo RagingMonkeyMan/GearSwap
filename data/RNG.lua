@@ -158,21 +158,49 @@ function job_post_midcast(spell, spellMap, eventArgs)
             end
         end
         if state.Buff['Double Shot'] and sets.buff['Double Shot'] then
-            if state.CustomRangedGroups:contains('AM') then
-                if sets.buff['Double Shot'][state.RangedMode.value] then
-                    equip(sets.buff['Double Shot'][state.RangedMode.value].AM)
-                else
-                    equip(sets.buff['Double Shot'].AM)
-                end
+            if classes.CustomRangedGroups:contains('AM') then
+				if sets.buff['Double Shot'][state.Weapons.value] then
+					if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value] then
+						if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value].AM
+							equip(sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value].AM)
+						else
+							equip(sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value])
+						end
+					elseif sets.buff['Double Shot'][state.Weapons.value].AM then
+						equip(sets.buff['Double Shot'][state.Weapons.value].AM)
+					else
+						equip(sets.buff['Double Shot'][state.Weapons.value])
+					end
+				elseif sets.buff['Double Shot'][state.RangedMode.value] then
+					if sets.buff['Double Shot'][state.RangedMode.value].AM
+						equip(sets.buff['Double Shot'][state.RangedMode.value].AM)
+					else
+						equip(sets.buff['Double Shot'][state.RangedMode.value])
+					end
+				elseif sets.buff['Double Shot'].AM
+					equip(sets.buff['Double Shot'])
+				else
+					equip(sets.buff['Double Shot'])
+				end
             else
-                equip(sets.buff['Double Shot'])
+				if sets.buff['Double Shot'][state.Weapons.value] then
+					if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value] then
+						equip(sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value])
+					else
+						equip(sets.buff['Double Shot'][state.Weapons.value])
+					end
+				elseif sets.buff['Double Shot'][state.RangedMode.value] then
+					equip(sets.buff['Double Shot'][state.RangedMode.value])
+				else
+					equip(sets.buff['Double Shot'])
+				end
             end
         end
         if state.Buff.Barrage and sets.buff.Barrage then
             equip(sets.buff.Barrage)
         end
     end
-end	
+end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for non-casting events.
