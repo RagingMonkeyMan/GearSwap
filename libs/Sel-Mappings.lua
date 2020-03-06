@@ -303,6 +303,7 @@ spell_maps = {
     ["Hunter's Prelude"]='Prelude',["Archer's Prelude"]='Prelude',
     ['Sheepfoe Mambo']='Mambo',['Dragonfoe Mambo']='Mambo',
     ['Raptor Mazurka']='Mazurka',['Chocobo Mazurka']='Mazurka',
+	['Shock Spikes']='Spikes',['Ice Spikes']='Spikes',['Blaze Spikes']='Spikes',['Shock Spikes']='Spikes',
 	['Enfire']='Enspell',['Enfire II']='Enspell',['Enblizzard']='Enspell',['Enblizzard II']='Enspell',['Enaero']='Enspell',['Enaero II']='Enspell',['Enstone']='Enspell',['Enstone II']='Enspell',
 	['Enthunder']='Enspell',['Enthunder II']='Enspell',['Enwater']='Enspell',['Enwater II']='Enspell',['Enlight']='Enspell',['Enlight II']='Enspell',['Endark']='Enspell',['Endark II']='Enspell',
     ['Sinewy Etude']='Etude',['Dextrous Etude']='Etude',['Vivacious Etude']='Etude',['Quick Etude']='Etude',['Learned Etude']='Etude',['Spirited Etude']='Etude',['Enchanting Etude']='Etude',

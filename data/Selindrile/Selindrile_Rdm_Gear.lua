@@ -20,7 +20,7 @@ function user_setup()
 	gear.obi_high_nuke_back = "Toro Cape"
 	gear.obi_high_nuke_waist = "Refoccilation Stone"
 
-	gear.stp_jse_back = {name="Sucellos's Cape",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+4','"Store TP"+10',}}
+	gear.stp_jse_back = {name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}
 	gear.nuke_jse_back = {name="Sucellos's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}}
 	gear.wsd_jse_back = {name="Sucellos's Cape",augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 
@@ -164,10 +164,11 @@ function init_gear_sets()
 	sets.midcast.Refresh = {head="Amalric Coif +1",body="Atrophy Tabard +3",legs="Leth. Fuseau +1"}
 	sets.midcast.Aquaveil = {head="Amalric Coif +1",hands="Regal Cuffs",waist="Emphatikos Rope",legs="Shedir Seraweels"}
 	sets.midcast.BarElement = {legs="Shedir Seraweels"}
-	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +2",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1"}
 	sets.midcast['Temper II'].DW = set_combine(sets.midcast['Temper II'], {sub="Pukulatmuj"})
-	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +1",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Leth. Houseaux +1"}
+	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +2",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1"}
 	sets.midcast.Enspell.DW = set_combine(sets.midcast.Enspell, {sub="Pukulatmuj"})
+	sets.midcast.BoostStat = {hands="Viti. Gloves +2"}
 	sets.midcast.Stoneskin = {neck="Nodens Gorget",ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"}
 	sets.midcast.Protect = {ring2="Sheltered Ring"}
 	sets.midcast.Shell = {ring2="Sheltered Ring"}

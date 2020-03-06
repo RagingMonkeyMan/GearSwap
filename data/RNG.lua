@@ -161,7 +161,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
             if classes.CustomRangedGroups:contains('AM') then
 				if sets.buff['Double Shot'][state.Weapons.value] then
 					if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value] then
-						if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value].AM
+						if sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value].AM then
 							equip(sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value].AM)
 						else
 							equip(sets.buff['Double Shot'][state.Weapons.value][state.RangedMode.value])
@@ -172,12 +172,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 						equip(sets.buff['Double Shot'][state.Weapons.value])
 					end
 				elseif sets.buff['Double Shot'][state.RangedMode.value] then
-					if sets.buff['Double Shot'][state.RangedMode.value].AM
+					if sets.buff['Double Shot'][state.RangedMode.value].AM then
 						equip(sets.buff['Double Shot'][state.RangedMode.value].AM)
 					else
 						equip(sets.buff['Double Shot'][state.RangedMode.value])
 					end
-				elseif sets.buff['Double Shot'].AM
+				elseif sets.buff['Double Shot'].AM then
 					equip(sets.buff['Double Shot'])
 				else
 					equip(sets.buff['Double Shot'])

@@ -62,7 +62,7 @@ function init_gear_sets()
     sets.precast.JA['Random Deal'] = {body="Lanun Frac +1"}
     sets.precast.FoldDoubleBust = {hands="Lanun Gants +1"}
 
-    sets.precast.CorsairRoll = {range="Compensator",
+    sets.precast.CorsairRoll = {main="Rostam",range="Compensator",
         head="Lanun Tricorne +1",neck="Regal Necklace",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Lanun Frac +1",hands="Chasseur's Gants +1",ring1="Defending Ring",ring2="Dark Ring",
         back=gear.tp_jse_back,waist="Flume Belt +1",legs="Desultor Tassets",feet="Malignance Boots"}

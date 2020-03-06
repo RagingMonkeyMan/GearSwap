@@ -607,7 +607,7 @@ buff_spell_lists = {
 		{Name='Refresh III',	Buff='Refresh',			SpellID=894,	Reapply=false},
 		{Name='Haste II',		Buff='Haste',			SpellID=511,	Reapply=false},
 		{Name='Temper II',		Buff='Multi Strikes',	SpellID=895,	Reapply=false},
-		{Name='Gain-STR',		Buff='STR Boost',		SpellID=479,	Reapply=false},
+		{Name='Gain-STR',		Buff='STR Boost',		SpellID=486,	Reapply=false},
 		{Name='Phalanx',		Buff='Phalanx',			SpellID=106,	Reapply=false},
 		{Name='Shell V',		Buff='Shell',			SpellID=52,		Reapply=false},
 		{Name='Protect V',		Buff='Protect',			SpellID=47,		Reapply=false},
