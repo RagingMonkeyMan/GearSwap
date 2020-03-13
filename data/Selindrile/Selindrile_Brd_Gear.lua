@@ -3,7 +3,7 @@ function user_setup()
     state.OffenseMode:options('Normal','Acc')
     state.CastingMode:options('Normal','Resistant','AoE')
     state.IdleMode:options('Normal','PDT')
-	state.Weapons:options('None','Aeneas','DualWeapons','DualSwords','DualNukeWeapons')
+	state.Weapons:options('None','Aeneas','DualWeapons','DualNaegling','DualTauret','DualNukeWeapons')
 
 	-- Adjust this if using the Terpander (new +song instrument)
     info.ExtraSongInstrument = 'Blurred Harp +1'
@@ -33,8 +33,9 @@ function init_gear_sets()
 
 	-- Weapons sets
 	sets.weapons.Aeneas = {main="Aeneas",sub="Genmei Shield"}
-	sets.weapons.DualWeapons = {main="Aeneas",sub="Taming Sari"}
-	sets.weapons.DualSwords = {main="Vampirism",sub="Vampirism"}
+	sets.weapons.DualWeapons = {main="Aeneas",sub="Blurred Knife +1"}
+	sets.weapons.DualNaegling = {main="Naegling",sub="Blurred Knife +1"}
+	sets.weapons.DualTauret = {main="Tauret",sub="Blurred Knife +1"}
 	sets.weapons.DualNukeWeapons = {main="Malevolence",sub="Malevolence"}
 
     sets.buff.Sublimation = {waist="Embla Sash"}

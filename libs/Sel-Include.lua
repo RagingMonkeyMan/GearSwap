@@ -969,7 +969,6 @@ function default_precast(spell, spellMap, eventArgs)
 	end
 	
     cancel_conflicting_buffs(spell, spellMap, eventArgs)
-    refine_waltz(spell, spellMap, eventArgs)
 	
 	if spell.action_type == 'Magic' then
 		next_cast = os.clock() + 3.6 - latency
@@ -1271,6 +1270,7 @@ function filter_precast(spell, spellMap, eventArgs)
 		if check_warps(spell, spellMap, eventArgs) then return end
 	elseif spell.action_type == 'Ability' or spell.type == 'WeaponSkill' then
 		if check_amnesia(spell, spellMap, eventArgs) then return end
+		if refine_waltz(spell, spellMap, eventArgs) then return end
 		if check_abilities(spell, spellMap, eventArgs) then return end
 	end
 	if check_recast(spell, spellMap, eventArgs) then return end
