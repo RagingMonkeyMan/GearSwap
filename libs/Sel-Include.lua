@@ -1012,6 +1012,10 @@ function default_post_precast(spell, spellMap, eventArgs)
 					equip({waist="Hachirin-no-Obi"})
 				end
 			end
+
+			if state.SkillchainMode.value ~= 'Off' and sets.Skillchain then
+				equip(sets.Skillchain)
+			end
 			
 			if sets.Reive and buffactive['Reive Mark'] and sets.Reive.neck == "Ygnas's Resolve +1" then
 				equip(sets.Reive)
@@ -1021,7 +1025,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				equip(sets.precast.WS.Proc)
 			end
 			
-			if state.Capacity.value == true then 
+			if state.Capacity.value == true then
 				equip(sets.Capacity)
 			end
 			
@@ -1053,10 +1057,6 @@ function default_post_precast(spell, spellMap, eventArgs)
 					handle_equipping_gear(player.status)
 				end
 			elseif spell.type == 'WeaponSkill' then
-				if state.SkillchainMode.value ~= 'Off' and sets.Skillchain then
-					equip(sets.Skillchain)
-				end
-				
 				if sets.precast.WS[spell.english] and sets.precast.WS[spell.english].DT then
 					equip(sets.precast.WS[spell.english].DT)
 				elseif sets.precast.WS.DT then
