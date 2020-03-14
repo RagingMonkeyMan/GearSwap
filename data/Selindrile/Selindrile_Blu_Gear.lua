@@ -564,7 +564,7 @@ function select_default_macro_book()
 	end
 end
 
---Job Specific Trust Overwrite
+--Job Specific Trust Override
 function check_trust()
 	if not moving then
 		if state.AutoTrustMode.value and not areas.Cities:contains(world.area) and (buffactive['Elvorseal'] or buffactive['Reive Mark'] or not player.in_combat) then

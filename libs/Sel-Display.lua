@@ -165,6 +165,7 @@ function update_job_states()
 		LearningMode = "Learning",
 		ElementalWheel = "Elemental Wheel",
 		MagicBurstMode = "Magic Burst",
+		SkillChainMode = "SkillchainMode",
 		RecoverMode = "Recover MP",
 		ElementalMode = "Element",
 		ExtraSongsMode = "Songs",
@@ -328,6 +329,9 @@ function update_job_states()
 		elseif n == 'WeaponskillMode' then
 			if state.WeaponskillMode.value ~= 'Match' then
 				stateBox:append(string.format("%sWeaponskill: %s%s    ", clr.w, clr.h, state.WeaponskillMode.value))
+			end
+			if state.SkillchainMode.value ~= 'Off' and state.DefenseMode.value == 'None' then
+				stateBox:append(string.format("%sSkillchain Mode: %s%s    ", clr.w, clr.h, state.SkillchainMode.value))
 			end
 		elseif n == 'ElementalMode' then
 				stateBox:append(string.format("%sElement: %s%s    ", clr.w, clr[state.ElementalMode.value], state.ElementalMode.value))
