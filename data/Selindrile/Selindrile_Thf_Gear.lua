@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Aeneas','AccAeneas','Savage','AccSavage','MagicWeapons','Evisceration','Throwing','Bow')
+	state.Weapons:options('Aeneas','AccAeneas','Savage','AccSavage','MagicWeapons','Evisceration','Throwing','SwordThrowing','Bow')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWEarrings','DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
@@ -22,9 +22,11 @@ function user_setup()
     send_command('bind !` input /ra <t>')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
-	send_command('bind ^backspace gs c weapons Bow;gs c update')
+	send_command('bind ^backspace gs c weapons Bow')
+	send_command('bind ^q gs c weapons Throwing')
+	send_command('bind !q gs c weapons SwordThrowing')
 	send_command('bind !backspace input /ja "Hide" <me>')
-	send_command('bind !r gs c weapons MagicWeapons;gs c update')
+	send_command('bind !r gs c weapons MagicWeapons')
 	send_command('bind ^\\\\ input /ja "Despoil" <t>')
 	send_command('bind !\\\\ input /ja "Mug" <t>')
 
@@ -62,6 +64,7 @@ function init_gear_sets()
 	sets.weapons.MagicWeapons = {main="Malevolence",sub="Malevolence"}
 	sets.weapons.Evisceration = {main="Tauret",sub="Blurred Knife +1"}
 	sets.weapons.Throwing = {main="Aeneas",sub="Blurred Knife +1",range="Raider's Bmrng.",ammo=empty}
+	sets.weapons.SwordThrowing = {main="Naegling",sub="Blurred Knife +1",range="Raider's Bmrng.",ammo=empty}
 	sets.weapons.Bow = {main="Aeneas",sub="Blurred Knife +1",range="Kaja Bow"}
 	
     -- Actions we want to use to tag TH.

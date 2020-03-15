@@ -1109,7 +1109,7 @@ end
 
 function check_midaction(spell, spellMap, eventArgs)
 	if os.clock() < next_cast and not state.RngHelper.value then
-		if eventArgs then
+		if eventArgs and not (spell.type:startswith('BloodPact') and state.Buff["Astral Conduit"]) then
 			eventArgs.cancel = true
 			if delayed_cast == '' then
 				windower.send_command:schedule((next_cast - os.clock()),'gs c delayedcast')
@@ -1266,7 +1266,7 @@ function check_cost(spell, spellMap, eventArgs)
 			eventArgs.cancel = true
 			return true
 		end
-	elseif spell.type:startswith('BloodPact') and not buffactive['Astral Conduit'] and player.mp < spellCost then
+	elseif spell.type:startswith('BloodPact') and not state.Buff["Astral Conduit"] and player.mp < spellCost then
 		add_to_chat(123,'Abort: '..spell.english..' costs more MP. ('..player.mp..'/'..spellCost..')')
 		cancel_spell()
 		eventArgs.cancel = true

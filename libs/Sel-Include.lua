@@ -1173,7 +1173,7 @@ function default_aftercast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Magic' then
 		next_cast = os.clock() + 3.35 - latency
 	elseif spell.type == 'WeaponSkill' then
-		next_cast = os.clock() + 2 - latency
+		next_cast = os.clock() + 1.5 - latency
 	elseif spell.action_type == 'Ability' then
 		next_cast = os.clock() + .8 - latency
 	elseif 	spell.action_type == 'Item' then
