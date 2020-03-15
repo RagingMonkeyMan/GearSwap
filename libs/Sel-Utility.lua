@@ -1330,9 +1330,11 @@ function check_abilities(spell, spellMap, eventArgs)
 			windower.chat.input('/ja "Addendum: Black" <me>')
 			return true
 		elseif spell.english == "Seigan" and buffactive['Seigan'] then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Third Eye" <me>')
-			return true
+			if windower.ffxi.get_ability_recasts()[133] < latency then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Third Eye" <me>')
+				return true
+			end
 		elseif state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
 			if spell.english == "Penury" then
 				windower.chat.input('/ja "Parsimony" <me>')
