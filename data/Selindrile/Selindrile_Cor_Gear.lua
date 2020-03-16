@@ -8,7 +8,7 @@ function user_setup()
 	state.HybridMode:options('Normal','DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
 	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualLeadenMeleeAcc','DualKustawi','None')
-	state.CompensatorMode:options('300','1000','Never','Always')
+	state.CompensatorMode:options('Always','300','1000','Never')
 
     gear.RAbullet = "Chrono Bullet"
     gear.WSbullet = "Chrono Bullet"

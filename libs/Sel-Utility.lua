@@ -2044,6 +2044,75 @@ function has_shadows()
 	end
 end
 
+function check_shadows()
+	if not state.AutoShadowMode.value or moving or areas.Cities:contains(world.area) then return false end
+	local spell_recasts = windower.ffxi.get_spell_recasts()
+	local currentshadows = has_shadows()
+	if player.main_job == 'NIN' then
+		if currentshadows < 3 and player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 99 and spell_recasts[340] < spell_latency then
+			windower.chat.input('/ma "Utsusemi: San" <me>')
+			tickdelay = os.clock() + 1.8
+			return true
+		elseif currentshadows < 2 then
+			if spell_recasts[339] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ni" <me>')
+				tickdelay = os.clock() + 1.8
+				return true
+			elseif spell_recasts[338] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ichi" <me>')
+				tickdelay = os.clock() + 2
+				return true
+			else
+				return false
+			end
+		else
+			return false
+		end
+	elseif player.sub_job == 'NIN' then
+		if currentshadows < 2 then
+			if spell_recasts[339] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ni" <me>')
+				tickdelay = os.clock() + 1.8
+				return true
+			elseif spell_recasts[338] < spell_latency then
+				windower.chat.input('/ma "Utsusemi: Ichi" <me>')
+				tickdelay = os.clock() + 2
+				return true
+			else
+				return false
+			end
+		else
+			return false
+		end
+	elseif currentshadows == 0 then
+		if player.main_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+			windower.chat.input('/ja "Third Eye" <me>')
+			tickdelay = os.clock() + 1.1
+			return true
+		elseif silent_can_use(679) and spell_recasts[679] < spell_latency then
+			windower.chat.input('/ma "Occultation" <me>')
+			tickdelay = os.clock() + 2
+			return true
+		elseif silent_can_use(53) and spell_recasts[53] < spell_latency then
+			windower.chat.input('/ma "Blink" <me>')
+			tickdelay = os.clock() + 2
+			return true
+		elseif silent_can_use(647) and spell_recasts[647] < spell_latency then
+			windower.chat.input('/ma "Zephyr Mantle" <me>')
+			tickdelay = os.clock() + 2
+			return true
+		elseif player.sub_job == 'SAM' and windower.ffxi.get_ability_recasts()[133] < latency then
+			windower.chat.input('/ja "Third Eye" <me>')
+			tickdelay = os.clock() + 1.1
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 function is_nuke(spell, spellMap)
 	if (
 		(spell.skill == 'Elemental Magic' and spellMap ~= 'ElementalEnfeeble') or
@@ -2224,16 +2293,6 @@ function count_total_ammo(ammo_name)
     end
 
 	return ammo_count
-end
-
-function check_shadows()
-	if not state.AutoShadowMode.value or moving or areas.Cities:contains(world.area) then 
-		return false
-	elseif handle_shadows() then
-		return true
-	else
-		return false
-	end
 end
 
 function check_rune()

@@ -262,7 +262,7 @@ windower.raw_register_event('action', function(act)
 	end
 	
 	-- Make sure this is our target. 	send_command('input /echo Actor:'..actor.id..' Target:'..player.target.id..'')
-	if curact.param == 24931 then
+	if curact.param == 24931 then --24931 is initiation paramater for action category 7 and 8
 		if isTarget and state.AutoStunMode.value and player.target.type == "MONSTER" and not moving then
 			if StunAbility:contains(act_info.name) and not midaction() and not pet_midaction() then
 				gearswap.refresh_globals(false)				
