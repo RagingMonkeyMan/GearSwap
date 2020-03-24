@@ -97,8 +97,10 @@ function job_setup()
     state.Buff["Astral Conduit"] = buffactive["Astral Conduit"] or false
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 
-    spirits = S{"LightSpirit", "DarkSpirit", "FireSpirit", "EarthSpirit", "WaterSpirit", "AirSpirit", "IceSpirit", "ThunderSpirit"}
     avatars = S{"Carbuncle", "Fenrir", "Diabolos", "Ifrit", "Titan", "Leviathan", "Garuda", "Shiva", "Ramuh", "Odin", "Alexander", "Cait Sith", "Siren"}
+    spirits = S{"LightSpirit", "DarkSpirit", "FireSpirit", "EarthSpirit", "WaterSpirit", "AirSpirit", "IceSpirit", "ThunderSpirit"}
+	spirit_of = {['Light']="Light Spirit", ['Dark']="Dark Spirit", ['Fire']="Fire Spirit", ['Earth']="Earth Spirit",
+        ['Water']="Water Spirit", ['Wind']="Air Spirit", ['Ice']="Ice Spirit", ['Lightning']="Thunder Spirit"}
 
     magicalRagePacts = S{
 		'Inferno','Earthen Fury','Tidal Wave','Aerial Blast','Diamond Dust','Judgment Bolt','Searing Light','Howling Moon','Ruinous Omen','Clarsach Call',
@@ -522,10 +524,10 @@ function handle_petweather()
         element = 'Lightning'
     end
     
-    local storm = elements.storm_of[element]
+    local storm = data.elements.storm_of[element]
     
     if storm then
-        windower.chat.input('/ma "'..elements.storm_of[element]..'" <me>')
+        windower.chat.input('/ma "'..data.elements.storm_of[element]..'" <me>')
     else
         add_to_chat(123, 'Error: Unknown element ('..tostring(element)..')')
     end
@@ -535,7 +537,7 @@ end
 -- Custom uber-handling of Elemental Siphon
 function handle_siphoning()
 	local abil_recasts = windower.ffxi.get_ability_recasts()
-    if areas.Cities:contains(world.area) then
+    if data.areas.cities:contains(world.area) then
         add_to_chat(122, 'Cannot use Elemental Siphon in a city area.')
         return
 	elseif abil_recasts[175] > 0 then
@@ -570,7 +572,7 @@ function handle_siphoning()
             -- weather if not.
             -- If the current weather matches the current avatar's element (being used to reduce
             -- perpetuation), don't change it; just accept the penalty on Siphon.
-            if world.weather_element == elements.weak_to[world.day_element] and (not pet.isvalid or world.weather_element ~= pet.element) then
+            if world.weather_element == data.elements.weak_to[world.day_element] and (not pet.isvalid or world.weather_element ~= pet.element) then
 				stormElementToUse = world.day_element
             end
         end
@@ -579,7 +581,7 @@ function handle_siphoning()
     -- If we decided to use a storm, set that as the spirit element to cast.
     if stormElementToUse then
         siphonElement = stormElementToUse
-    elseif world.weather_element ~= 'None' and (get_weather_intensity() == 2 or world.weather_element ~= elements.weak_to[world.day_element]) then
+    elseif world.weather_element ~= 'None' and (get_weather_intensity() == 2 or world.weather_element ~= data.elements.weak_to[world.day_element]) then
         siphonElement = world.weather_element
     else
         siphonElement = world.day_element
@@ -595,12 +597,12 @@ function handle_siphoning()
     end
     
     if stormElementToUse then
-        command = command..'input /ma "'..elements.storm_of[stormElementToUse]..'" <me>;wait 4;'
+        command = command..'input /ma "'..data.elements.storm_of[stormElementToUse]..'" <me>;wait 4;'
         releaseWait = releaseWait - 4
     end
     
     if not (pet.isvalid and spirits:contains(pet.name)) then
-        command = command..'input /ma "'..elements.spirit_of[siphonElement]..'" <me>;wait 4;'
+        command = command..'input /ma "'..spirit_of[siphonElement]..'" <me>;wait 4;'
         releaseWait = releaseWait - 4
     end
     
@@ -630,7 +632,7 @@ end
 -- commandArgs is the split of the self-command.
 -- gs c [pact] [pacttype]
 function handle_pacts(commandArgs)
-    if areas.Cities:contains(world.area) then
+    if data.areas.cities:contains(world.area) then
         add_to_chat(123, 'Abort:You cannot use pacts in town.')
         return
     end
@@ -803,39 +805,39 @@ function handle_elemental(cmdParams)
 	
 		local tiers = {' II',''}
 		for k in ipairs(tiers) do
-			if spell_recasts[get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(elements.nuke[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
-				windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..''..tiers[k]..'" <t>')
+			if spell_recasts[get_spell_table_by_name(data.elements.nuke_of[state.ElementalMode.value]..''..tiers[k]..'').id] < spell_latency and actual_cost(get_spell_table_by_name(data.elements.nuke_of[state.ElementalMode.value]..''..tiers[k]..'')) < player.mp then
+				windower.chat.input('/ma "'..data.elements.nuke_of[state.ElementalMode.value]..''..tiers[k]..'" <t>')
 				return
 			end
 		end
-		add_to_chat(123,'Abort: All '..elements.nuke[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
+		add_to_chat(123,'Abort: All '..data.elements.nuke_of[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
 		
 	elseif command:contains('tier') then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		local tierlist = {['tier1']='',['tier2']=' II',['tier3']=' III',['tier4']=' IV',['tier5']=' V',['tier6']=' VI'}
 		
-		windower.chat.input('/ma "'..elements.nuke[state.ElementalMode.value]..tierlist[command]..'" <t>')
+		windower.chat.input('/ma "'..data.elements.nuke_of[state.ElementalMode.value]..tierlist[command]..'" <t>')
 		
 	elseif command == 'ara' then
-		windower.chat.input('/ma "'..elements.nukera[state.ElementalMode.value]..'ra" <t>')
+		windower.chat.input('/ma "'..data.elements.nukera_of[state.ElementalMode.value]..'ra" <t>')
 		
 	elseif command == 'aga' then
-		windower.chat.input('/ma "'..elements.nukega[state.ElementalMode.value]..'ga" <t>')
+		windower.chat.input('/ma "'..data.elements.nukega_of[state.ElementalMode.value]..'ga" <t>')
 		
 	elseif command == 'helix' then
-		windower.chat.input('/ma "'..elements.helix[state.ElementalMode.value]..'helix" <t>')
+		windower.chat.input('/ma "'..data.elements.helix_of[state.ElementalMode.value]..'helix" <t>')
 	
 	elseif command == 'enfeeble' then
-		windower.chat.input('/ma "'..elements.enfeeble[state.ElementalMode.value]..'" <t>')
+		windower.chat.input('/ma "'..data.elements.elemental_enfeeble_of[state.ElementalMode.value]..'" <t>')
 	
 	elseif command == 'bardsong' then
-		windower.chat.input('/ma "'..elements.threnody[state.ElementalMode.value]..' Threnody" <t>')
+		windower.chat.input('/ma "'..data.elements.threnody_of[state.ElementalMode.value]..' Threnody" <t>')
 		
 	elseif command == 'spikes' then
-		windower.chat.input('/ma "'..elements.spikes[state.ElementalMode.value]..' Spikes" <me>')
+		windower.chat.input('/ma "'..data.elements.spikes_of[state.ElementalMode.value]..' Spikes" <me>')
 		
 	elseif command == 'enspell' then
-			windower.chat.input('/ma "En'..elements.enspell[state.ElementalMode.value]..'" <me>')
+			windower.chat.input('/ma "En'..data.elements.enspell_of[state.ElementalMode.value]..'" <me>')
 	
 	--Leave out target, let shortcuts auto-determine it.
 	elseif command == 'weather' then
@@ -843,10 +845,10 @@ function handle_elemental(cmdParams)
 			windower.chat.input('/ma "Phalanx" <me>')
 		else
 			local spell_recasts = windower.ffxi.get_spell_recasts()
-			if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] < spell_latency then
+			if (player.target.type == 'SELF' or not player.target.in_party) and buffactive[data.elements.storm_of[state.ElementalMode.value]] and not buffactive['Klimaform'] and spell_recasts[287] < spell_latency then
 				windower.chat.input('/ma "Klimaform" <me>')
 			else
-				windower.chat.input('/ma "'..elements.storm_of[state.ElementalMode.value]..'"')
+				windower.chat.input('/ma "'..data.elements.storm_of[state.ElementalMode.value]..'"')
 			end
 		end
 		
@@ -856,7 +858,7 @@ function handle_elemental(cmdParams)
 end
 
 function check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not areas.Cities:contains(world.area) then
+	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
 			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < spell_latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then

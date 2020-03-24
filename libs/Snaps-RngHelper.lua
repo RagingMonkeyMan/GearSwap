@@ -261,14 +261,14 @@ function process_queue()
         pending = queue:pop()
     elseif target then
         if state.AutoWSMode.value and rangedautows ~= '' and able_to_use_weaponskill() then
-			if relic_weapons:contains(player.equipment.range) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
+			if data.equipment.relic_weapons:contains(player.equipment.range) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = data.weaponskills.relic[player.equipment.range],
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}	
-			elseif (buffactive['Aftermath: Lv.3'] or not mythic_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
+			elseif (buffactive['Aftermath: Lv.3'] or not data.equipment.mythic_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = rangedautows,

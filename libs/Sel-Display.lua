@@ -337,7 +337,7 @@ function update_job_states()
 				stateBox:append(string.format("%sElement: %s%s    ", clr.w, clr[state.ElementalMode.value], state.ElementalMode.value))
 		elseif n == 'RuneElement' then
 				if not state.AutoRuneMode.value and (player.main_job == 'RUN' or player.sub_job == 'RUN') then
-					stateBox:append(string.format("%sRune: %s%s    ", clr.w, clr[elements.runes[state.RuneElement.value]], state.RuneElement.value))
+					stateBox:append(string.format("%sRune: %s%s    ", clr.w, clr[data.elements.runes_lookup[state.RuneElement.value]], state.RuneElement.value))
 				end
 		elseif n == 'LearningMode' then
 			if state.LearningMode.value and state.DefenseMode.value == 'None' then

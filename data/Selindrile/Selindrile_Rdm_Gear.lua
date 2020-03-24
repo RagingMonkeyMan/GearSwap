@@ -442,7 +442,7 @@ end
 --Job Specific Trust Overwrite
 function check_trust()
 	if not moving then
-		if state.AutoTrustMode.value and not areas.Cities:contains(world.area) and (buffactive['Elvorseal'] or buffactive['Reive Mark'] or not player.in_combat) then
+		if state.AutoTrustMode.value and not data.areas.cities:contains(world.area) and (buffactive['Elvorseal'] or buffactive['Reive Mark'] or not player.in_combat) then
 			local party = windower.ffxi.get_party()
 			if party.p5 == nil then
 				local spell_recasts = windower.ffxi.get_spell_recasts()

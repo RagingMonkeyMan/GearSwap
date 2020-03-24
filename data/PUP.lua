@@ -394,7 +394,7 @@ end
 
 function check_auto_pet()
 
-	if not state.AutoPuppetMode.value or areas.Cities:contains(world.area) then return false end
+	if not state.AutoPuppetMode.value or data.areas.cities:contains(world.area) then return false end
 
 	local abil_recasts = windower.ffxi.get_ability_recasts()
 

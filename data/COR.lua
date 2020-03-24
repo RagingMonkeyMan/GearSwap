@@ -135,7 +135,7 @@ end
 
 function job_self_command(commandArgs, eventArgs)
 		if commandArgs[1]:lower() == 'elemental' and commandArgs[2]:lower() == 'quickdraw' then
-			windower.chat.input('/ja "'..elements.quickdraw[state.ElementalMode.Value]..' Shot" <t>')
+			windower.chat.input('/ja "'..data.elements.quickdraw_of[state.ElementalMode.Value]..' Shot" <t>')
 			eventArgs.handled = true			
 		end
 end
@@ -198,7 +198,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
 			-- Replace Moonshade Earring if we're at cap TP
 			if get_effective_player_tp(spell, WSset) > 3200 then
-				if elemental_obi_weaponskills:contains(spell.english) then
+				if data.weaponskills.elemental:contains(spell.english) then
 					if wsacc:contains('Acc') and sets.MagicalAccMaxTP then
 						equip(sets.MagicalAccMaxTP[spell.english] or sets.MagicalAccMaxTP)
 					elseif sets.MagicalMaxTP then
@@ -311,7 +311,7 @@ function do_bullet_checks(spell, spellMap, eventArgs)
     
     if spell.type == 'WeaponSkill' then
         if spell.skill == "Marksmanship" then
-            if elemental_obi_weaponskills:contains(spell.english) then
+            if data.weaponskills.elemental:contains(spell.english) then
                 -- magical weaponskills
                 bullet_name = gear.MAbullet
             else

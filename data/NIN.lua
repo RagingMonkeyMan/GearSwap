@@ -329,16 +329,16 @@ function handle_elemental(cmdParams)
 	if command == 'nuke' then
 		local tiers = {'San','Ni','Ichi'}
 		for k in ipairs(tiers) do
-			if spell_recasts[get_spell_table_by_name(elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'').id] < spell_latency then
-				windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': '..tiers[k]..'" <t>')
+			if spell_recasts[get_spell_table_by_name(data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..tiers[k]..'').id] < spell_latency then
+				windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..tiers[k]..'" <t>')
 				return
 			end
 		end
-		add_to_chat(123,'Abort: All '..elements.nuke[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
+		add_to_chat(123,'Abort: All '..data.elements.nuke_of[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
 	elseif S{'San','Ni','Ichi'}:contains(command) then
-		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': '..command..'" <t>')
+		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..command..'" <t>')
 	elseif command == 'proc' then
-		windower.chat.input('/ma "'..elements.ninnuke[state.ElementalMode.value]..': Ni" <t>')
+		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': Ni" <t>')
 	end
 end
 
@@ -374,7 +374,7 @@ function check_stance()
 end
 
 function check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not areas.Cities:contains(world.area) then
+	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
 			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < spell_latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then

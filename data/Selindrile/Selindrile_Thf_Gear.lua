@@ -22,7 +22,7 @@ function user_setup()
     send_command('bind !` input /ra <t>')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
-	send_command('bind ^backspace gs c weapons Bow')
+	send_command('bind ^backspace input /item "Thief\'s Tools" <t>')
 	send_command('bind ^q gs c weapons Throwing')
 	send_command('bind !q gs c weapons SwordThrowing')
 	send_command('bind !backspace input /ja "Hide" <me>')
@@ -329,12 +329,16 @@ end
 --Job Specific Trust Override
 function check_trust()
 	if not moving then
-		if state.AutoTrustMode.value and not areas.Cities:contains(world.area) and (buffactive['Elvorseal'] or buffactive['Reive Mark'] or not player.in_combat) then
+		if state.AutoTrustMode.value and not data.areas.cities:contains(world.area) and (buffactive['Elvorseal'] or buffactive['Reive Mark'] or not player.in_combat) then
 			local party = windower.ffxi.get_party()
 			if party.p5 == nil then
 				local spell_recasts = windower.ffxi.get_spell_recasts()
 
-				if spell_recasts[955] < spell_latency and not have_trust("Apururu") then
+				if spell_recasts[993] < spell_latency and not have_trust("ArkEV") then
+					windower.chat.input('/ma "AAEV" <me>')
+					tickdelay = os.clock() + 3
+					return true
+				elseif spell_recasts[955] < spell_latency and not have_trust("Apururu") then
 					windower.chat.input('/ma "Apururu (UC)" <me>')
 					tickdelay = os.clock() + 3
 					return true
@@ -348,10 +352,6 @@ function check_trust()
 					return true
 				elseif spell_recasts[914] < spell_latency and not have_trust("Ulmia") then
 					windower.chat.input('/ma "Ulmia" <me>')
-					tickdelay = os.clock() + 3
-					return true
-				elseif spell_recasts[993] < spell_latency and not have_trust("ArkEV") then
-					windower.chat.input('/ma "AAEV" <me>')
 					tickdelay = os.clock() + 3
 					return true
 				else
