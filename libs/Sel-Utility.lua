@@ -556,7 +556,7 @@ function set_elemental_gear(spell, spellMap)
 	--No longer needed because of Fotia.
     --set_elemental_gorget_belt(spell)
     set_elemental_obi_cape_ring(spell, spellMap)
-    set_elemental_staff(spell, spellMap)
+    --set_elemental_staff(spell, spellMap)
 end
 
 
@@ -627,6 +627,7 @@ end
 
 
 -- Function to get the appropriate fast cast and/or recast staves for the current spell.
+--[[
 function set_elemental_staff(spell)
     if spell.action_type ~= 'Magic' then
         return
@@ -635,7 +636,7 @@ function set_elemental_staff(spell)
     gear.FastcastStaff.name = get_elemental_item_name("fastcast_staff", S{spell.element}) or gear.default.fastcast_staff  or ""
     gear.RecastStaff.name   = get_elemental_item_name("recast_staff", S{spell.element})   or gear.default.recast_staff    or ""
 end
-
+]]
 
 -- Gets the name of an elementally-aligned piece of gear within the player's
 -- inventory that matches the conditions set in the parameters.

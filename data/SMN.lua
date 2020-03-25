@@ -437,10 +437,6 @@ function job_customize_idle_set(idleSet)
         if sets.perp[pet.name] then
             idleSet = set_combine(idleSet, sets.perp[pet.name])
         end
-        gear.perp_staff.name = elements.perpetuance_staff_of[pet.element]
-        if gear.perp_staff.name and item_available(gear.perp_staff.name) then
-            idleSet = set_combine(idleSet, sets.perp.staff_and_grip)
-        end
         if state.Buff["Avatar's Favor"] and avatars:contains(pet.name) then
             idleSet = set_combine(idleSet, sets.idle.Avatar.Favor)
         end
