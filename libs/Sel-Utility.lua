@@ -654,16 +654,17 @@ end
 -- Returns: Nil if no match was found (either due to elemental restrictions,
 -- or the gear isn't in the player inventory), or the name of the piece of
 -- gear that matches the query.
-function get_elemental_item_name(item_type, valid_elements, restricted_to_elements)
-    local potential_elements = restricted_to_elements or data.elements.list
-    local item_map = elements[item_type:lower()..'_of']
+
+-- function get_elemental_item_name(item_type, valid_elements, restricted_to_elements)
+    -- local potential_elements = restricted_to_elements or data.elements.list
+    -- local item_map = elements[item_type:lower()..'_of']
     
-    for element in (potential_elements.it or it)(potential_elements) do
-        if valid_elements:contains(element) and (player.inventory[item_map[element]] or player.wardrobe[item_map[element]] or player.wardrobe2[item_map[element]]) or player.wardrobe3[item_map[element]] or player.wardrobe4[item_map[element]] then
-            return item_map[element]
-        end
-    end
-end
+    -- for element in (potential_elements.it or it)(potential_elements) do
+        -- if valid_elements:contains(element) and (player.inventory[item_map[element]] or player.wardrobe[item_map[element]] or player.wardrobe2[item_map[element]]) or player.wardrobe3[item_map[element]] or player.wardrobe4[item_map[element]] then
+            -- return item_map[element]
+        -- end
+    -- end
+-- end
 
 
 -------------------------------------------------------------------------------------------------------------------
