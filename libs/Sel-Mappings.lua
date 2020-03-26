@@ -107,7 +107,7 @@ data.elements.rune_of = {['Light']='Lux', ['Dark']='Tenebrae', ['Fire']='Ignis',
  
 
 --Cursna actions that one shouldn't replace when replacing actions for cursna.
-cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water'}
+cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water','Light Arts','Addendum: White'}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Mappings for weaponskills
