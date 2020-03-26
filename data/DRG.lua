@@ -260,7 +260,11 @@ function check_buff()
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
-		if player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
+		if not pet.isvalid and abil_recasts[163] < latency then
+			windower.chat.input('/ja "Call Wyvern" <me>')
+			tickdelay = os.clock() + 1.1
+			return true
+		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 			windower.chat.input('/ja "Last Resort" <me>')
 			tickdelay = os.clock() + 1.1
 			return true
