@@ -169,7 +169,7 @@ end
 function update_melee_groups()
     classes.CustomMeleeGroups:clear()
     
-    if areas.Adoulin:contains(world.area) and buffactive.Ionis then
+    if areas.adoulin:contains(world.area) and buffactive.Ionis then
 		classes.CustomMeleeGroups:append('Adoulin')
     end
 	
