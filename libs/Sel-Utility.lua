@@ -487,12 +487,6 @@ end
 -- Environment utility functions.
 -------------------------------------------------------------------------------------------------------------------
 
--- Function to get the current weather intensity: 0 for none, 1 for single weather, 2 for double weather.
-function get_weather_intensity()
-    return gearswap.res.weather[world.weather_id].intensity
-end
-
-
 -- Returns true if you're in a party solely comprised of Trust NPCs.
 -- TODO: Do we need a check to see if we're in a party partly comprised of Trust NPCs?
 function is_trust_party()
@@ -599,7 +593,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 			end
 		else
 			local hachirin_avail = item_available('Hachirin-no-Obi')
-			if hachirin_avail and spell.element == world.weather_element and gearswap.res.weather[world.weather_id].intensity == 2 then
+			if hachirin_avail and spell.element == world.weather_element and world.weather_intensity == 2 then
 				gear.ElementalObi.name = "Hachirin-no-Obi"
 			elseif orpheus_avail and spell.target.distance < 3 then
 				gear.ElementalObi.name = "Orpheus's Sash"

@@ -4,9 +4,9 @@ function user_setup()
     state.HybridMode:options('Normal','DT')
 	state.WeaponskillMode:options('Match','Proc')
 	state.AutoBuffMode:options('Off','Auto','AutoMelee')
-	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
+	state.CastingMode:options('Normal','Resistant', 'Fodder', 'Proc')
     state.IdleMode:options('Normal', 'PDT', 'MDT', 'TPEat','DTHippo')
-    state.PhysicalDefenseMode:options('PDT', 'NukeLock')
+    state.PhysicalDefenseMode:options('PDT','NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 	state.Weapons:options('None','Naegling','Sequence','Almace','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAlmace')
@@ -156,17 +156,18 @@ function init_gear_sets()
 
 	--Atrophy Gloves are better than Lethargy for me despite the set bonus for duration on others.		
 	sets.buff.ComposureOther = {head="Leth. Chappel +1",
-		body="Lethargy Sayon +1",
+		body="Lethargy Sayon +1",hands="Leth. Gantherots +1",
 		legs="Leth. Fuseau +1",feet="Leth. Houseaux +1"}
 		
 	--Red Mage enhancing sets are handled in a different way from most, layered on due to the way Composure works
 	--Don't set combine a full set with these spells, they should layer on Enhancing Set > Composure (If Applicable) > Spell
+	sets.EnhancingSkill = {main="Pukulatmuj +1",head="Befouled Crown",neck="Incanter's Torque",hands="Viti. Gloves +2",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1"}
 	sets.midcast.Refresh = {head="Amalric Coif +1",body="Atrophy Tabard +3",legs="Leth. Fuseau +1"}
 	sets.midcast.Aquaveil = {head="Amalric Coif +1",hands="Regal Cuffs",waist="Emphatikos Rope",legs="Shedir Seraweels"}
 	sets.midcast.BarElement = {legs="Shedir Seraweels"}
-	sets.midcast['Temper II'] = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +2",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1"}
-	sets.midcast['Temper II'].DW = set_combine(sets.midcast['Temper II'], {sub="Pukulatmuj"})
-	sets.midcast.Enspell = {main="Pukulatmuj +1",head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",hands="Viti. Gloves +2",back="Perimede Cape",waist="Olympus Sash",legs="Carmine Cuisses +1"}
+	sets.midcast.Temper = sets.EnhancingSkill
+	sets.midcast.Temper.DW = set_combine(sets.midcast.Temper, {sub="Pukulatmuj"})
+	sets.midcast.Enspell = sets.midcast.Temper
 	sets.midcast.Enspell.DW = set_combine(sets.midcast.Enspell, {sub="Pukulatmuj"})
 	sets.midcast.BoostStat = {hands="Viti. Gloves +2"}
 	sets.midcast.Stoneskin = {neck="Nodens Gorget",ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"}
