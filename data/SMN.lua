@@ -562,7 +562,7 @@ function handle_siphoning()
     elseif player.sub_job == 'SCH' and world.weather_element ~= 'None' then
         -- We can override single-intensity weather; leave double weather alone, since even if
         -- it's partially countered by the day, it's not worth changing.
-        if get_weather_intensity() == 1 then
+        if world.weather_intensity == 1 then
             -- If current weather is weak to the current day, it cancels the benefits for
             -- siphon.  Change it to the day's weather if possible (+0 to +20%), or any non-weak
             -- weather if not.
@@ -577,7 +577,7 @@ function handle_siphoning()
     -- If we decided to use a storm, set that as the spirit element to cast.
     if stormElementToUse then
         siphonElement = stormElementToUse
-    elseif world.weather_element ~= 'None' and (get_weather_intensity() == 2 or world.weather_element ~= data.elements.weak_to[world.day_element]) then
+    elseif world.weather_element ~= 'None' and (world.weather_intensity == 2 or world.weather_element ~= data.elements.weak_to[world.day_element]) then
         siphonElement = world.weather_element
     else
         siphonElement = world.day_element
