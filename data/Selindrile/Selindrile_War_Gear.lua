@@ -148,6 +148,14 @@ function init_gear_sets()
 	sets.DayMaxTPWSEars = {ear1="Ishvara Earring",ear2="Brutal Earring",}
 	sets.AccDayWSEars = {ear1="Mache Earring +1",ear2="Telos Earring"}
 	sets.DayWSEars = {ear1="Brutal Earring",ear2="Moonshade Earring"}
+	
+	--Specialty WS set overwrites.
+	sets.AccWSMightyCharge = {}
+	Sets.AccWSCharge = {}
+	sets.AccWSMightyCharge = {}
+	sets.WSMightyCharge = {}
+	sets.WSCharge = {}
+	sets.WSMighty = {}
 
      -- Sets to return to when not performing an action.
            

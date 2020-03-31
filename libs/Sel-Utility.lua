@@ -55,16 +55,14 @@ local cancel_types_to_check = S{'Waltz', 'Samba'}
 -- Requirement: Must have Cancel addon installed and loaded for this to work.
 function cancel_conflicting_buffs(spell, spellMap, eventArgs)
     if cancel_spells_to_check:contains(spell.english) or cancel_types_to_check:contains(spell.type) then
-        if spell.english == 'Spectral Jig' and buffactive.sneak then
+        if spell.english == 'Spectral Jig' and buffactive['Sneak'] then
             cast_delay(0.2)
 			send_command('cancel sneak')
 			tickdelay = os.clock() + 1.5
-        elseif spell.english == 'Sneak' and spell.target.type == 'SELF' and buffactive.sneak then
+        elseif (spell.english:startswith('Monomi') or (spell.english == 'Sneak' and spell.target.type == 'SELF')) and buffactive['Sneak'] then
             send_command('cancel sneak')
         elseif spell.english == ('Stoneskin') or spell.english == ('Diamondhide') or spell.english == ('Magic Barrier') then
             send_command('@wait 1;cancel stoneskin')
-        elseif spell.english:startswith('Monomi') then
-            send_command('@wait 1.5;cancel sneak')
         elseif spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San' then
 			if buffactive['Copy Image (4+)'] and conserveshadows then
 				add_to_chat(123,'Abort: You have four or more shadows.')
@@ -79,11 +77,11 @@ function cancel_conflicting_buffs(spell, spellMap, eventArgs)
 			else
 				send_command('@wait '..utsusemi_cancel_delay..';cancel copy image*')
 			end
-        elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['saber dance'] then
+        elseif (spell.english == 'Trance' or spell.type=='Waltz') and buffactive['Saber Dance'] then
             cast_delay(0.2)
             send_command('cancel saber dance')
 			tickdelay = os.clock() + 1.7
-        elseif spell.type=='Samba' and buffactive['fan dance'] then
+        elseif spell.type=='Samba' and buffactive['Fan Dance'] then
             cast_delay(0.2)
             send_command('cancel fan dance')
 			tickdelay = os.clock() + 1.7
