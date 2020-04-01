@@ -1627,6 +1627,20 @@ function check_use_item()
 	return false
 end
 
+function check_lockstyle()
+	if state.AutoLockstyle.value and style_lock and os.clock() > style_delay then
+		if user_job_lockstyle then
+			user_job_lockstyle()
+		elseif user_lockstyle then
+			user_lockstyle()
+		else
+			windower.chat.input('/lockstyle on')
+		end
+		style_lock = false
+		style_delay = os.clock() + 13
+	end
+end
+
 function check_food()
 	if state.AutoFoodMode.value and not buffactive['Food'] and not data.areas.cities:contains(world.area) then
 	

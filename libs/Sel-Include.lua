@@ -118,6 +118,7 @@ function init_include()
 	state.Capacity 			  = M(false, 'Capacity Mode')
 	state.ReEquip 			  = M(false, 'ReEquip Mode')
 	state.AutoArts	 		  = M(false, 'AutoArts Mode')
+	state.AutoLockstyle	 	  = M(false, 'AutoLockstyle Mode')
 	state.AutoTrustMode 	  = M(false, 'Auto Trust Mode')
 	state.RngHelper		 	  = M(false, 'RngHelper')
 	state.AutoTankMode 		  = M(false, 'Auto Tank Mode')
@@ -314,6 +315,8 @@ function init_include()
 	-- Controls for handling our autmatic functions.
 	
 	tickdelay = os.clock() + 5
+	style_delay = os.clock() + 15
+	style_lock = true
 	
 	if spell_latency == nil then
 		spell_latency = (latency * 60) + 18
@@ -1356,6 +1359,7 @@ function pre_tick()
 end
 
 function default_tick()
+	check_lockstyle()
 	if check_doomed() then return true end
 	if check_shadows() then return true end
 	if check_use_item() then return true end
@@ -2195,6 +2199,11 @@ end
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
     if stateField == 'Weapons' then
+		
+		if stateField == 'Weapons' and state.AutoLockstyle.value and newValue ~= oldValue then
+			style_lock = true
+		end
+	
 		if ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
 			while ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield) or (state.SkipProcWeapons.value and state.Weapons.value:contains('Proc')) do
