@@ -180,6 +180,8 @@ data.weaponskills.ranged = S{"Flaming Arrow","Piercing Arrow","Dulling Arrow","S
 
 data.weaponskills.elemental = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight','Tachi: Jinpu','Flash Nova'}
 
+data.weaponskills.statue_ws = {['COR']='Leaden Salute',['RNG']='Trueflight',['RDM']='Sanguine Blade',['BLU']='Sanguine Blade'}
+
 -- Elements for skillchain names
 data.skillchains = {}
 data.skillchains.light = S{'Light','Fire','Wind','Lightning'}
