@@ -548,11 +548,19 @@ function handle_killstatue()
 
 		for i, mob in pairs(mobs) do
 			if statue_name == mob.name and mob.status == 1 and (math.sqrt(mob.distance) < 21) then
-				if data.weaponskills.statue_ws[player.main_job] then
-					local self_vector = windower.ffxi.get_mob_by_id(player.id)
-					local angle = (math.atan2((mob.y - self_vector.y), (mob.x - self_vector.x))*180/math.pi)*-1
-					windower.ffxi.turn((angle):radian())
+				local self_vector = windower.ffxi.get_mob_by_id(player.id)
+				local angle = (math.atan2((mob.y - self_vector.y), (mob.x - self_vector.x))*180/math.pi)*-1
+				windower.ffxi.turn((angle):radian())
+					
+				if data.weaponskills.statue_ws[player.main_job] and (data.weaponskills.ranged:contains(data.weaponskills.statue_ws[player.main_job]) or (math.sqrt(mob.distance) < 4)) then
 					windower.send_command:schedule(.3,''..data.weaponskills.statue_ws[player.main_job]..' '..mob.id..'')
+				elseif data.jobs.nuke_jobs:contains(player.main_job) then
+					packets.inject(packets.new('incoming', 0x058, {
+						['Player'] = player.id,
+						['Target'] = mob.id,
+						['Player Index'] = player.index,
+					}))
+					windower.send_command:schedule(.6,'gs c elemental nuke')
 				end
 			end
 		end

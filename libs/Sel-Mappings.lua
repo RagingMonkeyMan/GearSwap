@@ -319,6 +319,7 @@ data.abilities.black_to_white_stratagems = {['Parsimony']='Penury',['Alacrity']=
 data.jobs = {}
 
 data.jobs.mage_jobs = S{'WHM','BLM','SCH','RDM','BRD','SMN','GEO'}
+data.jobs.nuke_jobs = S{'BLM','SCH','RDM','GEO'}
 data.jobs.melee_jobs = S{'WAR','MNK','THF','PLD','DRK','SAM','NIN','BLU','DNC','RUN','COR','PUP','PLD','DRK','BST'}
 data.jobs.dual_wield_jobs = S{'THF','BLU','NIN','DNC'}
 

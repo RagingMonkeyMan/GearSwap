@@ -51,7 +51,6 @@ function get_sets()
 	include('Sel-Include.lua')
 end
 
-
 -- Setup vars that are user-independent.
 function job_setup()
 
