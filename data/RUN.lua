@@ -39,10 +39,6 @@
 --  |____|   |____/\___  (____  /____  >\___  > /_______  /\____/  |___|  /\____/|__|    \___  \____ ||__||__|    |__| |___|  |__/____  >  |__|  |__|____/\___  > /\ 
 --                     \/     \/     \/     \/          \/              \/                   \/     \/                      \/        \/                      \/  \/ 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- NOTE: I do not play run, so this will not be maintained for 'active' use. 
--- It is added to the repository to allow people to have a baseline to build from,
--- and make sure it is up-to-date with the library API.
-
 
 -------------------------------------------------------------------------------------------------------------------
 -- Setup functions for this job.  Generally should not be modified.
@@ -66,6 +62,7 @@ function job_setup()
     state.Buff.Hasso = buffactive.Hasso or false
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
+    state.Steps = M{['description']='Current Step', 'Quickstep','Box Step','Stutter Step'}
 	
 	autows = 'Resolution'
 	autofood = 'Miso Ramen'
@@ -313,16 +310,14 @@ function job_self_command(commandArgs, eventArgs)
         
 			if under3FMs then
 				if abil_recasts[220] < latency then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				state.CurrentStep:cycle()
+				send_command('@input /ja "'..state.Steps.value..'" <t>')
 				return
 				end
 			elseif abil_recasts[221] < latency then
 				windower.chat.input('/ja "Animated Flourish" <t>')
 				return
 			elseif abil_recasts[220] < latency and not buffactive['Finishing Move 5'] then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				state.CurrentStep:cycle()
+				send_command('@input /ja "'..state.Steps.value..'" <t>')
 				return
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'Dancer job abilities not needed.') end
