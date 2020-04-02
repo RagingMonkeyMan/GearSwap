@@ -531,6 +531,31 @@ function handle_buffup(cmdParams)
 	end
 end
 
+function handle_killstatue()
+	local statue_name = ''
+	if world.area:startswith('Dynamis') and world.area:endswith('[D]') then
+		if world.area:contains("San d'Oria") then
+			statue_name = 'Corporal Tombstone'
+		elseif world.area:contains("Bastok") then
+			statue_name = 'Lithicthrower Image'
+		elseif world.area:contains("Windurst") then
+			statue_name = 'Incarnation Idol'
+		elseif world.area:contains("Jeuno") then
+			statue_name = 'Impish Statue'
+		end
+		
+		local mobs = windower.ffxi.get_mob_array()
+
+		for i, mob in pairs(mobs) do
+			if statue_name == mob.name and mob.status == 1 and (math.sqrt(mob.distance) < 21) then
+				if data.weaponskills.statue_ws[player.main_job] then
+					windower.send_command(''..data.weaponskills.statue_ws[player.main_job]..' '..mob.id..'')
+				end
+			end
+		end
+	end
+end
+
 function handle_runeelement()
 	windower.chat.input('/ja "'..state.RuneElement.value..'" <me>')
 end
@@ -1029,4 +1054,5 @@ selfCommandMaps = {
 	['buffup']			= handle_buffup,
 	['delayedcast']		= handle_delayedcast,
 	['runeelement']		= handle_runeelement,
+	['killstatue']		= handle_killstatue,
 	}
