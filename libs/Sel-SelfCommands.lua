@@ -562,6 +562,7 @@ function handle_killstatue()
 					}))
 					windower.send_command:schedule(.6,'gs c elemental nuke')
 				end
+				return
 			end
 		end
 	end
