@@ -90,12 +90,13 @@ function job_setup()
     state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step'}
     state.AltStep = M{['description']='Alt Step', 'Feather Step','Quickstep','Stutter Step','Box Step'}
     state.UseAltStep = M(true, 'Use Alt Step')
+    state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
+
 	state.AutoPrestoMode = M(true, 'Auto Presto Mode')
     state.SelectStepTarget = M(false, 'Select Step Target')
     state.IgnoreTargetting = M(false, 'Ignore Targetting')
 	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
 
-    state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
 
 	autows = "Rudra's Storm"
 	autofood = 'Soy Ramen'

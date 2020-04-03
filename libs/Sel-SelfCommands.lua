@@ -561,7 +561,7 @@ function handle_killstatue()
 						['Target'] = mob.id,
 						['Player Index'] = player.index,
 					}))
-					windower.send_command:schedule(.6,'gs c elemental nuke')
+					windower.send_command:schedule(1,'gs c elemental nuke')
 					return
 				end
 			end
