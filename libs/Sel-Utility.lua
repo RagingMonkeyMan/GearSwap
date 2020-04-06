@@ -93,9 +93,9 @@ end
 function notify_buffs(buff, gain)
 	if state.NotifyBuffs.value and NotifyBuffs:contains(buff) then
 		if gain then
-			windower.chat.input('/p I just got hit with '..buff..'.')
+			windower.chat.input('/p '..buff:ucfirst()..' on me!')
 		else
-			windower.chat.input('/p '..buff..' is off now.')
+			windower.chat.input('/p '..buff:ucfirst()..' is off now.')
 		end
 	end
 end

@@ -505,6 +505,14 @@ buff_spell_lists = {
 		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
 	},
 	
+	Tank = {
+		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	Reapply=false},
+		{Name='Cocoon',		Buff='Defense Boost',	SpellID=547,	Reapply=false},
+		{Name='Haste',		Buff='Haste',			SpellID=57,		Reapply=false},
+		{Name='Refresh',	Buff='Refresh',			SpellID=109,	Reapply=false},
+		{Name='Phalanx',	Buff='Phalanx',			SpellID=106,	Reapply=false},
+	},
+	
 	Full = {
 		{Name='Crusade',	Buff='Enmity Boost',	SpellID=476,	Reapply=false},
 		{Name='Temper',		Buff='Multi Strikes',	SpellID=493,	Reapply=false},

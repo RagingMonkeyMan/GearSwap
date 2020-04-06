@@ -859,16 +859,12 @@ function default_filtered_action(spell, eventArgs)
 		else
 			add_to_chat(122,'Warp unavailable and no warp items available.')
 		end
-		cancel_spell()
-		eventArgs.cancel = true
 	elseif spell.english == 'Retrace' then
 		if spell.target.type == 'SELF' and (item_available('Instant Retrace') or player.satchel['Instant Retrace']) then
 			useItem = true
 			useItemName = 'Instant Retrace'
 			useItemSlot = 'item'
 			add_to_chat(217,"You can't cast Retrace, attempting to use a Retrace Scroll instead, /heal to cancel.")
-			cancel_spell()
-			eventArgs.cancel = true
 		end
 	elseif spell.english == 'Teleport-Holla' then
 		if (item_available('Dim. Ring (Holla)') or player.satchel['Dim. Ring (Holla)']) then
@@ -876,8 +872,13 @@ function default_filtered_action(spell, eventArgs)
 			useItemName = 'Dim. Ring (Holla)'
 			useItemSlot = 'ring2'
 			add_to_chat(217,"You can't cast Teleport-Holla, attempting to use Dimensional Ring instead, /heal to cancel.")
-			cancel_spell()
-			eventArgs.cancel = true
+		end
+	elseif spell.english == 'Reraise' then
+		if (item_available('Reraise Ring') or player.satchel['Reraise Ring']) then
+			useItem = true
+			useItemName = 'Reraise Ring'
+			useItemSlot = 'ring2'
+			add_to_chat(217,"You can't cast Reraise, attempting to use Reraise Ring instead, /heal to cancel.")
 		end
 	elseif spell.english == 'Teleport-Dem' then
 		if (item_available('Dim. Ring (Dem)') or player.satchel['Dim. Ring (Dem)']) then
@@ -885,8 +886,6 @@ function default_filtered_action(spell, eventArgs)
 			useItemName = 'Dim. Ring (Dem)'
 			useItemSlot = 'ring2'
 			add_to_chat(217,"You can't cast Teleport-Dem, attempting to use Dimensional Ring instead, /heal to cancel.")
-			cancel_spell()
-			eventArgs.cancel = true
 		end
 	elseif spell.english == 'Teleport-Mea' then
 		if (item_available('Dim. Ring (Mea)') or player.satchel['Dim. Ring (Mea)']) then
@@ -894,56 +893,36 @@ function default_filtered_action(spell, eventArgs)
 			useItemName = 'Dim. Ring (Mea)'
 			useItemSlot = 'ring2'
 			add_to_chat(217,"You can't cast Teleport-Mea, attempting to use Dimensional Ring instead, /heal to cancel.")
-			cancel_spell()
-			eventArgs.cancel = true
 		end
 	elseif spell.english == 'Invisible' then
 		if player.main_job == 'DNC' or player.sub_job == 'DNC' then
 			windower.chat.input('/ja "Spectral Jig" <me>')
 			add_to_chat(217,"You can't cast Invisible, attempting to use Spectral Jig instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		elseif player.main_job == 'NIN' or player.sub_job == 'NIN' then
 			windower.chat.input('/ma "Tonko: Ni" <me>')
 			add_to_chat(217,"You can't cast Invisible, attempting to use Tonko: Ni instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		elseif item_available('Prism Powder') then
 			windower.chat.input('/item "Prism Powder" <me>')
 			add_to_chat(217,"You can't cast Invisible, attempting to use Prism Powder instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		elseif item_available('Rainbow Powder') then
 			windower.chat.input('/item "Rainbow Powder" <me>')
 			add_to_chat(217,"You can't cast Invisible, attempting to use Prism Powder instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		end
 	elseif spell.english == 'Sneak' then
 		if player.main_job == 'DNC' or player.sub_job == 'DNC' then
 			windower.chat.input('/ja "Spectral Jig" <me>')
 			add_to_chat(217,"You can't cast Sneak, attempting to use Spectral Jig instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		elseif player.main_job == 'NIN' or player.sub_job == 'NIN' then
 			windower.chat.input('/ma "Monomi: Ichi" <me>')
 			add_to_chat(217,"You can't cast Sneak, attempting to use Monomi: Ichi instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		elseif item_available('Silent Oil') then
 			windower.chat.input('/item "Silent Oil" <me>')
 			add_to_chat(217,"You can't cast Sneak, attempting to use Silent Oil instead.")
-			cancel_spell()
-			eventArgs.cancel = true
-			return
 		end
 	end
+	
+	cancel_spell()
+	eventArgs.cancel = true
 end
 
 function extra_default_filtered_action(spell, eventArgs)

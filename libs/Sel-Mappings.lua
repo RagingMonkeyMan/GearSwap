@@ -719,5 +719,8 @@ spell_stepdown = {
 item_stepdown = {
 	['Warp Ring'] = {'Treat Staff','main'},
 	['Treat Staff'] = {'Warp Cudgel','main'},
-	['Warp Cudgel'] = {'Instant Warp','item'}
+	['Warp Cudgel'] = {'Instant Warp','item'},
+	['Reraise Ring'] = {'Reraise Earring','ear2'},
+	['Reraise Earring'] = {'Reraise Hairpin','head'},
+	['Reraise Hairpin'] = {'Instant Reraise','item'},
 }
