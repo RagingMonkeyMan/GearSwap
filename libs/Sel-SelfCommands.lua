@@ -48,13 +48,20 @@
 -- Routing function for general known self_commands.  Mappings are at the bottom of the file.
 -- Handles splitting the provided command line up into discrete words, for the other functions to use.
 function self_command(commandArgs)
-    local commandArgs = commandArgs
+	local originalCommand = commandArgs
     if type(commandArgs) == 'string' then
         commandArgs = T(commandArgs:split(' '))
         if #commandArgs == 0 then
             return
         end
     end
+	
+	if commandArgs[#commandArgs]:startswith('<st') then
+		local st_variable = (table.remove(commandArgs, #commandArgs)):lower()
+		st_command = table.concat(commandArgs, ' ')
+		windower.chat.input('/dance motion '..st_variable..'')
+		return
+	end
 
     -- init a new eventArgs
     local eventArgs = {handled = false}
@@ -531,6 +538,32 @@ function handle_buffup(cmdParams)
 	end
 end
 
+function handle_smartws(cmdParams)
+	local target
+	
+	if cmdParams[1] then
+		if tonumber(cmdParams[1]) then
+			target = windower.ffxi.get_mob_by_id(tonumber(cmdParams[1]))
+		else
+			target = table.concat(cmdParams, ' ')
+			target = get_closest_mob_by_name(target) 
+			if not target.name then target = player.target end
+			if not target.name then target = player end
+		end
+	elseif player.target.type == 'MONSTER' then
+		target = player.target
+	elseif player.target.type == "SELF" or player.target.type == 'NONE' then
+		target = player
+	end
+
+	if math.sqrt(target.distance) < 4 or (data.weaponskills.ranged:contains(autows) and math.sqrt(target.distance) < 21) then
+		local self_vector = windower.ffxi.get_mob_by_id(player.id)
+		local angle = (math.atan2((target.y - self_vector.y), (target.x - self_vector.x))*180/math.pi)*-1
+		windower.ffxi.turn((angle):radian())
+		windower.send_command:schedule(.3,''..autows..' '..target.id..'')
+	end
+end
+
 function handle_killstatue()
 	local statue_name = ''
 	if world.area:startswith('Dynamis') and world.area:endswith('[D]') then
@@ -548,20 +581,14 @@ function handle_killstatue()
 
 		for i, mob in pairs(mobs) do
 			if statue_name == mob.name and mob.status == 1 and (math.sqrt(mob.distance) < 21) then
-				local self_vector = windower.ffxi.get_mob_by_id(player.id)
-				local angle = (math.atan2((mob.y - self_vector.y), (mob.x - self_vector.x))*180/math.pi)*-1
-				windower.ffxi.turn((angle):radian())
-					
 				if data.weaponskills.statue_ws[player.main_job] and (data.weaponskills.ranged:contains(data.weaponskills.statue_ws[player.main_job]) or (math.sqrt(mob.distance) < 4)) then
+					local self_vector = windower.ffxi.get_mob_by_id(player.id)
+					local angle = (math.atan2((mob.y - self_vector.y), (mob.x - self_vector.x))*180/math.pi)*-1
+					windower.ffxi.turn((angle):radian())
 					windower.send_command:schedule(.3,''..data.weaponskills.statue_ws[player.main_job]..' '..mob.id..'')
 					return
 				elseif data.jobs.nuke_jobs:contains(player.main_job) then
-					packets.inject(packets.new('incoming', 0x058, {
-						['Player'] = player.id,
-						['Target'] = mob.id,
-						['Player Index'] = player.index,
-					}))
-					windower.send_command:schedule(1,'gs c elemental nuke')
+					windower.send_command('gs c elemental nuke '..mob.id..'')
 					return
 				end
 			end
@@ -758,100 +785,84 @@ function handle_curecheat(cmdParams)
     end
 end
 
-function handle_smartcure()
-	local cureTarget = '<t>'
-	local missingHP
-	local spell_recasts = windower.ffxi.get_spell_recasts()
-	-- If curing ourself, get our exact missing HP
-	if player.target.type == "SELF" or player.target.type == 'MONSTER' or player.target.type == 'NONE' then
-		missingHP = player.max_hp - player.hp
-		cureTarget = '<me>'
-	elseif player.target.status:lower():contains('dead') then
+function handle_smartcure(cmdParams)
+	if cmdParams[1] then
+		if tonumber(cmdParams[1]) then
+			cureTarget = windower.ffxi.get_mob_by_id(tonumber(cmdParams[1]))
+		else
+			cureTarget = table.concat(cmdParams, ' ')
+			cureTarget = get_closest_mob_by_name(cureTarget) 
+			if not cureTarget.name then cureTarget = player.target end
+			if not cureTarget.name then cureTarget = player end
+		end
+	elseif player.target.type == "SELF" or player.target.type == 'MONSTER' or player.target.type == 'NONE' then
+		cureTarget = player
+	else
+		cureTarget = player.target
+	end
+
+	if cureTarget.status == 2 or cureTarget.status == 3 then
 		windower.chat.input('/ma "Raise III" '..cureTarget..'')
 		return
-	-- If curing someone in our alliance, we can estimate their missing HP
-	elseif player.target.isallymember then
-		local target = find_player_in_alliance(player.target.name)
-		local est_max_hp = target.hp / (target.hpp/100)
-		missingHP = math.floor(est_max_hp - target.hp)
-	else
-		if player.target.hpp > 95 then
-			if spell_recasts[1] < spell_latency then
-				windower.chat.input('/ma "Cure" '..cureTarget..'')
-			elseif spell_recasts[2] < spell_latency then
-				windower.chat.input('/ma "Cure II" '..cureTarget..'')
-			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
-			end
-		elseif player.target.hpp > 85 then
-			if spell_recasts[2] < spell_latency then
-				windower.chat.input('/ma "Cure II" <t>')
-			elseif spell_recasts[3] < spell_latency then
-				windower.chat.input('/ma "Cure III" <t>')
-			elseif spell_recasts[1] < spell_latency then
-				windower.chat.input('/ma "Cure" <t>')
-			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
-			end
-		elseif player.target.hpp > 70 then
-			if spell_recasts[3] < spell_latency then
-				windower.chat.input('/ma "Cure III" <t>')
-			elseif silent_can_use(4) and spell_recasts[4] < spell_latency then
-				windower.chat.input('/ma "Cure IV" <t>')
-			elseif spell_recasts[2] < spell_latency then
-				windower.chat.input('/ma "Cure II" <t>')
-			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
-			end
+	end
+	
+	local missingHP
+	local spell_recasts = windower.ffxi.get_spell_recasts()
+
+	if cureTarget.type == 'MONSTER' then
+		if silent_can_use(4) and spell_recasts[4] < spell_latency then
+			windower.chat.input('/ma "Cure IV" '..cureTarget.id..'')
+		elseif spell_recasts[3] < spell_latency then
+			windower.chat.input('/ma "Cure III" '..cureTarget.id..'')
+		elseif spell_recasts[2] < spell_latency then
+			windower.chat.input('/ma "Cure II" '..cureTarget.id..'')
 		else
-			if silent_can_use(4) and spell_recasts[4] < spell_latency then
-				windower.chat.input('/ma "Cure IV" <t>')
-			elseif spell_recasts[3] < spell_latency then
-				windower.chat.input('/ma "Cure III" <t>')
-			elseif spell_recasts[2] < spell_latency then
-				windower.chat.input('/ma "Cure II" <t>')
-			else
-				add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
-			end
+			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
-		return
+	elseif cureTarget.in_alliance then
+		cureTarget.hp = find_player_in_alliance(cureTarget.name).hp
+		local est_max_hp = cureTarget.hp / (cureTarget.hpp/100)
+		missingHP = math.floor(est_max_hp - cureTarget.hp)
+	else
+		local est_current_hp = 1800 * (cureTarget.hpp/100)
+		missingHP = math.floor(1800 - est_current_hp)
 	end
 	
 	if missingHP < 170 then
 		if spell_recasts[1] < spell_latency then
-			windower.chat.input('/ma "Cure" '..cureTarget..'')
+			windower.chat.input('/ma "Cure" '..cureTarget.id..'')
 		elseif spell_recasts[2] < spell_latency then
-			windower.chat.input('/ma "Cure II" '..cureTarget..'')
+			windower.chat.input('/ma "Cure II" '..cureTarget.id..'')
 		else
 			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
 	elseif missingHP < 350 then
 		if spell_recasts[2] < spell_latency then
-			windower.chat.input('/ma "Cure II" '..cureTarget..'')
+			windower.chat.input('/ma "Cure II" '..cureTarget.id..'')
 		elseif spell_recasts[3] < spell_latency then
-			windower.chat.input('/ma "Cure III" '..cureTarget..'')
+			windower.chat.input('/ma "Cure III" '..cureTarget.id..'')
 		elseif spell_recasts[1] < spell_latency then
-			windower.chat.input('/ma "Cure" '..cureTarget..'')
+			windower.chat.input('/ma "Cure" '..cureTarget.id..'')
 		else
 			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
 	elseif missingHP < 700 then
 		if spell_recasts[3] < spell_latency then
-			windower.chat.input('/ma "Cure III" '..cureTarget..'')
+			windower.chat.input('/ma "Cure III" '..cureTarget.id..'')
 		elseif spell_recasts[4] < spell_latency then
-			windower.chat.input('/ma "Cure IV" '..cureTarget..'')
+			windower.chat.input('/ma "Cure IV" '..cureTarget.id..'')
 		elseif spell_recasts[2] < spell_latency then
-			windower.chat.input('/ma "Cure II" '..cureTarget..'')
+			windower.chat.input('/ma "Cure II" '..cureTarget.id..'')
 		else
 			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
 	else
 		if silent_can_use(4) and spell_recasts[4] < spell_latency then
-			windower.chat.input('/ma "Cure IV" '..cureTarget..'')
+			windower.chat.input('/ma "Cure IV" '..cureTarget.id..'')
 		elseif spell_recasts[3] < spell_latency then
-			windower.chat.input('/ma "Cure III" '..cureTarget..'')
+			windower.chat.input('/ma "Cure III" '..cureTarget.id..'')
 		elseif spell_recasts[2] < spell_latency then
-			windower.chat.input('/ma "Cure II" '..cureTarget..'')
+			windower.chat.input('/ma "Cure II" '..cureTarget.id..'')
 		else
 			add_to_chat(123,'Abort: Appropriate cures are on cooldown.')
 		end
@@ -1068,4 +1079,5 @@ selfCommandMaps = {
 	['delayedcast']		= handle_delayedcast,
 	['runeelement']		= handle_runeelement,
 	['killstatue']		= handle_killstatue,
+	['smartws']			= handle_smartws,
 	}

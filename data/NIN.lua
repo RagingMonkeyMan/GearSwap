@@ -323,22 +323,30 @@ function handle_elemental(cmdParams)
         return
     end
     local command = cmdParams[2]:lower()
-
+	local target = '<t>'
+	if cmdParams[3] then
+		if tonumber(cmdParams[3]) then
+			target = tonumber(cmdParams[3])
+		else
+			target = table.concat(cmdParams, ' ', 3)
+			target = get_closest_mob_id_by_name(target) or '<t>'
+		end
+	end
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 	
 	if command == 'nuke' then
 		local tiers = {'San','Ni','Ichi'}
 		for k in ipairs(tiers) do
 			if spell_recasts[get_spell_table_by_name(data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..tiers[k]..'').id] < spell_latency then
-				windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..tiers[k]..'" <t>')
+				windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..tiers[k]..'" '..target..'')
 				return
 			end
 		end
 		add_to_chat(123,'Abort: All '..data.elements.nuke_of[state.ElementalMode.value]..' nukes on cooldown or or not enough MP.')
 	elseif S{'San','Ni','Ichi'}:contains(command) then
-		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..command..'" <t>')
+		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': '..command..'" '..target..'')
 	elseif command == 'proc' then
-		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': Ni" <t>')
+		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': Ni" '..target..'')
 	end
 end
 

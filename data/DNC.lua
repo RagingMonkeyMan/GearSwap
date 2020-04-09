@@ -63,9 +63,7 @@
         
     gs c toggle usealtstep
         Toggles whether or not to use an alternate step.
-        
-    gs c toggle selectsteptarget
-        Toggles whether or not to use <stnpc> (as opposed to <t>) when using a step.
+
 --]]
 
 
@@ -93,8 +91,6 @@ function job_setup()
     state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
 
 	state.AutoPrestoMode = M(true, 'Auto Presto Mode')
-    state.SelectStepTarget = M(false, 'Select Step Target')
-    state.IgnoreTargetting = M(false, 'Ignore Targetting')
 	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
 
 
@@ -260,19 +256,6 @@ function job_customize_melee_set(meleeSet)
     return meleeSet
 end
 
--- Handle auto-targetting based on local setup.
-function job_auto_change_target(spell, action, spellMap, eventArgs)
-    if spell.type == 'Step' then
-        if state.IgnoreTargetting.value == true then
-            state.IgnoreTargetting:reset()
-            eventArgs.handled = true
-        end
-        
-        eventArgs.SelectNPCTargets = state.SelectStepTarget.value
-    end
-end
-
-
 -- Function to display the current relevant user state when doing an update.
 -- Set eventArgs.handled to true if display was handled, and you don't want the default info shown.
 function display_current_job_state(eventArgs)
@@ -323,10 +306,6 @@ end
 -- Called for custom player commands.
 function job_self_command(commandArgs, eventArgs)
     if commandArgs[1] == 'step' then
-        if commandArgs[2] == 't' then
-            state.IgnoreTargetting:set()
-        end
-
         local doStep = ''
         if state.UseAltStep.value == true then
             doStep = state[state.CurrentStep.current..'Step'].current

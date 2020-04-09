@@ -186,18 +186,18 @@ windower.raw_register_event('action', function(act)
 				if state.DefenseMode.value ~= 'Physical' then
 					state.DefenseMode:set('Physical')
 					send_command('gs c forceequip')
+					if state.DisplayMode.value then update_job_states()	end
 				end
-				return
 			else
 				state.DefenseMode:reset()
 				send_command('gs c forceequip')
 				if state.DisplayMode.value then update_job_states()	end
-				return
 			end
-		elseif not midaction() and not pet_midaction() and (targetsMe or (otherTarget.in_alliance and targetsDistance < 10)) then
+		elseif not (actor.id == player.id or midaction() or pet_midaction()) and (targetsMe or (otherTarget.in_alliance and targetsDistance < 10)) then
+			--reequip proper gear after curaga/recieved buffs
 			send_command('gs c forceequip')
-			return
 		end
+		return
 	end
 	
 	-- Make sure it's not US from this point on!
