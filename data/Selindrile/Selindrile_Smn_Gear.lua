@@ -187,7 +187,7 @@ function init_gear_sets()
     
     sets.midcast.Pet.PhysicalBloodPactRage = {main="Gridarvor",sub="Elan Strap +1",ammo="Sancus Sachet +1",
         head="Helios Band",neck="Shulmanu Collar",ear1="Gelos Earring",ear2="Lugalbanda Earring",
-        body="Con. Doublet +3",hands=gear.merlinic_physpact_hands,ring1="Varar Ring +1",ring2="Varar Ring +1",
+        body="Con. Doublet +3",hands=gear.merlinic_physpact_hands,ring1="Varar Ring +1",ring2="C. Palug Ring",
         back=gear.phys_jse_back,waist="Incarnation Sash",legs="Apogee Slacks +1",feet="Apogee Pumps +1"}
 		
     sets.midcast.Pet.PhysicalBloodPactRage.Acc = {feet="Convo. Pigaches +3"}

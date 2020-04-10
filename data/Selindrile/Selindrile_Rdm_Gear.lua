@@ -9,7 +9,7 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT','NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Naegling','Sequence','Almace','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAlmace')
+	state.Weapons:options('None','Naegling','Sequence','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAeolian')
 	
 	gear.obi_cure_back = "Tempered Cape +1"
 	gear.obi_cure_waist = "Witful Belt"
@@ -352,6 +352,7 @@ function init_gear_sets()
 	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron"}
 	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace"}
 	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace"}
+	sets.weapons.DualAeolian = {main="Tauret",sub="Naegling"}
 	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan"}
 	sets.weapons.DualBlackHalo = {main="Kaja Rod",sub="Thibron"}
 	sets.weapons.DualAlmace = {main="Almace",sub="Sequence"}

@@ -60,7 +60,7 @@ gear.odyssean_stp_legs = {name="Odyssean Cuisses",augments={'Accuracy+28','"Stor
 gear.odyssean_fc_legs = {name="Odyssean Cuisses",augments={'"Fast Cast"+6','"Mag.Atk.Bns."+12',}}
 
 gear.valorous_magical_wsd_head = {name="Valorous Mask",augments={'"Mag.Atk.Bns."+17','Weapon skill damage +5%','Attack+10',}}
-gear.valorous_wsd_head = {name="Valorous Mask",augments={'Attack+23','Weapon skill damage +4%','Accuracy+15',}}
+gear.valorous_wsd_head = {name="Valorous Mask",augments={'Accuracy+10 Attack+10','Weapon skill damage +4%','STR+4','Attack+10',}}
 gear.valorous_pet_head = {name="Valorous Mask",augments={'Pet: "Mag.Atk.Bns."+25','Pet: "Regen"+3','Pet: INT+14','Pet: Accuracy+2 Pet: Rng. Acc.+2',}}
 gear.valorous_pet_body = {name="Valorous Mail",augments={'Pet: "Mag.Atk.Bns."+26','"Dbl.Atk."+3','Pet: INT+8','Pet: Accuracy+13 Pet: Rng. Acc.+13','Pet: Attack+12 Pet: Rng.Atk.+12',}}
 gear.valorous_wsd_body = {name="Valorous Mail",augments={'Accuracy+25 Attack+25','Weapon skill damage +4%','Accuracy+10','Attack+12',}}

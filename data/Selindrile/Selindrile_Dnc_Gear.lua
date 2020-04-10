@@ -72,7 +72,7 @@ function init_gear_sets()
 
     sets.precast.Jig = {} --legs="Horos Tights", feet="Maxixi Toe Shoes"
 
-    sets.precast.Step = {ammo="Falcon Eye",
+    sets.precast.Step = {ammo="C. Palug Stone",
         head="Dampening Tam",neck="Combatant's Torque",ear1="Telos Earring",ear2="Digni. Earring",
         body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}
@@ -85,14 +85,14 @@ function init_gear_sets()
     sets.precast.JA.Provoke = sets.Enmity
 
     sets.precast.Flourish1 = {}
-    sets.precast.Flourish1['Violent Flourish'] = {ammo="Falcon Eye",
+    sets.precast.Flourish1['Violent Flourish'] = {ammo="C. Palug Stone",
         head="Dampening Tam",neck="Combatant's Torque",ear1="Telos Earring",ear2="Digni. Earring",
         body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}
 		
     sets.precast.Flourish1['Animated Flourish'] = sets.Enmity
 		
-    sets.precast.Flourish1['Desperate Flourish'] = {ammo="Falcon Eye",
+    sets.precast.Flourish1['Desperate Flourish'] = {ammo="C. Palug Stone",
         head="Dampening Tam",neck="Combatant's Torque",ear1="Telos Earring",ear2="Digni. Earring",
         body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}
@@ -116,7 +116,7 @@ function init_gear_sets()
        
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
-    sets.precast.WS = {ammo="Falcon Eye",
+    sets.precast.WS = {ammo="C. Palug Stone",
         head="Dampening Tam",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Sherida Earring",
         body="Adhemar Jacket +1",hands="Meg. Gloves +2",ring1="Ilabrat Ring",ring2="Regal Ring",
         back=gear.wsd_jse_back,waist="Grunfeld Rope",legs="Samnuha Tights",feet=gear.herculean_wsd_feet}
@@ -241,7 +241,7 @@ function init_gear_sets()
         body="Mummu Jacket +2",hands="Floral Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
         back=gear.stp_jse_back,waist="Reiki Yotai",legs="Meg. Chausses +2",feet="Malignance Boots"}
 		
-    sets.engaged.FullAcc = {ammo="Falcon Eye",
+    sets.engaged.FullAcc = {ammo="C. Palug Stone",
         head="Dampening Tam",neck="Combatant's Torque",ear1="Telos Earring",ear2="Digni. Earring",
         body="Mummu Jacket +2",hands="Adhemar Wrist. +1",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}

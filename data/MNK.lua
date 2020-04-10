@@ -95,7 +95,7 @@ function job_precast(spell, spellMap, eventArgs)
 		elseif state.AutoBoost.value and abil_recasts[16] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Boost" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			windower.chat.input:schedule(2.5,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			tickdelay = os.clock() + 1.25
 			return
 		end
@@ -125,6 +125,8 @@ function job_post_precast(spell, spellMap, eventArgs)
 		elseif buffactive.Footwork and (spell.english == "Dragon Kick" or spell.english	 == "Tornado Kick") then
 			equip(sets.FootworkWS)
 		end
+	elseif spell.english == 'Boost' and not (player.in_combat or being_attacked or player.status == 'Engaged') and sets.precast.JA['Boost'].OutOfCombat then
+		equip(sets.precast.JA['Boost'].OutOfCombat)
 	end
 end
 
