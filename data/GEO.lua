@@ -74,6 +74,7 @@ function job_setup()
 	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
 	state.AutoEntrust = M(false, 'AutoEntrust Mode')
 	state.CombatEntrustOnly = M(true, 'Combat Entrust Only Mode')
+	state.AutoGeoAbilities = M(true, 'Use Geo Abilities Automatically')
 
     indi_timer = ''
     indi_duration = 180
@@ -536,11 +537,12 @@ end
 
 function check_geo()
 	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
+		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if autoindi ~= 'None' and ((not player.indi) or last_indi ~= autoindi) then
 			windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
 			tickdelay = os.clock() + 2.1
 			return true
-		elseif autoentrust ~= 'None' and windower.ffxi.get_ability_recasts()[93] < latency and (player.in_combat or state.CombatEntrustOnly.value == false) then
+		elseif autoentrust ~= 'None' and abil_recasts[93] < latency and (player.in_combat or state.CombatEntrustOnly.value == false) then
 			send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..autoentrustee)
 			tickdelay = os.clock() + 3.5
 			return true
@@ -550,19 +552,25 @@ function check_geo()
 				windower.chat.input('/ja "Full Circle" <me>')
 				tickdelay = os.clock() + 1.1
 				return true
+			elseif state.AutoGeoAbilities.value and abil_recasts[244] < latency then
+				windower.chat.input('/ja "Ecliptic Attrition" <me>;')
+				return true
 			else
 				return false
 			end
-		elseif not pet.isvalid and autogeo ~= 'None' and (windower.ffxi.get_mob_by_target('bt') or data.spells.geo_buffs:contains(autogeo)) then
-			windower.chat.input('/ma "Geo-'..autogeo..'" <bt>')
-			tickdelay = os.clock() + 3.1
-			return true
-		else
-			return false
+		elseif autogeo ~= 'None' and (windower.ffxi.get_mob_by_target('bt') or data.spells.geo_buffs:contains(autogeo)) then
+			if (player.in_combat or state.CombatEntrustOnly.value == false) and abil_recasts[247] < latency then
+				windower.chat.input('/ja "Blaze of Glory" <me>;')
+				tickdelay = os.clock() + 1.1
+				return true
+			else
+				windower.chat.input('/ma "Geo-'..autogeo..'" <bt>')
+				tickdelay = os.clock() + 3.1
+				return true
+			end
 		end
-	else
-		return false
 	end
+	return false
 end
 
 --Luopan Distance Tracking

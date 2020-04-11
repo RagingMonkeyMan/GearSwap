@@ -41,6 +41,7 @@ function user_setup()
 	send_command('bind @\\\\ input /ma "Shell V" <t>')
 	send_command('bind !\\\\ input /ma "Reraise" <me>')
 	send_command('bind @f10 gs c cycle RecoverMode')
+	send_command('bind !r gs c set weapons none')
 	
 	select_default_macro_book()
 end
