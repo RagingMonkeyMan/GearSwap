@@ -572,7 +572,7 @@ function handle_killstatue()
 		elseif world.area:contains("Bastok") then
 			statue_name = 'Lithicthrower Image'
 		elseif world.area:contains("Windurst") then
-			statue_name = 'Incarnation Idol'
+			statue_name = 'Incarnation Icon'
 		elseif world.area:contains("Jeuno") then
 			statue_name = 'Impish Statue'
 		end
