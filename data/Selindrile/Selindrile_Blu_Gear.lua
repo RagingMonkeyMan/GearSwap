@@ -1,4 +1,4 @@
-function user_setup()
+function user_job_setup()
 	-- Options: Override default values
     state.OffenseMode:options('Fodder','Normal','Acc','FullAcc')
 	state.HybridMode:options('Normal','DT')

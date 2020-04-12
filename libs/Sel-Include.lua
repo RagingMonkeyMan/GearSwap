@@ -278,40 +278,34 @@ function init_include()
     gear = {}
     gear.default = {}
 
-    gear.ElementalGorget = {name=""}
-    gear.ElementalBelt = {name=""}
-    gear.ElementalObi = {name=""}
-    gear.ElementalCape = {name=""}
-    gear.ElementalRing = {name=""}
-    gear.FastcastStaff = {name=""}
-    gear.RecastStaff = {name=""}
+    -- gear.ElementalGorget = {name=""}
+    -- gear.ElementalBelt = {name=""}
+    -- gear.ElementalObi = {name=""}
+    -- gear.ElementalCape = {name=""}
+    -- gear.ElementalRing = {name=""}
+    -- gear.FastcastStaff = {name=""}
+    -- gear.RecastStaff = {name=""}
 
+    -- Include general user globals, such as custom binds or gear tables.
+    -- Load Sel-Libs first, followed by User-Globals, followed by <character>-Globals.
+    -- Any functions re-defined in the later includes will overwrite the earlier versions.
     -- Load externally-defined information (info that we don't want to change every time this file is updated).
-
     -- Used to define misc utility functions that may be useful for this include or any job files.
     include('Sel-Utility')
 
     -- Used for all self-command handling.
     include('Sel-SelfCommands')
 	include('Sel-TreasureHunter')
-
-    -- Include general user globals, such as custom binds or gear tables.
-    -- Load Sel-Globals first, followed by User-Globals, followed by <character>-Globals.
-    -- Any functions re-defined in the later includes will overwrite the earlier versions.
+	
+	-- User based files.
     optional_include('user-globals.lua')
     optional_include(player.name..'-globals.lua')
     optional_include(player.name..'-items.lua')
 	optional_include(player.name..'_Crafting.lua')
+	include(player.name..'_'..player.main_job..'_gear.lua') -- Required Gear file.
 
 	-- New Display functions, needs to come after globals for user settings.
 	include('Sel-Display.lua')
-
-
-    -- Global default binds
-    global_on_load()
-
-    -- Load sidecar file
-	include(player.name..'_'..player.main_job..'_gear.lua')
 
 	-- Controls for handling our autmatic functions.
 	
@@ -322,6 +316,9 @@ function init_include()
 	if spell_latency == nil then
 		spell_latency = (latency * 60) + 18
 	end
+
+	--Certain Checks
+    global_on_load()
 	
 	-- General var initialization and setup.
     if job_setup then
@@ -333,15 +330,18 @@ function init_include()
         user_setup()
     end
 	
+    if character_setup then
+        character_setup()
+    end
+	
+    -- Job-User-specific var initialization and setup.
+    if user_job_setup then
+        user_job_setup()
+    end
+	
 	if extra_user_setup then
         extra_user_setup()
     end
-
-	if state.Weapons.value == 'None' then
-		enable('main','sub','range','ammo')
-	else
-		send_command('@wait 3;gs c weapons Default')
-	end
 
 	if not selindrile_warned then
 		naughty_list = {'lua','gearswap','file','windower','plugin','addon','program','hack','bot ','bots ','botting','easyfarm'}
@@ -548,12 +548,19 @@ end
 
 -- Non item-based global settings to check on load.
 function global_on_load()
-	set_dual_wield()
 	if world.area then
+		set_dual_wield()
+		
 		if world.area:contains('Abyssea') or data.areas.proc:contains(world.area) then
 			state.SkipProcWeapons:set('False')
 		else
 			state.SkipProcWeapons:reset()
+		end
+		
+		if state.Weapons.value == 'None' then
+			enable('main','sub','range','ammo')
+		else
+			send_command('@wait 3;gs c weapons Default')
 		end
 	end
 end

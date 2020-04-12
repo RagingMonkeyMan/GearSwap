@@ -1,5 +1,5 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
-function user_setup()
+function user_job_setup()
     state.OffenseMode:options('Normal','Acc','FullAcc','Fodder')
     state.HybridMode:options('Pet','DT','Normal')
     state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')

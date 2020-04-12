@@ -1,4 +1,4 @@
-function user_setup()
+function user_job_setup()
 	state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
 	state.HybridMode:options('Normal','PDT','PetTank','BothDD')
 	state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
