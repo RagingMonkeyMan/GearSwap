@@ -181,7 +181,7 @@ function job_customize_defense_set(defenseSet)
         defenseSet = set_combine(defenseSet, sets[state.ExtraDefenseMode.value])
     end
 
-	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value == 'Physical' and (not state.PhysicalDefenseMode.value:contains('NoParry')) and (player.target and player.target.distance < (3.2 + player.target.model_size)) then 
+	if buffactive['Battuta'] and sets.buff.Battuta and player.status == 'Engaged' and state.DefenseMode.value == 'Physical' then 
 		defenseSet = set_combine(defenseSet, sets.buff.Battuta)
 	end
 	
