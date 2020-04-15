@@ -294,6 +294,12 @@ function check_ammo_precast(spell, action, spellMap, eventArgs)
 	end
 end
 
+function job_aftercast(spell, spellMap, eventArgs)
+	if state.UseDefaultAmmo.value then
+		equip({ammo=DefaultAmmo[player.equipment.range]})
+	end
+end
+
 function job_tick()
 	if check_ammo() then return true end
 	return false

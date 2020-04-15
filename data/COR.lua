@@ -65,6 +65,8 @@ function job_setup()
 	state.CompensatorMode = M{'Never','300','1000','Always'}
 	-- Whether to automatically generate bullets.
 	state.AutoAmmoMode = M(true,'Auto Ammo Mode')
+	state.UseDefaultAmmo = M(true,'Use Default Ammo')
+
 	-- Whether to use Luzaf's Ring
 	state.LuzafRing = M(true, "Luzaf's Ring")
     -- Whether a warning has been given for low ammo
@@ -153,7 +155,8 @@ function job_aftercast(spell, spellMap, eventArgs)
 			end
 		end
         display_roll_info(spell)
-	elseif spell.type == 'CorsairShot' then
+	end
+	if state.UseDefaultAmmo.value then
 		equip({ammo=gear.RAbullet})
     end
 end
