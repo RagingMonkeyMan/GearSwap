@@ -54,6 +54,7 @@ end
 function job_setup()
 
 	state.AutoAmmoMode = M(true,'Auto Ammo Mode')
+	state.UseDefaultAmmo = M(true,'Use Default Ammo')
 	state.Buff.Barrage = buffactive.Barrage or false
 	state.Buff.Camouflage = buffactive.Camouflage or false
 	state.Buff['Double Shot'] = buffactive['Double Shot'] or false

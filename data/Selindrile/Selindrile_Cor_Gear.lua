@@ -148,11 +148,11 @@ function init_gear_sets()
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 
     sets.precast.WS['Requiescat'] = set_combine(sets.precast.WS, {head="Carmine Mask +1",ring2="Rufescent Ring",legs="Carmine Cuisses +1",feet="Carmine Greaves +1"})
-	
+
 	sets.precast.WS['Savage Blade'] = {ammo=gear.WSbullet,
         head="Lilitu Headpiece",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
         body="Laksa. Frac +3",hands="Meg. Gloves +2",ring1="Regal Ring",ring2="Ifrit Ring +1",
-        back=gear.str_wsd_jse_back,waist="Grunfeld Rope",legs=gear.herculean_wsd_legs,feet="Lanun Bottes +3"}
+        back=gear.str_wsd_jse_back,waist="Sailfi Belt +1",legs=gear.herculean_wsd_legs,feet="Lanun Bottes +3"}
 
     sets.precast.WS['Savage Blade'].Acc = {ammo=gear.WSbullet,
         head="Carmine Mask +1",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Telos Earring",
@@ -362,30 +362,30 @@ end
 
 function user_job_lockstyle()
 	if player.equipment.main == nil or player.equipment.main == 'empty' then
-		windower.chat.input('/lockstyle on')
+		windower.chat.input('/lockstyleset 001')
 	elseif res.items[item_name_to_id(player.equipment.main)].skill == 3 then --Sword in main hand.
 		if player.equipment.sub == nil or player.equipment.sub == 'empty' then --Sword/Nothing.
-				windower.chat.input('/lockstyleset 006')
+				windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].shield_size then --Sword/Shield
-				windower.chat.input('/lockstyleset 006')
+				windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Sword/Sword.
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Sword/Dagger.
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		else
-			windower.chat.input('/lockstyle on') --Catchall just in case something's weird.
+			windower.chat.input('/lockstyleset 001') --Catchall just in case something's weird.
 		end
 	elseif res.items[item_name_to_id(player.equipment.main)].skill == 2 then --Dagger in main hand.
 		if player.equipment.sub == nil or player.equipment.sub == 'empty' then --Dagger/Nothing.
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].shield_size then --Dagger/Shield
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Dagger/Sword.
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Dagger/Dagger.
-			windower.chat.input('/lockstyleset 006')
+			windower.chat.input('/lockstyleset 001')
 		else
-			windower.chat.input('/lockstyle on') --Catchall just in case something's weird.
+			windower.chat.input('/lockstyleset 001') --Catchall just in case something's weird.
 		end
 	end
 end

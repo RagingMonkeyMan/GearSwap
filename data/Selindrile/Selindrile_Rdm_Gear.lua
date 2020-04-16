@@ -101,7 +101,7 @@ function init_gear_sets()
 	sets.precast.WS['Savage Blade'] = {range=empty,ammo="Regal Gem",
 		head="Jhakri Coronal +2",neck="Caro Necklace",ear1="Moonshade Earring",ear2="Ishvara Earring",
 		body="Viti. Tabard +3",hands="Atrophy Gloves +3",ring1="Ifrit Ring +1",ring2="Rufescent Ring",
-		back=gear.wsd_jse_back,waist="Grunfeld Rope",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
+		back=gear.wsd_jse_back,waist="Sailfi Belt +1",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 		
 	sets.precast.WS['Sanguine Blade'] = {range=empty,ammo="Pemphredo Tathlum",
 		head="Pixie Hairpin +1",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Malignance Earring",
@@ -190,17 +190,19 @@ function init_gear_sets()
 		back=gear.nuke_jse_back,waist="Luminary Sash",legs="Psycloth Lappas",feet="Vitiation Boots +3"}
 		
 	sets.midcast['Enfeebling Magic'].Resistant = {main="Daybreak",sub="Ammurapi Shield",range="Kaja Bow",ammo=empty,
-		head="Viti. Chapeau +2",neck="Dls. Torque +2",ear1="Regal Earring",ear2="Malignance Earring",
+		head="Viti. Chapeau +2",neck="Dls. Torque +2",ear1="Regal Earring",ear2="Snotra Earring",
 		body="Atrophy Tabard +3",hands=gear.chironic_enfeeble_hands,ring1="Metamor. Ring +1",ring2="Stikini Ring +1",
 		back=gear.nuke_jse_back,waist="Luminary Sash",legs="Psycloth Lappas",feet="Vitiation Boots +3"}
 		
 	sets.midcast.Dispel = sets.midcast['Enfeebling Magic'].Resistant
+	sets.midcast.Silence = set_combine(sets.midcast['Enfeebling Magic'], {body="Atrophy Tabard +3"})
+	sets.midcast.Silence.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {})
 		
     sets.midcast.ElementalEnfeeble = set_combine(sets.midcast['Enfeebling Magic'], {head="Amalric Coif +1",waist="Acuity Belt +1"})
     sets.midcast.ElementalEnfeeble.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {head="Amalric Coif +1",waist="Acuity Belt +1"})
 	
-	sets.midcast.IntEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {head="Amalric Coif +1",waist="Acuity Belt +1"})
-	sets.midcast.IntEnfeebles.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {head="Amalric Coif +1",hands="Jhakri Cuffs +2",waist="Acuity Belt +1"})
+	sets.midcast.IntEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {head="Amalric Coif +1",ear2="Malignance Earring",waist="Acuity Belt +1"})
+	sets.midcast.IntEnfeebles.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {head="Amalric Coif +1",ear2="Malignance Earring",hands="Jhakri Cuffs +2",waist="Acuity Belt +1"})
 
 	sets.midcast.MndEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {})
 	sets.midcast.MndEnfeebles.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {})
@@ -486,4 +488,54 @@ function check_trust()
 		end
 	end
 	return false
+end
+
+function user_job_buff_change(buff, gain)
+	if buff:startswith('Addendum: ') or buff:endswith(' Arts') then
+		style_lock = true
+	end
+end
+
+function user_job_lockstyle()
+	if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+		if player.equipment.main == nil or player.equipment.main == 'empty' then
+			windower.chat.input('/lockstyleset 021')
+		elseif res.items[item_name_to_id(player.equipment.main)].skill == 3 then --Sword in main hand.
+			if res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Sword/Sword.
+				windower.chat.input('/lockstyleset 021')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Sword/Dagger.
+				windower.chat.input('/lockstyleset 022')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 11 then --Sword/Club.
+				windower.chat.input('/lockstyleset 022')
+			else
+				windower.chat.input('/lockstyleset 021') --Catchall
+			end
+		elseif res.items[item_name_to_id(player.equipment.main)].skill == 2 then --Dagger in main hand.
+			if res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Dagger/Sword.
+				windower.chat.input('/lockstyleset 021')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Dagger/Dagger.
+				windower.chat.input('/lockstyleset 021')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 11 then --Dagger/Club.
+				windower.chat.input('/lockstyleset 022')
+			else
+				windower.chat.input('/lockstyleset 021') --Catchall
+			end
+		elseif res.items[item_name_to_id(player.equipment.main)].skill == 11 then --Club in main hand.
+			if res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Club/Sword.
+				windower.chat.input('/lockstyleset 021')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Club/Dagger.
+				windower.chat.input('/lockstyleset 021')
+			elseif res.items[item_name_to_id(player.equipment.sub)].skill == 11 then --Club/Club.
+				windower.chat.input('/lockstyleset 022')
+			else
+				windower.chat.input('/lockstyleset 021') --Catchall
+			end
+		end
+	elseif player.sub_job == 'WHM' or state.Buff['Light Arts'] or state.Buff['Addendum: White'] then
+		windower.chat.input('/lockstyleset 030')
+	elseif player.sub_job == 'BLM' or state.Buff['Dark Arts'] or state.Buff['Addendum: Black'] then
+		windower.chat.input('/lockstyleset 031')
+	else
+		windower.chat.input('/lockstyleset 032')
+	end
 end
