@@ -148,6 +148,7 @@ function job_aftercast(spell, spellMap, eventArgs)
 			eventArgs.handled = true
 		elseif (spell.english == 'Restoring Breath' or spell.english == 'Smiting Breath' or spell.english == 'Steady Wing') then
 			petWillAct = os.clock()
+			equip(sets.SmitingBreath)
 			eventArgs.handled = true
 		end
 	end
