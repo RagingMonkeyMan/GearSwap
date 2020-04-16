@@ -59,7 +59,7 @@ function init_gear_sets()
 	sets.precast.JA['Restoring Breath'] = {back="Brigantia's Mantle"}
 	sets.precast.JA['Smiting Breath'] = {back="Brigantia's Mantle"}
 	sets.HealingBreath = {back="Brigantia's Mantle"}
-	sets.SmitingBreath = {back="Brigantia's Mantle"}
+	--sets.SmitingBreath = {back="Brigantia's Mantle"}
 
 	-- Fast cast sets for spells
 	
