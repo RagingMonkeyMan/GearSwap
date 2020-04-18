@@ -467,3 +467,11 @@ function check_trust()
 	end
 	return false
 end
+
+function user_job_lockstyle()
+	if state.Weapons.value == 'Lionheart' then
+		windower.chat.input('/lockstyleset 034')
+	else
+		windower.chat.input('/lockstyleset 033')
+	end
+end

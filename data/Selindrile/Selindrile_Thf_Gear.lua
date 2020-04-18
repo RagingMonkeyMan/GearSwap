@@ -251,7 +251,7 @@ function init_gear_sets()
 
 	sets.DayIdle = {}
 	sets.NightIdle = {}
-	sets.ExtraRegen = {hands="Turm's Mittens +1"}
+	sets.ExtraRegen = {hands="Turms Mittens +1"}
 
     -- Defense sets
 

@@ -224,6 +224,7 @@ function init_include()
 	petWillAct = 0
 	autonuke = 'Fire'
 	autows = ''
+	smartws = nil
 	rangedautows = ''
 	autowstp = 1000
 	rangedautowstp = 1000
