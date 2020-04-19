@@ -104,7 +104,7 @@ AoEAbility = S{"Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paral
 					"Sleepga","Sleepga II","Bindga","Torpid Glare","Stalking Prey","Hemocladis","Mayhem Lantern","Cyclotail","Tortoise Stomp",
 					"Recoil Dive","Seismic Tail","Megascissors","Merciless Mauling","Galumph","Seismostomp","Swooping Frenzy","Wild Horn",
 					"Stonega III","Stonega IV","Stonega V","Stoneja","Earthen Fury","Zero Hour",
-					"Waterga III","Waterga IV","Waterga V","Waterja","Tidal Wave",
+					"Waterga III","Waterga IV","Waterga V","Waterja","Tidal Wave","Spike Flail",
 					"Firaga III","Firaga IV","Firaga V","Firaja","Inferno",
 					"Blizzaga III","Blizzaga IV","Blizzaga V","Blizzaja","Level 3 Petrify",
 					"Aeroga III","Aeroga IV","Aeroga V","Aeroja","Aerial Blast","Grand Fall",
@@ -112,6 +112,6 @@ AoEAbility = S{"Frond Fatale","Atropine Spore","Deracinator","Cruel Joke","Paral
 					"Whirling Inferno","Foul Breath","Tetsudo Tremor","Leeching Current","Meteor","Venom Shower","Marine Mayhem","Tidal Guillotine",
 					"Leafstorm","Fulmination","Ecliptic Meteor","Atramentous Libations","Dragon Breath","Searing Light",
 					"Empty Thrash","View Sync","Carousel","Vanity Dive","Chilling Roar","Scream","Fatal Scream","Tepal Twist","Bloom Fouette",
-					"Petalback Spin","Potted Plant","Tiiimbeeer","Rhinowrecker","Dark Orb","Spectral Floe","Zero Hour","Interference","Beleaguerment",
+					"Petalback Spin","Potted Plant","Tiiimbeeer","Rhinowrecker","Dark Orb","Spectral Floe","Interference","Beleaguerment",
 					"Besieger's Bane","Deathly Diminuendo","Enthrall","Flank Opening","Malign Invocation","Shadow Wreck","Shah Mat","Stygian Cyclone",
 				 }
