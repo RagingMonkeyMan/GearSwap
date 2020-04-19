@@ -312,7 +312,15 @@ function check_reaction(act)
 				end
 			end
 		end
-		if state.AutoDefenseMode.value and (PhysicalAbility:contains(act_info.name) or MagicalAbility:contains(act_info.name) or ResistAbility:contains(act_info.name)) then
+		if state.AutoDefenseMode.value then
+			local ability_type = ''
+			if PhysicalAbility:contains(act_info.name) then
+				ability_type = 'Physical'
+			elseif MagicalAbility:contains(act_info.name) then
+				ability_type = 'Magical'
+			elseif ResistAbility:contains(act_info.name)
+				ability_type = 'Resist'
+			end
 			if targetsMe or (AoEAbility:contains(act_info.name) and ((otherTarget.in_alliance and targetsDistance < 10) or targetsSelf)) then
 				local defensive_action = false
 				if not midaction() then
@@ -327,12 +335,8 @@ function check_reaction(act)
 				end
 
 				if not defensive_action then
-					if PhysicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Physical' then
-						state.DefenseMode:set('Physical')
-					elseif MagicalAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Magical' then
-						state.DefenseMode:set('Magical')
-					elseif ResistAbility:contains(act_info.name) and state.DefenseMode.value ~= 'Resist' then
-						state.DefenseMode:set('Resist')
+					if state.DefenseMode.value ~= ability_type then
+						state.DefenseMode:set(ability_type)
 					end
 					send_command('gs c forceequip')
 					being_attacked = true
