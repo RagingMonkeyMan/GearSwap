@@ -313,7 +313,7 @@ function check_reaction(act)
 			end
 		end
 		if state.AutoDefenseMode.value then
-			local ability_type = ''
+			local ability_type = nil
 			if PhysicalAbility:contains(act_info.name) then
 				ability_type = 'Physical'
 			elseif MagicalAbility:contains(act_info.name) then
@@ -328,14 +328,14 @@ function check_reaction(act)
 					if player.main_job == 'DRG' and state.AutoJumpMode.value and abil_recasts[160] < latency then
 						windower.chat.input('/ja "Super Jump" <t>')
 						defensive_action = true
-					elseif (player.main_job == 'SAM' or player.sub_job == 'SAM') and PhysicalAbility:contains(act_info.name) and abil_recasts[133] < latency then
+					elseif (player.main_job == 'SAM' or player.sub_job == 'SAM') and ability_type == 'Physical' and abil_recasts[133] < latency then
 						windower.chat.input('/ja "Third Eye" <me>')
 						defensive_action = true
 					end
 				end
 
 				if not defensive_action then
-					if state.DefenseMode.value ~= ability_type then
+					if ability_type and state.DefenseMode.value ~= ability_type then
 						state.DefenseMode:set(ability_type)
 					end
 					send_command('gs c forceequip')
