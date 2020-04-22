@@ -2,7 +2,7 @@
 function user_job_setup()
     state.OffenseMode:options('Normal')
     state.CastingMode:options('Normal','Resistant','Proc','OccultAcumen','9k')
-    state.IdleMode:options('Normal', 'PDT', 'TPEat')
+    state.IdleMode:options('Normal','PDT')
 	state.HybridMode:options('Normal','PDT')
 	state.Weapons:options('None','Akademos','Khatvanga')
 
@@ -300,8 +300,6 @@ function init_gear_sets()
         body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 		
-    sets.idle.TPEat = set_combine(sets.idle, {neck="Chrys. Torque"})
-
     -- Defense sets
 
     sets.defense.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
