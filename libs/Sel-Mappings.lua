@@ -64,7 +64,7 @@ data.elements.enspell_of = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero'
 data.elements.runes_lookup = {['Lux']='Light', ['Tenebrae']='Dark', ['Ignis']='Fire', ['Gelus']='Ice', ['Flabra']='Wind',
      ['Tellus']='Earth', ['Sulpor']='Lightning', ['Unda']='Water'}
 
-data.elements.enspells_lookup = {['Enthunder']='Thunder', ['Enstone']='Earth', ['Enaero']='Wind', ['Enblizzard']='Ice',
+data.elements.enspells_lookup = {['Enthunder']='Lightning', ['Enstone']='Earth', ['Enaero']='Wind', ['Enblizzard']='Ice',
 		['Enfire']='Fire', ['Enwater']='Water', ['Enlight']='Light', ['Endark']='Dark',	
 		['Enthunder II']='Thunder', ['Enstone II']='Earth', ['Enaero II']='Wind', 
 		['Enblizzard II']='Ice', ['Enfire II']='Fire', ['Enwater II']='Water', ['Enlight II']='Light', 
