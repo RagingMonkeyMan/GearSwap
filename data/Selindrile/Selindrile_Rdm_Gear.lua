@@ -360,7 +360,7 @@ function init_gear_sets()
 	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron"}
 	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace"}
 	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace"}
-	sets.weapons.DualAeolian = {main="Malevolence",sub="Malevolence"}
+	sets.weapons.DualAeolian = {main="Tauret",sub="Daybreak"}
 	sets.weapons.DualProcDaggers = {main="Blurred Knife +1",sub="Atoyac"}
 	sets.weapons.EnspellOnly = {main="Norgish Dagger",sub="Chicken Knife II",range="Kaja Bow",ammo="Beetle Arrow"}
 	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan"}
