@@ -1,5 +1,5 @@
 --Gearsets your character will use among multiple jobs.
-
+sets.BehemothSuit = {body="Behemoth Suit +1",hands=empty,legs=empty,feet=empty}
 sets.Sheltered = {ring2="Sheltered Ring"}
 sets.Capacity = {back="Mecisto. Mantle"}
 
