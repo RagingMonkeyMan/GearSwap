@@ -486,24 +486,6 @@ function handle_forceequip(cmdParams)
 	end
 end
 
-function handle_quietdisable(cmdParams)
-	if cmdParams[1] == nil or cmdParams[1] == all then
-		disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-	else
-		disable(cmdParams[1])
-		handle_update({'auto'})
-	end
-end
-
-function handle_quietenable(cmdParams)
-	if cmdParams[1] == nil or cmdParams[1] == all then
-		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-	else
-		enable(cmdParams[1])
-		handle_update({'auto'})
-	end
-end
-
 function handle_delayedcast()
 	if delayed_cast ~= '' and delayed_target ~= '' then
 		windower.send_command(''..delayed_cast..' '..delayed_target..'')

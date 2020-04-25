@@ -144,6 +144,7 @@ function init_include()
 	state.MaintainDefense 	  = M(false, 'Maintain Defense')
 	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
 	state.NotifyBuffs		  = M(false, 'Notify Buffs')
+	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
 
 	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
@@ -1389,13 +1390,13 @@ function handle_equipping_gear(playerStatus, petStatus)
         job_handle_equipping_gear(playerStatus, eventArgs)
     end
 
-	if state.ReEquip.value and state.Weapons.value ~= 'None' then
+	if state.ReEquip.value and state.Weapons.value ~= 'None' and not state.UnlockWeapons.value then
 		if player.equipment.main ~= sets.weapons[state.Weapons.value].main or (sets.weapons[state.Weapons.value].sub and player.equipment.sub ~= sets.weapons[state.Weapons.value].sub) or (sets.weapons[state.Weapons.value].range and player.equipment.range ~= sets.weapons[state.Weapons.value].range) then
 			handle_weapons()
 		end
 	end
 
-	if player.equipment.ammo == 'empty' and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].ammo then
+	if player.equipment.ammo == 'empty' and sets.weapons[state.Weapons.value] and not state.UnlockWeapons.value and sets.weapons[state.Weapons.value].ammo then
 		enable('ammo')
 		equip({ammo=sets.weapons[state.Weapons.value].ammo})
 		disable('ammo')
@@ -1663,6 +1664,10 @@ function get_melee_set()
     if extra_user_customize_melee_set then
         meleeSet = extra_user_customize_melee_set(meleeSet)
     end
+	
+	if state.UnlockWeapons.value and sets.weapons[state.Weapons.value] then
+		meleeSet = set_combine(meleeSet, sets.weapons[state.Weapons.value])
+	end
 	
     return meleeSet
 end
@@ -2190,25 +2195,31 @@ function state_change(stateField, newValue, oldValue)
 			style_lock = true
 		end
 	
-		if ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
+		if newValue == 'None' or state.UnlockWeapons.value then
+			enable('main','sub','range','ammo')
+		elseif ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
 			while ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield) or (state.SkipProcWeapons.value and state.Weapons.value:contains('Proc')) do
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
-			handle_weapons()
+			if not state.ReEquip.value then handle_weapons() end
 		elseif sets.weapons[newValue] then
-			equip_weaponset(newValue)
-		elseif newValue == 'None' then
-			enable('main','sub','range','ammo')
+			if not state.ReEquip.value then equip_weaponset(newValue) end
 		else
 			if not sets.weapons[newValue] then
 				add_to_chat(123,"sets.weapons."..newValue.." does not exist, resetting weapon state.")
 			end
 			state.Weapons:reset()
-			if sets.weapons[state.Weapons.value] then
+			if sets.weapons[state.Weapons.value] and not state.ReEquip.value then
 				equip_weaponset(state.Weapons.value)
 			end
+		end
+	elseif stateField == 'Unlock Weapons' then
+		if newValue == true then
+			enable('main','sub','range','ammo')
+		else
+			equip_weaponset(state.Weapons.value)
 		end
 	elseif stateField == 'RngHelper' then
 		if newValue == true then
