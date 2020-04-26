@@ -1413,21 +1413,22 @@ end
 -- @param status : The current or new player status that determines what sort of gear to equip.
 function equip_gear_by_status(playerStatus, petStatus)
     if _global.debug_mode then add_to_chat(123,'Debug: Equip gear for status ['..tostring(status)..'], HP='..tostring(player.hp)) end
-
-    playerStatus = playerStatus or player.status or 'Idle'
-    -- If status not defined, treat as idle.
-    -- Be sure to check for positive HP to make sure they're not dead.
-    if (playerStatus == 'Idle' or playerStatus == '') and player.hp > 0 then
-        equip(get_idle_set(petStatus))
-    elseif playerStatus == 'Engaged' then
-		if player.target and player.target.model_size and player.target.distance < (3.2 + player.target.model_size) then
-			equip(get_melee_set(petStatus))
-		else
+	if player.hp > 0 then
+		playerStatus = playerStatus or player.status or 'Idle'
+		-- If status not defined, treat as idle.
+		-- Be sure to check for positive HP to make sure they're not dead.
+		if (playerStatus == 'Idle' or playerStatus == '') then
 			equip(get_idle_set(petStatus))
+		elseif playerStatus == 'Engaged' then
+			if player.target and player.target.model_size and player.target.distance < (5.2 + player.target.model_size) then
+				equip(get_melee_set(petStatus))
+			else
+				equip(get_idle_set(petStatus))
+			end
+		elseif playerStatus == 'Resting' then
+			equip(get_resting_set(petStatus))
 		end
-    elseif playerStatus == 'Resting' then
-        equip(get_resting_set(petStatus))
-    end
+	end
 end
 
 

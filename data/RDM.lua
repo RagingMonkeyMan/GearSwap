@@ -294,7 +294,6 @@ function job_customize_idle_set(idleSet)
 end
 
 function job_customize_melee_set(meleeSet)
-	windower.add_to_chat(7,enspell)
 	if state.Weapons.value:contains('Enspell') and enspell ~= '' then
 		local enspell_element = data.elements.enspells_lookup[enspell]
 		if sets.element.enspell and sets.element.enspell[enspell_element] then
@@ -638,6 +637,17 @@ buff_spell_lists = {
 		{Name='Barblizzard',	Buff='Barblizzard',		SpellID=61,		Reapply=false},
 		{Name='Barparalyze',	Buff='Barparalyze',		SpellID=74,		Reapply=false},
 	},
+
+	Odin = {
+		{Name='Refresh III',	Buff='Refresh',			SpellID=894,	Reapply=false},
+		{Name='Haste II',		Buff='Haste',			SpellID=511,	Reapply=false},
+		{Name='Phalanx',		Buff='Phalanx',			SpellID=106,	Reapply=false},
+		{Name='Gain-INT',		Buff='INT Boost',		SpellID=490,	Reapply=false},
+		{Name='Temper II',		Buff='Multi Strikes',	SpellID=895,	Reapply=false},
+		{Name='Enaero',			Buff='Enaero',			SpellID=102,	Reapply=false},
+		{Name='Shell V',		Buff='Shell',			SpellID=52,		Reapply=false},
+		{Name='Protect V',		Buff='Protect',			SpellID=47,		Reapply=false},
+	},
 	
 	HybridCleave = {
 		{Name='Refresh III',	Buff='Refresh',			SpellID=894,	Reapply=false},
@@ -648,5 +658,5 @@ buff_spell_lists = {
 		{Name='Temper II',		Buff='Multi Strikes',	SpellID=895,	Reapply=false},
 		{Name='Shell V',		Buff='Shell',			SpellID=52,		Reapply=false},
 		{Name='Protect V',		Buff='Protect',			SpellID=47,		Reapply=false},
-	},	
+	},
 }
