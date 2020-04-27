@@ -70,6 +70,7 @@ function job_setup()
 	last_indi = nil
 	last_geo = nil
 	blazelocked = false
+	used_ecliptic = false
 
 	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
 	state.AutoEntrust = M(false, 'AutoEntrust Mode')
@@ -369,6 +370,10 @@ end
 
 -- Function that watches pet gain and loss.
 function job_pet_change(pet, gain)
+	if not gain then
+		used_ecliptic = false
+	end
+
     if blazelocked then
 		enable('head')
 		blazelocked = false
@@ -552,8 +557,9 @@ function check_geo()
 				windower.chat.input('/ja "Full Circle" <me>')
 				tickdelay = os.clock() + 1.1
 				return true
-			elseif state.AutoGeoAbilities.value and abil_recasts[244] < latency then
+			elseif state.AutoGeoAbilities.value and abil_recasts[244] < latency and not used_ecliptic then
 				windower.chat.input('/ja "Ecliptic Attrition" <me>;')
+				used_ecliptic = true
 				return true
 			else
 				return false

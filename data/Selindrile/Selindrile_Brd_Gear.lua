@@ -2,7 +2,7 @@ function user_job_setup()
 	-- Options: Override default values
     state.OffenseMode:options('Normal','Acc')
     state.CastingMode:options('Normal','Resistant','AoE')
-    state.IdleMode:options('Normal','PDT')
+    state.IdleMode:options('Normal','NoRefresh','DT')
 	state.Weapons:options('None','Aeneas','DualWeapons','DualNaegling','DualTauret','DualNukeWeapons')
 
 	-- Adjust this if using the Terpander (new +song instrument)
@@ -204,15 +204,20 @@ function init_gear_sets()
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Flume Belt +1",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 	
-	sets.idle = {main="Terra's Staff",sub="Oneiros Grip",ammo="Staunch Tathlum +1",
+	sets.idle = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Umbra Cape",waist="Flume Belt +1",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+		
+	sets.idle.NoRefresh = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+		body="Ayanmo Corazza +2",hands="Volte Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		back="Moonlight Cape",waist="Carrier's Sash",legs="Aya. Cosciales +2",feet="Fili Cothurnes +1"}
 
-	sets.idle.PDT = {main="Terra's Staff",sub="Oneiros Grip",ammo="Staunch Tathlum +1",
-		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",waist="Flume Belt +1",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
+	sets.idle.DT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
+		head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
+		body="Ayanmo Corazza +2",hands="Volte Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		back="Moonlight Cape",waist="Flume Belt +1",legs="Aya. Cosciales +2",feet="Fili Cothurnes +1"}
 	
 	-- Defense sets
 
