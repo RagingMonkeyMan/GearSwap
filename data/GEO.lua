@@ -98,7 +98,7 @@ function job_filter_precast(spell, spellMap, eventArgs)
 	if spell.english:startswith('Geo-') and pet.isvalid then
 		eventArgs.cancel = true
 		windower.chat.input('/ja "Full Circle" <me>')
-		windower.chat.input:schedule(2,'/ma "'..spell.english..'" '..spell.target.raw..'')
+		windower.chat.input:schedule(1.3,'/ma "'..spell.english..'" '..spell.target.raw..'')
 	end
 
 end
@@ -542,6 +542,9 @@ end
 
 function check_geo()
 	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
+		if not pet.isvalid then
+			used_ecliptic = false
+		end
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if autoindi ~= 'None' and ((not player.indi) or last_indi ~= autoindi) then
 			windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
