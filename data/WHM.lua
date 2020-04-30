@@ -348,9 +348,8 @@ function job_customize_idle_set(idleSet)
 			if sets.latent_refresh then
 				idleSet = set_combine(idleSet, sets.latent_refresh)
 			end
-			
-			local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
-			if available_ws:contains(176) and sets.latent_refresh_grip then
+
+			if idleSet.main and res.items[item_name_to_id(idleSet.main)].skill == 12 and sets.latent_refresh_grip then
 				idleSet = set_combine(idleSet, sets.latent_refresh_grip)
 			end
 		end

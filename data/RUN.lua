@@ -195,7 +195,7 @@ function job_customize_idle_set(idleSet)
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
 		
-		if not main_weapon_is_one_handed() and sets.latent_refresh_grip then
+		if idleSet.main and not data.skills.one_handed_combat:contains(res.items[item_name_to_id(idleSet.main)].skill) and sets.latent_refresh_grip then
 			idleSet = set_combine(idleSet, sets.latent_refresh_grip)
 		end
     end
