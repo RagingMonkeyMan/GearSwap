@@ -2303,7 +2303,21 @@ function update_combat_form()
 end
 
 function item_name_to_id(name)
-    return (player.inventory[name] or player.wardrobe[name] or player.wardrobe2[name] or player.wardrobe3[name] or player.wardrobe4[name] or {}).id
+    return (player.inventory[name] or player.wardrobe[name] or player.wardrobe2[name] or player.wardrobe3[name] or player.wardrobe4[name] or {id=nil}).id
+end
+
+function get_item_table(item)
+	if item then
+		local item_type = type(item)
+			
+		if item_type == 'string' then
+			return res.items[item_name_to_id(item)] or nil
+		elseif item_type == 'table' then
+			return res.items[item_name_to_id(item.name)] or nil
+		end
+	else
+		return nil
+	end
 end
 
 function set_to_item(set)

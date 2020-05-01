@@ -195,8 +195,12 @@ function job_customize_idle_set(idleSet)
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
 		
-		if idleSet.main and not data.skills.one_handed_combat:contains(res.items[item_name_to_id(idleSet.main)].skill) and sets.latent_refresh_grip then
-			idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+		if (state.Weapons.value == 'None' or state.UnlockWeapons.value) and idleSet.main then
+			local main_table = get_item_table(idleSet.main)
+
+			if  main_table and (main_table.skill == 12 or main_table.skill == 4) and sets.latent_refresh_grip then
+				idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+			end
 		end
     end
 

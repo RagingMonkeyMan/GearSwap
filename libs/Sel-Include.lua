@@ -2204,7 +2204,12 @@ function state_change(stateField, newValue, oldValue)
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
-			if not state.ReEquip.value then handle_weapons() end
+			
+			if state.Weapons.value == 'None' then
+				enable('main','sub','range','ammo')
+			elseif not state.ReEquip.value then
+				handle_weapons()
+			end
 		elseif sets.weapons[newValue] then
 			if not state.ReEquip.value then equip_weaponset(newValue) end
 		else

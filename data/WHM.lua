@@ -348,16 +348,20 @@ function job_customize_idle_set(idleSet)
 			if sets.latent_refresh then
 				idleSet = set_combine(idleSet, sets.latent_refresh)
 			end
+			
+			if (state.Weapons.value == 'None' or state.UnlockWeapons.value) and idleSet.main then
+				local main_table = get_item_table(idleSet.main)
 
-			if idleSet.main and res.items[item_name_to_id(idleSet.main)].skill == 12 and sets.latent_refresh_grip then
-				idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+				if  main_table and main_table.skill == 12 and sets.latent_refresh_grip then
+					idleSet = set_combine(idleSet, sets.latent_refresh_grip)
+				end
+				
+				if player.tp > 10 and sets.TPEat then
+					idleSet = set_combine(idleSet, sets.TPEat)
+				end
 			end
 		end
-		
-		if player.tp > 10 and state.Weapons.value == 'None' and sets.TPEat then
-			idleSet = set_combine(idleSet, sets.TPEat)
-		end
-    end
+   end
 	
     return idleSet
 end

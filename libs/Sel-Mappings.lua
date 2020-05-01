@@ -696,6 +696,7 @@ data.npcs.trusts = S{'ArkEV','ArkGK','ArkHM','ArkMR','ArkTT','Abenzio','Abquhbah
 -------------------------------------------------------------------------------------------------------------------
 data.skills = {}
 data.skills.one_handed_combat = S{2,3,5,9,11} --Combat skills for one-handed-weapons.
+--data.skills.two_handed_combat = S{4,6,7,8,10,12} --Combat skills for two-handed-weapons.
 
 -------------------------------------------------------------------------------------------------------------------
 -- Stepdown Tables.

@@ -316,11 +316,7 @@ function job_customize_idle_set(idleSet)
 		if player.mpp < 51 and sets.latent_refresh then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
-		
-		if idleSet.main and not data.skills.one_handed_combat:contains(res.items[item_name_to_id(idleSet.main)].skill) and sets.latent_refresh_grip then
-			idleSet = set_combine(idleSet, sets.latent_refresh_grip)
-		end
-		
+
 		if player.hpp < 71 then
 			idleSet = set_combine(idleSet, sets.latent_regen)
 		end
