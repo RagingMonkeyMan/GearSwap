@@ -241,9 +241,9 @@ function init_gear_sets()
         back="Umbra Cape",waist="Regal Belt",legs="Assid. Pants +1",feet="Baayami Sabots"}
 
     sets.idle.PDT = {main="Malignance Pole",sub="Oneiros Grip",ammo="Staunch Tathlum +1",
-        head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Vrikodara Jupon",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
-        back="Umbra Cape",waist="Regal Belt",legs="Hagondes Pants +1",feet="Battlecast Gaiters"}
+        head="Convoker's Horn +3",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
+        body="Shomonjijoe +1",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Regal Belt",legs="Assid. Pants +1",feet="Baayami Sabots"}
 		
     -- perp costs:
     -- spirits: 7
@@ -265,7 +265,7 @@ function init_gear_sets()
     sets.idle.PDT.Avatar = {main="Malignance Pole",sub="Oneiros Grip",ammo="Sancus Sachet +1",
         head="Beckoner's Horn +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Evans Earring",
         body="Shomonjijoe +1",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-        back="Umbra Cape",waist="Regal Belt",legs="Assid. Pants +1",feet="Convo. Pigaches +3"}
+        back="Moonlight Cape",waist="Regal Belt",legs="Assid. Pants +1",feet="Convo. Pigaches +3"}
 
     sets.idle.Spirit = {main="Gridarvor",sub="Oneiros Grip",ammo="Sancus Sachet +1",
         head="Convoker's Horn +3",neck="Caller's Pendant",ear1="Etiolation Earring",ear2="Ethereal Earring",
