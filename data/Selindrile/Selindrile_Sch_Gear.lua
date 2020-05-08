@@ -99,7 +99,7 @@ function init_gear_sets()
         head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Meili Earring",ear2="Malignance Earring",
         body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Lebeche Ring",
         back="Tempered Cape +1",waist="Luminary Sash",legs="Chironic Hose",feet="Kaykaus Boots"}
-
+		
     sets.midcast.LightWeatherCure = {main="Chatoyant Staff",sub="Curatio Grip",ammo="Hasty Pinion +1",
         head="Gende. Caubeen +1",neck="Incanter's Torque",ear1="Meili Earring",ear2="Malignance Earring",
         body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Lebeche Ring",
@@ -356,6 +356,11 @@ function init_gear_sets()
 	sets.HPDown = {head="Pixie Hairpin +1",ear1="Mendicant's Earring",ear2="Evans Earring",
 		body="Zendik Robe",hands="Hieros Mittens",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
 		back="Swith Cape +1",waist="Flax Sash",legs="Shedir Seraweels",feet=""}
+		
+    sets.HPCure = {main="Daybreak",sub="Sors Shield",range=empty,ammo="Hasty Pinion +1",
+        head="Gende. Caubeen +1",neck="Unmoving Collar +1",ear1="Gifted Earring",ear2="Mendi. Earring",
+        body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Gelatinous Ring +1",ring2="Meridian Ring",
+        back="Moonlight Cape",waist="Luminary Sash",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
 	
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.buff['Light Arts'] = {} --legs="Academic's Pants +3"

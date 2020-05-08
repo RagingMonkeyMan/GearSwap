@@ -7,7 +7,7 @@ function user_job_setup()
     state.IdleMode:options('Normal', 'PDT', 'Refresh')
 	state.HybridMode:options('Normal','DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
-	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualLeadenMeleeAcc','DualKustawi','None')
+	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualAeolian','DualLeadenMeleeAcc','DualKustawi','None')
 	state.CompensatorMode:options('Always','300','1000','Never')
 
     gear.RAbullet = "Chrono Bullet"
@@ -185,7 +185,7 @@ function init_gear_sets()
         body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Archon Ring",ring2="Dingir Ring",
         back=gear.magic_wsd_jse_back,waist="Eschan Stone",legs="Laksa. Trews +3",feet="Lanun Bottes +3"}
 
-    sets.precast.WS['Aeolian Edge'] = {ammo=gear.MAbullet,
+    sets.precast.WS['Aeolian Edge'] = {ammo="Animikii Bullet",
         head=gear.herculean_nuke_head,neck="Sanctity Necklace",ear1="Crematio Earring",ear2="Friomisi Earring",
         body="Laksa. Frac +3",hands="Leyline Gloves",ring1="Metamor. Ring +1",ring2="Dingir Ring",
         back=gear.magic_wsd_jse_back,waist="Eschan Stone",legs="Laksa. Trews +3",feet="Lanun Bottes +3"}
@@ -298,6 +298,7 @@ function init_gear_sets()
 	sets.weapons.DualSavageWeapons = {main="Naegling",sub="Blurred Knife +1",range="Ataktos"}
 	sets.weapons.DualLeadenRanged = {main="Naegling",sub="Tauret",range="Fomalhaut"}
 	sets.weapons.DualLeadenMelee = {main="Naegling",sub="Atoyac",range="Fomalhaut"}
+	sets.weapons.DualAeolian = {main="Rostam",sub="Tauret",range="Ataktos"}
 	sets.weapons.DualLeadenMeleeAcc = {main="Naegling",sub="Blurred Knife +1",range="Fomalhaut"}
 	sets.weapons.DualKustawi = {main="Kustawi +1",sub="Kustawi",range="Fomalhaut"}
 	
