@@ -198,29 +198,32 @@ function job_self_command(commandArgs, eventArgs)
 
 	elseif commandArgs[1] == 'SubJobEnmity' then
 
-		if player.sub_job == 'RUN' then
+		if player.target.type ~= "MONSTER" then
+			add_to_chat(123,'Abort: You are not targeting a monster.')
+			return
+
+		elseif player.sub_job == 'RUN' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			
 			if abil_recasts[24] < latency then
 				send_command('input /ja "Swordplay" <me>')
 			end
-
+			
 		elseif player.sub_job == 'BLU' and not moving then
 			local spell_recasts = windower.ffxi.get_spell_recasts()
 					
-			if player.target.type ~= "MONSTER" then
-				add_to_chat(123,'Abort: You are not targeting a monster.')
-				return
-			elseif spell_recasts[584] < spell_latency then
-				send_command('input /ma "Sheep Song" <t>')
+			if spell_recasts[584] < spell_latency then
+				windower.chat.input('/ma "Sheep Song" <t>')
 			elseif spell_recasts[598] < spell_latency then
-				send_command('input /ma "Soporific" <t>')
+				windower.chat.input('/ma "Soporific" <t>')
 			elseif spell_recasts[605] < spell_latency then
-				send_command('input /ma "Geist Wall" <t>')
+				windower.chat.input('/ma "Geist Wall" <t>')
 			elseif spell_recasts[575] < spell_latency then
-				send_command('input /ma "Jettatura" <t>')
+				windower.chat.input('/ma "Jettatura" <t>')
+			elseif spell_recasts[537] < spell_latency then
+				windower.chat.input('/ma "Stinking Gas" <t>')
 			elseif spell_recasts[592] < spell_latency then
-				send_command('input /ma "Blank Gaze" <t>')
+				windower.chat.input('/ma "Blank Gaze" <t>')
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
 			end
@@ -234,7 +237,7 @@ function job_self_command(commandArgs, eventArgs)
 				if buffactive['Berserk'] then send_command('cancel berserk') end
 			end
 			
-			if abil_recasts[5] < latency and player.target.type == "MONSTER" then
+			if abil_recasts[5] < latency then
 				send_command('input /ja "Provoke" <t>')
 			elseif abil_recasts[2] < latency then
 				send_command('input /ja "Warcry" <me>')
