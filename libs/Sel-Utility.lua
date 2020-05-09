@@ -2473,42 +2473,55 @@ function standardize_set(set)
 	return standardized_set
 end
 
-function get_fencer_tp_bonus(WSset)
-	local fencer_tp_bonus = 0
-	local fencer_tier_bonuses = {[0]=0,[1]=200,[2]=300,[3]=400,[4]=450,[5]=500,[6]=550,[7]=600,[8]=660,[9]=730}
-	local fencer_tp_bonus = fencer_tier_bonuses[base_fencer_tier] + jp_fencer_tp_bonus
-	
-	if WSset.legs then
-		if WSset.legs == 'Boii Cuisses' then fencer_tp_bonus = fencer_tp_bonus + 50 
-		elseif WSset.legs and WSset.legs == 'Boii Cuisses +1' then fencer_tp_bonus = fencer_tp_bonus + 100
+do
+	local fencer_tier_bonuses = {[0]=0,[1]=200,[2]=300,[3]=400,[4]=450,[5]=500,[6]=550,[7]=600}
+	function get_fencer_tp_bonus(WSset)
+		local fencer_tp_bonus = 0
+		local adjusted_fencer_tier = base_fencer_tier
+		
+		if WSset.legs and WSset.legs:startswith('Boii Cuisses') then 
+			if WSset.legs:endswith('+1') then
+				adjusted_fencer_tier = adjusted_fencer_tier + 2
+			else
+				adjusted_fencer_tier = adjusted_fencer_tier + 1
+			end
 		end
-	end
-	if WSset.neck then
-		if WSset.neck:contains('War. Beads') or WSset.neck:contains("Warrior's Beads") then
-			fencer_tp_bonus = fencer_tp_bonus + 50
+		if WSset.neck and (WSset.neck:contains('War. Beads') or WSset.neck:contains("Warrior's Beads")) then
+			adjusted_fencer_tier = adjusted_fencer_tier + 1
 		end
+		if WSset.sub and WSset.sub == 'Blurred Shield +1' then
+			adjusted_fencer_tier = adjusted_fencer_tier + 1
+		end
+		if WSset.hands and WSset.hands == 'Agoge Mufflers +3' then
+			adjusted_fencer_tier = adjusted_fencer_tier + 1
+		end	
+
+		if adjusted_fencer_tier > 7 then
+			fencer_tp_bonus = 630
+		else
+			fencer_tp_bonus = fencer_tier_bonuses[adjusted_fencer_tier]
+		end
+		
+		fencer_tp_bonus = fencer_tp_bonus + jp_fencer_tp_bonus
+		return fencer_tp_bonus
 	end
-	
-	if player.equipment.sub and player.equipment.sub == 'Blurred Shield +1' then fencer_tp_bonus = fencer_tp_bonus + 50 end
-	
-	return fencer_tp_bonus
 end
 
 function get_fencer_gifts()
 	local war_fencer_gift_tiers = {[80]=50,[405]=50,[980]=60,[1805]=70}
 	local bst_fencer_gift_tiers = {[150]=50,[500]=50,[1125]=60,[2000]=70}
-	local jp_spent_on_war = windower.ffxi.get_player().job_points[string.lower(player.main_job)].jp_spent
+	local jp_spent_on_job = windower.ffxi.get_player().job_points[string.lower(player.main_job)].jp_spent
 	local tp_bonus_from_jp = 0
 	
 	if player.main_job == "WAR" then
 		for tier_threshold,tp_bonus in ipairs(war_fencer_gift_tiers) do
-			if jp_spent_on_war >= tier_threshold then
+			if jp_spent_on_job >= tier_threshold then
 				tp_bonus_from_jp = tp_bonus_from_jp + tp_bonus
 			end
 		end
 	elseif player.main_job == "BST" then
 		for tier_threshold,tp_bonus in ipairs(bst_fencer_gift_tiers) do
-			if jp_spent_on_war >= tier_threshold then
+			if jp_spent_on_job >= tier_threshold then
 				tp_bonus_from_jp = tp_bonus_from_jp + tp_bonus
 			end
 		end

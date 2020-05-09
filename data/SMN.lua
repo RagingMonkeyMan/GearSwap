@@ -103,7 +103,7 @@ function job_setup()
         ['Water']="Water Spirit", ['Wind']="Air Spirit", ['Ice']="Ice Spirit", ['Lightning']="Thunder Spirit"}
 
     magicalRagePacts = S{
-		'Inferno','Earthen Fury','Tidal Wave','Aerial Blast','Diamond Dust','Judgment Bolt','Searing Light','Howling Moon','Ruinous Omen','Clarsach Call',
+		'Inferno','Earthen Fury','Tidal Wave','Aerial Blast','Diamond Dust','Judgment Bolt','Searing Light','Howling Moon','Ruinous Omen','Clarsach Call','Impact',
 		'Fire II','Stone II','Water II','Aero II','Blizzard II','Thunder II',
 		'Fire IV','Stone IV','Water IV','Aero IV','Blizzard IV','Thunder IV',
 		'Thunderspark','Burning Strike','Meteorite','Nether Blast','Flaming Crush',
