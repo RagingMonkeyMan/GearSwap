@@ -90,7 +90,21 @@ end
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 
 function job_filtered_action(spell, eventArgs)
-
+	if spell.type == 'WeaponSkill' then
+		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
+		-- WS 112 is Double Thrust, meaning a Spear is equipped.
+		if available_ws:contains(16) then
+            if spell.english == "Savage Blade" then
+				windower.chat.input('/ws "Evisceration" '..spell.target.raw)
+                cancel_spell()
+				eventArgs.cancel = true
+            elseif spell.english == "Circle Blade" then
+                windower.chat.input('/ws "Aeolian Edge" '..spell.target.raw)
+                cancel_spell()
+				eventArgs.cancel = true
+			end
+        end
+	end
 end
 
 function job_pretarget(spell, spellMap, eventArgs)

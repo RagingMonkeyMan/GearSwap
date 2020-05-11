@@ -623,7 +623,7 @@ function optional_include(filename)
 	if path then
 		include(filename)
 	else
-		print('Missing optional file: '..filename..'')
+		print('Missing optional file: '..filename..', this is not an error, only diagnostic information.')
 		return false
     end
 end
