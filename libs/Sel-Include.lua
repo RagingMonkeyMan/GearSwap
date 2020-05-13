@@ -145,6 +145,7 @@ function init_include()
 	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
 	state.NotifyBuffs		  = M(false, 'Notify Buffs')
 	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
+	state.SelfWarp2Block 	  = M(true, 'Block Warp2 on Self')
 
 	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
@@ -947,7 +948,12 @@ function extra_default_filtered_action(spell, eventArgs)
 end
 
 function default_pretarget(spell, spellMap, eventArgs)
-
+	if spell.english == 'Warp II' and spell.target.name == player.name and state.SelfWarp2Block.value then
+		eventArgs.cancel = true
+		cancel_spell()
+		add_to_chat(123,'Blocking Warp2 on self, use Warp instead or disable the SelfWarp2Block state.')
+		return
+	end
 end
 
 function default_precast(spell, spellMap, eventArgs)
