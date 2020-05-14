@@ -1355,25 +1355,25 @@ function check_sub()
 				return true
 			end
 		end
-		if (player.main_job == 'SCH' or player.sub_job == 'SCH') and not buffactive['Refresh'] then
+		if (player.main_job == 'SCH' or player.sub_job == 'SCH') then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if (not (buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete'])) and abil_recasts[234] < latency then
-				windower.chat.input('/ja Sublimation <me>')
-				tickdelay = os.clock() + 1.5
-				return true
-			elseif buffactive['Sublimation: Complete'] and player.mpp < 70 and abil_recasts[234] < latency then
-				windower.chat.input('/ja Sublimation <me>')
-				tickdelay = os.clock() + 1.5
-				return true
-			else
-				return false
+			if abil_recasts[234] < latency then
+				if buffactive['Sublimation: Complete'] then
+					if player.mpp < 70 then
+						windower.chat.input('/ja Sublimation <me>')
+						tickdelay = os.clock() + 1.5
+						return true
+					end
+					
+				elseif not buffactive['Sublimation: Activated'] then
+					windower.chat.input('/ja Sublimation <me>')
+					tickdelay = os.clock() + 1.5
+					return true
+				end
 			end
-		else
-			return false
 		end
-	else
-		return false
 	end
+	return false
 end
 
 function check_cleanup()
