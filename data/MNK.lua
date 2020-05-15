@@ -121,7 +121,11 @@ function job_post_precast(spell, spellMap, eventArgs)
 		end
 		
         if state.Buff['Impetus'] and (spell.english == "Ascetic's Fury" or spell.english == "Victory Smite") then
-			equip(sets.buff.Impetus)
+			if sets.buff.ImpetusWS then
+				equip(sets.buff.ImpetusWS)
+			else
+				equip(sets.buff.Impetus)
+			end
 		elseif buffactive.Footwork and (spell.english == "Dragon Kick" or spell.english	 == "Tornado Kick") then
 			equip(sets.FootworkWS)
 		end
