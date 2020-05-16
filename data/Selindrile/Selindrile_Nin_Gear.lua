@@ -278,6 +278,7 @@ function init_gear_sets()
 
     sets.buff.Migawari = {} --body="Hattori Ningi +1"
     sets.buff.Doom = set_combine(sets.buff.Doom, {})
+	sets.buff.Futae = {}
     sets.buff.Yonin = {legs="Hattori Hakama +1"} --
     sets.buff.Innin = {} --head="Hattori Zukin +1"
 

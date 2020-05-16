@@ -157,6 +157,9 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if spell.element and sets.element[spell.element] then
 			equip(sets.element[spell.element])
 		end
+		if state.Buff.Futae and sets.buff.Futae then
+			equip(sets.buff.Futae)
+		end
     end
 end
 
