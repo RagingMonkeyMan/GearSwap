@@ -1025,7 +1025,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				equip(sets.Capacity)
 			end
 			
-			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] and not info.TH_WS_Exceptions:contains(spell.target.name) then
+			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] and not TH_WS_Exceptions:contains(spell.target.name) then
 				equip(sets.TreasureHunter)
 			end
 			
@@ -1150,7 +1150,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 end
 
 function default_post_pet_midcast(spell, spellMap, eventArgs)
-	if state.Capacity.value == true then
+	if state.Capacity.value then
 		equip(sets.Capacity)
 	end
 
