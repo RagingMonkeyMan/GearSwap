@@ -1025,7 +1025,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				equip(sets.Capacity)
 			end
 			
-			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] then
+			if state.TreasureMode.value ~= 'None' and not info.tagged_mobs[spell.target.id] and not info.TH_WS_Exceptions:contains(spell.target.name) then
 				equip(sets.TreasureHunter)
 			end
 			

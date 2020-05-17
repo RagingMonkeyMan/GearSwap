@@ -106,8 +106,9 @@ data.elements.rune_of = {['Light']='Lux', ['Dark']='Tenebrae', ['Fire']='Ignis',
      ['Earth']='Tellus', ['Lightning']='Sulpor', ['Water']='Unda'}
  
 
---Cursna actions that one shouldn't replace when replacing actions for cursna.
+--Exceptions for specific actions, placed here to be easily modifiable.
 cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water','Light Arts','Addendum: White'}
+TH_WS_exceptions = S{'Corporal Tombstone','Lithicthrower Image','Incarnation Icon','Impish Statue'}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Mappings for weaponskills
