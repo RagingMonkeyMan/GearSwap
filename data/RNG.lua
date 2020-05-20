@@ -64,7 +64,48 @@ function job_setup()
 	autows = "Last Stand"
 	rangedautows = "Last Stand"
 	autofood = 'Soy Ramen'
+	statusammo = nil
 	ammostock = 198
+	
+	WeaponType =  {['Yoichinoyumi'] = "Bow",
+				   ['Gandiva'] = "Bow",
+                   ['Fail-Not'] = "Bow",
+                   ['Accipiter'] = "Bow",
+                   ['Annihilator'] = "Gun",
+                   ['Armageddon'] = "Gun",
+                   ['Fomalhaut'] = "Gun",
+				   ['Ataktos'] = "Gun",
+                   ['Gastraphetes'] = "Crossbow",
+                   }
+	
+	DefaultAmmo = {
+		['Bow']  = {['Default'] = "Chrono Arrow",
+					['WS'] = "Chrono Arrow",
+					['Acc'] = "Chrono Arrow",
+					['Magic'] = "Chrono Arrow",
+					['MagicAcc'] = "Chrono Arrow",
+					['Unlimited'] = "Hauksbok Arrow",
+					['MagicUnlimited'] ="Hauksbok Arrow",
+					['MagicAccUnlimited'] ="Hauksbok Arrow"},
+					
+		['Gun']  = {['Default'] = "Chrono Bullet",
+					['WS'] = "Chrono Bullet",
+					['Acc'] = "Eradicating Bullet",
+					['Magic'] = "Devastating Bullet",
+					['MagicAcc'] = "Devastating Bullet",
+					['Unlimited'] = "Hauksbok Bullet",
+					['MagicUnlimited'] = "Hauksbok Bullet",
+					['MagicAccUnlimited'] ="Animikii Bullet"},
+					
+		['Crossbow'] = {['Default'] = "Quelling Bolt",
+						['WS'] = "Quelling Bolt",
+						['Acc'] = "Quelling Bolt",
+						['Magic'] = "Quelling Bolt",
+						['MagicAcc'] = "Quelling Bolt",
+						['Unlimited'] = "Hauksbok Bolt",
+						['MagicUnlimited'] = "Hauksbok Bolt",
+						['MagicAccUnlimited'] ="Hauksbok Bolt"}
+	}
 	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","RngHelper","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","RangedMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
@@ -88,15 +129,17 @@ function job_precast(spell, spellMap, eventArgs)
 		state.CombatWeapon:set(player.equipment.range)
 	end
 
-	if spell.action_type == 'Ranged Attack' or
-	  (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) then
+	if spell.action_type == 'Ranged Attack' or spell.name == 'Shadowbind' or (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) then
 		check_ammo_precast(spell, action, spellMap, eventArgs)
 	end
-
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' then
+		if not (spell.skill == 'Marksmanship' or spell.skill == 'Archery') and WeaponType[player.equipment.range] == 'Bow' and item_available('Hauksbok Arrow') then
+			equip({ammo="Hauksbok Arrow"})
+		end
+	
 		local WSset = standardize_set(get_precast_set(spell, spellMap))
 		local wsacc = check_ws_acc()
 		
@@ -127,25 +170,38 @@ function job_post_precast(spell, spellMap, eventArgs)
 				end
 			end
 		end
-	elseif spell.action_type == 'Ranged Attack' and buffactive.Flurry then
-		if lastflurry == 1 then
-			if sets.precast.RA[state.Weapons.value] and sets.precast.RA[state.Weapons.value].Flurry then
-				equip(sets.precast.RA[state.Weapons.value].Flurry)
-			elseif sets.precast.RA.Flurry then
-				equip(sets.precast.RA.Flurry)
+	elseif spell.action_type == 'Ranged Attack' then
+		if buffactive.Flurry then
+			if lastflurry == 1 then
+				if sets.precast.RA[state.Weapons.value] and sets.precast.RA[state.Weapons.value].Flurry then
+					equip(sets.precast.RA[state.Weapons.value].Flurry)
+				elseif sets.precast.RA.Flurry then
+					equip(sets.precast.RA.Flurry)
+				end
+			elseif lastflurry == 2 then
+				if sets.precast.RA[state.Weapons.value] and sets.precast.RA[state.Weapons.value].Flurry2 then
+					equip(sets.precast.RA[state.Weapons.value].Flurry2)
+				elseif sets.precast.RA.Flurry2 then
+					equip(sets.precast.RA.Flurry2)
+				end
 			end
-		elseif lastflurry == 2 then
-			if sets.precast.RA[state.Weapons.value] and sets.precast.RA[state.Weapons.value].Flurry2 then
-				equip(sets.precast.RA[state.Weapons.value].Flurry2)
-			elseif sets.precast.RA.Flurry2 then
-				equip(sets.precast.RA.Flurry2)
-			end
+		end
+
+		if statusammo then
+			equip({ammo=statusammo})
 		end
 	end
 end
 
 function job_self_command(commandArgs, eventArgs)
-
+    if commandArgs[1]:lower() == 'statusammo' then
+		if commandArgs[2] then
+			statusammo = table.concat(commandArgs, ' ', 2)
+		else
+			statusammo = nil
+		end
+		if state.DisplayMode.value then update_job_states()	end
+	end
 end
 
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
@@ -246,58 +302,80 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-
 -- Check for proper ammo when shooting or weaponskilling
 function check_ammo_precast(spell, action, spellMap, eventArgs)
 	-- Filter ammo checks depending on Unlimited Shot
-	if state.Buff['Unlimited Shot'] then
-		if player.equipment.ammo ~= U_Shot_Ammo[player.equipment.range] then
-			if player.inventory[U_Shot_Ammo[player.equipment.range]] or player.wardrobe[U_Shot_Ammo[player.equipment.range]] or player.wardrobe2[U_Shot_Ammo[player.equipment.range]] or player.wardrobe3[U_Shot_Ammo[player.equipment.range]] or player.wardrobe4[U_Shot_Ammo[player.equipment.range]] then
-				add_to_chat(122,"Unlimited Shot active. Using custom ammo.")
-				equip({ammo=U_Shot_Ammo[player.equipment.range]})
-			elseif player.inventory[DefaultAmmo[player.equipment.range]] or player.wardrobe[DefaultAmmo[player.equipment.range]] or player.wardrobe2[DefaultAmmo[player.equipment.range]] or player.wardrobe3[DefaultAmmo[player.equipment.range]] or player.wardrobe4[DefaultAmmo[player.equipment.range]] then
-				add_to_chat(122,"Unlimited Shot active but no custom ammo available. Using default ammo.")
-				equip({ammo=DefaultAmmo[player.equipment.range]})
+	if state.Buff['Unlimited Shot'] and spell.type == 'WeaponSkill' then
+		if data.weaponskills.elemental:contains(spell.name) then
+			if check_ws_acc():contains('Acc') then
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].MagicAccUnlimited})
 			else
-				add_to_chat(122,"Unlimited Shot active but unable to find any custom or default ammo.")
-			end
-		end
-	else
-		if player.equipment.ammo == U_Shot_Ammo[player.equipment.range] and player.equipment.ammo ~= DefaultAmmo[player.equipment.range] then
-			if DefaultAmmo[player.equipment.range] then
-				if player.inventory[DefaultAmmo[player.equipment.range]] or player.wardrobe[DefaultAmmo[player.equipment.range]] or player.wardrobe2[DefaultAmmo[player.equipment.range]] or player.wardrobe3[DefaultAmmo[player.equipment.range]] or player.wardrobe4[DefaultAmmo[player.equipment.range]] then
-					add_to_chat(122,"Unlimited Shot not active. Using Default Ammo")
-					equip({ammo=DefaultAmmo[player.equipment.range]})
-				else
-					add_to_chat(122,"Default ammo unavailable.  Removing Unlimited Shot ammo.")
-					equip({ammo=empty})
-				end
-			else
-				add_to_chat(122,"Unable to determine default ammo for current weapon.  Removing Unlimited Shot ammo.")
-				equip({ammo=empty})
-			end
-		elseif player.equipment.ammo == 'empty' then
-			if DefaultAmmo[player.equipment.range] then
-				if player.inventory[DefaultAmmo[player.equipment.range]] or player.wardrobe[DefaultAmmo[player.equipment.range]] or player.wardrobe2[DefaultAmmo[player.equipment.range]] or player.wardrobe3[DefaultAmmo[player.equipment.range]] or player.wardrobe4[DefaultAmmo[player.equipment.range]] then
-					add_to_chat(122,"Using Default Ammo")
-					equip({ammo=DefaultAmmo[player.equipment.range]})
-				else
-					add_to_chat(122,"Default ammo unavailable.  Leaving empty.")
-				end
-			else
-				add_to_chat(122,"Unable to determine default ammo for current weapon.  Leaving empty.")
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].MagicUnlimited})
 			end
 		else
-			if count_available_ammo(player.equipment.ammo) < 15 then
-				add_to_chat(122,"Ammo '"..player.equipment.ammo.."' running low: ("..count_available_ammo(player.equipment.ammo)..") remaining.")
+			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Unlimited})
+		end
+		return
+	elseif player.equipment.ammo:startswith('Hauksbok') or player.equipment.ammo == "Animikii Bullet" then
+		cancel_spell()
+		eventArgs.cancel = true
+		enable('ammo')
+		if sets.weapons[state.Weapons.value].ammo and item_available(sets.weapons[state.Weapons.value].ammo) then
+			equip({ammo=sets.weapons[state.Weapons.value].ammo})
+			disable('ammo')
+		elseif item_available(DefaultAmmo[WeaponType[player.equipment.range]].Default) then
+			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Default})
+		else
+			equip({ammo=empty})
+		end
+		add_to_chat(123,"Abort: Don't shoot your good ammo!")
+		return
+	elseif not state.UseDefaultAmmo.value then
+	elseif spell.name == 'Shadowbind' then
+		equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Default})
+	elseif spell.action_type == 'Ranged Attack' then
+		if state.RangedMode.value:contains('Acc') then
+			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Acc})
+		else
+			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Default})
+		end
+	elseif spell.type == 'WeaponSkill' then
+		if data.weaponskills.elemental:contains(spell.name) then
+			if check_ws_acc():contains('Acc') then
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].MagicAcc})
+			else
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Magic})
 			end
+		else
+			if check_ws_acc():contains('Acc') then
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Acc})
+			else
+				equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].WS})
+			end			
+		end
+			
+	end
+
+	if count_available_ammo(player.equipment.ammo) < 15 then
+		add_to_chat(122,"Ammo '"..player.equipment.ammo.."' running low: ("..count_available_ammo(player.equipment.ammo)..") remaining.")
+	end
+end
+
+function job_midcast(spell, action, spellMap, eventArgs)
+	--Probably overkill but better safe than sorry.
+	if spell.action_type == 'Ranged Attack' then
+		if player.equipment.ammo:startswith('Hauksbok') or player.equipment.ammo == "Animikii Bullet" then
+			enable('ammo')
+			equip({ammo=empty})
+			add_to_chat(123,"Abort Ranged Attack: Don't shoot your good ammo!")
+			return
 		end
 	end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
-	if state.UseDefaultAmmo.value and player.equipment.range and DefaultAmmo[player.equipment.range] then
-		equip({ammo=DefaultAmmo[player.equipment.range]})
+	if state.UseDefaultAmmo.value and player.equipment.range and DefaultAmmo[WeaponType[player.equipment.range]].Default then
+		equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Default})
 	end
 end
 

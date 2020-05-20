@@ -267,6 +267,11 @@ function update_job_states()
 				stateBox:append(string.format("%sAuto Buff: %s%s", clr.w, clr.h, state.AutoBuffMode.value))
 				stateBox:append(spc)
 			end
+		elseif n == 'RangedMode' then
+			stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+				if statusammo then
+					stateBox:append('Ammo: '..statusammo..'    ')
+				end
 		elseif n == 'OffenseMode' then
 			if state.DefenseMode.value ~= 'None' then
 				stateBox:append(string.format("%sDefense Active: ", clr.w))
