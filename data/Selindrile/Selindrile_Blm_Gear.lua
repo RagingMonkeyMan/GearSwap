@@ -3,7 +3,7 @@ function user_job_setup()
 	state.CastingMode:options('Normal','Resistant','Fodder','Proc','OccultAcumen')
 	state.OffenseMode:options('Normal')
 	state.IdleMode:options('Normal','PDT','DTHippo')
-	state.Weapons:options('None','NukeWeapons','Khatvanga','Malevolence')
+	state.Weapons:options('None','BurstWeapons','Khatvanga','Lathi')
 
 	gear.obi_cure_waist = "Witful Belt"
 	gear.obi_low_nuke_waist = "Sekhmet Corset"
@@ -44,9 +44,9 @@ function init_gear_sets()
     --------------------------------------
 	
 	-- Weapons sets
-	sets.weapons.NukeWeapons = {main=gear.grioavolr_nuke_staff,sub="Enki Strap"}
+	sets.weapons.BurstWeapons = {main=gear.grioavolr_nuke_staff,sub="Enki Strap"}
+	sets.weapons.Lathi = {main="Lathi",sub="Enki Strap"}
 	sets.weapons.Khatvanga = {main="Khatvanga",sub="Bloodrain Strap"}
-	sets.weapons.Malevolence = {main="Malevolence",sub="Ammurapi Shield"}
 	
     sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}	
@@ -240,9 +240,9 @@ function init_gear_sets()
         body=gear.merlinic_nuke_body,hands="Mallquis Cuffs +2",ring1="Freke Ring",ring2="Shiva Ring +1",
         back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Merlinic Shalwar",feet=gear.merlinic_nuke_feet}
 
-	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {ammo="Pemphredo Tathlum",ear1="Malignance Earring",ear2="Regal Earring",hands="Amalric Gages +1",ring2="Metamor. Ring +1",back=gear.nuke_jse_back,feet=gear.merlinic_nuke_feet})
+	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {main="Lathi",sub="Enki Strap",ammo="Pemphredo Tathlum",ear1="Malignance Earring",ear2="Regal Earring",hands="Amalric Gages +1",ring2="Metamor. Ring +1",back=gear.nuke_jse_back,feet=gear.merlinic_nuke_feet})
 	sets.midcast['Elemental Magic'].HighTierNuke.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {ammo="Pemphredo Tathlum",ear1="Malignance Earring",ear2="Regal Earring",hands="Amalric Gages +1",ring2="Metamor. Ring +1",back=gear.nuke_jse_back})
-	sets.midcast['Elemental Magic'].HighTierNuke.Fodder = set_combine(sets.midcast['Elemental Magic'].Fodder, {ammo="Pemphredo Tathlum",ear1="Malignance Earring",ear2="Regal Earring",hands="Amalric Gages +1",ring2="Metamor. Ring +1",back=gear.nuke_jse_back,feet=gear.merlinic_nuke_feet})
+	sets.midcast['Elemental Magic'].HighTierNuke.Fodder = set_combine(sets.midcast['Elemental Magic'].Fodder, {main="Lathi",sub="Enki Strap",ammo="Pemphredo Tathlum",ear1="Malignance Earring",ear2="Regal Earring",hands="Amalric Gages +1",ring2="Metamor. Ring +1",back=gear.nuke_jse_back,feet=gear.merlinic_nuke_feet})
 	
 	sets.midcast.Helix = sets.midcast['Elemental Magic']
 	sets.midcast.Helix.Resistant = sets.midcast['Elemental Magic'].Resistant
