@@ -364,15 +364,15 @@ function update_melee_groups()
 end
 
 function check_stance()
-	if state.Stance.value ~= 'None' and not (state.Buff.Innin or state.Buff.Yonin) and player.in_combat then
+	if state.Stance.value ~= 'None' and player.in_combat then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		
-		if state.Stance.value == 'Innin' and abil_recasts[147] < latency then
+		(state.Buff.Innin or )
+		if state.Stance.value == 'Innin' and not state.Buff.Yonin and abil_recasts[147] < latency then
 			windower.chat.input('/ja "Innin" <me>')
 			tickdelay = os.clock() + 1.1
 			return true
-		elseif state.Stance.value == 'Yonin' and abil_recasts[146] < latency then
+		elseif state.Stance.value == 'Yonin' and not state.Buff.Innin and abil_recasts[146] < latency then
 			windower.chat.input('/ja "Yonin" <me>')
 			tickdelay = os.clock() + 1.1
 			return true
