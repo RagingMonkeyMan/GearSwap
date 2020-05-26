@@ -367,7 +367,7 @@ function check_stance()
 	if state.Stance.value ~= 'None' and player.in_combat then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		(state.Buff.Innin or )
+
 		if state.Stance.value == 'Innin' and not state.Buff.Yonin and abil_recasts[147] < latency then
 			windower.chat.input('/ja "Innin" <me>')
 			tickdelay = os.clock() + 1.1
