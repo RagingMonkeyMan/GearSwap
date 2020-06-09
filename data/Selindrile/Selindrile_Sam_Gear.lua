@@ -126,7 +126,10 @@ function init_gear_sets()
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back=gear.ws_jse_back,waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 		
-    sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {head=gear.valorous_magical_wsd_head,ear1="Friomisi Earring",body="Found. Breastplate",hands="Founder's Gauntlets",feet="Founder's Greaves"})
+    sets.precast.WS['Tachi: Jinpu'] = {ammo="Knobkierrie",
+        head=gear.valorous_magical_wsd_head,neck="Fotia Gorget",ear1="Friomisi Earring",ear2="Moonshade Earring",
+        body="Sacro Breastplate",hands="Founder's Gauntlets",ring1="Niqmaddu Ring",ring2="Regal Ring",
+        back=gear.ws_jse_back,waist="Eschan Stone",legs="Wakido Haidate +3",feet="Founder's Greaves"}
 
     sets.precast.WS['Apex Arrow'] = {
         head="Ynglinga Sallet",neck="Fotia Gorget",ear1="Clearview Earring",ear2="Moonshade Earring",
