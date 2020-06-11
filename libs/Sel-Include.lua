@@ -837,7 +837,7 @@ function precast(spell)
 end
 
 function midcast(spell)
-	if (spell.type == 'WeaponSkill' or spell.type == 'JobAbility') then return end
+	if spell.type == 'WeaponSkill' or spell.type == 'JobAbility' then return end
 	handle_actions(spell, 'midcast')
 end
 
@@ -1238,9 +1238,11 @@ function default_aftercast(spell, spellMap, eventArgs)
 end
 
 function default_pet_midcast(spell, spellMap, eventArgs)
+	--[[Handling this in aftercast now, commenting out to prevent duplication.
 	if not (type(spell.type) == 'string' and (spell.type:startswith('BloodPact') or spell.type == 'Monster')) then
 		equip(get_pet_midcast_set(spell, spellMap))
 	end
+	]]
 end
 
 function default_pet_aftercast(spell, spellMap, eventArgs)

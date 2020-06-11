@@ -150,7 +150,7 @@ end
 
 function job_aftercast(spell, spellMap, eventArgs)
 	if pet.isvalid then
-		if (spell.action_type == 'Magic' and player.hpp < Breath_HPP) or spell.english == 'Steady Wing' then
+		if (spell.action_type == 'Magic' and player.hpp < Breath_HPP) or spell.english == 'Steady Wing' or spell.english == 'Restoring Breath' then
 			petWillAct = os.clock()
 			equip(sets.HealingBreath)
 			eventArgs.handled = true

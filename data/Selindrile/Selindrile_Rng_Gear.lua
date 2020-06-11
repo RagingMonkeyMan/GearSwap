@@ -1,7 +1,7 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_job_setup()
 	state.OffenseMode:options('Normal','Acc')
-	state.HybridMode:options('Normal','DT')
+	state.HybridMode:options('Normal','DTLite','DT')
 	state.RangedMode:options('Normal','Acc','Fodder')
 	state.WeaponskillMode:options('Match','Normal', 'Acc')
 	state.IdleMode:options('Normal', 'PDT')
@@ -231,13 +231,18 @@ function init_gear_sets()
     -- Normal melee group
     sets.engaged = {
 		head="Dampening Tam",neck="Iskur Gorget",ear1="Cessance Earring",ear2="Brutal Earring",
-		body="Meg. Cuirie +2",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
+		body="Malignance Tabard",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
 		back=gear.tp_ranger_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
     
     sets.engaged.Acc = {
 		head="Dampening Tam",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Telos Earring",
 		body="Malignance Tabard",hands="Adhemar Wrist. +1",ring1="Epona's Ring",ring2="Petrov Ring",
 		back=gear.tp_ranger_jse_back,waist="Olseni Belt",legs="Samnuha Tights",feet="Malignance Boots"}
+
+    sets.engaged.DTLite = {
+		head="Malignance Chapeau",neck="Iskur Gorget",ear1="Cessance Earring",ear2="Brutal Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Epona's Ring",ring2="Petrov Ring",
+		back=gear.tp_ranger_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 		
     sets.engaged.DT = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",

@@ -219,6 +219,14 @@ function job_setup()
 	autows = 'Cloudsplitter'
 	autofood = 'Akamochi'
 
+	base_chargetimer = 30
+
+	if 	player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 100 then
+		base_chargetimer = base_chargetimer - 5
+	end
+	
+	base_chargetimer = base_chargetimer - (2 * windower.ffxi.get_player().merits.sic_recast)
+
 	update_pet_groups()
 	update_melee_groups()
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","PetMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
@@ -359,6 +367,28 @@ function job_post_precast(spell, spellMap, eventArgs)
 end
 
 function job_pet_midcast(spell, spellMap, eventArgs)
+
+end
+
+function job_post_pet_midcast(spell, spellMap, eventArgs)
+
+end
+
+function job_pet_aftercast(spell, action, spellMap, eventArgs)
+	windower.add_to_chat:schedule(.5,204,'~~~Current Ready Charges Available: ['..get_current_ready_count()..']~~~')
+end
+
+-- Return true if we handled the aftercast work.  Otherwise it will fall back
+-- to the general aftercast() code in Mote-Include.
+function job_midcast(spell, spellMap, eventArgs)
+
+end
+
+function job_aftercast(spell, spellMap, eventArgs)
+	if spell.type == 'Monster' then
+		equip(get_pet_midcast_set(spell, spellMap))
+		petWillAct = os.clock()
+		
         if magic_ready_moves:contains(spell.english) then
 			if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
 				equip(sets.midcast.Pet.MagicReady[state.OffenseMode.value])
@@ -372,35 +402,20 @@ function job_pet_midcast(spell, spellMap, eventArgs)
 				equip(sets.midcast.Pet.WS)
 			end
         end
-
         -- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
         if tp_based_ready_moves:contains(spell.english) then
 			if pet.tp < 1900 or (PetJob ~= 'Warrior' and pet.tp < 2400) then
 				equip(sets.midcast.Pet.TPBonus)
 			end
         end
-end
-
-function job_post_pet_midcast(spell, spellMap, eventArgs)
-	if state.Buff["Unleash"] and UnleashLock and not UnleashLocked then
-		UnleashLocked = true
-		disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		add_to_chat(217, "Unleash is on, locking your current Ready set.")
-	end
-end
-
-function job_pet_aftercast(spell, action, spellMap, eventArgs)
-	send_command('@wait 1;gs c showcharge')
-end
-
--- Return true if we handled the aftercast work.  Otherwise it will fall back
--- to the general aftercast() code in Mote-Include.
-function job_aftercast(spell, spellMap, eventArgs)
-	if type(spell.type) == 'string' and spell.type == 'Monster' and state.DefenseMode.value == 'None' then
-		equip(get_pet_midcast_set(spell, spellMap))
-		petWillAct = os.clock()
+		
+		if state.Buff["Unleash"] and UnleashLock and not UnleashLocked then
+			UnleashLocked = true
+			disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+			add_to_chat(217, "Unleash is on, locking your current Ready set.")
+		end
 		eventArgs.handled = true
-	elseif pet_midaction() or spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
+	elseif spell.english == "Bestial Loyalty" or spell.english == 'Call Beast' then
 		eventArgs.handled = true
 	end
 end
@@ -531,30 +546,29 @@ function update_melee_groups()
 end
 
 function job_self_command(commandArgs, eventArgs)
+	if commandArgs[1]:lower() == 'showcharge' then
+		add_to_chat(204, '~~~Current Ready Charges Available: ['..get_current_ready_count()..']~~~')
 
-		if commandArgs[1]:lower() == 'showcharge' then
-			add_to_chat(204, '~~~Current Ready Charges Available: ['..get_current_ready_count()..']~~~')
+	elseif commandArgs[1]:lower() == 'displaypetinfo' then
+		add_to_chat(8,''..state.JugMode.value..': '..pet_info[state.JugMode.value]..'')
+	elseif commandArgs[1]:lower() == 'unleashlock' then
+		if UnleashLock == true then
+			UnleashLock = false
+			add_to_chat(122, "Unleash no longer locks gear.")
+		elseif UnleashLock == false then
+			UnleashLock = true
+			add_to_chat(122, "Unleash now locks gear.")
+		end
 
-		elseif commandArgs[1]:lower() == 'displaypetinfo' then
-			add_to_chat(8,''..state.JugMode.value..': '..pet_info[state.JugMode.value]..'')
-		elseif commandArgs[1]:lower() == 'unleashlock' then
-			if UnleashLock == true then
-				UnleashLock = false
-				add_to_chat(122, "Unleash no longer locks gear.")
-			elseif UnleashLock == false then
-				UnleashLock = true
-				add_to_chat(122, "Unleash now locks gear.")
+	elseif commandArgs[1]:lower() == 'ready' and pet.isvalid then
+
+			if pet.status == "Idle" and player.target.type == "MONSTER" then
+				windower.chat.input('/pet Fight <t>')
+			else
+				handle_ready(commandArgs)
 			end
 
-		elseif commandArgs[1]:lower() == 'ready' and pet.isvalid then
-
-				if pet.status == "Idle" and player.target.type == "MONSTER" then
-					windower.chat.input('/pet Fight <t>')
-				else
-					handle_ready(commandArgs)
-				end
-
-		end
+	end
 end
 
 function job_tick()
@@ -632,7 +646,7 @@ function get_current_ready_count()
 	-- The *# is your current recharge timer.
     local fullRechargeTime = 3*ReadyChargeTimer
 
-    local currentCharges = math.floor((maxCharges - maxCharges * readyRecast / fullRechargeTime) + latency)
+    local currentCharges = math.floor(maxCharges - maxCharges * readyRecast / fullRechargeTime)
 
     return currentCharges
 end
@@ -683,32 +697,26 @@ function handle_ready(commandArgs)
 end
 
 function get_ready_charge_timer()
-	local chargetimer = 25
-
-	if 	player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 100 then
-		chargetimer = chargetimer - 5
-	end
-
+	local charge_timer = base_chargetimer
 	if state.Weapons.Value == 'None' then
-		if can_dual_wield then
-			if sets.midcast.Pet.ReadyRecastDW.sub and sets.midcast.Pet.ReadyRecastDW.sub == "Charmer's Merlin" then
-				chargetimer = chargetimer - 5
-			end
-
+		if can_dual_wield and sets.midcast.Pet.ReadyRecastDW.sub and sets.midcast.Pet.ReadyRecastDW.sub == "Charmer's Merlin" then
+				charge_timer = charge_timer - 5
 		elseif sets.midcast.Pet.ReadyRecast.main and sets.midcast.Pet.ReadyRecast.main == "Charmer's Merlin" then
-			chargetimer = chargetimer - 5
+			charge_timer = charge_timer - 5
 		end
+	elseif sets.weapons[state.Weapons.Value].main == "Charmer's Merlin" or sets.weapons[state.Weapons.Value].main == "Charmer's Merlin" then
+		charge_timer = charge_timer - 5
 	end
 	
-	if can_dual_wield then
-		if sets.midcast.Pet.ReadyRecastDW.legs and sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" then
-			chargetimer = chargetimer - 5
-		end
-	else
-		if sets.midcast.Pet.ReadyRecast.legs and sets.midcast.Pet.ReadyRecast.legs == "Desultor Tassets" then
-			chargetimer = chargetimer - 5
-		end	
+	if can_dual_wield and sets.midcast.Pet.ReadyRecastDW.legs and sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" then
+			charge_timer = charge_timer - 5
+	elseif sets.midcast.Pet.ReadyRecast.legs and sets.midcast.Pet.ReadyRecast.legs == "Desultor Tassets" then
+			charge_timer = charge_timer - 5
 	end
-
-	return chargetimer
+	
+	if charge_timer < 10 then
+		return 10
+	else
+		return charge_timer
+	end
 end

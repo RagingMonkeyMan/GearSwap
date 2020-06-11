@@ -148,7 +148,7 @@ function check_reaction(act)
 					['Category']     = 0x02,
 				}))
 				
-			elseif player.status == 'Idle' and not (being_attacked or midaction() or pet_midaction()) then
+			elseif player.status == 'Idle' and not (being_attacked or midaction() or pet_midaction() or (petWillAct + 2) > os.clock()) then
 				windower.send_command('gs c forceequip')
 			end
 			being_attacked = true
@@ -218,8 +218,8 @@ function check_reaction(act)
 		else
 			windower.chat.input('/pcmd leave')
 		end
-
-	elseif midaction() or curact.category ~= 8 or state.DefenseMode.value ~= 'None' then
+		return
+	elseif midaction() or curact.category ~= 8 or state.DefenseMode.value ~= 'None' or ((petWillAct + 2) > os.clock()) then
 			
 	elseif targetsMe then
 		if CureAbility:contains(act_info.name) and player.hpp < 75 then
