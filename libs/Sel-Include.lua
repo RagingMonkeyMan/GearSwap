@@ -475,7 +475,7 @@ function init_include()
 		
 		gearswap.refresh_globals(false)
 		
-		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
+		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (delayed_cast ~= '' or check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
 			if pre_tick then
 				if pre_tick() then return end
 			end
