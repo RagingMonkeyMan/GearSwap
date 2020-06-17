@@ -282,7 +282,7 @@ function job_self_command(commandArgs, eventArgs)
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
 			end
-					
+
 		elseif player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			

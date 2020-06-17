@@ -1349,20 +1349,20 @@ function cleanup_pet_aftercast(spell, spellMap, eventArgs)
 end
 
 function pre_tick()
+	if check_doomed() then return true end
 	if check_trust() then return true end
 	if check_rune() then return true end
+	if check_shadows() then return true end
+	if check_use_item() then return true end
 	return false
 end
 
 function default_tick()
 	check_lockstyle()
-	if check_doomed() then return true end
-	if check_shadows() then return true end
-	if check_use_item() then return true end
 	if check_sub() then return true end
 	if check_food() then return true end
-	if check_ws() then return true end
 	if check_samba() then return true end
+	if check_ws() then return true end
 	if check_cpring_buff() then return true end
 	if check_cleanup() then return true end
 	if check_nuke() then return true end

@@ -227,7 +227,31 @@ function job_self_command(commandArgs, eventArgs)
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
 			end
-					
+
+		elseif player.sub_job == 'DRK' then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+			local spell_recasts = windower.ffxi.get_spell_recasts()
+			
+			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Souleater'] then
+				send_command('cancel souleater')
+			end
+			
+			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Last Resort'] then
+				send_command('cancel last resort')
+			end
+			
+			if spell_recasts[252] < spell_latency and not silent_check_silence() then
+				windower.chat.input('/ma "Stun" <t>')
+			elseif abil_recasts[85] < latency then
+				windower.chat.input('/ja "Souleater" <me>')
+			elseif abil_recasts[87] < latency then
+				windower.chat.input('/ja "Last Resort" <me>')
+			elseif abil_recasts[86] < latency then
+				windower.chat.input('/ja "Arcane Circle" <me>')
+			elseif not check_auto_tank_ws() then
+				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
+			end
+
 		elseif player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			
