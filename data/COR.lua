@@ -192,7 +192,7 @@ end
 function job_buff_change(buff, gain)
 	if player.equipment.Ranged and buff:contains('Aftermath') then
 		classes.CustomRangedGroups:clear()
-		if (player.equipment.Ranged == 'Death Penalty' and buffactive['Aftermath: Lv.3']) or (player.equipment.Ranged == 'Armageddon' and (buffactive['Aftermath: Lv.1'] or buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.3'])) then
+		if (player.equipment.Ranged == 'Death Penalty' and buffactive['Aftermath: Lv.3']) then
 			classes.CustomRangedGroups:append('AM')
 		end
 	end
