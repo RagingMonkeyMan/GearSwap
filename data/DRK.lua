@@ -249,7 +249,7 @@ function update_melee_groups()
 		classes.CustomMeleeGroups:append('Adoulin')
     end
 	
-	if (player.equipment.main == "Liberator" and buffactive['Aftermath: Lv.3']) or ((player.equipment.main == "Apocalypse" or player.equipment.main == "Ragnarok") and state.Buff['Aftermath']) then
+	if (player.equipment.main == "Liberator" and buffactive['Aftermath: Lv.3']) then
 			classes.CustomMeleeGroups:append('AM')
 	end
 	
