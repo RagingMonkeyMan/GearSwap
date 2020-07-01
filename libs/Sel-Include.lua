@@ -1494,6 +1494,10 @@ function get_idle_set(petStatus)
         end
     end
 
+	if buffactive['Elvorseal'] and sets.buff.Elvorseal then
+		idleSet = set_combine(idleSet, sets.buff.Elvorseal)
+	end
+
 	--Apply time based gear.
     if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and not pet.isvalid then
 	    if player.hpp < 80 then
@@ -1638,6 +1642,10 @@ function get_melee_set()
         meleeSet = user_job_customize_melee_set(meleeSet)
     end
 	
+	if buffactive['Elvorseal'] and sets.buff.Elvorseal then
+		meleeSet = set_combine(meleeSet, sets.buff.Elvorseal)
+	end
+	
     if state.ExtraMeleeMode and state.ExtraMeleeMode.value ~= 'None' then
         meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
     end
@@ -1659,7 +1667,7 @@ function get_melee_set()
 		end
 	end
 	
-	if sets.Reive and buffactive['Reive Mark'] then
+	if buffactive['Reive Mark'] and sets.Reive then
         meleeSet = set_combine(meleeSet, sets.Reive)
     end
 	
