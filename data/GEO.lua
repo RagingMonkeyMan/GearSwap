@@ -563,7 +563,7 @@ function check_geo()
 				windower.chat.input('/ja "Full Circle" <me>')
 				tickdelay = os.clock() + 1.1
 				return true
-			elseif state.AutoGeoAbilities.value and abil_recasts[244] < latency and not used_ecliptic then
+			elseif state.AutoGeoAbilities.value and abil_recasts[244] < latency and not used_ecliptic and not buffactive.Bolster then
 				windower.chat.input('/ja "Ecliptic Attrition" <me>;')
 				used_ecliptic = true
 				return true
@@ -571,7 +571,7 @@ function check_geo()
 				return false
 			end
 		elseif autogeo ~= 'None' and (windower.ffxi.get_mob_by_target('bt') or data.spells.geo_buffs:contains(autogeo)) then
-			if (player.in_combat or state.CombatEntrustOnly.value == false) and abil_recasts[247] < latency then
+			if player.in_combat and state.AutoGeoAbilities.value and abil_recasts[247] < latency and not buffactive.Bolster then
 				windower.chat.input('/ja "Blaze of Glory" <me>;')
 				tickdelay = os.clock() + 1.1
 				return true
