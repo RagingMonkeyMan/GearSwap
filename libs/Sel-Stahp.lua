@@ -173,7 +173,7 @@ function check_reaction(act)
 					elseif act_info.name:startswith('Flurry') then
 						lastflurry = 1
 					elseif act_info.name == "Erratic Flutter" then
-						lashaste = 2
+						lasthaste = 2
 					elseif act_info.name == "Animating Wail" then
 						lasthaste = 1
 					end
