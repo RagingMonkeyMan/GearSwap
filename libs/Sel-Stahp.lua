@@ -72,7 +72,7 @@ RefreshAbility = S{"Refresh","Refresh II", "Refresh III"
 PhalanxAbility = S{"Phalanx II"
 				 }
 				 
-EnhancingAbility = S{"Haste","Haste II","Flurry","Flurry II","Adloquium",
+EnhancingAbility = S{"Haste","Haste II","Flurry","Flurry II","Adloquium","Erratic Flutter","Animating Wail",
 				 }
 
 function check_reaction(act)
@@ -172,9 +172,20 @@ function check_reaction(act)
 						lasthaste = 1
 					elseif act_info.name:startswith('Flurry') then
 						lastflurry = 1
+					elseif act_info.name == "Erratic Flutter" then
+						lashaste = 2
+					elseif act_info.name == "Animating Wail" then
+						lasthaste = 1
 					end
 				end
 			end
+		end
+	elseif curact.category == 13 then
+		act_info = res.job_abilities[curact.param]
+		if act_info.name == 'Hastega II' then
+			lasthaste = 2
+		elseif act_info.name == 'Hastega' then
+			lasthaste = 1
 		end
 	end
 	
