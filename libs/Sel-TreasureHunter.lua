@@ -138,13 +138,14 @@ end
 
 -- Set locked TH flag to false, and enable relevant gear slots.
 function unlock_TH()
-	if state.TreasureMode.value == 'None' then return end
-    state.th_gear_is_locked = false
-    local slots = T{}
-    for slot,item in pairs(sets.TreasureHunter) do
-        slots:append(slot)
-    end
-    enable(slots)
+	if state.th_gear_is_locked then
+		local slots = T{}
+		for slot,item in pairs(sets.TreasureHunter) do
+			slots:append(slot)
+		end
+		enable(slots)
+	end
+	state.th_gear_is_locked = false
     send_command('gs c update auto')
 end
 
@@ -313,6 +314,7 @@ function job_state_change(stateField, newValue, oldValue)
         if newValue == 'None' and state.th_gear_is_locked then
             if _settings.debug_mode then add_to_chat(123,'TH Mode set to None. Unlocking gear.') end
             unlock_TH()
+			windower.add_to_chat(7,'This Happens')
         elseif oldValue == 'None' then
             TH_for_first_hit()
         end
