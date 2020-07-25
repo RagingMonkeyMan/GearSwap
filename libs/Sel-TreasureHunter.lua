@@ -314,7 +314,6 @@ function job_state_change(stateField, newValue, oldValue)
         if newValue == 'None' and state.th_gear_is_locked then
             if _settings.debug_mode then add_to_chat(123,'TH Mode set to None. Unlocking gear.') end
             unlock_TH()
-			windower.add_to_chat(7,'This Happens')
         elseif oldValue == 'None' then
             TH_for_first_hit()
         end
