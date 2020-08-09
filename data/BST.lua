@@ -80,7 +80,9 @@ function job_setup()
         'Fantod','Charged Whisker','Purulent Ooze','Corrosive Ooze','Tortoise Stomp','Harden Shell','Aqua Breath',
         'Sensilla Blades','Tegmina Buffet','Molting Plumage','Swooping Frenzy','Pentapeck','Sweeping Gouge',
         'Zealous Snort','Somersault ','Tickling Tendrils','Stink Bomb','Nectarous Deluge','Nepenthic Plunge',
-        'Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Sickle Slash'}
+        'Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Sickle Slash','Crossthrash','Predatory Glare',
+		'Hoof Volley','Nihility Song','Frenzied Rage','Venom Shower','Mega Scissors','Fluid Toss','Fluid Spread',
+		'Digest','Rhinowrecker'}
 
 	tp_based_ready_moves = S{'Sic','Somersault ','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
         'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
@@ -92,17 +94,23 @@ function job_setup()
         'Water Wall','Snow Cloud','Wild Carrot','Sudden Lunge','Noisome Powder','Wing Slap','Beak Lunge','Suction',
         'Drainkiss','Acid Mist','TP Drainkiss','Back Heel','Jettatura','Choke Breath','Fantod','Charged Whisker',
         'Purulent Ooze','Corrosive Ooze','Tortoise Stomp','Harden Shell','Aqua Breath','Sensilla Blades',
-        'Tegmina Buffet','Sweeping Gouge','Zealous Snort','Tickling Tendrils','Pecking Flurry',
-        'Pestilent Plume','Foul Waters','Spider Web'}
+        'Tegmina Buffet','Sweeping Gouge','Zealous Snort','Tickling Tendrils','Pecking Flurry','Pestilent Plume',
+		'Foul Waters','Spider Web','Crossthrash','Hoof Volley','Venom Shower','Mega Scissors','Fluid Toss',
+		'Fluid Spread','Digest','Rhinowrecker'}
 
 	-- List of Magic-based Ready moves to use with Pet MAB or Pet M.Acc gearset.
 	magic_ready_moves = S{'Dust Cloud','Sheep Song','Scream','Dream Flower','Roar','Gloeosuccus','Palsy Pollen',
         'Soporific','Cursed Sphere','Venom','Geist Wall','Toxic Spit','Numbing Noise','Spoil','Hi-Freq Field',
-        'Sandpit','Sandblast','Venom Spray','Bubble Shower','Filamented Hold','Queasyshroom','Silence Gas',
-        'Numbshroom','Spore','Dark Spore','Shakeshroom','Fireball','Plague Breath','Infrasonics','Chaotic Eye',
-        'Blaster','Intimidate','Snow Cloud','Noisome Powder','TP Drainkiss','Jettatura','Charged Whisker',
-        'Purulent Ooze','Corrosive Ooze','Aqua Breath','Molting Plumage','Stink Bomb','Nectarous Deluge',
-        'Nepenthic Plunge','Pestilent Plume','Foul Waters','Spider Web'}
+        'Sandpit','Sandblast','Venom Spray','Bubble Shower','Filamented Hold','Silence Gas','Spore','Dark Spore',
+		'Fireball','Plague Breath','Infrasonics','Chaotic Eye','Blaster','Intimidate','Snow Cloud',
+		'Noisome Powder','TP Drainkiss','Jettatura','Charged Whisker','Purulent Ooze','Corrosive Ooze','Aqua Breath',
+		'Molting Plumage','Stink Bomb','Nectarous Deluge','Nepenthic Plunge','Pestilent Plume','Foul Waters',
+		'Spider Web','Nihility Song','Venom Shower','Digest'}
+		
+	debuff_ready_moves = S{'Dust Cloud','Sheep Song','Scream','Dream Flower','Roar','Gloeosuccus','Palsy Pollen',
+        'Soporific','Geist Wall','Numbing Noise','Spoil','Hi-Freq Field','Sandpit','Sandblast','Filamented Hold',
+		'Spore','Fireball','Infrasonics','Chaotic Eye','Blaster','Intimidate','Noisome Powder','TP Drainkiss',
+		'Jettatura','Purulent Ooze','Corrosive Ooze','Pestilent Plume','Spider Web','Nihility Song'}		
 
 	-- List of abilities to reference for applying Treasure Hunter +1 via Chaac Belt.
 	abilities_to_check = S{'Feral Howl','Quickstep','Box Step','Stutter Step','Desperate Flourish','Violent Flourish',
@@ -389,11 +397,16 @@ function job_aftercast(spell, spellMap, eventArgs)
 		equip(get_pet_midcast_set(spell, spellMap))
 		petWillAct = os.clock()
 		
+		
         if magic_ready_moves:contains(spell.english) then
-			if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
-				equip(sets.midcast.Pet.MagicReady[state.OffenseMode.value])
+			if debuff_ready_moves:contains(spell.english) and sets.midcast.Pet.DebuffReady then
+					equip(sets.midcast.Pet.DebuffReady)
 			else
-				equip(sets.midcast.Pet.MagicReady)
+				if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
+					equip(sets.midcast.Pet.MagicReady[state.OffenseMode.value])
+				else
+					equip(sets.midcast.Pet.MagicReady)
+				end
 			end
         else
 			if sets.midcast.Pet[state.OffenseMode.value] then
