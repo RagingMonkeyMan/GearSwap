@@ -129,7 +129,7 @@ function job_precast(spell, spellMap, eventArgs)
 		state.CombatWeapon:set(player.equipment.range)
 	end
 
-	if spell.action_type == 'Ranged Attack' or spell.name == 'Shadowbind' or (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) then
+	if spell.action_type == 'Ranged Attack' or spell.name == 'Bounty Shot' or spell.name == 'Shadowbind' or (spell.type == 'WeaponSkill' and (spell.skill == 'Marksmanship' or spell.skill == 'Archery')) then
 		check_ammo_precast(spell, action, spellMap, eventArgs)
 	end
 end
