@@ -97,7 +97,7 @@ function job_precast(spell, spellMap, eventArgs)
 		local mijinmain = standardize_set(sets.precast.JA['Mijin Gakure'].main)
 		local equippedweapons = standardize_set(sets.weapons[state.Weapons.value])
 		
-		if mijinmain == 'Nagi' and item_available('Nagi') and not equippedweapons:contains('Nagi')
+		if mijinmain == 'Nagi' and item_available('Nagi') and not equippedweapons:contains('Nagi') then
 			enable('main','sub','range','ammo')
 		end
 	end
