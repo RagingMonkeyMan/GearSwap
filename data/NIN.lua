@@ -92,6 +92,17 @@ function job_pretarget(spell, spellMap, eventArgs)
     end
 end
 
+function job_precast(spell, spellMap, eventArgs)
+	if spell.english == 'Mijin Gakure' and windower.ffxi.get_ability_recasts()[0] < latency and not state.UnlockWeapons.value and not state.Weapons.value == 'None' then
+		local mijinmain = standardize_set(sets.precast.JA['Mijin Gakure'].main)
+		local equippedweapons = standardize_set(sets.weapons[state.Weapons.value])
+		
+		if mijinmain == 'Nagi' and item_available('Nagi') and not equippedweapons:contains('Nagi')
+			enable('main','sub','range','ammo')
+		end
+	end
+end
+
 function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' then
 
@@ -167,9 +178,14 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
     
-	if spell.interrupted then return
+	if spell.interrupted then
+		return
 	elseif spell.english == "Migawari: Ichi" then
         state.Buff.Migawari = true
+	elseif spell.english == "Mijin Gakure" then
+		if not state.Weapons.value == 'None' then
+			disable('main','sub','range','ammo')
+		end
 	elseif spellMap == 'ElementalNinjutsu' then
             if state.MagicBurstMode.value == 'Single' then
 				state.MagicBurstMode:reset()
