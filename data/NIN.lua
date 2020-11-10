@@ -177,15 +177,14 @@ end
 
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
-    
-	if spell.interrupted then
-		return
-	elseif spell.english == "Migawari: Ichi" then
-        state.Buff.Migawari = true
-	elseif spell.english == "Mijin Gakure" then
+	if spell.english == "Mijin Gakure" then
 		if not state.Weapons.value == 'None' then
 			disable('main','sub','range','ammo')
 		end
+	elseif spell.interrupted then
+		return
+	elseif spell.english == "Migawari: Ichi" then
+        state.Buff.Migawari = true
 	elseif spellMap == 'ElementalNinjutsu' then
             if state.MagicBurstMode.value == 'Single' then
 				state.MagicBurstMode:reset()
