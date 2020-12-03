@@ -2107,7 +2107,7 @@ function get_named_set(equipSet, spell, spellMap)
         elseif spellMap and equipSet[spellMap] then
             mote_vars.set_breadcrumbs:append(spellMap)
             return equipSet[spellMap]
-		elseif spellMap and (spellMap:contains:('Cure') or spellMap:contains:('Curaga')) and equipSet['Cure'] then
+		elseif spellMap and (spellMap:contains('Cure') or spellMap:contains('Curaga')) and equipSet['Cure'] then
 			mote_vars.set_breadcrumbs:append('Cure')
 			return equipSet['Cure']
         else
