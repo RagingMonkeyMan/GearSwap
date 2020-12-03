@@ -39,7 +39,7 @@ function init_gear_sets()
         back="Moonlight Cape",waist="Goading Belt",legs=gear.herculean_dt_legs,feet="Amm Greaves"}
 
     -- Precast sets to enhance JAs
-    sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama"
+    sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama",--main="Nagi"
     sets.precast.JA['Futae'] = {hands="Hattori Tekko +1"}
     sets.precast.JA['Sange'] = {} --legs="Mochizuki Chainmail"
     sets.precast.JA['Provoke'] = sets.Enmity
