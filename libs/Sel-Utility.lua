@@ -535,14 +535,14 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 				gear.ElementalObi.name = gear.default.obi_waist
 			end
 		end
+		
+		if spell.element == world.day_element and spell.english ~= 'Impact' and not spell.skill == 'Divine Magic' then
+			gear.ElementalRing.name = "Zodiac Ring"
+		else
+			gear.ElementalRing.name = gear.default.obi_ring
+		end
+		
 	end
-	
-	if spell.element == world.day_element and spell.english ~= 'Impact' and not S{'Divine Magic','Dark Magic','Healing Magic'}:contains(spell.skill) then
-        gear.ElementalRing.name = "Zodiac Ring"
-	else
-		gear.ElementalRing.name = gear.default.obi_ring
-	end
-
 end
 
 
@@ -2028,7 +2028,7 @@ function is_nuke(spell, spellMap)
 	    (player.main_job == 'BLU' and spell.skill == 'Blue Magic' and spellMap and spellMap:contains('Magical')) or
 		(player.main_job == 'NIN' and spell.skill == 'Ninjutsu' and spellMap and spellMap:contains('ElementalNinjutsu')) or
 		spell.english == 'Comet' or spell.english == 'Meteor' or spell.english == 'Impact' or spell.english == 'Death' or
-		spell.english:startswith('Banish')
+		spell.english:startswith('Banish') or spell.english:startswith('Drain')
 		) then
 		
 		return true
