@@ -132,6 +132,9 @@ end
 
 -- Called when pet is about to perform an action
 function job_pet_midcast(spell, spellMap, eventArgs)
+	if spell.action_type == 'Magic' then --Limiting getting midcast to magic.
+		equip(get_pet_midcast_set(spell, spellMap))
+	end
 --[[ Not working due to delay, preserving in case it does in the future.
     if petWeaponskills:contains(spell.english) then
         classes.CustomClass = "Weaponskill"

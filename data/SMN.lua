@@ -315,6 +315,13 @@ function job_aftercast(spell, spellMap, eventArgs)
     end
 end
 
+-- Called when pet is about to perform an action
+function job_pet_midcast(spell, spellMap, eventArgs)
+	if spirits:contains(pet.name) and spell.action_type == 'Magic' then --Limiting getting midcast to magic.
+		equip(get_pet_midcast_set(spell, spellMap))
+	end
+end
+
 -- Runs when pet completes an action.
 function job_pet_aftercast(spell, spellMap, eventArgs)
 	if state.PactSpamMode.value == true and spell.type == 'BloodPactRage'then
