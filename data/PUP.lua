@@ -473,7 +473,7 @@ function check_maneuver()
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
-	if pet_midaction() or spell.english == 'Activate' or spell.english == 'Deus Ex Automata' then
+	if not spell.interrupted and (spell.english == 'Activate' or spell.english == 'Deus Ex Automata') then
 		eventArgs.handled = true
 	end
 end
