@@ -65,25 +65,6 @@ function job_setup()
 	-- 'Out of Range' distance; WS will auto-cancel
 	target_distance = 6
 
-	-- Complete list of Ready moves to use with Sic & Ready Recast -5 Desultor Tassets.
-	ready_moves_to_check = S{'Sic','Whirl Claws','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
-        'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang',
-        'Roar','Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Venom','Geist Wall','Toxic Spit',
-        'Numbing Noise','Nimble Snap','Cyclotail','Spoil','Rhino Guard','Rhino Attack','Power Attack',
-        'Hi-Freq Field','Sandpit','Sandblast','Venom Spray','Mandibular Bite','Metallic Body','Bubble Shower',
-        'Bubble Curtain','Scissor Guard','Big Scissors','Grapple','Spinning Top','Double Claw','Filamented Hold',
-        'Frog Kick','Queasyshroom','Silence Gas','Numbshroom','Spore','Dark Spore','Shakeshroom','Blockhead',
-        'Secretion','Fireball','Tail Blow','Plague Breath','Brain Crush','Infrasonics','??? Needles',
-        'Needleshot','Chaotic Eye','Blaster','Scythe Tail','Ripper Fang','Chomp Rush','Intimidate','Recoil Dive',
-        'Water Wall','Snow Cloud','Wild Carrot','Sudden Lunge','Spiral Spin','Noisome Powder','Wing Slap',
-        'Beak Lunge','Suction','Drainkiss','Acid Mist','TP Drainkiss','Back Heel','Jettatura','Choke Breath',
-        'Fantod','Charged Whisker','Purulent Ooze','Corrosive Ooze','Tortoise Stomp','Harden Shell','Aqua Breath',
-        'Sensilla Blades','Tegmina Buffet','Molting Plumage','Swooping Frenzy','Pentapeck','Sweeping Gouge',
-        'Zealous Snort','Somersault ','Tickling Tendrils','Stink Bomb','Nectarous Deluge','Nepenthic Plunge',
-        'Pecking Flurry','Pestilent Plume','Foul Waters','Spider Web','Sickle Slash','Crossthrash','Predatory Glare',
-		'Hoof Volley','Nihility Song','Frenzied Rage','Venom Shower','Mega Scissors','Fluid Toss','Fluid Spread',
-		'Digest','Rhinowrecker'}
-
 	tp_based_ready_moves = S{'Sic','Somersault ','Dust Cloud','Foot Kick','Sheep Song','Sheep Charge','Lamb Chop',
         'Rage','Head Butt','Scream','Dream Flower','Wild Oats','Leaf Dagger','Claw Cyclone','Razor Fang','Roar',
         'Gloeosuccus','Palsy Pollen','Soporific','Cursed Sphere','Geist Wall','Numbing Noise','Frog Kick',
@@ -95,8 +76,8 @@ function job_setup()
         'Drainkiss','Acid Mist','TP Drainkiss','Back Heel','Jettatura','Choke Breath','Fantod','Charged Whisker',
         'Purulent Ooze','Corrosive Ooze','Tortoise Stomp','Harden Shell','Aqua Breath','Sensilla Blades',
         'Tegmina Buffet','Sweeping Gouge','Zealous Snort','Tickling Tendrils','Pecking Flurry','Pestilent Plume',
-		'Foul Waters','Spider Web','Crossthrash','Hoof Volley','Venom Shower','Mega Scissors','Fluid Toss',
-		'Fluid Spread','Digest','Rhinowrecker'}
+		'Foul Waters','Spider Web','Crossthrash','Venom Shower','Mega Scissors','Fluid Toss',
+		'Fluid Spread','Digest','Rhinowrecker','Disembowel','Extirpating Salvo','Frenzied Rage'}
 
 	-- List of Magic-based Ready moves to use with Pet MAB or Pet M.Acc gearset.
 	magic_ready_moves = S{'Dust Cloud','Sheep Song','Scream','Dream Flower','Roar','Gloeosuccus','Palsy Pollen',
@@ -110,7 +91,12 @@ function job_setup()
 	debuff_ready_moves = S{'Dust Cloud','Sheep Song','Scream','Dream Flower','Roar','Gloeosuccus','Palsy Pollen',
         'Soporific','Geist Wall','Numbing Noise','Spoil','Hi-Freq Field','Sandpit','Sandblast','Filamented Hold',
 		'Spore','Fireball','Infrasonics','Chaotic Eye','Blaster','Intimidate','Noisome Powder','TP Drainkiss',
-		'Jettatura','Purulent Ooze','Corrosive Ooze','Pestilent Plume','Spider Web','Nihility Song'}		
+		'Jettatura','Purulent Ooze','Corrosive Ooze','Pestilent Plume','Spider Web','Nihility Song'}
+		
+	multi_hit_ready_moves = S{'Pentapeck','Tickling Tendrils','Sweeping Gouge','Chomp Rush','Wing Slap',
+		'Pecking Flurry'}
+
+	physical_debuff_ready_moves = S{'Sudden Lunge','Extirpating Salvo','Choke Breath'}
 
 	-- List of abilities to reference for applying Treasure Hunter +1 via Chaac Belt.
 	abilities_to_check = S{'Feral Howl','Quickstep','Box Step','Stutter Step','Desperate Flourish','Violent Flourish',
@@ -148,7 +134,13 @@ function job_setup()
 				['GussyHachirobe']="HQ Spider, Vermin, Warrior",['AcuexFamiliar']="Acuex, Amorph, Black Mage",
 				['ChoralLeera']="HQ Colibri, Bird, Red Mage",['SpiderFamiliar']="Spider, Vermin, Warrior",
 				['AmiableRoche']="Pugil, Aquan, Warrior",['HeraldHenry']="Crab, Aquan, Paladin",
-				['FluffyBredo']="HQ Acuex, Amorph, Black Mage",
+				['FluffyBredo']="HQ Acuex, Amorph, Black Mage",['WeevilFamiliar']="Weevil, Vermin, Thief",
+				['StalwartAngelina']="HQ Weevil, Vermin, Thief",['SweetCaroline']="Mandragora, Plantoid, Monk",
+				['P.CrabFamiliar']="Crab, Aquan, Paladin",['JovialEdwin']="HQ Crab, Aquan, Paladin",
+				['Y.BeetleFamiliar']="Beetle, Vermin, Warrior",['EnergizedSefina']="Beetle, Vermin, Warrior",
+				['LynxFamiliar']="Coeurl, Beast, Warrior",['VivaciousGaston']="HQ Coeurl, Beast, Warrior",
+				['Hip.Familiar']="Hippogryph, Bird, Thief/Black Mage",['DaringRoland']="HQ Hippogryph, Bird, Thief/Black Mage",
+				['SlimeFamiliar']="Slime, Amorph, Warrior",['SultryPatrice']="Slime, Amorph, Warrior",
 				}
 
 	ready_moves = {}
@@ -163,8 +155,13 @@ function job_setup()
 							['GussyHachirobe']='Sickle Slash',['ThreestarLynn']='Spiral Spin',['GenerousArthur']='Purulent Ooze',
 							['CursedAnnabelle']='Mandibular Bite',['SurgingStorm']='Beak Lunge',['SubmergedIyo']='Beak Lunge',
 							['SharpwitHermes']='Head Butt',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
-							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
-
+							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',['WeevilFamiliar']='Disembowel',
+							['StalwartAngelina']='Disembowel',['SweetCaroline']='Head Butt',['P.CrabFamiliar']='Mega Scissors',
+							['JovialEdwin']='Mega Scissors',['Y.BeetleFamiliar']='Power Attack',['EnergizedSefina']='Power Attack',
+							['LynxFamiliar']='Charged Whisker',['VivaciousGaston']='Charged Whisker',['Hip.Familiar']='Back Heel',['DaringRoland']='Back Heel',
+							['SlimeFamiliar']='Fluid Toss',['SultryPatrice']='Fluid Toss',
+							}
+							
 	ready_moves.aoe = 	   {['DroopyDortwin']='Whirl Claws',['PonderingPeter']='Whirl Claws',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Fireball',['ScissorlegXerin']='Tegmina Buffet',
 							['BouncingBertha']='Tegmina Buffet',['RhymingShizuna']='Sheep Song',['AttentiveIbuki']='Molting Plumage',
@@ -173,12 +170,17 @@ function job_setup()
 							['AnklebiterJedd']='Spinning Top',['HurlerPercival']='Hi-Freq Field',['BlackbeardRandy']='Claw Cyclone',
 							['SpiderFamiliar']='Spider Web',['GussyHachirobe']='Spider Web',['ThreestarLynn']='Spiral Spin',['GenerousArthur']='Purulent Ooze',
 							['CursedAnnabelle']='Sandblast',['SharpwitHermes']='Scream',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
-							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
+							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',['SweetCaroline']='Scream',['P.CrabFamiliar']='Venom Shower',
+							['JovialEdwin']='Venom Shower',['Y.BeetleFamiliar']='Rhinowrecker',['EnergizedSefina']='Rhinowrecker',['LynxFamiliar']='Charged Whisker',
+							['VivaciousGaston']='Charged Whisker',['Hip.Familiar']='Choke Breath',['DaringRoland']='Choke Breath',
+							['SlimeFamiliar']='Fluid Spread',['SultryPatrice']='Fluid Spread',}
 
 	ready_moves.buff =     {['DroopyDortwin']='Wild Carrot',['PonderingPeter']='Wild Carrot',['HeraldHenry']='Scissor Guard',['CourierCarrie']='Scissor Guard',
 							['AgedAngus']='Scissor Guard',['SunburstMalfik']='Scissor Guard',['WarlikePatrick']='Secretion',
 							['RhymingShizuna']='Rage',['AmiableRoche']='Water Wall',['HurlerPercival']='Rhino Guard',
-							['CaringKiyomaro']='Zealous Snort',['VivaciousVickie']='Zealous Snort'}
+							['CaringKiyomaro']='Zealous Snort',['VivaciousVickie']='Zealous Snort',['P.CrabFamiliar']='Scissor Guard',
+							['JovialEdwin']='Scissor Guard',['Y.BeetleFamiliar']='Rhino Guard',['EnergizedSefina']='Rhino Guard',['LynxFamiliar']='Frenzied Rage',
+							['VivaciousGaston']='Frenzied Rage',['Hip.Familiar']='Fantod',['DaringRoland']='Fantod',}
 
 	ready_moves.debuff =   {['DroopyDortwin']='Dust Cloud',['PonderingPeter']='Dust Cloud',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Infrasonics',['ScissorlegXerin']='Tegmina Buffet',
@@ -190,7 +192,10 @@ function job_setup()
 							['SpiderFamiliar']='Spider Web',['GussyHachirobe']='Spider Web',['ThreestarLynn']='Noisome Powder',
 							['GenerousArthur']='Corrosive Ooze',['CursedAnnabelle']='Sandpit',
 							['SharpwitHermes']='Wild Oats',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
-							['MosquitoFamiliar']='Gloom Spray',['Left-HandedYoko']='Gloom Spray',}
+							['MosquitoFamiliar']='Gloom Spray',['Left-HandedYoko']='Gloom Spray',['WeevilFamiliar']='Extirpating Salvo',
+							['StalwartAngelina']='Extirpating Salvo',['SweetCaroline']='Wild Oats',['P.CrabFamiliar']='Venom Shower',
+							['JovialEdwin']='Venom Shower',['Y.BeetleFamiliar']='Hi-Freq Field',['EnergizedSefina']='Hi-Freq Field',
+							['LynxFamiliar']='Blaster',['VivaciousGaston']='Blaster',['Hip.Familiar']='Jettatura',['DaringRoland']='Jettatura',}
 
 	ready_moves.physical = {['DroopyDortwin']='Foot Kick',['PonderingPeter']='Foot Kick',['HeraldHenry']='Big Scissors',['CourierCarrie']='Big Scissors',
 							['AgedAngus']='Big Scissors',['SunburstMalfik']='Big Scissors',['WarlikePatrick']='Tail Blow',['ScissorlegXerin']='Sensilla Blades',
@@ -202,7 +207,9 @@ function job_setup()
 							['ColibriFamiliar']='Pecking Flurry',['ChoralLeera']='Pecking Flurry',['SpiderFamiliar']='Sickle Slash',
 							['GussyHachirobe']='Sickle Slash',['ThreestarLynn']='Spiral Spin',['GenerousArthur']='Purulent Ooze',
 							['CursedAnnabelle']='Mandibular Bite',['SurgingStorm']='Beak Lunge',['SubmergedIyo']='Beak Lunge',
-							['SharpwitHermes']='Head Butt'}
+							['SharpwitHermes']='Head Butt',['WeevilFamiliar']='Disembowel',['StalwartAngelina']='Disembowel',['SweetCaroline']='Head Butt',
+							['P.CrabFamiliar']='Mega Scissors',['JovialEdwin']='Mega Scissors',['Y.BeetleFamiliar']='Power Attack',['EnergizedSefina']='Power Attack',
+							['Hip.Familiar']='Back Heel',['DaringRoland']='Back Heel',['SlimeFamiliar']='Fluid Toss',['SultryPatrice']='Fluid Toss',}
 
 	ready_moves.magical =  {['DroopyDortwin']='Dust Cloud',['PonderingPeter']='Dust Cloud',['HeraldHenry']='Bubble Shower',['CourierCarrie']='Bubble Shower',
 							['AgedAngus']='Bubble Shower',['SunburstMalfik']='Bubble Shower',['WarlikePatrick']='Fireball',
@@ -210,8 +217,11 @@ function job_setup()
 							['BrainyWaluis']='Silence Gas',['HeadbreakerKen']='Cursed Sphere',['RedolentCandi']='Nepenthic Plunge',
 							['AlluringHoney']='Nepenthic Plunge',['SpiderFamiliar']='Acid Spray',
 							['GussyHachirobe']='Acid Spray',['GenerousArthur']='Purulent Ooze',
-							['SharpwitHermes']='Head Butt',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
-							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',}
+							['SharpwitHermes']='Scream',['AcuexFamiliar']='Pestilent Plume',['FluffyBredo']='Pestilent Plume',
+							['MosquitoFamiliar']='Infected Leech',['Left-HandedYoko']='Infected Leech',
+							['P.CrabFamiliar']='Venom Shower',['JovialEdwin']='Venom Shower',['LynxFamiliar']='Charged Whisker',
+							['VivaciousGaston']='Nihility Song',['Hip.Familiar']='Back Heel',['DaringRoland']='Nihility Song',
+							['SlimeFamiliar']='Digest',['SultryPatrice']='Digest',}
 
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
@@ -308,6 +318,18 @@ function job_precast(spell, spellMap, eventArgs)
 					equip(sets.precast.JA['Bestial Loyalty'].FluffyBredo)
 				elseif state.JugMode.value == 'MosquitoFamiliar' and item_available('Heavenly Broth') then
 					equip(sets.precast.JA['Bestial Loyalty']['Left-HandedYoko'])
+				elseif state.JugMode.value == 'WeevilFamiliar' and item_available('T. Pristine Sap') then
+					equip(sets.precast.JA['Bestial Loyalty']['StalwartAngelina'])
+				elseif state.JugMode.value == 'P.CrabFamiliar' and item_available('Pungent Broth') then
+					equip(sets.precast.JA['Bestial Loyalty']['JovialEdwin'])
+				elseif state.JugMode.value == 'Y.BeetleFamiliar' and item_available('Gassy Sap') then
+					equip(sets.precast.JA['Bestial Loyalty']['EnergizedSefina'])
+				elseif state.JugMode.value == 'LynxFamiliar' and item_available('Spumante Broth') then
+					equip(sets.precast.JA['Bestial Loyalty']['VivaciousGaston'])
+				elseif state.JugMode.value == 'Hip.Familiar' and item_available('Feculent Broth') then
+					equip(sets.precast.JA['Bestial Loyalty']['DaringRoland'])
+				elseif state.JugMode.value == 'SlimeFamiliar' and item_available('Putrescent Broth') then
+					equip(sets.precast.JA['Bestial Loyalty']['SultryPatrice'])
 				else
 					equip(sets.precast.JA['Bestial Loyalty'][state.JugMode.value])
 				end
@@ -408,6 +430,10 @@ function job_aftercast(spell, spellMap, eventArgs)
 					equip(sets.midcast.Pet.MagicReady)
 				end
 			end
+		elseif physical_debuff_ready_moves:contains(spell.english) and sets.midcast.Pet.PhysicalDebuffReady then
+			equip(sets.midcast.Pet.PhysicalDebuffReady)
+		elseif multi_hit_ready_moves:contains(spell.english) and sets.midcast.Pet.MultiHitReady then
+			equip(sets.midcast.Pet.MultiHitReady)
         else
 			if sets.midcast.Pet[state.OffenseMode.value] then
 				equip(sets.midcast.Pet[state.OffenseMode.value])

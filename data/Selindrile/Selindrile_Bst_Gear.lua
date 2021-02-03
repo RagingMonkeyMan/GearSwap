@@ -200,6 +200,11 @@ function init_gear_sets()
 		head=gear.valorous_pet_head,neck="Adad Amulet",ear1="Enmerkar Earring",ear2="Domesticator's Earring",
 		body=gear.valorous_pet_body,hands="Nukumi Manoplas +1",ring1="Varar Ring +1",ring2="Varar Ring +1",
 		back="Artio's Mantle",waist="Incarnation Sash",legs=gear.valorous_magical_pet_legs,feet=gear.valorous_magical_pet_feet}
+		
+	sets.midcast.Pet.PhysicalDebuffReady = {main=gear.MABKumbha,sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",
+		head=gear.valorous_pet_head,neck="Adad Amulet",ear1="Enmerkar Earring",ear2="Domesticator's Earring",
+		body=gear.valorous_pet_body,hands="Nukumi Manoplas +1",ring1="Varar Ring +1",ring2="Varar Ring +1",
+		back="Artio's Mantle",waist="Incarnation Sash",legs=gear.valorous_magical_pet_legs,feet=gear.valorous_magical_pet_feet}
 
 	sets.midcast.Pet.ReadyRecast = {legs="Desultor Tassets"}
 	sets.midcast.Pet.ReadyRecastDW = {sub="Charmer's Merlin",legs="Desultor Tassets"}
@@ -468,7 +473,19 @@ function init_gear_sets()
 	sets.precast.JA['Bestial Loyalty'].GussyHachirobe = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Slimy Webbing"})
 	sets.precast.JA['Bestial Loyalty'].AcuexFamiliar = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Poisonous Broth"})
 	sets.precast.JA['Bestial Loyalty'].FluffyBredo = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Venomous Broth"})
-
+	sets.precast.JA['Bestial Loyalty'].WeevilFamiliar = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Pristine Sap"})
+	sets.precast.JA['Bestial Loyalty'].StalwartAngelina = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="T. Pristine Sap"})
+	sets.precast.JA['Bestial Loyalty'].SweetCaroline = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Aged Humus"})
+	sets.precast.JA['Bestial Loyalty'].['P.CrabFamiliar'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Rancid Broth"})
+	sets.precast.JA['Bestial Loyalty'].['JovialEdwin'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Pungent Broth"})
+	sets.precast.JA['Bestial Loyalty'].['Y.BeetleFamiliar'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Zestful Sap"})
+	sets.precast.JA['Bestial Loyalty'].['EnergizedSefina'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Gassy Sap"})
+	sets.precast.JA['Bestial Loyalty'].['LynxFamiliar'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Frizzante Broth"})
+	sets.precast.JA['Bestial Loyalty'].['VivaciousGaston'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Spumante Broth"})
+	sets.precast.JA['Bestial Loyalty'].['Hip.Familiar'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Turpid Broth"})
+	sets.precast.JA['Bestial Loyalty'].['DaringRoland'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Feculent Broth"})
+	sets.precast.JA['Bestial Loyalty'].['SlimeFamiliar'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Decaying Broth"})
+	sets.precast.JA['Bestial Loyalty'].['SultryPatrice'] = set_combine(sets.precast.JA['Bestial Loyalty'], {ammo="Putrescent Broth"})
 end
 
 -- Select default macro book on initial load or subjob change.
