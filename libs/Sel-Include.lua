@@ -430,8 +430,6 @@ function init_include()
 	windower.raw_register_event('target change', target_change)
 
 	-- Event register to prevent auto-modes from spamming after zoning.
-	windower.raw_register_event('zone change', zone_change)
-	
 	function zone_change(new_id,old_id)
 		if user_zone_change then
 			user_zone_change(new_id,old_id)
@@ -447,6 +445,8 @@ function init_include()
 		
 		default_zone_change(new_id,old_id)
 	end
+	
+	windower.raw_register_event('zone change', zone_change)
 	
 	function default_zone_change(new_id,old_id)
 		tickdelay = os.clock() + 10
