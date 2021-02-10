@@ -391,90 +391,6 @@ function init_include()
 		end
 	end)
 	
-	-- Event register to make time variables track.
-	windower.raw_register_event('time change', time_change)
-
-	-- Event register to perform actions on new targets.
-	function target_change(new)
-	
-		if state.RngHelper.value then
-			send_command('gs rh clear')
-		end
-	
-		local target = windower.ffxi.get_mob_by_target('t')
-		local sub= windower.ffxi.get_mob_by_target('st')
-		if (target ~= nil) and (sub == nil) then
-			if state.AutoCleanupMode.value and math.sqrt(target.distance) < 7 then
-				if target.name == "Runje Desaali" and bayld_items then 
-					for i in pairs(bayld_items) do
-						if player.inventory[bayld_items[i]] then
-							windower.chat.input('/item "'..bayld_items[i]..'" <t>')
-							windower.chat.input:schedule(2,'/targetnpc')
-							return
-						end
-					end
-				elseif target.name == "Sturdy Pyxis" and player.inventory['Forbidden Key'] then
-					windower.chat.input('/item "Forbidden Key" <t>')
-				end
-			end
-		end
-		
-		if user_job_target_change then
-			if user_job_target_change(target) then return end
-		end
-		
-		if user_target_change then
-			if user_job_target_change(target) then return end
-		end
-	end
-	windower.raw_register_event('target change', target_change)
-
-	-- Event register to prevent auto-modes from spamming after zoning.
-	function zone_change(new_id,old_id)
-		if user_zone_change then
-			user_zone_change(new_id,old_id)
-		end
-		
-		if job_zone_change then
-			job_zone_change(new_id,old_id)
-		end
-		
-		if user_job_zone_change then
-			user_job_zone_change(new_id,old_id)
-		end
-		
-		default_zone_change(new_id,old_id)
-	end
-	
-	windower.raw_register_event('zone change', zone_change)
-	
-	function default_zone_change(new_id,old_id)
-		tickdelay = os.clock() + 10
-		state.AutoBuffMode:reset()
-		state.AutoSubMode:reset()
-		state.AutoTrustMode:reset()
-		state.AutoTankMode:reset()
-		state.AutoRuneMode:reset()
-		state.AutoFoodMode:reset()
-		state.AutoWSMode:reset()
-		state.AutoNukeMode:reset()
-		send_command('gs rh disable')
-		state.RngHelper:reset()
-		useItem = false
-		useItemName = ''
-		useItemSlot = ''
-		lastincombat = false
-		being_attacked = false
-		
-		if world.area:contains('Abyssea') or data.areas.proc:contains(world.area) then
-			state.SkipProcWeapons:set('False')
-		else
-			state.SkipProcWeapons:reset()
-		end
-		
-		if state.DisplayMode.value then update_job_states()	end
-	end
-
 	-- New implementation of tick.
 	windower.raw_register_event('prerender', function()
 		if not (os.clock() > tickdelay) then return end
@@ -532,6 +448,84 @@ function init_include()
 	
 	-- Load generic items into sets and determine settings after checking what is owned as needed.
 	include('Sel-GlobalItems')
+end
+
+-- Function to perform actions on new targets.
+function target_change(new)
+
+	if state.RngHelper.value then
+		send_command('gs rh clear')
+	end
+
+	local target = windower.ffxi.get_mob_by_target('t')
+	local sub= windower.ffxi.get_mob_by_target('st')
+	if (target ~= nil) and (sub == nil) then
+		if state.AutoCleanupMode.value and math.sqrt(target.distance) < 7 then
+			if target.name == "Runje Desaali" and bayld_items then 
+				for i in pairs(bayld_items) do
+					if player.inventory[bayld_items[i]] then
+						windower.chat.input('/item "'..bayld_items[i]..'" <t>')
+						windower.chat.input:schedule(2,'/targetnpc')
+						return
+					end
+				end
+			elseif target.name == "Sturdy Pyxis" and player.inventory['Forbidden Key'] then
+				windower.chat.input('/item "Forbidden Key" <t>')
+			end
+		end
+	end
+	
+	if user_job_target_change then
+		if user_job_target_change(target) then return end
+	end
+	
+	if user_target_change then
+		if user_job_target_change(target) then return end
+	end
+end
+
+-- Function to reset things after zoning.
+function zone_change(new_id,old_id)
+	if user_zone_change then
+		user_zone_change(new_id,old_id)
+	end
+	
+	if job_zone_change then
+		job_zone_change(new_id,old_id)
+	end
+	
+	if user_job_zone_change then
+		user_job_zone_change(new_id,old_id)
+	end
+	
+	default_zone_change(new_id,old_id)
+end
+	
+function default_zone_change(new_id,old_id)
+	tickdelay = os.clock() + 10
+	state.AutoBuffMode:reset()
+	state.AutoSubMode:reset()
+	state.AutoTrustMode:reset()
+	state.AutoTankMode:reset()
+	state.AutoRuneMode:reset()
+	state.AutoFoodMode:reset()
+	state.AutoWSMode:reset()
+	state.AutoNukeMode:reset()
+	send_command('gs rh disable')
+	state.RngHelper:reset()
+	useItem = false
+	useItemName = ''
+	useItemSlot = ''
+	lastincombat = false
+	being_attacked = false
+	
+	if world.area:contains('Abyssea') or data.areas.proc:contains(world.area) then
+		state.SkipProcWeapons:set('False')
+	else
+		state.SkipProcWeapons:reset()
+	end
+	
+	if state.DisplayMode.value then update_job_states()	end
 end
 
 -- Called when this job file is unloaded (eg: job change)
@@ -2436,6 +2430,11 @@ function display_breadcrumbs(spell, spellMap, action)
         add_to_chat(123, msg)
     end
 end
+
+-- Event registers to trigger functions
+windower.raw_register_event('time change', time_change)
+windower.raw_register_event('zone change', zone_change)
+windower.raw_register_event('target change', target_change)
 
 -- Auto-initialize the include - Do this at the bottom so that other user-files can overwrite these functions.
 init_include()
