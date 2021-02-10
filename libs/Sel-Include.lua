@@ -430,7 +430,25 @@ function init_include()
 	windower.raw_register_event('target change', target_change)
 
 	-- Event register to prevent auto-modes from spamming after zoning.
-	windower.register_event('zone change', function(new_id,old_id)
+	windower.raw_register_event('zone change', zone_change)
+	
+	function zone_change(new_id,old_id)
+		if user_zone_change then
+			user_zone_change(new_id,old_id)
+		end
+		
+		if job_zone_change then
+			job_zone_change(new_id,old_id)
+		end
+		
+		if user_job_zone_change then
+			user_job_zone_change(new_id,old_id)
+		end
+		
+		default_zone_change(new_id,old_id)
+	end
+	
+	function default_zone_change(new_id,old_id)
 		tickdelay = os.clock() + 10
 		state.AutoBuffMode:reset()
 		state.AutoSubMode:reset()
@@ -454,20 +472,8 @@ function init_include()
 			state.SkipProcWeapons:reset()
 		end
 		
-		if user_zone_change then
-			user_zone_change(new_id,old_id)
-		end
-		
-		if job_zone_change then
-			job_zone_change(new_id,old_id)
-		end
-		
-		if user_job_zone_change then
-			user_job_zone_change(new_id,old_id)
-		end
-		
 		if state.DisplayMode.value then update_job_states()	end
-	end)
+	end
 
 	-- New implementation of tick.
 	windower.raw_register_event('prerender', function()
