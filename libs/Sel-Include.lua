@@ -528,6 +528,31 @@ function default_zone_change(new_id,old_id)
 	if state.DisplayMode.value then update_job_states()	end
 end
 
+function time_change(new_time, old_time)
+    local was_daytime = classes.Daytime
+    local was_dusktime = classes.DuskToDawn
+    
+    if new_time and (new_time >= 6*60 and new_time < 18*60) then
+        classes.Daytime = true
+    else
+        classes.Daytime = false
+    end
+
+    if new_time and (new_time >= 17*60 or new_time < 7*60) then
+        classes.DuskToDawn = true
+    else
+        classes.DuskToDawn = false
+    end
+    
+    if was_daytime ~= classes.Daytime or was_dusktime ~= classes.DuskToDawn then
+        if job_time_change then
+            job_time_change(new_time, old_time)
+        end
+
+        handle_update({'auto'})
+    end
+end
+
 -- Called when this job file is unloaded (eg: job change)
 -- Conditional definition so that it doesn't overwrite explicit user
 -- versions of this function.
