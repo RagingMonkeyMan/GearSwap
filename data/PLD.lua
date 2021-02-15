@@ -60,7 +60,7 @@ function job_setup()
 	state.CurrentStep = M{['description']='Current Step', 'Box Step', 'Quickstep'}
 	
 	state.AutoEmblem = M(true, 'Auto Emblem')
-	state.AutoMajesty = M(true, 'Auto Magesty')
+	state.AutoMajesty = M(true, 'Auto Majesty')
 	
 	autows = 'Savage Blade'
 	autofood = 'Miso Ramen'
