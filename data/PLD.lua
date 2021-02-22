@@ -60,6 +60,7 @@ function job_setup()
 	state.CurrentStep = M{['description']='Current Step', 'Box Step', 'Quickstep'}
 	
 	state.AutoEmblem = M(true, 'Auto Emblem')
+	state.AutoCover = M(false, 'Auto Cover')
 	state.AutoMajesty = M(true, 'Auto Majesty')
 	
 	autows = 'Savage Blade'
@@ -488,6 +489,12 @@ function check_majesty()
 	end
 	return false
 end
+
+function check_cover(Protectee)
+    if state.AutoCover.value and not midaction() and Protectee.hpp < 85 and math.sqrt(Protectee.distance) < 10 and windower.ffxi.get_ability_recasts()[76] < latency then
+		windower.chat.input('/ja Cover '..Protectee.name..'')
+    end
+end 
 
 function check_hasso()
 	if not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.sub_job == 'SAM' and player.in_combat and not silent_check_amnesia() then

@@ -152,6 +152,8 @@ function check_reaction(act)
 				windower.send_command('gs c forceequip')
 			end
 			being_attacked = true
+		elseif isTarget and otherTarget.in_party and check_cover then
+			check_cover(otherTarget)
 		end
 		return
 	end
@@ -206,6 +208,9 @@ function check_reaction(act)
 		elseif not (actor.id == player.id or midaction() or pet_midaction()) and (targetsMe or (otherTarget.in_alliance and targetsDistance < 10)) then
 			--reequip proper gear after curaga/recieved buffs
 			send_command('gs c forceequip')
+		end
+		if isTarget and otherTarget.in_party and check_cover then
+			check_cover(otherTarget)
 		end
 		return
 	end
