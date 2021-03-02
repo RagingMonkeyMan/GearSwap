@@ -103,10 +103,6 @@ function job_precast(spell, spellMap, eventArgs)
 				gear.default.obi_back = gear.obi_high_nuke_back
 				gear.default.obi_waist = gear.obi_high_nuke_waist
 			end
-		elseif spell.english == 'Phalanx II' and (spell.target.type == 'SELF' or buffactive.Accession) then
-			windower.chat.input('/ma "Phalanx" <me>')
-			cancel_spell()
-			eventArgs.cancel = true
 		elseif spell.english == 'Phalanx' and (spell.target.type ~= 'SELF') then
 			windower.chat.input('/ws "Phalanx II" '..spell.target.raw)
 			cancel_spell()
