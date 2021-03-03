@@ -90,7 +90,7 @@ function job_precast(spell, spellMap, eventArgs)
 	elseif spell.action_type == 'Ability' then
 		if spell.english == 'Restoring Breath' and state.AutoBondMode.value then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if pet.isvalid and pet.hpp < 75 and abil_recasts[134] < latency and abil_recasts[149] < latency and spell.target.hpp > 44 then
+			if pet.isvalid and pet.hpp < 75 and abil_recasts[239] < latency and abil_recasts[149] < latency and spell.target.hpp > 44 then
 				eventArgs.cancel = true
 				windower.chat.input('/ja "Spirit Bond" <me>')
 				windower.chat.input:schedule(1,'/ja "Restoring Breath" '..spell.target.raw..'')
