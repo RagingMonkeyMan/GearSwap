@@ -1599,6 +1599,10 @@ function get_idle_set(petStatus)
 		end
 	end
 	
+	if state.UnlockWeapons.value and sets.weapons[state.Weapons.value] then
+		idleSet = set_combine(idleSet, sets.weapons[state.Weapons.value])
+	end
+	
 	if (buffactive.sleep or buffactive.Lullaby) and (player.main_job == 'SMN' and pet.isvalid) then
 		idleSet = set_combine(idleSet, sets.buff.Sleep)
 	end
