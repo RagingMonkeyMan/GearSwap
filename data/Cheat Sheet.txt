@@ -294,7 +294,7 @@ skillchain1 - Tier 1 skillchain
 skillchain2 - Tier 2 skillchain
 skillchain3 - Only works on Fire element, does Liquefaction > Fusion
 skillchain4 - 4 Step skillchain for popping Perfidion
-skillchain6 - 6 Step Skillchain for popping Pluton (Requires you have a strategem up and 5 strategem charges to start)
+skillchain6 - 6 Step Skillchain for popping Pluton (Requires you have a stratagem up and 5 stratagem charges to start)
 wsskillchain - Attempts to start skillchain with a weaponskill and finish with a spell (for conserving stratagems).
 endskillchain - Attempts to end a skillchain with the current element.
 tier1 - Casts a tier 1 spell of that element.

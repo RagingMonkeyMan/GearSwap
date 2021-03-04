@@ -739,7 +739,7 @@ function can_use(spell)
 			if (spell_jobs[player.sub_job_id] and spell_jobs[player.sub_job_id] <= player.sub_job_level) or state.Buff['Enlightenment'] then
 				return true
 			elseif data.spells.addendum_white:contains(spell.english) and not state.Buff['Addendum: White'] then
-				if state.AutoArts.value and not state.Buff['Addendum: White'] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
+				if state.AutoArts.value and not state.Buff['Addendum: White'] and not silent_check_amnesia() and get_current_stratagem_count() > 0 then
 					if state.Buff['Light Arts'] then
 						windower.chat.input('/ja "Addendum: White" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -760,7 +760,7 @@ function can_use(spell)
 				end
 				return false
             elseif data.spells.addendum_black:contains(spell.english) and not state.Buff['Addendum: Black'] then
-				if state.AutoArts.value and not state.Buff['Addendum: Black'] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
+				if state.AutoArts.value and not state.Buff['Addendum: Black'] and not silent_check_amnesia() and get_current_stratagem_count() > 0 then
 					if state.Buff['Dark Arts'] then
 						windower.chat.input('/ja "Addendum: Black" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -787,7 +787,7 @@ function can_use(spell)
             (spell_jobs[player.main_job_id] >= 100 and number_of_jps(player.job_points[__raw.lower(res.jobs[player.main_job_id].ens)]) >= spell_jobs[player.main_job_id]) ) ) then
                         
             if data.spells.addendum_white:contains(spell.english) then
-				if state.AutoArts.value and not buffactive["Addendum: White"] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
+				if state.AutoArts.value and not buffactive["Addendum: White"] and not silent_check_amnesia() and get_current_stratagem_count() > 0 then
 					if state.Buff['Light Arts'] then
 						windower.chat.input('/ja "Addendum: White" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -804,7 +804,7 @@ function can_use(spell)
 				end
             end
             if data.spells.addendum_black:contains(spell.english) then
-				if state.AutoArts.value and not buffactive["Addendum: Black"] and not silent_check_amnesia() and get_current_strategem_count() > 0 then
+				if state.AutoArts.value and not buffactive["Addendum: Black"] and not silent_check_amnesia() and get_current_stratagem_count() > 0 then
 					if buffactive["Dark Arts"] then
 						windower.chat.input('/ja "Addendum: Black" <me>')
 						windower.chat.input:schedule(1.5,'/ma "'..spell.english..'" '..spell.target.raw..'')
@@ -1196,7 +1196,7 @@ function check_spell_targets(spell, spellMap, eventArgs)
 			add_to_chat(123,'Target out of range, too far to heal!')
 		elseif spell.english:startswith('Curaga') and not spell.target.in_party then
 			if (state.Buff['Light Arts'] or state.Buff['Addendum: White']) then
-				if get_current_strategem_count() > 0 then
+				if get_current_stratagem_count() > 0 then
 					local number = spell.english:match('Curaga ?%a*'):sub(7) or ''
 					eventArgs.cancel = true
 					if buffactive['Accession'] then
@@ -2316,12 +2316,12 @@ function item_equipped(item)
 	return false
 end
 
-function get_current_strategem_count()
+function get_current_stratagem_count()
     -- returns recast in seconds.
     local allRecasts = windower.ffxi.get_ability_recasts()
     local stratsRecast = allRecasts[231]
 	local StratagemChargeTimer = 240
-	local maxStrategems = 1
+	local maxStratagems = 1
 	
 	if player.sub_job == 'SCH' and player.sub_job_level > 29 then
 		StratagemChargeTimer = 120
@@ -2341,14 +2341,14 @@ function get_current_strategem_count()
 	
 	if player.sub_job == 'SCH' then
 		if player.sub_job_level > 29 then
-			maxStrategems = 2
+			maxStratagems = 2
 		end
 	else
-		maxStrategems = math.floor((player.main_job_level + 10) / 20)
+		maxStratagems = math.floor((player.main_job_level + 10) / 20)
 	end
 
 
-    local currentCharges = math.floor(maxStrategems - (stratsRecast / StratagemChargeTimer))
+    local currentCharges = math.floor(maxStratagems - (stratsRecast / StratagemChargeTimer))
     return currentCharges
 end
 
