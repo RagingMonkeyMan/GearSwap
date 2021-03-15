@@ -1971,7 +1971,10 @@ function get_ranged_set(equipSet, spell, spellMap)
         mote_vars.set_breadcrumbs:append(state.CombatForm.value)
     end
 
-    if state.CombatWeapon.has_value and equipSet[state.CombatWeapon.value] then
+	if equipSet[state.Weapons.value] then
+        equipSet = equipSet[state.Weapons.value]
+        mote_vars.set_breadcrumbs:append(state.Weapons.value)
+    elseif state.CombatWeapon.has_value and equipSet[state.CombatWeapon.value] then
         equipSet = equipSet[state.CombatWeapon.value]
         mote_vars.set_breadcrumbs:append(state.CombatWeapon.value)
     end
