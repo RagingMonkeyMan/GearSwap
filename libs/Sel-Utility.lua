@@ -2308,8 +2308,9 @@ function set_to_item(set)
 end
 
 function item_equipped(item)
+	item = item:lower()
 	for k, v in pairs(player.equipment) do
-		if v == item then
+		if v:lower() == item then
 			return true
 		end
 	end
