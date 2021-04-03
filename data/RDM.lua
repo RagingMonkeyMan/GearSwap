@@ -204,22 +204,24 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.buff.ComposureOther)
 		end
 
-		if can_dual_wield and sets.midcast[spell.english] and sets.midcast[spell.english].DW then
-			equip(sets.midcast[spell.english].DW)
-		elseif can_dual_wield and sets.midcast[spellMap] and sets.midcast[spellMap].DW then
-			equip(sets.midcast[spellMap].DW)
+		if spell.english == 'Phalanx II' and spell.target.type =='SELF' and sets.Self_Phalanx then
+			equip(sets.Self_Phalanx)
 		elseif sets.midcast[spell.english] then
 			equip(sets.midcast[spell.english])
 		elseif sets.midcast[spellMap] then
 			equip(sets.midcast[spellMap])
 		end
-    end
-	
-	if spell.skill == 'Enfeebling Magic' or spell.skill == 'Dark Magic' or default_spell_map == 'ElementalEnfeeble' or spell.english == 'Impact' then
-		if state.Weapons.value ~= 'None' and not sets.weapons[state.Weapons.value].range and item_available('Regal Gem') then
-			equip({range=empty,ammo="Regal Gem"})
+
+		if can_dual_wield and (state.Weapons.value == 'None' or state.UnlockWeapons.value) then
+			if spell.english == 'Phalanx II' and spell.target.type =='SELF' and sets.Self_Phalanx and sets.Self_Phalanx.DW then
+				equip(sets.Self_Phalanx.DW)
+			elseif sets.midcast[spell.english] and sets.midcast[spell.english].DW then
+				equip(sets.midcast[spell.english].DW)
+			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DW then
+				equip(sets.midcast[spellMap].DW)
+			end
 		end
-	end
+    end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
