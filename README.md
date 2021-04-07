@@ -73,8 +73,7 @@ Setting up my Gearswaps and Github updating.
 12.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
     https://www.dropbox.com/sh/20vy32liub3glxz/AAAiIVHAasFdwCK1SZdZz7d_a?dl=0
 	and place it in your Windower\Scripts folder (Rename and keep your
-	original just in case) I also run many unofficial addons, most of which can be found at:
-	https://www.dropbox.com/sh/8l6m0lfpgw59ycc/AABZn4T7gVphpX77wetsAx45a?dl=0
+	original just in case)
     
 13.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
 
