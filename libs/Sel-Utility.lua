@@ -2362,20 +2362,15 @@ function arts_active()
 end
 
 -- Movement Handling
-lastlocation = 'fff':pack(0,0,0)
+lastlocation = {X=0,Z=0}
 moving = false
 wasmoving = false
 
 windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
-        moving = lastlocation ~= modified:sub(5, 16)
-        lastlocation = modified:sub(5, 16)
-		
-		if wasmoving ~= moving then
-			if not (player.status == 'Event' or (os.clock() < (next_cast + 1)) or pet_midaction() or (os.clock() < (petWillAct + 2))) then
-				send_command('gs c forceequip')
-			end
-		end
+        currentlocation = packets.parse('outgoing',modified)
+        moving = math.abs(lastlocation.X - currentlocation.X) >= 0.1 or math.abs(lastlocation.Z - currentlocation.Z) >= 0.1
+        lastlocation = currentlocation
 
 		if moving then
 			if player.movement_speed <= 5 and sets.Kiting and not (player.status == 'Event' or (os.clock() < (next_cast + 1)) or pet_midaction() or (os.clock() < (petWillAct + 2))) then
