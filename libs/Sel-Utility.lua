@@ -2362,14 +2362,14 @@ function arts_active()
 end
 
 -- Movement Handling
-lastlocation = {X=0,Z=0}
+lastlocation = {X=0,Y=0}
 moving = false
 wasmoving = false
 
 windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
         currentlocation = packets.parse('outgoing',modified)
-        moving = math.abs(lastlocation.X - currentlocation.X) >= 0.1 or math.abs(lastlocation.Z - currentlocation.Z) >= 0.1
+        moving = math.abs(lastlocation.X - currentlocation.X) >= 0.1 or math.abs(lastlocation.Y - currentlocation.Y) >= 0.1
         lastlocation = currentlocation
 
 		if moving then
