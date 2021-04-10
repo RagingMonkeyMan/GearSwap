@@ -41,7 +41,6 @@ function init_gear_sets()
     --------------------------------------
 
 	sets.TreasureHunter = {hands="Plunderer's Armlets +1",waist="Chaac Belt",feet="Skulk. Poulaines +1"}
-    sets.ExtraRegen = {}
     sets.Kiting = {feet="Skd. Jambeaux +1"}
 
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
