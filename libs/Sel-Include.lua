@@ -470,7 +470,7 @@ function target_change(new)
 					end
 				end
 			elseif target.name == "Sturdy Pyxis" and player.inventory['Forbidden Key'] then
-				windower.chat.input('/item "Forbidden Key" <t>')
+				windower.chat.input('/item "Forbidden Key" <t>') return
 			end
 		end
 	end
