@@ -2368,8 +2368,8 @@ wasmoving = false
 
 windower.raw_register_event('outgoing chunk',function(id,data,modified,is_injected,is_blocked)
     if id == 0x015 then
-        currentlocation = packets.parse('outgoing',modified)
-        moving = math.abs(lastlocation.X - currentlocation.X) >= 0.1 or math.abs(lastlocation.Y - currentlocation.Y) >= 0.1
+		local currentlocation = {X=modified:sub(5,8), Y=modified:sub(13,16)}
+        moving = currentlocation.X ~= lastlocation.X or currentlocation.Y ~= lastlocation.Y
         lastlocation = currentlocation
 
 		if moving then
