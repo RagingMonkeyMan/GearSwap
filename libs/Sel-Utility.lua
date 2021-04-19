@@ -2373,7 +2373,7 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
         lastlocation = currentlocation
 
 		if moving then
-			if player.movement_speed <= 5 and sets.Kiting and not (player.status == 'Event' or (os.clock() < (next_cast + 1)) or pet_midaction() or (os.clock() < (petWillAct + 2))) then
+			if sets.Kiting and not (player.status == 'Event' or (os.clock() < (next_cast + 1)) or pet_midaction() or (os.clock() < (petWillAct + 2))) then
 				send_command('gs c forceequip')
 			end
 			if state.RngHelper.value then
