@@ -289,7 +289,7 @@ function check_buff()
 			windower.chat.input('/ja "Focus" <me>')
 			tickdelay = os.clock() + 1.1
 			return true
-		elseif player.sub_job == 'WAR' then
+		elseif player.sub_job == 'WAR' and not state.Buff['SJ Restriction'] then
 			if not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
 				tickdelay = os.clock() + 1.1

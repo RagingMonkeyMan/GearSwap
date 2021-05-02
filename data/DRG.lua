@@ -74,18 +74,20 @@ function job_precast(spell, spellMap, eventArgs)
 
 	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value ~= 'Off' then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
-		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] < latency then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Sekkanoki" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
-			tickdelay = os.clock() + 1.25
-			return
-		elseif player.sub_job == 'SAM' and abil_recasts[134] < latency then
-			eventArgs.cancel = true
-			windower.chat.input('/ja "Meditate" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
-			tickdelay = os.clock() + 1.25
-			return
+		if player.sub_job == 'SAM' and not state.Buff['SJ Restriction'] then
+			if player.tp > 1850 and abil_recasts[140] < latency then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Sekkanoki" <me>')
+				windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+				tickdelay = os.clock() + 1.25
+				return
+			elseif abil_recasts[134] < latency then
+				eventArgs.cancel = true
+				windower.chat.input('/ja "Meditate" <me>')
+				windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+				tickdelay = os.clock() + 1.25
+				return
+			end
 		end
 	elseif spell.action_type == 'Ability' then
 		if spell.english == 'Restoring Breath' and state.AutoBondMode.value then
@@ -214,7 +216,7 @@ function job_customize_melee_set(meleeSet)
 end
 
 function check_hasso()
-	if not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.sub_job == 'SAM' and player.status == 'Engaged' then
+	if player.sub_job == 'SAM' and not state.Buff['SJ Restriction'] and not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.status == 'Engaged' and not silent_check_amnesia() then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
@@ -273,6 +275,8 @@ function check_buff()
 			windower.chat.input('/ja "Call Wyvern" <me>')
 			tickdelay = os.clock() + 1.1
 			return true
+		elseif state.Buff['SJ Restriction'] then
+			return false
 		elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 			windower.chat.input('/ja "Last Resort" <me>')
 			tickdelay = os.clock() + 1.1

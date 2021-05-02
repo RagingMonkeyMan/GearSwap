@@ -522,7 +522,7 @@ function check_buff()
 			end
 		end
 		
-		if player.in_combat then
+		if player.in_combat and not state.Buff['SJ Restriction'] then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] < latency then

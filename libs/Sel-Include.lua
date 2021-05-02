@@ -179,6 +179,7 @@ function init_include()
 	state.Buff['Accession'] = buffactive['Accession'] or false
 	state.Buff['Manifestation'] = buffactive['Manifestation'] or false
 	state.Buff['Warcry'] = buffactive['Warcry'] or false
+	state.Buff['SJ Restriction'] = buffactive['SJ Restriction'] or false
 	
     -- Classes describe a 'type' of action.  They are similar to state, but
     -- may have any free-form value, or describe an entire table of mapped values.

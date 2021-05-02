@@ -95,7 +95,7 @@ function job_precast(spell, spellMap, eventArgs)
 		return
 	end
 
-	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value ~= 'Off' then
+	if spell.type == 'WeaponSkill' and state.AutoBuffMode.value ~= 'Off' and not state.Buff['SJ Restriction'] then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] < latency then
 			eventArgs.cancel = true
@@ -400,7 +400,7 @@ function update_melee_groups()
 end
 
 function check_hasso()
-	if not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.sub_job == 'SAM' and player.in_combat then
+	if player.sub_job == 'SAM' and not state.Buff['SJ Restriction'] and not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan) and player.status == 'Engaged' and not silent_check_amnesia() then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
@@ -437,6 +437,8 @@ function check_buff()
 				windower.chat.input('/ja "Swordplay" <me>')
 				tickdelay = os.clock() + 1.1
 				return true
+			elseif state.Buff['SJ Restriction'] then
+				return false
 			elseif player.sub_job == 'DRK' and not buffactive['Last Resort'] and abil_recasts[87] < latency then
 				windower.chat.input('/ja "Last Resort" <me>')
 				tickdelay = os.clock() + 1.1

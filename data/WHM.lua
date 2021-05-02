@@ -405,7 +405,7 @@ function check_arts()
 			tickdelay = os.clock() + 1
 			return true
 
-		elseif player.sub_job == 'SCH' and not arts_active() and abil_recasts[228] < latency then
+		elseif player.sub_job == 'SCH' and not (state.Buff['SJ Restriction'] or arts_active()) and abil_recasts[228] < latency then
 			send_command('@input /ja "Light Arts" <me>')
 			tickdelay = os.clock() + 1
 			return true

@@ -506,8 +506,8 @@ function check_arts()
 			end	
 		end	
 
- 		if player.sub_job == 'SCH' and not arts_active() and abil_recasts[228] < latency then	
-			send_command('@input /ja "Light Arts" <me>')	
+ 		if player.sub_job == 'SCH' and not (state.Buff['SJ Restriction'] or arts_active()) and abil_recasts[228] < latency then	
+			windower.chat.input('/ja "Light Arts" <me>')	
 			tickdelay = os.clock() + 1.1
 			return true	
 		end	

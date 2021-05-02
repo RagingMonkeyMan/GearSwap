@@ -192,10 +192,10 @@ function job_filter_precast(spell, spellMap, eventArgs)
 		if player.tp > 999 and available_ws:contains(190) then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, using Myrkr!')
 			windower.chat.input('/ws Myrkr <me>')
-		elseif player.sub_job == 'SCH' and buffactive['Sublimation: Complete'] then
+		elseif player.sub_job == 'SCH' and not state.Buff['SJ Restriction'] and buffactive['Sublimation: Complete'] then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, using Sublimation!')
 			windower.chat.input('/ja Sublimation <me>')	
-		elseif player.sub_job == 'RDM' and abil_recasts[49] < latency and player.mp > 0 and player.hp > 400 and state.AutoConvert.value then
+		elseif player.sub_job == 'RDM' and not state.Buff['SJ Restriction'] and abil_recasts[49] < latency and player.mp > 0 and player.hp > 400 and state.AutoConvert.value then
 			add_to_chat(122,'Not enough MP to Pact while using Conduit, Converting!')
 			eventArgs.cancel = true
 			windower.chat.input('/ja Convert <me>')
