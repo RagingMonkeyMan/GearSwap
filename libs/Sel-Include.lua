@@ -2160,6 +2160,10 @@ function sub_job_change(newSubjob, oldSubjob)
         user_setup()
     end
 	
+    if user_job_setup then
+        user_job_setup()
+    end	
+	
     if extra_user_setup then
         extra_user_setup()
     end
