@@ -2171,6 +2171,14 @@ function sub_job_change(newSubjob, oldSubjob)
     if job_sub_job_change then
         job_sub_job_change(newSubjob, oldSubjob)
     end
+
+    if user_sub_job_change then
+        user_sub_job_change(newSubjob, oldSubjob)
+    end
+	
+    if user_job_sub_job_change then
+        user_job_sub_job_change(newSubjob, oldSubjob)
+    end
     
     send_command('gs c update')
 end
