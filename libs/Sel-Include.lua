@@ -2300,16 +2300,16 @@ function state_change(stateField, newValue, oldValue)
 		end
     end
 	
-	if user_job_state_change then
-		user_job_state_change(stateField, newValue, oldValue)
-	end
-	
 	if user_state_change then
 		user_state_change(stateField, newValue, oldValue)
 	end
 	
 	if job_state_change then
 		job_state_change(stateField, newValue, oldValue)
+	end
+	
+	if user_job_state_change then
+		user_job_state_change(stateField, newValue, oldValue)
 	end
 	
 	if stateField == 'Rune Element' then
