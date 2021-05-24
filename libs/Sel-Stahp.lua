@@ -173,9 +173,7 @@ function check_reaction(act)
 					if act_info.name:startswith('Haste') then
 						lasthaste = 1
 					elseif act_info.name:startswith('Flurry') then
-						if not buffactive.Flurry then
-							lastflurry = 1
-						end
+						lastflurry = 1
 					elseif act_info.name == "Erratic Flutter" then
 						lasthaste = 2
 					elseif act_info.name == "Animating Wail" then
