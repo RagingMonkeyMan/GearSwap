@@ -675,8 +675,7 @@ function check_ready()
 end
 
 function get_current_ready_count()
-    local abil_recasts = windower.ffxi.get_ability_recasts()
-    local readyRecast = abil_recasts[102]
+    local readyRecast = windower.ffxi.get_ability_recasts()[102]
 
     local maxCharges = 3
 

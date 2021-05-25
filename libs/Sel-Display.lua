@@ -183,6 +183,7 @@ function update_job_states()
 		AutoShadowMode = "Auto Shadows",
 		AutoFoodMode = "Auto Food: "..autofood.."",
 		RngHelper = "RngHelper",
+		RngHelperQuickDraw = "RngHelperQuickDraw",
 		Capacity = "Capacity",
 		AutoTankMode = "Auto Tank",
 		CompensatorMode = "Compensator",

@@ -282,6 +282,13 @@ function process_queue()
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}
+			elseif state.RngHelperQuickDraw.value and windower.ffxi.get_ability_recasts()[195] == 0 then
+				pending = {
+					['prefix'] = '/ja',
+					['english'] = ''..data.elements.quickdraw_of[state.ElementalMode.Value]..' Shot',
+					['target'] = target,
+					['action_type'] = 'Ability',
+				}
 			else
 				pending = {
 					['prefix'] = '/range',
