@@ -39,7 +39,7 @@ name them Character_Job.lua.
 
 :Macro:		/console gs c toggle AutoStunMode
 
-[Alt+F8]	= Toggles AutoDefenseMode, will attempt to automatically swap into and out of defensive sets for the specific move.
+[Alt+F8]	= Toggles AutoDefenseMode, will attempt to automatically swap into and out of defensive sets for specific moves.
 			  Edit options by copying the tables from Windower4\addons\GearSwap\libs\Sel-MonsterAbilities.lua to relevant user files and editing them there.
 
 :Macro:		/console gs c toggle AutoDefenseMode
