@@ -39,8 +39,8 @@ name them Character_Job.lua.
 
 :Macro:		/console gs c toggle AutoStunMode
 
-[Alt+F8]	= Toggle auto-defense mode, will attempt to automatically swap into and out of defensive sets for
-			the specific move, listed in your Name-Globals file.
+[Alt+F8]	= Toggles AutoDefenseMode, will attempt to automatically swap into and out of defensive sets for the specific move.
+			  Edit options by copying the tables from Windower4\addons\GearSwap\libs\Sel-MonsterAbilities.lua to relevant user files and editing them there.
 
 :Macro:		/console gs c toggle AutoDefenseMode
 
@@ -213,12 +213,6 @@ Can change default options in the gearswap job_character_gear file with:
 autows = 'Savage Blade'
 autowstp = 1250
 
-[Alt+F8]	= Toggles AutoDefenseMode, automatically pushes your F10-F12 keys for defense.
-			  Edit options in your Windower4\addons\GearSwap\libs\Sel-MonsterAbilities.lua file.
-
-:Macro:		/console gs c toggle AutoDefenseMode
-			
-			
 --- Addon and Plugin related combinations. These are in init, but they can be moved elsewhere. ---
 
 [Ctrl+Alt+Win+?]	= Load or reload the Addon or Plugin, the ? is the key specific to the related Addon or Plugin.
