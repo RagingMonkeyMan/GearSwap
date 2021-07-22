@@ -1209,10 +1209,6 @@ function default_aftercast(spell, spellMap, eventArgs)
 	if tickdelay < next_cast then tickdelay = next_cast end
 	
 	if not spell.interrupted then
-		if delayed_cast == spell.english then
-			delayed_cast = ''
-			delayed_target = ''
-		end
 		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 			info.tagged_mobs[spell.target.id] = os.time()
 			if player.target.id == spell.target.id and state.th_gear_is_locked then
