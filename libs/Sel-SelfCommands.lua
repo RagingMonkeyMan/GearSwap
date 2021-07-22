@@ -489,6 +489,7 @@ end
 function handle_delayedcast()
 	if delayed_cast ~= '' and delayed_target ~= '' then
 		windower.send_command(''..delayed_cast..' '..delayed_target..'')
+		delayed_cast = ''
 	end
 end
 
