@@ -138,10 +138,6 @@ function job_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 	end
-	
-	if state.Buff['Mana Wall'] and (state.IdleMode.value:contains('DT') or state.DefenseMode.value ~= 'None') then
-		equip(sets.buff['Mana Wall'])
-	end
 end
 
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
@@ -211,15 +207,14 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				end
 			end
 		end
-		
-		if state.Buff['Mana Wall'] and (state.IdleMode.value:contains('DT') or state.DefenseMode.value ~= 'None') then
+
+		if state.Buff['Mana Wall'] and ((state.IdleMode.value:contains('DT') or state.IdleMode.value:contains('Tank')) and (player.in_combat or being_attacked))then
 			equip(sets.buff['Mana Wall'])
 		end
 	end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
-    -- Lock feet after using Mana Wall.
     if not spell.interrupted then
         if spell.english == 'Sleep' or spell.english == 'Sleepga' then
             send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
@@ -311,7 +306,7 @@ function job_customize_idle_set(idleSet)
 	if state.DeathMode.value ~= 'Off' then
         idleSet = set_combine(idleSet, sets.idle.Death)
     end
-	
+
     if state.Buff['Mana Wall'] then
 		idleSet = set_combine(idleSet, sets.buff['Mana Wall'])
     end
@@ -327,6 +322,15 @@ function job_customize_melee_set(meleeSet)
     end
 
     return meleeSet
+end
+
+function job_customize_defense_set(defenseSet)
+
+    if state.Buff['Mana Wall'] then
+		defenseSet = set_combine(defenseSet, sets.buff['Mana Wall'])
+    end
+
+    return defenseSet
 end
 
 -- Function to display the current relevant user state when doing an update.
