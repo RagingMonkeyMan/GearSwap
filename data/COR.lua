@@ -124,7 +124,7 @@ function job_precast(spell, spellMap, eventArgs)
 		end
     end
 	
-    if spell.action_type == 'Ranged Attack' or spell.type == 'CorsairShot' or spell.name == 'Shadowbind' or (spell.type == 'WeaponSkill' and spell.skill == 'Marksmanship') then
+    if spell.action_type == 'Ranged Attack' or spell.name == 'Shadowbind' or (spell.type == 'WeaponSkill' and spell.skill == 'Marksmanship') then
         do_bullet_checks(spell, spellMap, eventArgs)
     end
 end
