@@ -2283,6 +2283,7 @@ function state_change(stateField, newValue, oldValue)
 			state.Weapons:reset()
 			if sets.weapons[state.Weapons.value] and not state.ReEquip.value then
 				equip_weaponset(state.Weapons.value)
+				newValue = state.Weapons.value
 			end
 		end
 	elseif stateField == 'Unlock Weapons' then
