@@ -2258,7 +2258,7 @@ function state_change(stateField, newValue, oldValue)
 			style_lock = true
 		end
 	
-		if newValue == 'None' or state.UnlockWeapons.value then
+		if newValue == 'None' then
 			enable('main','sub','range','ammo')
 		elseif ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
@@ -2267,7 +2267,7 @@ function state_change(stateField, newValue, oldValue)
 				if startindex == state.Weapons.index then break end
 			end
 			
-			if state.Weapons.value == 'None' then
+			if state.Weapons.value == 'None' or state.UnlockWeapons.value then
 				enable('main','sub','range','ammo')
 			elseif not state.ReEquip.value then
 				handle_weapons()
