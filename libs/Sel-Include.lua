@@ -2267,6 +2267,8 @@ function state_change(stateField, newValue, oldValue)
 				if startindex == state.Weapons.index then break end
 			end
 			
+			newValue = state.Weapons.value
+			
 			if state.Weapons.value == 'None' or state.UnlockWeapons.value then
 				enable('main','sub','range','ammo')
 			elseif not state.ReEquip.value then
