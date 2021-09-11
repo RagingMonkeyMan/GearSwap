@@ -2269,10 +2269,10 @@ function state_change(stateField, newValue, oldValue)
 			
 			newValue = state.Weapons.value
 			
-			if state.Weapons.value == 'None' or state.UnlockWeapons.value then
+			if newValue == 'None' or state.UnlockWeapons.value then
 				enable('main','sub','range','ammo')
 			elseif not state.ReEquip.value then
-				handle_weapons()
+				equip_weaponset(newValue)
 			end
 		elseif sets.weapons[newValue] then
 			if not state.ReEquip.value then equip_weaponset(newValue) end
@@ -2281,10 +2281,8 @@ function state_change(stateField, newValue, oldValue)
 				add_to_chat(123,"sets.weapons."..newValue.." does not exist, resetting weapon state.")
 			end
 			state.Weapons:reset()
-			if sets.weapons[state.Weapons.value] and not state.ReEquip.value then
-				equip_weaponset(state.Weapons.value)
-				newValue = state.Weapons.value
-			end
+			newValue = state.Weapons.value
+			if not state.ReEquip.value then	equip_weaponset(newValue) end
 		end
 	elseif stateField == 'Unlock Weapons' then
 		if newValue == true then
