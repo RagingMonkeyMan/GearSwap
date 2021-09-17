@@ -1057,7 +1057,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				elseif single_obi_intensity >= hachirin_intensity and single_obi_intensity > 5 then
 					equip({waist=data.elements.obi_of[spell.element]})
 				elseif hachirin_intensity > 5 then
-					equip(waist="Hachirin-no-Obi")
+					equip({waist="Hachirin-no-Obi"})
 				end
 			end
 
