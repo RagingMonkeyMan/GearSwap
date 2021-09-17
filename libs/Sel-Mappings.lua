@@ -70,6 +70,9 @@ data.elements.enspells_lookup = {['Enthunder']='Lightning', ['Enstone']='Earth',
 		['Enblizzard II']='Ice', ['Enfire II']='Fire', ['Enwater II']='Water', ['Enlight II']='Light', 
 		['Endark II']='Dark'}
 		
+data.elements.obi_of = {['Fire']='Karin Obi',['Ice']='Hyorin Obi',['Wind']='Furin Obi',['Earth']='Dorin Obi',
+['Lightning']='Rairin Obi',['Water']='Suirin Obi',['Light']='Korin Obi',['Dark']='Anrin Obi'}
+		
 data.elements.ninjutsu_nuke_of = {['Fire']='Katon', ['Ice']='Hyoton', ['Wind']='Huton', ['Earth']='Doton',
         ['Lightning']='Raiton', ['Water']='Suiton', ['Dark']='Kurayami',}
 		
@@ -105,6 +108,7 @@ data.elements.storm_of = {['Light']="Aurorastorm", ['Dark']="Voidstorm", ['Fire'
 data.elements.rune_of = {['Light']='Lux', ['Dark']='Tenebrae', ['Fire']='Ignis', ['Ice']='Gelus', ['Wind']='Flabra',
      ['Earth']='Tellus', ['Lightning']='Sulpor', ['Water']='Unda'}
  
+data.weather_bonus_potency = {[0]=0,[1]=0.1,[2]=0.25}
 
 --Exceptions for specific actions, placed here to be easily modifiable.
 cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water','Light Arts','Addendum: White'}
@@ -179,7 +183,12 @@ data.weaponskills.ranged = S{"Flaming Arrow","Piercing Arrow","Dulling Arrow","S
     "Hot Shot","Split Shot","Sniper Shot","Slug Shot","Heavy Shot","Detonator","Last Stand",
     "Coronach","Trueflight","Leaden Salute","Wildfire","Myrkr"}
 
-data.weaponskills.elemental = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight','Tachi: Jinpu','Flash Nova'}
+data.weaponskills.elemental = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeolian Edge','Cataclysm','Trueflight',
+'Tachi: Jinpu','Flash Nova','Tachi: Kagero','Tachi: Koki','Tachi: Goten','Shadow of Death','Infernal Scythe','Dark Harvest',
+'Blade: Teki','Blade: To','Blade: Chi','Blade: Ei','Blade: Yu','Burning Blade','Red Lotus Blade','Shining Blade',
+'Seraph Blade','Gust Slash','Cyclone','Shining Strike','Seraph Strike','Frostbite','Freezebite','Herculean Slash','Gale Axe',
+'Cloudsplitter','Primal Rend','Thunder Thrust','Raiden Thrust','Rock Crusher','Earth Crusher','Starburst','Sunburst',
+'Garland of Bliss','Flaming Arrow','Hot Shot'}
 
 data.weaponskills.statue_ws = {['COR']='Leaden Salute',['RNG']='Trueflight',['RDM']='Sanguine Blade',['BLU']='Sanguine Blade'}
 

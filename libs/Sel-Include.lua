@@ -1019,21 +1019,45 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 			
 		elseif spell.type == 'WeaponSkill' then
-		
+
 			if state.WeaponskillMode.value ~= 'Proc' and data.weaponskills.elemental:contains(spell.english) then
-				local orpheus_avail = item_available("Orpheus's Sash")
-				local hachirin_avail = item_available('Hachirin-no-Obi')
+				local distance = spell.target.distance - spell.target.model_size
+				local single_obi_intensity = 0
+				local orpheus_intensity = 0
+				local hachirin_intensity = 0
+
+				if item_available("Orpheus's Sash") then
+					orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+				end
 				
-				if hachirin_avail and spell.element and spell.element == world.weather_element and world.weather_intensity == 2 then
-					equip({waist="Hachirin-no-Obi"})
-				elseif orpheus_avail and spell.target.distance < 3 then
+				if item_available(data.elements.obi_of[spell.element]) then
+					if spell.element == world.weather_element then
+						single_obi_intensity = single_obi_intensity + data.weather_bonus_potency[world.weather_intensity]
+					end
+					if spell.element == world.day_element then
+						single_obi_intensity = single_obi_intensity + 10
+					end
+				end
+				
+				if item_available('Hachirin-no-Obi') then
+					if spell.element == world.weather_element then
+						single_obi_intensity = single_obi_intensity + data.weather_bonus_potency[world.weather_intensity]
+					elseif spell.element == data.elements.weak_to[world.weather_element] then
+						single_obi_intensity = single_obi_intensity - data.weather_bonus_potency[world.weather_intensity]
+					end
+					if spell.element == world.day_element then
+						single_obi_intensity = single_obi_intensity + 10
+					elseif spell.element == data.elements.weak_to[world.day_element] then
+						single_obi_intensity = single_obi_intensity - 10
+					end
+				end
+				
+				if orpheus_intensity > hachirin_intensity and orpheus_intensity > single_obi_intensity and orpheus_intensity > 5 then
 					equip({waist="Orpheus's Sash"})
-				elseif hachirin_avail and spell.element and spell.element == world.weather_element and spell.element == world.day_element then
-					equip({waist="Hachirin-no-Obi"})
-				elseif orpheus_avail and spell.target.distance < 8 then
-					equip({waist="Orpheus's Sash"})
-				elseif hachirin_avail and spell.element and (spell.element == world.weather_element or spell.element == world.day_element) then
-					equip({waist="Hachirin-no-Obi"})
+				elseif single_obi_intensity >= hachirin_intensity and single_obi_intensity > 5 then
+					equip({waist=data.elements.obi_of[spell.element]})
+				elseif hachirin_intensity > 5 then
+					equip(waist="Hachirin-no-Obi")
 				end
 			end
 
