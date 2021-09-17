@@ -1041,14 +1041,14 @@ function default_post_precast(spell, spellMap, eventArgs)
 				
 				if item_available('Hachirin-no-Obi') then
 					if spell.element == world.weather_element then
-						single_obi_intensity = single_obi_intensity + data.weather_bonus_potency[world.weather_intensity]
+						hachirin_intensity = hachirin_intensity + data.weather_bonus_potency[world.weather_intensity]
 					elseif spell.element == data.elements.weak_to[world.weather_element] then
-						single_obi_intensity = single_obi_intensity - data.weather_bonus_potency[world.weather_intensity]
+						hachirin_intensity = hachirin_intensity - data.weather_bonus_potency[world.weather_intensity]
 					end
 					if spell.element == world.day_element then
-						single_obi_intensity = single_obi_intensity + 10
+						hachirin_intensity = hachirin_intensity + 10
 					elseif spell.element == data.elements.weak_to[world.day_element] then
-						single_obi_intensity = single_obi_intensity - 10
+						hachirin_intensity = hachirin_intensity - 10
 					end
 				end
 				
