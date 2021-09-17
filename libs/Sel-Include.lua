@@ -1468,7 +1468,7 @@ end
 -- Function to wrap logic for equipping gear on aftercast, status change, or user update.
 -- @param status : The current or new player status that determines what sort of gear to equip.
 function equip_gear_by_status(playerStatus, petStatus)
-    if _global.debug_mode then add_to_chat(123,'Debug: Equip gear for status ['..tostring(status)..'], HP='..tostring(player.hp)) end
+    if _global.debug_mode then add_to_chat(123,'Debug: Equip gear for status ['..tostring(playerStatus)..'], HP='..tostring(player.hp)) end
 	if player.hp > 0 then
 		playerStatus = playerStatus or player.status or 'Idle'
 		-- If status not defined, treat as idle.
