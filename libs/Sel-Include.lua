@@ -1838,7 +1838,7 @@ function get_precast_set(spell, spellMap)
     end
 
     -- Update defintions for element-specific gear that may be used.
-    set_elemental_gear(spell, spellMap)
+    set_elemental_obi_cape_ring(spell, spellMap)
     
     -- Return whatever we've constructed.
     return equipSet
