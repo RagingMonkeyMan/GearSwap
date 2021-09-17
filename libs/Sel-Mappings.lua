@@ -108,7 +108,7 @@ data.elements.storm_of = {['Light']="Aurorastorm", ['Dark']="Voidstorm", ['Fire'
 data.elements.rune_of = {['Light']='Lux', ['Dark']='Tenebrae', ['Fire']='Ignis', ['Ice']='Gelus', ['Wind']='Flabra',
      ['Earth']='Tellus', ['Lightning']='Sulpor', ['Water']='Unda'}
  
-data.weather_bonus_potency = {[0]=0,[1]=0.1,[2]=0.25}
+data.weather_bonus_potency = {[0]=0,[1]=10,[2]=25}
 
 --Exceptions for specific actions, placed here to be easily modifiable.
 cursna_exceptions = S{'Cursna','Accession','Divine Caress','Hallowed Water','Holy Water','Light Arts','Addendum: White'}
