@@ -471,72 +471,71 @@ end
 -- Elemental gear utility functions.
 -------------------------------------------------------------------------------------------------------------------
 
--- General handler function to set all the elemental gear for an action.
-function set_elemental_gear(spell, spellMap)
-	--No longer needed because of Fotia.
-    --set_elemental_gorget_belt(spell)
-    set_elemental_obi_cape_ring(spell, spellMap)
-    --set_elemental_staff(spell, spellMap)
-end
-
-
---[[ Set the name field of the predefined gear vars for gorgets and belts, for the specified weaponskill. No longer needed because of Fotia.
-function set_elemental_gorget_belt(spell)
-    if spell.type ~= 'WeaponSkill' then
-        return
-    end
-
-    -- Get the union of all the skillchain elements for the weaponskill
-    local weaponskill_elements = S{}:
-        union(skillchain_elements[spell.skillchain_a]):
-        union(skillchain_elements[spell.skillchain_b]):
-        union(skillchain_elements[spell.skillchain_c])
-    
-    gear.ElementalGorget.name = get_elemental_item_name("gorget", weaponskill_elements) or gear.default.weaponskill_neck  or ""
-    gear.ElementalBelt.name   = get_elemental_item_name("belt", weaponskill_elements)   or gear.default.weaponskill_waist or ""
-end
-]]--
-
 -- Function to get an appropriate obi/cape/ring for the current action.
 function set_elemental_obi_cape_ring(spell, spellMap)
     if spell.element == 'None' then
         return
     end
 
-	if spell.element == world.weather_element or spell.element == world.day_element then
+	gear.ElementalObi.name = gear.default.obi_waist
+	
+	if spell.element == world.weather_element or spell.element == world.day_element and item_available("Twilight Cape") then
 		gear.ElementalCape.name = "Twilight Cape"
-		gear.ElementalObi.name = "Hachirin-no-Obi"
 	else
-		gear.ElementalObi.name = gear.default.obi_waist
 		gear.ElementalCape.name = gear.default.obi_back
 	end
 
-	if is_nuke(spell, spellMap) then
-		local orpheus_avail = item_available("Orpheus's Sash")
-		if spell.english:endswith('helix') then
-			if orpheus_avail and spell.target.distance < 13 then
-				gear.ElementalObi.name = "Orpheus's Sash"
+	if spell.english:endswith('helix') then
+		if item_available("Orpheus's Sash") then
+			local distance = spell.target.distance - spell.target.model_size
+			if orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+				if orpheus_intensity > 5 then
+					equip({waist="Orpheus's Sash"})
+				end
 			end
-		else
-			local hachirin_avail = item_available('Hachirin-no-Obi')
-			if hachirin_avail and spell.element == world.weather_element and world.weather_intensity == 2 then
-				gear.ElementalObi.name = "Hachirin-no-Obi"
-			elseif orpheus_avail and spell.target.distance < 3 then
-				gear.ElementalObi.name = "Orpheus's Sash"
-			elseif hachirin_avail and spell.element == world.weather_element and spell.element == world.day_element then
-				gear.ElementalObi.name = "Hachirin-no-Obi"
-			elseif orpheus_avail and spell.target.distance < 8 then
-				gear.ElementalObi.name = "Orpheus's Sash"
-			elseif hachirin_avail and (spell.element == world.weather_element or spell.element == world.day_element) then
-				gear.ElementalObi.name = "Hachirin-no-Obi"
-			elseif orpheus_avail and spell.target.distance < 13 then
-				gear.ElementalObi.name = "Orpheus's Sash"
-			else
-				gear.ElementalObi.name = gear.default.obi_waist
+	elseif is_nuke(spell, spellMap) then
+	
+		local distance = spell.target.distance - spell.target.model_size
+		local single_obi_intensity = 0
+		local orpheus_intensity = 0
+		local hachirin_intensity = 0
+
+		if item_available("Orpheus's Sash") then
+			orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+		end
+		
+		if item_available(data.elements.obi_of[spell.element]) then
+			if spell.element == world.weather_element then
+				single_obi_intensity = single_obi_intensity + data.weather_bonus_potency[world.weather_intensity]
+			end
+			if spell.element == world.day_element then
+				single_obi_intensity = single_obi_intensity + 10
+			end
+		end
+
+		if item_available('Hachirin-no-Obi') then
+			if spell.element == world.weather_element then
+				hachirin_intensity = hachirin_intensity + data.weather_bonus_potency[world.weather_intensity]
+			elseif spell.element == data.elements.weak_to[world.weather_element] then
+				hachirin_intensity = hachirin_intensity - data.weather_bonus_potency[world.weather_intensity]
+			end
+			if spell.element == world.day_element then
+				hachirin_intensity = hachirin_intensity + 10
+			elseif spell.element == data.elements.weak_to[world.day_element] then
+				hachirin_intensity = hachirin_intensity - 10
 			end
 		end
 		
-		if spell.element == world.day_element and spell.english ~= 'Impact' and not spell.skill == 'Divine Magic' then
+		if orpheus_intensity > hachirin_intensity and orpheus_intensity > single_obi_intensity and orpheus_intensity > 5 then
+			gear.ElementalObi.name = "Orpheus's Sash"
+		elseif hachirin_intensity >= single_obi_intensity and hachirin_intensity > 5 then
+			gear.ElementalObi.name = "Hachirin-no-Obi"
+		elseif single_obi_intensity > 5 then
+			gear.ElementalObi.name = data.elements.obi_of[spell.element]
+			
+		end
+	
+		if spell.element == world.day_element and spell.english ~= 'Impact' and not spell.skill == 'Divine Magic' and item_available("Zodiac Ring") then
 			gear.ElementalRing.name = "Zodiac Ring"
 		else
 			gear.ElementalRing.name = gear.default.obi_ring
