@@ -1051,7 +1051,9 @@ function default_post_precast(spell, spellMap, eventArgs)
 						hachirin_intensity = hachirin_intensity - 10
 					end
 				end
-				
+				windower.add_to_chat(123,'orpheus intensity: '..orpheus_intensity..'')
+				windower.add_to_chat(123,'hachirin intensity: '..hachirin_intensity..'')
+				windower.add_to_chat(123,''..data.elements.obi_of[spell.element]..' intensity: '..single_obi_intensity..'')
 				if orpheus_intensity > hachirin_intensity and orpheus_intensity > single_obi_intensity and orpheus_intensity > 5 then
 					equip({waist="Orpheus's Sash"})
 				elseif single_obi_intensity >= hachirin_intensity and single_obi_intensity > 5 then
