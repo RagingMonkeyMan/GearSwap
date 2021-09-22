@@ -488,7 +488,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 	if spell.english:endswith('helix') then
 		if item_available("Orpheus's Sash") then
 			local distance = spell.target.distance - spell.target.model_size
-			local orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+			local orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)) or 0
 				if orpheus_intensity > 5 then
 					equip({waist="Orpheus's Sash"})
 				end
@@ -501,7 +501,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 		local hachirin_intensity = 0
 
 		if item_available("Orpheus's Sash") then
-			orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+			orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)) or 0
 		end
 		
 		if item_available(data.elements.obi_of[spell.element]) then
