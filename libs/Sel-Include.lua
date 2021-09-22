@@ -1027,7 +1027,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				local hachirin_intensity = 0
 
 				if item_available("Orpheus's Sash") then
-					orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)) or 0
+					orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)) or 0
 				end
 				
 				if item_available(data.elements.obi_of[spell.element]) then
