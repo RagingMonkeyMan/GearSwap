@@ -342,7 +342,7 @@ function job_customize_melee_set(meleeSet)
 		elseif hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
 			meleeSet = set_combine(meleeSet, {waist="Hachirin-no-Obi"})
 		elseif orpheus_intensity >= 5 then
-			meleeSet = set_combine(meleeSet, {{waist="Orpheus's Sash"})
+			meleeSet = set_combine(meleeSet, {waist="Orpheus's Sash"})
 		end
 
 	end
