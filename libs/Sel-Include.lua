@@ -1027,7 +1027,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				local hachirin_intensity = 0
 
 				if item_available("Orpheus's Sash") then
-					orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)) or 0
+					orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance))
 				end
 				
 				if item_available(data.elements.obi_of[spell.element]) then
@@ -2201,7 +2201,7 @@ function sub_job_change(newSubjob, oldSubjob)
         user_job_sub_job_change(newSubjob, oldSubjob)
     end
     
-    send_command('gs c update')
+    handle_update({'auto'})
 end
 
 
