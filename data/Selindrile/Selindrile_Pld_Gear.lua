@@ -174,7 +174,7 @@ function init_gear_sets()
         body="Flamma Korazin +2",hands="Flam. Manopolas +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
         back="Ground. Mantle +1",waist="Eschan Stone",legs="Flamma Dirs +2",feet="Flam. Gambieras +2"}
 
-    sets.precast.WS['Sanguine Blade'] = {ammo="Dosis Tathlum",
+    sets.precast.WS['Sanguine Blade'] = {ammo="Ghastly Tathlum +1",
         head="Jumalik Helm",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Crematio Earring",
         body="Jumalik Mail",hands="Founder's Gauntlets",ring1="Metamor. Ring +1",ring2="Archon Ring",
         back="Toro Cape",waist="Fotia Belt",legs="Flamma Dirs +2",feet="Founder's Greaves"}

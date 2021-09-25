@@ -138,7 +138,7 @@ function init_gear_sets()
 	sets.precast.WS["Tornado Kick"].Fodder = set_combine(sets.precast.WS["Tornado Kick"], sets.precast.WSFodder)
 
 
-	sets.precast.WS['Cataclysm'] = {ammo="Dosis Tathlum",
+	sets.precast.WS['Cataclysm'] = {ammo="Ghastly Tathlum +1",
 		neck="Baetyl Pendant",ear1="Friomisi Earring",ear2="Crematio Earring",
 		hands="Malignance Gloves",ring1="Shiva Ring +1",
 		back="Toro Cape",legs="Nahtirah Trousers"}

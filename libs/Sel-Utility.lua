@@ -527,11 +527,11 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 		end
 		
 		if hachirin_intensity >= single_obi_intensity and hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
-			equip({waist="Hachirin-no-Obi"})
+			gear.ElementalObi.name = "Hachirin-no-Obi"
 		elseif single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
-			equip({waist=data.elements.obi_of[enspell_element]})
+			gear.ElementalObi.name = data.elements.obi_of[enspell_element]
 		elseif orpheus_intensity >= 5 then
-			equip({waist="Orpheus's Sash"})
+			gear.ElementalObi.name = "Orpheus's Sash"
 		end
 	
 		if spell.element == world.day_element and spell.english ~= 'Impact' and not spell.skill == 'Divine Magic' and item_available("Zodiac Ring") then

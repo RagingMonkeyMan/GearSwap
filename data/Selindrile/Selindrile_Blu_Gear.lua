@@ -8,7 +8,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Tizalmace','Sequence','None','Almace','MagicWeapons','MeleeClubs','MaccWeapons','HybridWeapons')
+	state.Weapons:options('Tizbron','Tizalmace','Seqbron','Sequalmace','None','Almace','MagicWeapons','MeleeClubs','MaccWeapons','HybridWeapons','Naegbron','Naegmace')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','MP','SuppaBrutal','DWEarrings','DWMax'}
 
@@ -311,7 +311,7 @@ function init_gear_sets()
 		body="Jhakri Robe +2",hands="Jhakri Cuffs +2",ring1="Metamor. Ring +1",ring2="Stikini Ring +1",
 		back=gear.nuke_jse_back,waist="Luminary Sash",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 
-	sets.midcast['Elemental Magic'] = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Dosis Tathlum",
+	sets.midcast['Elemental Magic'] = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Ghastly Tathlum +1",
 		head="Jhakri Coronal +2",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
 		body="Jhakri Robe +2",hands="Amalric Gages +1",ring1="Shiva Ring +1",ring2="Shiva Ring +1",
 		back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Hagondes Pants +1",feet="Jhakri Pigaches +2"}
@@ -452,8 +452,10 @@ function init_gear_sets()
 	sets.weapons.Tizbron = {main="Tizona",sub="Thibron"}
 	sets.weapons.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
 	sets.weapons.Almace = {main="Almace",sub="Sequence"}
-	sets.weapons.Sequence = {main="Sequence",sub="Almace"}
-	sets.weapons.Kaja = {main="Naegling",sub="Almace"}
+	sets.weapons.Seqbron = {main="Sequence",sub="Thibron"}
+	sets.weapons.Sequalmace = {main="Sequence",sub="Almace"}
+	sets.weapons.Naegbron = {main="Naegling",sub="Thibron"}
+	sets.weapons.Naegmace = {main="Naegling",sub="Almace"}
 	sets.weapons.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
 	sets.weapons.MaccWeapons = {main="Iris",sub="Iris"}
 	sets.weapons.HybridWeapons = {main="Vampirism",sub="Vampirism"}
