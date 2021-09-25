@@ -490,7 +490,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 			local distance = spell.target.distance - spell.target.model_size
 			local orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance))
 				if orpheus_intensity > 5 then
-					equip({waist="Orpheus's Sash"})
+					gear.ElementalObi.name = "Orpheus's Sash"
 				end
 			end
 	elseif is_nuke(spell, spellMap) then
