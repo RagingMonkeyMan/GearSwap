@@ -525,7 +525,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 				hachirin_intensity = hachirin_intensity - 10
 			end
 		end
-		
+
 		if hachirin_intensity >= single_obi_intensity and hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
 			gear.ElementalObi.name = "Hachirin-no-Obi"
 		elseif single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
