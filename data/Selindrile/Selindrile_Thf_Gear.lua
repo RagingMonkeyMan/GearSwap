@@ -263,7 +263,7 @@ function init_gear_sets()
 
     sets.defense.PDT = {ammo="Staunch Tathlum +1",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Moonbeam Ring",ring2="Moonlight Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Gelatinous Ring +1",ring2="Moonlight Ring",
         back="Shadow Mantle",waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo="Staunch Tathlum +1",
@@ -309,7 +309,7 @@ function init_gear_sets()
 
     sets.engaged.DT = {ammo="Aurgelmir Orb +1",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Moonbeam Ring",ring2="Moonlight Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Gelatinous Ring +1",ring2="Moonlight Ring",
         back=gear.da_jse_back,waist="Reiki Yotai",legs="Malignance Tights",feet="Malignance Boots"}
 
     sets.engaged.SomeAcc.DT = {ammo="Staunch Tathlum +1",

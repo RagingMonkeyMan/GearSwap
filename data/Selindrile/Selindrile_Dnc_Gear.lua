@@ -78,7 +78,7 @@ function init_gear_sets()
         back=gear.stp_jse_back,waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"}
 		
     sets.Enmity = {ammo="Paeapua",
-        head="Genmei Kabuto",neck="Unmoving Collar +1",ear1="Friomisi Earring",ear2="Trux Earring",
+        head="Nyame Helm",neck="Unmoving Collar +1",ear1="Friomisi Earring",ear2="Trux Earring",
         body="Emet Harness +1",hands="Malignance Gloves",ring1="Petrov Ring",ring2="Vengeful Ring",
         back="Solemnity Cape",waist="Goading Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
 		

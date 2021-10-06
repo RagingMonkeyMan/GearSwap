@@ -25,7 +25,6 @@ gear.chironic_refresh_feet ={name="Chironic Slippers", augments={'Pet: Attack+23
 
 gear.herculean_fc_head = {name="Herculean Helm",augments={'"Fast Cast"+6','"Mag.Atk.Bns."+13',}}
 gear.herculean_nuke_head = {name="Herculean Helm",augments={'Mag. Acc.+16 "Mag.Atk.Bns."+16','Enmity-3','INT+9','"Mag.Atk.Bns."+13',}}
-gear.herculean_dt_hands = {name="Herculean Gloves",augments={'Attack+4','Damage taken-4%',}}
 gear.herculean_phalanx_hands = {name="Herculean Gloves", augments={'INT+6','MND+7','Phalanx +4','Accuracy+10 Attack+10','Mag. Acc.+13 "Mag.Atk.Bns."+13',}}
 gear.herculean_treasure_hands = {name="Herculean Gloves", augments={'"Store TP"+7','INT+6','"Treasure Hunter"+2','Accuracy+17 Attack+17','Mag. Acc.+17 "Mag.Atk.Bns."+17',}}
 gear.herculean_refresh_hands = {name="Herculean Gloves",augments={'Enmity+2','Pet: "Store TP"+4','"Refresh"+1',}}

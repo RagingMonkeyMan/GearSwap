@@ -174,31 +174,31 @@ function init_gear_sets()
 		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 
 	sets.idle.PDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}		
 
 	-- Defense sets
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
 		
 	-- Defense sets
 	sets.defense.HP = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Segomo's Mantle",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
 		head="Dampening Tam",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Moonlight Cape",waist="Flax Sash",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Carrier's Sash",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
 		head=empty,neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Respite Cloak",hands="Leyline Gloves",ring1="Vengeful Ring",Ring2="Purity Ring",
-		back="Toro Cape",waist="Flax Sash",legs="Samnuha Tights",feet="Malignance Boots"}
+		back="Toro Cape",waist="Carrier's Sash",legs="Samnuha Tights",feet="Malignance Boots"}
 
 	sets.Kiting = {feet="Herald's Gaiters"}
 
@@ -233,7 +233,7 @@ function init_gear_sets()
 
 	-- Defensive melee hybrid sets
 	sets.engaged.PDT = {ammo="Aurgelmir Orb +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 	sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
@@ -249,7 +249,7 @@ function init_gear_sets()
 		body="Malignance Tabard",hands="Hesychast's Gloves +1",ring1="Defending Ring",ring2="Patricius Ring",
 		back="Segomo's Mantle",waist="Olseni Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 	sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
 

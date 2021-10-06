@@ -415,7 +415,7 @@ function init_gear_sets()
     sets.defense.OchainNoShellMDT = {sub="Ochain",ammo="Staunch Tathlum +1",
 		head="Founder's Corona",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
 		body="Tartarus Platemail",hands="Souv. Handsch. +1",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Engulfer Cape +1",waist="Flax Sash",legs="Sulev. Cuisses +2",feet="Chev. Sabatons +1"}
+		back="Engulfer Cape +1",waist="Carrier's Sash",legs="Sulev. Cuisses +2",feet="Chev. Sabatons +1"}
 		
     sets.defense.AegisMDT = {sub="Aegis",ammo="Staunch Tathlum +1",
 		head="Founder's Corona",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",

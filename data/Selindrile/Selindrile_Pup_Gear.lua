@@ -6,13 +6,25 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.IdleMode:options('Normal','PDT','Refresh')
 	state.Weapons:options('None','Godhands','PetWeapons')
-
+	state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','HybridRanged','Bruiser','Tank','LightTank','Magic','Heal','Nuke'}
+	state.AutoRepairMode = M(false, 'Auto Repair Mode')
+	state.AutoDeployMode = M(true, 'Auto Deploy Mode')
+	state.AutoPetMode 	 = M(false, 'Auto Pet Mode')
+	state.PetWSGear		 = M(false, 'Pet WS Gear')
+	state.PetEnmityGear	 = M(false, 'Pet Enmity Gear')
+	
     -- Default/Automatic maneuvers for each pet mode.  Define at least 3.
 	defaultManeuvers = {
 		Melee = {
 			{Name='Fire Maneuver', 	  Amount=1},
 			{Name='Thunder Maneuver', Amount=1},
 			{Name='Wind Maneuver', 	  Amount=1},
+			{Name='Light Maneuver',	  Amount=0},
+		},
+		Bruiser = {
+			{Name='Light Maneuver',	  Amount=1},
+			{Name='Water Maneuver',   Amount=1},
+			{Name='Fire Maneuver', 	  Amount=1},
 			{Name='Light Maneuver',	  Amount=0},
 		},
 		Ranged = {
@@ -203,6 +215,7 @@ function init_gear_sets()
     sets.midcast.Pet.PetWSGear.Ranged = set_combine(sets.midcast.Pet.PetWSGear, {})
 	sets.midcast.Pet.PetWSGear.Melee = set_combine(sets.midcast.Pet.PetWSGear, {ring2="C. Palug Ring"})
 	sets.midcast.Pet.PetWSGear.Tank = set_combine(sets.midcast.Pet.PetWSGear, {})
+	sets.midcast.Pet.PetWSGear.Bruiser = set_combine(sets.midcast.Pet.PetWSGear, {ring2="C. Palug Ring"})
 	sets.midcast.Pet.PetWSGear.LightTank = set_combine(sets.midcast.Pet.PetWSGear, {})
     sets.midcast.Pet.PetWSGear.Magic = set_combine(sets.midcast.Pet.PetWSGear, {})
 	sets.midcast.Pet.PetWSGear.Heal = set_combine(sets.midcast.Pet.PetWSGear, {})
@@ -238,12 +251,13 @@ function init_gear_sets()
     -- Idle sets to wear while pet is engaged
     sets.idle.Pet.Engaged = {
         head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Domesticator's Earring",
-        body="Taeon Tabard",hands="Regimen Mittens",ring1="Varar Ring +1",ring2="Varar Ring +1",
-        back="Visucius's Mantle",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tali'ah Crackows +2"}
+        body="Taeon Tabard",hands="Taeon Gloves",ring1="Varar Ring +1",ring2="C. Palug Ring",
+        back="Visucius's Mantle",waist="Incarnation Sash",legs="Taeon Tights",feet="Taeon Boots"}
 
     sets.idle.Pet.Engaged.Ranged = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.Melee = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.Tank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt",ear2="Handler's Earring +1"})
+	sets.idle.Pet.Engaged.Bruiser = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.LightTank = set_combine(sets.idle.Pet.Engaged, {waist="Isa Belt",ear2="Handler's Earring +1"})
     sets.idle.Pet.Engaged.Magic = set_combine(sets.idle.Pet.Engaged, {})
 	sets.idle.Pet.Engaged.Heal = sets.idle.Pet.Engaged.Magic

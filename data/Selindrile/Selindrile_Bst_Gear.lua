@@ -244,7 +244,7 @@ function init_gear_sets()
 
 	-- DEFENSE SETS
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Handler's Earring +1",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Handler's Earring +1",
 		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="C. Palug Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
@@ -264,7 +264,7 @@ function init_gear_sets()
 	sets.defense.Reraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",
+		head="Nyame Helm",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",
 		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Shadow Ring",
 		back="Engulfer Cape +1",waist="Engraved Belt",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
@@ -307,12 +307,12 @@ function init_gear_sets()
 
 	-- MELEE (SINGLE-WIELD) HYBRID SETS
 	sets.engaged.PDT = {ammo="Staunch Tathlum +1",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
-		head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
+		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
