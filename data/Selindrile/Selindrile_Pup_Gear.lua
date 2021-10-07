@@ -233,9 +233,9 @@ function init_gear_sets()
     -- Idle sets
 
     sets.idle = {
-        head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Hiza. Haramaki +2",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Fucho-no-Obi",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
+        body="Hiza. Haramaki +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Carrier Sash",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 		
 	sets.idle.Refresh = {
         head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -244,9 +244,9 @@ function init_gear_sets()
 		
     -- Set for idle while pet is out (eg: pet regen gear)
     sets.idle.Pet = {
-        head="Rawhide Mask",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-        body="Taeon Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Hippo. Socks +1"}
+        head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
+        body="Taeon Tabard",hands="Taeon Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Taeon Boots"}
 
     -- Idle sets to wear while pet is engaged
     sets.idle.Pet.Engaged = {
@@ -267,19 +267,19 @@ function init_gear_sets()
     -- Defense sets
 
     sets.defense.PDT = {
-        head="Blistering Sallet +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
-        body="Vrikodara Jupon",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Isa Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Isa Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
     sets.defense.MDT = {
-        head="Blistering Sallet +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
-        body="Vrikodara Jupon",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Isa Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Isa Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
     sets.defense.MEVA = {
-        head="Blistering Sallet +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
-        body="Vrikodara Jupon",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Isa Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Genmei Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        back="Moonlight Cape",waist="Isa Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
     sets.Kiting = {feet="Hermes' Sandals"}
 

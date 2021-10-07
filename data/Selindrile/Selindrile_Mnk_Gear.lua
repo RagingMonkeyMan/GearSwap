@@ -151,7 +151,7 @@ function init_gear_sets()
 	sets.midcast.FastRecast = {ammo="Staunch Tathlum +1",
 		head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
 		body="Dread Jupon",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 		
 	-- Specific spells
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -166,34 +166,34 @@ function init_gear_sets()
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Sheltered Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 
 	sets.idle.Weak = {ammo="Staunch Tathlum +1",
 		head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Sheltered Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 
 	sets.idle.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}		
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}		
 
 	-- Defense sets
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Malignance Boots"}
 		
 	-- Defense sets
 	sets.defense.HP = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Segomo's Mantle",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Segomo's Mantle",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
 		head="Dampening Tam",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
-		back="Moonlight Cape",waist="Carrier's Sash",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
 		head=empty,neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
@@ -235,23 +235,23 @@ function init_gear_sets()
 	sets.engaged.PDT = {ammo="Aurgelmir Orb +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 	sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
 		head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 		head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Cessance Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Patricius Ring",
-		back="Segomo's Mantle",waist="Olseni Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Segomo's Mantle",waist="Olseni Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 	sets.engaged.FullAcc.PDT = {ammo="Falcon Eye",
 		head="Dampening Tam",neck="Moonbeam Nodowa",ear1="Mache Earring +1",ear2="Telos Earring",
 		body="Malignance Tabard",hands="Hesychast's Gloves +1",ring1="Defending Ring",ring2="Patricius Ring",
-		back="Segomo's Mantle",waist="Olseni Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Segomo's Mantle",waist="Olseni Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 	sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-		back="Moonlight Cape",waist="Black Belt",legs=gear.herculean_dt_legs,feet="Hippo. Socks +1"}
+		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 
 	-- Hundred Fists/Impetus melee set mods
 	

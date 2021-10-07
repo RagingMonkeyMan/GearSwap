@@ -36,7 +36,7 @@ function init_gear_sets()
     sets.Enmity = {ammo="Paeapua",
         head="Dampening Tam",neck="Unmoving Collar +1",ear1="Friomisi Earring",ear2="Trux Earring",
         body="Emet Harness +1",hands="Kurys Gloves",ring1="Petrov Ring",ring2="Vengeful Ring",
-        back="Moonlight Cape",waist="Goading Belt",legs=gear.herculean_dt_legs,feet="Amm Greaves"}
+        back="Moonlight Cape",waist="Goading Belt",legs="Nyame Flanchard",feet="Amm Greaves"}
 
     -- Precast sets to enhance JAs
     sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama",--main="Nagi"
@@ -119,7 +119,7 @@ function init_gear_sets()
     sets.precast.WS['Aeolian Edge'] = {ammo="Ghastly Tathlum +1",
         head="Dampening Tam",neck="Baetyl Pendant",ear1="Friomisi Earring",ear2="Crematio Earring",
         body="Adhemar Jacket +1",hands="Adhemar Wrist. +1",ring1="Shiva Ring +1",ring2="Metamor. Ring +1",
-        back="Toro Cape",waist="Chaac Belt",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+        back="Toro Cape",waist="Chaac Belt",legs="Nyame Flanchard",feet="Malignance Boots"}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = {ear1="Lugra Earring",ear2="Lugra Earring +1",}
@@ -187,12 +187,12 @@ function init_gear_sets()
     sets.defense.PDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
-        back="Moonlight Cape",waist="Flume Belt +1",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
+        back="Moonlight Cape",waist="Flume Belt +1",legs="Nyame Flanchard",feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
         body="Emet Harness +1",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
-        back="Engulfer Cape +1",waist="Engraved Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
+        back="Engulfer Cape +1",waist="Engraved Belt",legs="Nyame Flanchard",feet="Ahosi Leggings"}
 
 	sets.defense.MEVA = {ammo="Yamarang",
 		head="Dampening Tam",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",

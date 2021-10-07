@@ -746,11 +746,11 @@ function get_ready_charge_timer()
 		charge_timer = charge_timer - 5
 	end
 	
-	if can_dual_wield and sets.midcast.Pet.ReadyRecastDW.legs and sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" then
-			charge_timer = charge_timer - 5
-	elseif sets.midcast.Pet.ReadyRecast.legs and sets.midcast.Pet.ReadyRecast.legs == "Desultor Tassets" then
-			charge_timer = charge_timer - 5
-	end
+    if can_dual_wield and sets.midcast.Pet.ReadyRecastDW.legs and (sets.midcast.Pet.ReadyRecastDW.legs == "Desultor Tassets" or sets.midcast.Pet.ReadyRecastDW.legs == "Gleti's Breeches") then
+            charge_timer = charge_timer - 5
+    elseif sets.midcast.Pet.ReadyRecast.legs and (sets.midcast.Pet.ReadyRecast.legs == "Desultor Tassets" or sets.midcast.Pet.ReadyRecast.legs == "Gleti's Breeches") then
+            charge_timer = charge_timer - 5
+    end
 	
 	if charge_timer < 10 then
 		return 10

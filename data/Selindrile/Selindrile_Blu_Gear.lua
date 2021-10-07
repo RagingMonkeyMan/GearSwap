@@ -3,7 +3,7 @@ function user_job_setup()
     state.OffenseMode:options('Fodder','Normal','Acc','FullAcc')
 	state.HybridMode:options('Normal','DT')
     state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')
-    state.CastingMode:options('Normal','Resistant','Fodder','Proc')
+    state.CastingMode:options('Normal','Resistant','FullMacc','Fodder','Proc')
     state.IdleMode:options('Normal','Sphere','PDT','DTHippo')
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
@@ -271,20 +271,22 @@ function init_gear_sets()
 	sets.midcast['Blue Magic'].MagicalVit = set_combine(sets.midcast['Blue Magic'].Magical, {})
 	sets.midcast['Blue Magic'].MagicalDex = set_combine(sets.midcast['Blue Magic'].Magical, {})
 
-	sets.midcast['Blue Magic'].MagicAccuracy = {main="Iris",sub="Iris",ammo="Pemphredo Tathlum",
-		head="Jhakri Coronal +2",neck="Mirage Stole +2",ear1="Regal Earring",ear2="Digni. Earring",
-		body="Jhakri Robe +2",hands="Regal Cuffs",ring1="Metamor. Ring +1",ring2="Stikini Ring +1",
-		back="Cornflower Cape",waist="Luminary Sash",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
+	sets.midcast['Blue Magic'].MagicAccuracy = {main="Tizona",sub="Naegling",ammo="Pemphredo Tathlum",
+		head="Malignance Chapeau",neck="Mirage Stole +2",ear1="Njordr Earring",ear2="Digni. Earring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
+		back="Cornflower Cape",waist="Acuity Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
+		
+	sets.midcast['Blue Magic'].Magical.FullMacc = sets.midcast['Blue Magic'].MagicAccuracy
 
 	sets.midcast['Enfeebling Magic'] = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
 		head="Jhakri Coronal +2",neck="Mirage Stole +2",ear1="Regal Earring",ear2="Digni. Earring",
 		body="Jhakri Robe +2",hands="Regal Cuffs",ring1="Metamor. Ring +1",ring2="Stikini Ring +1",
-		back=gear.nuke_jse_back,waist="Luminary Sash",legs="Psycloth Lappas",feet="Skaoi Boots"}
+		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Psycloth Lappas",feet="Skaoi Boots"}
 
 	sets.midcast['Dark Magic'] = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
 		head="Jhakri Coronal +2",neck="Erra Pendant",ear1="Regal Earring",ear2="Digni. Earring",
 		body="Jhakri Robe +2",hands="Jhakri Cuffs +2",ring1="Metamor. Ring +1",ring2="Stikini Ring +1",
-		back=gear.nuke_jse_back,waist="Luminary Sash",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
+		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 
 	sets.midcast['Enhancing Magic'] = {main="Vampirism", sub="Vampirism",ammo="Hasty Pinion +1",
 		head="Telchine Cap",neck="Incanter's Torque",ear1="Andoaa Earring",ear2="Gifted Earring",
@@ -374,7 +376,7 @@ function init_gear_sets()
 	sets.NonElementalCure = {back="Tempered Cape +1",waist="Luminary Sash"}
 
 	sets.midcast['Blue Magic'].SkillBasedBuff = {main="Iris",sub="Iris",ammo="Mavi Tathlum",
-		head="Luh. Keffiyeh +1",neck="Mirage Stole +2",ear1="Gifted Earring",ear2="Loquac. Earring",
+		head="Luh. Keffiyeh +1",neck="Mirage Stole +2",ear1="Gifted Earring",ear2="Njordr Earring",
 		body="Assim. Jubbah +3",hands="Rawhide Gloves",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Cornflower Cape",waist="Witful Belt",legs="Hashishin Tayt +1",feet="Luhlaza Charuqs +1"}
 

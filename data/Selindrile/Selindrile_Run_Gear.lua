@@ -304,7 +304,7 @@ function init_gear_sets()
 	sets.defense.MDT = {main="Aettir",sub="Utu Grip",ammo="Yamarang",
         head="Erilaz Galea +1",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
         body="Runeist's Coat +3",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
-        back="Moonlight Cape",waist="Engraved Belt",legs=gear.herculean_dt_legs,feet="Erilaz Greaves +1"}
+        back="Moonlight Cape",waist="Engraved Belt",legs="Nyame Flanchard",feet="Erilaz Greaves +1"}
 	sets.defense.MDT_HP = {main="Aettir",sub="Utu Grip",ammo="Staunch Tathlum +1",
         head="Erilaz Galea +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Tuisto Earring",
         body="Runeist's Coat +3",hands="Nyame Gauntlets",ring1="Gelatinous Ring +1",ring2="Moonlight Ring",
@@ -313,7 +313,7 @@ function init_gear_sets()
 	sets.defense.BDT = {main="Aettir",sub="Utu Grip",ammo="Staunch Tathlum +1",
         head="Erilaz Galea +1",neck="Warder's Charm +1",ear1="Odnowa Earring +1",ear2="Sanare Earring",
         body="Runeist's Coat +3",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
-        back="Moonlight Cape",waist="Engraved Belt",legs=gear.herculean_dt_legs,feet="Erilaz Greaves +1"}
+        back="Moonlight Cape",waist="Engraved Belt",legs="Nyame Flanchard",feet="Erilaz Greaves +1"}
 	sets.defense.BDT_HP = {main="Aettir",sub="Utu Grip",ammo="Staunch Tathlum +1",
         head="Erilaz Galea +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Tuisto Earring",
         body="Runeist's Coat +3",hands="Nyame Gauntlets",ring1="Gelatinous Ring +1",ring2="Moonlight Ring",
@@ -394,7 +394,7 @@ function init_gear_sets()
     sets.engaged.Tank = {main="Aettir",sub="Utu Grip",ammo="Staunch Tathlum +1",
             head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
             body="Futhark Coat +1",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
-            back="Shadow Mantle",waist="Engraved Belt",legs=gear.herculean_dt_legs,feet="Erilaz Greaves +1"}
+            back="Shadow Mantle",waist="Engraved Belt",legs="Nyame Flanchard",feet="Erilaz Greaves +1"}
 	sets.engaged.Tank_HP = {main="Aettir",sub="Utu Grip",ammo="Staunch Tathlum +1",
         head="Fu. Bandeau +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Tuisto Earring",
         body="Runeist's Coat +3",hands="Nyame Gauntlets",ring1="Gelatinous Ring +1",ring2="Moonlight Ring",
