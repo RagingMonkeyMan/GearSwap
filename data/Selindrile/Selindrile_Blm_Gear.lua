@@ -2,6 +2,7 @@ function user_job_setup()
 	-- Options: Override default values
 	state.CastingMode:options('Normal','Resistant','Fodder','Proc','OccultAcumen')
 	state.OffenseMode:options('Normal')
+	state.HybridMode:options('Normal','DT')
 	state.IdleMode:options('Normal','PDT','DTHippo')
 	state.Weapons:options('None','BurstWeapons','Khatvanga','Lathi')
 

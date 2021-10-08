@@ -77,7 +77,7 @@ function init_gear_sets()
     
     sets.precast.CorsairShot = {ammo=gear.QDbullet,
         head=gear.herculean_nuke_head,neck="Iskur Gorget",ear1="Dedition Earring",ear2="Telos Earring",
-        body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Ilabrat Ring",ring2="Petrov Ring",
+        body="Mummu Jacket +2",hands="Adhemar Wristbands +1",ring1="Crepuscular Ring",ring2="Dingir Ring",
         back=gear.tp_ranger_jse_back,waist="Goading Belt",legs="Chas. Culottes +1",feet="Carmine Greaves +1"}
 		
 	sets.precast.CorsairShot.Damage = {ammo=gear.QDbullet,
@@ -121,7 +121,7 @@ function init_gear_sets()
 
     sets.precast.RA = {ammo=gear.RAbullet,
         head="Chass. Tricorne +1",
-        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",
+        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Crepuscular Ring",
         back=gear.snapshot_jse_back,waist="Impulse Belt",legs="Laksa. Trews +3",feet="Meg. Jam. +2"}
 		
 	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {})
@@ -235,7 +235,7 @@ function init_gear_sets()
     -- Ranged gear
     sets.midcast.RA = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
-        body="Nisroch Jerkin",hands="Carmine Fin. Ga. +1",ring1="Rajas Ring",ring2="Ilabrat Ring",
+        body="Nisroch Jerkin",hands="Carmine Fin. Ga. +1",ring1="Crepuscular Ring",ring2="Ilabrat Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Meg. Jam. +2"}
 
     sets.midcast.RA.Acc = {ammo=gear.RAbullet,

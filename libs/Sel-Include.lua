@@ -228,6 +228,7 @@ function init_include()
 	petWillAct = 0
 	autonuke = 'Fire'
 	autows = ''
+	autows_list = {}
 	smartws = nil
 	rangedautows = ''
 	autowstp = 1000
@@ -2307,6 +2308,10 @@ function state_change(stateField, newValue, oldValue)
 			state.Weapons:reset()
 			newValue = state.Weapons.value
 			if not state.ReEquip.value then	equip_weaponset(newValue) end
+		end
+		
+		if autows_list[newValue] then
+			autows = autows_list[newValue]
 		end
 	elseif stateField == 'Unlock Weapons' then
 		if newValue == true then

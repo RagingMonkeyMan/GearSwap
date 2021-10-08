@@ -89,7 +89,7 @@ function init_gear_sets()
 	
 	sets.precast.RA = {
 		head="Amini Gapette +1",
-		body="Amini Caban +1",hands="Carmine Fin. Ga. +1",
+		body="Amini Caban +1",hands="Carmine Fin. Ga. +1",ring1="Crepuscular Ring",
 		back=gear.snapshot_jse_back,waist="Impulse Belt",legs="Orion Braccae +3",feet="Meg. Jam. +2"}
 		
 	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {})
@@ -155,7 +155,7 @@ function init_gear_sets()
 
     sets.midcast.RA = {
         head="Malignance Chapeau",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Regal Ring",ring2="Dingir Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Crepuscular Ring",ring2="Dingir Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Malignance Tights",feet="Malignance Boots"}
 	
     sets.midcast.RA.Acc = {
@@ -165,7 +165,7 @@ function init_gear_sets()
 		
     sets.midcast.RA.Fodder = {
         head="Malignance Chapeau",neck="Iskur Gorget",ear1="Dedition Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Ilabrat Ring",ring2="Rajas Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Crepuscular Ring",ring2="Dingir Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Malignance Tights",feet="Malignance Boots"}
 		
 	--These sets will overlay based on accuracy level, regardless of other options.

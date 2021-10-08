@@ -411,7 +411,11 @@ function handle_weapons(cmdParams)
 		end
 		add_to_chat(123,"Error: A weapons set for ["..weaponSet.."] does not exist.")
 	end
-	
+
+	if autows_list[state.Weapons.value] then
+		autows = autows_list[state.Weapons.value]
+	end
+
 	if state.DisplayMode.value then update_job_states()	end
 end
 
