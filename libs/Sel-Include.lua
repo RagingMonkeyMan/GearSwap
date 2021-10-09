@@ -99,6 +99,8 @@ function init_include()
     -- General melee offense/defense modes, allowing for hybrid set builds, as well as idle/resting/weaponskill.
     -- This just defines the vars and sets the descriptions.  List modes with no values automatically
     -- get assigned a 'Normal' default value.
+	state.CraftingMode		  = M{['description'] = 'Crafting Mode','None','Alchemy','Bonecraft','Clothcraft','Cooking','Fishing','Goldsmithing','Leathercraft','Smithing','Woodworking'}
+	state.CraftQuality  	  = M{['description'] = 'Crafting Quality','Normal','HQ','NQ'}
 	state.OffenseMode         = M{['description'] = 'Offense Mode'}
 	state.HybridMode          = M{['description'] = 'Hybrid Mode'}
 	state.RangedMode          = M{['description'] = 'Ranged Mode'}
@@ -514,6 +516,10 @@ function default_zone_change(new_id,old_id)
 	state.AutoFoodMode:reset()
 	state.AutoWSMode:reset()
 	state.AutoNukeMode:reset()
+	if state.CraftingMode.value ~= 'None' then
+		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+		state.CraftingMode:reset()
+	end
 	send_command('gs rh disable')
 	state.RngHelper:reset()
 	useItem = false
@@ -2325,8 +2331,37 @@ function state_change(stateField, newValue, oldValue)
 		else
 			send_command('gs rh disable')
 		end
-    end
-	
+	elseif stateField == 'Rune Element' then
+		send_command('wait .001;gs c DisplayRune')
+	elseif stateField == 'Elemental Mode' then
+		if player.main_job == 'COR' then
+			send_command('wait .001;gs c DisplayShot')
+		else
+			send_command('wait .001;gs c DisplayElement')
+		end
+	elseif stateField == 'Capacity' and newValue == 'false' and data.equipment.cprings:contains(player.equipment.left_ring) then
+            enable("ring1")
+	elseif stateField == 'Crafting Mode' then
+		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+		if newValue == 'None' then
+			handle_update({'auto'})
+		else
+			local craftingset = sets.crafting
+			if sets.crafting[newValue] then
+				craftingset = set_combine(craftingset,sets.crafting[newValue])
+			end
+			
+			if state.CraftQuality.value == 'HQ' and sets.crafting.HQ then
+				craftingset = set_combine(craftingset,sets.crafting.HQ)
+			elseif state.CraftQuality.value == 'NQ' and sets.crafting[newValue] and sets.crafting[newValue].NQ then
+				craftingset = set_combine(craftingset,sets.crafting[newValue].NQ)
+			end
+			
+			equip(craftingset)
+			disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
+		end
+	end
+
 	if user_state_change then
 		user_state_change(stateField, newValue, oldValue)
 	end
@@ -2337,18 +2372,6 @@ function state_change(stateField, newValue, oldValue)
 	
 	if user_job_state_change then
 		user_job_state_change(stateField, newValue, oldValue)
-	end
-	
-	if stateField == 'Rune Element' then
-		send_command('wait .001;gs c DisplayRune')
-	elseif stateField == 'Elemental Mode' then
-		if player.main_job == 'COR' then
-			send_command('wait .001;gs c DisplayShot')
-		else
-			send_command('wait .001;gs c DisplayElement')
-		end
-	elseif stateField == 'Capacity' and newValue == 'false' and data.equipment.cprings:contains(player.equipment.left_ring) then
-            enable("ring1")
 	end
 	
 	if state.DisplayMode.value then update_job_states()	end
@@ -2396,6 +2419,11 @@ function buff_change(buff, gain)
 	elseif buff == "Emporox's Gift" and gain then
 		if player.equipment.left_ring == "Emporox's Ring" then
 			enable("ring1")
+		end
+	elseif buff:endswith('Imagery') then
+		local craft = T(buff:split(' '))
+		if state.CraftingMode:contains(craft[1]) then
+			state.CraftingMode:set(craft[1])
 		end
     end
 
