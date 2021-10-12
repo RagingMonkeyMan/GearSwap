@@ -7,7 +7,7 @@ function user_job_setup()
     state.IdleMode:options('Normal', 'PDT', 'Refresh')
 	state.HybridMode:options('Normal','DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
-	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualAeolian','DualLeadenMeleeAcc','DualRanged','None')
+	state.Weapons:options('Default','Savage','DualWeapons','DualSavageWeapons','DualLeadenRanged','DualLeadenMelee','DualAeolian','DualLeadenMeleeAcc','DualRanged','None')
 	state.CompensatorMode:options('Always','300','1000','Never')
 
     gear.RAbullet = "Chrono Bullet"
@@ -296,6 +296,7 @@ function init_gear_sets()
 	sets.weapons.Default = {main="Naegling",sub="Nusku Shield",range="Fomalhaut"}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Blurred Knife +1",range="Fomalhaut"}
 	sets.weapons.DualSavageWeapons = {main="Naegling",sub="Blurred Knife +1",range="Ataktos"}
+	sets.weapons.Savage = {main="Naegling",sub="Nusku Shield",range="Ataktos"}
 	sets.weapons.DualLeadenRanged = {main="Rostam",sub="Tauret",range="Fomalhaut"}
 	sets.weapons.DualLeadenMelee = {main="Naegling",sub="Atoyac",range="Fomalhaut"}
 	sets.weapons.DualAeolian = {main="Rostam",sub="Tauret",range="Ataktos"}

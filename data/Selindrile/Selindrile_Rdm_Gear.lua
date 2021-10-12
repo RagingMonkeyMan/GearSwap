@@ -223,8 +223,6 @@ function init_gear_sets()
 
 	sets.midcast.Dia = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 	sets.midcast.Diaga = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
-	
-	sets.midcast['Dia III'] = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 		
 	sets.midcast.Bio = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 
@@ -352,21 +350,21 @@ function init_gear_sets()
 	sets.NightIdle = {}
 	
 	-- Weapons sets
-	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield"}
-	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield"}
-	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield"}
-	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron"}
-	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace"}
-	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace"}
-	sets.weapons.DualAeolian = {main="Tauret",sub="Daybreak"}
-	sets.weapons.DualProcDaggers = {main="Blurred Knife +1",sub="Atoyac"}
+	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield",range=empty}
+	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield",range=empty}
+	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield",range=empty}
+	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron",range=empty}
+	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace",range=empty}
+	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace",range=empty}
+	sets.weapons.DualAeolian = {main="Tauret",sub="Daybreak",range=empty}
+	sets.weapons.DualProcDaggers = {main="Blurred Knife +1",sub="Atoyac",range=empty}
 	sets.weapons.EnspellOnly = {main="Norgish Dagger",sub="Aern Dagger",range="Kaja Bow",ammo="Beetle Arrow"}
 	sets.weapons.EnspellDW = {main="Blurred Knife +1",sub="Atoyac",range="Kaja Bow",ammo="Beetle Arrow"}
-	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan"}
-	sets.weapons.DualBlackHalo = {main="Kaja Rod",sub="Thibron"}
-	sets.weapons.DualAlmace = {main="Almace",sub="Sequence"}
+	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan",range=empty}
+	sets.weapons.DualBlackHalo = {main="Kaja Rod",sub="Thibron",range=empty}
+	sets.weapons.DualAlmace = {main="Almace",sub="Sequence",range=empty}
 	sets.weapons.DualBow = {main="Naegling",sub="Tauret",range="Kaja Bow"}
-	sets.weapons.BowMacc = {range="Kaja Bow",ammo=empty}
+	sets.weapons.BowMacc = {main="Naegling",sub="Tauret",range="Kaja Bow",ammo=empty}
 	
     sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}
