@@ -8,7 +8,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Tizbron','Tizalmace','None','Almace','MagicWeapons','MeleeClubs','HybridWeapons','Naegbron','Naegmace')
+	state.Weapons:options('Tizbron','Tizalmace','None','Almace','MeleeClubs','HybridWeapons','Naegbron','Naegmace')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','MP','SuppaBrutal','DWEarrings','DWMax'}
 
@@ -458,7 +458,6 @@ function init_gear_sets()
 	sets.weapons.Almace = {main="Almace",sub="Sequence"}
 	sets.weapons.Naegbron = {main="Naegling",sub="Thibron"}
 	sets.weapons.Naegmace = {main="Naegling",sub="Almace"}
-	sets.weapons.MagicWeapons = {main="Nibiru Cudgel",sub="Nibiru Cudgel"}
 	sets.weapons.MaccWeapons = {main="Iris",sub="Iris"}
 	sets.weapons.HybridWeapons = {main="Vampirism",sub="Vampirism"}
 
@@ -567,5 +566,5 @@ function select_default_macro_book()
 	end
 end
 
-autows_list = {['Tizbron']='Expiacion',['Tizalmace']='Expiacion',['Almace']='Chant Du Cygne',['MagicWeapons']='Flash Nova',['MeleeClubs']='Realmrazer',
+autows_list = {['Tizbron']='Expiacion',['Tizalmace']='Expiacion',['Almace']='Chant Du Cygne',['MeleeClubs']='Realmrazer',
      ['HybridWeapons']='Sanguine Blade',['Naegbron']='Savage Blade',['Naegmace']='Savage Blade'}

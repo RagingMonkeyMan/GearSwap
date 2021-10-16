@@ -252,7 +252,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 			local hachirin_intensity = 0
 
 			if item_available("Orpheus's Sash") then
-				orpheus_intensity = (0.16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance)/100) or 0
+				orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance))
 			end
 			
 			if item_available(data.elements.obi_of[spell.element]) then
@@ -277,12 +277,12 @@ function job_post_precast(spell, spellMap, eventArgs)
 				end
 			end
 			
-			if orpheus_intensity > hachirin_intensity and orpheus_intensity > single_obi_intensity and orpheus_intensity > 5 then
-				equip({waist="Orpheus's Sash"})
-			elseif single_obi_intensity >= hachirin_intensity and single_obi_intensity > 5 then
-				equip({waist=data.elements.obi_of[spell.element]})
-			elseif hachirin_intensity > 5 then
+			if single_obi_intensity >= hachirin_intensity and single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
+				equip({waist=data.elements.obi_of[enspell_element]})
+			elseif hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
 				equip({waist="Hachirin-no-Obi"})
+			elseif orpheus_intensity >= 5 then
+				equip({waist="Orpheus's Sash"})
 			end
 			
 		end

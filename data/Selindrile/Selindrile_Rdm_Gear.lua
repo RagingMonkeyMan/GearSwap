@@ -9,7 +9,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT','NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Naegling','Sequence','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAeolian','DualProcDaggers','EnspellOnly','EnspellDW')
+	state.Weapons:options('None','Naegling','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAeolian','DualProcDaggers','EnspellOnly','EnspellDW')
 	
 	gear.obi_cure_back = "Tempered Cape +1"
 	gear.obi_cure_waist = "Witful Belt"
@@ -302,12 +302,12 @@ function init_gear_sets()
 	
 
 	-- Idle sets
-	sets.idle = {main="Bolelabunga",sub="Sacro Bulwark",range=empty,ammo="Homiliary",
+	sets.idle = {main="Mpaca's Staff",sub="Umbra Strap",range=empty,ammo="Homiliary",
 		head="Viti. Chapeau +3",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Umbra Cape",waist="Flume Belt +1",legs="Lengo Pants",feet=gear.merlinic_refresh_feet}
 		
-	sets.idle.PDT = {main="Terra's Staff",sub="Oneiros Grip",range=empty,ammo="Staunch Tathlum +1",
+	sets.idle.PDT = {main="Terra's Staff",sub="Umbra Strap",range=empty,ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
@@ -350,9 +350,7 @@ function init_gear_sets()
 	sets.NightIdle = {}
 	
 	-- Weapons sets
-	sets.weapons.Sequence = {main="Sequence",sub="Ammurapi Shield",range=empty}
-	sets.weapons.Naegling = {main="Naegling",sub="Ammurapi Shield",range=empty}
-	sets.weapons.Almace = {main="Almace",sub="Ammurapi Shield",range=empty}
+	sets.weapons.Naegling = {main="Naegling",sub="Sacro Bulwark",range=empty}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Thibron",range=empty}
 	sets.weapons.DualWeaponsAcc = {main="Naegling",sub="Almace",range=empty}
 	sets.weapons.DualEvisceration = {main="Tauret",sub="Almace",range=empty}
@@ -361,7 +359,7 @@ function init_gear_sets()
 	sets.weapons.EnspellOnly = {main="Norgish Dagger",sub="Aern Dagger",range="Kaja Bow",ammo="Beetle Arrow"}
 	sets.weapons.EnspellDW = {main="Blurred Knife +1",sub="Atoyac",range="Kaja Bow",ammo="Beetle Arrow"}
 	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan",range=empty}
-	sets.weapons.DualBlackHalo = {main="Kaja Rod",sub="Thibron",range=empty}
+	sets.weapons.DualBlackHalo = {main="Maxentius",sub="Thibron",range=empty}
 	sets.weapons.DualAlmace = {main="Almace",sub="Sequence",range=empty}
 	sets.weapons.DualBow = {main="Naegling",sub="Tauret",range="Kaja Bow"}
 	sets.weapons.BowMacc = {main="Naegling",sub="Tauret",range="Kaja Bow",ammo=empty}
@@ -548,3 +546,5 @@ function user_job_lockstyle()
 		windower.chat.input('/lockstyleset 032')
 	end
 end
+
+autows_list = {['Naegling']='Savage Blade',['DualWeapons']='Savage Blade',['DualWeaponsAcc']='Savage Blade',['DualEvisceration']='Evisceration',['DualClubs']='True Strike',['DualAeolian']='Aeolian Edge',['EnspellDW']='Sanguine Blade'}

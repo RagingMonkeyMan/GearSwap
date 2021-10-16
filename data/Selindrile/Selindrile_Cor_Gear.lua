@@ -396,3 +396,5 @@ function user_job_lockstyle()
 		end
 	end
 end
+
+autows_list = {['Default']='Savage Blade',['DualWeapons']='Savage Blade',['DualSavageWeapons']='Savage Blade',['DualLeadenRanged']='Leaden Salute',['DualLeadenMelee']='Leaden Salute',['DualAeolian']='Aeolian Edge',['DualRanged']='Last Stand'}

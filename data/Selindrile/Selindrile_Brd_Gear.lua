@@ -4,7 +4,7 @@ function user_job_setup()
 	state.HybridMode:options('Normal','DT')
     state.CastingMode:options('Normal','Resistant','AoE')
     state.IdleMode:options('Normal','NoRefresh','DT')
-	state.Weapons:options('None','Naegling','Aeneas','DualWeapons','DualNaegling','DualTauret','DualNukeWeapons')
+	state.Weapons:options('None','Naegling','Aeneas','DualWeapons','DualNaegling','DualTauret','DualAeolian')
 
 	gear.melee_jse_back = {name="Intarabus's Cape",augments={'Accuracy+20 Attack+20'}}
 	gear.magic_jse_back = {name="Intarabus's Cape",augments={'CHR+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Damage taken-5%',}}
@@ -42,7 +42,7 @@ function init_gear_sets()
 	sets.weapons.DualNaegling = {main="Naegling",sub="Blurred Knife +1"}
 	sets.weapons.Naegling = {main="Naegling",sub="Genmei Shield"}
 	sets.weapons.DualTauret = {main="Tauret",sub="Blurred Knife +1"}
-	sets.weapons.DualNukeWeapons = {main="Malevolence",sub="Malevolence"}
+	sets.weapons.DualAeolian = {main="Tauret",sub="Levante Dagger"}
 
     sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}
@@ -227,12 +227,12 @@ function init_gear_sets()
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {main=gear.grioavolr_fc_staff,sub="Clemency Grip"})
 
 	-- Resting sets
-	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",ammo="Staunch Tathlum +1",
+	sets.resting = {main="Chatoyant Staff",sub="Umbra Strap",ammo="Staunch Tathlum +1",
 		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Flume Belt +1",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 	
-	sets.idle = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
+	sets.idle = {main="Mpaca's Staff",sub="Umbra Strap",ammo="Staunch Tathlum +1",
 		head=empty,neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Respite Cloak",hands=gear.chironic_refresh_hands,ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Umbra Cape",waist="Flume Belt +1",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
@@ -305,3 +305,8 @@ end
 function select_default_macro_book()
 	set_macro_page(10, 10)
 end
+
+state.Weapons:options('None','Naegling','Aeneas','DualWeapons','DualNaegling','DualTauret','DualAeolian')
+
+autows_list = {['Naegling']='Savage Blade',['Aeneas']="Rudra's Storm",['DualWeapons']="Rudra's Storm",['DualNaegling']='Savage Blade',['DualTauret']='Evisceration',
+     ['DualAeolian']='Aeolian Edge'}

@@ -503,3 +503,7 @@ function select_default_macro_book()
 		set_macro_page(6, 20)
 	end
 end
+
+state.Weapons:options('None','PetPDTAxe','DualWeapons')
+
+autows_list = {['PetPDTAxe']='Ruinator',['DualWeapons']='Ruinator'}

@@ -257,7 +257,7 @@ function init_gear_sets()
 
     sets.midcast['Enhancing Magic'] = {main="Colada",ammo="Staunch Tathlum +1",
 		head="Carmine Mask +1",neck="Incanter's Torque",ear1="Andoaa Earring",ear2="Mimir Earring",
-		body="Shab. Cuirass +1",hands="Leyline Gloves",ring1="Defending Ring",ring2="Kishar Ring",
+		body="Shab. Cuirass +1",hands="Regal Gauntlets",ring1="Defending Ring",ring2="Kishar Ring",
 		back="Merciful Cape",waist="Olympus Sash",legs="Carmine Cuisses +1",feet="Odyssean Greaves"}
 		
     sets.midcast['Enhancing Magic'].SIRD = {main="Colada",ammo="Staunch Tathlum +1",
@@ -286,7 +286,7 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {main="Mafic Cudgel",sub="Ochain",ammo="Homiliary",
 		head="Jumalik Helm",neck="Coatl Gorget +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Jumalik Mail",hands="Souv. Handsch. +1",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
+		body="Jumalik Mail",hands="Regal Gauntlets",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Carmine Cuisses +1",feet="Hippo. Socks +1"}
 		
     sets.idle.PDT = {main="Mafic Cudgel",sub="Ochain",ammo="Staunch Tathlum +1",
