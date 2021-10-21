@@ -386,3 +386,8 @@ function check_trust()
 	end
 	return false
 end
+
+state.Weapons:options('Aeneas','Aeolian','Savage','AccSavage','AccAeneas','ProcWeapons','Evisceration','Throwing','SwordThrowing','Bow')
+
+autows_list = {['Aeneas']="Rudra's Storm",['Aeolian']='Aeolian Edge',['Savage']='Savage Blade',['AccSavage']='Savage Blade',
+     ['AccAeneas']='Savage Blade',['ProcWeapons']='Wasp Sting'}

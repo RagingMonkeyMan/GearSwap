@@ -1895,7 +1895,8 @@ function get_midcast_set(spell, spellMap)
     -- After the default checks, do checks for specialized modes (casting mode, etc).
     
     if spell.action_type == 'Magic' then
-        if equipSet[state.CastingMode.current] then
+		if state.CastingMode.current:contains('SIRD') and (buffactive['Aquaveil'] or (not (player.in_combat or being_attacked))) then
+        elseif equipSet[state.CastingMode.current] then
             equipSet = equipSet[state.CastingMode.current]
             mote_vars.set_breadcrumbs:append(state.CastingMode.current)
         end

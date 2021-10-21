@@ -158,7 +158,7 @@ function init_gear_sets()
 	sets.precast.WS.Fodder = {ammo="Paeapua",
 		head="Gavialis Helm",neck="Fotia Gorget",ear1="Brutal Earring",ear2="Sherida Earring",
 		body="Malignance Tabard",hands="Buremte Gloves",ring1="Regal Ring",ring2="Epona's Ring",
-		back="Buquwik Cape",waist="Fotia Belt",legs="Meg. Chausses +2",feet="Nukumi Ocreae +1"}
+		back="Ground. Mantle +1",waist="Fotia Belt",legs="Meg. Chausses +2",feet="Nukumi Ocreae +1"}
 
 	-- Specific weaponskill sets.
 	sets.precast.WS['Ruinator'] = set_combine(sets.precast.WS, {})
