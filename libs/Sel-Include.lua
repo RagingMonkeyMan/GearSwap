@@ -1060,7 +1060,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 				end
 
 				if single_obi_intensity >= hachirin_intensity and single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
-					equip({waist=data.elements.obi_of[enspell_element]})
+					equip({waist=data.elements.obi_of[spell.element]})
 				elseif hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
 					equip({waist="Hachirin-no-Obi"})
 				elseif orpheus_intensity >= 5 then
