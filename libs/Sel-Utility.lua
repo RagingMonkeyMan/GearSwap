@@ -529,7 +529,7 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 		if hachirin_intensity >= single_obi_intensity and hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
 			gear.ElementalObi.name = "Hachirin-no-Obi"
 		elseif single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
-			gear.ElementalObi.name = data.elements.obi_of[enspell_element]
+			gear.ElementalObi.name = data.elements.obi_of[spell.element]
 		elseif orpheus_intensity >= 5 then
 			gear.ElementalObi.name = "Orpheus's Sash"
 		end
