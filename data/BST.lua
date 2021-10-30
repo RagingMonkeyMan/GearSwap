@@ -339,13 +339,10 @@ function job_precast(spell, spellMap, eventArgs)
 
 -- Define class for Sic and Ready moves.
         elseif spell.type == 'Monster' then
-				windower.add_to_chat(123,'A')
                 classes.CustomClass = "WS"
                 if can_dual_wield then
-					windower.add_to_chat(123,'B')
 					equip(sets.midcast.Pet.ReadyRecastDW)
                 else
-					windower.add_to_chat(123,'C')
 					equip(sets.midcast.Pet.ReadyRecast)
                 end
         end
