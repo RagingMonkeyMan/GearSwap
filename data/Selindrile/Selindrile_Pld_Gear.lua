@@ -270,7 +270,7 @@ function init_gear_sets()
 	sets.midcast.Phalanx = set_combine(sets.midcast['Enhancing Magic'], {main="Sakpata's Sword",sub="Forfend +1",hands="Souv. Handsch. +1",back="Weard Mantle",legs="Sakpata's Cuisses",feet="Souveran Schuhs +1"})
 	sets.midcast.Phalanx.SIRD = set_combine(sets.midcast['Enhancing Magic'].SIRD, {main="Sakpata's Sword",sub="Ochain",hands="Souv. Handsch. +1",back="Weard Mantle",feet="Souveran Schuhs +1"})
 	sets.midcast.Phalanx.DT = set_combine(sets.midcast.Phalanx.SIRD, {})	
-
+	sets.Phalanx_Received = {main="Sakpata's Sword",hands="Souv. Handsch. +1",back="Weard Mantle",legs="Sakpata's Cuisses",feet="Souveran Schuhs +1"}
 	--------------------------------------
 	-- Idle/resting/defense/etc sets
 	--------------------------------------
