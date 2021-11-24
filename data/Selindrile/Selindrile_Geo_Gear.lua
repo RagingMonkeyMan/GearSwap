@@ -7,7 +7,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT', 'NukeLock', 'GeoLock', 'PetPDT')
 	state.MagicalDefenseMode:options('MDT', 'NukeLock')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Nehushtan','DualWeapons')
+	state.Weapons:options('None','Maxentius','DualWeapons')
 
 	gear.nuke_jse_back = {name="Nantosuelta's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	gear.idle_jse_back = {name="Nantosuelta's Cape",augments={'HP+60','Eva.+20 /Mag. Eva.+20','Pet: "Regen"+10'}}
@@ -147,7 +147,7 @@ function init_gear_sets()
         back=gear.nuke_jse_back,waist="Yamabuki-no-Obi",legs="Merlinic Shalwar",feet="Amalric Nails +1"}
 		
     sets.midcast['Elemental Magic'].Proc = {main=empty,sub=empty,ammo="Impatiens",
-        head="Nahtirah Hat",neck="Loricate Torque +1",ear1="Gifted Earring",ear2="Loquac. Earring",
+        head="Vanya Hood",neck="Loricate Torque +1",ear1="Gifted Earring",ear2="Loquac. Earring",
         body="Seidr Cotehardie",hands="Regal Cuffs",ring1="Kishar Ring",ring2="Prolix Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Assid. Pants +1",feet="Regal Pumps +1"}
 		
@@ -366,8 +366,8 @@ function init_gear_sets()
     sets.buff.DTSublimation = {waist="Embla Sash"}
 	
 	-- Weapons sets
-	sets.weapons.Nehushtan = {main='Nehushtan',sub='Genmei Shield'}
-	sets.weapons.DualWeapons = {main='Nehushtan',sub='Nehushtan'}
+	sets.weapons.Maxentius = {main='Maxentius',sub='Genmei Shield'}
+	sets.weapons.DualWeapons = {main='Maxentius',sub='Nehushtan'}
 end
 
 -- Select default macro book on initial load or subjob change.

@@ -152,9 +152,11 @@ function init_gear_sets()
         body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Janniston Ring",ring2="Menelaus's Ring",
         back="Twilight Cape",waist="Hachirin-no-Obi",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
 		
-	sets.midcast.Cursna =  set_combine(sets.midcast.Cure, {neck="Debilis Medallion",hands="Hieros Mittens",
-		back="Oretan. Cape +1",ring1="Haoma's Ring",ring2="Menelaus's Ring",waist="Witful Belt",feet="Vanya Clogs"})
-		
+	sets.midcast.Cursna = {main=gear.grioavolr_fc_staff,sub="Curatio Grip",range=empty,ammo="Staunch Tathlum +1",
+        head="Bunzi's Hat",neck="Debilis Medallion",ear1="Meili Earring",ear2="Mendi. Earring",
+        body="Viti. Tabard +3",hands="Hieros Mittens",ring1="Haoma's Ring",ring2="Menelaus's Ring",
+        back="Oretan. Cape +1",waist="Witful Belt",legs="Carmine Cuisses +1",feet="Vanya Clogs"}
+
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {main=gear.grioavolr_fc_staff,sub="Clemency Grip"})
 		
 	sets.midcast.Curaga = sets.midcast.Cure
@@ -227,7 +229,7 @@ function init_gear_sets()
 	sets.midcast.Bio = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 
     sets.midcast['Elemental Magic'] = {main="Daybreak",sub="Ammurapi Shield",range=empty,ammo="Ghastly Tathlum +1",
-        head=gear.merlinic_nuke_head,neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
+        head="Bunzi's Hat",neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
         body=gear.merlinic_nuke_body,hands="Amalric Gages +1",ring1="Shiva Ring +1",ring2="Freke Ring",
         back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Merlinic Shalwar",feet="Amalric Nails +1"}
 		
@@ -237,18 +239,18 @@ function init_gear_sets()
         back=gear.nuke_jse_back,waist="Yamabuki-no-Obi",legs="Merlinic Shalwar",feet="Amalric Nails +1"}
 		
     sets.midcast['Elemental Magic'].Fodder = {main="Daybreak",sub="Ammurapi Shield",range=empty,ammo="Ghastly Tathlum +1",
-        head=gear.merlinic_nuke_head,neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
+        head="Bunzi's Hat",neck="Baetyl Pendant",ear1="Crematio Earring",ear2="Friomisi Earring",
         body=gear.merlinic_nuke_body,hands="Amalric Gages +1",ring1="Shiva Ring +1",ring2="Freke Ring",
         back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Merlinic Shalwar",feet="Amalric Nails +1"}
 
     sets.midcast['Elemental Magic'].Proc = {main=empty,sub=empty,range=empty,ammo="Impatiens",
-        head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
+        head="Vanya Hood",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
         body="Zendik Robe",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
 		
-	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {ammo="Pemphredo Tathlum",ear1="Regal Earring",ring1="Metamor. Ring +1"})
-	sets.midcast['Elemental Magic'].HighTierNuke.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {ear1="Regal Earring",ring1="Metamor. Ring +1"})
-	sets.midcast['Elemental Magic'].HighTierNuke.Fodder = set_combine(sets.midcast['Elemental Magic'].Fodder, {ammo="Pemphredo Tathlum",ear1="Regal Earring",ring1="Metamor. Ring +1"})
+	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {head=gear.merlinic_nuke_head,ammo="Pemphredo Tathlum",ear1="Regal Earring",ring1="Metamor. Ring +1"})
+	sets.midcast['Elemental Magic'].HighTierNuke.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {head=gear.merlinic_nuke_head,ear1="Regal Earring",ring1="Metamor. Ring +1"})
+	sets.midcast['Elemental Magic'].HighTierNuke.Fodder = set_combine(sets.midcast['Elemental Magic'].Fodder, {head=gear.merlinic_nuke_head,ammo="Pemphredo Tathlum",ear1="Regal Earring",ring1="Metamor. Ring +1"})
 		
 	sets.midcast.Impact = {main="Daybreak",sub="Ammurapi Shield",range="Kaja Bow",ammo=empty,
 		head=empty,neck="Erra Pendant",ear1="Regal Earring",ear2="Malignance Earring",
@@ -358,8 +360,7 @@ function init_gear_sets()
 	sets.weapons.DualProcDaggers = {main="Blurred Knife +1",sub="Atoyac",range=empty}
 	sets.weapons.EnspellOnly = {main="Norgish Dagger",sub="Aern Dagger",range="Kaja Bow",ammo="Beetle Arrow"}
 	sets.weapons.EnspellDW = {main="Blurred Knife +1",sub="Atoyac",range="Kaja Bow",ammo="Beetle Arrow"}
-	sets.weapons.DualClubs = {main="Nehushtan",sub="Nehushtan",range=empty}
-	sets.weapons.DualBlackHalo = {main="Maxentius",sub="Thibron",range=empty}
+	sets.weapons.DualClubs = {main="Maxentius",sub="Thibron",range=empty}
 	sets.weapons.DualAlmace = {main="Almace",sub="Sequence",range=empty}
 	sets.weapons.DualBow = {main="Naegling",sub="Tauret",range="Kaja Bow"}
 	sets.weapons.BowMacc = {main="Naegling",sub="Tauret",range="Kaja Bow",ammo=empty}
@@ -547,4 +548,4 @@ function user_job_lockstyle()
 	end
 end
 
-autows_list = {['Naegling']='Savage Blade',['DualWeapons']='Savage Blade',['DualWeaponsAcc']='Savage Blade',['DualEvisceration']='Evisceration',['DualClubs']='True Strike',['DualAeolian']='Aeolian Edge',['EnspellDW']='Sanguine Blade'}
+autows_list = {['Naegling']='Savage Blade',['DualWeapons']='Savage Blade',['DualWeaponsAcc']='Savage Blade',['DualEvisceration']='Evisceration',['DualClubs']='Black Halo',['DualAeolian']='Aeolian Edge',['EnspellDW']='Sanguine Blade'}

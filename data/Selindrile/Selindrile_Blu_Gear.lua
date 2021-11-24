@@ -62,7 +62,7 @@ function init_gear_sets()
 		body="Jhakri Robe +2",hands="Jhakri Cuffs +2",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
 		back="Swith Cape +1",waist="Flume Belt +1",legs="Jhakri Slops +2",feet="Jhakri Pigaches +2"}
 		
-	sets.HPCure = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
+	sets.HPCure = {main="Bunzi's Rod",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
 		head="Carmine Mask +1",neck="Incanter's Torque",ear1="Etiolation Earring",ear2="Mendi. Earring",
 		body="Vrikodara Jupon",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Menelaus's Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Carmine Cuisses +1",feet="Medium's Sabots"}
@@ -255,17 +255,17 @@ function init_gear_sets()
 
 	-- Magical Spells --
 
-	sets.midcast['Blue Magic'].Magical = {main="Maxentius",sub="Nibiru Cudgel",ammo="Ghastly Tathlum +1",
+	sets.midcast['Blue Magic'].Magical = {main="Bunzi's Rod",sub="Maxentius",ammo="Ghastly Tathlum +1",
 		 head="Jhakri Coronal +2",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
 		 body="Amalric Doublet +1",hands="Amalric Gages +1",ring1="Metamor. Ring +1",ring2="Shiva Ring +1",
 		 back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Luhlaza Shalwar +3",feet="Amalric Nails +1"}
 		 
-	sets.midcast['Blue Magic'].Magical.SIRD = {main="Maxentius",sub="Sakpata's Sword",ammo="Staunch Tathlum +1",
+	sets.midcast['Blue Magic'].Magical.SIRD = {main="Bunzi's Rod",sub="Sakpata's Sword",ammo="Staunch Tathlum +1",
 		 head="Jhakri Coronal +2",neck="Loricate Torque +1",ear1="Regal Earring",ear2="Friomisi Earring",
 		 body="Amalric Doublet +1",hands="Rawhide Gloves",ring1="Defending Ring",ring2="Metamor. Ring +1",
 		 back=gear.nuke_jse_back,waist="Emphatikos Rope",legs="Carmine Cuisses +1",feet="Amalric Nails +1"}
 		 
-	sets.midcast['Blue Magic'].Subduction = {main="Maxentius",sub="Sakpata's Sword",ammo="Ghastly Tathlum +1",
+	sets.midcast['Blue Magic'].Subduction = {main="Bunzi's Rod",sub="Maxentius",ammo="Ghastly Tathlum +1",
 		 head="Jhakri Coronal +2",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
 		 body="Amalric Doublet +1",hands="Amalric Gages +1",ring1="Metamor. Ring +1",ring2="Shiva Ring +1",
 		 back=gear.nuke_jse_back,waist=gear.ElementalObi,legs="Luhlaza Shalwar +3",feet="Amalric Nails +1"}
@@ -278,7 +278,7 @@ function init_gear_sets()
 	sets.midcast['Blue Magic'].Magical.Resistant = set_combine(sets.midcast['Blue Magic'].Magical,
 		{neck="Mirage Stole +2",hands="Jhakri Cuffs +2",ring1="Stikini Ring +1",ring2="Stikini Ring +1",waist="Yamabuki-no-Obi",feet="Jhakri Pigaches +2"})
 
-	sets.midcast['Blue Magic'].Magical.Fodder = {main="Maxentius",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
+	sets.midcast['Blue Magic'].Magical.Fodder = {main="Bunzi's Rod",sub="Maxentius",ammo="Pemphredo Tathlum",
 		 head="Jhakri Coronal +2",neck="Baetyl Pendant",ear1="Regal Earring",ear2="Friomisi Earring",
 		 body="Amalric Doublet +1",hands="Amalric Gages +1",ring1="Metamor. Ring +1",ring2="Shiva Ring +1",
 		 back=gear.ElementalCape,waist=gear.ElementalObi,legs="Luhlaza Shalwar +3",feet="Amalric Nails +1"}
@@ -289,7 +289,7 @@ function init_gear_sets()
 	sets.midcast['Blue Magic'].MagicalDex = set_combine(sets.midcast['Blue Magic'].Magical, {})
 
 	sets.midcast['Blue Magic'].MagicAccuracy = {main="Tizona",sub="Sakpata's Sword",ammo="Pemphredo Tathlum",
-		head="Malignance Chapeau",neck="Mirage Stole +2",ear1="Regal Earring",ear2="Njordr Earring",
+		head="Assim. Keffiyeh +3",neck="Mirage Stole +2",ear1="Regal Earring",ear2="Njordr Earring",
 		body="Amalric Doublet +1",hands="Malignance Gloves",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Cornflower Cape",waist="Acuity Belt +1",legs="Assim. Shalwar +3",feet="Malignance Boots"}
 		
@@ -347,7 +347,7 @@ function init_gear_sets()
 	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
 	sets.element.Light = {} --ring2="Weatherspoon Ring"
 
-	sets.midcast.Cure = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
+	sets.midcast.Cure = {main="Bunzi's Rod",sub="Nibiru Cudgel",ammo="Pemphredo Tathlum",
 		head="Carmine Mask +1",neck="Incanter's Torque",ear1="Etiolation Earring",ear2="Mendi. Earring",
 		body="Vrikodara Jupon",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Menelaus's Ring",
 		back=gear.ElementalCape,waist=gear.ElementalObi,legs="Carmine Cuisses +1",feet="Medium's Sabots"}
@@ -385,7 +385,7 @@ function init_gear_sets()
 					
 	sets.midcast['Blue Magic']['Healing Breeze'] = sets.midcast['Blue Magic']['White Wind']
 
-	sets.midcast['Blue Magic'].Healing = {main="Nibiru Cudgel",sub="Nibiru Cudgel",ammo="Mavi Tathlum",
+	sets.midcast['Blue Magic'].Healing = {main="Bunzi's Rod",sub="Nibiru Cudgel",ammo="Mavi Tathlum",
 		head="Carmine Mask +1",neck="Incanter's Torque",ear1="Etiolation Earring",ear2="Mendi. Earring",
 		body="Vrikodara Jupon",hands="Telchine Gloves",ring1="Janniston Ring",ring2="Menelaus's Ring",
 		back=gear.ElementalCape,waist=gear.ElementalObi,legs="Carmine Cuisses +1",feet="Medium's Sabots"}
@@ -470,7 +470,7 @@ function init_gear_sets()
 	-- Weapons sets
 	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
 	sets.weapons.Tizbron = {main="Tizona",sub="Thibron"}
-	sets.weapons.MeleeClubs = {main="Nehushtan",sub="Nehushtan"}
+	sets.weapons.MeleeClubs = {main="Maxentius",sub="Nehushtan"}
 	sets.weapons.Almace = {main="Almace",sub="Sequence"}
 	sets.weapons.Naegbron = {main="Naegling",sub="Thibron"}
 	sets.weapons.Naegmace = {main="Naegling",sub="Almace"}
