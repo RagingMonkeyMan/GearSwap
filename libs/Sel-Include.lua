@@ -1163,6 +1163,8 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			end
 		end
 		
+		set_elemental_obi_cape_ring(spell, spellMap)
+		
 		if state.Capacity.value == true then
 			if set.contains(spell.targets, 'Enemy') then
 				if spell.skill == 'Elemental Magic' or spell.skill == 'Blue Magic' or spell.action_type == 'Ranged Attack' then
@@ -1845,9 +1847,6 @@ function get_precast_set(spell, spellMap)
         equipSet = get_ranged_set(equipSet, spell, spellMap)
     end
 
-    -- Update defintions for element-specific gear that may be used.
-    set_elemental_obi_cape_ring(spell, spellMap)
-    
     -- Return whatever we've constructed.
     return equipSet
 end

@@ -477,20 +477,19 @@ function set_elemental_obi_cape_ring(spell, spellMap)
         return
     end
 
-	gear.ElementalObi.name = gear.default.obi_waist
-	
+	--[[
 	if spell.element == world.weather_element or spell.element == world.day_element and item_available("Twilight Cape") then
 		gear.ElementalCape.name = "Twilight Cape"
 	else
 		gear.ElementalCape.name = gear.default.obi_back
 	end
-
-	if spell.english:endswith('helix') then
+	]]
+	if spell.english:endswith('helix') or spell.english:endswith('helix II') then
 		if item_available("Orpheus's Sash") then
 			local distance = spell.target.distance - spell.target.model_size
 			local orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance))
 				if orpheus_intensity > 5 then
-					gear.ElementalObi.name = "Orpheus's Sash"
+					equip({waist="Orpheus's Sash"})
 				end
 			end
 	elseif is_nuke(spell, spellMap) then
@@ -527,11 +526,11 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 		end
 
 		if hachirin_intensity >= single_obi_intensity and hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
-			gear.ElementalObi.name = "Hachirin-no-Obi"
+			equip({waist="Hachirin-no-Obi"})
 		elseif single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
-			gear.ElementalObi.name = data.elements.obi_of[spell.element]
+			equip({waist=data.elements.obi_of[spell.element]})
 		elseif orpheus_intensity >= 5 then
-			gear.ElementalObi.name = "Orpheus's Sash"
+			equip({waist="Orpheus's Sash"})
 		end
 	
 		if spell.element == world.day_element and spell.english ~= 'Impact' and not spell.skill == 'Divine Magic' and item_available("Zodiac Ring") then
