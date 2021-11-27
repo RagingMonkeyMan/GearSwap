@@ -529,6 +529,21 @@ function check_buff()
 				end
 			end
 		end
+		
+		if player.in_combat then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+
+			if not buffactive.Berserk and abil_recasts[1] < latency then
+				windower.chat.input('/ja "Berserk" <me>')
+				tickdelay = os.clock() + 1.1
+				return true
+			elseif not buffactive.Aggressor and abil_recasts[4] < latency then
+				windower.chat.input('/ja "Aggressor" <me>')
+				tickdelay = os.clock() + 1.1
+				return true
+			end
+		end
+		
 	else
 		return false
 	end

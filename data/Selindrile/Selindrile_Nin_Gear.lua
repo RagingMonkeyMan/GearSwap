@@ -9,7 +9,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Heishi','LowBuff','MagicWeapons','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
+	state.Weapons:options('Heishi','MagicWeapons','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None','SuppaBrutal','DWEarrings','DWMax'}
 
 	gear.wsd_jse_back = {name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
@@ -291,10 +291,10 @@ function init_gear_sets()
 	sets.Skillchain = {legs="Ryuo Hakama"}
 
 	-- Weapons sets
-	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kanaria"}
-	sets.weapons.Savage = {main="Naegling",sub="Kanaria"}
-	sets.weapons.Evisceration = {main="Tauret",sub="Kanaria"}
-	sets.weapons.LowBuff = {main="Heishi Shorinken",sub="Blurred Knife +1"}
+	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kunimitsu"}
+	sets.weapons.Savage = {main="Naegling",sub="Kunimitsu"}
+	sets.weapons.Evisceration = {main="Tauret",sub="Kunimitsu"}
+	sets.weapons.MagicWeapons = {main="Kunimitsu",sub="Tauret"}
 	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
 	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
 	sets.weapons.ProcGreatSword = {main="Lament",sub=empty}
@@ -304,7 +304,6 @@ function init_gear_sets()
 	sets.weapons.ProcKatana = {main="Kanaria",sub=empty}
 	sets.weapons.ProcClub = {main="Dream Bell +1",sub=empty}
 	sets.weapons.ProcStaff = {main="Terra's Staff",sub=empty}
-	sets.weapons.MagicWeapons = {main="Ochu",sub="Ochu"}
 end
 
 -- Select default macro book on initial load or subjob change.

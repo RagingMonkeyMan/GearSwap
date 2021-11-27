@@ -206,8 +206,8 @@ function init_gear_sets()
 		body=gear.valorous_pet_body,hands="Nukumi Manoplas +1",ring1="Varar Ring +1",ring2="Varar Ring +1",
 		back="Artio's Mantle",waist="Incarnation Sash",legs=gear.valorous_magical_pet_legs,feet=gear.valorous_magical_pet_feet}
 
-	sets.midcast.Pet.ReadyRecast = {legs="Desultor Tassets"}
-	sets.midcast.Pet.ReadyRecastDW = {sub="Charmer's Merlin",legs="Desultor Tassets"}
+	sets.midcast.Pet.ReadyRecast = {main="Charmer's Merlin",legs="Gleti's Breeches"}
+	sets.midcast.Pet.ReadyRecastDW = {sub="Charmer's Merlin",legs="Gleti's Breeches"}
 	sets.midcast.Pet.Neutral = {head="Totemic Helm +1"}
 	sets.midcast.Pet.Favorable = {head="Nukumi Cabasset"}
 	sets.midcast.Pet.TPBonus = {hands="Nukumi Manoplas +1"}
@@ -239,7 +239,7 @@ function init_gear_sets()
 
 	sets.idle.Pet.Engaged = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Gleti's Gauntlets",ring1="Defending Ring",ring2="C. Palug Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	sets.idle.Pet.Engaged.DW = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",

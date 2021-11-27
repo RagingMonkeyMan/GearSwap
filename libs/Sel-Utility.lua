@@ -1006,10 +1006,10 @@ function check_doom(spell, spellMap, eventArgs)
 end
 
 function check_midaction(spell, spellMap, eventArgs)
-	if os.clock() < next_cast and state.MiniQueue.value and not state.RngHelper.value then
+	if os.clock() < next_cast and not state.RngHelper.value then
 		if eventArgs and not (spell.type:startswith('BloodPact') and state.Buff["Astral Conduit"]) then
 			eventArgs.cancel = true
-			if delayed_cast == '' then
+			if delayed_cast == '' and state.MiniQueue.value then
 				windower.send_command:schedule((next_cast - os.clock()),'gs c delayedcast')
 			end
 			delayed_cast = spell.english
