@@ -530,7 +530,7 @@ function check_buff()
 			end
 		end
 		
-		if player.in_combat then
+		if player.in_combat and player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if not buffactive.Berserk and abil_recasts[1] < latency then

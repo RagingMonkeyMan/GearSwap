@@ -164,7 +164,7 @@ end
 function job_post_aftercast(spell, spellMap, eventArgs)
     -- If Feint is active, put that gear set on on top of regular gear.
     -- This includes overlaying SATA gear.
-    check_buff('Feint', eventArgs)
+    have_buff('Feint', eventArgs)
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -201,8 +201,8 @@ end
 function job_handle_equipping_gear(playerStatus, eventArgs)
     -- Check for SATA when equipping gear.  If either is active, equip
     -- that gear specifically, and block equipping default gear.
-    check_buff('Sneak Attack', eventArgs)
-    check_buff('Trick Attack', eventArgs)
+    have_buff('Sneak Attack', eventArgs)
+    have_buff('Trick Attack', eventArgs)
 end
 
 
@@ -229,7 +229,7 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-
+	if check_buff() then return true end
 	return false
 end
 
@@ -283,8 +283,29 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
+function check_buff()
+	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
+		if player.in_combat and player.sub_job == 'WAR' then
+			local abil_recasts = windower.ffxi.get_ability_recasts()
+
+			if not buffactive.Berserk and abil_recasts[1] < latency then
+				windower.chat.input('/ja "Berserk" <me>')
+				tickdelay = os.clock() + 1.1
+				return true
+			elseif not buffactive.Aggressor and abil_recasts[4] < latency then
+				windower.chat.input('/ja "Aggressor" <me>')
+				tickdelay = os.clock() + 1.1
+				return true
+			end
+		end
+		
+	else
+		return false
+	end
+end
+
 -- State buff checks that will equip buff gear and mark the event as handled.
-function check_buff(buff_name, eventArgs)
+function have_buff(buff_name, eventArgs)
     if state.Buff[buff_name] then
         equip(sets.buff[buff_name] or {})
         if state.TreasureMode.value == 'SATA' or state.TreasureMode.value == 'Fulltime' then
