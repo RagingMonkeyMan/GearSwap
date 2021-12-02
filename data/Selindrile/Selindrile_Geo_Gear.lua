@@ -359,8 +359,8 @@ function init_gear_sets()
 	sets.RecoverMP = {body="Seidr Cotehardie"}
 	
 	-- Gear for Magic Burst mode.
-    sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Alber Strap",head="Ea Hat",neck="Mizu. Kubikazari",body="Ea Houppelande",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
-	sets.ResistantMagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",head="Ea Hat",neck="Mizu. Kubikazari",body="Ea Houppelande",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
+    sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Alber Strap",head="Ea Hat +1",neck="Mizu. Kubikazari",body="Ea Houppe. +1",ring1="Mujin Band",legs="Ea Slops +1",feet="Jhakri Pigaches +2"}
+	sets.ResistantMagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",head="Ea Hat +1",neck="Mizu. Kubikazari",body="Ea Houppe. +1",ring1="Mujin Band",legs="Ea Slops +1",feet="Jhakri Pigaches +2"}
 	
 	sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}

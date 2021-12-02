@@ -6,10 +6,6 @@ function user_job_setup()
 	state.IdleMode:options('Normal','PDT','DTHippo')
 	state.Weapons:options('None','BurstWeapons','Khatvanga','Lathi')
 
-	gear.obi_cure_waist = "Witful Belt"
-	gear.obi_low_nuke_waist = "Sekhmet Corset"
-	gear.obi_high_nuke_waist = "Refoccilation Stone"
-	
 	gear.nuke_jse_back = {name="Taranus's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
 	gear.stp_jse_back = {name="Taranus's Cape",augments={'DEX+20','Accuracy+20 Attack+20','"Store TP"+10',}}
 
@@ -341,10 +337,18 @@ function init_gear_sets()
 	
 	-- Gear that converts elemental damage done to recover MP.	
 	sets.RecoverMP = {body="Spaekona's Coat +3"}
+	sets.RecoverBurst = {body="Spaekona's Coat +3"}
 	-- Gear for Magic Burst mode.
-    sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",head="Ea Hat",body="Ea Houppelande",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
-	sets.ResistantMagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",head="Ea Hat",body="Ea Houppelande",hands="Amalric Gages +1",ring1="Mujin Band",legs="Ea Slops",feet="Jhakri Pigaches +2"}
-	
+    sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",ammo="Ghastly Tathlum +1",
+		head="Ea Hat +1",neck="Mizukage-no-Kubikazari",ear1="Malignance Earring",ear2="Regal Earring",
+		body="Ea Houppe. +1",hands="Amalric Gages +1",ring1="Freke Ring",ring2="Mujin Band",
+		back=gear.nuke_jse_back,waist="Refoccilation Stone",legs="Ea Slops +1",feet="Amalric Nails +1"}
+
+	sets.ResistantMagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",ammo="Ghastly Tathlum +1",
+		head="Ea Hat +1",neck="Mizukage-no-Kubikazari",ear1="Malignance Earring",ear2="Regal Earring",
+		body="Ea Houppe. +1",hands="Amalric Gages +1",ring1="Mujin Band",ring2="Metamor. Ring +1",
+		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Ea Slops +1",feet="Amalric Nails +1"}
+		
 	-- Gear for specific elemental nukes.
 	sets.element.Dark = {head="Pixie Hairpin +1",ring2="Archon Ring"}
 
