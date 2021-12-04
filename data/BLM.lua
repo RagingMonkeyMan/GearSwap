@@ -158,7 +158,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.precast.FC.Death)
 			end
 
-		elseif is_nuke(spell, spellMap) and spell.english ~= 'Impact' then
+		elseif is_nuke(spell, spellMap) then
 			if state.MagicBurstMode.value ~= 'Off' then
 				if state.CastingMode.value:contains('Resistant') and sets.ResistantMagicBurst then
 					equip(sets.ResistantMagicBurst)

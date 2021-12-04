@@ -292,13 +292,6 @@ end
 	
 function job_precast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
-		if spellMap == 'Cure' or spellMap == 'Curaga' or (spell.skill == 'Blue Magic' and spellMap == 'Healing') then
-			gear.default.obi_back = gear.obi_cure_back
-			gear.default.obi_waist = gear.obi_cure_waist
-		else
-			gear.default.obi_back = gear.obi_nuke_back
-			gear.default.obi_waist = gear.obi_nuke_waist
-		end
         if state.CastingMode.value == 'Proc' then
             classes.CustomClass = 'Proc'
 		end
@@ -336,24 +329,30 @@ end
 function job_post_midcast(spell, spellMap, eventArgs)
     -- Add enhancement gear for Chain Affinity, etc.
     if not eventArgs.handled and spell.skill == 'Blue Magic' then
-        for buff,active in pairs(state.Buff) do
-            if active and sets.buff[buff] then
-                equip(sets.buff[buff])
-            end
-        end
-		
         if spellMap == 'Healing' then
-			if spell.element == 'None' and sets.NonElementalCure then
-				equip(sets.NonElementalCure)
+			if (state.Weapons.value == 'None' or state.UnlockWeapons.value) and sets.midcast['Blue Magic'].UnlockedHealing then
+				equip(sets.midcast['Blue Magic'].UnlockedHealing)
 			end
-		
-			if spell.target.type == 'SELF' and sets.Self_Healing and not aoe_blue_magic_healing:contains(spell.english) then
-				equip(sets.Self_Healing)
+			
+			if spell.target.type == 'SELF' then
+				if aoe_blue_magic_healing:contains(spell.english) then
+					if (state.Weapons.value == 'None' or state.UnlockWeapons.value) and sets.midcast['Blue Magic'].UnlockedAoEHealing then
+						equip(sets.midcast['Blue Magic'].UnlockedAoEHealing)
+					elseif sets.midcast['Blue Magic'].AoEHealing then
+						equip(sets.midcast['Blue Magic'].AoEHealing)
+					end
+				elseif sets.Self_Healing then
+					equip(sets.Self_Healing)
+				end
+			end
+			
+			if spell.element ~= 'None' and (spell.element == world.weather_element or spell.element == world.day_element) and item_available('Hachirin-no-Obi') then
+				equip({waist="Hachirin-no-Obi"})
 			end
 				
 		elseif spellMap:contains('Magical') then
 			if state.MagicBurstMode.value ~= 'Off' and (state.Buff['Burst Affinity'] or state.Buff['Azure Lore']) then
-					equip(sets.MagicBurst)
+				equip(sets.MagicBurst)
 			end
 			if spell.element == world.weather_element or spell.element == world.day_element then
 				if state.CastingMode.value == 'Fodder' then
@@ -377,6 +376,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			if state.TreasureMode.value == "Tag" then equip(sets.TreasureHunter) end
 
 		end
+		
+        for buff,active in pairs(state.Buff) do
+            if active and sets.buff[buff] then
+                equip(sets.buff[buff])
+            end
+        end
 
     elseif spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
