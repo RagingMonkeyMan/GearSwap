@@ -66,7 +66,7 @@ function job_setup()
 	state.AutoManawell = M(true, 'Auto Manawell Mode')
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 
-	autows = 'Vidohunir'
+	autows = 'Myrkr'
 	autofood = 'Pear Crepe'
 	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoManawell","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})

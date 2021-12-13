@@ -384,6 +384,28 @@ data.equipment.rema_ranged_weapons_ammo_pouch = {
 	['Gastraphetes'] = "Quelling B. Quiver",
 	['Yoichinoyumi'] = "Yoichi's Quiver",
 	['Annihilator'] = 'Era. Bul. Pouch'}
+	
+data.equipment.rema_bullet_of = {
+	['Chrono Bullet'] = 'Fomalhaut',
+	['Living Bullet'] = 'Death Penalty',
+	['Devastating Bullet'] = 'Armageddon',
+	['Eradicating Bulet'] = 'Annihilator',
+	['Chrono Arrow'] = 'Fail-Not',
+	["Artemis's Arrow"] = 'Gandiva',
+	["Yoichi's Arrow"] = 'Yoichinoyumi',
+	['Quelling Bolt'] = 'Gastraphetes'
+}
+
+data.equipment.rema_ammo_pouch_of = {
+	['Chrono Bullet'] = 'Chr. Bul. Pouch',
+	['Living Bullet'] = 'Liv. Bul. Pouch',
+	['Devastating Bullet'] = 'Dev. Bul. Pouch',
+	['Eradicating Bulet'] = 'Era. Bul. Pouch',
+	['Chrono Arrow'] = 'Chrono Quiver',
+	["Artemis's Arrow"] = "Artemis's Quiver",
+	["Yoichi's Arrow"] = "Yoichi's Quiver",
+	['Quelling Bolt'] = 'Quelling B. Quiver'
+}
 
 data.equipment.cprings = L{"Endorsement Ring","Trizek Ring","Vocation Ring","Capacity Ring","Facility Ring"}
 data.equipment.xprings = L{"Echad Ring","Caliber Ring","Emperor Band","Empress Band","Resolution Ring"}

@@ -322,7 +322,7 @@ function init_gear_sets()
 	-- Engaged sets
 	--------------------------------------
 
-    sets.engaged = {main="Lionheart",sub="Utu Grip",ammo="Yamarang",
+    sets.engaged = {main="Lionheart",sub="Utu Grip",ammo="Aurgelmir Orb +1",
             head="Dampening Tam",neck="Anu Torque",ear1="Brutal Earring",ear2="Sherida Earring",
             body="Adhemar Jacket +1",hands="Adhemar Wrist. +1",ring1="Niqmaddu Ring",ring2="Epona's Ring",
             back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
@@ -335,11 +335,11 @@ function init_gear_sets()
             body="Ayanmo Corazza +2",hands="Meg. Gloves +2",ring1="Ramuh Ring +1",ring2="Ramuh Ring +1",
             back=gear.stp_jse_back,waist="Olseni Belt",legs="Carmine Cuisses +1",feet=gear.herculean_acc_feet}
 			
-    sets.engaged.DTLite = {main="Lionheart",sub="Utu Grip",ammo="Yamarang",
+    sets.engaged.DTLite = {main="Lionheart",sub="Utu Grip",ammo="Aurgelmir Orb +1",
             head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Epona's Ring",
             back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Nyame Sollerets"}
-    sets.engaged.Acc.DTLite = {main="Lionheart",sub="Utu Grip",ammo="C. Palug Stone",
+    sets.engaged.Acc.DTLite = {main="Lionheart",sub="Utu Grip",ammo="Yamarang",
             head="Aya. Zucchetto +2",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Sherida Earring",
             body="Ayanmo Corazza +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Ilabrat Ring",
             back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Meg. Chausses +2",feet="Nyame Sollerets"}

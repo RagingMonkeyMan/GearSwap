@@ -119,12 +119,12 @@ function init_gear_sets()
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {ear2="Mendi. Earring"})
 
     sets.precast.RA = {ammo=gear.RAbullet,
-        head="Chass. Tricorne +1",
+        head="Chass. Tricorne +1",neck="Comm. Charm +2",
         body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Crepuscular Ring",
         back=gear.snapshot_jse_back,waist="Impulse Belt",legs="Laksa. Trews +3",feet="Meg. Jam. +2"}
 		
-	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {})
-	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {})
+	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {waist="Yemaya Belt",legs="Adhemar Kecks +1"})
+	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {waist="Yemaya Belt",legs="Adhemar Kecks +1"})
 
        
     -- Weaponskill sets
@@ -250,11 +250,11 @@ function init_gear_sets()
     sets.midcast.RA = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
         body="Malignance Tabard",hands="Malignance Gloves",ring1="Crepuscular Ring",ring2="Ilabrat Ring",
-        back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Adhemar Kecks",feet="Malignance Boots"}
+        back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
     sets.midcast.RA.Acc = {ammo=gear.RAbullet,
         head="Malignance Chapeau",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
-        body="Laksa. Frac +3",hands="Malignance Gloves",ring1="Regal Ring",ring2="Dingir Ring",
+        body="Laksa. Frac +3",hands="Malignance Gloves",ring1="Regal Ring",ring2="Ilabrat Ring",
         back=gear.tp_ranger_jse_back,waist="Yemaya Belt",legs="Laksa. Trews +3",feet="Malignance Boots"}
 		
 	sets.buff['Triple Shot'] = {body="Chasseur's Frac +1"}

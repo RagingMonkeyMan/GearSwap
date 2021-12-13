@@ -384,7 +384,4 @@ function check_trust()
 	return false
 end
 
-state.Weapons:options('Aeneas','Aeolian','Savage','AccSavage','AccAeneas','ProcWeapons','Evisceration','Throwing','SwordThrowing','Bow')
-
-autows_list = {['Aeneas']="Rudra's Storm",['Aeolian']='Aeolian Edge',['Savage']='Savage Blade',['AccSavage']='Savage Blade',
-     ['AccAeneas']='Savage Blade',['ProcWeapons']='Wasp Sting'}
+autows_list = {['Aeneas']="Rudra's Storm",['Aeolian']='Aeolian Edge',['Savage']='Savage Blade',['Throwing']="Rudra's Storm",['SwordThrowing']='Savage Blade',['Evisceration']='Evisceration',['ProcWeapons']='Wasp Sting',['Bow']='Empyreal Arrow'}

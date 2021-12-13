@@ -247,10 +247,10 @@ function job_self_command(commandArgs, eventArgs)
 				windower.chat.input('/ma "Soporific" <t>')
 			elseif spell_recasts[605] < spell_latency then
 				windower.chat.input('/ma "Geist Wall" <t>')
-			elseif spell_recasts[575] < spell_latency then
-				windower.chat.input('/ma "Jettatura" <t>')
 			elseif spell_recasts[537] < spell_latency then
 				windower.chat.input('/ma "Stinking Gas" <t>')
+			elseif spell_recasts[575] < spell_latency then
+				windower.chat.input('/ma "Jettatura" <t>')
 			elseif spell_recasts[592] < spell_latency then
 				windower.chat.input('/ma "Blank Gaze" <t>')
 			elseif not check_auto_tank_ws() then

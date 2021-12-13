@@ -472,6 +472,7 @@ function init_gear_sets()
 	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
 	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",waist="Reiki Yotai",legs="Carmine Cuisses +1"}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	sets.BulletPouch = {waist="Chr. Bul. Pouch"}
 	
 	-- Weapons sets
 	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
