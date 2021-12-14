@@ -385,7 +385,7 @@ data.equipment.rema_ranged_weapons_ammo_pouch = {
 	['Yoichinoyumi'] = "Yoichi's Quiver",
 	['Annihilator'] = 'Era. Bul. Pouch'}
 	
-data.equipment.rema_bullet_of = {
+data.equipment.rema_ammo_weapon_of = {
 	['Chrono Bullet'] = 'Fomalhaut',
 	['Living Bullet'] = 'Death Penalty',
 	['Devastating Bullet'] = 'Armageddon',
