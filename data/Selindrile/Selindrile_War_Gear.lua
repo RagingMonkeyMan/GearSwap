@@ -1261,9 +1261,15 @@ function select_default_macro_book()
         set_macro_page(3, 3)
     elseif player.sub_job == 'DNC' then
         set_macro_page(4, 3)
+    elseif player.sub_job == 'NIN' then
+        set_macro_page(2, 3)
     elseif player.sub_job == 'THF' then
         set_macro_page(1, 3)
     else
         set_macro_page(5, 3)
     end
+end
+
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 017')
 end

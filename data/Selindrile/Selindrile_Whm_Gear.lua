@@ -445,4 +445,8 @@ function select_default_macro_book()
 	set_macro_page(3, 6)
 end
 
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 006')
+end
+
 autows_list = {['DualWeapons']='Realmrazer',['MeleeWeapons']='Realmrazer'}
