@@ -380,7 +380,7 @@ function select_default_macro_book()
     elseif player.sub_job == 'DRG' then
         set_macro_page(5, 11)
     else
-        set_macro_page(10, 11)
+        set_macro_page(2, 11)
     end
 end
 

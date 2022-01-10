@@ -493,7 +493,6 @@ function set_elemental_obi_cape_ring(spell, spellMap)
 				end
 			end
 	elseif is_nuke(spell, spellMap) then
-	
 		local distance = spell.target.distance - spell.target.model_size
 		local single_obi_intensity = 0
 		local orpheus_intensity = 0
@@ -1994,7 +1993,7 @@ end
 
 function is_nuke(spell, spellMap)
 	if (
-		(spell.skill == 'Elemental Magic' and spellMap ~= 'ElementalEnfeeble' and not spell.english == 'Impact') or
+		(spell.skill == 'Elemental Magic' and spellMap ~= 'ElementalEnfeeble' and spell.english ~= 'Impact') or
 	    (player.main_job == 'BLU' and spell.skill == 'Blue Magic' and spellMap and spellMap:contains('Magical')) or
 		(player.main_job == 'NIN' and spell.skill == 'Ninjutsu' and spellMap and spellMap:contains('ElementalNinjutsu')) or
 		spell.english == 'Comet' or spell.english == 'Meteor' or spell.english == 'Death' or spell.english:startswith('Banish')
