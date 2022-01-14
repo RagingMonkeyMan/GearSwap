@@ -231,9 +231,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				blazelocked = true
 			end
 		elseif state.Buff.Entrust and spell.english:startswith('Indi-') then
-			if sets.midcast.Geomancy.main == 'Idris' and item_available('Solstice') then
-				equip({main="Solstice"})
-			end
+			equip(sets.buff.Entrust)
 		end
     end
 

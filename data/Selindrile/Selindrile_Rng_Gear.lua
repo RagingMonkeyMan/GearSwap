@@ -215,6 +215,7 @@ function init_gear_sets()
     sets.Kiting = {legs="Carmine Cuisses +1"}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
+	sets.BulletPouch = {waist="Chr. Bul. Pouch"}
 	
 	-- Weapons sets
 	sets.weapons.Default = {main="Kustawi +1",sub="Nusku Shield",range="Fomalhaut"}
