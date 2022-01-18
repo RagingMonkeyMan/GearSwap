@@ -67,15 +67,15 @@ Setting up my Gearswaps and Github updating.
 11.) To update my gearswaps in the future open up Github Desktop and click the third button (Fetch Origin, then
     push the same button again. https://www.dropbox.com/s/zroxiy1e6r3y3cb/Fetch.png?dl=0
 	
-11.) Optional: If you're new to editing files like this I highly reccomend Notepad++, https://notepad-plus-plus.org/
+12.) Optional: If you're new to editing files like this I highly reccomend Notepad++, https://notepad-plus-plus.org/
     and using File: Open Folder as Workspace, and adding your Gearswap\Data folder there.
   
-12.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
+13.) Optional: Obtain Init file (Goes in Windower\Script folder) from:
     https://www.dropbox.com/sh/20vy32liub3glxz/AAAiIVHAasFdwCK1SZdZz7d_a?dl=0
 	and place it in your Windower\Scripts folder (Rename and keep your
 	original just in case)
     
-13.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
+14.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
 
 PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
 
