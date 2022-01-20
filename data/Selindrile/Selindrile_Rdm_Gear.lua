@@ -11,15 +11,6 @@ function user_job_setup()
 	state.ResistDefenseMode:options('MEVA')
 	state.Weapons:options('None','Naegling','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAeolian','DualProcDaggers','EnspellOnly','EnspellDW')
 	
-	gear.obi_cure_back = "Tempered Cape +1"
-	gear.obi_cure_waist = "Witful Belt"
-
-	gear.obi_low_nuke_back = "Toro Cape"
-	gear.obi_low_nuke_waist = "Sekhmet Corset"
-
-	gear.obi_high_nuke_back = "Toro Cape"
-	gear.obi_high_nuke_waist = "Refoccilation Stone"
-
 	gear.stp_jse_back = {name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}
 	gear.nuke_jse_back = {name="Sucellos's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}}
 	gear.wsd_jse_back = {name="Sucellos's Cape",augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
