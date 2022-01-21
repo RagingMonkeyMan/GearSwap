@@ -2389,7 +2389,7 @@ windower.raw_register_event('outgoing chunk',function(id,data,modified,is_inject
 			if sets.Kiting and not (player.status == 'Event' or (os.clock() < (next_cast + 1)) or pet_midaction() or (os.clock() < (petWillAct + 2))) then
 				send_command('gs c forceequip')
 			end
-			if state.RngHelper.value then
+			if state.RngHelper.value and not buffactive['Hover Shot'] then
 				send_command('gs rh clear')
 			end
 			if buffup~= '' then
