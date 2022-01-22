@@ -235,7 +235,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 						equip(sets.buff['Double Shot'][state.RangedMode.value])
 					end
 				elseif sets.buff['Double Shot'].AM then
-					equip(sets.buff['Double Shot'])
+					equip(sets.buff['Double Shot'].AM)
 				else
 					equip(sets.buff['Double Shot'])
 				end
