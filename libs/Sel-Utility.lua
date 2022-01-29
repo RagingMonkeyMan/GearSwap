@@ -2248,10 +2248,10 @@ function check_ws_acc()
 end
 
 function is_dual_wielding()
-	if ((player.equipment.main and not (player.equipment.sub == 'empty' or player.equipment.sub:contains('Grip') or player.equipment.sub:contains('Strap') or res.items[item_name_to_id(player.equipment.sub)].shield_size))) then
-		return true
-	else
-		return false
+	if player.equipment.main and player.equipment.sub and player.equipment.sub ~= 'empty' then
+		if data.skills.one_handed_combat:contains(res.items[item_name_to_id(player.equipment.sub)].skill) then
+			return true
+		end
 	end
 end
 
