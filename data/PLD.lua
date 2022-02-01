@@ -295,6 +295,8 @@ function job_self_command(commandArgs, eventArgs)
 			elseif not check_auto_tank_ws() then
 				if not state.AutoTankMode.value then add_to_chat(123,'Dancer job abilities not needed.') end
 			end
+		else
+			check_auto_tank_ws()
 		end
 
 	end

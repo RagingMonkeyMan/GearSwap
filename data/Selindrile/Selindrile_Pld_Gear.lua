@@ -10,7 +10,7 @@ function user_job_setup()
     state.MagicalDefenseMode:options('MDT_HP','MDT','MDT_Reraise')
 	state.ResistDefenseMode:options('MEVA_HP','MEVA')
 	state.IdleMode:options('Tank','Kiting','PDT','Block','MDT','Normal')
-	state.Weapons:options('None','SakpataAegis','SakpataOchain','NaeglingBlurred')
+	state.Weapons:options('None','SakpataAegis','SakpataOchain','NaeglingBlurred','ClubOchain')
 	
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode','None','MP','Twilight'}
 	
@@ -335,6 +335,7 @@ function init_gear_sets()
 	sets.weapons.SakpataAegis = {main="Sakpata's Sword",sub="Aegis"}
 	sets.weapons.NaeglingBlurred = {main="Naegling",sub="Blurred Shield"}
 	sets.weapons.SakpataOchain = {main="Sakpata's Sword",sub="Ochain"}
+	sets.weapons.ClubOchain = {main="Mafic Cudgel",sub="Ochain"}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Demersal Degen +1"}
     
     sets.defense.Block = {main="Sakpata's Sword",sub="Ochain",ammo="Eluder's Sachet",
