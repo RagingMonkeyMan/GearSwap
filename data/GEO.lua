@@ -230,8 +230,28 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				disable('head')
 				blazelocked = true
 			end
-		elseif state.Buff.Entrust and spell.english:startswith('Indi-') then
-			equip(sets.buff.Entrust)
+			
+			if can_dual_wield and sets.midcast.Geomancy.DW then
+				equip(sets.midcast.Geomancy.DW)
+			else
+				equip(sets.midcast.Geomancy)
+			end
+		elseif spell.english:startswith('Indi-') then
+			if sets.midcast.Geomancy.Indi then
+				if can_dual_wield and (state.Weapons.value == 'None' or state.UnlockWeapons.value) and sets.midcast.Geomancy.Indi.DW then
+					equip(sets.midcast.Geomancy.Indi.DW)
+				else
+					equip(sets.midcast.Geomancy.Indi)
+				end
+			end
+			
+			if state.Buff.Entrust and sets.buff.Entrust then
+				if can_dual_wield and (state.Weapons.value == 'None' or state.UnlockWeapons.value) and sets.buff.Entrust.DW then
+					equip(sets.buff.Entrust.DW)
+				else
+					equip(sets.buff.Entrust)
+				end
+			end
 		end
     end
 

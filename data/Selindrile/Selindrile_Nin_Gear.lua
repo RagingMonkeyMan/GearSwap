@@ -41,7 +41,7 @@ function init_gear_sets()
     -- Precast sets to enhance JAs
     sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama",--main="Nagi"
     sets.precast.JA['Futae'] = {hands="Hattori Tekko +1"}
-    sets.precast.JA['Sange'] = {} --legs="Mochizuki Chainmail"
+    sets.precast.JA['Sange'] = {} --body="Mochizuki Chainmail"
     sets.precast.JA['Provoke'] = sets.Enmity
     sets.precast.JA['Warcry'] = sets.Enmity
 
