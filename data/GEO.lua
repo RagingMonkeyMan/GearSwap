@@ -231,7 +231,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				blazelocked = true
 			end
 			
-			if can_dual_wield and sets.midcast.Geomancy.DW then
+			if can_dual_wield and (state.Weapons.value == 'None' or state.UnlockWeapons.value) and sets.midcast.Geomancy.DW then
 				equip(sets.midcast.Geomancy.DW)
 			else
 				equip(sets.midcast.Geomancy)
