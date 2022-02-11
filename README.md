@@ -1,30 +1,7 @@
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-You will be either ignored or blacklisted if you message multiple times.
-
-Feel free to send me a way to contact you outside of game,and I'm happy to help, my preferred way of being contacted is Discord, my Stream discord is here: https://discord.gg/ug6xtvQ
+Selindrile's Discord
+https://discord.gg/ug6xtvQ
 
 Setting up my Gearswaps and Github updating.
-
-0.) DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME.
 
 1.) Create a Github account if you don't already have one: https://github.com/join
 
@@ -75,14 +52,4 @@ Setting up my Gearswaps and Github updating.
 	and place it in your Windower\Scripts folder (Rename and keep your
 	original just in case)
     
-14.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
-
-PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+14.) Read the Cheat Sheet in your Data Folder
