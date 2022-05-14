@@ -5,7 +5,16 @@ function user_job_setup()
     state.IdleMode:options('Normal','PDT')
 	state.HybridMode:options('Normal','PDT')
 	state.Weapons:options('None','Akademos','Khatvanga')
+    state.RegenMode = M{['description'] = 'Regen Mode','Hybrid','Duration','Potency'}
 
+    TelEnhHead = {name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
+	TelenhBody = {name="Telchine Chasuble", augments={'Enh. Mag. eff. dur. +10',}}
+	TelEnhLegs = {name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +10',}}
+	TelEnhFeet = {name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+	TelRegPotBody = {name="Telchine Chasuble", augments={'"Regen" potency+3',}}
+	TelRegPotHands = {name="Telchine Gloves", augments={'"Regen" potency+1',}}
+	TelRegPotLegs = {name="Telchine Braconi", augments={'"Regen" potency+3',}}
+	TelRegPotFeet = {name="Telchine Pigaches", augments={'"Regen" potency+2',}}
 	gear.nuke_jse_back = {name="Lugh's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	
 		-- Additional local binds
@@ -119,7 +128,51 @@ function init_gear_sets()
 		body="Telchine Chas.",hands="Telchine Gloves",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
 		back="Perimede Cape",waist="Embla Sash",legs="Telchine Braconi",feet="Telchine Pigaches"}
 
-    sets.midcast.Regen = set_combine(sets.midcast['Enhancing Magic'], {back=gear.nuke_jse_back})
+    -- Hybrid, general use regen set
+    sets.midcast.Regen = {
+        main="Bolelabunga",
+        head="Arbatel Bonnet +1",
+        neck="Incanter's Torque",
+        ear1="Andoaa Earring",
+        ear2="Mimir Earring",
+        body=TelenhBody,
+        hands="Arbatel Bracers +1",
+        ring1=SR1,
+        ring2=SR2,
+        back=AMBUNUKE,
+        waist="Embla Sash",
+        legs=TelEnhLegs,
+        feet=TelEnhFeet}
+
+    sets.midcast.Regen.Duration = {
+        main="Bolelabunga", -- Musa or Gada
+        head=TelEnhHead,
+        neck="Incanter's Torque",
+        ear1="Andoaa Earring",
+        ear2="Mimir Earring",
+        body=TelenhBody,
+        hands="Arbatel Bracers +1",
+        ring1=SR1,
+        ring2=SR2,
+        back=AMBUNUKE,
+        waist="Embla Sash",
+        legs=TelEnhLegs,
+        feet=TelEnhFeet}
+
+    sets.midcast.Regen.Potency = {
+        main="Bolelabunga",
+        head="Arbatel Bonnet +1",
+        neck="Incanter's Torque",
+        ear1="Andoaa Earring",
+        ear2="Mimir Earring",
+        body=TelRegPotBody,
+        hands=TelRegPotHands,
+        ring1=SR1,
+        ring2=SR2,
+        back=AMBUNUKE,
+        waist="Embla Sash",
+        legs=TelRegPotLegs,
+        feet=TelRegPotFeet}
 
     sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {neck="Nodens Gorget",ear2="Earthcry Earring",waist="Siegel Sash",legs="Shedir Seraweels"})
 	
