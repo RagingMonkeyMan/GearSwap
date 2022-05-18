@@ -219,6 +219,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.DrainWeapon)
 			end
 		end
+		if spell.english == 'Dread Spikes' and state.DrainSwapWeaponMode.value ~= 'Never' then
+			if sets.midcast["Dread Spikes"].main and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
+				enable('main','sub','range','ammo')
+				equip(sets.midcast["Dread Spikes"])
+			end
+		end
     end
 end
 
