@@ -1,0 +1,274 @@
+-- Setup vars that are user-dependent.  Can override this function in a sidecar file.
+function user_job_setup()
+	-- Options: Override default values
+    state.OffenseMode:options('Normal','DT')
+    state.HybridMode:options('Normal','DT')
+    state.RangedMode:options('Normal', 'Acc')
+    state.WeaponskillMode:options('Match','Normal','DT','SomeAcc','Acc','FullAcc','Fodder','Proc')
+	state.IdleMode:options('Normal', 'PDT', 'MDT')
+    state.PhysicalDefenseMode:options('PDT')
+	state.MagicalDefenseMode:options('MDT')
+	state.ResistDefenseMode:options('MEVA')
+	state.Weapons:options('None')
+
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWMax','Parry'}
+	state.AmbushMode = M(false, 'Ambush Mode')
+
+	gear.TP_back = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%'}}
+	gear.WS_back = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%'}}
+
+    
+end
+
+-- Define sets and vars used by this job file.
+function init_gear_sets()
+    --------------------------------------
+    -- Special sets (required by rules)
+    --------------------------------------
+
+	sets.TreasureHunter = {hands="Plunderer's Armlets +3", feet="Skulk. Poulaines +1"} --feet="Skulk. Poulaines +1"
+    sets.Kiting = {feet="Jute Boots +1"}
+
+	sets.buff.Doom = set_combine(sets.buff.Doom, {})
+	sets.buff.Sleep = {head=""}
+	
+    sets.buff['Sneak Attack'] = {}
+    sets.buff['Trick Attack'] = {hands=""}
+
+    -- Extra Melee sets.  Apply these on top of melee sets.
+    sets.Knockback = {}
+	sets.Suppa = {ear1="Suppanomimi", ear2="Sherida Earring"}
+	sets.DWEarrings = {ear1="Dudgeon Earring",ear2="Heartseeker Earring"}
+	sets.DWMax = {ear1="Dudgeon Earring",ear2="Heartseeker Earring",body="Adhemar Jacket +1",hands="Floral Gauntlets",waist="Reiki Yotai"}
+	sets.Parry = {hands="Turms Mittens +1",ring1="Defending Ring"}
+	sets.Ambush = {} --body="Plunderer's Vest +1"
+	
+	
+    -- Actions we want to use to tag TH.
+    sets.precast.Step = {}
+		
+    sets.precast.JA['Violent Flourish'] = {}
+		
+	sets.precast.JA['Animated Flourish'] = sets.TreasureHunter
+	sets.precast.JA.Provoke = sets.TreasureHunter
+
+    --------------------------------------
+    -- Precast sets
+    --------------------------------------
+
+    -- Precast sets to enhance JAs
+    sets.precast.JA['Collaborator'] = {}
+    sets.precast.JA['Accomplice'] = {}
+    sets.precast.JA['Flee'] = {} --feet="Pillager's Poulaines +1"
+    sets.precast.JA['Hide'] = {}
+    sets.precast.JA['Conspirator'] = {} 
+    sets.precast.JA['Steal'] = {} --feet="Pillager's Poulaines +1"
+	sets.precast.JA['Mug'] = {}
+    sets.precast.JA['Despoil'] = {}
+    sets.precast.JA['Perfect Dodge'] = {}
+    sets.precast.JA['Feint'] = {} -- {legs="Assassin's Culottes +2"}
+
+    sets.precast.JA['Sneak Attack'] = sets.buff['Sneak Attack']
+    sets.precast.JA['Trick Attack'] = sets.buff['Trick Attack']
+
+    -- Waltz set (chr and vit)
+    sets.precast.Waltz = {}
+
+	sets.Self_Waltz = {}
+		
+    -- Don't need any special gear for Healing Waltz.
+    sets.precast.Waltz['Healing Waltz'] = {}
+
+
+    -- Fast cast sets for spells
+    sets.precast.FC = {}
+
+    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {})
+
+
+    -- Ranged snapshot gear
+    sets.precast.RA = {}
+
+
+    -- Weaponskill sets
+
+    -- Default set for any weaponskill that isn't any more specifically defined
+    sets.precast.WS = {
+		--head="Nyame Helm",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        --body="Nyame Mail",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        --back="Toutatis's Cape",waist="Fotia Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+	
+        head="Nyame Helm",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
+        body="Gleti's Cuirass",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.WS_back,waist="Fotia Belt",legs="Gleti's Breeches",feet="Nyame Sollerets"}
+		
+    sets.precast.WS.SomeAcc = set_combine(sets.precast.WS, {})
+    sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {})
+
+    -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
+    sets.precast.WS["Rudra's Storm"] = set_combine(sets.precast.WS, {head="Nyame Helm",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back="Toutatis's Cape",waist="Chiner's Belt +1",legs="Nyame Flanchard",feet="Nyame Sollerets"})
+    sets.precast.WS["Rudra's Storm"].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {})
+    sets.precast.WS["Rudra's Storm"].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS["Rudra's Storm"].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+    sets.precast.WS["Rudra's Storm"].Fodder = set_combine(sets.precast.WS["Rudra's Storm"], {})
+	sets.precast.WS["Rudra's Storm"].DT = set_combine(sets.precast.WS["Rudra's Storm"],{})
+    sets.precast.WS["Rudra's Storm"].SA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Rudra's Storm"].TA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Rudra's Storm"].SATA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+	
+	sets.precast.WS["Mandalic Stab"] = set_combine(sets.precast.WS, {})
+    sets.precast.WS["Mandalic Stab"].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {})
+    sets.precast.WS["Mandalic Stab"].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS["Mandalic Stab"].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+    sets.precast.WS["Mandalic Stab"].Fodder = set_combine(sets.precast.WS["Rudra's Storm"], {})
+	sets.precast.WS["Mandalic Stab"].DT = set_combine(sets.precast.WS["Rudra's Storm"],{})
+    sets.precast.WS["Mandalic Stab"].SA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Mandalic Stab"].TA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Mandalic Stab"].SATA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+	
+	sets.precast.WS["Evisceration"] = set_combine(sets.precast.WS, {head="Pillager's Bonnet +3",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Sherida Earring",
+        body="Gleti's Cuirass",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.WS_back,waist="Fotia Belt",legs="Pillager's Cullotes +3",feet="Nyame Sollerets"})
+    sets.precast.WS["Evisceration"].SomeAcc = set_combine(sets.precast.WS.SomeAcc, {})
+    sets.precast.WS["Evisceration"].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS["Evisceration"].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+    sets.precast.WS["Evisceration"].Fodder = set_combine(sets.precast.WS["Rudra's Storm"], {})
+	sets.precast.WS["Evisceration"].DT = set_combine(sets.precast.WS["Rudra's Storm"],{})
+    sets.precast.WS["Evisceration"].SA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Evisceration"].TA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+    sets.precast.WS["Evisceration"].SATA = set_combine(sets.precast.WS["Rudra's Storm"].Fodder, {})
+	
+
+    sets.precast.WS.Proc = {
+        head="Gleti's Mask",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Gleti's Cuirass",hands="Meg. Gloves +2",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.WS_back,waist="Fotia Belt",legs="Gleti's Breeches",feet="Gleti's Boots"}
+
+    sets.precast.WS['Last Stand'] = {
+        head="Nyame Helm",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.WS_back,waist="Fotia Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+		
+    sets.precast.WS['Empyreal Arrow'] = {
+        head="Nyame Helm",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.WS_back,waist="Fotia Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+		
+    sets.precast.WS['Aeolian Edge'] = {
+        head="Nyame Helm",neck="Baetyl Pendant",ear1="Friomisi Earring",ear2="Hecate's Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Dingir Ring",ring2="Karieyh Ring",
+        back=gear.WS_back,waist="Eschan Stone",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+		
+	sets.precast.WS['Cyclone'] = {
+        head="Nyame Helm",neck="Baetyl Pendant",ear1="Friomisi Earring",ear2="Hecate's Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Dingir Ring",ring2="Karieyh Ring",
+        back=gear.WS_back,waist="Eschan Stone",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+
+    sets.precast.WS['Aeolian Edge'].TH = set_combine(sets.precast.WS['Aeolian Edge'], sets.TreasureHunter)
+	sets.precast.WS['Cyclone'].TH = set_combine(sets.precast.WS['Cyclone'], sets.TreasureHunter)
+
+	-- Swap to these on Moonshade using WS if at 3000 TP
+	sets.MaxTP = {ear1="Ishvara Earring",ear2="Sherida Earring"}
+	sets.AccMaxTP = {ear1="Telos Earring +1",ear2="Sherida Earring"}
+
+    --------------------------------------
+    -- Midcast sets
+    --------------------------------------
+
+    sets.midcast.FastRecast = {
+        neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
+        hands="Leyline Gloves",ring1="Prolix Ring",ring2="Lebeche Ring"}
+		
+    -- Specific spells
+	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back=""})
+
+	sets.midcast.Dia = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
+	sets.midcast.Diaga = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
+	sets.midcast['Dia II'] = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
+	sets.midcast.Bio = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
+	sets.midcast['Bio II'] = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
+
+    -- Ranged gear
+
+    sets.midcast.RA = {
+        head="Gleti's Mask",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Gleti's Cuirass",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.TP_back,waist="Fotia Belt",legs="Gleti's Breeches",feet="Gleti's Boots"}
+
+    sets.midcast.RA.Acc = {
+        head="Gleti's Mask",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Gleti's Cuirass",hands="Nyame Gauntlets",ring1="Ilabrat Ring",ring2="Regal Ring",
+        back=gear.TP_back,waist="Fotia Belt",legs="Gleti's Breeches",feet="Gleti's Boots"}
+
+    --------------------------------------
+    -- Idle/resting/defense sets
+    --------------------------------------
+
+    -- Resting sets
+    sets.resting = {}
+
+    -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
+
+    sets.idle = {ammo="",
+        head="Gleti's Mask",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Odnowa Earring +1",
+        body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Flume Belt +1",legs="Gleti's Breeches",feet="Gleti's Boots"}
+		
+	sets.idle.PDT = {		
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Odnowa Earring +1",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Flume Belt +1",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+
+    sets.idle.MDT = {
+        head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Odnowa Earring +1",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+		
+		
+    sets.idle.Sphere = set_combine(sets.idle, {body=""})
+
+    sets.idle.Weak = set_combine(sets.idle, {})
+
+	sets.DayIdle = {}
+	sets.NightIdle = {}
+	sets.ExtraRegen = {hands=""}
+
+    -- Defense sets
+
+    sets.defense.PDT = {		
+        head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Odnowa Earring +1",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Flume Belt +1",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+
+    sets.defense.MDT = {
+        head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Odnowa Earring +1",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+		
+	sets.defense.MEVA = {
+        head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Odnowa Earring +1",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        back=gear.TP_back,waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+
+
+    --------------------------------------
+    -- Melee sets  
+    --------------------------------------
+
+    -- Normal melee group
+    sets.engaged = {
+        head="Pillager's Bonnet +3",neck="Anu Torque",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Pillager's Vest +2",hands="Adhemar Wristbands",ring1="Hetairoi Ring",ring2="Gere Ring",
+        back=gear.TP_back,waist="Sailfi Belt +1",legs="Pillager's Culottes +3",feet="Plunderer's Poulaines +3"}
+		
+
+    sets.engaged.DT = {
+        head="Nyame Helm",neck="Anu Torque",ear1="Telos Earring",ear2="Sherida Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Hetairoi Ring",ring2="Gere Ring",
+        back=gear.TP_back,waist="Sailfi Belt +1",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+
+ 
+end

@@ -1,0 +1,224 @@
+-- Setup vars that are user-dependent.  Can override this function in a sidecar file.
+function user_job_setup()
+	state.OffenseMode:options('Normal','DT')
+	state.HybridMode:options('Normal','DT')
+	state.RangedMode:options('Normal','Acc')
+	state.WeaponskillMode:options('None')
+	state.CastingMode:options('Normal','Proc','Resistant')
+	state.IdleMode:options('Normal','PDT','MDT')
+	state.PhysicalDefenseMode:options('PDT')
+	state.MagicalDefenseMode:options('MDT')
+	state.ResistDefenseMode:options('MEVA')
+	state.Weapons:options('None','Default','Heishi')
+	-- Weapons sets
+	--sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kunimitsu"}
+	
+	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None','SuppaBrutal','DWEarrings','DWMax'}
+
+	gear.wsd_jse_back = {name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
+	gear.da_jse_back = {name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}
+
+	utsusemi_cancel_delay = .3
+	utsusemi_ni_cancel_delay = .06
+end
+
+-- Define sets and vars used by this job file.
+function init_gear_sets()
+    --------------------------------------
+    -- Precast sets
+    --------------------------------------
+
+    sets.Enmity = {ammo="",
+        head="",neck="Moonbeam Collar",ear1="Friomisi Earring",ear2="Cryptic Earring",
+        body="",hands="Kurys Gloves",ring1="",ring2="",
+        back="Fravashi Mantle",waist="",legs="",feet=""}
+
+    -- Precast sets to enhance JAs
+    sets.precast.JA['Mijin Gakure'] = {} --legs="Mochizuki Hakama",--main="Nagi"
+    sets.precast.JA['Futae'] = {hands="Hattori Tekko +1"}
+    sets.precast.JA['Sange'] = {} --legs="Mochizuki Chainmail"
+    sets.precast.JA['Provoke'] = sets.Enmity
+    sets.precast.JA['Warcry'] = sets.Enmity
+
+    -- Waltz set (chr and vit)
+    sets.precast.Waltz = {}
+
+    -- Don't need any special gear for Healing Waltz.
+    sets.precast.Waltz['Healing Waltz'] = {}
+
+    -- Set for acc on steps, since Yonin drops acc a fair bit
+    sets.precast.Step = {}
+
+    sets.precast.Flourish1 = sets.Enmity
+
+    -- Fast cast sets for spells
+
+    sets.precast.FC = {ammo="",
+		head={ name="Herculean Helm", augments={'"Mag.Atk.Bns."+22','Weapon skill damage +3%','INT+8'}},neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
+		body="",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+		legs="",feet="",back=gear.da_jse_back}
+
+    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",feet="Hattori Kyahan +1", })
+	sets.precast.FC.Shadows = set_combine(sets.precast.FC.Utsusemi, {ammo="",ring1="Lebeche Ring"})
+
+    -- Snapshot for ranged
+    sets.precast.RA = {}
+    -- Weaponskill sets
+    -- Default set for any weaponskill that isn't any more specifically defined
+    sets.precast.WS = {ammo="Crepuscular Pebble",
+        head="Nyame Helm",neck="Fotia Gorget",ear2="Odr Earring",ear1="Moonshade Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Regal Ring",ring2="Karieyh Ring",
+        back=gear.wsd_jse_back,waist="Fotia Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
+	
+
+    -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
+    sets.precast.WS['Blade: Jin'] = set_combine(sets.precast.WS, {legs="Jokushu Haidate"})
+	
+	sets.precast.WS['Blade: Hi'] = set_combine(sets.precast.WS, {})
+    
+    sets.precast.WS['Blade: Shun'] = set_combine(sets.precast.WS, {legs="Jokushu Haidate", ammo="Crepuscular Pebble", head="Malignance Chapeau",body="Malignance Tabard",hands="Malignance Gloves",})
+    
+    sets.precast.WS['Blade: Ten'] = set_combine(sets.precast.WS, {waist="Sailfi Belt +1", legs="Tatenashi Haidate +1", body="Malignance Tabard",hands="Malignance Gloves",head="Mpaca's Cap", ammo="Crepuscular Pebble",ear1="Lugra Earring +1"})
+	
+	sets.precast.WS['Blade: Ku'] = set_combine(sets.precast.WS, {legs="Tatenashi Haidate +1", body="Malignance Tabard",hands="Malignance Gloves",head="Mpaca's Cap", ammo="Crepuscular Pebble",ear1="Lugra Earring +1"})
+	
+	sets.precast.WS['Blade: Chi'] = set_combine(sets.precast.WS, {ammo="Seething Bomblet +1",
+        head="Nyame Helm",neck="Fotia Gorget",ear2="Friomisi Earring",ear1="Moonshade Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Regal Ring",ring2="Karieyh Ring",
+        waist="Fotia Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"})
+	
+	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, { neck="Republican Platinum Medal",waist="Sailfi Belt +1", hands="Malignance Gloves",ammo="Crepuscular Pebble",ear1="Lugra Earring +1"})
+
+    
+    sets.precast.WS['Aeolian Edge'] = {ammo="Seething Bomblet +1",
+        head="Nyame Helm",neck="Sanctity Necklace",ear1="Friomisi Earring",ear2="Hecate's Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Regal Ring",ring2="Gere Ring",
+        waist="Eschan Stone",legs="Nyame Flanchard",feet="Nyame Sollerets",}
+		
+
+
+	-- Swap to these on Moonshade using WS if at 3000 TP
+	sets.MaxTP = {}
+	sets.AccMaxTP = {}
+	sets.AccDayMaxTPWSEars = {}
+	sets.DayMaxTPWSEars = {}
+	sets.AccDayWSEars = {}
+	sets.DayWSEars = {}
+
+
+    --------------------------------------
+    -- Midcast sets
+    --------------------------------------
+
+    sets.midcast.FastRecast = {ammo="",
+		head={ name="Herculean Helm", augments={'"Mag.Atk.Bns."+22','Weapon skill damage +3%','INT+8'}},neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
+		body="",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+		legs="",feet=""}
+
+    sets.midcast.ElementalNinjutsu = {
+        head="Mochizuki Hatsuburi +3",neck="Sibyl Scarf",ear1="Friomisi Earring",ear2="Hecate's Earring",
+        body="Nyame Mail",hands="Hattori Tekko +1",ring1="Dingir Ring",ring2="Regal Ring",
+        back="Argochampsa Mantle",waist="Eschan Stone",legs="Nyame Flanchard",feet="Nyame Sollerets", ammo="Ghastly Tathlum +1",}
+
+	sets.midcast.ElementalNinjutsu.Proc = sets.midcast.FastRecast
+
+    sets.midcast.ElementalNinjutsu.Resistant = set_combine(sets.midcast.ElementalNinjutsu, {})
+
+	sets.MagicBurst = {}
+
+    sets.midcast.NinjutsuDebuff = {
+        head="Malignance Chapeau",neck="Sanctity Necklace",ear1="Crepuscular Earring",ear2="Enchanter's Earring +1",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Stikini Ring +1",ring2="Stikini Ring +1",
+        back=gear.wsd_jse_back,waist="Eschan Stone",legs="Malignance Tights",feet="Malignance Boots", ammo="Yamarang",}
+
+    sets.midcast.NinjutsuBuff = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
+
+    sets.midcast.Utsusemi = set_combine(sets.midcast.NinjutsuBuff, {back="Andartia's Mantle",feet="Hattori Kyahan +1"})
+
+    sets.midcast.RA = {
+        head="Malignance Chapeau",neck="Iskur Gorget",ear1="Enervating Earring",ear2="Telos Earring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Cacoethic Ring",ring2="Cacoethic Ring +1",
+        back=gear.da_jse_back,waist="Chaac Belt",legs="Malignance Tights",feet="Malignance Boots"}
+
+    --------------------------------------
+    -- Idle/resting/defense/etc sets
+    --------------------------------------
+
+    -- Resting sets
+    sets.resting = {}
+
+    -- Idle sets
+    sets.idle = {ammo="Happo Shuriken +1",
+        head="Mpaca's Cap",body="Mpaca's Doublet",hands="Mpaca's Gloves", legs="Mpaca's Hose", feet="Mpaca's Boots",
+		neck="Loricate Torque +1", ear1="Genmei Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Karieyh Ring", waist="Flume Belt +1",
+		back=gear.da_jse_back,}
+		
+    --sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
+	
+	sets.idle.PDT = {ammo="",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Loricate Torque +1", ear1="Genmei Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Gelatinous Ring +1", waist="Flume Belt +1",back=gear.da_jse_back,}
+		
+	sets.idle.MDT = {ammo="",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Warder's Charm +1", ear1="Etiolation Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Gelatinous Ring +1", waist="Carrier's Sash",back=gear.da_jse_back,}
+
+    sets.defense.PDT = {ammo="",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Loricate Torque +1", ear1="Genmei Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Gelatinous Ring +1", waist="Flume Belt +1",back=gear.da_jse_back,}
+	
+
+    sets.defense.MDT = {ammo="",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Warder's Charm +1", ear1="Etiolation Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Gelatinous Ring +1", waist="Carrier's Sash",back=gear.da_jse_back,}
+
+	sets.defense.MEVA = {ammo="",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Warder's Charm +1", ear1="Etiolation Earring", ear2="Odnowa Earring +1", ring1="Defending Ring", ring2="Gelatinous Ring +1", waist="Carrier's Sash",back=gear.da_jse_back,}
+
+
+    sets.Kiting = {feet="Danzo Sune-Ate"}
+	sets.DuskKiting = {}
+	sets.DuskIdle = {}
+	sets.DayIdle = {}
+	sets.NightIdle = {}
+
+
+    --------------------------------------
+    -- Engaged sets
+    --------------------------------------
+
+    -- Variations for TP weapon and (optional) offense/defense modes.  Code will fall back on previous
+    -- sets if more refined versions aren't defined.
+    -- If you create a set with both offense and defense modes, the offense mode should be first.
+    -- EG: sets.engaged.Dagger.Accuracy.Evasion
+
+    -- Normal melee group
+    sets.engaged = {ammo="Happo Shuriken +1",
+        head="Mpaca's Cap",body="Mpaca's Doublet",hands="Mpaca's Gloves", legs="Mpaca's Hose", feet="Mpaca's Boots",
+		neck="Moonbeam Nodowa", ear1="Cessance Earring",ear2="Telos Earring", ring1="Gere Ring",ring2="Ilabrat Ring", waist="Sailfi Belt +1",back=gear.da_jse_back,}
+
+    sets.engaged.DT = {ammo="Happo Shuriken +1",
+        head="Nyame Helm",body="Nyame Mail",hands="Nyame Gauntlets", legs="Nyame Flanchard", feet="Nyame Sollerets",
+		neck="Moonbeam Nodowa", ear1="Cessance Earring",ear2="Telos Earring", ring1="Gere Ring",ring2="Ilabrat Ring", waist="Sailfi Belt +1",back=gear.da_jse_back,}
+
+    --------------------------------------
+    -- Custom buff sets
+    --------------------------------------
+
+    sets.buff.Migawari = {}
+    sets.buff.Doom = set_combine(sets.buff.Doom, {})
+	sets.buff.Futae = {hands="Hattori Tekko +1"}
+    sets.buff.Yonin = {} 
+    sets.buff.Innin = {} 
+
+    -- Extra Melee sets.  Apply these on top of melee sets.
+    sets.Knockback = {}
+	sets.SuppaBrutal = {}
+	sets.DWEarrings = {}
+	sets.DWMax = {}
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	sets.Skillchain = {}
+
+	--autows_list = {['Default']='Blade: Ku'}
+end
