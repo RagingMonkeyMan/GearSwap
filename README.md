@@ -1,7 +1,30 @@
-Selindrile's Discord
-https://discord.gg/ug6xtvQ
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+You will be either ignored or blacklisted if you message multiple times.
+
+Feel free to send me a way to contact you outside of game,and I'm happy to help, my preferred way of being contacted is Discord, my Stream discord is here: https://discord.gg/ug6xtvQ
 
 Setting up my Gearswaps and Github updating.
+
+0.) DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME.
 
 1.) Create a Github account if you don't already have one: https://github.com/join
 
@@ -20,10 +43,10 @@ Setting up my Gearswaps and Github updating.
 6.) Open Github Desktop and login. (As Admin if your Gearswap Folder is located in Program Files)
     https://www.dropbox.com/s/ietq7dpe0obqcor/Github%20As%20Admin.png?dl=0
 
-7.) Click File, Clone Repository, click the URL tab, in the Repository box put: RagingMonkeyMan/GearSwap
+7.) Click File, Clone Repository, click the URL tab, in the Repository box put: Headtatt/GearSwap
     in the Local Path box put the location your Gearswap directory was, for example
     C:\Program Files\Windower\Addons\Gearswap           then click Clone.
-    https://www.dropbox.com/s/kaz8m4k26eymop3/Clone.png?dl=0
+    
     
 8.) Move your old Gearswap folder on the desktop to the same directory as the new one to merge them.
     https://www.dropbox.com/s/vd5tqw7mw6t9xa6/Merge%201.png?dl=0
@@ -52,4 +75,14 @@ Setting up my Gearswaps and Github updating.
 	and place it in your Windower\Scripts folder (Rename and keep your
 	original just in case)
     
-14.) Read the Cheat Sheet in your Data Folder
+14.) Read the Cheat Sheet in your Data Folder, feel free to contact me if there's anything you don't understand but again:
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
+
+PLEASE DO NOT MESSAGE ME ABOUT ANYTHING THIRD PARTY IN GAME
