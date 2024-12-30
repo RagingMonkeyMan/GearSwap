@@ -190,11 +190,6 @@ function job_post_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)
-
-	if (world.weather_element == spell.element or world.day_element == spell.element) and spell.element ~= "Light" then
-		equip(sets.Obi)
-	end
-
     if spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' and spell.english ~= 'Impact' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
 		if spell.element == world.weather_element or spell.element == world.day_element then
@@ -222,11 +217,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			if sets.DrainWeapon and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
 				enable('main','sub','range','ammo')
 				equip(sets.DrainWeapon)
-			end
-		elseif spell.english == 'Dread Spikes' and state.DrainSwapWeaponMode.value ~= 'Never' then
-			if sets.midcast['Dread Spikes'].main and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
-				enable('main','sub','range','ammo')
-				equip(sets.midcast['Dread Spikes'])
 			end
 		end
     end

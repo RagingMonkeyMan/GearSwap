@@ -28,6 +28,7 @@ function user_job_setup()
 	send_command('bind !r gs c weapons None;gs c update')
 	send_command('bind !q gs c weapons NukeWeapons;gs c update')
 	send_command('bind ^q gs c weapons Swords;gs c update')
+	send_command('bind !f7 gs c cycle CarnMode')
 
 	select_default_macro_book()
 end

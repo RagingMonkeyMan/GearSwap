@@ -222,14 +222,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			end
 		end
     end
-
-	if spell.english:startswith('Regen') then
-		if state.RegenMode.value == 'Duration' and sets.midcast.Regen.Duration then
-			equip(sets.midcast.Regen.Duration)
-		elseif state.RegenMode.value == 'Potency' and sets.midcast.Regen.Potency then
-			equip(sets.midcast.Regen.Potency)
-		end
-	end
 	
 end
 
