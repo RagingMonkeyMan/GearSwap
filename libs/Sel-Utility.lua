@@ -1599,23 +1599,7 @@ function check_ws()
 
 	local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
 		
-		if player.hpp < 41 and state.AutoWSRestore.value and available_ws:contains(47) and player.target.distance < (3.2 + player.target.model_size) then
-			windower.chat.input('/ws "Sanguine Blade" <t>')
-			tickdelay = os.clock() + 2.8
-			return true
-		elseif player.hpp < 41 and state.AutoWSRestore.value and available_ws:contains(105) and player.target.distance < (3.2 + player.target.model_size) then
-			windower.chat.input('/ws "Catastrophe" <t>')
-			tickdelay = os.clock() + 2.8
-			return true
-		elseif player.mpp < 31 and state.AutoWSRestore.value and available_ws:contains(109) and player.target.distance < (3.2 + player.target.model_size) then
-			windower.chat.input('/ws "Entropy" <t>')
-			tickdelay = os.clock() + 2.8
-			return true
-		elseif player.mpp < 31 and state.AutoWSRestore.value and available_ws:contains(171) and player.target.distance < (3.2 + player.target.model_size) then
-			windower.chat.input('/ws "Mystic Boon" <t>')
-			tickdelay = os.clock() + 2.8
-			return true
-		elseif player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
+		if player.target.distance > (3.2 + player.target.model_size) and not data.weaponskills.ranged:contains(autows) then
 			return false
 		elseif data.equipment.relic_weapons:contains(player.equipment.main) and state.MaintainAftermath.value and (not buffactive['Aftermath']) then
 			windower.chat.input('/ws "'..data.weaponskills.relic[player.equipment.main]..'" <t>')
