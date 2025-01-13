@@ -11,6 +11,7 @@ function user_job_setup()
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
 	state.DrainSwapWeaponMode = M{'Always','Never','300','1000'}
+	state.DreadSpikesSwapWeaponMode = M{'Always','Never','1000'}
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
@@ -84,6 +85,7 @@ function init_gear_sets()
 	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {ring1="Evanescence Ring",ring2="Archon Ring",back="Niht Mantle"})
 	
 	sets.DrainWeapon = {main="Misanthropy",sub="Alber Strap"}
+	sets.DreadSpikesWeapon = {main="Crepuscular Scythe"}
                    
 	sets.midcast.Aspir = sets.midcast.Drain
 	
