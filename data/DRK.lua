@@ -61,13 +61,14 @@ function job_setup()
     state.Buff.Seigan = buffactive.Seigan or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 	state.DrainSwapWeaponMode = M{'Never','300','1000','Always'}
+	state.DreadSpikesSwapWeaponMode = M{'Never','300','1000','Always'}
 	
 	autows = 'Resolution'
 	autofood = 'Soy Ramen'
 	
 	update_melee_groups()
 
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","DrainSwapWeaponMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","DrainSwapWeaponMode","DreadSpikesSwapWeaponMode","CastingMode","TreasureMode",})
 end
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -107,6 +108,10 @@ function job_aftercast(spell, spellMap, eventArgs)
     if not spell.interrupted then
 		if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
 			if player.equipment.main and sets.DrainWeapon and player.equipment.main == sets.DrainWeapon.main and player.equipment.main ~= sets.weapons[state.Weapons.value].main then
+				equip_weaponset(state.Weapons.value)
+			end
+		elseif (spell.english == 'Dread Spikes') and state.DreadSpikesSwapWeaponMode.value ~= 'Never' then
+			if player.equipment.main and sets.DreadSpikesWeapon and player.equipment.main == sets.DreadSpikesWeapon.main and player.equipment.main ~= sets.weapons[state.Weapons.value].main then
 				equip_weaponset(state.Weapons.value)
 			end
         elseif state.UseCustomTimers.value and (spell.english == 'Sleep' or spell.english == 'Sleepga') then
@@ -217,6 +222,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			if sets.DrainWeapon and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
 				enable('main','sub','range','ammo')
 				equip(sets.DrainWeapon)
+			end
+		end
+		if (spell.english == 'Dread Spikes') and state.DreadSpikesSwapWeaponMode.value ~= 'Never' then
+			if sets.DreadSpikesWeapon and (state.DreadSpikesSwapWeaponMode.value == 'Always' or tonumber(state.DreadSpikesWeaponMode.value) > player.tp) then
+				enable('main','sub','range','ammo')
+				equip(sets.DreadSpikesWeapon)
 			end
 		end
     end
