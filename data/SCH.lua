@@ -135,7 +135,7 @@ function job_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_precast(spell, spellMap, eventArgs)
-	if spell.action_type == 'Magic' then
+	if spell.action_type == 'Magic' and spell.english ~= 'Impact' then
 		if arts_active() and sets.precast.FC.Arts then
 			equip(sets.precast.FC.Arts)
 		end
