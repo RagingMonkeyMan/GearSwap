@@ -43,7 +43,7 @@ Setting up my Gearswaps and Github updating.
 6.) Open Github Desktop and login. (As Admin if your Gearswap Folder is located in Program Files)
     https://www.dropbox.com/s/ietq7dpe0obqcor/Github%20As%20Admin.png?dl=0
 
-7.) Click File, Clone Repository, click the URL tab, in the Repository box put: Headtatt/GearSwap
+7.) Click File, Clone Repository, click the URL tab, in the Repository box put: RagingMonkeyMan/GearSwap
     in the Local Path box put the location your Gearswap directory was, for example
     C:\Program Files\Windower\Addons\Gearswap           then click Clone.
     
