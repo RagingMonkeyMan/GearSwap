@@ -229,7 +229,7 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-	if check_buff() then return true end
+	if job_check_buff() then return true end
 	return false
 end
 
@@ -283,18 +283,18 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
-function check_buff()
+function job_check_buff()
 	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
-		if player.in_combat and player.sub_job == 'WAR' then
+		if in_combat and player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
-				tickdelay = os.clock() + 1.1
+				add_tick_delay()
 				return true
 			elseif not buffactive.Aggressor and abil_recasts[4] < latency then
 				windower.chat.input('/ja "Aggressor" <me>')
-				tickdelay = os.clock() + 1.1
+				add_tick_delay()
 				return true
 			end
 		end

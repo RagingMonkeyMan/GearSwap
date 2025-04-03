@@ -129,30 +129,23 @@ end
 function lock_TH()
     state.th_gear_is_locked = true
     local slots = T{}
-    for slot,item in pairs(sets.TreasureHunter) do
-        slots:append(slot)
-    end
-    disable(slots)
+    internal_disable_set(sets.TreasureHunter, "TreasureHunter")
 end
 
 
 -- Set locked TH flag to false, and enable relevant gear slots.
 function unlock_TH()
 	if state.th_gear_is_locked then
-		local slots = T{}
-		for slot,item in pairs(sets.TreasureHunter) do
-			slots:append(slot)
-		end
-		enable(slots)
+		internal_enable_set("TreasureHunter")
 	end
 	state.th_gear_is_locked = false
-    send_command('gs c update auto')
+    send_command('gs c update')
 end
 
 
 -- For any active TH mode, if we haven't already tagged this target, equip TH gear and lock slots until we manage to hit it.
 function TH_for_first_hit()
-    if player.status == 'Engaged' and state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' then
+    if player.status == 'Engaged' and state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and not silent_check_disable() then
         if not info.tagged_mobs[player.target.id] then
             if _settings.debug_mode then add_to_chat(123,'Prepping for first hit on '..tostring(player.target.id)..'.') end
             equip(sets.TreasureHunter)
@@ -278,12 +271,6 @@ function on_incoming_chunk_for_th(id, data, modified, injected, blocked)
 
         -- Remove mobs that die from our tagged mobs list.
         if message_id == 6 or message_id == 20 then
-			if being_attacked and not player.in_combat then
-				being_attacked = false
-				if player.status == 'Idle' and not midaction() and not pet_midaction() then
-					send_command('gs c forceequip')
-				end
-			end
             -- 6 == actor defeats target
             -- 20 == target falls to the ground
             if info.tagged_mobs[target_id] then

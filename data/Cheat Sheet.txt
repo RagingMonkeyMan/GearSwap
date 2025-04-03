@@ -119,12 +119,11 @@ Blm2:		/console gs c cycle MagicBurstMode	(Single makes your next spell burst, w
 
 
 
-[Alt+F11]	= Extra job specific modes, Pld gets extra defense modes, other melee generally get extra
-				melee modes.
+[Alt+F11]	= Tends to be modes relevant on specific jobs.
 				
 :Macro:
-Pld:		/console gs c cycle ExtraDefenseMode
-Melees:		/console gs c cycle ExtraMeleeMode
+Pld:		/console gs c cycle ExtraDefenseMode (Though any job can use these modes.)
+Melees:		/console gs c cycle ExtraMeleeMode (Though any job can use these modes.)
 
 
 [Win+F11]	= Casting modes, such as resistant, and fodder mobs, and sets for proccing (Low damage, low recast).
@@ -133,7 +132,7 @@ Melees:		/console gs c cycle ExtraMeleeMode
 
 
 [F12]	= Somewhat "Lock" a resistance set in, only changes some gear for spells and abilities
-				generally an "OH Shit Button" to be used in response to certain abilites.
+				generally an "OH Shit Button" to be used in response to certain events.
 
 :Macro:		/console gs c set DefenseMode Resist
 

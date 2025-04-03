@@ -65,16 +65,16 @@ function job_setup()
 	rangedautows = "Last Stand"
 	autofood = 'Soy Ramen'
 	statusammo = nil
-	ammostock = 198
+	ammostock = 98
 	
 	WeaponType =  {['Yoichinoyumi'] = "Bow",
 				   ['Gandiva'] = "Bow",
                    ['Fail-Not'] = "Bow",
                    ['Accipiter'] = "Bow",
                    ['Annihilator'] = "Gun",
-                   ['Armageddon'] = "Gun",
                    ['Fomalhaut'] = "Gun",
 				   ['Ataktos'] = "Gun",
+				   ['Armageddon'] = "Gun",
                    ['Gastraphetes'] = "Crossbow",
                    }
 	
@@ -136,8 +136,19 @@ end
 
 function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'WeaponSkill' then
-		if not (spell.skill == 'Marksmanship' or spell.skill == 'Archery') and WeaponType[player.equipment.range] == 'Bow' and item_available('Hauksbok Arrow') then
-			equip({ammo="Hauksbok Arrow"})
+		if not (spell.skill == 'Marksmanship' or spell.skill == 'Archery') then
+			if sets.weapons[state.Weapons.value] then
+				local standardized_set = standardize_set(sets.weapons[state.Weapons.value])
+				local WeaponType = WeaponType[standardized_set.range]
+
+				if WeaponType == 'Bow' and item_available('Hauksbok Arrow') then
+					equip({ammo="Hauksbok Arrow"})
+				elseif WeaponType == 'Crossbow' and item_available('Hauksbok Bolt') then
+					equip({ammo="Hauksbok Bolt"})
+				elseif WeaponType == 'Gun' and item_available('Hauksbok Bullet') then
+					equip({ammo="Hauksbok Bullet"})
+				end
+			end
 		end
 	
 		local WSset = standardize_set(get_precast_set(spell, spellMap))
@@ -316,13 +327,12 @@ function check_ammo_precast(spell, action, spellMap, eventArgs)
 			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Unlimited})
 		end
 		return
-	elseif player.equipment.ammo:startswith('Hauksbok') or player.equipment.ammo == "Animikii Bullet" then
+	elseif is_rare(player.equipment.ammo) then
 		cancel_spell()
 		eventArgs.cancel = true
 		enable('ammo')
 		if sets.weapons[state.Weapons.value].ammo and item_available(sets.weapons[state.Weapons.value].ammo) then
 			equip({ammo=sets.weapons[state.Weapons.value].ammo})
-			disable('ammo')
 		elseif item_available(DefaultAmmo[WeaponType[player.equipment.range]].Default) then
 			equip({ammo=DefaultAmmo[WeaponType[player.equipment.range]].Default})
 		else
@@ -364,7 +374,7 @@ end
 function job_midcast(spell, action, spellMap, eventArgs)
 	--Probably overkill but better safe than sorry.
 	if spell.action_type == 'Ranged Attack' then
-		if player.equipment.ammo:startswith('Hauksbok') or player.equipment.ammo == "Animikii Bullet" then
+		if is_rare(player.equipment.ammo) then
 			enable('ammo')
 			equip({ammo=empty})
 			add_to_chat(123,"Abort Ranged Attack: Don't shoot your good ammo!")

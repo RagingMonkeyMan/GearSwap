@@ -75,7 +75,7 @@ function job_setup()
 	autows = 'Leaden Salute'
 	rangedautows = 'Last Stand'
 	autofood = 'Sublime Sushi'
-	ammostock = 198
+	ammostock = 98
 
     define_roll_values()
 	
@@ -155,7 +155,7 @@ end
 function job_midcast(spell, action, spellMap, eventArgs)
 	--Probably overkill but better safe than sorry.
 	if spell.action_type == 'Ranged Attack' then
-		if player.equipment.ammo:startswith('Hauksbok') or player.equipment.ammo == "Animikii Bullet" then
+		if is_rare(player.equipment.ammo) then
 			enable('ammo')
 			equip({ammo=empty})
 			add_to_chat(123,"Abort Ranged Attack: Don't shoot your good ammo!")
@@ -168,16 +168,9 @@ end
 function job_aftercast(spell, spellMap, eventArgs)
     if spell.type == 'CorsairRoll' and not spell.interrupted then
 		if state.CompensatorMode.value ~= 'Never' then
-			if (player.equipment.range and player.equipment.range == 'Compensator') and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].range then
-				equip({range=sets.weapons[state.Weapons.value].range})
-				disable('range')
-			end
-			if sets.precast.CorsairRoll.main and sets.weapons[state.Weapons.value] and sets.weapons[state.Weapons.value].main then
-				equip({main=sets.weapons[state.Weapons.value].main})
-				disable('main')
-			end
+			equip_weaponset()
 		end
-        display_roll_info(spell)
+		display_roll_info(spell)
 	end
 	
 	if state.UseDefaultAmmo.value then
@@ -215,27 +208,28 @@ function job_post_precast(spell, spellMap, eventArgs)
 		
 		if (WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring") then
 			-- Replace Moonshade Earring if we're at cap TP
-			if get_effective_player_tp(spell, WSset) > 3200 then
+			if get_effective_player_tp(spell, WSset) >= 3000 then
 				if data.weaponskills.elemental:contains(spell.english) then
 					if wsacc:contains('Acc') and sets.MagicalAccMaxTP then
 						equip(sets.MagicalAccMaxTP[spell.english] or sets.MagicalAccMaxTP)
 					elseif sets.MagicalMaxTP then
 						equip(sets.MagicalMaxTP[spell.english] or sets.MagicalMaxTP)
-					else
+					elseif sets.MaxTP then
+						equip(sets.MaxTP[spell.english] or sets.MaxTP)
 					end
 				elseif spell.skill == 26 then
 					if wsacc:contains('Acc') and sets.RangedAccMaxTP then
 						equip(sets.RangedAccMaxTP[spell.english] or sets.RangedAccMaxTP)
 					elseif sets.RangedMaxTP then
 						equip(sets.RangedMaxTP[spell.english] or sets.RangedMaxTP)
-					else
+					elseif sets.MaxTP then
+						equip(sets.MaxTP[spell.english] or sets.MaxTP)
 					end
 				else
 					if wsacc:contains('Acc') and not buffactive['Sneak Attack'] and sets.AccMaxTP then
 						equip(sets.AccMaxTP[spell.english] or sets.AccMaxTP)
 					elseif sets.MaxTP then
 						equip(sets.MaxTP[spell.english] or sets.MaxTP)
-					else
 					end
 				end
 			end
@@ -246,45 +240,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 		elseif state.CastingMode.value == 'Fodder' and sets.precast.CorsairShot.Damage then
 			equip(sets.precast.CorsairShot.Damage)
 			
-			local distance = spell.target.distance - spell.target.model_size
-			local single_obi_intensity = 0
-			local orpheus_intensity = 0
-			local hachirin_intensity = 0
-
-			if item_available("Orpheus's Sash") then
-				orpheus_intensity = (16 - (distance <= 1 and 1 or distance >= 15 and 15 or distance))
-			end
-			
-			if item_available(data.elements.obi_of[spell.element]) then
-				if spell.element == world.weather_element then
-					single_obi_intensity = single_obi_intensity + data.weather_bonus_potency[world.weather_intensity]
-				end
-				if spell.element == world.day_element then
-					single_obi_intensity = single_obi_intensity + 10
-				end
-			end
-			
-			if item_available('Hachirin-no-Obi') then
-				if spell.element == world.weather_element then
-					hachirin_intensity = hachirin_intensity + data.weather_bonus_potency[world.weather_intensity]
-				elseif spell.element == data.elements.weak_to[world.weather_element] then
-					hachirin_intensity = hachirin_intensity - data.weather_bonus_potency[world.weather_intensity]
-				end
-				if spell.element == world.day_element then
-					hachirin_intensity = hachirin_intensity + 10
-				elseif spell.element == data.elements.weak_to[world.day_element] then
-					hachirin_intensity = hachirin_intensity - 10
-				end
-			end
-			
-			if single_obi_intensity >= hachirin_intensity and single_obi_intensity >= orpheus_intensity and single_obi_intensity >= 5 then
-				equip({waist=data.elements.obi_of[spell.element]})
-			elseif hachirin_intensity >= orpheus_intensity and hachirin_intensity >= 5 then
-				equip({waist="Hachirin-no-Obi"})
-			elseif orpheus_intensity >= 5 then
-				equip({waist="Orpheus's Sash"})
-			end
-			
+			set_elemental_obi_cape_ring(spell, spellMap)
 		end
 		
 	elseif spell.action_type == 'Ranged Attack' then
@@ -300,14 +256,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 			equip(sets.precast.LuzafRing)
 		end
 		if spell.type == 'CorsairRoll' and state.CompensatorMode.value ~= 'Never' and (state.CompensatorMode.value == 'Always' or tonumber(state.CompensatorMode.value) > player.tp) then
-			if item_available("Compensator") then
-				enable('range')
-				equip({range="Compensator"})
-			end
-			if sets.precast.CorsairRoll.main and sets.precast.CorsairRoll.main ~= player.equipment.main then
-				enable('main')
-				equip({main=sets.precast.CorsairRoll.main})
-			end
+			internal_enable_set("Weapons")
 		end
     elseif spell.english == 'Fold' and buffactive['Bust'] == 2 and sets.precast.FoldDoubleBust then
 		equip(sets.precast.FoldDoubleBust)
@@ -368,14 +317,13 @@ end
 -- Determine whether we have sufficient ammo for the action being attempted.
 function do_bullet_checks(spell, spellMap, eventArgs)
 
-    if (player.equipment.ammo == 'Animikii Bullet' or player.equipment.ammo == 'Hauksbok Bullet') then
+    if is_rare(player.equipment.ammo) then
 		cancel_spell()
 		eventArgs.cancel = true
 		enable('ammo')
 
 		if sets.weapons[state.Weapons.value].ammo and item_available(sets.weapons[state.Weapons.value].ammo) then
 			equip({ammo=sets.weapons[state.Weapons.value].ammo})
-			disable('ammo')
 		elseif item_available(gear.RAbullet) then
 			equip({ammo=gear.RAbullet})
 		else

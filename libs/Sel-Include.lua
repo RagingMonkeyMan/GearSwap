@@ -72,23 +72,23 @@
 function init_include()
 	extdata = require('extdata')
 	require('queues')
-	res = require('resources')
+	res = gearswap.res
 	packets = require('packets')
 	
 	--Snaps's Rnghelper extension for automatic ranged attacks that should be superior to my implementation.
 	require('Snaps-RngHelper')
 
-    -- Used to define various types of data mappings.  These may be used in the initialization, so load it up front.
-    include('Sel-Mappings')
-    
-    -- Modes is the include for a mode-tracking variable class.  Used for state vars, below.
-    include('Sel-Modes')
+	-- Used to define various types of data mappings.  These may be used in the initialization, so load it up front.
+	include('Sel-Mappings')
+	
+	-- Modes is the include for a mode-tracking variable class.  Used for state vars, below.
+	include('Sel-Modes')
 	
 	-- Adding Organizer for gear management.
 	include('organizer-lib.lua')
 	
-    -- Var for tracking state values
-    state = {}
+	-- Var for tracking state values
+	state = {}
 
 	--My Auto-Stun/Reaction module for gearswap, must come after state is defined.
 	include('Sel-Stahp.lua')
@@ -96,187 +96,193 @@ function init_include()
 	--Making Extdata/Resources dependant functions work
 	cp_delay = 20
 
-    -- General melee offense/defense modes, allowing for hybrid set builds, as well as idle/resting/weaponskill.
-    -- This just defines the vars and sets the descriptions.  List modes with no values automatically
-    -- get assigned a 'Normal' default value.
-	state.CraftingMode		  = M{['description'] = 'Crafting Mode','None','Alchemy','Bonecraft','Clothcraft','Cooking','Fishing','Goldsmithing','Leathercraft','Smithing','Woodworking'}
-	state.CraftQuality  	  = M{['description'] = 'Crafting Quality','Normal','HQ','NQ'}
-	state.OffenseMode         = M{['description'] = 'Offense Mode'}
-	state.HybridMode          = M{['description'] = 'Hybrid Mode'}
-	state.RangedMode          = M{['description'] = 'Ranged Mode'}
-	state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
+	-- General melee offense/defense modes, allowing for hybrid set builds, as well as idle/resting/weaponskill.
+	-- This just defines the vars and sets the descriptions.  List modes with no values automatically
+	-- get assigned a 'Normal' default value.
+	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
+	state.AutoSambaMode 	  = M{['description'] = 'Auto Samba Mode', 'Off', 'Haste Samba', 'Aspir Samba', 'Drain Samba II'}
 	state.CastingMode         = M{['description'] = 'Casting Mode'}
-	state.IdleMode            = M{['description'] = 'Idle Mode'}
-	state.RestingMode         = M{['description'] = 'Resting Mode'}
-
+	state.CombatForm          = M{['description'] = 'Combat Form', ['string']=''}
+	state.CombatWeapon        = M{['description'] = 'Combat Weapon', ['string']=''}
+	state.CraftQuality  	  = M{['description'] = 'Crafting Quality','Normal','HQ','NQ'}
+	state.CraftingMode		  = M{['description'] = 'Crafting Mode','None','Alchemy','Bonecraft','Clothcraft','Cooking','Fishing','Gathering','Goldsmithing','Leathercraft','Smithing','Woodworking'}
 	state.DefenseMode         = M{['description'] = 'Defense Mode', 'None', 'Physical', 'Magical', 'Resist'}
-	state.PhysicalDefenseMode = M{['description'] = 'Physical Defense Mode', 'PDT'}
+	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
+	state.ExtraDefenseMode 	  = M{['description'] = 'Extra Defense Mode','None'}
+	state.EquipStop           = M{['description'] = 'Stop Equipping Gear', 'off', 'precast', 'midcast', 'pet_midcast'}
+	state.HybridMode          = M{['description'] = 'Hybrid Mode'}
+	state.IdleMode            = M{['description'] = 'Idle Mode'}
+	state.MagicBurstMode 	  = M{['description'] = 'Magic Burst Mode', 'Off', 'Single', 'Lock'}
 	state.MagicalDefenseMode  = M{['description'] = 'Magical Defense Mode', 'MDT'}
-	state.ResistDefenseMode   = M{['description'] = 'Resistance Defense Mode', 'MEVA'}
-	
+	state.OffenseMode         = M{['description'] = 'Offense Mode'}
+	state.PCTargetMode        = M{['description'] = 'PC Target Mode', 'default', 'stpt', 'stal', 'stpc'}
 	state.Passive   		  = M{['description'] = 'Passive Mode','None'}
-	state.Kiting              = M(false, 'Kiting')
-	state.SelectNPCTargets    = M(false, 'Select NPC Targets')
-	state.Capacity 			  = M(false, 'Capacity Mode')
-	state.ReEquip 			  = M(false, 'ReEquip Mode')
-	state.AutoArts	 		  = M(false, 'AutoArts Mode')
-	state.AutoLockstyle	 	  = M(false, 'AutoLockstyle Mode')
-	state.AutoTrustMode 	  = M(false, 'Auto Trust Mode')
-	state.RngHelper		 	  = M(false, 'RngHelper')
-	state.HoverShot		 	  = M(true, 'HoverShot')
-	state.RngHelperQuickDraw  = M(false, 'RngHelperQuickDraw')
-	state.AutoTankMode 		  = M(false, 'Auto Tank Mode')
+	state.PhysicalDefenseMode = M{['description'] = 'Physical Defense Mode', 'PDT'}
+	state.RangedMode          = M{['description'] = 'Ranged Mode'}
+	state.ResistDefenseMode   = M{['description'] = 'Resistance Defense Mode', 'MEVA'}
+	state.RestingMode         = M{['description'] = 'Resting Mode'}
+	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
+	state.SkillchainMode 	  = M{['description'] = 'Skillchain Mode', 'Off', 'Single', 'Lock'}
+	state.Weapons		  	  = M{['description'] = 'Weapons','None','Weapons'}
+	state.WeaponskillMode     = M{['description'] = 'Weaponskill Mode','Match'}
+	
+	state.AdjustTargets	  	  = M(true, 'Automatically Adjust Targets')
 	state.AutoAcceptRaiseMode = M(false, 'Auto Accept Raise Mode')
+	state.AutoArts	 		  = M(false, 'AutoArts Mode')
+	state.AutoCleanupMode  	  = M(false, 'Auto Cleanup Mode')
+	state.AutoContradanceMode = M(true, 'Auto Contradance Mode')
+	state.AutoFoodMode		  = M(false, 'Auto Food Mode')
+	state.AutoHolyWaterMode   = M(true, 'Auto Holy Water Mode')
+	state.AutoLockstyle	 	  = M(false, 'AutoLockstyle Mode')
 	state.AutoNukeMode 		  = M(false, 'Auto Nuke Mode')
+	state.AutoRemoveDoomMode  = M(true, 'Auto Remove Doom Mode')
 	state.AutoRuneMode 		  = M(false, 'Auto Rune Mode')
 	state.AutoShadowMode 	  = M(false, 'Auto Shadow Mode')
-	state.AutoContradanceMode = M(true, 'Auto Contradance Mode')
-	state.AutoHolyWaterMode   = M(true, 'Auto Holy Water Mode')
-	state.AutoRemoveDoomMode  = M(true, 'Auto Remove Doom Mode')
+	state.AutoSubMode 		  = M(false, 'Auto Sublimation Mode')
+	state.AutoSuperJumpMode   = M(false, 'Auto SuperJump Mode')
+	state.AutoTankMode 		  = M(false, 'Auto Tank Mode')
+	state.AutoTrustMode 	  = M(false, 'Auto Trust Mode')
 	state.AutoWSMode		  = M(false, 'Auto Weaponskill Mode')
 	state.AutoWSRestore		  = M(true, 'Auto Weaponskill Restore Mode')
-	state.AutoFoodMode		  = M(false, 'Auto Food Mode')
-	state.AutoSubMode 		  = M(false, 'Auto Sublimation Mode')
-	state.AutoCleanupMode  	  = M(false, 'Auto Cleanup Mode')
-	state.DisplayMode  	  	  = M(true, 'Display Mode')
-	state.UseCustomTimers 	  = M(true, 'Use Custom Timers')
 	state.CancelStoneskin	  = M(true, 'Auto Cancel Stoneskin')
-	state.BlockMidaction	  = M(true, 'Block Midaction')
-	state.MaintainAftermath	  = M(true, 'Maintain Aftermath')
-	state.RefineWaltz		  = M(true, 'RefineWaltz')
+	state.Capacity 			  = M(false, 'Capacity Mode')
+	state.DisplayMode  	  	  = M(true, 'Display Mode')
 	state.ElementalWheel 	  = M(false, 'Elemental Wheel')
-	state.MaintainDefense 	  = M(false, 'Maintain Defense')
-	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
-	state.NotifyBuffs		  = M(false, 'Notify Buffs')
-	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
-	state.SelfWarp2Block 	  = M(true, 'Block Warp2 on Self')
+	state.HoverShot		 	  = M(true, 'HoverShot')
+	state.IdleStep			  = M(true, 'Idle Step Mode')
+	state.Kiting              = M(false, 'Kiting')
+	state.MaintainAftermath	  = M(true, 'Maintain Aftermath')
 	state.MiniQueue		 	  = M(true, 'MiniQueue')
+	state.NotifyBuffs		  = M(false, 'Notify Buffs')
+	state.ReEquip 			  = M(false, 'ReEquip Mode')
+	state.RefineWaltz		  = M(true, 'RefineWaltz')
+	state.RngHelper		 	  = M(false, 'RngHelper')
+	state.RngHelperQuickDraw  = M(false, 'RngHelperQuickDraw')
+	state.SelectNPCTargets    = M(false, 'Select NPC Targets')
+	state.SelfWarp2Block 	  = M(true, 'Block Warp2 on Self')
+	state.SkipProcWeapons 	  = M(false, 'Skip Proc Weapons')
+	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
+	state.UseCustomTimers 	  = M(true, 'Use Custom Timers')
+	state.WakeUpWeapons 	  =	M(false, 'Swap Weapons To Wake Up')
 
-	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
-	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
-	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
-	state.AutoSambaMode 	  = M{['description']= 'Auto Samba Mode', 'Off', 'Haste Samba', 'Aspir Samba', 'Drain Samba II'}
-
-	state.MagicBurstMode 	  = M{['description'] = 'Magic Burst Mode', 'Off', 'Single', 'Lock'}
-	state.SkillchainMode 	  = M{['description'] = 'Skillchain Mode', 'Off', 'Single', 'Lock'}
-	state.PCTargetMode        = M{['description'] = 'PC Target Mode', 'default', 'stpt', 'stal', 'stpc'}
-	state.EquipStop           = M{['description'] = 'Stop Equipping Gear', 'off', 'precast', 'midcast', 'pet_midcast'}
-	state.CombatWeapon        = M{['description']='Combat Weapon', ['string']=''}
-	state.CombatForm          = M{['description']='Combat Form', ['string']=''}
-	
+	state.Buff = {}
 	NotifyBuffs = S{}
 	
-	if data.jobs.mage_jobs:contains(player.main_job) then
-		state.Weapons		  = M{['description'] = 'Weapons','None','Weapons'}
-	else
-		state.Weapons		  = M{['description'] = 'Weapons','Weapons','None'}
+	--Tracking these here because they require quick tracking on many jobs.
+	state.Buff['Light Arts'] 		= buffactive['Light Arts'] 		or false
+	state.Buff['Addendum: White'] 	= buffactive['Addendum: White'] or false
+	state.Buff['Dark Arts'] 		= buffactive['Dark Arts'] 		or false
+	state.Buff['Addendum: Black'] 	= buffactive['Addendum: Black'] or false
+	state.Buff['Accession'] 		= buffactive['Accession'] 		or false
+	state.Buff['Manifestation'] 	= buffactive['Manifestation'] 	or false
+	state.Buff['Warcry'] 			= buffactive['Warcry'] 			or false
+	state.Buff['SJ Restriction'] 	= buffactive['SJ Restriction'] 	or false
+	state.Buff['Invisible'] 		= buffactive['Invisible'] 		or false
+	state.Buff['Sneak'] 			= buffactive['Sneak'] 			or false
+	
+	-- Classes describe a 'type' of action.  They are similar to state, but
+	-- may have any free-form value, or describe an entire table of mapped values.
+	classes = {}
+	-- Basic spell mappings are based on common spell series.
+	-- EG: 'Cure' for Cure, Cure II, Cure III, Cure IV, Cure V, or Cure VI.
+	classes.SpellMaps = spell_maps
+	-- List of spells and spell maps that don't benefit from greater skill (though
+	-- they may benefit from spell-specific augments, such as improved regen or refresh).
+	-- Spells that fall under this category will be skipped when searching for
+	-- spell.skill sets.
+	classes.NoSkillSpells = data.spells.no_skill
+	classes.SkipSkillCheck = false
+	-- Custom, job-defined class, like the generic spell mappings.
+	-- Takes precedence over default spell maps.
+	-- Is reset at the end of each spell casting cycle (ie: at the end of aftercast).
+	classes.JAMode = nil
+	classes.CustomClass = nil
+	-- Custom groups used for defining melee and idle sets.  Persists long-term.
+	classes.CustomMeleeGroups = L{}
+	classes.CustomRangedGroups = L{}
+	classes.CustomIdleGroups = L{}
+	classes.CustomDefenseGroups = L{}
+
+	-- Class variables for time-based flags
+	classes.Daytime = false
+	classes.DuskToDawn = false
+	
+	-- Var for tracking misc info
+	info = {}
+	options = {}
+	track_lockon = false
+
+	-- Special control flags.
+	mote_vars = {}
+	mote_vars.set_breadcrumbs = L{}
+	mote_vars.res_buffs = S{}
+	for index,struct in pairs(gearswap.res.buffs) do
+		mote_vars.res_buffs:add(struct.en)
 	end
 	
-    -- Non-mode vars that are used for state tracking.
-    state.MaxWeaponskillDistance = 0
-    state.Buff = {}
-	
-	--Tracking these here because required quick actions on multiple jobs.
-	state.Buff['Light Arts'] = buffactive['Light Arts'] or false
-	state.Buff['Addendum: White'] = buffactive['Addendum: White'] or false
-	state.Buff['Dark Arts'] = buffactive['Dark Arts'] or false
-	state.Buff['Addendum: Black'] = buffactive['Addendum: Black'] or false
-	state.Buff['Accession'] = buffactive['Accession'] or false
-	state.Buff['Manifestation'] = buffactive['Manifestation'] or false
-	state.Buff['Warcry'] = buffactive['Warcry'] or false
-	state.Buff['SJ Restriction'] = buffactive['SJ Restriction'] or false
-	
-    -- Classes describe a 'type' of action.  They are similar to state, but
-    -- may have any free-form value, or describe an entire table of mapped values.
-    classes = {}
-    -- Basic spell mappings are based on common spell series.
-    -- EG: 'Cure' for Cure, Cure II, Cure III, Cure IV, Cure V, or Cure VI.
-    classes.SpellMaps = spell_maps
-    -- List of spells and spell maps that don't benefit from greater skill (though
-    -- they may benefit from spell-specific augments, such as improved regen or refresh).
-    -- Spells that fall under this category will be skipped when searching for
-    -- spell.skill sets.
-    classes.NoSkillSpells = data.spells.no_skill
-    classes.SkipSkillCheck = false
-    -- Custom, job-defined class, like the generic spell mappings.
-    -- Takes precedence over default spell maps.
-    -- Is reset at the end of each spell casting cycle (ie: at the end of aftercast).
-    classes.JAMode = nil
-    classes.CustomClass = nil
-    -- Custom groups used for defining melee and idle sets.  Persists long-term.
-    classes.CustomMeleeGroups = L{}
-    classes.CustomRangedGroups = L{}
-    classes.CustomIdleGroups = L{}
-    classes.CustomDefenseGroups = L{}
-
-    -- Class variables for time-based flags
-    classes.Daytime = false
-    classes.DuskToDawn = false
-	
-    -- Var for tracking misc info
-    info = {}
-    options = {}
-
-    -- Special control flags.
-    mote_vars = {}
-    mote_vars.set_breadcrumbs = L{}
-    mote_vars.res_buffs = S{}
-    for index,struct in pairs(gearswap.res.buffs) do
-        mote_vars.res_buffs:add(struct.en)
-    end
-	
 	-- Define and default variables for global functions that can be overwritten.
-	useItem = false
-	useItemName = ''
-	useItemSlot = ''
-	petWillAct = 0
 	autonuke = 'Fire'
 	autows = ''
 	autows_list = {}
-	smartws = nil
-	rangedautows = ''
 	autowstp = 1000
-	rangedautowstp = 1000
-	latency = .7
-	spell_latency = nil
 	buffup = ''
+	conserveshadows = true
+	consumable_bag = 'satchel'
 	curecheat = false
-	lastincombat = player.in_combat
-	next_cast = 0
+	currency_bag = 'sack'
+	default_dual_weapons = 'DualWeapons'
+	default_weapons = nil
 	delayed_cast = ''
 	delayed_target = ''
 	equipped = 0
-	
-	time_test = false
-	selindrile_warned = false
-	utsusemi_cancel_delay = .5
-	conserveshadows = true
 	filtered_st_command = false
-	
+	last_weapons = nil
+	latency = .5
+	next_cast = 0
+	page_cache = nil
+	petWillAct = 0
+	prepared_action = ''
+	rangedautows = ''
+	rangedautowstp = 1000
+	rolled_eleven = T{}
+	selindrile_warned = false
+	smartws = nil
+	spell_latency = nil
+	time_test = false
+	trust_list = {}
+	useItem = false
+	useItemName = ''
+	useItemSlot = ''
+	utsusemi_cancel_delay = .5
+	weapons_pagelist = {}
+	disabled_sets = {}
+	silent_can_use_cache = {['/ma']={},['/ja']={},['/ws']={}}
+	local_offset = 18000
+
 	-- Buff tracking that buffactive can't detect
 	lastshadow = "Utsusemi: San"
 	lastwarcry = ''
 	lasthaste = 1
 	lastflurry = 1
 	
-    -- Sub-tables within the sets table that we expect to exist, and are annoying to have to
-    -- define within each individual job file.  We can define them here to make sure we don't
-    -- have to check for existence.  The job file should be including this before defining
-    -- any sets, so any changes it makes will override these anyway.
-    sets.precast = {}
-    sets.precast.FC = {}
-    sets.precast.JA = {}
-    sets.precast.WS = {}
-    sets.precast.RA = {}
+	-- Sub-tables within the sets table that we expect to exist, and are annoying to have to
+	-- define within each individual job file.  We can define them here to make sure we don't
+	-- have to check for existence.  The job file should be including this before defining
+	-- any sets, so any changes it makes will override these anyway.
+	sets.precast = {}
+	sets.precast.FC = {}
+	sets.precast.JA = {}
+	sets.precast.WS = {}
+	sets.precast.RA = {}
 	sets.precast.Item = {}
-    sets.midcast = {}
-    sets.midcast.RA = {}
-    sets.midcast.Pet = {}
-    sets.idle = {}
-    sets.resting = {}
-    sets.engaged = {}
-    sets.defense = {}
-    sets.buff = {}
+	sets.midcast = {}
+	sets.midcast.RA = {}
+	sets.midcast.Pet = {}
+	sets.idle = {}
+	sets.resting = {}
+	sets.engaged = {}
+	sets.defense = {}
+	sets.buff = {}
 	sets.element = {}
 	sets.passive = {}
 	sets.weapons = {}
@@ -284,35 +290,36 @@ function init_include()
 	sets.DuskIdle = {}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
-	
-    gear = {}
-    gear.default = {}
 
-    gear.ElementalGorget = {name=""}
-    gear.ElementalBelt = {name=""}
-    gear.ElementalObi = {name=""}
-    gear.ElementalCape = {name=""}
-    gear.ElementalRing = {name=""}
-    gear.FastcastStaff = {name=""}
-    gear.RecastStaff = {name=""}
+	gear = {}
+	gear.default = {}
 
-    -- Include general user globals, such as custom binds or gear tables.
-    -- Load Sel-Libs first, followed by User-Globals, followed by <character>-Globals.
-    -- Any functions re-defined in the later includes will overwrite the earlier versions.
-    -- Load externally-defined information (info that we don't want to change every time this file is updated).
-    -- Used to define misc utility functions that may be useful for this include or any job files.
-    include('Sel-Utility')
+	gear.ElementalGorget = {name=""}
+	gear.ElementalBelt = {name=""}
+	gear.ElementalObi = {name=""}
+	gear.ElementalCape = {name=""}
+	gear.ElementalRing = {name=""}
+	gear.FastcastStaff = {name=""}
+	gear.RecastStaff = {name=""}
 
-    -- Used for all self-command handling.
-    include('Sel-SelfCommands')
+	-- Include general user globals, such as custom binds or gear tables.
+	-- Load Sel-Libs first, followed by User-Globals, followed by <character>-Globals.
+	-- Any functions re-defined in the later includes will overwrite the earlier versions.
+	-- Load externally-defined information (info that we don't want to change every time this file is updated).
+	-- Used to define misc utility functions that may be useful for this include or any job files.
+	include('Sel-Utility')
+
+	-- Used for all self-command handling.
+	include('Sel-SelfCommands')
 	include('Sel-TreasureHunter')
 	
 	-- User based files.
-    optional_include('user-globals.lua')
-    optional_include(player.name..'-globals.lua')
-    optional_include(player.name..'-items.lua')
+	optional_include('User-Globals.lua')
+	optional_include(player.name..'-Globals.lua')
+	optional_include(player.name..'-Items.lua')
 	optional_include(player.name..'_Crafting.lua')
 	include(player.name..'_'..player.main_job..'_gear.lua') -- Required Gear file.
+	optional_include('User-'..player.main_job..'.lua')
 
 	-- New Display functions, needs to come after globals for user settings.
 	include('Sel-Display.lua')
@@ -328,46 +335,49 @@ function init_include()
 	end
 
 	--Certain Checks
-    global_on_load()
+	global_on_load()
 	
 	-- General var initialization and setup.
-    if job_setup then
-        job_setup()
-    end
+	if job_setup then
+		job_setup()
+	end
 
-    -- User-specific var initialization and setup.
-    if user_setup then
-        user_setup()
-    end
+	-- User-specific var initialization and setup.
+	if user_setup then
+		user_setup()
+	end
 	
-    if character_setup then
-        character_setup()
-    end
+	if character_setup then
+		character_setup()
+	end
 	
-    -- Job-User-specific var initialization and setup.
-    if user_job_setup then
-        user_job_setup()
-    end
+	-- Job-User-specific var initialization and setup.
+	if user_job_setup then
+		user_job_setup()
+	end
 	
 	if extra_user_setup then
-        extra_user_setup()
-    end
+		extra_user_setup()
+	end
 
 	if not selindrile_warned then
 		naughty_list = {'lua ','gearswap',' gs ','file','windower','plugin','addon','program','hack','bot ','bots ','botting','easyfarm'}
 		
 		windower.raw_register_event('outgoing chunk', function(id, data, modified, injected, blocked)
-			if id == 0x0B6 and res.servers[windower.ffxi.get_info().server].en == 'Asura' then
-                local p = packets.parse('outgoing',data)
-                if p['Target Name'] == 'Selindrile' then
-					for i in pairs(naughty_list) do 
-						if p['Message']:contains(naughty_list[i]) then
-							windower.add_to_chat(123,'Message Aborted: Please do not message me about anything third party ingame.')
-							windower.add_to_chat(123,'Contact me on Discord: KalesAndRancor#5410 or https://discord.gg/ug6xtvQ')
-							return true
+			if id == 0x0B6 then
+				local ffxi_info = windower.ffxi.get_info()
+				if ffxi_info and ffxi_info.server and res.servers[ffxi_info.server] and res.servers[ffxi_info.server].en and res.servers[ffxi_info.server].en == 'Asura' then
+					local p = packets.parse('outgoing',data)
+					if p['Target Name'] == 'Mytha' then
+						for i in pairs(naughty_list) do 
+							if p['Message']:contains(naughty_list[i]) then
+								windower.add_to_chat(123,'Message Aborted: Please do not message me about anything third party ingame. -50DKP')
+								windower.add_to_chat(123,'Contact me on Discord: KalesAndRancor#5410 or https://discord.gg/ug6xtvQ')
+								return true
+							end
 						end
 					end
-                end
+				end
 			end
 		end)
 	end
@@ -388,9 +398,9 @@ function init_include()
 			local p = packets.parse('outgoing',data)
 			if p['Emote'] == 31 and p['Type'] == 2 then
 				if p['Target ID'] == 0 then
-					windower.send_command('gs c '..st_command..' '..player.id..'')
+					send_command('gs c '..st_command..' '..player.id..'')
 				else
-					windower.send_command('gs c '..st_command..' '..p['Target ID']..'')
+					send_command('gs c '..st_command..' '..p['Target ID']..'')
 				end
 				st_command = false
 				return true
@@ -404,54 +414,59 @@ function init_include()
 		
 		gearswap.refresh_globals(false)
 		
-		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (delayed_cast ~= '' or check_midaction() or moving or buffactive['Sneak'] or buffactive['Invisible'] or silent_check_disable()) then
+		if (player ~= nil) and (player.status == 'Idle' or player.status == 'Engaged') and not (just_acted() or moving or silent_check_disable()) then
+			prepared_action = ''
 			if pre_tick then
 				if pre_tick() then return end
 			end
+			if not state.Buff['Invisible'] then
+				if user_job_tick then
+					if user_job_tick() then return end
+				end
 
-			if user_job_tick then
-				if user_job_tick() then return end
-			end
+				if user_tick then
+					if user_tick() then return end
+				end
 
-			if user_tick then
-				if user_tick() then return end
-			end
+				if job_tick then
+					if job_tick() then return end
+				end
+				
+				if default_tick then
+					if default_tick() then return end
+				end			
 
-			if job_tick then
-				if job_tick() then return end
+				if extra_user_job_tick then
+					if extra_user_job_tick() then return end
+				end
+
+				if extra_user_tick then
+					if extra_user_tick() then return end
+				end
 			end
 			
-			if default_tick then
-				if default_tick() then return end
-			end			
-
-			if extra_user_job_tick then
-				if extra_user_job_tick() then return end
-			end
-
-			if extra_user_tick then
-				if extra_user_tick() then return end
-			end
-			
+			if check_cleanup() then return true end
 		end
-
-		tickdelay = os.clock() + .5
 		
-		if lastincombat == true and not player.in_combat then
-			being_attacked = false
-			if player.status == 'Idle' and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
-				handle_equipping_gear(player.status)
+		tickdelay = os.clock() + .5
+		if in_combat and (not ((last_in_combat + 6) > os.clock())) then
+			local bt = windower.ffxi.get_mob_by_target('bt') or nil
+			if not bt or bt.hpp == 0 then
+				in_combat = false
+				if player.status == 'Idle' and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
+					send_command('gs c update')
+				end
+				if state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
+					state.DefenseMode:reset()
+					if state.DisplayMode.value then update_job_states()	end
+				end
 			end
-			if state.AutoDefenseMode.value and state.DefenseMode.value ~= 'None' then
-				state.DefenseMode:reset()
-				if state.DisplayMode.value then update_job_states()	end
-			end
-		end			
-		lastincombat = player.in_combat
+		end	
+
 	end)
 	
-    -- Load up all the gear sets.
-    init_gear_sets()
+	-- Load up all the gear sets.
+	init_gear_sets()
 	
 	-- Load generic items into sets and determine settings after checking what is owned as needed.
 	include('Sel-GlobalItems')
@@ -507,9 +522,9 @@ function zone_change(new_id,old_id)
 	
 	default_zone_change(new_id,old_id)
 end
-	
+
 function default_zone_change(new_id,old_id)
-	tickdelay = os.clock() + 10
+	add_tick_delay(10)
 	state.AutoBuffMode:reset()
 	state.AutoSubMode:reset()
 	state.AutoTrustMode:reset()
@@ -518,8 +533,9 @@ function default_zone_change(new_id,old_id)
 	state.AutoFoodMode:reset()
 	state.AutoWSMode:reset()
 	state.AutoNukeMode:reset()
+	rolled_eleven = T{}
+	silent_can_use_cache = {['/ma']={},['/ja']={},['/ws']={}}
 	if state.CraftingMode.value ~= 'None' then
-		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
 		state.CraftingMode:reset()
 	end
 	send_command('gs rh disable')
@@ -527,8 +543,6 @@ function default_zone_change(new_id,old_id)
 	useItem = false
 	useItemName = ''
 	useItemSlot = ''
-	lastincombat = false
-	being_attacked = false
 	
 	if world.area:contains('Abyssea') or data.areas.proc:contains(world.area) then
 		state.SkipProcWeapons:set('False')
@@ -540,133 +554,72 @@ function default_zone_change(new_id,old_id)
 end
 
 function time_change(new_time, old_time)
-    local was_daytime = classes.Daytime
-    local was_dusktime = classes.DuskToDawn
-    
-    if new_time and (new_time >= 6*60 and new_time < 18*60) then
-        classes.Daytime = true
-    else
-        classes.Daytime = false
-    end
+	local was_daytime = classes.Daytime
+	local was_dusktime = classes.DuskToDawn
+	
+	if new_time and (new_time >= 6*60 and new_time < 18*60) then
+		classes.Daytime = true
+	else
+		classes.Daytime = false
+	end
 
-    if new_time and (new_time >= 17*60 or new_time < 7*60) then
-        classes.DuskToDawn = true
-    else
-        classes.DuskToDawn = false
-    end
-    
-    if was_daytime ~= classes.Daytime or was_dusktime ~= classes.DuskToDawn then
-        if job_time_change then
-            job_time_change(new_time, old_time)
-        end
-
-        handle_update({'auto'})
-    end
+	if new_time and (new_time >= 17*60 or new_time < 7*60) then
+		classes.DuskToDawn = true
+	else
+		classes.DuskToDawn = false
+	end
+	
+	if was_daytime ~= classes.Daytime or was_dusktime ~= classes.DuskToDawn then
+		if user_time_change then
+			user_time_change(new_time, old_time)
+		end
+	
+		if job_time_change then
+			job_time_change(new_time, old_time)
+		end
+		
+		if user_job_time_change then
+			user_job_time_change(new_time, old_time)
+		end
+		send_command('gs c update')
+	end
 end
 
 -- Called when this job file is unloaded (eg: job change)
 -- Conditional definition so that it doesn't overwrite explicit user
 -- versions of this function.
 if not file_unload then
-    file_unload = function()
-        if user_job_unload then
-            user_job_unload()
+	file_unload = function()
+		if user_job_unload then
+			user_job_unload()
 		end
 		
-        if user_unload then
-            user_unload()
+		if user_unload then
+			user_unload()
 		end
 		
-        if job_unload then
-            job_unload()
-        end
+		if job_unload then
+			job_unload()
+		end
 		
 		global_unload()
-    end
+	end
 end
 
 -- Non item-based global settings to check on load.
 function global_on_load()
 	if world.area then
-		set_dual_wield()
+		set_dual_wield:schedule(3)
 		
 		if world.area:contains('Abyssea') or data.areas.proc:contains(world.area) then
 			state.SkipProcWeapons:set('False')
 		else
 			state.SkipProcWeapons:reset()
 		end
-		
-		if state.Weapons.value == 'None' then
-			enable('main','sub','range','ammo')
-		else
-			send_command('@wait 3;gs c weapons Default')
-		end
 	end
 end
 
--- Function to revert binds when unloading.
 function global_unload()
-	send_command('unbind ^f8')
-	send_command('unbind !f8')
-	send_command('unbind @f8')
-	send_command('unbind f9')
-	send_command('unbind ^f9')
-	send_command('unbind !f9')
-	send_command('unbind @f9')
-	send_command('unbind f10')
-	send_command('unbind ^f10')
-	send_command('unbind !f10')
-	send_command('unbind @f10')
-	send_command('unbind f11')
-	send_command('unbind ^f11')
-	send_command('unbind !f11')
-	send_command('unbind @f11')
-	send_command('unbind f12')
-	send_command('unbind ^f12')
-	send_command('unbind !f12')
-	send_command('unbind @f12')
-	send_command('unbind ^@!pause')
-	send_command('unbind ^pause')
-	send_command('unbind !pause')
-	send_command('unbind @pause')
-	send_command('unbind ^@!pause')
-
-	send_command('unbind ^\\\\')
-	send_command('unbind @\\\\')
-	send_command('unbind !\\\\')
-
-	send_command('unbind ^`')
-	send_command('unbind !`')
-	send_command('unbind @`')
-
-	send_command('unbind ^backspace')
-	send_command('unbind !backspace')
-	send_command('unbind @backspace')
-
-	send_command('unbind ^r')
-	send_command('unbind !r')
-	send_command('unbind @r')
-
-	send_command('unbind ^y')
-	send_command('unbind !y')
-	send_command('unbind @y')
-
-	send_command('unbind ^q')
-	send_command('unbind !q')
-	send_command('unbind @q')
-	
-	send_command('unbind ^-')
-	send_command('unbind !-')
-	send_command('unbind @-')
-
-	send_command('unbind ^=')
-	send_command('unbind !=')
-	send_command('unbind @=')
-
-	send_command('unbind ^delete')
-	send_command('unbind !delete')
-	send_command('unbind @delete')
-	
 	if clear_job_states then
 		clear_job_states()
 	end		
@@ -695,133 +648,130 @@ end
 -- spell - standard spell table passed in by GearSwap
 -- action - string defining the function mapping to use (precast, midcast, etc)
 function handle_actions(spell, action)
-    -- Init an eventArgs that allows cancelling.
-    local eventArgs = {handled = false, cancel = false}
-    
-    mote_vars.set_breadcrumbs:clear()
+	-- Init an eventArgs that allows cancelling.
+	local eventArgs = {handled = false, cancel = false}
 
-    -- Get the spell mapping, since we'll be passing it to various functions and checks.
-    local spellMap = get_spell_map(spell)
+	mote_vars.set_breadcrumbs:clear()
+
+	-- Get the spell mapping, since we'll be passing it to various functions and checks.
+	local spellMap = get_spell_map(spell)
 	gearswap.refresh_globals(false)
 
-    -- General filter checks to see whether this function should be run.
-    -- If eventArgs.cancel is set, cancels this function, not the spell.
-    if _G['user_filter_'..action] then
-        _G['user_filter_'..action](spell, spellMap, eventArgs)
+	-- General filter checks to see whether this function should be run.
+	-- If eventArgs.cancel is set, cancels this function, not the spell.
+	if _G['user_filter_'..action] then
+		_G['user_filter_'..action](spell, spellMap, eventArgs)
+
+		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+			cancel_spell()
+			return
+		end
+	end
+
+	if _G['user_job_filter_'..action] and not eventArgs.cancel then
+		_G['user_job_filter_'..action](spell, spellMap, eventArgs)
+
+		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+			cancel_spell()
+			return
+		end
+	end
+
+	if _G['job_filter_'..action] and not eventArgs.cancel then
+		_G['job_filter_'..action](spell, spellMap, eventArgs)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
 			return
 		end
-    end
-	
-    if _G['user_job_filter_'..action] and not eventArgs.cancel then
-        _G['user_job_filter_'..action](spell, spellMap, eventArgs)
+	end
+
+	if _G['filter_'..action] and not eventArgs.cancel then
+		_G['filter_'..action](spell, spellMap, eventArgs)
 		
 		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 			cancel_spell()
 			return
 		end
-    end
-	
-    if _G['job_filter_'..action] and not eventArgs.cancel then
-        _G['job_filter_'..action](spell, spellMap, eventArgs)
-		
-		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-			cancel_spell()
-			return
-		end
-    end
-	
-    if _G['filter_'..action] and not eventArgs.cancel then
-        _G['filter_'..action](spell, spellMap, eventArgs)
-		
-		if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-			cancel_spell()
-			return
-		end
-    end
-	
-    -- If filter didn't cancel it, process user and default actions.
-    if not eventArgs.cancel then
-        -- Global user handling of this action
-        if _G['user_'..action] then
-            _G['user_'..action](spell, spellMap, eventArgs)
-            
-            if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-                cancel_spell()
-				return
-            end
-        end
-		
-        -- Job-specific handling of this action
-        if not eventArgs.cancel and not eventArgs.handled and _G['job_'..action] then
-            _G['job_'..action](spell, spellMap, eventArgs)
-            
-            if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-                cancel_spell()
-				return
-            end
-        end
-		
-        if not eventArgs.cancel and not eventArgs.handled and _G['user_job_'..action] then
-            _G['user_job_'..action](spell, spellMap, eventArgs)
-            
-            if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-                cancel_spell()
-				return
-            end
-        end
-    
-        -- Default handling of this action
-        if not eventArgs.cancel and not eventArgs.handled and _G['default_'..action] then
-            _G['default_'..action](spell, spellMap, eventArgs)
-            display_breadcrumbs(spell, spellMap, action)
+	end
+
+	-- If filter didn't cancel it, process user and default actions.
+	if not eventArgs.cancel then
+		-- Global user handling of this action
+		if _G['user_'..action] then
+			_G['user_'..action](spell, spellMap, eventArgs)
 			
 			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
 				cancel_spell()
-				return
 			end
-        end
+		end
 		
-        -- Global user handling of this action
-        if _G['extra_user_'..action] then
-            _G['extra_user_'..action](spell, spellMap, eventArgs)
-            
-            if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
-                cancel_spell()
-				return
-            end
-        end
+		-- Job-specific handling of this action
+		if not eventArgs.cancel and not eventArgs.handled and _G['job_'..action] then
+			_G['job_'..action](spell, spellMap, eventArgs)
+			
+			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+				cancel_spell()
+			end
+		end
 		
-        -- Global post-handling of this action
-        if not eventArgs.cancel and _G['user_post_'..action] then
-            _G['user_post_'..action](spell, spellMap, eventArgs)
-        end
+		if not eventArgs.cancel and not eventArgs.handled and _G['user_job_'..action] then
+			_G['user_job_'..action](spell, spellMap, eventArgs)
+			
+			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+				cancel_spell()
+			end
+		end
+	
+		-- Default handling of this action
+		if not eventArgs.cancel and not eventArgs.handled and _G['default_'..action] then
+			_G['default_'..action](spell, spellMap, eventArgs)
+			display_breadcrumbs(spell, spellMap, action)
+			
+			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+				cancel_spell()
+			end
+		end
+		
+		-- Global user handling of this action
+		if _G['extra_user_'..action] then
+			_G['extra_user_'..action](spell, spellMap, eventArgs)
+			
+			if eventArgs.cancel and (action == 'pretarget' or action == 'precast') then
+				cancel_spell()
+			end
+		end
+		
+		-- Global post-handling of this action
+		if not eventArgs.cancel and _G['user_post_'..action] then
+			_G['user_post_'..action](spell, spellMap, eventArgs)
+		end
 
-       -- Job-specific post-handling of this action
-        if not eventArgs.cancel and _G['job_post_'..action] then
-            _G['job_post_'..action](spell, spellMap, eventArgs)
-        end
+	   -- Job-specific post-handling of this action
+		if not eventArgs.cancel and _G['job_post_'..action] then
+			_G['job_post_'..action](spell, spellMap, eventArgs)
+		end
 		
-        if not eventArgs.cancel and _G['user_job_post_'..action] then
-            _G['user_job_post_'..action](spell, spellMap, eventArgs)
-        end
+		if not eventArgs.cancel and _G['user_job_post_'..action] then
+			_G['user_job_post_'..action](spell, spellMap, eventArgs)
+		end
 
-        if not eventArgs.cancel and _G['default_post_'..action] then
-            _G['default_post_'..action](spell, spellMap, eventArgs)
-        end
+		if not eventArgs.cancel and _G['default_post_'..action] then
+			_G['default_post_'..action](spell, spellMap, eventArgs)
+		end
 		
-        if not eventArgs.cancel and _G['extra_user_post_'..action] then
-            _G['extra_user_post_'..action](spell, spellMap, eventArgs)
-        end
+		if not eventArgs.cancel and _G['extra_user_post_'..action] then
+			_G['extra_user_post_'..action](spell, spellMap, eventArgs)
+		end
 		
-    end
+	end
 
-    -- Cleanup once this action is done
-    if _G['cleanup_'..action] then
-        _G['cleanup_'..action](spell, spellMap, eventArgs)
-    end
+	-- Cleanup once this action is done
+	if _G['cleanup_'..action] then
+		_G['cleanup_'..action](spell, spellMap, eventArgs)
+	end
+	
+	equip(internal_disable)
 end
 
 
@@ -832,44 +782,44 @@ end
 function filtered_action(spell, eventArgs)
 	local eventArgs = {cancel = false}
 
-    -- Check users action filtering
-    if not eventArgs.cancel and user_filtered_action then
-        user_filtered_action(spell, eventArgs)
-    end
+	-- Check users action filtering
+	if not eventArgs.cancel and user_filtered_action then
+		user_filtered_action(spell, eventArgs)
+	end
 
-    -- Check jobs action filtering
-    if not eventArgs.cancel and user_job_filtered_action then
-        user_job_filtered_action(spell, eventArgs)
-    end
+	-- Check jobs action filtering
+	if not eventArgs.cancel and user_job_filtered_action then
+		user_job_filtered_action(spell, eventArgs)
+	end
 	
-    -- Check jobs action filtering
-    if not eventArgs.cancel and job_filtered_action then
-        job_filtered_action(spell, eventArgs)
-    end
+	-- Check jobs action filtering
+	if not eventArgs.cancel and job_filtered_action then
+		job_filtered_action(spell, eventArgs)
+	end
 	
-    -- Check users action filtering
-    if not eventArgs.cancel and default_filtered_action then
-        default_filtered_action(spell, eventArgs)
-    end
+	-- Check users action filtering
+	if not eventArgs.cancel and default_filtered_action then
+		default_filtered_action(spell, eventArgs)
+	end
 	
 	-- Final user for filtering and error reporting.
-    if not eventArgs.cancel and extra_user_filtered_action then
-        extra_user_filtered_action(spell, eventArgs)
-    end
+	if not eventArgs.cancel and extra_user_filtered_action then
+		extra_user_filtered_action(spell, eventArgs)
+	end
 	
 	-- Final pass for filtering and error reporting.
-    if not eventArgs.cancel and extra_default_filtered_action then
-        extra_default_filtered_action(spell, eventArgs)
-    end
+	if not eventArgs.cancel and extra_default_filtered_action then
+		extra_default_filtered_action(spell, eventArgs)
+	end
 
 end
 
 function pretarget(spell)
-    handle_actions(spell, 'pretarget')
+	handle_actions(spell, 'pretarget')
 end
 
 function precast(spell)
-    handle_actions(spell, 'precast')
+	handle_actions(spell, 'precast')
 end
 
 function midcast(spell)
@@ -879,19 +829,19 @@ end
 
 function aftercast(spell)
 
-    if state.Buff[spell.english:ucfirst()] ~= nil and spell.target.type == 'SELF' then
-        state.Buff[spell.english:ucfirst()] = not spell.interrupted or buffactive[spell.english] or false
-    end
+	if state.Buff[spell.english:ucfirst()] ~= nil and spell.target.type == 'SELF' then
+		state.Buff[spell.english:ucfirst()] = not spell.interrupted or buffactive[spell.english] or false
+	end
 	
-    handle_actions(spell, 'aftercast')
+	handle_actions(spell, 'aftercast')
 end
 
 function pet_midcast(spell)
-    handle_actions(spell, 'pet_midcast')
+	handle_actions(spell, 'pet_midcast')
 end
 
 function pet_aftercast(spell)
-    handle_actions(spell, 'pet_aftercast')
+	handle_actions(spell, 'pet_aftercast')
 end
 
 --------------------------------------
@@ -899,7 +849,11 @@ end
 --------------------------------------
 
 function default_filtered_action(spell, eventArgs)
-	if spell.english == 'Warp' then
+	if spell.english == 'Dispelga' then
+		if state.Weapons.value ~= 'None' and not state.UnlockWeapons.value and player.equipment.main ~= 'Daybreak' then
+			windower.add_to_chat(123,"You can't cast Dispelga, your weapons are locked without Daybreak equipped.")
+		end
+	elseif spell.english == 'Warp' then
 		useItem = true
 		useItemName = 'Warp Ring'
 		useItemSlot = 'ring2'
@@ -976,10 +930,9 @@ end
 function extra_default_filtered_action(spell, eventArgs)
 	if spell.action_type == 'Item' and world.area == "Mog Garden" then
 		return
-	elseif spell.action_type == 'Magic' and not silent_can_use(spell.recast_id) and stepdown(spell, eventArgs) then
+	elseif spell.action_type == 'Magic' and not silent_can_cast(spell.name) and stepdown(spell, eventArgs) then
 	elseif not can_use(spell) then
 	end
-	
 	cancel_spell()
 	eventArgs.cancel = true
 end
@@ -994,41 +947,29 @@ function default_pretarget(spell, spellMap, eventArgs)
 end
 
 function default_precast(spell, spellMap, eventArgs)
-	if eventArgs.cancel then
-		cancel_spell()
-		return
-	else
-		equip(get_precast_set(spell, spellMap))
-	end
+	prepared_action = spell.english
+	cancel_conflicting_buffs(spell, spellMap, eventArgs)
+	equip(get_precast_set(spell, spellMap))
 	
-    cancel_conflicting_buffs(spell, spellMap, eventArgs)
-	
+	local delay = 0
 	if spell.action_type == 'Magic' then
-		next_cast = os.clock() + (spell.cast_time/4) + 3.35 - latency
+		delay = (spell.cast_time/4) + 3
 	elseif spell.type == 'WeaponSkill' then
-		next_cast = os.clock() + 2.5 - latency
+		delay = 2.75
 	elseif spell.action_type == 'Ability' then
-		next_cast = os.clock() + .95 - latency
+		delay = .85
 	elseif spell.action_type == 'Item' then
-		next_cast = os.clock() + 1.35 - latency
+		delay = 1.55
 	elseif spell.action_type == 'Ranged Attack' then
-		next_cast = os.clock() + 1.05 - latency
+		delay = .9
 	end
-	
-	if tickdelay < next_cast then tickdelay = next_cast end
+
+	add_next_cast_delay(delay)
 end
 
 function default_post_precast(spell, spellMap, eventArgs)
 	if not eventArgs.handled then
-		if spell.action_type == 'Magic' then
-			if spell.english:startswith('Utsusemi') then
-				if sets.precast.FC.Shadows and ((spell.english == 'Utsusemi: Ni' and player.main_job == 'NIN' and lastshadow == 'Utsusemi: San') or (spell.english == 'Utsusemi: Ichi' and lastshadow ~= 'Utsusemi: Ichi')) then
-					equip(sets.precast.FC.Shadows)
-				end
-			end
-			
-		elseif spell.type == 'WeaponSkill' then
-
+		if spell.type == 'WeaponSkill' then
 			if state.WeaponskillMode.value ~= 'Proc' and data.weaponskills.elemental:contains(spell.english) then
 				local distance = spell.target.distance - spell.target.model_size
 				local single_obi_intensity = 0
@@ -1098,9 +1039,11 @@ function default_post_precast(spell, spellMap, eventArgs)
 			elseif state.TreasureMode.value ~= 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 				equip(sets.TreasureHunter)
 			end
+		elseif spell.action_type == 'Magic' then
+			check_item_dependant_spells(spell, spellMap)
 		end
 		
-		if state.DefenseMode.value ~= 'None' and (player.in_combat or being_attacked) then
+		if state.DefenseMode.value ~= 'None' and in_combat then
 			if spell.action_type == 'Magic' then
 				if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DT then
 					equip(sets.precast.FC[spell.english].DT)
@@ -1135,14 +1078,21 @@ function default_post_precast(spell, spellMap, eventArgs)
 end
 
 function default_midcast(spell, spellMap, eventArgs)
-    equip(get_midcast_set(spell, spellMap))
+	equip(get_midcast_set(spell, spellMap))
 end
 
 function default_post_midcast(spell, spellMap, eventArgs)
-
 	if not eventArgs.handled then
-		if not job_post_midcast and is_nuke(spell, spellMap) and state.MagicBurstMode.value ~= 'Off' and sets.MagicBurst then
-			equip(sets.MagicBurst)
+		
+		if spell.action_type == 'Magic' then
+			if is_nuke(spell, spellMap) and state.CastingMode.value ~= 'Proc' then
+				if not job_post_midcast and state.MagicBurstMode.value ~= 'Off' and sets.MagicBurst then
+					equip(sets.MagicBurst)
+				end
+				
+				set_elemental_obi_cape_ring(spell, spellMap)
+			end
+			check_item_dependant_spells(spell, spellMap)
 		end
 
 		if spell.target.type == 'SELF' and spellMap then
@@ -1153,7 +1103,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 					end
 					curecheat = false
 				elseif sets.Self_Healing then
-					if sets.Self_Healing.SIRD and state.CastingMode.value:contains('SIRD') and (player.in_combat or being_attacked) then
+					if sets.Self_Healing.SIRD and state.CastingMode.value:contains('SIRD') and in_combat then
 						equip(sets.Self_Healing.SIRD)
 					else
 						equip(sets.Self_Healing)
@@ -1163,8 +1113,6 @@ function default_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.Self_Refresh)
 			end
 		end
-		
-		set_elemental_obi_cape_ring(spell, spellMap)
 		
 		if state.Capacity.value == true then
 			if set.contains(spell.targets, 'Enemy') then
@@ -1184,7 +1132,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.TreasureHunter)
 		end
 		
-		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and (player.in_combat or being_attacked) then
+		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and in_combat then
 			if sets.midcast[spell.english] and sets.midcast[spell.english].DT then
 				equip(sets.midcast[spell.english].DT)
 			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DT then
@@ -1204,7 +1152,6 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			
 			eventArgs.handled = true
 		end
-	
 	end
 	
 	if buffactive.doom then
@@ -1223,34 +1170,65 @@ function default_post_pet_midcast(spell, spellMap, eventArgs)
 end
 
 function default_aftercast(spell, spellMap, eventArgs)
+	prepared_action = ''
+	local delay = 0
 	if spell.interrupted then
-		if spell.type:contains('Magic') or spell.type == 'Ninjutsu' or spell.type == 'BardSong' then
-			next_cast = os.clock() + 3.35 - latency
+		if spell.action_type == 'Magic' then
+			delay = 3.35 - latency
 		else
-			next_cast = os.clock() + 1.75 - latency
+			delay = 1.75 - latency
 		end
 	elseif spell.action_type == 'Magic' then
-		next_cast = os.clock() + 3.35 - latency
+		delay = 2.9 - latency
 	elseif spell.type == 'WeaponSkill' then
-		next_cast = os.clock() + 1.5 - latency
+		delay = 2.7 - latency
 	elseif spell.action_type == 'Ability' then
-		next_cast = os.clock() + .8 - latency
-	elseif 	spell.action_type == 'Item' then
-		next_cast = os.clock() + .85 - latency
+		delay = .8 - latency
+	elseif spell.action_type == 'Item' then
+		delay = 1.5 - latency
 	elseif spell.action_type == 'Ranged Attack' then
-		next_cast = os.clock() + .85 - latency
+		delay = .85 - latency
 	end
 	
-	if tickdelay < next_cast then tickdelay = next_cast end
+	add_next_cast_delay(delay)
 	
 	if not spell.interrupted then
+		if spell.target.type == 'MONSTER' and spell.target.hpp > 0 then
+			in_combat = true
+			last_in_combat = os.clock()
+		end
 		if state.TreasureMode.value ~= 'None' and state.DefenseMode.value == 'None' and spell.target.type == 'MONSTER' and not info.tagged_mobs[spell.target.id] then
 			info.tagged_mobs[spell.target.id] = os.time()
 			if player.target.id == spell.target.id and state.th_gear_is_locked then
 				unlock_TH()
 			end
 		end
-		if is_nuke(spell, spellMap) then
+		if spell.type == 'WeaponSkill' then
+			if state.SkillchainMode.value == 'Single' then
+				state.SkillchainMode:reset()
+				if state.DisplayMode.value then update_job_states()	end
+			end
+		elseif spell.action_type == 'Item' then
+			if useItem and (spell.english == useItemName or useItemSlot == 'set') then
+				useItem = false
+				if disabled_sets['UseItem'] then
+					internal_enable_set("UseItem")
+					if useItemSlot == 'set' then
+						if player.inventory[useItemName] then
+							send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
+						end
+					else 
+						if player.inventory[useItemName] then
+							send_command('wait 1;put '..useItemName..' satchel')
+						end
+					end
+				end
+				useItemName = ''
+				useItemSlot = ''
+			end
+		elseif spell.english:startswith('Utsusemi') then
+			lastshadow = spell.english
+		elseif is_nuke(spell, spellMap) then
 			if state.MagicBurstMode.value == 'Single' then state.MagicBurstMode:reset() end
 			if state.ElementalWheel.value and (spell.skill == 'Elemental Magic' or spellMap:contains('ElementalNinjutsu')) then
 				state.ElementalMode:cycle()
@@ -1261,38 +1239,12 @@ function default_aftercast(spell, spellMap, eventArgs)
 				end
 			end
 			if state.DisplayMode.value then update_job_states()	end
-		elseif spell.type == 'WeaponSkill' and state.SkillchainMode.value == 'Single' then
-			state.SkillchainMode:reset()
-			if state.DisplayMode.value then update_job_states()	end
-		elseif spell.english:startswith('Utsusemi') then
-			lastshadow = spell.english
-		elseif spell.action_type == 'Item' and useItem and (spell.english == useItemName or useItemSlot == 'set') then
-			useItem = false
-			if useItemSlot == 'item' then
-				windower.send_command('put '..useItemName..' satchel')
-			elseif useItemSlot == 'set' then
-				local slots = T{}
-				for slot,item in pairs(sets[useItemName]) do
-					slots:append(slot)
-				end
-				enable(slots)
-				if player.inventory[useItemName] then
-					windower.send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
-				end
-			else 
-				enable(useItemSlot)
-				if player.inventory[useItemName] then
-					windower.send_command('wait 1;put '..useItemName..' satchel')
-				end
-			end
-			useItemName = ''
-			useItemSlot = ''
 		end
 	end
 
 	if not eventArgs.handled then
-        handle_equipping_gear(player.status)
-    end
+		handle_equipping_gear(player.status)
+	end
 end
 
 function default_pet_midcast(spell, spellMap, eventArgs)
@@ -1304,7 +1256,7 @@ function default_pet_midcast(spell, spellMap, eventArgs)
 end
 
 function default_pet_aftercast(spell, spellMap, eventArgs)
-    if not midaction() then handle_equipping_gear(player.status) end
+	if not midaction() then handle_equipping_gear(player.status) end
 	petWillAct = 0
 end
 
@@ -1316,7 +1268,7 @@ end
 
 function filter_precast(spell, spellMap, eventArgs)
 	if check_rnghelper(spell, spellMap, eventArgs) then return end
-	if check_midaction(spell, spellMap, eventArgs) then return end
+	if just_acted(spell, spellMap, eventArgs) then return end
 	if check_disable(spell, spellMap, eventArgs) then return end
 	if check_doom(spell, spellMap, eventArgs) then return end
 	
@@ -1334,8 +1286,8 @@ function filter_precast(spell, spellMap, eventArgs)
 end
 
 function filter_midcast(spell, spellMap, eventArgs)
-    if state.EquipStop.value == 'precast' then
-        eventArgs.cancel = true
+	if state.EquipStop.value == 'precast' then
+		eventArgs.cancel = true
 		return
 	end
 	
@@ -1346,26 +1298,26 @@ function filter_midcast(spell, spellMap, eventArgs)
 end
 
 function filter_aftercast(spell, spellMap, eventArgs)
-    if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' or state.EquipStop.value == 'pet_midcast' then
-        eventArgs.cancel = true
-    elseif spell.english == 'Unknown Interrupt' then
-        eventArgs.cancel = true
-    end
+	if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' or state.EquipStop.value == 'pet_midcast' then
+		eventArgs.cancel = true
+	elseif spell.english == 'Unknown Interrupt' then
+		eventArgs.cancel = true
+	end
 end
 
 function filter_pet_midcast(spell, spellMap, eventArgs)
-    -- If we have show_set active for precast or midcast, don't try to equip pet midcast gear.
-    if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' then
-        add_to_chat(104, 'Show Sets: Pet midcast not equipped.')
-        eventArgs.cancel = true
-    end
+	-- If we have show_set active for precast or midcast, don't try to equip pet midcast gear.
+	if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' then
+		add_to_chat(104, 'Show Sets: Pet midcast not equipped.')
+		eventArgs.cancel = true
+	end
 end
 
 function filter_pet_aftercast(spell, spellMap, eventArgs)
-    -- If show_set is flagged for precast or midcast, don't try to equip aftercast gear.
-    if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' or state.EquipStop.value == 'pet_midcast' then
-        eventArgs.cancel = true
-    end
+	-- If show_set is flagged for precast or midcast, don't try to equip aftercast gear.
+	if state.EquipStop.value == 'precast' or state.EquipStop.value == 'midcast' or state.EquipStop.value == 'pet_midcast' then
+		eventArgs.cancel = true
+	end
 end
 
 --------------------------------------
@@ -1373,45 +1325,47 @@ end
 --------------------------------------
 
 function cleanup_precast(spell, spellMap, eventArgs)
-    -- If show_set is flagged for precast, notify that we won't try to equip later gear.
-    if state.EquipStop.value == 'precast' then
-        add_to_chat(104, 'Show Sets: Stopping at precast.')
-    end
+	-- If show_set is flagged for precast, notify that we won't try to equip later gear.
+	if state.EquipStop.value == 'precast' then
+		add_to_chat(104, 'Show Sets: Stopping at precast.')
+	end
 end
 
 function cleanup_midcast(spell, spellMap, eventArgs)
-    -- If show_set is flagged for midcast, notify that we won't try to equip later gear.
-    if state.EquipStop.value == 'midcast' then
-        add_to_chat(104, 'Show Sets: Stopping at midcast.')
-    end
+	-- If show_set is flagged for midcast, notify that we won't try to equip later gear.
+	if state.EquipStop.value == 'midcast' then
+		add_to_chat(104, 'Show Sets: Stopping at midcast.')
+	end
 end
 
 function cleanup_aftercast(spell, spellMap, eventArgs)
-    -- Reset custom classes after all possible precast/midcast/aftercast/job-specific usage of the value.
-    -- If we're in the middle of a pet action, pet_aftercast will handle clearing it.
-    if not pet_midaction() or ((petWillAct + 2) > os.clock()) then
-        reset_transitory_classes()
-    end
+	-- Reset custom classes after all possible precast/midcast/aftercast/job-specific usage of the value.
+	-- If we're in the middle of a pet action, pet_aftercast will handle clearing it.
+	if not pet_midaction() or ((petWillAct + 2) > os.clock()) then
+		reset_transitory_classes()
+	end
 end
 
 function cleanup_pet_midcast(spell, spellMap, eventArgs)
-    -- If show_set is flagged for pet midcast, notify that we won't try to equip later gear.
-    if state.EquipStop.value == 'pet_midcast' then
-        add_to_chat(104, 'Show Sets: Stopping at pet midcast.')
-    end
+	-- If show_set is flagged for pet midcast, notify that we won't try to equip later gear.
+	if state.EquipStop.value == 'pet_midcast' then
+		add_to_chat(104, 'Show Sets: Stopping at pet midcast.')
+	end
 end
 
 function cleanup_pet_aftercast(spell, spellMap, eventArgs)
-    -- Reset custom classes after all possible precast/midcast/aftercast/job-specific usage of the value.
-    reset_transitory_classes()
+	-- Reset custom classes after all possible precast/midcast/aftercast/job-specific usage of the value.
+	reset_transitory_classes()
 end
 
 function pre_tick()
 	if check_doomed() then return true end
-	if check_trust() then return true end
+	if check_delayed_cast() then return true end
+	if check_use_item() then return true end
+	if state.Buff['Invisible'] then return false end
 	if check_rune() then return true end
 	if check_shadows() then return true end
-	if check_use_item() then return true end
+	if check_trust() then return true end
 	return false
 end
 
@@ -1420,17 +1374,17 @@ function default_tick()
 	if check_sub() then return true end
 	if check_food() then return true end
 	if check_samba() then return true end
-	if check_ws() then return true end
 	if check_cpring_buff() then return true end
-	if check_cleanup() then return true end
+	if state.Buff['Sneak'] then return false end
+	if check_ws() then return true end
 	if check_nuke() then return true end
 	return false
 end
 
 -- Clears the values from classes that only exist til the action is complete.
 function reset_transitory_classes()
-    classes.CustomClass = nil
-    classes.JAMode = nil
+	classes.CustomClass = nil
+	classes.JAMode = nil
 end
 
 
@@ -1442,44 +1396,34 @@ end
 -- Central point to call to equip gear based on status.
 -- Status - Player status that we're using to define what gear to equip.
 function handle_equipping_gear(playerStatus, petStatus)
-	local current_time = os.clock()
-	if current_time < equipped then
-		return
-	else
-		equipped = current_time + .1
-	end
+	-- local current_time = os.clock()
+	-- if current_time < equipped then
+		-- return
+	-- else
+		-- equipped = current_time + .1
+	-- end
 	
-    -- init a new eventArgs
-    local eventArgs = {handled = false}
+	-- init a new eventArgs
+	local eventArgs = {handled = false}
 	
-    -- Allow jobs to override this code
-    if job_handle_equipping_gear then
-        job_handle_equipping_gear(playerStatus, eventArgs)
-    end
-
-	if state.ReEquip.value and state.Weapons.value ~= 'None' and not state.UnlockWeapons.value then
-		if player.equipment.main ~= sets.weapons[state.Weapons.value].main or (sets.weapons[state.Weapons.value].sub and player.equipment.sub ~= sets.weapons[state.Weapons.value].sub) or (sets.weapons[state.Weapons.value].range and player.equipment.range ~= sets.weapons[state.Weapons.value].range) then
-			handle_weapons()
-		end
+	-- Allow jobs to override this code
+	if job_handle_equipping_gear then
+		job_handle_equipping_gear(playerStatus, eventArgs)
 	end
 
-	if player.equipment.ammo == 'empty' and sets.weapons[state.Weapons.value] and not state.UnlockWeapons.value and sets.weapons[state.Weapons.value].ammo then
-		enable('ammo')
-		equip({ammo=sets.weapons[state.Weapons.value].ammo})
-		disable('ammo')
+	-- Equip default gear if job didn't handle it.
+	if not eventArgs.handled then
+		equip_gear_by_status(playerStatus, petStatus)
 	end
 	
-    -- Equip default gear if job didn't handle it.
-    if not eventArgs.handled then
-        equip_gear_by_status(playerStatus, petStatus)
-    end
+	equip(internal_disable)
 end
 
 
 -- Function to wrap logic for equipping gear on aftercast, status change, or user update.
 -- @param status : The current or new player status that determines what sort of gear to equip.
 function equip_gear_by_status(playerStatus, petStatus)
-    if _global.debug_mode then add_to_chat(123,'Debug: Equip gear for status ['..tostring(playerStatus)..'], HP='..tostring(player.hp)) end
+	if _global.debug_mode then add_to_chat(123,'Debug: Equip gear for status ['..tostring(playerStatus)..'], HP='..tostring(player.hp)) end
 	if player.hp > 0 then
 		playerStatus = playerStatus or player.status or 'Idle'
 		-- If status not defined, treat as idle.
@@ -1510,21 +1454,21 @@ end
 -- Params:
 -- petStatus - Optional explicit definition of pet status.
 function get_idle_set(petStatus)
-    local idleSet = sets.idle
-    
-    if not idleSet then
-        return {}
-    end
-    
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('idle')
-    
-    if buffactive.weakness and sets.idle.Weak then
+	local idleSet = sets.idle
+	
+	if not idleSet then
+		return {}
+	end
+	
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('idle')
+	
+	if buffactive.weakness and sets.idle.Weak then
 		idleSet = sets.idle.Weak
 		mote_vars.set_breadcrumbs:append('Weak')
 	end
 
-    if not (player.in_combat or being_attacked) and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank')) then
+	if not in_combat and (state.IdleMode.current:contains('DT') or state.IdleMode.current:contains('Tank') or state.IdleMode.current:contains('EVA')) then
 		if state.NonCombatIdleMode and idleSet[state.NonCombatIdleMode.current] then
 			idleSet = idleSet[state.NonCombatIdleMode.current]
 			mote_vars.set_breadcrumbs:append(state.NonCombatIdleMode.current)
@@ -1532,32 +1476,28 @@ function get_idle_set(petStatus)
 	elseif idleSet[state.IdleMode.current] then
 		idleSet = idleSet[state.IdleMode.current]
 		mote_vars.set_breadcrumbs:append(state.IdleMode.current)
-    end
+	end
 
-    if (pet.isvalid or state.Buff.Pet) and idleSet.Pet then
-        idleSet = idleSet.Pet
-        petStatus = petStatus or pet.status
-        mote_vars.set_breadcrumbs:append('Pet')
+	if (pet.isvalid or state.Buff.Pet) and idleSet.Pet then
+		idleSet = idleSet.Pet
+		petStatus = petStatus or pet.status
+		mote_vars.set_breadcrumbs:append('Pet')
 
-        if petStatus == 'Engaged' and idleSet.Engaged then
-            idleSet = idleSet.Engaged
-            mote_vars.set_breadcrumbs:append('Engaged')
-        end
-    end
+		if petStatus == 'Engaged' and idleSet.Engaged then
+			idleSet = idleSet.Engaged
+			mote_vars.set_breadcrumbs:append('Engaged')
+		end
+	end
 
-    for _,group in ipairs(classes.CustomIdleGroups) do
-        if idleSet[group] then
-            idleSet = idleSet[group]
-            mote_vars.set_breadcrumbs:append(group)
-        end
-    end
-
-	if buffactive['Elvorseal'] and sets.buff.Elvorseal then
-		idleSet = set_combine(idleSet, sets.buff.Elvorseal)
+	for _,group in ipairs(classes.CustomIdleGroups) do
+		if idleSet[group] then
+			idleSet = idleSet[group]
+			mote_vars.set_breadcrumbs:append(group)
+		end
 	end
 
 	--Apply time based gear.
-    if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and not pet.isvalid then
+	if (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere')) and not pet.isvalid then
 	    if player.hpp < 80 then
 			if sets.ExtraRegen then idleSet = set_combine(idleSet, sets.ExtraRegen) end
 		end
@@ -1573,27 +1513,29 @@ function get_idle_set(petStatus)
 		end
 	end
 
-    if data.areas.assault:contains(world.area) and sets.Assault then
-        idleSet = set_combine(idleSet, sets.Assault)
-    end
-	
-    if sets.Reive and buffactive['Reive Mark'] then
-        idleSet = set_combine(idleSet, sets.Reive)
-    end
+	if buffactive['Elvorseal'] then
+		if sets.buff.Elvorseal then
+			idleSet = set_combine(idleSet, sets.buff.Elvorseal)
+		end
+	elseif buffactive['Reive Mark'] then
+		if sets.Reive then
+			idleSet = set_combine(idleSet, sets.Reive)
+		end
+	end
 
-    if user_customize_idle_set then
-        idleSet = user_customize_idle_set(idleSet)
-    end
+	if user_customize_idle_set then
+		idleSet = user_customize_idle_set(idleSet)
+	end
 	
-    if job_customize_idle_set then
-        idleSet = job_customize_idle_set(idleSet)
-    end
+	if job_customize_idle_set then
+		idleSet = job_customize_idle_set(idleSet)
+	end
 	
-    if user_job_customize_idle_set then
-        idleSet = user_job_customize_idle_set(idleSet)
-    end
+	if user_job_customize_idle_set then
+		idleSet = user_job_customize_idle_set(idleSet)
+	end
 
-    if data.areas.cities:contains(world.area) then
+	if data.areas.cities:contains(world.area) then
 		if sets.idle.Town then
 			idleSet = set_combine(idleSet, sets.Kiting, sets.idle.Town)
 		elseif sets.Town then
@@ -1602,16 +1544,26 @@ function get_idle_set(petStatus)
 			idleSet = set_combine(idleSet, sets.Kiting)
 		end
 
-		if (world.area:contains('Adoulin') or world.area == "Celennia Memorial Library") and item_available("Councilor's Garb") then
-			idleSet = set_combine(idleSet, {body="Councilor's Garb"})
-		elseif (world.area:contains('Bastok') or world.area == "Metalworks") and item_available("Republic Aketon") then
-			idleSet = set_combine(idleSet, {body="Republic Aketon"})
-		elseif (world.area:contains('Windurst') or world.area == "Heavens Tower") and item_available("Federation Aketon") then
-			idleSet = set_combine(idleSet, {body="Federation Aketon"})
-		elseif (world.area:contains("San d'Oria") or world.area == "Chateau d'Oraguille") and item_available("Kingdom Aketon") then
-			idleSet = set_combine(idleSet, {body="Kingdom Aketon"})
-		elseif world.area == "Mog Garden" and item_available("Jubilee Shirt") then
-			idleSet = set_combine(idleSet, {body="Jubilee Shirt"})
+		if (world.area:contains('Adoulin') or world.area == "Celennia Memorial Library") then
+			if item_available("Councilor's Garb") then idleSet = set_combine(idleSet, {body="Councilor's Garb"}) end
+		elseif (world.area:contains('Bastok') or world.area == "Metalworks") then
+			if item_available("Republic Aketon") then idleSet = set_combine(idleSet, {body="Republic Aketon"}) end
+		elseif (world.area:contains('Windurst') or world.area == "Heavens Tower") then
+			if item_available("Federation Aketon") then idleSet = set_combine(idleSet, {body="Federation Aketon"}) end
+		elseif (world.area:contains("San d'Oria") or world.area == "Chateau d'Oraguille") then
+			if item_available("Kingdom Aketon") then idleSet = set_combine(idleSet, {body="Kingdom Aketon"}) end
+		elseif world.area == "Mog Garden" then
+			if item_available("Jubilee Shirt") then idleSet = set_combine(idleSet, {body="Jubilee Shirt"}) end
+		end
+	elseif data.areas.assault:contains(world.area) then
+		if sets.Assault then
+			idleSet = set_combine(idleSet, sets.Assault)
+		end
+	end
+
+	if rolled_eleven[1] then
+		if sets.buff.RolledEleven then
+			idleSet = set_combine(idleSet, sets.buff.RolledEleven)
 		end
 	end
 
@@ -1621,12 +1573,14 @@ function get_idle_set(petStatus)
 		idleSet = set_combine(idleSet, sets.Capacity)
 	end
 	
-    idleSet = apply_defense(idleSet)
-    idleSet = apply_kiting(idleSet)
+	idleSet = apply_defense(idleSet)
+	idleSet = apply_kiting(idleSet)
 	
 	if silent_check_disable() and state.DefenseMode.value == 'None' then
 		if state.IdleMode.value:contains('MDT') and sets.defense.MDT then
 			idleSet = set_combine(idleSet, sets.defense.MDT)
+		elseif state.IdleMode.value:contains('MEVA') and sets.defense.MEVA then
+			idleSet = set_combine(idleSet, sets.defense.MEVA)
 		elseif sets.defense.PDT then
 			idleSet = set_combine(idleSet, sets.defense.PDT)
 		end
@@ -1636,19 +1590,11 @@ function get_idle_set(petStatus)
 		idleSet = set_combine(idleSet, sets.weapons[state.Weapons.value])
 	end
 	
-	if (buffactive.sleep or buffactive.Lullaby) and (player.main_job == 'SMN' and pet.isvalid) then
-		idleSet = set_combine(idleSet, sets.buff.Sleep)
+	if extra_user_customize_idle_set then
+		idleSet = extra_user_customize_idle_set(idleSet)
 	end
-	
-    if buffactive.doom then
-        idleSet = set_combine(idleSet, sets.buff.Doom)
-    end
 
-    if extra_user_customize_idle_set then
-        idleSet = extra_user_customize_idle_set(idleSet)
-    end
-
-    return idleSet
+	return idleSet
 end
 
 
@@ -1656,61 +1602,61 @@ end
 -- Set construction order (all sets after sets.engaged are optional):
 --   sets.engaged[state.CombatForm][state.CombatWeapon][state.OffenseMode][state.DefenseMode][classes.CustomMeleeGroups (any number)]
 function get_melee_set()
-    local meleeSet = sets.engaged
-    
-    if not meleeSet then
-        return {}
-    end
-    
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('engaged')
-
-    if state.CombatForm.has_value and meleeSet[state.CombatForm.value] then
-        meleeSet = meleeSet[state.CombatForm.value]
-        mote_vars.set_breadcrumbs:append(state.CombatForm.value)
-    end
-
-    if state.CombatWeapon.has_value and meleeSet[state.CombatWeapon.value] then
-        meleeSet = meleeSet[state.CombatWeapon.value]
-        mote_vars.set_breadcrumbs:append(state.CombatWeapon.value)
-    end
-
-    if meleeSet[state.OffenseMode.current] then
-        meleeSet = meleeSet[state.OffenseMode.current]
-        mote_vars.set_breadcrumbs:append(state.OffenseMode.current)
-    end
-
-    if meleeSet[state.HybridMode.current] then
-        meleeSet = meleeSet[state.HybridMode.current]
-        mote_vars.set_breadcrumbs:append(state.HybridMode.current)
-    end
-
-    for _,group in ipairs(classes.CustomMeleeGroups) do
-        if meleeSet[group] then
-            meleeSet = meleeSet[group]
-            mote_vars.set_breadcrumbs:append(group)
-        end
-    end
-
-    if user_customize_melee_set then
-        meleeSet = user_customize_melee_set(meleeSet)
-    end
+	local meleeSet = sets.engaged
 	
-    if job_customize_melee_set then
-        meleeSet = job_customize_melee_set(meleeSet)
-    end
+	if not meleeSet then
+		return {}
+	end
 	
-    if user_job_customize_melee_set then
-        meleeSet = user_job_customize_melee_set(meleeSet)
-    end
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('engaged')
+
+	if state.CombatForm.has_value and meleeSet[state.CombatForm.value] then
+		meleeSet = meleeSet[state.CombatForm.value]
+		mote_vars.set_breadcrumbs:append(state.CombatForm.value)
+	end
+
+	if state.CombatWeapon.has_value and meleeSet[state.CombatWeapon.value] then
+		meleeSet = meleeSet[state.CombatWeapon.value]
+		mote_vars.set_breadcrumbs:append(state.CombatWeapon.value)
+	end
+
+	if meleeSet[state.OffenseMode.current] then
+		meleeSet = meleeSet[state.OffenseMode.current]
+		mote_vars.set_breadcrumbs:append(state.OffenseMode.current)
+	end
+
+	if meleeSet[state.HybridMode.current] then
+		meleeSet = meleeSet[state.HybridMode.current]
+		mote_vars.set_breadcrumbs:append(state.HybridMode.current)
+	end
+
+	for _,group in ipairs(classes.CustomMeleeGroups) do
+		if meleeSet[group] then
+			meleeSet = meleeSet[group]
+			mote_vars.set_breadcrumbs:append(group)
+		end
+	end
+
+	if user_customize_melee_set then
+		meleeSet = user_customize_melee_set(meleeSet)
+	end
+	
+	if job_customize_melee_set then
+		meleeSet = job_customize_melee_set(meleeSet)
+	end
+	
+	if user_job_customize_melee_set then
+		meleeSet = user_job_customize_melee_set(meleeSet)
+	end
 	
 	if buffactive['Elvorseal'] and sets.buff.Elvorseal then
 		meleeSet = set_combine(meleeSet, sets.buff.Elvorseal)
 	end
 	
-    if state.ExtraMeleeMode and state.ExtraMeleeMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
-    end
+	if state.ExtraMeleeMode and state.ExtraMeleeMode.value ~= 'None' then
+		meleeSet = set_combine(meleeSet, sets[state.ExtraMeleeMode.value])
+	end
 	
 	meleeSet = apply_passive(meleeSet)
 	
@@ -1718,8 +1664,8 @@ function get_melee_set()
 		meleeSet = set_combine(meleeSet, sets.Capacity)
 	end
 	
-    meleeSet = apply_defense(meleeSet)
-    meleeSet = apply_kiting(meleeSet)
+	meleeSet = apply_defense(meleeSet)
+	meleeSet = apply_kiting(meleeSet)
 	
 	if silent_check_disable() and state.DefenseMode.value == 'None' then
 		if state.HybridMode.value:contains('MDT') and sets.defense.MDT then
@@ -1730,26 +1676,18 @@ function get_melee_set()
 	end
 	
 	if buffactive['Reive Mark'] and sets.Reive then
-        meleeSet = set_combine(meleeSet, sets.Reive)
-    end
-	
-	if (buffactive.sleep or buffactive.Lullaby) and sets.buff.Sleep then
-        meleeSet = set_combine(meleeSet, sets.buff.Sleep)
-    end
-	
-	if buffactive.doom then
-        meleeSet = set_combine(meleeSet, sets.buff.Doom)
-    end
-	
-    if extra_user_customize_melee_set then
-        meleeSet = extra_user_customize_melee_set(meleeSet)
-    end
+		meleeSet = set_combine(meleeSet, sets.Reive)
+	end
+
+	if extra_user_customize_melee_set then
+		meleeSet = extra_user_customize_melee_set(meleeSet)
+	end
 	
 	if state.UnlockWeapons.value and sets.weapons[state.Weapons.value] then
 		meleeSet = set_combine(meleeSet, sets.weapons[state.Weapons.value])
 	end
 	
-    return meleeSet
+	return meleeSet
 end
 
 
@@ -1757,21 +1695,21 @@ end
 -- Set construction order:
 --   sets.resting[state.RestingMode]
 function get_resting_set()
-    local restingSet = sets.resting
+	local restingSet = sets.resting
 
-    if not restingSet then
-        return {}
-    end
+	if not restingSet then
+		return {}
+	end
 
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('resting')
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('resting')
 
-    if restingSet[state.RestingMode.current] then
-        restingSet = restingSet[state.RestingMode.current]
-        mote_vars.set_breadcrumbs:append(state.RestingMode.current)
-    end
+	if restingSet[state.RestingMode.current] then
+		restingSet = restingSet[state.RestingMode.current]
+		mote_vars.set_breadcrumbs:append(state.RestingMode.current)
+	end
 
-    return restingSet
+	return restingSet
 end
 
 
@@ -1781,75 +1719,92 @@ end
 
 -- Get the default precast gear set.
 function get_precast_set(spell, spellMap)
-    -- If there are no precast sets defined, bail out.
-    if not sets.precast then
-        return {}
-    end
+	-- If there are no precast sets defined, bail out.
+	if not sets.precast then
+		return {}
+	end
 
-    local equipSet = sets.precast
+	local equipSet = sets.precast
 
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('precast')
-    
-    -- Determine base sub-table from type of action being performed.
-    
-    local cat
-    
-    if spell.action_type == 'Magic' then
-        cat = 'FC'
-    elseif spell.action_type == 'Ranged Attack' then
-        cat = (sets.precast.RangedAttack and 'RangedAttack') or 'RA'
-    elseif spell.action_type == 'Ability' then
-        if spell.type == 'WeaponSkill' then
-            cat = 'WS'
-        elseif spell.type == 'JobAbility' then
-            cat = 'JA'
-        else
-            -- Allow fallback to .JA table if spell.type isn't found, for all non-weaponskill abilities.
-            cat = (sets.precast[spell.type] and spell.type) or 'JA'
-        end
-    elseif spell.action_type == 'Item' then
-        cat = 'Item'
-    end
-    
-    -- If no proper sub-category is defined in the job file, bail out.
-    if cat then
-        if equipSet[cat] then
-            equipSet = equipSet[cat]
-            mote_vars.set_breadcrumbs:append(cat)
-        else
-            mote_vars.set_breadcrumbs:clear()
-            return {}
-        end
-    end
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('precast')
+	
+	-- Determine base sub-table from type of action being performed.
+	
+	local cat
+	
+	if spell.action_type == 'Magic' then
+		cat = 'FC'
+	elseif spell.action_type == 'Ranged Attack' then
+		cat = (sets.precast.RangedAttack and 'RangedAttack') or 'RA'
+	elseif spell.action_type == 'Ability' then
+		if spell.type == 'WeaponSkill' then
+			cat = 'WS'
+		elseif spell.type == 'JobAbility' then
+			cat = 'JA'
+		else
+			-- Allow fallback to .JA table if spell.type isn't found, for all non-weaponskill abilities.
+			cat = (sets.precast[spell.type] and spell.type) or 'JA'
+		end
+	elseif spell.action_type == 'Item' then
+		cat = 'Item'
+	end
+	
+	-- If no proper sub-category is defined in the job file, bail out.
+	if cat then
+		if equipSet[cat] then
+			equipSet = equipSet[cat]
+			mote_vars.set_breadcrumbs:append(cat)
+		else
+			mote_vars.set_breadcrumbs:clear()
+			return {}
+		end
+	end
 
-    classes.SkipSkillCheck = false
-    -- Handle automatic selection of set based on spell class/name/map/skill/type.
-    equipSet = select_specific_set(equipSet, spell, spellMap)
+	classes.SkipSkillCheck = false
+	-- Handle automatic selection of set based on spell class/name/map/skill/type.
+	equipSet = select_specific_set(equipSet, spell, spellMap)
 
-    
-    -- Once we have a named base set, do checks for specialized modes (casting mode, weaponskill mode, etc).
-    
-    if spell.action_type == 'Magic' then
-		if state.CastingMode.current:contains('DT') and not (player.in_combat or being_attacked) then
-		elseif state.CastingMode.current:contains('SIRD') and not (player.in_combat or being_attacked) then
-        elseif equipSet[state.CastingMode.current] then
-            equipSet = equipSet[state.CastingMode.current]
-            mote_vars.set_breadcrumbs:append(state.CastingMode.current)
-        end
-    elseif spell.type == 'WeaponSkill' then
-        equipSet = get_weaponskill_set(equipSet, spell, spellMap)
-    elseif spell.action_type == 'Ability' then
-        if classes.JAMode and equipSet[classes.JAMode] then
-            equipSet = equipSet[classes.JAMode]
-            mote_vars.set_breadcrumbs:append(classes.JAMode)
-        end
-    elseif spell.action_type == 'Ranged Attack' then
-        equipSet = get_ranged_set(equipSet, spell, spellMap)
-    end
+	
+	-- Once we have a named base set, do checks for specialized modes (casting mode, weaponskill mode, etc).
+	
+	if spell.action_type == 'Magic' then
+		if (state.CastingMode.current:contains('DT') or state.CastingMode.current:contains('SIRD')) and not in_combat then
+		elseif equipSet[state.CastingMode.current] then
+			equipSet = equipSet[state.CastingMode.current]
+			mote_vars.set_breadcrumbs:append(state.CastingMode.current)
+		end
 
-    -- Return whatever we've constructed.
-    return equipSet
+		if can_dual_wield then
+			if sets.precast.FC[spell.english] and sets.precast.FC[spell.english][state.CastingMode.current] and sets.precast.FC[spell.english][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spell.english][state.CastingMode.current].DW)
+			elseif sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spell.english].DW)
+			elseif sets.precast.FC[spellMap] and sets.precast.FC[spellMap][state.CastingMode.current] and sets.precast.FC[spellMap][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spellMap][state.CastingMode.current].DW)
+			elseif sets.precast.FC[spellMap] and sets.precast.FC[spellMap].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spellMap].DW)
+			elseif sets.precast.FC[spell.skill] and sets.precast.FC[spell.skill][state.CastingMode.current] and sets.precast.FC[spell.skill][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spell.skill][state.CastingMode.current].DW)
+			elseif sets.precast.FC[spell.skill] and sets.precast.FC[spell.skill].DW then
+				equipSet = set_combine(equipSet, sets.precast.FC[spell.skill].DW)
+			elseif sets.precast.FC.DW then
+				equipSet = set_combine(equipSet, sets.precast.FC.DW)
+			end
+		end
+	elseif spell.type == 'WeaponSkill' then
+		equipSet = get_weaponskill_set(equipSet, spell, spellMap)
+	elseif spell.action_type == 'Ability' then
+		if classes.JAMode and equipSet[classes.JAMode] then
+			equipSet = equipSet[classes.JAMode]
+			mote_vars.set_breadcrumbs:append(classes.JAMode)
+		end
+	elseif spell.action_type == 'Ranged Attack' then
+		equipSet = get_ranged_set(equipSet, spell, spellMap)
+	end
+
+	-- Return whatever we've constructed.
+	return equipSet
 end
 
 
@@ -1857,174 +1812,191 @@ end
 -- Get the default midcast gear set.
 -- This builds on sets.midcast.
 function get_midcast_set(spell, spellMap)
-    -- If there are no midcast sets defined, bail out.
-    if not sets.midcast then
-        return {}
-    end
-    
-    local equipSet = sets.midcast
+	-- If there are no midcast sets defined, bail out.
+	if not sets.midcast then
+		return {}
+	end
+	
+	local equipSet = sets.midcast
 
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('midcast')
-    
-    -- Determine base sub-table from type of action being performed.
-    -- Only ranged attacks and items get specific sub-categories here.
-    
-    local cat
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('midcast')
+	
+	-- Determine base sub-table from type of action being performed.
+	-- Only ranged attacks and items get specific sub-categories here.
+	
+	local cat
 
-    if spell.action_type == 'Ranged Attack' then
-        cat = (sets.precast.RangedAttack and 'RangedAttack') or 'RA'
-    elseif spell.action_type == 'Item' then
-        cat = 'Item'
-    end
-    
-    -- If no proper sub-category is defined in the job file, bail out.
-    if cat then
-        if equipSet[cat] then
-            equipSet = equipSet[cat]
-            mote_vars.set_breadcrumbs:append(cat)
-        else
-            mote_vars.set_breadcrumbs:clear()
-            return {}
-        end
-    end
-    
-    classes.SkipSkillCheck = classes.NoSkillSpells:contains(spell.english)
-    -- Handle automatic selection of set based on spell class/name/map/skill/type.
-    equipSet = select_specific_set(equipSet, spell, spellMap)
-    
-    -- After the default checks, do checks for specialized modes (casting mode, etc).
-    
-    if spell.action_type == 'Magic' then
-		if state.CastingMode.current:contains('SIRD') and not (player.in_combat or being_attacked) then
-        elseif equipSet[state.CastingMode.current] then
-            equipSet = equipSet[state.CastingMode.current]
-            mote_vars.set_breadcrumbs:append(state.CastingMode.current)
-        end
-    elseif spell.action_type == 'Ranged Attack' then
-        equipSet = get_ranged_set(equipSet, spell, spellMap)
-    end
-    
-    -- Return whatever we've constructed.
-    return equipSet
+	if spell.action_type == 'Ranged Attack' then
+		cat = (sets.precast.RangedAttack and 'RangedAttack') or 'RA'
+	elseif spell.action_type == 'Item' then
+		cat = 'Item'
+	end
+	
+	-- If no proper sub-category is defined in the job file, bail out.
+	if cat then
+		if equipSet[cat] then
+			equipSet = equipSet[cat]
+			mote_vars.set_breadcrumbs:append(cat)
+		else
+			mote_vars.set_breadcrumbs:clear()
+			return {}
+		end
+	end
+	
+	classes.SkipSkillCheck = classes.NoSkillSpells:contains(spell.english)
+	-- Handle automatic selection of set based on spell class/name/map/skill/type.
+	equipSet = select_specific_set(equipSet, spell, spellMap)
+	
+	-- After the default checks, do checks for specialized modes (casting mode, etc).
+
+	if spell.action_type == 'Magic' then
+		if state.CastingMode.current:contains('SIRD') and not in_combat then
+		elseif state.CastingMode.value:contains('Resistant') and (state.Buff.Stymie or state.Buff['Elemental Seal']) then
+		elseif equipSet[state.CastingMode.current] then
+			equipSet = equipSet[state.CastingMode.current]
+			mote_vars.set_breadcrumbs:append(state.CastingMode.current)
+		end
+		
+		if can_dual_wield then
+			if sets.midcast[spell.english] and sets.midcast[spell.english][state.CastingMode.current] and sets.midcast[spell.english][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spell.english][state.CastingMode.current].DW)
+			elseif sets.midcast[spell.english] and sets.midcast[spell.english].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spell.english].DW)
+			elseif sets.midcast[spellMap] and sets.midcast[spellMap][state.CastingMode.current] and sets.midcast[spellMap][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spellMap][state.CastingMode.current].DW)
+			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spellMap].DW)
+			elseif sets.midcast[spell.skill] and sets.midcast[spell.skill][state.CastingMode.current] and sets.midcast[spell.skill][state.CastingMode.current].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spell.skill][state.CastingMode.current].DW)
+			elseif sets.midcast[spell.skill] and sets.midcast[spell.skill].DW then
+				equipSet = set_combine(equipSet, sets.midcast[spell.skill].DW)
+			end
+		end
+	elseif spell.action_type == 'Ranged Attack' then
+		equipSet = get_ranged_set(equipSet, spell, spellMap)
+	end
+	
+	-- Return whatever we've constructed.
+	return equipSet
 end
 
 
 -- Get the default pet midcast gear set.
 -- This is built in sets.midcast.Pet.
 function get_pet_midcast_set(spell, spellMap)
-    -- If there are no midcast sets defined, bail out.
-    if not sets.midcast or not sets.midcast.Pet then
-        return {}
-    end
+	-- If there are no midcast sets defined, bail out.
+	if not sets.midcast or not sets.midcast.Pet then
+		return {}
+	end
 
-    local equipSet = sets.midcast.Pet
+	local equipSet = sets.midcast.Pet
 
-    mote_vars.set_breadcrumbs:append('sets')
-    mote_vars.set_breadcrumbs:append('midcast')
-    mote_vars.set_breadcrumbs:append('Pet')
+	mote_vars.set_breadcrumbs:append('sets')
+	mote_vars.set_breadcrumbs:append('midcast')
+	mote_vars.set_breadcrumbs:append('Pet')
 
-    if sets.midcast and sets.midcast.Pet then
-        classes.SkipSkillCheck = false
-        equipSet = select_specific_set(equipSet, spell, spellMap)
+	if sets.midcast and sets.midcast.Pet then
+		classes.SkipSkillCheck = false
+		equipSet = select_specific_set(equipSet, spell, spellMap)
 
-        -- We can only generally be certain about whether the pet's action is
-        -- Magic (ie: it cast a spell of its own volition) or Ability (it performed
-        -- an action at the request of the player).  Allow CastinMode and
-        -- OffenseMode to refine whatever set was selected above.
+		-- We can only generally be certain about whether the pet's action is
+		-- Magic (ie: it cast a spell of its own volition) or Ability (it performed
+		-- an action at the request of the player).  Allow CastinMode and
+		-- OffenseMode to refine whatever set was selected above.
 		
-        if spell.action_type == 'Magic' then
-            if equipSet[state.CastingMode.current] then
-                equipSet = equipSet[state.CastingMode.current]
-                mote_vars.set_breadcrumbs:append(state.CastingMode.current)
-            end
-        elseif spell.action_type == 'Ability' then
-            if equipSet[state.OffenseMode.current] then
-                equipSet = equipSet[state.OffenseMode.current]
-                mote_vars.set_breadcrumbs:append(state.OffenseMode.current)
-            end
-        end
-    end
+		if spell.action_type == 'Magic' then
+			if equipSet[state.CastingMode.current] then
+				equipSet = equipSet[state.CastingMode.current]
+				mote_vars.set_breadcrumbs:append(state.CastingMode.current)
+			end
+		elseif spell.action_type == 'Ability' then
+			if equipSet[state.OffenseMode.current] then
+				equipSet = equipSet[state.OffenseMode.current]
+				mote_vars.set_breadcrumbs:append(state.OffenseMode.current)
+			end
+		end
+	end
 
-    return equipSet
+	return equipSet
 end
 
 
 -- Function to handle the logic of selecting the proper weaponskill set.
 function get_weaponskill_set(equipSet, spell, spellMap)
-    -- Custom handling for weaponskills
-    local ws_mode = state.WeaponskillMode.current
-    
-    if ws_mode == 'Match' then
-        -- Weaponskill mode is specified to match, see if we have a weaponskill mode
-        -- corresponding to the current offense mode.  If so, use that.
-        if spell.skill == 'Archery' or spell.skill == 'Marksmanship' then
-            if state.RangedMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.RangedMode.current) then
-                ws_mode = state.RangedMode.current
+	-- Custom handling for weaponskills
+	local ws_mode = state.WeaponskillMode.current
+	
+	if ws_mode == 'Match' then
+		-- Weaponskill mode is specified to match, see if we have a weaponskill mode
+		-- corresponding to the current offense mode.  If so, use that.
+		if spell.skill == 'Archery' or spell.skill == 'Marksmanship' then
+			if state.RangedMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.RangedMode.current) then
+				ws_mode = state.RangedMode.current
 			else
 				ws_mode = 'Normal'
-            end
-        else
-            if state.OffenseMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.OffenseMode.current) then
-                ws_mode = state.OffenseMode.current
+			end
+		else
+			if state.OffenseMode.current ~= 'Normal' and state.WeaponskillMode:contains(state.OffenseMode.current) then
+				ws_mode = state.OffenseMode.current
 			else
 				ws_mode = 'Normal'
-            end
-        end
-    end
+			end
+		end
+	end
 
-    local custom_wsmode
+	local custom_wsmode
 
-    -- Allow the job file to specify a preferred weaponskill mode
-    if get_custom_wsmode then
-        custom_wsmode = get_custom_wsmode(spell, spellMap, ws_mode)
-    end
+	-- Allow the job file to specify a preferred weaponskill mode
+	if get_custom_wsmode then
+		custom_wsmode = get_custom_wsmode(spell, spellMap, ws_mode)
+	end
 
-    -- If the job file returned a weaponskill mode, use that.
-    if custom_wsmode then
-        ws_mode = custom_wsmode
-    end
+	-- If the job file returned a weaponskill mode, use that.
+	if custom_wsmode then
+		ws_mode = custom_wsmode
+	end
 
-    if equipSet[ws_mode] then
-        equipSet = equipSet[ws_mode]
-        mote_vars.set_breadcrumbs:append(ws_mode)
-    end
-    
-    return equipSet
+	if equipSet[ws_mode] then
+		equipSet = equipSet[ws_mode]
+		mote_vars.set_breadcrumbs:append(ws_mode)
+	end
+	
+	return equipSet
 end
 
 
 -- Function to handle the logic of selecting the proper ranged set.
 function get_ranged_set(equipSet, spell, spellMap)
-    -- Attach Combat Form and Combat Weapon to set checks
-    if state.CombatForm.has_value and equipSet[state.CombatForm.value] then
-        equipSet = equipSet[state.CombatForm.value]
-        mote_vars.set_breadcrumbs:append(state.CombatForm.value)
-    end
+	-- Attach Combat Form and Combat Weapon to set checks
+	if state.CombatForm.has_value and equipSet[state.CombatForm.value] then
+		equipSet = equipSet[state.CombatForm.value]
+		mote_vars.set_breadcrumbs:append(state.CombatForm.value)
+	end
 
 	if equipSet[state.Weapons.value] then
-        equipSet = equipSet[state.Weapons.value]
-        mote_vars.set_breadcrumbs:append(state.Weapons.value)
-    elseif state.CombatWeapon.has_value and equipSet[state.CombatWeapon.value] then
-        equipSet = equipSet[state.CombatWeapon.value]
-        mote_vars.set_breadcrumbs:append(state.CombatWeapon.value)
-    end
+		equipSet = equipSet[state.Weapons.value]
+		mote_vars.set_breadcrumbs:append(state.Weapons.value)
+	elseif state.CombatWeapon.has_value and equipSet[state.CombatWeapon.value] then
+		equipSet = equipSet[state.CombatWeapon.value]
+		mote_vars.set_breadcrumbs:append(state.CombatWeapon.value)
+	end
 
-    -- Check for specific mode for ranged attacks (eg: Acc, Att, etc)
-    if equipSet[state.RangedMode.current] then
-        equipSet = equipSet[state.RangedMode.current]
-        mote_vars.set_breadcrumbs:append(state.RangedMode.current)
-    end
+	-- Check for specific mode for ranged attacks (eg: Acc, Att, etc)
+	if equipSet[state.RangedMode.current] then
+		equipSet = equipSet[state.RangedMode.current]
+		mote_vars.set_breadcrumbs:append(state.RangedMode.current)
+	end
 
-    -- Tack on any additionally specified custom groups, if the sets are defined.
-    for _,group in ipairs(classes.CustomRangedGroups) do
-        if equipSet[group] then
-            equipSet = equipSet[group]
-            mote_vars.set_breadcrumbs:append(group)
-        end
-    end
+	-- Tack on any additionally specified custom groups, if the sets are defined.
+	for _,group in ipairs(classes.CustomRangedGroups) do
+		if equipSet[group] then
+			equipSet = equipSet[group]
+			mote_vars.set_breadcrumbs:append(group)
+		end
+	end
 
-    return equipSet
+	return equipSet
 end
 
 
@@ -2036,46 +2008,48 @@ end
 -- @param baseSet : The set that any currently active defense set will be applied on top of. (gear set table)
 
 function apply_defense(baseSet)
-    if state.DefenseMode.current ~= 'None' then
-        local defenseSet = sets.defense
+	if state.DefenseMode.current ~= 'None' then
+		local defenseSet = sets.defense
 		
-        defenseSet = sets.defense[state[state.DefenseMode.current .. 'DefenseMode'].current] or defenseSet
+		defenseSet = sets.defense[state[state.DefenseMode.current .. 'DefenseMode'].current] or defenseSet
 
-        for _,group in ipairs(classes.CustomDefenseGroups) do
-            defenseSet = defenseSet[group] or defenseSet
-        end
+		for _,group in ipairs(classes.CustomDefenseGroups) do
+			defenseSet = defenseSet[group] or defenseSet
+		end
 
 		if sets.Reive and buffactive['Reive Mark'] and sets.Reive.neck == "Adoulin's Refuge +1" then
 			defenseSet = set_combine(defenseSet, sets.Reive)
 		end
 
-        if user_customize_defense_set then
-            defenseSet = user_customize_defense_set(defenseSet)
-        end
+		if user_customize_defense_set then
+			defenseSet = user_customize_defense_set(defenseSet)
+		end
 		
-        if job_customize_defense_set then
-            defenseSet = job_customize_defense_set(defenseSet)
-        end
+		if job_customize_defense_set then
+			defenseSet = job_customize_defense_set(defenseSet)
+		end
 		
-        if user_job_customize_defense_set then
-            defenseSet = user_job_customize_defense_set(defenseSet)
-        end
-
-        baseSet = set_combine(baseSet, defenseSet)
-    end
+		if user_job_customize_defense_set then
+			defenseSet = user_job_customize_defense_set(defenseSet)
+		end
+		
+		baseSet = set_combine(baseSet, defenseSet)
+		
+		baseSet = apply_extra_defense(baseSet)
+	end
 	
-    return baseSet
+	return baseSet
 end
 
 --Apply a set for special modes where we are engaged or idle, that still allows swapping for other more important things.
 function apply_passive(baseSet)
-    if state.Passive.value ~= 'None' then
+	if state.Passive.value ~= 'None' then
 		baseSet = set_combine(baseSet, sets.passive[state.Passive.value])
 	end
 	
 	if user_customize_passive_set then
 		baseSet = user_customize_passive_set(baseSet)
-    end
+	end
 	
 	if job_customize_passive_set then
 		baseSet = job_customize_passive_set(baseSet)
@@ -2084,20 +2058,28 @@ function apply_passive(baseSet)
 	if user_job_customize_passive_set then
 		baseSet = user_job_customize_passive_set(baseSet)
 	end
+	
+	return baseSet
+end
 
-    return baseSet
+function apply_extra_defense(baseSet)
+	if state.ExtraDefenseMode.value ~= 'None' then
+		baseSet = set_combine(baseSet, sets[state.ExtraDefenseMode.value])
+	end
+	
+	return baseSet
 end
 
 -- Function to add kiting gear on top of the base set if kiting state is true.
 -- @param baseSet : The gear set that the kiting gear will be applied on top of.
 function apply_kiting(baseSet)
-	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None' and state.Passive.value == 'None' and (state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') or not (player.in_combat or being_attacked)))) then
+	if sets.Kiting and (state.Kiting.value or (player.status == 'Idle' and moving and state.DefenseMode.value == 'None')) then
 		baseSet = set_combine(baseSet, sets.Kiting)
 	end
 	
 	if user_customize_kiting_set then
 		baseSet = user_customize_kiting_set(baseSet)
-    end
+	end
 	
 	if job_customize_kiting_set then
 		baseSet = job_customize_kiting_set(baseSet)
@@ -2107,7 +2089,7 @@ function apply_kiting(baseSet)
 		baseSet = user_job_customize_kiting_set(baseSet)
 	end
 
-    return baseSet
+	return baseSet
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -2116,14 +2098,18 @@ end
 
 -- Get a spell mapping for the spell.
 function get_spell_map(spell)
-    local defaultSpellMap = classes.SpellMaps[spell.english]
-    local jobSpellMap
-    
-    if job_get_spell_map then
-        jobSpellMap = job_get_spell_map(spell, defaultSpellMap)
-    end
+	local defaultSpellMap = classes.SpellMaps[spell.english]
+	local jobSpellMap
 
-    return jobSpellMap or defaultSpellMap
+	if defaultSpellMap == 'Cure' and spell.target.type == 'MONSTER'then
+		return 'CureNuke'
+	end	
+ 
+	if job_get_spell_map then
+		jobSpellMap = job_get_spell_map(spell, defaultSpellMap)
+	end
+
+	return jobSpellMap or defaultSpellMap
 end
 
 -- Select the equipment set to equip from a given starting table, based on standard
@@ -2131,28 +2117,28 @@ end
 -- Spell skill and spell type may further refine their selections based on
 -- custom class, spell name and spell map.
 function select_specific_set(equipSet, spell, spellMap)
-    -- Take the determined base equipment set and try to get the simple naming extensions that
-    -- may apply to it (class, spell name, spell map).
-    local namedSet = get_named_set(equipSet, spell, spellMap)
-    
-    -- If no simple naming sub-tables were found, and we simply got back the original equip set,
-    -- check for spell.skill and spell.type, then check the simple naming extensions again.
-    if namedSet == equipSet then
+	-- Take the determined base equipment set and try to get the simple naming extensions that
+	-- may apply to it (class, spell name, spell map).
+	local namedSet = get_named_set(equipSet, spell, spellMap)
 	
-        if spell.skill and equipSet[spell.skill] and not classes.SkipSkillCheck then
-            namedSet = equipSet[spell.skill]
-            mote_vars.set_breadcrumbs:append(spell.skill)
-        elseif spell.type and equipSet[spell.type] then
-            namedSet = equipSet[spell.type]
-            mote_vars.set_breadcrumbs:append(spell.type)
-        else
-            return equipSet
-        end
-        
-        namedSet = get_named_set(namedSet, spell, spellMap)
-    end
+	-- If no simple naming sub-tables were found, and we simply got back the original equip set,
+	-- check for spell.skill and spell.type, then check the simple naming extensions again.
+	if namedSet == equipSet then
+	
+		if spell.skill and equipSet[spell.skill] and not classes.SkipSkillCheck then
+			namedSet = equipSet[spell.skill]
+			mote_vars.set_breadcrumbs:append(spell.skill)
+		elseif spell.type and equipSet[spell.type] then
+			namedSet = equipSet[spell.type]
+			mote_vars.set_breadcrumbs:append(spell.type)
+		else
+			return equipSet
+		end
+		
+		namedSet = get_named_set(namedSet, spell, spellMap)
+	end
 
-    return namedSet or equipSet
+	return namedSet or equipSet
 end
 
 -- Simple utility function to handle a portion of the equipment set determination.
@@ -2160,23 +2146,23 @@ end
 -- standard search order of custom class, spell name, and spell map.
 -- If no such set is found, it returns the original base set (equipSet) provided.
 function get_named_set(equipSet, spell, spellMap)
-    if equipSet then
-        if classes.CustomClass and equipSet[classes.CustomClass] then
-            mote_vars.set_breadcrumbs:append(classes.CustomClass)
-            return equipSet[classes.CustomClass]
-        elseif equipSet[spell.english] then
-            mote_vars.set_breadcrumbs:append(spell.english)
-            return equipSet[spell.english]
-        elseif spellMap and equipSet[spellMap] then
-            mote_vars.set_breadcrumbs:append(spellMap)
-            return equipSet[spellMap]
+	if equipSet then
+		if classes.CustomClass and equipSet[classes.CustomClass] then
+			mote_vars.set_breadcrumbs:append(classes.CustomClass)
+			return equipSet[classes.CustomClass]
+		elseif equipSet[spell.english] then
+			mote_vars.set_breadcrumbs:append(spell.english)
+			return equipSet[spell.english]
+		elseif spellMap and equipSet[spellMap] then
+			mote_vars.set_breadcrumbs:append(spellMap)
+			return equipSet[spellMap]
 		elseif spellMap and (spellMap:contains('Cure') or spellMap:contains('Curaga')) and equipSet['Cure'] then
 			mote_vars.set_breadcrumbs:append('Cure')
 			return equipSet['Cure']
-        else
-            return equipSet
-        end
-    end
+		else
+			return equipSet
+		end
+	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -2185,145 +2171,153 @@ end
 
 -- Called when the player's subjob changes.
 function sub_job_change(newSubjob, oldSubjob)
-	set_dual_wield()
-    if user_setup then
-        user_setup()
-    end
+	set_dual_wield:schedule(2)
+	if user_setup then
+		user_setup()
+	end
 	
-    if user_job_setup then
-        user_job_setup()
-    end	
+	if user_job_setup then
+		user_job_setup()
+	end	
 	
-    if extra_user_setup then
-        extra_user_setup()
-    end
-    
-    if job_sub_job_change then
-        job_sub_job_change(newSubjob, oldSubjob)
-    end
+	if extra_user_setup then
+		extra_user_setup()
+	end
+	
+	if job_sub_job_change then
+		job_sub_job_change(newSubjob, oldSubjob)
+	end
 
-    if user_sub_job_change then
-        user_sub_job_change(newSubjob, oldSubjob)
-    end
+	if user_sub_job_change then
+		user_sub_job_change(newSubjob, oldSubjob)
+	end
 	
-    if user_job_sub_job_change then
-        user_job_sub_job_change(newSubjob, oldSubjob)
-    end
-    
-    handle_update({'auto'})
+	if user_job_sub_job_change then
+		user_job_sub_job_change(newSubjob, oldSubjob)
+	end
+	
+	send_command('gs c update')
 end
 
 
 -- Called when the player's status changes.
 function status_change(newStatus, oldStatus)
-    -- init a new eventArgs
-    local eventArgs = {handled = false}
-    mote_vars.set_breadcrumbs:clear()
+	-- init a new eventArgs
+	local eventArgs = {handled = false}
+	mote_vars.set_breadcrumbs:clear()
 
-	if not (newStatus == 'Idle' or newStatus == 'Engaged') then
+	if newStatus == 'Engaged' then
+		update_combat_form()
+	elseif newStatus == 'Idle' then
+	else
 		if state.RngHelper.value then
 			send_command('gs rh clear')
+		end
+		
+		moving = false
+		
+		if newStatus == "Dead" or newStatus == "Engaged dead" then
+			rolled_eleven = T{}
 		end
 		
 		if useItem then
 			useItem = false
 			if useItemSlot == 'item' then
-				windower.send_command('put '..useItemName..' satchel')
+				send_command('put '..useItemName..' satchel')
 			elseif useItemSlot == 'set' then
-				local slots = T{}
-				for slot,item in pairs(sets[useItemName]) do
-					slots:append(slot)
-				end
-				enable(slots)
+				internal_enable_set(sets[useItemName], "UseItem")
 				if player.inventory[useItemName] then
-					windower.send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
+					send_command('wait 1;put '..set_to_item(useItemName)..' satchel')
 				end
 			else 
-				enable(useItemSlot)
+				internal_enable_set("UseItem")
 				if player.inventory[useItemName] then
-					windower.send_command('wait 1;put '..useItemName..' satchel')
+					send_command('wait 1;put '..useItemName..' satchel')
 				end
 			end
 			add_to_chat(217,"Cancelling using "..useItemName..".")
 			useItemName = ''
 			useItemSlot = ''
+			internal_enable_set("UseItem")
 		end
 	end
 	
-    if newStatus == 'Engaged' then
-		update_combat_form()
+	-- Allow a global function to be called on status change.
+	if user_status_change then
+		user_status_change(newStatus, oldStatus, eventArgs)
 	end
 	
-    -- Allow a global function to be called on status change.
-    if user_status_change then
-        user_status_change(newStatus, oldStatus, eventArgs)
-    end
+	-- Then call individual jobs to handle status change events.
+	if not eventArgs.handled then
+		if user_job_status_change then
+			user_job_status_change(newStatus, oldStatus, eventArgs)
+		end
+	end
 	
-    -- Then call individual jobs to handle status change events.
-    if not eventArgs.handled then
-        if user_job_status_change then
-            user_job_status_change(newStatus, oldStatus, eventArgs)
-        end
-    end
+	if not eventArgs.handled then
+		if job_status_change then
+			job_status_change(newStatus, oldStatus, eventArgs)
+		end
+	end
 	
-    if not eventArgs.handled then
-        if job_status_change then
-            job_status_change(newStatus, oldStatus, eventArgs)
-        end
-    end
-	
-    if extra_user_status_change then
-        extra_user_status_change(newStatus, oldStatus, eventArgs)
-    end
+	if extra_user_status_change then
+		extra_user_status_change(newStatus, oldStatus, eventArgs)
+	end
 
-    -- Handle equipping default gear if the job didn't mark this as handled.
-    if not eventArgs.handled and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
-        handle_equipping_gear(newStatus)
-        display_breadcrumbs()
-    end
+	-- Handle equipping default gear if the job didn't mark this as handled.
+	if not eventArgs.handled and not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
+		handle_equipping_gear(newStatus)
+		display_breadcrumbs()
+	end
 end
 
 -- Handle notifications of general state change.
 function state_change(stateField, newValue, oldValue)
-    if stateField == 'Weapons' then
-		
-		if stateField == 'Weapons' and state.AutoLockstyle.value and newValue ~= oldValue then
+	if stateField == 'Weapons' then
+		silent_can_use_cache['/ws']= {}
+		if state.AutoLockstyle.value and newValue ~= oldValue then
 			style_lock = true
 		end
-	
+		
 		if newValue == 'None' then
-			enable('main','sub','range','ammo')
+			internal_enable_set("Weapons")
 		elseif ((newValue:contains('DW') or newValue:contains('Dual')) and not can_dual_wield) or (newValue:contains('Proc') and state.SkipProcWeapons.value) then
 			local startindex = state.Weapons.index
 			while ((state.Weapons.value:contains('DW') or state.Weapons.value:contains('Dual')) and not can_dual_wield) or (state.SkipProcWeapons.value and state.Weapons.value:contains('Proc')) do
 				state.Weapons:cycle()
 				if startindex == state.Weapons.index then break end
 			end
-			
 			newValue = state.Weapons.value
-			
+			equip_weaponset(newValue)
 			if newValue == 'None' or state.UnlockWeapons.value then
-				enable('main','sub','range','ammo')
+				internal_enable_set("Weapons")
 			elseif not state.ReEquip.value then
 				equip_weaponset(newValue)
 			end
 		elseif sets.weapons[newValue] then
-			if not state.ReEquip.value then equip_weaponset(newValue) end
+			equip_weaponset(newValue)
 		else
 			if not sets.weapons[newValue] then
 				add_to_chat(123,"sets.weapons."..newValue.." does not exist, resetting weapon state.")
 			end
 			state.Weapons:reset()
-			newValue = state.Weapons.value
-			if not state.ReEquip.value then	equip_weaponset(newValue) end
 		end
-		
+
 		if autows_list[newValue] then
-			autows = autows_list[newValue]
+			if type(autows_list[newValue]) == "table" then
+				autows 		= autows_list[newValue][1]
+				autowstp 	= autows_list[newValue][2]
+			else
+				autows 		= autows_list[newValue]
+			end
+		end
+
+		if weapons_pagelist[newValue] then
+			set_macro_page(weapons_pagelist[newValue][1], weapons_pagelist[newValue][2])
 		end
 	elseif stateField == 'Unlock Weapons' then
 		if newValue == true then
-			enable('main','sub','range','ammo')
+			internal_enable_set("Weapons")
 		else
 			equip_weaponset(state.Weapons.value)
 		end
@@ -2342,26 +2336,9 @@ function state_change(stateField, newValue, oldValue)
 			send_command('wait .001;gs c DisplayElement')
 		end
 	elseif stateField == 'Capacity' and newValue == 'false' and data.equipment.cprings:contains(player.equipment.left_ring) then
-            enable("ring1")
-	elseif stateField == 'Crafting Mode' then
-		enable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		if newValue == 'None' then
-			handle_update({'auto'})
-		else
-			local craftingset = sets.crafting
-			if sets.crafting[newValue] then
-				craftingset = set_combine(craftingset,sets.crafting[newValue])
-			end
-			
-			if state.CraftQuality.value == 'HQ' and sets.crafting.HQ then
-				craftingset = set_combine(craftingset,sets.crafting.HQ)
-			elseif state.CraftQuality.value == 'NQ' and sets.crafting[newValue] and sets.crafting[newValue].NQ then
-				craftingset = set_combine(craftingset,sets.crafting[newValue].NQ)
-			end
-			
-			equip(craftingset)
-			disable('main','sub','range','ammo','head','neck','lear','rear','body','hands','lring','rring','back','waist','legs','feet')
-		end
+			internal_enable_set("UseItem")
+	elseif stateField == 'Crafting Mode' or stateField == 'Crafting Quality' then
+		lock_crafting_gear()
 	end
 
 	if user_state_change then
@@ -2375,7 +2352,6 @@ function state_change(stateField, newValue, oldValue)
 	if user_job_state_change then
 		user_job_state_change(stateField, newValue, oldValue)
 	end
-	
 	if state.DisplayMode.value then update_job_states()	end
 end
 
@@ -2383,61 +2359,86 @@ end
 -- buff == buff gained or lost
 -- gain == true if the buff was gained, false if it was lost.
 function buff_change(buff, gain)
-    -- Init a new eventArgs
-    local eventArgs = {handled = false}
+	-- Init a new eventArgs
+	local eventArgs = {handled = false}
 
-    if state.Buff[buff:ucfirst()] ~= nil then
-        state.Buff[buff:ucfirst()] = gain
-    end
+	if state.Buff[buff:ucfirst()] ~= nil then
+		state.Buff[buff:ucfirst()] = gain
+	end
 
-    -- Allow a global function to be called on buff change.
-    if user_buff_change then
-        user_buff_change(buff, gain, eventArgs)
-    end
+	-- Allow a global function to be called on buff change.
+	if user_buff_change then
+		user_buff_change(buff, gain, eventArgs)
+	end
 	
-    -- Allow jobs to handle buff change events.
-    if not eventArgs.handled then
-        if job_buff_change then
-            job_buff_change(buff, gain, eventArgs)
-        end
-    end
+	-- Allow jobs to handle buff change events.
+	if not eventArgs.handled then
+		if job_buff_change then
+			job_buff_change(buff, gain, eventArgs)
+		end
+	end
 	
-    if user_job_buff_change then
-        user_job_buff_change(buff, gain, eventArgs)
-    end
+	if user_job_buff_change then
+		user_job_buff_change(buff, gain, eventArgs)
+	end
 
 	if buff == 'Voidwatcher' then
 		state.SkipProcWeapons:set('False')
-	elseif (buff == 'sleep' or buff == 'Lullaby') and state.CancelStoneskin.value then
-		send_command('cancel stoneskin')
-	elseif (buff == 'Blink' or buff == 'Third Eye' or buff:startswith('Copy Image')) and not gain then
-		lastshadow = "None"
-    elseif (buff == 'Commitment' or buff == 'Dedication') then
-        if gain and (data.equipment.cprings:contains(player.equipment.left_ring) or data.equipment.xprings:contains(player.equipment.left_ring)) then
-            enable("ring1")			
-		elseif gain and (player.equipment.head == "Guide Beret" or player.equipment.head == "Sprout Beret") then
-			enable("head")
-        end
-	elseif buff == "Emporox's Gift" and gain then
-		if player.equipment.left_ring == "Emporox's Ring" then
-			enable("ring1")
+	elseif buff == 'doom' then
+		if gain then
+			internal_disable_set(sets.buff.Doom, "Doom")
+		else
+			internal_enable_set("Doom")
 		end
-	elseif buff:endswith('Imagery') then
-		local craft = T(buff:split(' '))
-		if state.CraftingMode:contains(craft[1]) then
-			state.CraftingMode:set(craft[1])
+	elseif buff == 'sleep' or buff == 'Lullaby' then
+		if gain then
+			if item_equippable("Sacrifice Torque") and pet.isvalid then
+				internal_disable_set({neck="Sacrifice Torque"}, "Sleep")
+			elseif player.status == 'Engaged' then
+				if item_equippable("Vim Torque") then
+					internal_disable_set({neck="Vim Torque"}, "Sleep")
+				elseif item_equippable("Vim Torque +1") then
+					internal_disable_set({neck="Vim Torque +1"}, "Sleep")
+				elseif item_equippable("Frenzy Sallet") then
+					internal_disable_set({head="Frenzy Sallet"}, "Sleep")
+				elseif item_equippable("Berserker's Torque") then
+					internal_disable_set({neck="Berserker's Torque"}, "Sleep")
+				elseif state.WakeUpWeapons.value and sets.WakeUpWeapons then
+					internal_disable_set(sets.WakeUpWeapons, "Sleep")
+				end
+			elseif state.WakeUpWeapons.value and sets.WakeUpWeapons then
+				internal_disable_set(sets.WakeUpWeapons, "Sleep")
+			end
+		else
+			internal_enable_set("Sleep")
 		end
-    end
+	elseif (buff == 'Blink' or buff == 'Third Eye' or buff:startswith('Copy Image')) then
+		if not gain then lastshadow = "None" end
+	elseif (buff == 'Commitment' or buff == 'Dedication' or buff == "Emporox's Gift") then
+		if gain and state.Capacity.value then
+			internal_enable_set("UseItem")
+		end
+	elseif rolled_eleven:contains(buff) then
+		if not gain then remove_table_value(rolled_eleven, buff) end
+	elseif buff:endswith('Imagery')  then
+		if gain then
+			local craft = T(buff:split(' '))
+			if state.CraftingMode:contains(craft[1]) then
+				state.CraftingMode:set(craft[1])
+				lock_crafting_gear()
+			end
+		end
+	end
 
-	if not midaction() and not pet_midaction() then
+	if not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then
 		handle_equipping_gear(player.status)
 	end
 	
 	notify_buffs(buff, gain)
 	
-    if extra_user_buff_change then
-        extra_user_buff_change(buff, gain, eventArgs)
-    end
+	if extra_user_buff_change then
+		extra_user_buff_change(buff, gain, eventArgs)
+	end
 	
 	if state.DisplayMode.value then update_job_states()	end
 end
@@ -2448,26 +2449,26 @@ end
 -- gain == true if the pet was gained, false if it was lost.
 function pet_change(pet, gain)
 	petWillAct = 0
-    -- Init a new eventArgs
-    local eventArgs = {handled = false}
+	-- Init a new eventArgs
+	local eventArgs = {handled = false}
 
-    -- Allow jobs to handle pet change events.
-    if user_job_pet_change then
-        user_job_pet_change(pet, gain, eventArgs)
-    end
+	-- Allow jobs to handle pet change events.
+	if user_job_pet_change then
+		user_job_pet_change(pet, gain, eventArgs)
+	end
 	
-    if user_pet_change and not not eventArgs.handled then
-        user_pet_change(pet, gain, eventArgs)
-    end
+	if user_pet_change and not not eventArgs.handled then
+		user_pet_change(pet, gain, eventArgs)
+	end
 	
-    if job_pet_change and not eventArgs.handled then
-        job_pet_change(pet, gain, eventArgs)
-    end
+	if job_pet_change and not eventArgs.handled then
+		job_pet_change(pet, gain, eventArgs)
+	end
 
-    -- Equip default gear if not handled by the job.
-    if not eventArgs.handled then
-        if not midaction() and not pet_midaction() then handle_equipping_gear(player.status) end
-    end
+	-- Equip default gear if not handled by the job.
+	if not eventArgs.handled then
+		if not midaction() then handle_equipping_gear(player.status) end
+	end
 end
 
 
@@ -2476,15 +2477,15 @@ end
 -- As such, don't automatically handle gear equips.  Only do so if directed
 -- to do so by the job.
 function pet_status_change(newStatus, oldStatus)
-    -- Init a new eventArgs
-    local eventArgs = {handled = false}
+	-- Init a new eventArgs
+	local eventArgs = {handled = false}
 
-    -- Allow jobs to override this code
-    if job_pet_status_change then
-        job_pet_status_change(newStatus, oldStatus, eventArgs)
-    end
+	-- Allow jobs to override this code
+	if job_pet_status_change then
+		job_pet_status_change(newStatus, oldStatus, eventArgs)
+	end
 	
-	if not midaction() and not pet_midaction() then handle_equipping_gear(player.status) end
+	if not midaction() and not (pet_midaction() or ((petWillAct + 2) > os.clock())) then handle_equipping_gear(player.status) end
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -2494,43 +2495,43 @@ end
 -- This is a debugging function that will print the accumulated set selection
 -- breadcrumbs for the default selected set for any given action stage.
 function display_breadcrumbs(spell, spellMap, action)
-    if not _settings.debug_mode then
-        return
-    end
-    
-    local msg = 'Default '
-    
-    if action and spell then
-        msg = msg .. action .. ' set selection for ' .. spell.name
-    end
-    
-    if spellMap then
-        msg = msg .. ' (' .. spellMap .. ')'
-    end
-    msg = msg .. ' : '
-    
-    local cons
-    
-    for _,name in ipairs(mote_vars.set_breadcrumbs) do
-        if not cons then
-            cons = name
-        else
-            if name:contains(' ') or name:contains("'") then
-                cons = cons .. '["' .. name .. '"]'
-            else
-                cons = cons .. '.' .. name
-            end
-        end
-    end
+	if not _settings.debug_mode then
+		return
+	end
+	
+	local msg = 'Default '
+	
+	if action and spell then
+		msg = msg .. action .. ' set selection for ' .. spell.name
+	end
+	
+	if spellMap then
+		msg = msg .. ' (' .. spellMap .. ')'
+	end
+	msg = msg .. ' : '
+	
+	local cons
+	
+	for _,name in ipairs(mote_vars.set_breadcrumbs) do
+		if not cons then
+			cons = name
+		else
+			if name:contains(' ') or name:contains("'") then
+				cons = cons .. '["' .. name .. '"]'
+			else
+				cons = cons .. '.' .. name
+			end
+		end
+	end
 
-    if cons then
-        if action and cons == ('sets.' .. action) then
-            msg = msg .. "None"
-        else
-            msg = msg .. tostring(cons)
-        end
-        add_to_chat(123, msg)
-    end
+	if cons then
+		if action and cons == ('sets.' .. action) then
+			msg = msg .. "None"
+		else
+			msg = msg .. tostring(cons)
+		end
+		add_to_chat(123, msg)
+	end
 end
 
 -- Event registers to trigger functions

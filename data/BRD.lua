@@ -74,7 +74,7 @@ end
 function job_setup()
 
     state.ExtraSongsMode = M{['description']='Extra Songs','None','Dummy','DummyLock','FullLength','FullLengthLock'}
-	-- Whether to use Carn (or song daggers in general) under a certain threshhold even when weapons are locked.
+	-- Whether to use Carn (or song daggers in general) under a certain tp threshhold even when weapons are locked.
 	state.CarnMode = M{'Always','300','1000','Never'}
 
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
@@ -118,19 +118,18 @@ function job_pretarget(spell, spellMap, eventArgs)
 		if state.Buff['Pianissimo'] and spell.target.raw == '<t>' and (player.target.type == 'NONE' or spell.target.type == 'MONSTER') then
 			eventArgs.cancel = true
 			windower.chat.input('/ma "'..spell.name..'" <stpt>')
-		elseif spell.target.raw == '<t>' and (player.target.type == 'NONE' or player.target.type == "MONSTER") and not state.Buff['Pianissimo'] then
-			change_target('<me>')
-			return
 		end
     end
 end
 
 function job_precast(spell, spellMap, eventArgs)
-	if spell.action_type == 'Magic' then
-		if spell.english:contains('Honor March') then
-			equip({range="Marsyas"})
+	if spell.type == 'BardSong' then
+
+		if state.CarnMode.value ~= 'Never' and (state.CarnMode.value == 'Always' or tonumber(state.CarnMode.value) > player.tp) then
+			internal_enable_set("Weapons")
 		end
-		if not sets.precast.FC[spell.english] and (spell.type == 'BardSong' and spell.targets.Enemy) then
+
+		if not sets.precast.FC[spell.english] and spell.targets.Enemy then
 			classes.CustomClass = 'SongDebuff'
 		end
 	end
@@ -138,13 +137,12 @@ end
 
 function job_filter_precast(spell, spellMap, eventArgs)
     if spell.type == 'BardSong' and not spell.targets.Enemy then
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
         -- Auto-Pianissimo
         if ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC')) and spell.target.in_party and not state.Buff['Pianissimo'] then
-            if spell_recasts[spell.recast_id] < 1.5 then
-                send_command('@input /ja "Pianissimo" <me>; wait 1.1; input /ma "'..spell.name..'" '..spell.target.name)
-                eventArgs.cancel = true
+			local spell_recasts = windower.ffxi.get_spell_recasts()
+            if spell_recasts[spell.recast_id] < latency then
+                send_command('@input /ja "Pianissimo" <me>;wait 1.1;input /ma "'..spell.name..'" '..spell.target.name)
+				eventArgs.cancel = true
             end
         end
     end
@@ -189,28 +187,16 @@ function job_post_precast(spell, spellMap, eventArgs)
 				else
 					equip(sets.midcast[spell.english])
 				end
-			elseif sets.midcast[get_spell_map(spell, default_spell_map)] then
-				if sets.midcast[get_spell_map(spell, default_spell_map)][state.CastingMode.Value]
-					then equip(sets.midcast[get_spell_map(spell, default_spell_map)][state.CastingMode.Value])
+			elseif sets.midcast[get_spell_map(spell)] then
+				if sets.midcast[get_spell_map(spell)][state.CastingMode.Value]
+					then equip(sets.midcast[get_spell_map(spell)][state.CastingMode.Value])
 				else
-					equip(sets.midcast[get_spell_map(spell, default_spell_map)])
+					equip(sets.midcast[get_spell_map(spell)])
 				end
 			end
 			
 			if not spell.targets.Enemy and state.ExtraSongsMode.value:contains('FullLength') then
 				equip(sets.midcast.Daurdabla)
-			end
-		
-		end
-
-		if state.CarnMode.value ~= 'Never' and (state.CarnMode.value == 'Always' or tonumber(state.CarnMode.value) > player.tp) then
-			if sets.midcast[generalClass].main and sets.midcast[generalClass].main ~= player.equipment.main then
-				enable('main')
-				equip({main=sets.midcast[generalClass].main})
-			end
-			if sets.midcast[generalClass].sub and sets.midcast[generalClass].sub ~= player.equipment.sub then
-				enable('sub')
-				equip({sub=sets.midcast[generalClass].sub})
 			end
 		end
 
@@ -268,7 +254,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 
 		if state.DisplayMode.value then update_job_states()	end
 
-    elseif spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' then
+    elseif spell.skill == 'Elemental Magic' and spellMap ~= 'ElementalEnfeeble' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
 		if spell.element == world.weather_element or spell.element == world.day_element then
 			if state.CastingMode.value == 'Fodder' then
@@ -296,21 +282,10 @@ end
 -- Set eventArgs.handled to true if we don't want automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
 	
-	if spell.type == 'BardSong' and not spell.interrupted then
-		if state.CarnMode.value ~= 'Never' then
-			local generalClass = get_song_class(spell)
-			if sets.midcast[generalClass].main and sets.weapons[state.Weapons.value] then
-				if sets.weapons[state.Weapons.value].main then
-					equip({main=sets.weapons[state.Weapons.value].main})
-					disable('main')
-				end
-				if sets.weapons[state.Weapons.value].sub then
-					equip({sub=sets.weapons[state.Weapons.value].sub})
-					disable('sub')
-				end
-			end
+	if spell.type == 'BardSong' then
+		if state.CarnMode.value ~= 'Never' and not state.UnlockWeapons.value and state.Weapons.value ~= 'None' then
+			equip_weaponset(state.Weapons.value)
 		end
-
 	elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
 		state.MagicBurstMode:reset()
 		if state.DisplayMode.value then update_job_states()	end
@@ -329,15 +304,6 @@ function job_get_spell_map(spell, default_spell_map)
 		elseif world.day_element == 'Light' then
                 return 'LightDayCure'
         end
-
-	elseif spell.skill == "Enfeebling Magic" then
-		if spell.english:startswith('Dia') then
-			return "Dia"
-		elseif spell.type == "WhiteMagic" or spell.english:startswith('Frazzle') or spell.english:startswith('Distract') then
-			return 'MndEnfeebles'
-		else
-			return 'IntEnfeebles'
-		end
 	end
 end
 
@@ -433,8 +399,14 @@ end
 
 function job_tick()
 	if check_song() then return true end
-	if check_buff() then return true end
 	if check_buffup() then return true end
+	if check_buff() then return true end
+	if job_check_buff() then return true end
+	return false
+end
+
+function job_check_buff() --melee bullshit at some point
+
 	return false
 end
 
@@ -442,66 +414,19 @@ function check_song()
 	if state.AutoSongMode.value then
 		if not buffactive.march then
 			windower.chat.input('/ma "Honor March" <me>')
-			tickdelay = os.clock() + 2
+			add_tick_delay()
 			return true
 		elseif not buffactive.minuet then
 			windower.chat.input('/ma "Valor Minuet V" <me>')
-			tickdelay = os.clock() + 2
+			add_tick_delay()
 			return true
 		elseif not buffactive.madrigal then
 			windower.send_command('gs c set ExtraSongsMode FullLength;input /ma "Blade Madrigal" <me>')
-			tickdelay = os.clock() + 2
+			add_tick_delay()
 			return true
 		else
 			return false
 		end
-	else
-		return false
-	end
-end
-
-function check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
-			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < spell_latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
-				windower.chat.input('/ma "'..buff_spell_lists[state.AutoBuffMode.Value][i].Name..'" <me>')
-				tickdelay = os.clock() + 2
-				return true
-			end
-		end
-	else
-		return false
-	end
-end
-
-function check_buffup()
-	if buffup ~= '' then
-		local needsbuff = false
-		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) then
-				needsbuff = true
-				break
-			end
-		end
-	
-		if not needsbuff then
-			add_to_chat(217, 'All '..buffup..' buffs are up!')
-			buffup = ''
-			return false
-		end
-		
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
-		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < spell_latency then
-				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
-				tickdelay = os.clock() + 2
-				return true
-			end
-		end
-		
-		return false
 	else
 		return false
 	end

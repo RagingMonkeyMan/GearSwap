@@ -333,17 +333,17 @@ function hover_movement()
 	end
 
 	if direction then
-		windower.send_command('setkey numpad4 down; wait 0.43; setkey numpad4 up;')
+		send_command('setkey numpad4 down; wait 0.43; setkey numpad4 up;')
 		direction = false
 	else
-		windower.send_command('setkey numpad6 down; wait 0.43; setkey numpad6 up;')
+		send_command('setkey numpad6 down; wait 0.43; setkey numpad6 up;')
 		direction = true
 	end
 end
 
 local function handle_interrupt()
     completion = true
-    windower.send_command('@wait %f;gs rh process':format(cooldown))
+    send_command('@wait %f;gs rh process':format(cooldown))
 end
 
 local function add_spell_to_queue(spell)
@@ -413,7 +413,7 @@ local function handle_incoming_action_message_packet(id, data, modified, injecte
             if action_message_interrupted[p.Message] then
                 handle_interrupt()
             elseif action_message_unable[p.Message] then
-                windower.send_command('@wait 0;gs rh process')
+                send_command('@wait 0;gs rh process')
             end
         end
     end
