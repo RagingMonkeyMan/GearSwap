@@ -70,6 +70,9 @@ ProshellraAbility = S{"Protectra","Protectra II","Protectra III","Protectra IV",
 				 
 RefreshAbility = S{"Refresh","Refresh II", "Refresh III"
 				 }
+
+RegenAbility = S{"Regen", "Regen II", "Regen III", "Regen IV", "Regen V"
+}
 				 
 PhalanxAbility = S{"Phalanx II"
 				 }
@@ -80,30 +83,30 @@ EnhancingAbility = S{"Haste","Haste II","Flurry","Flurry II","Adloquium","Errati
 function check_reaction(act)
 	if state.CraftingMode.value ~= 'None' then return end
 	--Gather Info
-    local curact = T(act)
-    local actor = T{}
+	local curact = T(act)
+	local actor = T{}
 	local otherTarget = T{}
 	local act_info
 
-    actor.id = curact.actor_id
+	actor.id = curact.actor_id
 	-- Make sure it's something we actually care about reacting to.
 	--if curact.category == 1 and not ((state.AutoEngageMode.value and player.status == 'Idle')) and in_combat then return end
 	--curact.category = 6 is job ability?
 	if not ((curact.category == 1 or curact.category == 3 or curact.category == 4 or curact.category == 6 or curact.category == 7 or curact.category == 8 or curact.category == 11 or curact.category == 13)) then return end
 	
 	-- Make sure it's a mob that's doing something.
-    if windower.ffxi.get_mob_by_id(actor.id) then
-        actor = windower.ffxi.get_mob_by_id(actor.id)
-    else
-        return
-    end
+	if windower.ffxi.get_mob_by_id(actor.id) then
+		actor = windower.ffxi.get_mob_by_id(actor.id)
+	else
+		return
+	end
 
 	-- Check if we're targetting it.
-    if player and player.target and player.target.id and actor.id == player.target.id then
-        isTarget = true
-    else
+	if player and player.target and player.target.id and actor.id == player.target.id then
+		isTarget = true
+	else
 		isTarget = false
-    end
+	end
 
 	if curact.targets[1].id == nil then
 		targetsMe = false
@@ -262,12 +265,12 @@ function check_reaction(act)
 	
 	-- Make sure it's not US from this point on!
 	if actor.id == player.id then return end
-    -- Make sure it's a WS or MA precast before reacting to it.		
-    if not (curact.category == 7 or curact.category == 8) then return end
+	-- Make sure it's a WS or MA precast before reacting to it.		
+	if not (curact.category == 7 or curact.category == 8) then return end
 	
-    -- Get the name of the action.
-    if curact.category == 7 then act_info = res.monster_abilities[curact.targets[1].actions[1].param] end
-    if curact.category == 8 then act_info = res.spells[curact.targets[1].actions[1].param] end
+	-- Get the name of the action.
+	if curact.category == 7 then act_info = res.monster_abilities[curact.targets[1].actions[1].param] end
+	if curact.category == 8 then act_info = res.spells[curact.targets[1].actions[1].param] end
 	if act_info == nil then return end
 
 	-- Reactions begin.
@@ -283,41 +286,76 @@ function check_reaction(act)
 	elseif midaction() or curact.category ~= 8 or state.DefenseMode.value ~= 'None' or ((petWillAct + 2) > os.clock()) then
 			
 	elseif targetsMe then
-		if CureAbility:contains(act_info.name) and player.hpp < 75 then
+		if act_info.skill == 34 then
+			if RefreshAbility:contains(act_info.name) then
+				if sets.Refresh_Received then
+					send_command('gs c softequip sets.Refresh_Received')
+				elseif sets.Self_Refresh then
+					send_command('gs c softequip sets.Self_Refresh')
+				elseif sets.Enhancing_Received then
+					send_command('gs c softequip sets.Enhancing_Received')
+				end
+				return
+			elseif RegenAbility:contains(act_info.name) then
+				if sets.Regen_Received then
+					send_command('gs c softequip sets.Regen_Received')
+				elseif sets.midcast.Regen then
+					send_command('gs c softequip sets.midcast.Regen')
+				elseif sets.Enhancing_Received then
+					send_command('gs c softequip sets.Enhancing_Received')
+				end
+				return
+			elseif PhalanxAbility:contains(act_info.name) then
+				if sets.Phalanx_Received then
+					send_command('gs c softequip sets.Phalanx_Received')
+				elseif sets.midcast.Phalanx then
+					send_command('gs c softequip sets.midcast.Phalanx')
+				elseif sets.Enhancing_Received then
+					send_command('gs c softequip sets.Enhancing_Received')
+				end
+				return
+			elseif ProshellAbility:contains(act_info.name) then
+				if sets.Sheltered then
+					send_command('gs c softequip sets.Sheltered')
+				elseif sets.Enhancing_Received then
+					send_command('gs c softequip sets.Enhancing_Received')
+				end
+				return
+			elseif sets.Enhancing_Received then
+				send_command('gs c softequip sets.Enhancing_Received')
+			end
+			return
+		elseif CureAbility:contains(act_info.name) and player.hpp < 75 then
 			if sets.Cure_Received then
-				do_equip('sets.Cure_Received')
+				send_command('gs c softequip sets.Cure_Received')
 			elseif sets.Self_Healing then
-				do_equip('sets.Self_Healing') 
+				send_command('gs c softequip sets.Self_Healing') 
 			end
 			return
-		elseif RefreshAbility:contains(act_info.name) then
-			if sets.Refresh_Received then
-				do_equip('sets.Refresh_Received')
-			elseif sets.Self_Refresh then
-				do_equip('sets.Self_Refresh')
-			end
-			return
-		elseif PhalanxAbility:contains(act_info.name) then
-			if sets.Phalanx_Received then
-				do_equip('sets.Phalanx_Received')
-			elseif sets.midcast.Phalanx then
-				do_equip('sets.midcast.Phalanx')
-			end
-			return
-		elseif ProshellAbility:contains(act_info.name) then
-			if sets.Sheltered then do_equip('sets.Sheltered') return end
 		end
 	elseif actor.in_party and otherTarget.in_party and targetsDistance < 10 then
 
 		if CuragaAbility:contains(act_info.name) and player.hpp < 75 then
 			if sets.Cure_Received then
-				do_equip('sets.Cure_Received')
+				send_command('gs c softequip sets.Cure_Received')
 			elseif sets.Self_Healing then
-				do_equip('sets.Self_Healing') 
+				send_command('gs c softequip sets.Self_Healing') 
 			end
 			return
 		elseif ProshellraAbility:contains(act_info.name) and sets.Sheltered then
-			do_equip('sets.Sheltered') return
+			send_command('gs c softequip sets.Sheltered') return
+		elseif act_info.name == 'Phalanx' then
+			--[[
+			if 'Accession' then
+				if sets.Phalanx_Received then
+					send_command('gs c softequip sets.Phalanx_Received')
+				elseif sets.midcast.Phalanx then
+					send_command('gs c softequip sets.midcast.Phalanx')
+				elseif sets.Enhancing_Received then
+					send_command('gs c softequip sets.Enhancing_Received')
+				end
+			end
+			--]]
 		end
 	end
 
@@ -386,15 +424,43 @@ end
 windower.raw_register_event('action', check_reaction)
 
 windower.raw_register_event('incoming chunk', function(id, data)
-    if id == 0xF9 and state.AutoAcceptRaiseMode.value and data:byte(11) == 1 then
-        local player = windower.ffxi.get_mob_by_target('me')
-        if player then
+	if id == 0xF9 and state.AutoAcceptRaiseMode.value and data:byte(11) == 1 then
+		local player = windower.ffxi.get_mob_by_target('me')
+		if player then
 			packets.inject(packets.new('outgoing', 0x01A, {
 				['Target'] = player.id,
 				['Target Index'] = player.index,
 				['Category'] = 0x0D,
 			}))
-            return true
-        end
-    end
+			return true
+		end
+	end
+end)
+
+windower.raw_register_event('incoming text',function(original) --Abyssea Proc Detection
+	if not world.area:contains('Abyssea') or state.SkipProcWeapons.value then return end
+
+	if original:startswith("The fiend is frozen") then
+		if state.WeaponSets.value:contains('Proc') or state.Weapons.value:contains('Proc') then
+			send_command('gs c weapons initialize')
+		end
+	elseif original:startswith("The fiend appears vulnerable to") then
+		local proc_target_id = windower.ffxi.get_mob_by_target('bt').id or ''
+		if original:find("elemental weapon skills!") then
+			if elemental_ws_proc_target_id ~= proc_target_id then
+				elemental_ws_proc_target_id = proc_target_id
+				elemental_ws_proc_element = original:match("The fiend appears vulnerable to (%S+)")
+
+				local procweapon = next(abyssea_elemental_ws_proc_weapons_map[elemental_ws_proc_element])
+				send_command('gs c weapons '..procweapon)
+			end
+		elseif original:find("elemental magic!") then
+			if elemental_magic_proc_target_id ~= proc_target_id then
+				elemental_magic_proc_target_id = proc_target_id
+				local magical_proc_element = original:match("The fiend appears vulnerable to (%S+)")
+				state.ElementalMode:set(magical_proc_element)
+				if state.DisplayMode.value then update_job_states()	end
+			end
+		end
+	end
 end)

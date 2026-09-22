@@ -46,10 +46,6 @@
 --
 -- Include in get_sets(), user_setup(), etc, or custom include file
 --
--- By default, supports the following modal states:
--- OffenseMode, DefenseMode, HybridMode, IdleMode, WeaponskillMode, CastingMode,
--- MainStep, AltStep, TreasureMode, TotalHaste, DelayReduction
---
 -- Additional modal states can be supported by defining a label mapping in update_job_states()
 -- Boolean states require no modifications
 ----------------------------------------------------------------------------------------------------
@@ -71,6 +67,26 @@
 ----------------------------------------------------------------------------------------------------
 function init_job_states(job_bools,job_modes)
 
+	-- Define colors for text in the display
+	
+	if not display.colors then
+		display.colors = {
+			Yellow='\\cs(255,192,0)', -- Yellow for active booleans and non-default modals
+			White='\\cs(255,255,255)', -- White for labels and default modals
+			OffWhite='\\cs(192,192,192)', -- White for labels and default modals
+			Gray='\\cs(96,96,96)', -- Gray for inactive booleans
+			Fire='\\cs(255,80,80)', -- Red For Fire Element
+			Ice='\\cs(140,160,255)', -- Light Blue For Ice Element
+			LightBlue='\\cs(160,180,255)', -- Lighter Blue For Unlocked Weapons Element
+			Wind='\\cs(110,255,110)', -- Light Green For Wind Element
+			Earth='\\cs(220,214,110)', -- Brown/Yellow For Earth Element
+			Lightning='\\cs(190,90,190)', -- Purple For Lightning Element
+			Water='\\cs(110,110,255)', -- Blue For Water Element
+			Light='\\cs(255,255,155)', -- Light Yellow For Light Element
+			Dark='\\cs(90,90,90)', -- Dark Grey For Dark Element
+		}
+	end
+
 	stateList = job_modes
 	stateBool = job_bools
 
@@ -85,15 +101,15 @@ function init_job_states(job_bools,job_modes)
 		x,y = 2, settings["ui_y_res"]-20 -- -285, -18
 	end
 
-	if displayx then x = displayx end
-	if displayy then y = displayy end
+	if display.x then x = display.x end
+	if display.y then y = display.y end
 
-	local font = displayfont or 'Arial'
-	local size = displaysize or 12
-	local bold = displaybold or true
-	local bg = displaybg or 0
-	local strokewidth = displaystroke or 2
-	local stroketransparancy = displaytransparancy or 192
+	local font = display.font or 'Arial'
+	local size = display.size or 12
+	local bold = display.bold or true
+	local bg = display.bg or 0
+	local strokewidth = display.stroke or 2
+	local stroketransparancy = display.transparancy or 192
 
 	stateBox = texts.new()
 	stateBox:pos(x,y)
@@ -106,7 +122,6 @@ function init_job_states(job_bools,job_modes)
 	stateBox:stroke_transparency(stroketransparancy)
 
 	update_job_states()
-
 end
 
 ----------------------------------------------------------------------------------------------------
@@ -120,25 +135,6 @@ function update_job_states()
 		return
 	end
 
-	-- Define colors for text in the display
-	local clr = {
-		h='\\cs(255,192,0)', -- Yellow for active booleans and non-default modals
-		w='\\cs(255,255,255)', -- White for labels and default modals
-		n='\\cs(192,192,192)', -- White for labels and default modals
-		s='\\cs(96,96,96)', -- Gray for inactive booleans
-		Fire='\\cs(255,80,80)', -- Red For Fire Element
-		Ice='\\cs(140,160,255)', -- Light Blue For Ice Element
-		Wind='\\cs(110,255,110)', -- Light Green For Wind Element
-		Earth='\\cs(220,214,110)', -- Brown/Yellow For Earth Element
-		Lightning='\\cs(190,90,190)', -- Purple For Lightning Element
-		Water='\\cs(110,110,255)', -- Blue For Water Element
-		Light='\\cs(255,255,155)', -- Light Yellow For Light Element
-		Dark='\\cs(90,90,90)', -- Dark Grey For Dark Element
-	}
-	if state.DisplayColors then
-		clr = state.DisplayColors
-	end
-
 	local info = {}
 	local orig = {}
 	local spc = '    '
@@ -146,8 +142,10 @@ function update_job_states()
 	-- Define labels for each state
 	local labels = {
 		AutoBuffMode = "Auto Buff",
+		AutoCallPet = "Auto Call Pet",
 		AutoDefenseMode = "Auto Defense",
 		AutoEngageMode = "Auto Engage",
+		AutoFightMode = "Auto Fight",
 		AutoFoodMode = "Auto Food: "..autofood.."",
 		AutoJumpMode = "Auto Jump",
 		AutoManawell = "Auto Manawell",
@@ -155,7 +153,7 @@ function update_job_states()
 		AutoPuppetMode = "Auto Puppet",
 		AutoReadyMode = "Auto Ready",
 		AutoRepairMode = "Auto Repair",
-		AutoRuneMode = "Auto Rune: "..state.RuneElement.value.."",
+		AutoRewardMode = "Auto Reward",
 		AutoSambaMode = "Auto Samba: "..state.AutoSambaMode.value.."",
 		AutoShadowMode = "Auto Shadows",
 		AutoSongMode = "Auto Song",
@@ -163,6 +161,7 @@ function update_job_states()
 		AutoSuperJumpMode = "Auto SuperJump",
 		AutoTankMode = "Auto Tank",
 		AutoTrustMode = "Auto Trust",
+		AutoDummyMode = "Auto Dummy",
 		BuffWeaponsMode = "Buff Weapons",
 		Capacity = "Capacity",
 		CarnMode = "Carn Mode",
@@ -181,6 +180,7 @@ function update_job_states()
 		MagicalDefenseMode = "Magical Defense",
 		PactSpamMode = "Pact Spam",
 		Passive = "Passive",
+		PetEnmityGear = "PetEnmityGear",
 		PetMode = "Pet Mode",
 		PetWSGear = "PetWSGear",
 		PhysicalDefenseMode = "Physical Defense",
@@ -188,6 +188,7 @@ function update_job_states()
 		RecoverMode = "Recover MP",
 		ResistDefenseMode = "Resist Defense",
 		RewardMode = "Reward",
+		RollMode = "Roll Mode",
 		RngHelper = "RngHelper",
 		RngHelperQuickDraw = "RngHelperQuickDraw",
 		RuneElement = "Rune Element",
@@ -197,26 +198,30 @@ function update_job_states()
 		UnlockGeomancy = "Unlock Geomancy",
 		WakeUpWeapons = "WakeUpWeapons",
 		Weapons = "Weapons",
-		AltStep = "Alt Step",
+		MainStep = "Main Step",
+		CycleStep = "Cycle Step",
 		CastingMode = "Casting",
 		DefenseMode = "Defense",
 		DelayReduction = "Delay",
 		HybridMode = "Hybrid",
 		IdleMode = "Idle",
-		MainStep = "Main Step",
 		OffenseMode = "Offense",
 		TotalHaste = "Haste",
 		TreasureMode = "Treasure",
 		WeaponskillMode = "Weaponskill",
 	}
+	
+	if display.labels then
+		labels = set_combine(lables, display.labels)
+	end
 
 	stateBox:clear()
 	stateBox:append('   ')
 
 	if state.CraftingMode.value ~= 'None' then
-		stateBox:append(string.format("%sCrafting Mode: "..state.CraftingMode.value.."%s", clr.h, clr.n))
+		stateBox:append(string.format("%sCrafting Mode: "..state.CraftingMode.value.."%s", display.colors.Yellow, display.colors.OffWhite))
 		stateBox:append(spc)
-		stateBox:append(string.format("%sCrafting Quality: "..state.CraftQuality.value.."%s", clr.h, clr.n))
+		stateBox:append(string.format("%sCrafting Quality: "..state.CraftQuality.value.."%s", display.colors.Yellow, display.colors.OffWhite))
 		return
 	end
 
@@ -228,43 +233,41 @@ function update_job_states()
 			if n == 'AutoWSMode' and state.AutoWSMode.value then
 				if state.RngHelper.value then
 					if state.MaintainAftermath.value then
-						if data.equipment.mythic_weapons:contains(player.equipment.range) then
-							stateBox:append(string.format("%sAuto WS: "..rangedautows..": AM3+"..rangedautowstp.."%s", clr.h, clr.n))
+						if data.equipment.aftermath_weapons:contains(player.equipment.range) then
+							stateBox:append(string.format("%sAuto WS: "..rangedautows..": AM3+"..rangedautowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						elseif data.equipment.relic_weapons:contains(player.equipment.range) then
-							stateBox:append(string.format("%sAuto WS: "..rangedautows..": AM+"..rangedautowstp.."%s", clr.h, clr.n))
+							stateBox:append(string.format("%sAuto WS: "..rangedautows..": AM+"..rangedautowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						else
-							stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", clr.h, clr.n))
+							stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						end
 					else
-						stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", clr.h, clr.n))
+						stateBox:append(string.format("%sAuto WS: "..rangedautows..": "..rangedautowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 					end
 				else
 					if state.MaintainAftermath.value then
-						if data.equipment.mythic_weapons:contains(player.equipment.main) then
-							stateBox:append(string.format("%sAuto WS: "..autows..": AM3+"..autowstp.."%s", clr.h, clr.n))
+						if data.equipment.aftermath_weapons:contains(player.equipment.main) then
+							stateBox:append(string.format("%sAuto WS: "..autows..": AM3+"..autowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						elseif data.equipment.relic_weapons:contains(player.equipment.main) then
-							stateBox:append(string.format("%sAuto WS: "..autows..": AM+"..autowstp.."%s", clr.h, clr.n))
+							stateBox:append(string.format("%sAuto WS: "..autows..": AM+"..autowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						else
-							stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", clr.h, clr.n))
+							stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 						end
 					else
-						stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", clr.h, clr.n))
+						stateBox:append(string.format("%sAuto WS: "..autows..": "..autowstp.."%s", display.colors.Yellow, display.colors.OffWhite))
 					end
 				end
 				stateBox:append(spc)
-			elseif n == 'AutoRuneMode' and (player.main_job == 'RUN' or player.sub_job == 'RUN') and state.AutoRuneMode.value then
-					stateBox:append(string.format("%sAuto Rune: %s%s    ", clr.h, clr[data.elements.runes_lookup[state.RuneElement.value]], state.RuneElement.value))
 			elseif n == 'AutoDefenseMode' then
 				if state.AutoDefenseMode.value then
 					if state.TankAutoDefense.value then
-						stateBox:append(string.format("%sAuto Defense: Tank%s", clr.h, clr.n))
+						stateBox:append(string.format("%sAuto Defense: Tank%s", display.colors.Yellow, display.colors.OffWhite))
 					else
-						stateBox:append(string.format("%sAuto Defense%s", clr.h, clr.n))
+						stateBox:append(string.format("%sAuto Defense%s", display.colors.Yellow, display.colors.OffWhite))
 					end
 					stateBox:append(spc)
 				end
 			else
-				stateBox:append(clr.h..labels[n]..clr.n)
+				stateBox:append(display.colors.Yellow..labels[n]..display.colors.OffWhite)
 				stateBox:append(spc)
 			end
 		else
@@ -274,7 +277,7 @@ function update_job_states()
 		-- Append basic formatted boolean state
 
 	end
-		stateBox:append(clr.w)
+		stateBox:append(display.colors.White)
 	-- Construct and append info for modal states
 	for i,n in ipairs(stateList) do
 
@@ -287,7 +290,7 @@ function update_job_states()
 			orig[n] = state[n][1]
 		end
 		if info[n] ~= orig[n] then
-			info[n] = clr.h..info[n]..clr.n
+			info[n] = display.colors.Yellow..info[n]..display.colors.OffWhite
 		end
 
 		-- Append basic formatted modal state
@@ -297,122 +300,152 @@ function update_job_states()
 		if n == 'AutoBuffMode' then
 			if state.AutoBuffMode.value ~= 'Off' then
 				if player.main_job == 'GEO' then
-					stateBox:append(string.format("%sAuto Buff: Indi-"..autoindi.." Geo-"..autogeo.."%s  ", clr.h, clr.n))
+					stateBox:append(string.format("%sAuto Buff: Indi-"..autoindi.." Geo-"..autogeo.."%s  ", display.colors.Yellow, display.colors.OffWhite))
 					if autoentrust ~= 'None' then
-						stateBox:append(string.format("%sAuto Entrust: "..autoentrust.."  Entrustee: "..autoentrustee.."%s  ", clr.h, clr.n))
+						stateBox:append(string.format("%sAuto Entrust: "..autoentrust.."  Entrustee: "..autoentrustee.."%s  ", display.colors.Yellow, display.colors.OffWhite))
 					end
 				end
-				stateBox:append(string.format("%sAuto Buff: %s%s", clr.w, clr.h, state.AutoBuffMode.value))
+				stateBox:append(string.format("%sAuto Buff: %s%s", display.colors.White, display.colors.Yellow, state.AutoBuffMode.value))
 				stateBox:append(spc)
 			end
 		elseif n == 'RangedMode' then
-			stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+			stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 				if statusammo then
 					stateBox:append('Ammo: '..statusammo..'    ')
 				end
+		elseif n == 'Weapons' then
+			if state.UnlockWeapons.value then
+				stateBox:append(string.format("%sUnlocked ", display.colors.LightBlue))
+			end
+			
+			if state.WeaponSets.value ~= 'Default' and state.WeaponSets.value ~= 'None' then
+				stateBox:append(string.format("%s%s ", display.colors.White, state.WeaponSets.value))
+			end
+			
+			stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 		elseif n == 'OffenseMode' then
 			if state.DefenseMode.value ~= 'None' then
-				stateBox:append(string.format("%sDefense Active: ", clr.w))
+				stateBox:append(string.format("%sDefense Active: ", display.colors.White))
 				if state.DefenseMode.value == 'Physical' then
-					stateBox:append(string.format("%s%s: %s%s", clr.h, state.DefenseMode.current, state.PhysicalDefenseMode.current, clr.w))
+					stateBox:append(string.format("%s%s: %s%s", display.colors.Yellow, state.DefenseMode.current, state.PhysicalDefenseMode.current, display.colors.White))
 				elseif state.DefenseMode.value == 'Magical' then
-					stateBox:append(string.format("%s%s: %s%s", clr.h, state.DefenseMode.current, state.MagicalDefenseMode.current, clr.w))
+					stateBox:append(string.format("%s%s: %s%s", display.colors.Yellow, state.DefenseMode.current, state.MagicalDefenseMode.current, display.colors.White))
 				elseif state.DefenseMode.value == 'Resist' then
-					stateBox:append(string.format("%s%s: %s%s", clr.h, state.DefenseMode.current, state.ResistDefenseMode.current, clr.w))
+					stateBox:append(string.format("%s%s: %s%s", display.colors.Yellow, state.DefenseMode.current, state.ResistDefenseMode.current, display.colors.White))
 				end
 				stateBox:append(spc)
 			else
-				stateBox:append(string.format("%s%s: ${%s}", clr.w, labels[n], n))
+				stateBox:append(string.format("%s%s: ${%s}", display.colors.White, labels[n], n))
 				if state.HybridMode then
 					if state.HybridMode.value == 'Normal' then
-						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.w, state.HybridMode.current, clr.n))
+						stateBox:append(string.format("%s / %s%s%s", display.colors.OffWhite, display.colors.White, state.HybridMode.current, display.colors.OffWhite))
 					else
-						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.h, state.HybridMode.current, clr.n))
+						stateBox:append(string.format("%s / %s%s%s", display.colors.OffWhite, display.colors.Yellow, state.HybridMode.current, display.colors.OffWhite))
 					end
 				end
 				if state.ExtraMeleeMode then
 					if state.ExtraMeleeMode.value == 'None' then
-						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.w, state.ExtraMeleeMode.current, clr.n))
+						stateBox:append(string.format("%s / %s%s%s", display.colors.OffWhite, display.colors.White, state.ExtraMeleeMode.current, display.colors.OffWhite))
 					else
-						stateBox:append(string.format("%s / %s%s%s", clr.n, clr.h, state.ExtraMeleeMode.current, clr.n))
+						stateBox:append(string.format("%s / %s%s%s", display.colors.OffWhite, display.colors.Yellow, state.ExtraMeleeMode.current, display.colors.OffWhite))
 					end
 				end
 				stateBox:append(spc)
 			end
 		elseif n == 'AutoSambaMode' then
 			if state.AutoSambaMode.value ~= 'Off' then
-				stateBox:append(string.format("%sAuto Samba: %s%s    ", clr.w, clr.h, state.AutoSambaMode.value))
+				stateBox:append(string.format("%sAuto Samba: %s%s    ", display.colors.White, display.colors.Yellow, state.AutoSambaMode.value))
 			end
 		elseif n == 'IdleMode' then
 			if state.IdleMode.value ~= 'Normal' and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+				stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 			end
 			if state.Kiting.value then
-				stateBox:append(string.format("%sKiting: %sOn    ", clr.w, clr.h))
+				stateBox:append(string.format("%sKiting: %sOn    ", display.colors.White, display.colors.Yellow))
 			end
 		elseif n == 'Passive' then
 			if state.Passive.value ~= 'None' and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+				stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 			end
 		elseif n == 'ExtraDefenseMode' then
 			if state.ExtraDefenseMode.value ~= 'None' then
-				stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+				stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 			end
 		elseif n == 'TreasureMode' then
 			if (state.TreasureMode.value ~= 'None' or player.main_job == 'THF') and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%sTreasure: %s%s    ", clr.w, clr.h, state.TreasureMode.value))
+				stateBox:append(string.format("%sTreasure: %s%s    ", display.colors.White, display.colors.Yellow, state.TreasureMode.value))
 			end
 		elseif n == 'CastingMode' then
-			stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+			stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 			if state.MagicBurstMode.value ~= 'Off' then
-				stateBox:append(string.format("%sMagic Burst: %s%s    ", clr.w, clr.h, state.MagicBurstMode.value))
+				stateBox:append(string.format("%sMagic Burst: %s%s    ", display.colors.White, display.colors.Yellow, state.MagicBurstMode.value))
 			end
 			if state.DeathMode and state.DeathMode.value ~= 'Off' then
-				stateBox:append(string.format("%sDeath Mode: %s%s    ", clr.w, clr.h, state.DeathMode.value))
+				stateBox:append(string.format("%sDeath Mode: %s%s    ", display.colors.White, display.colors.Yellow, state.DeathMode.value))
 			end
 		elseif n == 'WeaponskillMode' then
 			if state.WeaponskillMode.value ~= 'Match' then
-				stateBox:append(string.format("%sWeaponskill: %s%s    ", clr.w, clr.h, state.WeaponskillMode.value))
+				stateBox:append(string.format("%sWeaponskill: %s%s    ", display.colors.White, display.colors.Yellow, state.WeaponskillMode.value))
 			end
 			if state.SkillchainMode.value ~= 'Off' and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%sSkillchain Mode: %s%s    ", clr.w, clr.h, state.SkillchainMode.value))
+				stateBox:append(string.format("%sSkillchain Mode: %s%s    ", display.colors.White, display.colors.Yellow, state.SkillchainMode.value))
 			end
 		elseif n == 'ElementalMode' then
-				stateBox:append(string.format("%sElement: %s%s    ", clr.w, clr[state.ElementalMode.value], state.ElementalMode.value))
+				stateBox:append(string.format("%sElement: %s%s    ", display.colors.White, display.colors[state.ElementalMode.value], state.ElementalMode.value))
+		elseif n == 'AutoRuneMode' then
+				if (player.main_job == 'RUN' or player.sub_job == 'RUN') and state.AutoRuneMode.value ~= 'false' and state.AutoRuneMode.value ~= 'Off' then
+					if #custom_runes == 3 then
+						stateBox:append(string.format("%sCustom Auto Rune ("..state.AutoRuneMode.value.."): (%s%s, %s%s, %s%s%s)    ", display.colors.Yellow, display.colors[data.elements.runes_lookup[custom_runes[1]]], custom_runes[1], display.colors[data.elements.runes_lookup[custom_runes[2]]], custom_runes[2], display.colors[data.elements.runes_lookup[custom_runes[3]]], custom_runes[3],display.colors.Yellow))
+					elseif #custom_runes == 2 then
+						stateBox:append(string.format("%sCustom Auto Rune ("..state.AutoRuneMode.value.."): (%s%s, %s%s%s)    ", display.colors.Yellow, display.colors[data.elements.runes_lookup[custom_runes[1]]], custom_runes[1], display.colors[data.elements.runes_lookup[custom_runes[2]]], custom_runes[2],display.colors.Yellow))
+					else
+						stateBox:append(string.format("%sAuto Rune ("..state.AutoRuneMode.value.."): %s%s    ", display.colors.Yellow, display.colors[data.elements.runes_lookup[state.RuneElement.value]], state.RuneElement.value))
+					end
+				end
 		elseif n == 'RuneElement' then
-				if not state.AutoRuneMode.value and (player.main_job == 'RUN' or player.sub_job == 'RUN') then
-					stateBox:append(string.format("%sRune: %s%s    ", clr.w, clr[data.elements.runes_lookup[state.RuneElement.value]], state.RuneElement.value))
+				if (state.AutoRuneMode.value == 'false' or state.AutoRuneMode.value == 'Off') and (player.main_job == 'RUN' or player.sub_job == 'RUN') then
+					stateBox:append(string.format("%sRune: %s%s    ", display.colors.White, display.colors[data.elements.runes_lookup[state.RuneElement.value]], state.RuneElement.value))
+					
+					if #custom_runes == 3 then
+						stateBox:append(string.format("%sCustom Autorunes: (%s%s, %s%s, %s%s%s)    ", display.colors.White, display.colors[data.elements.runes_lookup[custom_runes[1]]], custom_runes[1], display.colors[data.elements.runes_lookup[custom_runes[2]]], custom_runes[2], display.colors[data.elements.runes_lookup[custom_runes[3]]], custom_runes[3],display.colors.Yellow))
+					elseif #custom_runes == 2 then
+						stateBox:append(string.format("%sCustom Autorunes: (%s%s, %s%s%s)    ", display.colors.White, display.colors[data.elements.runes_lookup[custom_runes[1]]], custom_runes[1], display.colors[data.elements.runes_lookup[custom_runes[2]]], custom_runes[2],display.colors.Yellow))
+					end
 				end
 		elseif n == 'LearningMode' then
 			if state.LearningMode.value and state.DefenseMode.value == 'None' then
-				stateBox:append(string.format("%sLearning Mode: %sOn    ", clr.w, clr.h))
+				stateBox:append(string.format("%sLearning Mode: %sOn    ", display.colors.White, display.colors.Yellow))
 			end
 		elseif n == 'CompensatorMode' then
 			if state.CompensatorMode.value ~= 'Never' then
-				stateBox:append(string.format("%sCompensator: %s%s    ", clr.w, clr.h, state.CompensatorMode.value))
+				stateBox:append(string.format("%sCompensator: %s%s    ", display.colors.White, display.colors.Yellow, state.CompensatorMode.value))
+			end
+		elseif n == 'RollMode' then
+			if state.RollMode.value ~= 'None' then
+				stateBox:append(string.format("%sRollMode: %s%s    ", display.colors.White, display.colors.Yellow, state.RollMode.value))
 			end
 		elseif n == 'CarnMode' then
 			if state.CarnMode.value ~= 'Never' then
-				stateBox:append(string.format("%sCarn Mode: %s%s    ", clr.w, clr.h, state.CarnMode.value))
+				stateBox:append(string.format("%sCarn Mode: %s%s    ", display.colors.White, display.colors.Yellow, state.CarnMode.value))
 			end
 		elseif n == 'DrainSwapWeaponMode' then
 			if state.DrainSwapWeaponMode.value ~= 'Never' then
-				stateBox:append(string.format("%sDrain Swap: %s%s    ", clr.w, clr.h, state.DrainSwapWeaponMode.value))
+				stateBox:append(string.format("%sDrain Swap: %s%s    ", display.colors.White, display.colors.Yellow, state.DrainSwapWeaponMode.value))
 			end
 		elseif n == 'ExtraSongsMode' then
 			if state.ExtraSongsMode.value ~= "None" then
-				stateBox:append(string.format("%sSongs: %s%s    ", clr.w, clr.h, state.ExtraSongsMode.value))
+				stateBox:append(string.format("%sSongs: %s%s    ", display.colors.White, display.colors.Yellow, state.ExtraSongsMode.value))
 			end
 		elseif n == 'DanceStance' then
 			if state.DanceStance.value ~= "None" then
-				stateBox:append(string.format("%sDance: %s%s    ", clr.w, clr.h, state.DanceStance.value))
+				stateBox:append(string.format("%sDance: %s%s    ", display.colors.White, display.colors.Yellow, state.DanceStance.value))
 			end
 		elseif n == 'Stance' then
 			if state.Stance.value ~= "None" then
-				stateBox:append(string.format("%sStance: %s%s    ", clr.w, clr.h, state.Stance.value))
+				stateBox:append(string.format("%sStance: %s%s    ", display.colors.White, display.colors.Yellow, state.Stance.value))
 			end
 		else
-			stateBox:append(string.format("%s%s: ${%s}    ", clr.w, labels[n], n))
+			stateBox:append(string.format("%s%s: ${%s}    ", display.colors.White, labels[n], n))
 		end
 	end
 	-- Update and display current info

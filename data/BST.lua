@@ -60,7 +60,6 @@ function job_setup()
 
 	state.Buff['Killer Instinct'] = buffactive['Killer Instinct'] or false
 	state.Buff["Unleash"] = buffactive["Unleash"] or false
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 
 	-- 'Out of Range' distance; WS will auto-cancel
 	target_distance = 6
@@ -224,6 +223,7 @@ function job_setup()
 
 	state.AutoFightMode = M(true, 'Auto Fight Mode')
 	state.AutoReadyMode = M(false, 'Auto Ready Mode')
+	state.AutoRewardMode = M(true, 'Auto Reward Mode')
 	state.AutoCallPet = M(false, 'Auto Call Pet')
 	state.PetMode = M{['description']='Pet Mode','Tank','DD'}
 	state.RewardMode = M{['description']='Reward Mode', 'Theta', 'Zeta', 'Eta'}
@@ -245,8 +245,7 @@ function job_setup()
 	base_chargetimer = base_chargetimer - (2 * windower.ffxi.get_player().merits.sic_recast)
 
 	update_pet_groups()
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","AutoReadyMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","PetMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoCallPet","AutoFightMode","AutoRewardMode","AutoReadyMode","AutoWSMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","PetMode","IdleMode","Passive","RuneElement","JugMode","RewardMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -411,7 +410,7 @@ function job_midcast(spell, spellMap, eventArgs)
 
 end
 
-function job_aftercast(spell, spellMap, eventArgs)
+function job_post_aftercast(spell, spellMap, eventArgs)
 	if spell.type == 'Monster' then
 		petWillAct = os.clock()
 
@@ -419,40 +418,44 @@ function job_aftercast(spell, spellMap, eventArgs)
 			return
 		end
 
+		if state.DefenseMode.value ~= 'None' and not state.Buff["Unleash"] then
+			return
+		end
+
 		local currentSet = get_pet_midcast_set(spell, spellMap)
 
 		if magic_ready_moves:contains(spell.english) then
 			if debuff_ready_moves:contains(spell.english) and sets.midcast.Pet.DebuffReady then
-				currentSet = set_combine(curentSet, sets.midcast.Pet.DebuffReady)
+				currentSet = set_combine(currentSet, sets.midcast.Pet.DebuffReady)
 			else
 				if sets.midcast.Pet.MagicReady[state.OffenseMode.value] then
-					currentSet = set_combine(curentSet, sets.midcast.Pet.MagicReady[state.OffenseMode.value])
+					currentSet = set_combine(currentSet, sets.midcast.Pet.MagicReady[state.OffenseMode.value])
 				else
-					currentSet = set_combine(curentSet, sets.midcast.Pet.MagicReady)
+					currentSet = set_combine(currentSet, sets.midcast.Pet.MagicReady)
 				end
 			end
 
 		elseif physical_debuff_ready_moves:contains(spell.english) and sets.midcast.Pet.PhysicalDebuffReady then
-			currentSet = set_combine(curentSet, sets.midcast.Pet.PhysicalDebuffReady)
+			currentSet = set_combine(currentSet, sets.midcast.Pet.PhysicalDebuffReady)
 		elseif multi_hit_ready_moves:contains(spell.english) and sets.midcast.Pet.MultiHitReady then
-			currentSet = set_combine(curentSet, sets.midcast.Pet.MultiHitReady)
+			currentSet = set_combine(currentSet, sets.midcast.Pet.MultiHitReady)
 		else
 			if sets.midcast.Pet[state.OffenseMode.value] then
-				currentSet = set_combine(curentSet, sets.midcast.Pet[state.OffenseMode.value])
+				currentSet = set_combine(currentSet, sets.midcast.Pet[state.OffenseMode.value])
 			else
-				currentSet = set_combine(curentSet, sets.midcast.Pet.WS)
+				currentSet = set_combine(currentSet, sets.midcast.Pet.WS)
 			end
 		end
 
 		-- Check correlation mode for favorable and equip related gear.
 		if state.CorrelationMode.value == "Favorable" then
-			currentSet = set_combine(curentSet, sets.midcast.Pet.Favorable)
+			currentSet = set_combine(currentSet, sets.midcast.Pet.Favorable)
 		end
 
 		-- If Pet TP, before bonuses, is less than a certain value then equip Nukumi Manoplas +1
 		if tp_based_ready_moves:contains(spell.english) then
 			if pet.tp < 1900 or (PetJob ~= 'Warrior' and pet.tp < 2400) then
-				currentSet = set_combine(curentSet, sets.midcast.Pet.TPBonus)
+				currentSet = set_combine(currentSet, sets.midcast.Pet.TPBonus)
 			end
 		end
 		
@@ -518,7 +521,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_buff_change(buff, gain)
-	update_melee_groups()
 	if buff == 'Unleash' and UnleashLocked and not gain then
 		UnleashLocked = false
 		internal_enable_set("OneHour")
@@ -533,11 +535,7 @@ function job_status_change(newStatus, oldStatus, eventArgs)
 end
 
 function get_custom_wsmode(spell, spellMap, default_wsmode)
-		if default_wsmode ~= 'Fodder' then
-				if spell.english == "Ruinator" and (world.day_element == 'Water' or world.day_element == 'Wind' or world.day_element == 'Ice') then
-						return 'Mekira'
-				end
-		end
+
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -548,7 +546,6 @@ end
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
 	update_pet_groups()
-	update_melee_groups()
 end
 
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
@@ -589,15 +586,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
-function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-
-		if player.equipment.main == "Aymur" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
-		end
-	end
-end
 
 function job_self_command(commandArgs, eventArgs)
 	if commandArgs[1]:lower() == 'showcharge' then
@@ -639,9 +627,8 @@ function job_check_buff()
 end
 
 function check_pet()
-
 	if pet.isvalid then
-		if pet.hpp < 34 then
+		if pet.hpp < 34 and state.AutoRewardMode.value then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 			
 			if abil_recasts[103] < latency and not (buffactive.amnesia or buffactive.impairment) then
@@ -654,7 +641,7 @@ function check_pet()
 				end
 			end
 		end
-	elseif state.AutoCallPet.value and not data.areas.cities:contains(world.area) then
+	elseif state.AutoCallPet.value and not in_town then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if abil_recasts[94] < latency then
 			windower.chat.input('/ja "Bestial Loyalty" <me>')
@@ -716,7 +703,7 @@ function job_zone_change(new_id,old_id)
 end
 
 function handle_ready(commandArgs)
-	if data.areas.cities:contains(world.area) then
+	if in_town then
 		add_to_chat(123, 'Abort:You cannot use ready in town.')
 		return
 	elseif not pet.isvalid then

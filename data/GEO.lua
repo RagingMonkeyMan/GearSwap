@@ -59,8 +59,6 @@ function job_setup()
 		'Stone II', 'Water II', 'Aero II', 'Fire II', 'Blizzard II', 'Thunder II',
 		'Stonega', 'Waterga', 'Aeroga', 'Firaga', 'Blizzaga', 'Thundaga'}
 
-	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
-
 	autows = 'Realmrazer'
 	autofood = 'Miso Ramen'
 	autoindi = 'Torpor'
@@ -74,14 +72,13 @@ function job_setup()
 
 	state.ShowDistance = M(true, 'Show Geomancy Buff/Debuff distance')
 	state.AutoEntrust = M(false, 'AutoEntrust Mode')
-	state.UnlockGeomancy = M{'Never','500','1000','Always'}
+	state.UnlockGeomancy = M{'Always','500','1000','Never'}
 	state.CombatEntrustOnly = M(true, 'Combat Entrust Only Mode')
 	state.AutoGeoAbilities = M(true, 'Use Geo Abilities Automatically')
 
 	indi_timer = ''
 	indi_duration = 180
-
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoNukeMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -130,11 +127,11 @@ function job_pretarget(spell, spellMap, eventArgs)
 				end
 			end
 		elseif spell.english:startswith('Geo') then
-			if set.contains(spell.targets, 'Enemy') then
+			if spell.targets:contains('Enemy') then
 				if ((spell.target.type == 'PLAYER' and not spell.target.charmed) or (spell.target.type == 'NPC' and spell.target.in_party)) then
 					eventArgs.cancel = true
 				end
-			elseif not ((spell.target.type == 'PLAYER' and not spell.target.charmed and spell.target.in_party) or (spell.target.type == 'NPC' and spell.target.in_party) or (spell.target.raw == '<stpt>' or spell.target.raw == '<stal>' or spell.target.raw == '<st>')) then
+			elseif not (spell.target.raw:startswith('<st') or spell.target.in_party) then
 				change_target('<me>')
 			end
 		end
@@ -185,49 +182,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 end
 
 function job_post_midcast(spell, spellMap, eventArgs)
-
-	if spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' and spell.english ~= 'Impact' then
-		if state.MagicBurstMode.value ~= 'Off' then
-			if state.CastingMode.value:contains('Resistant') and sets.ResistantMagicBurst then
-				equip(sets.ResistantMagicBurst)
-			else
-				equip(sets.MagicBurst)
-			end
-		end
-		if spell.element == world.weather_element or spell.element == world.day_element then
-			if state.CastingMode.value == 'Fodder' then
-				-- if item_available('Twilight Cape') and not LowTierNukes:contains(spell.english) and not state.Capacity.value then
-					-- sets.TwilightCape = {back="Twilight Cape"}
-					-- equip(sets.TwilightCape)
-				-- end
-				if spell.element == world.day_element then
-					if item_available('Zodiac Ring') then
-						sets.ZodiacRing = {ring2="Zodiac Ring"}
-						equip(sets.ZodiacRing)
-					end
-				end
-			end
-		end
-
-		if spell.element and sets.element[spell.element] then
-			equip(sets.element[spell.element])
-		end
-
-		if state.RecoverMode.value ~= 'Never' and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
-			if state.MagicBurstMode.value ~= 'Off' then
-				if state.CastingMode.value:contains('Resistant') and sets.ResistantRecoverBurst then
-					equip(sets.ResistantRecoverBurst)
-				elseif sets.RecoverBurst then
-					equip(sets.RecoverBurst)
-				elseif sets.RecoverMP then
-					equip(sets.RecoverMP)
-				end
-			elseif sets.RecoverMP then
-				equip(sets.RecoverMP)
-			end
-		end
-
-	elseif spell.skill == 'Geomancy' then
+	if spell.skill == 'Geomancy' then
 		if spell.english:startswith('Geo-') then
 			if state.Buff['Blaze of Glory'] and sets.buff['Blaze of Glory'] then
 				internal_disable_set(sets.buff['Blaze of Glory'], "Ability")
@@ -252,7 +207,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 			end
 		end
 	end
-
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
@@ -278,15 +232,6 @@ function job_aftercast(spell, spellMap, eventArgs)
 			send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
 		elseif state.UseCustomTimers.value and spell.english == 'Sleep II' or spell.english == 'Sleepga II' then
 			send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 90 down spells/00220.png')
-		elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
-			state.MagicBurstMode:reset()
-			if state.DisplayMode.value then update_job_states()	end
-		end
-	end
-
-	if spell.skill == 'Geomancy' then
-		if state.UnlockGeomancy.value ~= 'Never' and not state.UnlockWeapons.value and state.Weapons.value ~= 'None' then
-			equip_weaponset()
 		end
 	end
 
@@ -405,22 +350,74 @@ end
 
 function job_self_command(commandArgs, eventArgs)
 	local lowerCommand = commandArgs[1]:lower()
-	if lowerCommand == 'autoindi' and commandArgs[2] then
-		autoindi = commandArgs[2]:ucfirst()
+	if lowerCommand == 'autoindi' then
+		if commandArgs[2] then
+			autoindi = commandArgs[2]:ucfirst()
+		end
 		add_to_chat(122,'Your Auto Indi- spell is set to '..autoindi..'.')
 		if state.DisplayMode.value then update_job_states()	end
-	elseif lowerCommand == 'autogeo' and commandArgs[2] then
-		autogeo = commandArgs[2]:ucfirst()
+	elseif lowerCommand == 'autogeo' then
+		if commandArgs[2] then
+			autogeo = commandArgs[2]:ucfirst()
+		end
 		add_to_chat(122,'Your Auto Geo- spell is set to '..autogeo..'.')
 		if state.DisplayMode.value then update_job_states()	end
-	elseif lowerCommand == 'autoentrust' and commandArgs[2] then
-		autoentrust = commandArgs[2]:ucfirst()
+	elseif lowerCommand == 'autoentrust' then
+		if commandArgs[2] then
+			autoentrust = commandArgs[2]:ucfirst()
+		end
 		add_to_chat(122,'Your Auto Entrust Indi- spell is set to '..autoentrust..'.')
 		if state.DisplayMode.value then update_job_states()	end
-	elseif lowerCommand:contains('trustee') and commandArgs[2] then
-		autoentrustee = commandArgs[2]:ucfirst()
+	elseif lowerCommand:contains('trustee') then
+		if commandArgs[2] then
+			autoentrustee = commandArgs[2]:ucfirst()
+		elseif player.target and player.target.in_party then
+			autoentrustee = player.target.name
+		else
+			autoentrustee = '<p1>'
+		end
 		add_to_chat(122,'Your Auto Entrustee target is set to '..autoentrustee..'.')
 		if state.DisplayMode.value then update_job_states()	end
+	elseif lowerCommand == 'geo' then
+		if commandArgs[2] then
+			local lowerSubCommand = commandArgs[2]:lower()
+			if lowerSubCommand == 'geo' then
+				if commandArgs[3] then
+					if commandArgs[3]:startswith('st') then
+						local spell_table = res.spells[get_spell_id_by_name('Geo-'..autogeo)]
+						if spell_table.targets:contains('Enemy') then
+							windower.chat.input('/ma "Geo-'..autogeo..'" <stnpc>')
+						else
+							windower.chat.input('/ma "Geo-'..autogeo..'" <stpc>')
+						end
+					else
+						windower.chat.input('/ma "Geo-'..autogeo..'" '..commandArgs[3])
+					end
+				else
+					windower.chat.input('/ma "Geo-'..autogeo..'" <bt>')
+				end
+			elseif lowerSubCommand == 'indi' then
+				if state.Buff.Entrust then
+					if commandArgs[3] then
+						windower.chat.input('/ma "Indi-'..autoindi..'" '..commandArgs[3])
+					elseif player.target and not spell.target.type == 'SELF' and player.target.in_party then
+						windower.chat.input('/ma "Indi-'..autoindi..'" <t>')
+					else
+						windower.chat.input('/ma "Indi-'..autoindi..'" '..autoentrustee)
+					end
+				else
+					windower.chat.input('/ma "Indi-'..autoindi..'" <me>')
+				end
+			elseif lowerSubCommand == 'entrust' then
+				if commandArgs[3] then
+					send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..commandArgs[3])
+				else
+					send_command('@input /ja "Entrust" <me>; wait 1.1; input /ma "Indi-'..autoentrust..'" '..autoentrustee)
+				end
+			end
+		else
+			add_to_chat(123,'The geo subcommands are: Geo, Indi, Entrust')
+		end
 	end
 end
 
@@ -488,7 +485,7 @@ function job_tick()
 end
 
 function check_geo()
-	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
+	if state.AutoBuffMode.value ~= 'Off' and not in_town then
 		if not pet.isvalid then
 			used_ecliptic = false
 		end

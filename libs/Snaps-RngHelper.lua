@@ -284,7 +284,7 @@ function process_queue()
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}	
-			elseif (buffactive['Aftermath: Lv.3'] or not data.equipment.mythic_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
+			elseif (buffactive['Aftermath: Lv.3'] or not data.equipment.aftermath_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = rangedautows,
@@ -294,7 +294,7 @@ function process_queue()
 			elseif player.tp == 3000 then
 				pending = {
 					['prefix'] = '/weaponskill',
-					['english'] = data.weaponskills.mythic[player.equipment.range],
+					['english'] = data.weaponskills.aftermath[player.equipment.range],
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}

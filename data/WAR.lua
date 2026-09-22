@@ -45,11 +45,11 @@
 
 -- Initialization function for this job file.
 function get_sets()
-    -- Load and initialize the include file.
-    include('Sel-Include.lua')
+	-- Load and initialize the include file.
+	include('Sel-Include.lua')
 end
 
-    -- Setup vars that are user-independent.
+	-- Setup vars that are user-independent.
 function job_setup()
 
 	state.Buff['Brazen Rush'] = buffactive['Brazen Rush'] or false
@@ -61,19 +61,18 @@ function job_setup()
 	state.Buff['Blood Rage'] = buffactive['Blood Rage'] or false
 	state.Buff.Retaliation = buffactive['Retaliation'] or false
 	state.Buff.Restraint = buffactive['Restraint'] or false
-    state.Buff['Aftermath'] = buffactive['Aftermath'] or false
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	state.Buff['Third Eye'] = buffactive['Third Eye'] or false
-    state.Buff.Hasso = buffactive.Hasso or false
-    state.Buff.Seigan = buffactive.Seigan or false
+	state.Buff.Hasso = buffactive.Hasso or false
+	state.Buff.Seigan = buffactive.Seigan or false
 	state.Buff['Sneak Attack'] = buffactive['Sneak Attack'] or false
-	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
-	state.ConquerorMode = M{['description']='Conqueror Mode','Never','500','1000','Always'}
+	state.Stance = M{['description']='Stance', 'Hasso','Seigan','None'}
+	state.ConquerorMode = M{['description']='Conqueror Mode', '250','500','1000','Always','Never'}
+	
 
 	autows = "Ukko's Fury"
 	autofood = 'Soy Ramen'
 	
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -87,16 +86,16 @@ function job_filtered_action(spell, eventArgs)
 		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
 		-- WS 112 is Double Thrust, meaning a Spear is equipped.
 		if available_ws:contains(48) then
-            if spell.english == "Upheaval" then
+			if spell.english == "Upheaval" then
 				windower.chat.input('/ws "Resolution" '..spell.target.raw)
-                cancel_spell()
+				cancel_spell()
 				eventArgs.cancel = true
-            elseif spell.english == "Ukko's Fury" then
-                send_command('@input /ws "Ground Strike" '..spell.target.raw)
-                cancel_spell()
+			elseif spell.english == "Ukko's Fury" then
+				send_command('@input /ws "Ground Strike" '..spell.target.raw)
+				cancel_spell()
 				eventArgs.cancel = true
-            end
-        end
+			end
+		end
 	end
 end
 
@@ -110,7 +109,7 @@ function job_precast(spell, spellMap, eventArgs)
 				windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 				add_tick_delay(1.1)
 				return
-			elseif state.Buff['SJ Restriction'] then
+			elseif buffactive['SJ Restriction'] then
 				return
 			elseif player.sub_job == 'SAM' and player.tp > 1850 and abil_recasts[140] < latency then
 				eventArgs.cancel = true
@@ -128,8 +127,8 @@ function job_precast(spell, spellMap, eventArgs)
 		end
 	elseif spell.type == "JobAbility" then
 		if spell.english == 'Berserk' then
-			if state.ConquerorMode.value == 'Always' or (state.ConquerorMode.value ~= 'Never' and tonumber(state.ConquerorMode.value) > player.tp) then
-				internal_enable_set("Weapons") 
+			if item_equippable("Conqueror") and state.ConquerorMode.value == 'Always' or (state.ConquerorMode.value ~= 'Never' and tonumber(state.ConquerorMode.value) > player.tp) then
+				internal_enable_set("Weapons")
 			end
 		end
 	end
@@ -146,7 +145,7 @@ function job_customize_melee_set(meleeSet)
 		meleeSet = set_combine(meleeSet, sets.buff.Restraint)
 	end
 	
-    return meleeSet
+	return meleeSet
 end
 
 -- Run after the general precast() is done.
@@ -221,24 +220,14 @@ end
 
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
-    update_melee_groups()
-	
 	if player.sub_job ~= 'SAM' and state.Stance.value ~= "None" then
 		state.Stance:set("None")
 	end
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
-	if spell.type == "JobAbility" then
-		if spell.english == 'Berserk' then
-			if state.ConquerorMode.value ~= 'Never' and not state.UnlockWeapons.value and state.Weapons.value ~= 'None' then
-				equip_weaponset()
-			end
-		end
-	elseif spell.english == 'Warcry' then
-		if not spell.interrupted then
-			lastwarcry = player.name
-		end
+	if spell.english == 'Warcry' and not spell.interrupted then
+		lastwarcry = player.name
 	end
 end
 
@@ -250,33 +239,20 @@ function job_buff_change(buff, gain)
 			lastwarcry = ''
 		end
 	end
-	update_melee_groups()
 end
 
-function update_melee_groups()
-    if player then
-		classes.CustomMeleeGroups:clear()
-		
-		if data.areas.adoulin:contains(world.area) and buffactive.Ionis then
-			classes.CustomMeleeGroups:append('Adoulin')
-		end
-		
-		if state.Buff['Brazen Rush'] or state.Buff["Warrior's Charge"] then
-			classes.CustomMeleeGroups:append('Charge')
-		end
-		
-		if state.Buff['Mighty Strikes'] then
-			classes.CustomMeleeGroups:append('Mighty')
-		end
-		
-		if (player.equipment.main == "Conqueror" and state.Buff['Aftermath: Lv.3']) or ((player.equipment.main == "Bravura" or player.equipment.main == "Ragnarok") and state.Buff['Aftermath']) then
-				classes.CustomMeleeGroups:append('AM')
-		end
+function job_update_melee_groups()
+	if state.Buff['Brazen Rush'] or state.Buff["Warrior's Charge"] then
+		classes.CustomMeleeGroups:append('Charge')
+	end
+	
+	if state.Buff['Mighty Strikes'] then
+		classes.CustomMeleeGroups:append('Mighty')
 	end
 end
 
 function check_hasso()
-	if player.sub_job == 'SAM' and player.status == 'Engaged' and wielding() == 'Two-Handed' and state.Stance.value ~= 'None' and not (state.Buff.Hasso or state.Buff.Seigan or state.Buff['SJ Restriction'] or silent_check_amnesia()) then
+	if player.sub_job == 'SAM' and player.status == 'Engaged' and wielding() == 'Two-Handed' and state.Stance.value ~= 'None' and not (state.Buff.Hasso or state.Buff.Seigan or buffactive['SJ Restriction'] or silent_check_amnesia()) then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		

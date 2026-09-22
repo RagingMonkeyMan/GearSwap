@@ -64,12 +64,11 @@ function job_setup()
 
 	state.DeathMode = M{['description'] = 'Death Mode', 'Off', 'Single', 'Lock'}
 	state.AutoManawell = M(true, 'Auto Manawell Mode')
-	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 
 	autows = 'Myrkr'
 	autofood = 'Pear Crepe'
-	
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoManawell","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
+
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoNukeMode","AutoManawell","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -164,55 +163,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.midcast[spell.skill].Death)
 			else
 				equip(sets.precast.FC.Death)
-			end
-
-		elseif is_nuke(spell, spellMap) then
-			if state.MagicBurstMode.value ~= 'Off' then
-				if state.CastingMode.value:contains('Resistant') and sets.ResistantMagicBurst then
-					equip(sets.ResistantMagicBurst)
-				else
-					equip(sets.MagicBurst)
-				end
-			end
-
-			if player.hpp < 75 and player.tp < 1000 and state.CastingMode.value == 'Fodder' then
-				if item_available("Sorcerer's Ring") then
-					sets.SorcRing = {ring1="Sorcerer's Ring"}
-					equip(sets.SorcRing)
-				end
-			end
-			
-			if spell.element == world.weather_element or spell.element == world.day_element then
-				if state.CastingMode.value == 'Fodder' then
-					-- if item_available('Twilight Cape') and not LowTierNukes:contains(spell.english) and not state.Capacity.value then
-						-- sets.TwilightCape = {back="Twilight Cape"}
-						-- equip(sets.TwilightCape)
-					-- end
-					if spell.element == world.day_element then
-						if item_available('Zodiac Ring') then
-							sets.ZodiacRing = {ring2="Zodiac Ring"}
-							equip(sets.ZodiacRing)
-						end
-					end
-				end
-			end
-			
-			if spell.element and sets.element[spell.element] then
-				equip(sets.element[spell.element])
-			end
-			
-			if state.RecoverMode.value ~= 'Never' and not (state.Buff['Manafont'] or state.Buff['Manawell']) and (state.RecoverMode.value == 'Always' or tonumber(state.RecoverMode.value:sub(1, -2)) > player.mpp) then
-				if state.MagicBurstMode.value ~= 'Off' then
-					if state.CastingMode.value:contains('Resistant') and sets.ResistantRecoverBurst then
-						equip(sets.ResistantRecoverBurst)
-					elseif sets.RecoverBurst then
-						equip(sets.RecoverBurst)
-					elseif sets.RecoverMP then
-						equip(sets.RecoverMP)
-					end
-				elseif sets.RecoverMP then
-					equip(sets.RecoverMP)
-				end
 			end
 		end
 
@@ -360,7 +310,7 @@ function job_tick()
 end
 
 function check_arts()
-	if (player.sub_job == 'SCH' and not (state.Buff['SJ Restriction'] or arts_active())) and (buffup ~= '' or (not data.areas.cities:contains(world.area) and ((state.AutoArts.value and player.in_combat) or state.AutoBuffMode.value ~= 'Off'))) then
+	if (player.sub_job == 'SCH' and not (buffactive['SJ Restriction'] or arts_active())) and (buffup ~= '' or (not in_town and ((state.AutoArts.value and player.in_combat) or state.AutoBuffMode.value ~= 'Off'))) then
 	
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
@@ -431,6 +381,7 @@ function handle_job_elemental(command, target)
 		return true
 	elseif command == 'aja' then
 		windower.chat.input('/ma "'..data.elements.nukega_of[state.ElementalMode.value]..'ja" '..target..'')
+		return true
 	end
 	return false
 end

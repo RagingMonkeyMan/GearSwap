@@ -17,7 +17,7 @@ Enspell:
 /con gs c elemental enspell
 
 Weather:
-//gs c elemental weather		Will cast Klimaform if not up, if up will cast the storm spell matching the set element
+//gs c elemental weather		Will cast the storm spell matching the set element, or klimaform if it is already up
 /con gs c elemental weather
 
 Nuke:

@@ -59,7 +59,6 @@ function job_setup()
 	state.Buff.Convergence = buffactive.Convergence or false
 	state.Buff.Diffusion = buffactive.Diffusion or false
 	state.Buff.Efflux = buffactive.Efflux or false
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	state.Buff['Unbridled Learning'] = buffactive['Unbridled Learning'] or false
 	state.Buff['Unbridled Wisdom'] = buffactive['Unbridled Wisdom'] or false
 
@@ -228,8 +227,7 @@ function job_setup()
 		'Pyric Bulwark','Tearing Gust','Thunderbolt','Tourbillion','Uproot'
 	}
 
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","LearningMode","CastingMode","TreasureMode"})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoNukeMode","AutoShadowMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","LearningMode","CastingMode","TreasureMode"})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -345,36 +343,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 					equip(sets.Self_Healing)
 				end
 			end
-
-			if spell.element ~= 'None' and (spell.element == world.weather_element or spell.element == world.day_element) and item_available('Hachirin-no-Obi') then
-				equip({waist="Hachirin-no-Obi"})
-			end
-
-		elseif spellMap:contains('Magical') then
-			if state.MagicBurstMode.value ~= 'Off' and (state.Buff['Burst Affinity'] or state.Buff['Azure Lore']) then
-				equip(sets.MagicBurst)
-			end
-			if spell.element == world.weather_element or spell.element == world.day_element then
-				if state.CastingMode.value == 'Fodder' then
-					-- if item_available('Twilight Cape') and not state.Capacity.value then
-						-- sets.TwilightCape = {back="Twilight Cape"}
-						-- equip(sets.TwilightCape)
-					-- end
-					if spell.element == world.day_element and not (world.day_element == 'Dark' or world.day_element == 'Light') then
-						if item_available('Zodiac Ring') then
-							sets.ZodiacRing = {ring2="Zodiac Ring"}
-							equip(sets.ZodiacRing)
-						end
-					end
-				end
-			end
-
-			if spell.element and sets.element[spell.element] then
-				equip(sets.element[spell.element])
-			end
-
-			if state.TreasureMode.value == "Tag" then equip(sets.TreasureHunter) end
-
 		end
 
 		for buff,active in pairs(state.Buff) do
@@ -382,10 +350,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.buff[buff])
 			end
 		end
-
-	elseif spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' then
-		if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
-
 	end
 
 	-- If in learning mode, keep on gear intended to help with that, regardless of action.
@@ -394,26 +358,9 @@ function job_post_midcast(spell, spellMap, eventArgs)
 	end
 end
 
-function job_aftercast(spell, spellMap, eventArgs)
-
-		if state.MagicBurstMode.value == 'Single' then
-			if spell.skill == 'Elemental Magic' or (spell.skill == 'Blue Magic' and spellMap:contains('Magical')) then
-				state.MagicBurstMode:reset()
-				if state.DisplayMode.value then update_job_states()	end
-			end
-		end
-end
-
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
-
--- Called when a player gains or loses a buff.
--- buff == buff gained or lost
--- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff, gain)
-	update_melee_groups()
-end
 
 -- Custom spell mapping.
 -- Return custom spellMap value that can override the default spell mapping.
@@ -494,7 +441,7 @@ function job_tick()
 end
 
 function check_arts()
-	if (player.sub_job == 'SCH' and not (state.Buff['SJ Restriction'] or arts_active())) and (buffup ~= '' or (not data.areas.cities:contains(world.area) and ((state.AutoArts.value and in_combat) or state.AutoBuffMode.value ~= 'Off'))) then
+	if (player.sub_job == 'SCH' and not (buffactive['SJ Restriction'] or arts_active())) and (buffup ~= '' or (not in_town and ((state.AutoArts.value and in_combat) or state.AutoBuffMode.value ~= 'Off'))) then
 
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
@@ -513,18 +460,10 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
-function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
 
-		if player.equipment.main == "Tizona" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
-		end
-	end
-end
 
 function job_check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
+	if state.AutoBuffMode.value ~= 'Off' and not in_town then
 		if in_combat and player.sub_job == 'WAR' then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 

@@ -45,30 +45,28 @@
 
 -- Initialization function for this job file.
 function get_sets()
-    -- Load and initialize the include file.
-    include('Sel-Include.lua')
+	-- Load and initialize the include file.
+	include('Sel-Include.lua')
 end
 
 
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
+	-- List of pet weaponskills to check for
+	petWeaponskills = S{"Slapstick", "Knockout", "Magic Mortar",
+		"Chimera Ripper", "String Clipper",  "Cannibal Blade", "Bone Crusher", "String Shredder",
+		"Arcuballista", "Daze", "Armor Piercer", "Armor Shatterer"}
 
-    -- List of pet weaponskills to check for
-    petWeaponskills = S{"Slapstick", "Knockout", "Magic Mortar",
-        "Chimera Ripper", "String Clipper",  "Cannibal Blade", "Bone Crusher", "String Shredder",
-        "Arcuballista", "Daze", "Armor Piercer", "Armor Shatterer"}
-
-    -- Map automaton heads to combat roles
+	-- Map automaton heads to combat roles
 
 	state.PartyChatWS = M(false, 'Report pet weaponskills in party chat.')
 
-    -- Subset of modes that use magic
-    magicPetModes = S{'Nuke','Heal','Magic'}
+	-- Subset of modes that use magic
+	magicPetModes = S{'Nuke','Heal','Magic'}
 
-    -- Var to track the current pet mode.
-    state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
+	-- Var to track the current pet mode.
+	state.PetMode = M{['description']='Pet Mode', 'None','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
 
 	state.AutoManeuvers = M{['description']='Auto Maneuver List', 'Default','Melee','Ranged','HybridRanged','Tank','LightTank','Magic','Heal','Nuke'}
 	state.AutoPuppetMode = M(false, 'Auto Puppet Mode')
@@ -78,7 +76,7 @@ function job_setup()
 	state.PetWSGear		 = M(true, 'Pet WS Gear')
 	state.PetEnmityGear	 = M(true, 'Pet Enmity Gear')
 
-    autows = "Victory Smite"
+	autows = "Victory Smite"
 	autofood = 'Akamochi'
 	lastpettp = 0
 	deactivatehpp = 100
@@ -88,9 +86,7 @@ function job_setup()
 	PupFlashRecast = 38
 	PupVokeRecast = 23
 
-	update_pet_mode()
-	update_melee_groups()
-	init_job_states({"Capacity","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode","PetMode"})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoPuppetMode","PetWSGear","AutoRepairMode","AutoWSMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode","PetMode"})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -136,15 +132,15 @@ function job_pet_midcast(spell, spellMap, eventArgs)
 		equip(get_pet_midcast_set(spell, spellMap))
 	end
 --[[ Not working due to delay, preserving in case it does in the future.
-    if petWeaponskills:contains(spell.english) then
-        classes.CustomClass = "Weaponskill"
+	if petWeaponskills:contains(spell.english) then
+		classes.CustomClass = "Weaponskill"
 
 		if sets.midcast.Pet.WeaponSkill[spell] then
 			equip(sets.midcast.Pet.WeaponSkill[spell.english])
 		else
 			equip(sets.midcast.Pet.WeaponSkill)
 		end
-    end
+	end
 ]]
 end
 
@@ -166,21 +162,14 @@ function job_pet_aftercast(spell, spellMap, eventArgs)
 		if state.PartyChatWS.value then
 			windower.chat.input('/p '..auto_translate('Automaton')..' '..auto_translate('Weapon Skill')..' '..spell.english..'')
 		end
-    end
-end
-
--- Called when a player gains or loses a buff.
--- buff == buff gained or lost
--- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff, gain)
-	update_melee_groups()
+	end
 end
 
 -- Called when a player gains or loses a pet.
 -- pet == pet gained or lost
 -- gain == true if the pet was gained, false if it was lost.
 function job_pet_change(pet, gain)
-    update_pet_mode()
+	update_pet_mode()
 end
 
 -- Called when the pet's status changes.
@@ -190,9 +179,9 @@ function job_status_change(newStatus, oldStatus, eventArgs)
 	end
 
 --[[
-    if newStatus == 'Engaged' then
-        display_pet_status()
-    end
+	if newStatus == 'Engaged' then
+		display_pet_status()
+	end
 ]]--
 end
 
@@ -200,26 +189,19 @@ end
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
 
--- Called by the 'update' self-command, for common needs.
--- Set eventArgs.handled to true if we don't want automatic equipping of gear.
-function job_update(cmdParams, eventArgs)
-	update_melee_groups()
-end
-
-
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
 function display_current_job_state(eventArgs)
-    display_pet_status()
+	display_pet_status()
 end
 
 -- Custom spell mapping.
 function job_get_spell_map(spell, default_spell_map)
 	if  default_spell_map == 'Cure' or default_spell_map == 'Curaga'  then
 		if world.weather_element == 'Light' then
-                return 'LightWeatherCure'
+				return 'LightWeatherCure'
 		elseif world.day_element == 'Light' then
-                return 'LightDayCure'
-        end
+				return 'LightDayCure'
+		end
 	end
 end
 
@@ -267,7 +249,7 @@ function job_customize_melee_set(meleeSet)
 		end
 	end
 
-    return meleeSet
+	return meleeSet
 end
 -------------------------------------------------------------------------------------------------------------------
 -- User self-commands.
@@ -300,10 +282,16 @@ function job_self_command(commandArgs, eventArgs)
 			else
 				add_to_chat(123,'Error: Maneuver command format is wrong.')
 			end
-        else
-            add_to_chat(123,'Error: No valid pet.')
-        end
-    end
+		else
+			add_to_chat(123,'Error: No valid pet.')
+		end
+	elseif commandArgs[1] == 'autopetmode' then
+		if pet.isvalid then
+			state.PetMode:set(get_pet_mode())
+		else
+			add_to_chat(123,'Error: No valid pet.')
+		end
+	end
 end
 
 function job_tick()
@@ -373,38 +361,28 @@ end
 
 -- Update custom groups based on the current pet.
 function update_custom_groups()
-    classes.CustomIdleGroups:clear()
-    if pet.isvalid then
-        classes.CustomIdleGroups:append(state.PetMode.value)
-    end
+	classes.CustomIdleGroups:clear()
+	if pet.isvalid then
+		classes.CustomIdleGroups:append(state.PetMode.value)
+	end
 end
 
 -- Display current pet status.
 function display_pet_status()
-    if pet.isvalid then
-        local petInfoString = pet.name..' ['..pet.head..']['..pet.frame..']('..state.PetMode.Value..'): '..tostring(pet.status)..'  TP='..tostring(pet.tp)..'  HP%='..tostring(pet.hpp)
+	if pet.isvalid then
+		local petInfoString = pet.name..' ['..pet.head..']['..pet.frame..']('..state.PetMode.Value..'): '..tostring(pet.status)..'  TP='..tostring(pet.tp)..'  HP%='..tostring(pet.hpp)
 
-        if magicPetModes:contains(state.PetMode.value) then
-            petInfoString = petInfoString..'  MP%='..tostring(pet.mpp)
-        end
-
-        add_to_chat(122,petInfoString)
-    end
-end
-
-function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-
-		if player.equipment.main == "Kenkonken" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
+		if magicPetModes:contains(state.PetMode.value) then
+			petInfoString = petInfoString..'  MP%='..tostring(pet.mpp)
 		end
+
+		add_to_chat(122,petInfoString)
 	end
 end
 
 function check_auto_pet()
 
-	if not state.AutoPuppetMode.value or data.areas.cities:contains(world.area) then return false end
+	if not state.AutoPuppetMode.value or in_town then return false end
 
 	local abil_recasts = windower.ffxi.get_ability_recasts()
 
@@ -455,11 +433,11 @@ function check_repair()
 end
 
 function check_maneuver()
-    if state.AutoBuffMode.value ~= 'Off' and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
-        for i = 1,8 do
+	if state.AutoBuffMode.value ~= 'Off' and pet.isvalid and pet.status == 'Engaged' and windower.ffxi.get_ability_recasts()[210] < latency then
+		for i = 1,8 do
 			local maneuver
 			if state.AutoManeuvers.value == 'Default' then
-				if defaultManeuvers[state.PetMode.Value] == nil then
+				if not defaultManeuvers[state.PetMode.Value] then
 					maneuver = defaultManeuvers[get_pet_mode()][i]
 				else
 					maneuver = defaultManeuvers[state.PetMode.Value][i]
@@ -467,18 +445,18 @@ function check_maneuver()
 			else
 				maneuver = defaultManeuvers[state.AutoManeuvers.value][i]
 			end
-            if maneuver then
-                local maneuversActive = buffactive[maneuver.Name] or 0
-                if maneuversActive < maneuver.Amount then
-                    windower.chat.input('/pet "'..maneuver.Name..'" <me>')
-                    add_tick_delay()
-                    return true
-                end
+			if maneuver then
+				local maneuversActive = buffactive[maneuver.Name] or 0
+				if maneuversActive < maneuver.Amount then
+					windower.chat.input('/pet "'..maneuver.Name..'" <me>')
+					add_tick_delay()
+					return true
+				end
 			else
 				return false
-            end
-        end
-    end
+			end
+		end
+	end
 
 	return false
 end

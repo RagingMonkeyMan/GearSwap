@@ -47,23 +47,12 @@
 	Custom commands:
 
 	gs c step
-		Uses the currently configured step on the target, with either <t> or <stnpc> depending on setting.
-
-	gs c step t
-		Uses the currently configured step on the target, but forces use of <t>.
-
+		Uses the current mainstep on the target, with either <t> or <stnpc> depending on setting.
 
 	Configuration commands:
 
 	gs c cycle mainstep
 		Cycles through the available steps to use as the primary step when using one of the above commands.
-
-	gs c cycle altstep
-		Cycles through the available steps to use for alternating with the configured main step.
-
-	gs c toggle usealtstep
-		Toggles whether or not to use an alternate step.
-
 --]]
 
 
@@ -83,19 +72,18 @@ function job_setup()
 	state.Buff['Contradance'] = buffactive['Contradance'] or false
 	state.Buff['Saber Dance'] = buffactive['Saber Dance'] or false
 	state.Buff['Fan Dance'] = buffactive['Fan Dance'] or false
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 
-	state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step'}
-	state.AltStep = M{['description']='Alt Step', 'Feather Step','Quickstep','Stutter Step','Box Step'}
-	state.UseAltStep = M(true, 'Use Alt Step')
-	state.CurrentStep = M{['description']='Current Step', 'Main', 'Alt'}
+	state.MainStep = M{['description']='Main Step', 'Box Step','Quickstep','Feather Step','Stutter Step','Cycle Step'}
+	state.CycleStep = M{['description']='Cycle Step', 'Box Step','Feather Step','Quickstep'}
 
 	state.AutoPrestoMode = M(true, 'Auto Presto Mode')
+	state.AutoStepMode = M{['description']='Auto Step Mode', 'Off','Main','Cycle'}
 	state.DanceStance = M{['description']='Dance Stance','None','Saber Dance','Fan Dance'}
-
 
 	autows = "Rudra's Storm"
 	autofood = 'Soy Ramen'
+	checkcyclestep = os.clock()
+	autostep_engaged_only = true
 
 	function calculate_step_feet_reduction()
 		local tp_reduction = 0
@@ -103,7 +91,7 @@ function job_setup()
 		if sets.precast.Step and sets.precast.Step.feet and standardize_set(sets.precast.Step).feet:startswith('Horos T. Shoes') then
 			if sets.precast.Step.feet:endswith('+2') then
 				tp_reduction = 10
-			elseif sets.precast.Step.feet:endswith('+3') then
+			elseif sets.precast.Step.feet:endswith('+3') or sets.precast.Step.feet:endswith('+4') then
 				tp_reduction = 20
 			end
 		end
@@ -113,8 +101,7 @@ function job_setup()
 
 	step_feet_reduction = calculate_step_feet_reduction()
 
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","DanceStance","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -133,7 +120,7 @@ function job_precast(spell, spellMap, eventArgs)
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		if under3FMs() and abil_recasts[220] < latency and (abil_recasts[236] < latency or state.Buff['Presto']) and player.status == 'Engaged' then
 			eventArgs.cancel = true
-			windower.send_command('gs c step')
+			do_step()
 			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			add_tick_delay(1.1)
 			return
@@ -149,13 +136,13 @@ function job_precast(spell, spellMap, eventArgs)
 			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			add_tick_delay(1.1)
 			return
-		elseif player.sub_job == 'SAM' and not state.Buff['SJ Restriction'] and player.tp > 1850 and abil_recasts[140] < latency then
+		elseif player.sub_job == 'SAM' and not buffactive['SJ Restriction'] and player.tp > 1850 and abil_recasts[140] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Sekkanoki" <me>')
 			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
 			add_tick_delay(1.1)
 			return
-		elseif player.sub_job == 'SAM' and not state.Buff['SJ Restriction'] and abil_recasts[134] < latency then
+		elseif player.sub_job == 'SAM' and not buffactive['SJ Restriction'] and abil_recasts[134] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Meditate" <me>')
 			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
@@ -207,13 +194,15 @@ end
 function job_aftercast(spell, spellMap, eventArgs)
 	-- Lock feet after using Mana Wall.
 	if not spell.interrupted then
-		if spell.type == 'WeaponSkill' and state.Buff['Climactic Flourish'] and not under3FMs() and player.tp < 999 then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			if abil_recasts[222] < latency then
-				windower.chat.input:schedule(1.5,'/ja "Reverse Flourish" <me>')
+		if spell.type == 'WeaponSkill' then
+			if state.Buff['Climactic Flourish'] and state.AutoBuffMode.value ~= 'Off' and not under3FMs() and player.tp < 999 then
+				local abil_recasts = windower.ffxi.get_ability_recasts()
+				if abil_recasts[222] < latency then
+					windower.chat.input:schedule(1.5,'/ja "Reverse Flourish" <me>')
+				end
 			end
-		elseif state.UseAltStep.value and spell.english == state[state.CurrentStep.current..'Step'].current then
-			state.CurrentStep:cycle()
+		elseif (os.clock() - checkcyclestep) < 5 and spell.english == state.CycleStep.value then
+			state.CycleStep:cycle()
 		end
 	end
 end
@@ -221,23 +210,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
-
--- Called when a player gains or loses a buff.
--- buff == buff gained or lost
--- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff,gain)
-	update_melee_groups()
-end
-
--------------------------------------------------------------------------------------------------------------------
--- User code that supplements standard library decisions.
--------------------------------------------------------------------------------------------------------------------
-
--- Called by the default 'update' self-command.
-function job_update(cmdParams, eventArgs)
-	update_melee_groups()
-end
-
 
 function job_customize_idle_set(idleSet)
 	return idleSet
@@ -281,18 +253,6 @@ function display_current_job_state(eventArgs)
 		msg = msg .. ', Kiting'
 	end
 
-	msg = msg .. ', ['..state.MainStep.current
-
-	if state.UseAltStep.value == true then
-		msg = msg .. '/'..state.AltStep.current
-	end
-
-	msg = msg .. ']'
-
-	if state.SelectStepTarget.value == true then
-		steps = steps..' (Targetted)'
-	end
-
 	add_to_chat(122, msg)
 
 	eventArgs.handled = true
@@ -306,20 +266,29 @@ end
 -- Called for custom player commands.
 function job_self_command(commandArgs, eventArgs)
 	if commandArgs[1] == 'step' then
-		local doStep = ''
-		if state.UseAltStep.value == true then
-			doStep = state[state.CurrentStep.current..'Step'].current
-		else
-			doStep = state.MainStep.current
-		end
-
-		send_command('@input /ja "'..doStep..'" <t>')
+		do_step()
+	elseif commandArgs[1] == 'cyclestep' then
+		do_step('cycle')
 	end
+end
+
+function do_step(arg)
+	if arg == 'cycle' or state.MainStep.value == 'Cycle Step' then
+		windower.chat.input('/ja "'..state.CycleStep.value..'" <t>')
+		checkcyclestep = os.clock()
+	else
+		windower.chat.input('/ja "'..state.MainStep.value..'" <t>')
+	end
+end
+
+function job_leaving_combat()
+	state.CycleStep:reset()
 end
 
 function job_tick()
 	if check_dance() then return true end
 	if job_check_buff() then return true end
+	if check_step() then return true end
 	return false
 end
 
@@ -327,15 +296,11 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
-function update_melee_groups()
-	classes.CustomMeleeGroups:clear()
-
+function job_update_melee_groups()
 	if state.Buff['Saber Dance'] then
 		classes.CustomMeleeGroups:append('Saber')
-	end
-
-	if player.equipment.main and player.equipment.main == "Terpsichore" and state.Buff['Aftermath: Lv.3'] then
-		classes.CustomMeleeGroups:append('AM')
+	elseif state.Buff['Fan Dance'] then
+		classes.CustomMeleeGroups:append('Fan')
 	end
 end
 
@@ -357,7 +322,7 @@ function job_check_buff()
 			return true
 		end
 
-		if in_combat and not state.Buff['SJ Restriction'] then
+		if in_combat and not buffactive['SJ Restriction'] then
 			if player.sub_job == 'WAR' and not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
 				add_tick_delay()
@@ -370,6 +335,25 @@ function job_check_buff()
 				return false
 			end
 		end
+	end
+	return false
+end
+
+function check_step()
+	if state.AutoStepMode.value == 'Off' or player.target.type ~= "MONSTER" or moving then
+		return false
+	elseif not in_combat or (not player.status == 'Engaged' and autostep_engaged_only) then
+		return false
+	end
+	
+	local abil_recasts = windower.ffxi.get_ability_recasts()
+	
+	if abil_recasts[220] > latency then
+		return false
+	elseif state.AutoStepMode.value == 'Main' then
+		do_step()
+	elseif state.AutoStepMode.value == 'Cycle' then
+		do_step('cycle')
 	end
 	return false
 end

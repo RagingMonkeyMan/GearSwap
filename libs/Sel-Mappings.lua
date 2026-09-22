@@ -61,6 +61,10 @@ data.elements.quickdraw_of = {['Fire']='Fire', ['Ice']='Ice', ['Wind']='Wind', [
 data.elements.enspell_of = {['Fire']='Fire', ['Ice']='Blizzard', ['Wind']='Aero', ['Earth']='Stone',
 		['Lightning']='Thunder', ['Water']='Water', ['Light']='Light', ['Dark']='Dark',}
 
+data.elements.barelement_of = {['Light']='Barfire',['Dark']='Barblizzard',['Fire']='Barfire',
+		['Earth']='Barstone',['Water']='Barwater',['Wind']='Baraero',['Ice']='Barblizzard',
+		['Lightning']='Barthunder'}
+
 data.elements.runes_lookup = {['Lux']='Light', ['Tenebrae']='Dark', ['Ignis']='Fire', ['Gelus']='Ice', ['Flabra']='Wind',
 	 ['Tellus']='Earth', ['Sulpor']='Lightning', ['Unda']='Water'}
 
@@ -105,8 +109,8 @@ data.elements.strong_to = {['Light']='Dark', ['Dark']='Light', ['Fire']='Water',
 data.elements.storm_of = {['Light']="Aurorastorm", ['Dark']="Voidstorm", ['Fire']="Firestorm", ['Earth']="Sandstorm",
 		['Water']="Rainstorm", ['Wind']="Windstorm", ['Ice']="Hailstorm", ['Lightning']="Thunderstorm",}
 
-data.elements.rune_of = {['Light']='Lux', ['Dark']='Tenebrae', ['Fire']='Ignis', ['Ice']='Gelus', ['Wind']='Flabra',
-	 ['Earth']='Tellus', ['Lightning']='Sulpor', ['Water']='Unda'}
+data.elements.rune_of = {['Light']='Lux',['Dark']='Tenebrae',['Fire']='Ignis',['Ice']='Gelus',['Wind']='Flabra',
+	 ['Earth']='Tellus',['Lightning']='Sulpor',['Water']='Unda'}
 
 data.weather_bonus_potency = {[0]=0,[1]=10,[2]=25}
 
@@ -137,7 +141,7 @@ data.weaponskills.relic = {
 	["Annihilator"] = "Coronach",
 	["Yoichinoyumi"] = "Namas Arrow"}
 
-data.weaponskills.mythic = {
+data.weaponskills.aftermath = {
 	["Conqueror"] = "King's Justice",
 	["Glanzfaust"] = "Ascetic's Fury",
 	["Yagrush"] = "Mystic Boon",
@@ -159,9 +163,7 @@ data.weaponskills.mythic = {
 	["Terpsichore"] = "Pyrrhic Kleos",
 	["Tupsimati"] = "Omniscience",
 	["Idris"] = "Exudation",
-	["Epeolatry"] = "Dimidiation"}
-
-data.weaponskills.empyrean = {
+	["Epeolatry"] = "Dimidiation",
 	["Verethragna"] = "Victory Smite",
 	["Twashtar"] = "Rudra's Storm",
 	["Almace"] = "Chant du Cygne",
@@ -172,10 +174,25 @@ data.weaponskills.empyrean = {
 	["Rhongomiant"] = "Camlann's Torment",
 	["Kannagi"] = "Blade: Hi",
 	["Masamune"] = "Tachi: Fudo",
-	["Gambanteinn"] = "Dagann",
+	["Gambanteinn"] = "Dagan",
 	["Hvergelmir"] = "Myrkr",
 	["Gandiva"] = "Jishnu's Radiance",
-	["Armageddon"] = "Wildfire"}
+	["Armageddon"] = "Wildfire",
+	["Varga Purnikawa"] = "Maru Kala",
+	["Mpu Gandring"] = "Ruthless Stroke",
+	["Caliburnus"] = "Imperator",
+	["Helheim"] = "Fimbulvetr",
+	["Spalirisos"] = "Blitz",
+	["Laphria"] = "Disaster",
+	["Foenaria"] = "Origin",
+	["Gae Buide"] = "Diarmuid",
+	["Dokoku"] = "Zesho Meppo",
+	["Kusanagi"] = "Tachi: Mumei",
+	["Lorg Mor"] = "Dagda",
+	["Opashoro"] = "Oshala",
+	["Pinaka"] = "Sarv",
+	["Earp"] = "Terminus"}
+
 
 -- Weaponskills that can be used at range.
 data.weaponskills.ranged = S{"Flaming Arrow","Piercing Arrow","Dulling Arrow","Sidewinder","Arching Arrow",
@@ -188,7 +205,7 @@ data.weaponskills.elemental = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeo
 'Blade: Teki','Blade: To','Blade: Chi','Blade: Ei','Blade: Yu','Burning Blade','Red Lotus Blade','Shining Blade',
 'Seraph Blade','Gust Slash','Cyclone','Shining Strike','Seraph Strike','Frostbite','Freezebite','Herculean Slash','Gale Axe',
 'Cloudsplitter','Primal Rend','Thunder Thrust','Raiden Thrust','Rock Crusher','Earth Crusher','Starburst','Sunburst',
-'Garland of Bliss','Flaming Arrow','Hot Shot'}
+'Garland of Bliss','Flaming Arrow','Hot Shot',"Uriel Blade","Energy Steal","Energy Drain","Omniscience","Vidohunir"}
 
 data.weaponskills.statue_ws = {['COR']='Leaden Salute',['RNG']='Trueflight',['RDM']='Sanguine Blade',['BLU']='Sanguine Blade'}
 
@@ -212,6 +229,12 @@ data.skillchains.reverberation = S{'Water'}
 -- Spell Related Lists and Mappings
 -------------------------------------------------------------------------------------------------------------------
 data.spells = {}
+--Flash1460,Stun1460,Foil1200,Jettatura1200,SheepSong640,GeistWall640,Soporific640,StinkingGas640,BlankGaze640,ColdWave640,Sleep300
+data.spells.enmity = {}
+data.spells.enmity.all = {"Jettatura","Flash","Stun","Foil","Sheep Song","Geist Wall","Soporific","Stinking Gas","Cold Wave","Sleep",}
+data.spells.enmity.single = {"Flash","Stun","Foil","Blank Gaze","Sleep",}
+data.spells.enmity.aoe = {"Foil","Sheep Song","Geist Wall","Soporific","Stinking Gas","Cold Wave","Jettatura"}
+
 
 spell_maps = {
 	['Cure']='Cure',['Cure II']='Cure',['Cure III']='Cure',['Cure IV']='Cure',['Cure V']='Cure',['Cure VI']='Cure',['Full Cure']='Cure',
@@ -329,6 +352,10 @@ data.abilities.white_to_black_stratagems = {['Penury']='Parsimony',['Celerity']=
 data.abilities.black_to_white_stratagems = {['Parsimony']='Penury',['Alacrity']='Celerity',['Manifestation']='Accession',['Ebullience']='Rapture',
 	['Focalization']='Altruism',['Equanimity']='Tranquility',['Immanence']='Perpetuance',['Addendum: Black']='Addendum: White'}
 
+data.abilities.enmity = {}
+data.abilities.enmity.short_cooldown = {'Provoke','Boost'}
+data.abilities.enmity.long_cooldown = {'Warcry','Defender','Aggressor','Berserk','Souleater','Last Resort','Arcane Circle'}
+
 -------------------------------------------------------------------------------------------------------------------
 -- Job Related Lists
 -------------------------------------------------------------------------------------------------------------------
@@ -343,7 +370,7 @@ data.jobs.dual_wield_jobs = S{'THF','BLU','NIN','DNC'}
 -- Slot Related Lists
 -------------------------------------------------------------------------------------------------------------------
 data.slots = {}
-data.slots.slot_names = S{'main','sub','range','ranged','ammo','head','neck','ear1','lear','left_ear','ear2','rear','right_ear','ring1','lring','left_ring','ring2','rring','right_ring','back','waist','legs','feet'}
+data.slots.slot_names = S{'main','sub','range','ranged','ammo','head','neck','ear1','lear','left_ear','ear2','rear','right_ear','body','hands','ring1','lring','left_ring','ring2','rring','right_ring','back','waist','legs','feet'}
 data.slots.weapon_slots = {'main','sub','range','ranged','ammo'}
 
 -------------------------------------------------------------------------------------------------------------------
@@ -352,15 +379,26 @@ data.slots.weapon_slots = {'main','sub','range','ranged','ammo'}
 
 data.equipment = {}
 
+data.equipment.relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura','Apocalypse',
+	'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
+
 data.equipment.mythic_weapons = S{'Conqueror','Glanzfaust','Yagrush','Laevateinn','Murgleis','Vajra','Burtgang','Liberator',
 	'Aymur','Carnwenhan','Gastraphetes','Kogarasumaru','Nagi','Ryunohige','Nirvana','Tizona','Death Penalty','Kenkonken',
 	'Terpsichore','Tupsimati','Idris','Epeolatry'}
 
-data.equipment.relic_weapons = S{'Spharai','Mandau','Excalibur','Ragnarok','Guttler','Bravura','Apocalypse',
-	'Gungnir','Kikoku','Amanomurakumo','Mjollnir','Claustrum','Yoichinoyumi','Annihilator'}
+data.equipment.empyrean_weapons = S{'Verethragna','Twashtar','Almace','Caladbolg','Farsha','Ukonvasara',
+	'Redemption','Rhongomiant','Kannagi','Masamune','Gambanteinn','Hvergelmir','Gandiva','Armageddon'}
 
 data.equipment.aeonic_weapons = S{'Dojikiri Yasutsuna','Chango','Trishula','Sequence','Aeneas','Lionheart',
 	'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
+	
+data.equipment.prime_weapons = S{'Varga Purnikawa','Mpu Gandring','Caliburnus','Helheim','Spalirisos','Laphria',
+	'Foenaria','Gae Buide','Dokoku','Kusanagi','Lorg Mor','Opashoro','Pinaka','Earp'}
+
+data.equipment.aftermath_weapons = S{'Conqueror','Glanzfaust','Yagrush','Laevateinn','Murgleis','Vajra','Burtgang','Liberator',
+	'Aymur','Carnwenhan','Gastraphetes','Kogarasumaru','Nagi','Ryunohige','Nirvana','Tizona','Death Penalty','Kenkonken',
+	'Terpsichore','Tupsimati','Idris','Epeolatry','Varga Purnikawa','Mpu Gandring','Caliburnus','Helheim','Spalirisos','Laphria',
+	'Foenaria','Gae Buide','Dokoku','Kusanagi','Lorg Mor','Opashoro','Pinaka','Earp','Verethragna'}
 
 --Only tracking 1-handed weapons for offhanding as they're all that's used in meta.
 data.equipment.magian_tp_bonus_melee_weapons = S{
@@ -434,7 +472,7 @@ disable_priority = T{
 }:reverse() --We reverse the list here so that the highest priority is at the top.
 
 data.equipment.cprings = L{"Endorsement Ring","Trizek Ring","Vocation Ring","Capacity Ring","Facility Ring"}
-data.equipment.xprings = L{"Echad Ring","Caliber Ring","Emperor Band","Empress Band","Resolution Ring"}
+data.equipment.xprings = L{"Echad Ring","Caliber Ring","Emperor Band","Empress Band","Resolution Ring","Novennial Ring", "Decennial Ring", "DuoDecennial Ring","UnDecennial Ring"}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Tool Maps/Lists
@@ -711,6 +749,15 @@ data.areas.proc = S{
 
 }
 
+abyssea_elemental_ws_proc_weapons_map = {
+	['fire'] =		{['ProcSword']="Red Lotus Blade"},
+	['earth'] =		{['ProcStaff']="Earth Crusher"},
+	['wind'] =		{['ProcDagger']="Cyclone",['ProcGreatKatana']="Tachi: Jinpu"},
+	['ice'] =		{['ProcGreatSword']="Freezebite"},
+	['lightning'] =	{['ProcPolearm']="Raiden Thrust"},
+	['light'] =		{['ProcClub']="Seraph Strike",['ProcGreatKatana']="Tachi: Koki",['ProcSword']="Seraph Blade",['ProcStaff']="Sunburst"},
+	['darkness'] =	{['ProcScythe']="Shadow of Death",['ProcKatana']="Blade: Ei",['ProcDagger']="Energy Drain"},
+}
 -------------------------------------------------------------------------------------------------------------------
 -- NPC Lists
 -------------------------------------------------------------------------------------------------------------------
@@ -773,23 +820,25 @@ spell_stepdown = {
 	['Water Threnody II'] = 'Water Threnody',
 	['Light Threnody II'] = 'Light Threnody',
 	['Dark Threnody II'] = 'Dark Threnody',
+	['Tonko: Ni'] = 'Tonko: Ichi',
 }
 
 item_stepdown = {
-	['Warp Ring'] = {'Treat Staff','main'},
-	['Treat Staff'] = {'Warp Cudgel','main'},
-	['Warp Cudgel'] = {'Instant Warp','item'},
-	['Dusty Reraise'] = {'Instant Reraise','item'},
-	['Instant Reraise'] = {'Reraiser','item'},
-	['Reraiser'] = {'Hi-Reraiser','item'},
-	['Hi-Reraiser'] = {'Scapegoat','item'},
-	['Scapegoat'] = {'Super Reraiser','item'},
-	['Super Reraiser'] = {'Revive Feather','item'},
-	['Revive Feather'] = {'Rebirth Feather','item'},
-	['Rebirth Feather'] = {'Reraise Ring','ring2'},
-	['Reraise Ring'] = {'Reraise Earring','ear2'},
-	['Reraise Earring'] = {'Reraise Hairpin','head'},
-	['Reraise Hairpin'] = {'Wh. Rarab Cap +1','head'},
+	["Warp Ring"] = {"Treat Staff II","main"},
+	["Treat Staff II"] = {"Warp Cudgel","main"},
+	["Warp Cudgel"] = {"Instant Warp","item"},
+	["Dusty Reraise"] = {"Instant Reraise","item"},
+	["Instant Reraise"] = {"Reraiser","item"},
+	["Reraiser"] = {"Hi-Reraiser","item"},
+	["Hi-Reraiser"] = {"Scapegoat","item"},
+	["Scapegoat"] = {"Super Reraiser","item"},
+	["Super Reraiser"] = {"Revive Feather","item"},
+	["Revive Feather"] = {"Rebirth Feather","item"},
+	["Rebirth Feather"] = {"Airmid's Gorget","neck"},
+	["Airmid's Gorget"] = {"Reraise Ring","ring2"},
+	["Reraise Ring"] = {"Reraise Earring","ear2"},
+	["Reraise Earring"] = {"Reraise Hairpin","head"},
+	["Reraise Hairpin"] = {"Wh. Rarab Cap +1","head"},
 }
 
 
@@ -819,6 +868,10 @@ for _, rline in pairs(gearswap.res.spells) do
 		end
 	end
 end
+
+buff_table_by_name = gearswap.res.buffs:rekey('en')
+
+disable_list = {'terror','sleep','Lullaby','stun','Animated','Charm','petrification'}
 
 data.status_map = T{
 	{buff='doom',spell='Cursna'},

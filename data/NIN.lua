@@ -53,7 +53,6 @@ end
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
 	state.Buff.Migawari = buffactive.Migawari or false
 	state.Buff.Yonin = buffactive.Yonin or false
 	state.Buff.Innin = buffactive.Innin or false
@@ -68,8 +67,7 @@ function job_setup()
 
 	state.ElementalMode = M{['description'] = 'Elemental Mode','Fire','Water','Lightning','Earth','Wind','Ice','Light','Dark',}
 
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","ElementalWheel",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoNukeMode","ElementalWheel","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -80,16 +78,6 @@ end
 
 function job_filtered_action(spell, eventArgs)
 
-end
-
-function job_pretarget(spell, spellMap, eventArgs)
-	if spell.action_type == 'Ranged Attack' and (player.equipment.ammo == 'Togakushi Shuriken' or player.equipment.ammo == 'Happo Shuriken') then
-		cancel_spell()
-		add_to_chat(123,'Abort: Don\'t throw your good ammo!')
-	elseif spell.english == 'Sange' and (player.equipment.ammo == 'Togakushi Shuriken' or player.equipment.ammo == 'Happo Shuriken') then
-		cancel_spell()
-		add_to_chat(123,'Abort: Don\'t throw your good ammo!')
-	end
 end
 
 function job_precast(spell, spellMap, eventArgs)
@@ -149,25 +137,7 @@ end
 -- Run after the general midcast() is done.
 -- eventArgs is the same one used in job_midcast, in case information needs to be persisted.
 function job_post_midcast(spell, spellMap, eventArgs)
-	if spellMap == 'ElementalNinjutsu' then
-		if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
-		if spell.element == world.weather_element or spell.element == world.day_element then
-			if state.CastingMode.value == 'Normal' or state.CastingMode.value == 'Fodder' then
-				-- if item_available('Twilight Cape') and not state.Capacity.value then
-					-- sets.TwilightCape = {back="Twilight Cape"}
-					-- equip(sets.TwilightCape)
-				-- end
-				if spell.element == world.day_element then
-					if item_available('Zodiac Ring') then
-						sets.ZodiacRing = {ring2="Zodiac Ring"}
-						equip(sets.ZodiacRing)
-					end
-				end
-			end
-		end
-		if spell.element and sets.element[spell.element] then
-			equip(sets.element[spell.element])
-		end
+	if spellMap == 'ElementalNinjutsu' and state.CastingMode.value ~= 'Proc' then
 		if state.Buff.Futae and sets.buff.Futae then
 			equip(sets.buff.Futae)
 		end
@@ -185,24 +155,12 @@ function job_aftercast(spell, spellMap, eventArgs)
 		return
 	elseif spell.english == "Migawari: Ichi" then
 		state.Buff.Migawari = true
-	elseif spellMap == 'ElementalNinjutsu' then
-		if state.MagicBurstMode.value == 'Single' then
-			state.MagicBurstMode:reset()
-		end
-		if state.DisplayMode.value then update_job_states()	end
 	end
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
-
--- Called when a player gains or loses a buff.
--- buff == buff gained or lost
--- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff, gain)
-	update_melee_groups()
-end
 
 function job_status_change(new_status, old_status)
 
@@ -265,11 +223,6 @@ function job_customize_melee_set(meleeSet)
 	return meleeSet
 end
 
--- Called by the default 'update' self-command.
-function job_update(cmdParams, eventArgs)
-	update_melee_groups()
-end
-
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
@@ -319,113 +272,7 @@ end
 end]]--Removed for now.
 
 function job_self_command(commandArgs, eventArgs)
-	if commandArgs[1] == 'SubJobEnmity' then
 
-		if player.target.type ~= "MONSTER" then
-			add_to_chat(123,'Abort: You are not targeting a monster.')
-			return
-
-		elseif player.sub_job == 'RUN' then
-			local spell_recasts = windower.ffxi.get_spell_recasts()
-
-			if spell_recasts[112] < spell_latency then
-				windower.chat.input('/ma "Flash" <t>')
-				return
-			end
-
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-
-			if abil_recasts[24] < latency then
-				send_command('input /ja "Swordplay" <me>')
-			end
-
-		elseif player.sub_job == 'BLU' and not moving then
-			local spell_recasts = windower.ffxi.get_spell_recasts()
-
-			if spell_recasts[584] < spell_latency then
-				windower.chat.input('/ma "Sheep Song" <t>')
-			elseif spell_recasts[598] < spell_latency then
-				windower.chat.input('/ma "Soporific" <t>')
-			elseif spell_recasts[605] < spell_latency then
-				windower.chat.input('/ma "Geist Wall" <t>')
-			elseif spell_recasts[575] < spell_latency then
-				windower.chat.input('/ma "Jettatura" <t>')
-			elseif spell_recasts[537] < spell_latency then
-				windower.chat.input('/ma "Stinking Gas" <t>')
-			elseif spell_recasts[592] < spell_latency then
-				windower.chat.input('/ma "Blank Gaze" <t>')
-			elseif not check_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
-			end
-
-		elseif player.sub_job == 'DRK' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			local spell_recasts = windower.ffxi.get_spell_recasts()
-
-			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Souleater'] then
-				send_command('cancel souleater')
-			end
-
-			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Last Resort'] then
-				send_command('cancel last resort')
-			end
-
-			if spell_recasts[252] < spell_latency and not silent_check_silence() then
-				windower.chat.input('/ma "Stun" <t>')
-			elseif abil_recasts[85] < latency then
-				windower.chat.input('/ja "Souleater" <me>')
-			elseif abil_recasts[87] < latency then
-				windower.chat.input('/ja "Last Resort" <me>')
-			elseif abil_recasts[86] < latency then
-				windower.chat.input('/ja "Arcane Circle" <me>')
-			elseif not check_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
-			end
-
-		elseif player.sub_job == 'WAR' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-
-			if state.HybridMode.value:contains('DD') then
-				if buffactive['Defender'] then send_command('cancel defender') end
-			elseif state.HybridMode.value ~= 'Normal' and not state.HybridMode.value:contains('DD') then
-				if buffactive['Berserk'] then send_command('cancel berserk') end
-			end
-
-			if abil_recasts[5] < latency then
-				send_command('input /ja "Provoke" <t>')
-			elseif abil_recasts[2] < latency then
-				send_command('input /ja "Warcry" <me>')
-			elseif abil_recasts[3] < latency then
-				send_command('input /ja "Defender" <me>')
-			elseif abil_recasts[4] < latency then
-				send_command('input /ja "Aggressor" <me>')
-			elseif abil_recasts[1] < latency then
-				send_command('input /ja "Berserk" <me>')
-			elseif not check_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Warrior Job Abilities on cooldown.') end
-			end
-
-		elseif player.sub_job == 'DNC' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
-
-			if under3FMs then
-				if abil_recasts[220] < latency then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				return
-				end
-			elseif abil_recasts[221] < latency then
-				send_command('input /ja "Animated Flourish" <t>')
-				return
-			elseif abil_recasts[220] < latency and not buffactive['Finishing Move 5'] then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				return
-			elseif not check_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'Dancer job abilities not needed.') end
-			end
-		end
-
-	end
 end
 
 function job_tick()
@@ -434,9 +281,10 @@ function job_tick()
 	if check_buff() then return true end
 	if job_check_buff() then return true end
 	if state.AutoTankMode.value and in_combat and player.target.type == "MONSTER" and not moving then
-		windower.send_command('gs c SubJobEnmity')
-		add_tick_delay()
-		return true
+		if handle_enmity(S{'auto'}) then
+			add_tick_delay(2)
+			return true
+		end
 	end
 	return false
 end
@@ -466,16 +314,6 @@ function handle_job_elemental(command, target)
 	return false
 end
 
-function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-
-		if player.equipment.main == "Nagi" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
-		end
-	end
-end
-
 function check_stance()
 	if state.Stance.value ~= 'None' and in_combat then
 
@@ -498,8 +336,8 @@ function check_stance()
 end
 
 function job_check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
-		if in_combat and not state.Buff['SJ Restriction'] then
+	if state.AutoBuffMode.value ~= 'Off' and not in_town then
+		if in_combat and not buffactive['SJ Restriction'] then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if player.sub_job == 'WAR' and not buffactive.Berserk and not is_defensive() and abil_recasts[1] < latency then

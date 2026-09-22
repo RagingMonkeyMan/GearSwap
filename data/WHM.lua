@@ -65,13 +65,15 @@ function job_setup()
 	autofood = 'Miso Ramen'
 
 	state.ElementalMode = M{['description'] = 'Elemental Mode','Light','Dark','Fire','Ice','Wind','Earth','Lightning','Water',}
-
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoNukeMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","ElementalMode","CastingMode","TreasureMode",})
 
 	function handle_smartcure(cmdParams)
 		if cmdParams[1] then
 			if cmdParams[1] == '<me>' or cmdParams[1] == 'me' then
 				cureTarget = player
+			elseif cmdParams[1] == '<bt>' or cmdParams[1] == 'bt' then
+				local bt = windower.ffxi.get_mob_by_target('bt') or false
+				target = bt and bt.id or false
 			elseif cmdParams[1] == '<t>' or cmdParams[1] == 't' then
 				cureTarget = player.target
 			elseif tonumber(cmdParams[1]) then
@@ -235,22 +237,6 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if (state.Buff['Light Arts'] or state.Buff['Addendum: White']) and sets.midcast.BarElement and sets.midcast.BarElement.LightArts then
 			equip(sets.midcast.BarElement.LightArts)
 		end
-	elseif spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' and spell.english ~= 'Impact' then
-		if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
-		if spell.element == world.weather_element or spell.element == world.day_element then
-			if state.CastingMode.value == 'Fodder' then
-				if spell.element == world.day_element then
-					if item_available('Zodiac Ring') then
-						sets.ZodiacRing = {ring2="Zodiac Ring"}
-						equip(sets.ZodiacRing)
-					end
-				end
-			end
-		end
-
-		if spell.element and sets.element[spell.element] then
-			equip(sets.element[spell.element])
-		end
 	end
 
 end
@@ -259,9 +245,6 @@ function job_aftercast(spell, spellMap, eventArgs)
 	if not spell.interrupted then
 		if state.UseCustomTimers.value and spell.english == 'Sleep' or spell.english == 'Sleepga' then
 			send_command('@timers c "'..spell.english..' ['..spell.target.name..']" 60 down spells/00220.png')
-		elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
-			state.MagicBurstMode:reset()
-			if state.DisplayMode.value then update_job_states()	end
 		end
 	end
 end
@@ -287,7 +270,7 @@ function job_get_spell_map(spell, default_spell_map)
 			if state.Weapons.value ~= 'None' and not state.UnlockWeapons.value then
 				if state.Buff['Afflatus Solace'] then
 					if world.weather_element == 'Light' then
-						return '"MeleeLightWeatherCureSolace'
+						return 'MeleeLightWeatherCureSolace'
 					elseif world.day_element == 'Light' then
 						return 'MeleeLightDayCureSolace'
 					else
@@ -373,7 +356,7 @@ function job_tick()
 end
 
 function check_arts()
-	if buffup ~= '' or (not data.areas.cities:contains(world.area) and ((state.AutoArts.value and in_combat) or state.AutoBuffMode.value ~= 'Off')) then
+	if buffup ~= '' or (not in_town and ((state.AutoArts.value and in_combat) or state.AutoBuffMode.value ~= 'Off')) then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		if abil_recasts[29] < latency and not state.Buff['Afflatus Solace'] and not state.Buff['Afflatus Misery'] then
@@ -381,7 +364,7 @@ function check_arts()
 			add_tick_delay()
 			return true
 
-		elseif player.sub_job == 'SCH' and not (state.Buff['SJ Restriction'] or arts_active()) and abil_recasts[228] < latency then
+		elseif player.sub_job == 'SCH' and not (buffactive['SJ Restriction'] or arts_active()) and abil_recasts[228] < latency then
 			send_command('@input /ja "Light Arts" <me>')
 			add_tick_delay()
 			return true
