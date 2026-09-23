@@ -40,16 +40,21 @@
 --                     \/     \/     \/     \/          \/              \/                   \/     \/                      \/        \/                      \/  \/ 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Universal items that are the same for all characters, and logic to determine if some specific items are owned and used.
-if not sets.Reive then
-	if item_owned("Adoulin's Refuge +1") then
-		sets.Reive = {neck="Adoulin's Refuge +1"}
-	elseif item_owned("Arciela's Grace +1") then
-		sets.Reive = {neck="Arciela's Grace +1"}
-	elseif item_owned("Ygnas's Resolve +1") then
-		sets.Reive = {neck="Ygnas's Resolve +1"}
-	else
-		sets.Reive = {}
+
+if player and player.inventory then --Check to make sure inventory is fully loaded for detection with item_owned before permanently setting specific items.
+	if not sets.Reive then
+		if item_owned("Adoulin's Refuge +1") then
+			sets.Reive = {neck="Adoulin's Refuge +1"}
+		elseif item_owned("Arciela's Grace +1") then
+			sets.Reive = {neck="Arciela's Grace +1"}
+		elseif item_owned("Ygnas's Resolve +1") then
+			sets.Reive = {neck="Ygnas's Resolve +1"}
+		else
+			sets.Reive = {}
+		end
 	end
+else
+	print('Player inventory not loaded, please reload gearswap when inventory is fully loaded.')
 end
 
 uses_waltz_legs = false

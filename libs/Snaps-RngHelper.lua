@@ -284,7 +284,7 @@ function process_queue()
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}	
-			elseif (buffactive['Aftermath: Lv.3'] or not data.equipment.mythic_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
+			elseif (buffactive['Aftermath: Lv.3'] or not data.equipment.aftermath_weapons:contains(player.equipment.range) or not state.MaintainAftermath.value) and player.tp >= autowstp then
 				pending = {
 					['prefix'] = '/weaponskill',
 					['english'] = rangedautows,
@@ -294,7 +294,7 @@ function process_queue()
 			elseif player.tp == 3000 then
 				pending = {
 					['prefix'] = '/weaponskill',
-					['english'] = data.weaponskills.mythic[player.equipment.range],
+					['english'] = data.weaponskills.aftermath[player.equipment.range],
 					['target'] = target,
 					['action_type'] = 'Ability',
 				}
@@ -333,17 +333,17 @@ function hover_movement()
 	end
 
 	if direction then
-		windower.send_command('setkey numpad4 down; wait 0.43; setkey numpad4 up;')
+		send_command('setkey numpad4 down; wait 0.43; setkey numpad4 up;')
 		direction = false
 	else
-		windower.send_command('setkey numpad6 down; wait 0.43; setkey numpad6 up;')
+		send_command('setkey numpad6 down; wait 0.43; setkey numpad6 up;')
 		direction = true
 	end
 end
 
 local function handle_interrupt()
     completion = true
-    windower.send_command('@wait %f;gs rh process':format(cooldown))
+    send_command('@wait %f;gs rh process':format(cooldown))
 end
 
 local function add_spell_to_queue(spell)
@@ -413,7 +413,7 @@ local function handle_incoming_action_message_packet(id, data, modified, injecte
             if action_message_interrupted[p.Message] then
                 handle_interrupt()
             elseif action_message_unable[p.Message] then
-                windower.send_command('@wait 0;gs rh process')
+                send_command('@wait 0;gs rh process')
             end
         end
     end

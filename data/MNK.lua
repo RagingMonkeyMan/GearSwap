@@ -45,16 +45,14 @@
 
 -- Initialization function for this job file.
 function get_sets()
-    -- Load and initialize the include file.
-    include('Sel-Include.lua')
+	-- Load and initialize the include file.
+	include('Sel-Include.lua')
 end
 
 
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
-
-    state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
-    state.Buff['Hundred Fists'] = buffactive['Hundred Fists'] or false
+	state.Buff['Hundred Fists'] = buffactive['Hundred Fists'] or false
 	state.Buff['Impetus'] = buffactive['Impetus'] or false
 	state.Buff['Footwork'] = buffactive['Footwork'] or false
 	state.Buff['Boost'] = buffactive['Boost'] or false
@@ -64,10 +62,10 @@ function job_setup()
 	autows = 'Victory Smite'
 	autofood = 'Soy Ramen'
 	
-    info.impetus_hit_count = 0
-    --windower.raw_register_event('action', on_action_for_impetus)
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
+	info.impetus_hit_count = 0
+	--windower.raw_register_event('action', on_action_for_impetus)
+
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoWSMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","TreasureMode",})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -90,14 +88,14 @@ function job_precast(spell, spellMap, eventArgs)
 		if state.AutoBoost.value and player.sub_job == 'WAR' and abil_recasts[2] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Warcry" <me>')
-			windower.chat.input:schedule(1,'/ws "'..spell.english..'" '..spell.target.raw..'')
-			tickdelay = os.clock() + 1.25
+			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			add_tick_delay(1.1)
 			return
 		elseif state.AutoBoost.value and abil_recasts[16] < latency then
 			eventArgs.cancel = true
 			windower.chat.input('/ja "Boost" <me>')
-			windower.chat.input:schedule(2.5,'/ws "'..spell.english..'" '..spell.target.raw..'')
-			tickdelay = os.clock() + 1.25
+			windower.chat.input:schedule(1.1,'/ws "'..spell.english..'" '..spell.target.raw..'')
+			add_tick_delay(1.1)
 			return
 		end
 	end
@@ -121,16 +119,20 @@ function job_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-        if state.Buff['Impetus'] and (spell.english == "Ascetic's Fury" or spell.english == "Victory Smite") then
+		if state.Buff['Impetus'] and (spell.english == "Ascetic's Fury" or spell.english == "Victory Smite") then
 			if sets.buff.ImpetusWS then
 				equip(sets.buff.ImpetusWS)
 			else
 				equip(sets.buff.Impetus)
 			end
-		elseif buffactive.Footwork and (spell.english == "Dragon Kick" or spell.english	 == "Tornado Kick") then
-			equip(sets.FootworkWS)
+		elseif state.Buff['Footwork'] and (spell.english == "Dragon Kick" or spell.english	 == "Tornado Kick") then
+			if sets.buff.FootworkWS then
+				equip(sets.buff.FootworkWS)
+			else
+				equip(sets.buff.Footwork)
+			end
 		end
-	elseif spell.english == 'Boost' and not (player.in_combat or being_attacked or player.status == 'Engaged') and sets.precast.JA['Boost'].OutOfCombat then
+	elseif spell.english == 'Boost' and not (in_combat or player.status == 'Engaged') and sets.precast.JA['Boost'].OutOfCombat then
 		equip(sets.precast.JA['Boost'].OutOfCombat)
 	end
 end
@@ -143,13 +145,6 @@ end
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
 
--- Called when a player gains or loses a buff.
--- buff == buff gained or lost
--- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff, gain)
-	update_melee_groups()
-end
-
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
@@ -161,7 +156,7 @@ function job_customize_melee_set(meleeSet)
 		if state.Buff['Impetus'] then
 			meleeSet = set_combine(meleeSet, sets.buff.Impetus)
 		end
-		if buffactive.Footwork then
+		if state.Buff['Footwork'] then
 			meleeSet = set_combine(meleeSet, sets.buff.Footwork)
 		end
 	end
@@ -170,24 +165,19 @@ function job_customize_melee_set(meleeSet)
 		meleeSet = set_combine(meleeSet, sets.buff.Boost)
 	end
 	
-    return meleeSet
+	return meleeSet
 end
 
 function job_customize_defense_set(defenseSet)
-    return defenseSet
+	return defenseSet
 end
 
 function job_customize_idle_set(idleSet)
-    if state.Buff['Boost'] and sets.buff.Boost then
-        idleSet = set_combine(idleSet, sets.buff.Boost)
-    end
+	if state.Buff['Boost'] and sets.buff.Boost then
+		idleSet = set_combine(idleSet, sets.buff.Boost)
+	end
 	
-    return idleSet
-end
-
--- Called by the 'update' self-command.
-function job_update(cmdParams, eventArgs)
-    update_melee_groups()
+	return idleSet
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -200,68 +190,68 @@ end
 
 --[[ Keep track of the current hit count while Impetus is up.
 function on_action_for_impetus(action)
-    if state.Buff.Impetus then
-        -- count melee hits by player
-        if action.actor_id == player.id then
-            if action.category == 1 then
-                for _,target in pairs(action.targets) do
-                    for _,action in pairs(target.actions) do
-                        -- Reactions (bitset):
-                        -- 1 = evade
-                        -- 2 = parry
-                        -- 4 = block/guard
-                        -- 8 = hit
-                        -- 16 = JA/weaponskill?
-                        -- If action.reaction has bits 1 or 2 set, it missed or was parried. Reset count.
-                        if (action.reaction % 4) > 0 then
-                            info.impetus_hit_count = 0
-                        else
-                            info.impetus_hit_count = info.impetus_hit_count + 1
-                        end
-                    end
-                end
-            elseif action.category == 3 then
-                -- Missed weaponskill hits will reset the counter.  Can we tell?
-                -- Reaction always seems to be 24 (what does this value mean? 8=hit, 16=?)
-                -- Can't tell if any hits were missed, so have to assume all hit.
-                -- Increment by the minimum number of weaponskill hits: 2.
-                for _,target in pairs(action.targets) do
-                    for _,action in pairs(target.actions) do
-                        -- This will only be if the entire weaponskill missed or was parried.
-                        if (action.reaction % 4) > 0 then
-                            info.impetus_hit_count = 0
-                        else
-                            info.impetus_hit_count = info.impetus_hit_count + 2
-                        end
-                    end
-                end
-            end
-        elseif action.actor_id ~= player.id and action.category == 1 then
-            -- If mob hits the player, check for counters.
-            for _,target in pairs(action.targets) do
-                if target.id == player.id then
-                    for _,action in pairs(target.actions) do
-                        -- Spike effect animation:
-                        -- 63 = counter
-                        -- ?? = missed counter
-                        if action.has_spike_effect then
-                            -- spike_effect_message of 592 == missed counter
-                            if action.spike_effect_message == 592 then
-                                info.impetus_hit_count = 0
-                            elseif action.spike_effect_animation == 63 then
-                                info.impetus_hit_count = info.impetus_hit_count + 1
-                            end
-                        end
-                    end
-                end
-            end
-        end
-        
-        --add_to_chat(123,'Current Impetus hit count = ' .. tostring(info.impetus_hit_count))
-    else
-        info.impetus_hit_count = 0
-    end
-    
+	if state.Buff.Impetus then
+		-- count melee hits by player
+		if action.actor_id == player.id then
+			if action.category == 1 then
+				for _,target in pairs(action.targets) do
+					for _,action in pairs(target.actions) do
+						-- Reactions (bitset):
+						-- 1 = evade
+						-- 2 = parry
+						-- 4 = block/guard
+						-- 8 = hit
+						-- 16 = JA/weaponskill?
+						-- If action.reaction has bits 1 or 2 set, it missed or was parried. Reset count.
+						if (action.reaction % 4) > 0 then
+							info.impetus_hit_count = 0
+						else
+							info.impetus_hit_count = info.impetus_hit_count + 1
+						end
+					end
+				end
+			elseif action.category == 3 then
+				-- Missed weaponskill hits will reset the counter.  Can we tell?
+				-- Reaction always seems to be 24 (what does this value mean? 8=hit, 16=?)
+				-- Can't tell if any hits were missed, so have to assume all hit.
+				-- Increment by the minimum number of weaponskill hits: 2.
+				for _,target in pairs(action.targets) do
+					for _,action in pairs(target.actions) do
+						-- This will only be if the entire weaponskill missed or was parried.
+						if (action.reaction % 4) > 0 then
+							info.impetus_hit_count = 0
+						else
+							info.impetus_hit_count = info.impetus_hit_count + 2
+						end
+					end
+				end
+			end
+		elseif action.actor_id ~= player.id and action.category == 1 then
+			-- If mob hits the player, check for counters.
+			for _,target in pairs(action.targets) do
+				if target.id == player.id then
+					for _,action in pairs(target.actions) do
+						-- Spike effect animation:
+						-- 63 = counter
+						-- ?? = missed counter
+						if action.has_spike_effect then
+							-- spike_effect_message of 592 == missed counter
+							if action.spike_effect_message == 592 then
+								info.impetus_hit_count = 0
+							elseif action.spike_effect_animation == 63 then
+								info.impetus_hit_count = info.impetus_hit_count + 1
+							end
+						end
+					end
+				end
+			end
+		end
+		
+		--add_to_chat(123,'Current Impetus hit count = ' .. tostring(info.impetus_hit_count))
+	else
+		info.impetus_hit_count = 0
+	end
+	
 end
 ]]
 
@@ -270,34 +260,34 @@ function job_self_command(commandArgs, eventArgs)
 end
 
 function job_tick()
-	if check_buff() then return true end
+	if job_check_buff() then return true end
 	return false
 end
 
-function check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and player.in_combat then
+function job_check_buff()
+	if state.AutoBuffMode.value ~= 'Off' and in_combat then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 
 		if player.hpp < 51 and abil_recasts[15] < latency then
 			windower.chat.input('/ja "Chakra" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
 		elseif not buffactive.Impetus and abil_recasts[31] < latency then
 			windower.chat.input('/ja "Impetus" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
 		elseif not (buffactive.Aggressor or buffactive.Focus) and abil_recasts[13] < latency then
 			windower.chat.input('/ja "Focus" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
-		elseif player.sub_job == 'WAR' and not state.Buff['SJ Restriction'] then
+		elseif player.sub_job == 'WAR' and not buffactive['SJ Restriction'] then
 			if not buffactive.Berserk and abil_recasts[1] < latency then
 				windower.chat.input('/ja "Berserk" <me>')
-				tickdelay = os.clock() + 1.1
+				add_tick_delay()
 				return true
 			elseif not (buffactive.Aggressor or buffactive.Focus) and abil_recasts[4] < latency then
 				windower.chat.input('/ja "Aggressor" <me>')
-				tickdelay = os.clock() + 1.1
+				add_tick_delay()
 				return true
 			else
 				return false
@@ -308,18 +298,12 @@ function check_buff()
 	return false
 end
 
-function update_melee_groups()
-    classes.CustomMeleeGroups:clear()
-
-	if buffactive.footwork and not buffactive['hundred fists'] then
-        classes.CustomMeleeGroups:append('Footwork')
-    end
-	
-	if player.equipment.main and player.equipment.main == "Glanzfaust" and state.Buff['Aftermath: Lv.3'] then
-		classes.CustomMeleeGroups:append('AM')
+function job_update_melee_groups()
+	if state.Buff['Hundred Fists'] then
+		classes.CustomMeleeGroups:append('HF')
 	end
-	
-    if state.Buff['Hundred Fists'] then
-        classes.CustomMeleeGroups:append('HF')
-    end
+
+	if state.Buff['Footwork'] then
+		classes.CustomMeleeGroups:append('Footwork')
+	end
 end

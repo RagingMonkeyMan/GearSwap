@@ -45,16 +45,15 @@
 
 -- Initialization function for this job file.
 function get_sets()
-    -- Load and initialize the include file.
-    include('Sel-Include.lua')
+	-- Load and initialize the include file.
+	include('Sel-Include.lua')
 end
 
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
 
-	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
-    state.Buff.Sentinel = buffactive.Sentinel or false
-    state.Buff.Cover = buffactive.Cover or false
+	state.Buff.Sentinel = buffactive.Sentinel or false
+	state.Buff.Cover = buffactive.Cover or false
 	state.Stance = M{['description']='Stance','Hasso','Seigan','None'}
 
 	state.CurrentStep = M{['description']='Current Step', 'Box Step', 'Quickstep'}
@@ -65,9 +64,8 @@ function job_setup()
 	
 	autows = 'Savage Blade'
 	autofood = 'Miso Ramen'
-	
-	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoTankMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","PhysicalDefenseMode","MagicalDefenseMode","ResistDefenseMode","CastingMode","TreasureMode",})
+
+	init_job_states({"Capacity","AutoFoodMode","AutoTrustMode","AutoTankMode","AutoWSMode","AutoNukeMode","AutoJumpMode","AutoShadowMode","AutoStunMode","AutoDefenseMode"},{"AutoBuffMode","AutoSambaMode","AutoRuneMode","Weapons","OffenseMode","WeaponskillMode","Stance","IdleMode","Passive","RuneElement","CastingMode","PhysicalDefenseMode","MagicalDefenseMode","ResistDefenseMode","ExtraDefenseMode","TreasureMode"})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -81,20 +79,20 @@ function job_filtered_action(spell, eventArgs)
 		local available_ws = S(windower.ffxi.get_abilities().weapon_skills)
 		-- WS 172 is Flash Nova, meaning a Spear is equipped.
 		if available_ws:contains(172) then
-            if spell.english == "Chant du Cygne" then
+			if spell.english == "Chant du Cygne" then
 				send_command('@input /ws "True Strike" '..spell.target.raw)
-                cancel_spell()
+				cancel_spell()
 				eventArgs.cancel = true
-            elseif spell.english == "Savage Blade" then
-                send_command('@input /ws "Realmrazer" '..spell.target.raw)
-                cancel_spell()
+			elseif spell.english == "Savage Blade" then
+				send_command('@input /ws "Realmrazer" '..spell.target.raw)
+				cancel_spell()
 				eventArgs.cancel = true
-            elseif spell.english == "Sanguine Blade" then
-                send_command('@input /ws "Flash Nova" '..spell.target.raw)
-                cancel_spell()
+			elseif spell.english == "Sanguine Blade" then
+				send_command('@input /ws "Flash Nova" '..spell.target.raw)
+				cancel_spell()
 				eventArgs.cancel = true
-            end
-        end
+			end
+		end
 	end
 end
 
@@ -164,16 +162,12 @@ function job_post_midcast(spell, spellMap, eventArgs)
 end
 
 function job_aftercast(spell, spellMap, eventArgs)
-    -- Lock feet after using Mana Wall.
-    if not spell.interrupted then
+	-- Lock feet after using Mana Wall.
+	if not spell.interrupted then
 		if spell.english:lower():contains('step') then
 			state.CurrentStep:cycle()
 		end
 	end
-end
-
-function job_buff_change(buff, gain)
-	update_melee_groups()
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -182,148 +176,39 @@ end
 
 -- Handle notifications of general user state change.
 function job_state_change(stateField, newValue, oldValue)
-    classes.CustomDefenseGroups:clear()
-    classes.CustomDefenseGroups:append(state.ExtraDefenseMode.current)
-    classes.CustomMeleeGroups:clear()
-    classes.CustomMeleeGroups:append(state.ExtraDefenseMode.current)
+	classes.CustomMeleeGroups:clear()
+	classes.CustomMeleeGroups:append(state.ExtraDefenseMode.current)
 end
 
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements standard library decisions.
 -------------------------------------------------------------------------------------------------------------------
 
-    -- Allow jobs to override this code
+	-- Allow jobs to override this code
 function job_self_command(commandArgs, eventArgs)
-
-	if commandArgs[1] == 'RuneElement' then
-		send_command('input /ja "'..state.RuneElement.value..'" <me>')
-
-	elseif commandArgs[1] == 'SubJobEnmity' then
-
-		if player.target.type ~= "MONSTER" then
-			add_to_chat(123,'Abort: You are not targeting a monster.')
-			return
-
-		elseif player.sub_job == 'RUN' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			
-			if abil_recasts[24] < latency then
-				send_command('input /ja "Swordplay" <me>')
-			end
-			
-		elseif player.sub_job == 'BLU' and not moving then
-			local spell_recasts = windower.ffxi.get_spell_recasts()
-					
-			if spell_recasts[584] < spell_latency then
-				windower.chat.input('/ma "Sheep Song" <t>')
-			elseif spell_recasts[598] < spell_latency then
-				windower.chat.input('/ma "Soporific" <t>')
-			elseif spell_recasts[605] < spell_latency then
-				windower.chat.input('/ma "Geist Wall" <t>')
-			elseif spell_recasts[537] < spell_latency then
-				windower.chat.input('/ma "Stinking Gas" <t>')
-			elseif spell_recasts[575] < spell_latency then
-				windower.chat.input('/ma "Jettatura" <t>')
-			elseif spell_recasts[592] < spell_latency then
-				windower.chat.input('/ma "Blank Gaze" <t>')
-			elseif not check_auto_tank_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Blue Magic on cooldown.') end
-			end
-
-		elseif player.sub_job == 'DRK' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			local spell_recasts = windower.ffxi.get_spell_recasts()
-			
-			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Souleater'] then
-				send_command('cancel souleater')
-			end
-			
-			if (state.HybridMode.value ~= 'Normal' or state.DefenseMode.value ~= 'None')  and buffactive['Last Resort'] then
-				send_command('cancel last resort')
-			end
-			
-			if spell_recasts[252] < spell_latency and not silent_check_silence() then
-				windower.chat.input('/ma "Stun" <t>')
-			elseif abil_recasts[85] < latency then
-				windower.chat.input('/ja "Souleater" <me>')
-			elseif abil_recasts[87] < latency then
-				windower.chat.input('/ja "Last Resort" <me>')
-			elseif abil_recasts[86] < latency then
-				windower.chat.input('/ja "Arcane Circle" <me>')
-			elseif not check_auto_tank_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Dark Knight abillities on cooldown.') end
-			end
-
-		elseif player.sub_job == 'WAR' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			
-			if state.HybridMode.value:contains('DD') then
-				if buffactive['Defender'] then send_command('cancel defender') end
-			elseif state.HybridMode.value ~= 'Normal' and not state.HybridMode.value:contains('DD') then
-				if buffactive['Berserk'] then send_command('cancel berserk') end
-			end
-			
-			if abil_recasts[5] < latency then
-				send_command('input /ja "Provoke" <t>')
-			elseif abil_recasts[2] < latency then
-				send_command('input /ja "Warcry" <me>')
-			elseif abil_recasts[3] < latency then
-				send_command('input /ja "Defender" <me>')
-			elseif abil_recasts[4] < latency then
-				send_command('input /ja "Aggressor" <me>')
-			elseif abil_recasts[1] < latency then
-				send_command('input /ja "Berserk" <me>')
-			elseif not check_auto_tank_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'All Enmity Warrior Job Abilities on cooldown.') end
-			end
-			
-		elseif player.sub_job == 'DNC' then
-			local abil_recasts = windower.ffxi.get_ability_recasts()
-			local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
-        
-			if under3FMs then
-				if abil_recasts[220] < latency then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				return
-				end
-			elseif abil_recasts[221] < latency then
-				send_command('input /ja "Animated Flourish" <t>')
-				return
-			elseif abil_recasts[220] < latency and not buffactive['Finishing Move 5'] then
-				send_command('@input /ja "'..state.CurrentStep.value..'" <t>')
-				return
-			elseif not check_auto_tank_ws() then
-				if not state.AutoTankMode.value then add_to_chat(123,'Dancer job abilities not needed.') end
-			end
-		else
-			check_auto_tank_ws()
-		end
-
-	end
 
 end
 
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    update_defense_mode()
-	update_melee_groups()
+	update_defense_mode()
 	
-    if state.RuneElement.value == 'Ignis' then
+	if state.RuneElement.value == 'Ignis' then
 		RuneResist = "Ice"
 		RuneDamage = 'Fire'
 	elseif state.RuneElement.value == 'Gelus' then
 		RuneResist = "Wind"
-        RuneDamage = 'Ice'
+		RuneDamage = 'Ice'
 	elseif state.RuneElement.value == 'Flabra' then
 		RuneResist = "Earth"
-        RuneDamage = 'Wind'
+		RuneDamage = 'Wind'
 	elseif state.RuneElement.value == 'Tellus' then
 		RuneResist = "Lightning"
 		RuneDamage = 'Earth'
 	elseif state.RuneElement.value == 'Sulpor' then
 		RuneResist = "Water"
-        RuneDamage = 'Lightning'
+		RuneDamage = 'Lightning'
 	elseif state.RuneElement.value == 'Unda' then
 		RuneResist = "Fire"
 		RuneDamage = 'Water'
@@ -343,7 +228,7 @@ end
 -- Modify the default idle set after it was constructed.
 function job_customize_idle_set(idleSet)
 
-    if state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') then
+	if state.IdleMode.value == 'Normal' or state.IdleMode.value:contains('Sphere') then
 		if player.mpp < 51 and sets.latent_refresh then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
@@ -351,73 +236,53 @@ function job_customize_idle_set(idleSet)
 		if player.hpp < 71 then
 			idleSet = set_combine(idleSet, sets.latent_regen)
 		end
-    end
+	end
 
-    return idleSet
+	return idleSet
 end
-
--- Modify the default melee set after it was constructed.
-function job_customize_melee_set(meleeSet)
-
-    if state.ExtraDefenseMode.value ~= 'None' then
-        meleeSet = set_combine(meleeSet, sets[state.ExtraDefenseMode.value])
-    end
-   
-    return meleeSet
-
-end
-
-function job_customize_defense_set(defenseSet)
-    if state.ExtraDefenseMode.value ~= 'None' then
-        defenseSet = set_combine(defenseSet, sets[state.ExtraDefenseMode.value])
-    end
-
-    return defenseSet
-end
-
 
 function display_current_job_state(eventArgs)
-    local msg = 'Melee'
-    
-    if state.CombatForm.has_value then
-        msg = msg .. ' (' .. state.CombatForm.value .. ')'
-    end
-    
-    msg = msg .. ': '
-    
-    msg = msg .. state.OffenseMode.value
-    if state.HybridMode.value ~= 'Normal' then
-        msg = msg .. '/' .. state.HybridMode.value
-    end
-    msg = msg .. ', WS: ' .. state.WeaponskillMode.value
-    
-    if state.DefenseMode.value ~= 'None' then
-        msg = msg .. ', Defense: ' .. state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')'
-    end
-
-    if state.ExtraDefenseMode.value ~= 'None' then
-        msg = msg .. ', Extra: ' .. state.ExtraDefenseMode.value
-    end
-   
-    if state.Kiting.value == true then
-        msg = msg .. ', Kiting'
-    end
-
-    if state.PCTargetMode.value ~= 'default' then
-        msg = msg .. ', Target PC: '..state.PCTargetMode.value
-    end
-
-    if state.SelectNPCTargets.value == true then
-        msg = msg .. ', Target NPCs'
-    end
+	local msg = 'Melee'
 	
-    if state.AutoDefenseMode.value == true then
-        msg = msg .. ', Auto Defense: On'
-    end
+	if state.CombatForm.has_value then
+		msg = msg .. ' (' .. state.CombatForm.value .. ')'
+	end
+	
+	msg = msg .. ': '
+	
+	msg = msg .. state.OffenseMode.value
+	if state.HybridMode.value ~= 'Normal' then
+		msg = msg .. '/' .. state.HybridMode.value
+	end
+	msg = msg .. ', WS: ' .. state.WeaponskillMode.value
+	
+	if state.DefenseMode.value ~= 'None' then
+		msg = msg .. ', Defense: ' .. state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')'
+	end
 
-    add_to_chat(122, msg)
+	if state.ExtraDefenseMode.value ~= 'None' then
+		msg = msg .. ', Extra: ' .. state.ExtraDefenseMode.value
+	end
+   
+	if state.Kiting.value == true then
+		msg = msg .. ', Kiting'
+	end
 
-    eventArgs.handled = true
+	if state.PCTargetMode.value ~= 'default' then
+		msg = msg .. ', Target PC: '..state.PCTargetMode.value
+	end
+
+	if state.SelectNPCTargets.value == true then
+		msg = msg .. ', Target NPCs'
+	end
+	
+	if state.AutoDefenseMode.value == true then
+		msg = msg .. ', Auto Defense: On'
+	end
+
+	add_to_chat(122, msg)
+
+	eventArgs.handled = true
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -425,30 +290,29 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function update_defense_mode()
-    if player.equipment.main == 'Kheshig Blade' and not classes.CustomDefenseGroups:contains('Kheshig Blade') then
-        classes.CustomDefenseGroups:append('Kheshig Blade')
-    end
-    
-    if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-        if player.equipment.sub and not player.equipment.sub:contains('Shield') and
-           player.equipment.sub ~= 'Aegis' and player.equipment.sub ~= 'Ochain' and player.equipment.sub ~= 'Svalinn' and player.equipment.sub ~= 'Priwen' then
-            state.CombatForm:set('DW')
-        else
-            state.CombatForm:reset()
-        end
-    end
+	if player.equipment.main == 'Kheshig Blade' and not classes.CustomDefenseGroups:contains('Kheshig Blade') then
+		classes.CustomDefenseGroups:append('Kheshig Blade')
+	end
+	
+	if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+		if player.equipment.sub and not player.equipment.sub:contains('Shield') and
+		   player.equipment.sub ~= 'Aegis' and player.equipment.sub ~= 'Ochain' and player.equipment.sub ~= 'Svalinn' and player.equipment.sub ~= 'Priwen' then
+			state.CombatForm:set('DW')
+		else
+			state.CombatForm:reset()
+		end
+	end
 end
 
 function job_tick()
 	if check_majesty() then return true end
 	if check_hasso() then return true end
-	if check_buff() then return true end
 	if check_buffup() then return true end
-	if state.AutoTankMode.value and player.in_combat and player.target.type == "MONSTER" and not moving then
-		if check_flash() then return true
-		else 
-			windower.send_command('gs c SubJobEnmity')
-			tickdelay = os.clock() + 1
+	if check_buff() then return true end
+	if job_check_buff() then return true end
+	if state.AutoTankMode.value and in_combat and player.target.type == "MONSTER" and not moving then
+		if handle_enmity(S{'auto'}) then
+			add_tick_delay(2)
 			return true
 		end
 	end
@@ -459,31 +323,21 @@ function check_flash()
 	local spell_recasts = windower.ffxi.get_spell_recasts()
 
 	if spell_recasts[112] < spell_latency then
-		send_command('input /ma "Flash" <t>')
-		tickdelay = os.clock() + 2
+		windower.chat.input('/ma "Flash" <t>')
+		add_tick_delay()
 		return true
 	else
 		return false
 	end
 end
 
-function update_melee_groups()
-	if player.equipment.main then
-		classes.CustomMeleeGroups:clear()
-		
-		if player.equipment.main == "Burtgang" and state.Buff['Aftermath: Lv.3'] then
-				classes.CustomMeleeGroups:append('AM')
-		end
-	end	
-end
-
 function check_majesty()
-	if state.AutoMajesty.value and player.in_combat and not buffactive.Majesty and not silent_check_amnesia() then
+	if state.AutoMajesty.value and in_combat and not buffactive.Majesty and not silent_check_amnesia() then
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
 		if abil_recasts[150] < latency then
 			windower.chat.input('/ja "Majesty" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
 		else
 			return false
@@ -493,23 +347,23 @@ function check_majesty()
 end
 
 function check_cover(Protectee)
-    if state.AutoCover.value and not midaction() and Protectee.hpp < 85 and math.sqrt(Protectee.distance) < 10 and windower.ffxi.get_ability_recasts()[76] < latency then
+	if state.AutoCover.value and not midaction() and Protectee.hpp < 85 and math.sqrt(Protectee.distance) < 10 and windower.ffxi.get_ability_recasts()[76] < latency then
 		windower.chat.input('/ja Cover '..Protectee.name..'')
-    end
+	end
 end 
 
 function check_hasso()
-if player.sub_job == 'SAM' and player.status == 'Engaged' and not (state.Stance.value == 'None' or state.Buff.Hasso or state.Buff.Seigan or state.Buff['SJ Restriction'] or main_weapon_is_one_handed() or silent_check_amnesia()) then
+	if player.sub_job == 'SAM' and player.status == 'Engaged' and wielding() == 'Two-Handed' and state.Stance.value ~= 'None' and not (state.Buff.Hasso or state.Buff.Seigan or buffactive['SJ Restriction'] or silent_check_amnesia()) then
 		
 		local abil_recasts = windower.ffxi.get_ability_recasts()
 		
 		if state.Stance.value == 'Hasso' and abil_recasts[138] < latency then
 			windower.chat.input('/ja "Hasso" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
 		elseif state.Stance.value == 'Seigan' and abil_recasts[139] < latency then
 			windower.chat.input('/ja "Seigan" <me>')
-			tickdelay = os.clock() + 1.1
+			add_tick_delay()
 			return true
 		else
 			return false
@@ -519,61 +373,19 @@ if player.sub_job == 'SAM' and player.status == 'Engaged' and not (state.Stance.
 	return false
 end
 
-function check_buff()
-	if state.AutoBuffMode.value ~= 'Off' and not data.areas.cities:contains(world.area) then
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		for i in pairs(buff_spell_lists[state.AutoBuffMode.Value]) do
-			if not buffactive[buff_spell_lists[state.AutoBuffMode.Value][i].Buff] and (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Always' or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Combat' and (player.in_combat or being_attacked)) or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Engaged' and player.status == 'Engaged') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'Idle' and player.status == 'Idle') or (buff_spell_lists[state.AutoBuffMode.Value][i].When == 'OutOfCombat' and not (player.in_combat or being_attacked))) and spell_recasts[buff_spell_lists[state.AutoBuffMode.Value][i].SpellID] < latency and silent_can_use(buff_spell_lists[state.AutoBuffMode.Value][i].SpellID) then
-				windower.chat.input('/ma "'..buff_spell_lists[state.AutoBuffMode.Value][i].Name..'" <me>')
-				tickdelay = os.clock() + 2
-				return true
-			end
-		end
-		
-		if player.in_combat then
+function job_check_buff()
+	if state.AutoBuffMode.value ~= 'Off' and not in_town then
+		if in_combat then
 			local abil_recasts = windower.ffxi.get_ability_recasts()
 
 			if not buffactive['Majesty'] and abil_recasts[150] < latency then
 				windower.chat.input('/ja "Majesty" <me>')
-				tickdelay = os.clock() + 1.1
+				add_tick_delay()
 				return true
 			else
 				return false
 			end
 		end
-		
-	else
-		return false
-	end
-end
-
-function check_buffup()
-	if buffup ~= '' then
-		local needsbuff = false
-		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) then
-				needsbuff = true
-				break
-			end
-		end
-	
-		if not needsbuff then
-			add_to_chat(217, 'All '..buffup..' buffs are up!')
-			buffup = ''
-			return false
-		end
-		
-		local spell_recasts = windower.ffxi.get_spell_recasts()
-		
-		for i in pairs(buff_spell_lists[buffup]) do
-			if not buffactive[buff_spell_lists[buffup][i].Buff] and silent_can_use(buff_spell_lists[buffup][i].SpellID) and spell_recasts[buff_spell_lists[buffup][i].SpellID] < spell_latency then
-				windower.chat.input('/ma "'..buff_spell_lists[buffup][i].Name..'" <me>')
-				tickdelay = os.clock() + 2
-				return true
-			end
-		end
-		
-		return false
 	else
 		return false
 	end
