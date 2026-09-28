@@ -84,13 +84,13 @@ function init_gear_sets()
 	sets.precast.JA.Jump = {
 		ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
-		neck = "Anu Torque",
+		neck = "Vim Torque +1",
 		ear2 = "Sherida Earring",
 		ear1 = "Dedition Earring",
-		body = "Pteroslaver Mail +3",
+		body = "Vishap mail +3", 
 		hands = "Vis. Fng. Gaunt. +3", 
 		ring1 = "Niqmaddu Ring",
-		ring2 = "Dreki Ring",
+		ring2 = "Chirich Ring +1",
 		back = Brig.STP,
 		waist = "Sailfi Belt +1",
 		legs = "Pteroslaver Brais +3",
@@ -100,13 +100,13 @@ function init_gear_sets()
 	sets.precast.JA['High Jump'] = {
 		ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
-		neck = "Anu Torque",
+		neck = "Vim Torque +1",
 		ear2 = "Sherida Earring",
 		ear1 = "Dedition Earring",
-		body = "Pteroslaver Mail +3",
+		body = "Vishap mail +3", 
 		hands = "Vis. Fng. Gaunt. +3", 
 		ring1 = "Niqmaddu Ring",
-		ring2 = "Dreki Ring",
+		ring2 = "Chirich Ring +1",
 		back = Brig.STP,
 		waist = "Sailfi Belt +1",
 		legs = "Pteroslaver Brais +3",
@@ -116,29 +116,29 @@ function init_gear_sets()
 	sets.precast.JA['Soul Jump'] = {
 		ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
-		neck = "Anu Torque",
+		neck = "Vim Torque +1",
 		ear2 = "Sherida Earring",
 		ear1 = "Dedition Earring",
-		body = "Hjarrandi Breastplate", 
+		body = "Vishap mail +3", 
 		hands = "Vis. Fng. Gaunt. +3", 
 		ring1 = "Niqmaddu Ring",
-		ring2 = "Dreki Ring",
+		ring2 = "Chirich Ring +1",
 		back = Brig.STP,
 		waist = "Sailfi Belt +1",
-		legs = ValorousHose.STP,
+		legs = "Pteroslaver Brais +3",
 		feet = "Ostro Greaves"
 	}
 	
 	sets.precast.JA['Spirit Jump'] = {
 		ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
-		neck = "Anu Torque",
+		neck = "Vim Torque +1",
 		ear2 = "Sherida Earring",
 		ear1 = "Dedition Earring",
-		body = "Pteroslaver Mail +3",
+		body = "Vishap mail +3", 
 		hands = "Vis. Fng. Gaunt. +3", 
 		ring1 = "Niqmaddu Ring",
-		ring2 = "Dreki Ring",
+		ring2 = "Chirich Ring +1",
 		back = Brig.STP,
 		waist = "Sailfi Belt +1",
 		legs = "Pteroslaver Brais +3",
@@ -256,7 +256,7 @@ function init_gear_sets()
 	-- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 	sets.precast.WS['Stardiver'] = {
 		ammo = "Coiste Bodhar",
-		head = "Peltast's Mezail +3",
+		head = "Flam. Zucchetto +2",
 		neck = "Dragoon's Collar +2",
 		ear1 = "Moonshade Earring",
 		ear2 = "Pteroslaver Earring +1",
@@ -272,7 +272,7 @@ function init_gear_sets()
 
 	sets.precast.WS['Stardiver'].PDL = {
 		ammo = "Coiste Bodhar",
-		head = "Peltast's Mezail +3",
+		head = "Gleti's mask",
 		neck = "Dragoon's Collar +2",
 		ear1 = "Moonshade Earring",
 		ear2 = "Pteroslaver Earring +1",
@@ -289,33 +289,17 @@ function init_gear_sets()
 	sets.precast.WS['Stardiver'].UncappedAtt = {
 		ammo = "Coiste Bodhar",
 		head = "Peltast's Mezail +3",
-		neck = "Dragoon's Collar +2",
+		neck = "Fotia gorget",
 		ear1 = "Moonshade Earring",
 		ear2 = "Sherida Earring",
 		body = "Pteroslaver Mail +3",
-		hands = "Sulevia's Gauntlets +2",
+		hands = "Peltast's Vambraces +3",
 		ring1 = "Ephramad's Ring",
 		ring2 = "Niqmaddu Ring",
 		back = Brig.STRDA,
-		waist = "Fotia Belt",
+		waist = "Sailfi Belt +1",
 		legs = "Sulevia's Cuisses +2",
 		feet = "Pteroslaver greaves +3"  
-	}
-	
-	sets.precast.WS['Stardiver'].SomeAcc = {
-		ammo = "Coiste Bodhar",
-		head = "Peltast's Mezail +3",
-		neck = "Dragoon's Collar +2",
-		ear1 = "Moonshade Earring",
-		ear2 = "Sherida Earring",
-		body = ValorousBody.Quad,
-		hands = "Sulevia's Gauntlets +2",
-		ring1 = "Ephramad's Ring",
-		ring2 = "Niqmaddu Ring",
-		back = Brig.STRDA,
-		waist = "Fotia Belt",
-		legs = "Sulevia's Cuisses +2",
-		feet = "Flamma Gambieras +2"  --"Vishap Greaves +3"
 	}
 	
 	sets.precast.WS['Stardiver'].Acc = {
@@ -324,14 +308,14 @@ function init_gear_sets()
 		neck = "Dragoon's Collar +2",
 		ear1 = "Moonshade Earring",
 		ear2 = "Sherida Earring",
-		body = ValorousBody.Quad,
-		hands = "Sulevia's Gauntlets +2",
+		body = "Gleti's Cuirass",
+		hands = "Peltast's Vambraces +3",
 		ring1 = "Ephramad's Ring",
 		ring2 = "Niqmaddu Ring",
 		back = Brig.STRDA,
 		waist = "Fotia Belt",
-		legs = "Vishap Brias +3",
-		feet = "Flamma Gambieras +2"  --"Vishap Greaves +3"
+		legs = "Gleti's Breeches",
+		feet = "Flamma Gambieras +2"  
 	}
 
 	sets.precast.WS['Drakesbane'] = {
@@ -364,21 +348,7 @@ function init_gear_sets()
 		legs = "Gleti's Breeches",
 		feet = "Gleti's Boots"
 	}
-	sets.precast.WS['Drakesbane'].SomeAcc = {
-		ammo = "Knobkierrie",
-		head = "Gleti's Mask",
-		neck = "Dragoon's Collar +2",
-		ear1 = "Moonshade Earring",
-		ear2 = "Thrud Earring",
-		body = "Hjarrandi Breastplate",
-		hands = "Gleti's Gauntlets",
-		ring1 = "Niqmaddu Ring",
-		ring2 = "Ephramad's Ring",
-		back = Brig.STRDA,
-		waist = "Ioskeha Belt +1",
-		legs = "Gleti's Breeches",
-		feet = "Gleti's Boots"
-	}
+	
 	sets.precast.WS['Drakesbane'].Acc = {
 		ammo = "Knobkierrie",
 		head = "Gleti's Mask",
@@ -425,21 +395,7 @@ function init_gear_sets()
 		legs = "Vishap brais +3",
 		feet = "Nyame sollerets"
 	}
-	sets.precast.WS["Camlann's Torment"].SomeAcc = {
-		ammo = "Knobkierrie",
-		head = "Peltast's Mezail +3",
-		neck = "Dragoon's Collar +2",
-		ear1 = "Thrud Earring",
-		ear2 = "Ishvara Earring",
-		body = "Nyame mail",
-		hands = "Pteroslaver Finger Gauntlets +3",
-		ring1 = "Epaminondas's Ring",
-		ring2 = "Ephramad's ring",
-		back = Brig.WSD,
-		waist = "Fotia Belt",
-		legs = "Vishap brais +3",
-		feet = "Nyame sollerets"
-	}
+	
 	sets.precast.WS["Camlann's Torment"].Acc = {
 		ammo = "Knobkierrie",
 		head = "Peltast's Mezail +3",
@@ -460,14 +416,14 @@ function init_gear_sets()
 		ammo = "Knobkierrie",
 		head = "Peltast's Mezail +3",
 		neck = "Dragoon's Collar +2",
-		ear1 = "Thrud Earring",
+		ear1 = "Moonshade Earring",
 		ear2 = "Pteroslaver Earring +1",
-		body = "Nyame mail",
+		body = "Gleti Cuirass",
 		hands = "Pteroslaver Finger Gauntlets +3",
 		ring1 = "Epaminondas's Ring",
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
-		waist = "Fotia Belt",
+		waist = "Sailfi Belt +1",
 		legs = "Vishap brais +3",
 		feet = "Nyame sollerets"
 	}
@@ -475,44 +431,30 @@ function init_gear_sets()
 		ammo = "Knobkierrie",
 		head = "Peltast's Mezail +3",
 		neck = "Dragoon's Collar +2",
-		ear1 = "Thrud Earring",
-		ear2 = "Ishvara Earring",
+		ear1 = "Moonshade Earring",
+		ear2 = "Thrud Earring",
 		body = "Nyame mail",
 		hands = "Pteroslaver Finger Gauntlets +3",
 		ring1 = "Epaminondas's Ring",
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
 		waist = "Fotia Belt",
-		legs = "Vishap brais +3",
+		legs = "Nyame Flanchard",
 		feet = "Nyame sollerets"
 	}
-	sets.precast.WS["Sonic Thrust"].SomeAcc = {
-		ammo = "Knobkierrie",
-		head = "Peltast's Mezail +3",
-		neck = "Dragoon's Collar +2",
-		ear1 = "Thrud Earring",
-		ear2 = "Ishvara Earring",
-		body = "Nyame mail",
-		hands = "Pteroslaver Finger Gauntlets +3",
-		ring1 = "Epaminondas's Ring",
-		ring2 = "Ephramad's ring",
-		back = Brig.WSD,
-		waist = "Fotia Belt",
-		legs = "Vishap brais +3",
-		feet = "Nyame sollerets"
-	}
+	
 	sets.precast.WS["Sonic Thrust"].Acc = {
 		ammo = "Knobkierrie",
 		head = "Peltast's Mezail +3",
 		neck = "Dragoon's Collar +2",
-		ear1 = "Thrud Earring",
-		ear2 = "Ishvara Earring",
-		body = "Nyame mail",
+		ear1 = "Moonshade Earring",
+		ear2 = "Pteroslaver Earring +1",
+		body = "Gleti Cuirass",
 		hands = "Pteroslaver Finger Gauntlets +3",
 		ring1 = "Epaminondas's Ring",
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
-		waist = "Fotia Belt",
+		waist = "Sailfi Belt +1",
 		legs = "Vishap brais +3",
 		feet = "Nyame sollerets"
 	}
@@ -541,7 +483,7 @@ function init_gear_sets()
 		ear2 = "Pteroslaver Earring +1",
 		body = "Gleti's Cuirass",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Epaminondas's Ring",
+		ring1 = "Niqmaddu Ring",
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
 		waist = "Sailfi Belt +1",
@@ -560,38 +502,24 @@ function init_gear_sets()
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
 		waist = "Sailfi Belt +1",
-		legs = "Vishap brais +3",
-		feet = "Sulevia's Leggings +2"
+		legs = "Nyame Flanchard",
+		feet = "Nyame Sollerets"
 	}
-	sets.precast.WS["Impulse Drive"].SomeAcc = {
-		ammo = "Knobkierrie",
-		head = "Peltast's Mezail +3", 
-		neck = "Dragoon's Collar +2",
-		ear1 = "Moonshade Earring",
-		ear2 = "Thrud Earring",
-		body = "Hjarrandi Breast.",
-		hands = "Pteroslaver Finger Gauntlets +3",
-		ring1 = "Epaminondas's Ring",
-		ring2 = "Ephramad's ring",
-		back = Brig.WSD,
-		waist = "Sailfi Belt +1",
-		legs = "Vishap brais +3",
-		feet = "Sulevia's Leggings +2"
-	}
+
 	sets.precast.WS["Impulse Drive"].Acc = {
 		ammo = "Knobkierrie",
-		head = "Peltast's Mezail +3", 
+		head = "Peltast's Mezail +3",
 		neck = "Dragoon's Collar +2",
 		ear1 = "Moonshade Earring",
-		ear2 = "Thrud Earring",
-		body = "Hjarrandi Breast.",
-		hands = "Pteroslaver Finger Gauntlets +3",
-		ring1 = "Epaminondas's Ring",
+		ear2 = "Pteroslaver Earring +1",
+		body = "Gleti's Cuirass",
+		hands = "Gleti's Gauntlets",
+		ring1 = "Niqmaddu Ring",
 		ring2 = "Ephramad's ring",
 		back = Brig.WSD,
 		waist = "Sailfi Belt +1",
-		legs = "Vishap brais +3",
-		feet = "Sulevia's Leggings +2"
+		legs = "Gleti's Breeches",
+		feet = "Nyame Sollerets"
 	}
 	
 	sets.precast.WS["Savage Blade"] = {
@@ -757,12 +685,12 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		ear1 = "Dedition Earring",
 		body = "Peltast's Plackart +3",
-		hands = AcroGauntlets.STP,
+		hands = "Peltast's vambraces +3",
 		ring1 = "Niqmaddu Ring",
 		ring2 = "Dreki Ring",
 		back = Brig.DATP,
 		waist = "Sailfi Belt +1",
-		legs = ValorousHose.STP,
+		legs = "Pteroslaver Brais +3",
 		feet = "Flamma Gambieras +2"}
 
     sets.engaged.SomeAcc = {ammo = "Coiste Bodhar",
@@ -771,12 +699,12 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		ear1 = "Telos Earring",
 		body = "Peltast's Plackart +3",
-		hands = AcroGauntlets.STP,
+		hands = "Peltast's vambraces +3",
 		ring1 = "Niqmaddu Ring",
 		ring2 = "Chirich Ring +1",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
-		legs = ValorousHose.STP,
+		legs = "Pteroslaver Brais +3",
 		feet = "Flamma Gambieras +2"}
 	sets.engaged.Acc = {ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
@@ -784,12 +712,12 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		ear1 = "Telos Earring",
 		body = "Peltast's Plackart +3",
-		hands = "Emicho Gauntlets +1",
+		hands = "Peltast's vambraces +3",
 		ring1 = "Niqmaddu Ring",
 		ring2 = "Chirich Ring +1",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
-		legs = ValorousHose.STP,
+		legs = "Pteroslaver Brais +3",
 		feet = "Flamma Gambieras +2"}
 
 --[[

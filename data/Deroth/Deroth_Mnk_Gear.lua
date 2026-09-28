@@ -445,12 +445,12 @@ function init_gear_sets()
     sets.resting = {}
 	
 	-- Swap to these on Moonshade using WS if at 3000 TP
-	sets.MaxTP = {ear1="Brutal Earring",ear2="Sherida Earring",}
+	sets.MaxTP = {ear1="Schere Earring",ear2="Sherida Earring",}
 	sets.AccMaxTP = {ear1="Mache Earring +1",ear2="Telos Earring"}
 	
 	-- Idle sets
     sets.idle = {ammo="Staunch tathlum +1",
-        head="Nyame helm",neck="Bathy choker +1",ear1="Telos Earring",ear2="Sherida Earring",
+        head="Nyame helm",neck="Bathy choker +1",ear1="Schere Earring",ear2="Sherida Earring",
         body="Nyame mail",hands="Nyame gauntlets",ring1="Chirich Ring +1",ring2="Defending Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 

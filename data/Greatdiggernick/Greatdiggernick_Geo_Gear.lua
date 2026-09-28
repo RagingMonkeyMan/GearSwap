@@ -177,46 +177,46 @@ function init_gear_sets()
 		
     sets.midcast['Dark Magic'] = {main="Rubicundity",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
         head="Azimuth Hood +3",neck="Erra Pendant",ear1="Regal Earring",ear2="Malignance Earring",
-        body="Azimuth Coat +3",hands="Amalric Gages +1",ring1="Metamor. Ring +1",ring2="Stikini Ring",
-        back=GeoNukeCape,waist="Yamabuki-no-Obi",legs="Merlinic Shalwar",feet=gear.merlinic_aspir_feet}
+        body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+        back=GeoNukeCape,waist="Yamabuki-no-Obi",legs="Azimuth tights +3",feet=gear.merlinic_aspir_feet}
 		
     sets.midcast.Drain = {main="Rubicundity",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
         head="Pixie Hairpin +1",neck="Erra Pendant",ear1="Regal Earring",ear2="Malignance Earring",
-        body="Azimuth Coat +3",hands="Amalric Gages +1",ring1="Archon Ring",ring2="Evanescence Ring",
-        back=GeoNukeCape,waist="Fucho-no-obi",legs="Merlinic Shalwar",feet=gear.merlinic_aspir_feet}
+        body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Archon Ring",ring2="Evanescence Ring",
+        back=GeoNukeCape,waist="Fucho-no-obi",legs="Azimuth tights +3",feet=gear.merlinic_aspir_feet}
     
     sets.midcast.Aspir = sets.midcast.Drain
 		
 	sets.midcast.Stun = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Hasty Pinion +1",
 		head="Amalric Coif +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Zendik Robe",hands="Volte Gloves",ring1="Metamor. Ring +1",ring2="Stikini Ring",
-		back="Lifestream Cape",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
+		body="Zendik Robe",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+		back="Lifestream Cape",waist="Witful Belt",legs="Azimuth tights +3",feet="Regal Pumps +1"}
 		
 	sets.midcast.Stun.Resistant = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
 		head="Amalric Coif +1",neck="Erra Pendant",ear1="Regal Earring",ear2="Malignance Earring",
-		body="Zendik Robe",hands="Amalric Gages +1",ring1="Metamor. Ring +1",ring2="Stikini Ring",
-		back=GeoNukeCape,waist="Acuity Belt +1",legs="Merlinic Shalwar",feet=gear.merlinic_aspir_feet}
+		body="Zendik Robe",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+		back=GeoNukeCape,waist="Acuity Belt +1",legs="Azimuth tights +3",feet=gear.merlinic_aspir_feet}
 		
 	sets.midcast.Impact = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
 		head=empty,neck="Erra Pendant",ear1="Regal Earring",ear2="Malignance Earring",
-		body="Twilight Cloak",hands="Regal Cuffs",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+		body="Twilight Cloak",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
 		back=GeoNukeCape,waist="Acuity Belt +1",legs="Merlinic Shalwar",feet=gear.merlinic_nuke_feet}
 		
 	sets.midcast.Dispel = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
 		head="Amalric Coif +1",neck="Erra Pendant",ear1="Digni. Earring",ear2="Malignance Earring",
-		body="Zendik Robe",hands="Azimuth gloves",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+		body="Zendik Robe",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
 		back=GeoNukeCape,waist="Acuity Belt +1",legs="Azimuth tights +3",feet=gear.merlinic_aspir_feet}
 
 	sets.midcast.Dispelga = set_combine(sets.midcast.Dispel, {main="Daybreak",sub="Ammurapi Shield"})
 		
 	sets.midcast['Enfeebling Magic'] = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
 		head="Befouled Crown",neck="Null loop",ear1="Digni. Earring",ear2="Malignance Earring",
-		body="Azimuth Coat +3",hands="Azimuth gloves",ring1="Kishar Ring",ring2="Stikini Ring",
+		body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Kishar Ring",ring2="Stikini Ring",
 		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua sandals +3"}
 		
 	sets.midcast['Enfeebling Magic'].Resistant = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
 		head="Befouled Crown",neck="Null loop",ear1="Digni. Earring",ear2="Malignance Earring",
-		body="Azimuth Coat +3",hands="Azimuth gloves",ring1="Metamor. Ring +1",ring2="Stikini Ring",
+		body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
 		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua sandals +3"}
 		
     sets.midcast.ElementalEnfeeble = set_combine(sets.midcast['Enfeebling Magic'], {head="Amalric Coif +1",ear2="Malignance Earring",waist="Acuity Belt +1"})
