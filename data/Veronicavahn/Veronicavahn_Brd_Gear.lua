@@ -224,16 +224,16 @@ function init_gear_sets()
 
 	-- Gear to enhance certain classes of songs
 	sets.midcast.Ballad = {legs="Fili Rhingrave +2"}
-	sets.midcast.Lullaby = {range="Marsyas",hands="Brioso Cuffs +3"}
-	sets.midcast.Lullaby.Resistant = {range="Marsyas",hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby'] = {range="Marsyas", hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby'].Resistant = {range="Daurdabla",hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby'].AoE = {range="Daurdabla",hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby II'] = {range="Marsyas",hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby II'].Resistant = {range="Daurdabla",hands="Brioso Cuffs +3"}
-	sets.midcast['Horde Lullaby II'].AoE = {range="Daurdabla",hands="Brioso Cuffs +3"}
+	sets.midcast.Lullaby = {range="Marsyas",hands="Brioso Cuffs +4"}
+	sets.midcast.Lullaby.Resistant = {range="Marsyas",hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby'] = {range="Marsyas", hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby'].Resistant = {range="Daurdabla",hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby'].AoE = {range="Daurdabla",hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby II'] = {range="Marsyas",hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby II'].Resistant = {range="Daurdabla",hands="Brioso Cuffs +4"}
+	sets.midcast['Horde Lullaby II'].AoE = {range="Daurdabla",hands="Brioso Cuffs +4"}
 	sets.midcast.Madrigal = {head="Fili Calot +3"}
-	sets.midcast.Paeon = {head="Brioso Roundlet +3"}
+	sets.midcast.Paeon = {head="Brioso Roundlet +4"}
 	sets.midcast.March = {hands="Fili Manchettes +2"}
 	sets.midcast['Honor March'] = set_combine(sets.midcast.March,{range="Marsyas"})
 	sets.midcast['Aria of Passion'] = {range="Loughnashade"}
@@ -250,24 +250,24 @@ function init_gear_sets()
 	sets.midcast.SongEffect = {main="Carnwenhan",range="Gjallarhorn",ammo=empty,
 		head="Fili Calot +3",neck="Mnbw. Whistle +1",ear1="Regal earring",ear2="Loquac. Earring",
 		body="Fili Hongreline +3",hands="Inyan. Dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
-		back=IntarabusFC,waist="",legs="Inyanga Shalwar +2",feet="Brioso Slippers +3"}
+		back=IntarabusFC,waist="",legs="Inyanga Shalwar +2",feet="Brioso Slippers +4"}
 		
 	-- For song defbuffs (duration primary, accuracy secondary)
 	sets.midcast.SongDebuff = {main="Carnwenhan",sub="Ammurapi Shield",range="Marsyas",ammo=empty,
-		head="Brioso Roundlet +3",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
+		head="Brioso Roundlet +4",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
         body="Fili Hongreline +3",hands="Inyanga dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
-        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +3"}
+        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +4"}
 
 	sets.midcast.Requiem = {range="Marsyas",ammo=empty,
-		head="Brioso Roundlet +3",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
+		head="Brioso Roundlet +4",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
         body="Fili Hongreline +3",hands="Inyanga dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
-        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +3"}
+        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +4"}
 
 	-- For song defbuffs (accuracy primary, duration secondary)
 	sets.midcast.SongDebuff.Resistant = {main="Carnwenhan",sub="Ammurapi Shield",range="Gjallarhorn",ammo=empty,
-		head="Brioso Roundlet +3",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
+		head="Brioso Roundlet +4",neck="Moonbow whistle +1",ear1="Regal earring",ear2="Dignitary's Earring",
         body="Brioso justaucorps +3",hands="Inyanga dastanas +2",ring1="Stikini Ring",ring2="Stikini Ring",
-        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +3"}
+        back=IntarabusFC,waist="Luminary sash",legs="Inyanga Shalwar +2",feet="Brioso Slippers +4"}
 
 	-- Song-specific recast reduction
 	sets.midcast.SongRecast = {main="Carnwenhan",sub="Ammurapi Shield",range="Daurdabla",ammo=empty,

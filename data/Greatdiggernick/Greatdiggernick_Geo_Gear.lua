@@ -97,12 +97,12 @@ function init_gear_sets()
 
 	sets.midcast.Geomancy = {main="Idris",sub="Genmei Shield",range="Dunna",
 		head="Azimuth Hood +3",neck="Bagua Charm +2",ear1="Gna Earring",ear2="Fulla Earring",
-		body="Bagua Tunic +1",hands="Geo. Mitaines +3",ring1="Stikini Ring",ring2="Stikini Ring",
+		body="Bagua Tunic +1",hands="Geo. Mitaines +4",ring1="Stikini Ring",ring2="Stikini Ring",
 		back="Lifestream Cape",waist="Austerity Belt +1",legs="Bagua Pants +3",feet="Bagua sandals +3"}
 
 
 	--Extra Indi duration as long as you can keep your 900 skill cap.
-	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {back=GeoRegenCape,legs="Bagua Pants +3",feet="Azimuth Gaiters +2"})
+	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {back=GeoRegenCape,legs="Bagua Pants +3",feet="Azimuth Gaiters +3"})
 		
     sets.midcast.Cure = {main=gear.gada_healing_club,sub="Sors Shield",ammo="Hasty Pinion +1",
         head="Vanya hood",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Etiolation Earring",
@@ -262,29 +262,29 @@ function init_gear_sets()
 	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
-		back="Umbra Cape",legs="Assid. Pants +1",feet="Azimuth Gaiters +2"}
+		back="Umbra Cape",legs="Assid. Pants +1",feet="Azimuth Gaiters +3"}
 
 	-- Idle sets
 
 	sets.idle = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 		body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
 	sets.idle.PDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 		body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	-- .Pet sets are for when Luopan is present.
 	sets.idle.Pet = {main="Idris",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
-		body="Azimuth Coat +3",hands="Geo. Mitaines +3",ring1="Defending Ring",ring2="Murky Ring",
+		body="Azimuth Coat +3",hands="Geo. Mitaines +4",ring1="Defending Ring",ring2="Murky Ring",
 		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua sandals +3"}
 
 	sets.idle.PDT.Pet = {main="Idris",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
-		body="Azimuth Coat +3",hands="Geo. Mitaines +3",ring1="Defending Ring",ring2="Murky Ring",
+		body="Azimuth Coat +3",hands="Geo. Mitaines +4",ring1="Defending Ring",ring2="Murky Ring",
 		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua sandals +3"}
 
 	-- .Indi sets are for when an Indi-spell is active.
@@ -296,24 +296,24 @@ function init_gear_sets()
 	sets.idle.Weak = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	-- Defense sets
 	
 	sets.defense.PDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	sets.defense.MDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
     sets.defense.MEVA = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
-	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
 	sets.defense.PetPDT = sets.idle.PDT.Pet
 		
@@ -321,7 +321,7 @@ function init_gear_sets()
 	
 	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
 
-	sets.Kiting = {feet="Geomancy Sandals +3"}
+	sets.Kiting = {feet="Geomancy Sandals +4"}
 	sets.latent_refresh = {waist="Fucho-no-obi"}
 	sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	sets.TPEat = {neck="Chrys. Torque"}
@@ -344,12 +344,12 @@ function init_gear_sets()
 	sets.engaged = {ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
-	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
 	sets.engaged.DW = {ammo="Staunch Tathlum",
 	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
-	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +2"}
+	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	--------------------------------------
 	-- Custom buff sets
