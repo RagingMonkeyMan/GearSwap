@@ -9,7 +9,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Heishi','Tanking',"GreatKatana","Evisceration",'Savage','Aeolian','Tanking','None','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
+	state.Weapons:options('Heishi','Tanking','Aeolian',"Evisceration","GreatKatana",'Savage','None','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
 
     state.Stance = M{['description']='Stance','None','Innin','Yonin'}
 
@@ -25,12 +25,17 @@ function user_job_setup()
 	send_command('bind !q gs c set WeaponskillMode Proc;;gs c set CastingMode Proc;gs c update')
 	send_command('bind ^q gs c weapons Default;gs c set WeaponskillMode Normal;gs c set CastingMode Normal;gs c update')
 	send_command('bind ^f7 gs c weapons Heishi;gs c update')
+    send_command('bind ^a gs c weapons Aeolian;gs c update')
     send_command('bind ~` gs c cycle Stance')
 
 	utsusemi_cancel_delay = .3
 	utsusemi_ni_cancel_delay = .06
 
 	select_default_macro_book()
+end
+
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 0016')
 end
 
 -- Define sets and vars used by this job file.
@@ -102,8 +107,8 @@ function init_gear_sets()
         waist="Orpheus's Sash",
         right_ear="Friomisi Earring",
         left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
-        left_ring="Epaminondas's Ring",
-        right_ring="Ephramad's ring",
+        ring1="Epaminondas's Ring",
+        ring2="Ephramad's ring",
         back=AmbuHybridWS
     }
 
@@ -126,8 +131,8 @@ function init_gear_sets()
         waist="Sailfi belt +1",
         right_ear="Hattori Earring +1",
         left_ear="Odr Earring", 
-        left_ring="Epaminondas's Ring",
-        right_ring="Ephramad's ring",
+        ring1="Epaminondas's Ring",
+        ring2="Ephramad's ring",
         back=AmbuHybridWS
     }
     
@@ -145,8 +150,8 @@ function init_gear_sets()
         waist="Fotia Belt",
         right_ear="Hattori Earring +1",
         left_ear="Lugra Earring +1",
-        left_ring="Ephramad's Ring",
-        right_ring="Gere Ring",
+        ring1="Ephramad's Ring",
+        ring2="Gere Ring",
         back=AmbuHybridWS
     }
     
@@ -164,8 +169,8 @@ function init_gear_sets()
         waist="Fotia Belt",
         right_ear="Hattori Earring +1",
         left_ear="Lugra Earring +1",
-        left_ring="Regal Ring",
-        right_ring="Gere Ring",
+        ring1="Regal Ring",
+        ring2="Gere Ring",
         back=AmbuHybridWS
     }
     
@@ -183,8 +188,8 @@ function init_gear_sets()
         waist="Sailfi belt +1",
         right_ear="Hattori Earring +1",
         left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}}, -- odr earring
-        left_ring="Epaminondas's Ring",
-        right_ring="Ephramad's ring",
+        ring1="Epaminondas's Ring",
+        ring2="Ephramad's ring",
         back=AmbuHybridWS
     }
     
@@ -202,8 +207,8 @@ function init_gear_sets()
         waist="Orpheus's Sash",
         right_ear="Friomisi Earring",
         left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
-        left_ring="Epaminondas's Ring",
-        right_ring="Ephramad's ring",
+        ring1="Epaminondas's Ring",
+        ring2="Ephramad's ring",
         back=AmbuHybridWS
     }
 
@@ -227,8 +232,8 @@ function init_gear_sets()
         waist="Sailfi belt +1",
         right_ear="Hattori Earring +1",
         left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}}, -- odr earring
-        left_ring="Epaminondas's Ring",
-        right_ring="Ephramad's ring",
+        ring1="Epaminondas's Ring",
+        ring2="Ephramad's ring",
         back=AmbuHybridWS
     }
     
@@ -246,8 +251,8 @@ function init_gear_sets()
         waist="Fotia Belt",
         right_ear="Hattori Earring +1",
         left_ear="Odr Earring",
-        left_ring="Gere Ring",
-        right_ring="Ephramad's Ring",
+        ring1="Gere Ring",
+        ring2="Ephramad's Ring",
         back=AmbuCrit
     }
 
@@ -262,8 +267,8 @@ function init_gear_sets()
         waist="Fotia Belt",
         right_ear="Odr Earring",
         left_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-        left_ring="Gere Ring",
-        right_ring="Ephramad's Ring",
+        ring1="Gere Ring",
+        ring2="Ephramad's Ring",
         back=AmbuCrit
     }
 
@@ -278,8 +283,8 @@ function init_gear_sets()
         waist="Orpheus's Sash",
         right_ear="Friomisi Earring",
         left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
-        left_ring="Epaminondas's Ring",
-        right_ring="Shiva ring +1",
+        ring1="Epaminondas's Ring",
+        ring2="Shiva ring +1",
         back=AmbuHybridWS
     }
 
@@ -340,24 +345,24 @@ function init_gear_sets()
 
     -- Idle sets
     sets.idle = {ammo="Date Shuriken",
-        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Telos Earring",
+        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
         body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.defense.PDT = {ammo="Date Shuriken",
-        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Telos Earring",
+        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
         body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.defense.MDT = {
         ammo="Date Shuriken",
-        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Telos Earring",
+        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
         body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.MEVA = {
         ammo="Date Shuriken",
-        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Telos Earring",
+        head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
         body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
@@ -388,10 +393,10 @@ function init_gear_sets()
         feet="Malignance Boots",
         neck="Ninja Nodowa +2",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        right_ear="Dedition Earring",
-        left_ear="Telos Earring",
-        left_ring="Gere Ring",
-        right_ring="Epona's Ring",
+        ear1="Dedition Earring",
+        ear2="Telos Earring",
+        ring1="Gere Ring",
+        ring2="Epona's Ring",
         back=AmbuTP
     }
 
@@ -404,10 +409,10 @@ function init_gear_sets()
         feet="Malignance Boots",
         neck="Ninja Nodowa +2",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        right_ear="Dedition Earring",
-        left_ear="Telos Earring",
-        left_ring="Gere Ring",
-        right_ring="Chirich Ring +1",
+        ear1="Dedition Earring",
+        ear2="Telos Earring",
+        ring1="Gere Ring",
+        ring2="Chirich Ring +1",
         back=AmbuTP
     }
 
@@ -425,10 +430,10 @@ function init_gear_sets()
         feet="Malignance Boots",
         neck="Ninja Nodowa +2",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        right_ear="Dedition Earring",
-        left_ear="Telos Earring",
-        left_ring="Defending Ring",
-        left_ring="Gere Ring",
+        ear1="Dedition Earring",
+        ear2="Telos Earring",
+        ring1="Defending Ring",
+        ring1="Gere Ring",
         back=AmbuTP
     }
 
@@ -441,10 +446,10 @@ function init_gear_sets()
         feet="Malignance Boots",
         neck="Ninja Nodowa +2",
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        right_ear="Dedition Earring",
-        left_ear="Telos Earring",
-        left_ring="Defending Ring",
-        left_ring="Gere Ring",
+        ear1="Dedition Earring",
+        ear2="Telos Earring",
+        ring1="Defending Ring",
+        ring1="Gere Ring",
         back=AmbuTP
     }
 

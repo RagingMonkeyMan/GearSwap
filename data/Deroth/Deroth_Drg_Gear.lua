@@ -63,11 +63,11 @@ function init_gear_sets()
 	LustFeet.STRDA = { name="Lustra. Leggings +1", augments={'Attack+20','STR+8','"Dbl.Atk."+3',}}
 
 	Brig = {}
-	Brig.STP = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Damage taken-5%',}}
-	Brig.DATP = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Damage taken-5%',}}
-	Brig.STRDA = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Damage taken-5%',}}
+	Brig.STP = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
+	Brig.DATP = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
+	Brig.STRDA = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
 	Brig.WSD = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
-	Brig.FCMeva = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Damage taken-5%',}}
+	Brig.FCMeva = { name="Brigantia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
 	
 	-------------------------------	
 	--   End of Augmented Gear   --
@@ -96,6 +96,12 @@ function init_gear_sets()
 		legs = "Pteroslaver Brais +3",
 		feet = "Ostro Greaves"
 	}
+
+	sets.precast.JA.Jump = set_combine(sets.precast.JA.Jump, {
+		head="Hjarrandi Helm",
+		ring1="Defending ring",
+		ring2="Murky ring"
+	})
 	
 	sets.precast.JA['High Jump'] = {
 		ammo = "Coiste Bodhar",
@@ -113,6 +119,12 @@ function init_gear_sets()
 		feet = "Ostro Greaves"
 	}
 	
+	sets.precast.JA['High Jump'] = set_combine(sets.precast.JA['High Jump'], {
+		head="Hjarrandi Helm",
+		ring1="Defending ring",
+		ring2="Murky ring"
+	})
+	
 	sets.precast.JA['Soul Jump'] = {
 		ammo = "Coiste Bodhar",
 		head = "Flamma Zucchetto +2",
@@ -128,6 +140,12 @@ function init_gear_sets()
 		legs = "Pteroslaver Brais +3",
 		feet = "Ostro Greaves"
 	}
+
+	sets.precast.JA['Soul Jump'] = set_combine(sets.precast.JA['Soul Jump'], {
+		head="Hjarrandi Helm",
+		ring1="Defending ring",
+		ring2="Murky ring"
+	})
 	
 	sets.precast.JA['Spirit Jump'] = {
 		ammo = "Coiste Bodhar",
@@ -144,6 +162,12 @@ function init_gear_sets()
 		legs = "Pteroslaver Brais +3",
 		feet = "Ostro Greaves"
 	}
+
+	sets.precast.JA['Spirit Jump'] = set_combine(sets.precast.JA['Spirit Jump'], {
+		head="Hjarrandi Helm",
+		ring1="Defending ring",
+		ring2="Murky ring"
+	})
 	
 	sets.precast.JA['Super Jump'] = {}
 	sets.precast.JA['Spirit Link'] = {
@@ -550,6 +574,21 @@ function init_gear_sets()
 		back = Brig.WSD,
 		waist = "Sailfi Belt +1",
 		legs = "Vishap brais +3",
+		feet = "Nyame sollerets"
+	}
+	sets.precast.WS["Savage Blade"].DT = {
+		 ammo = "Knobkierrie",
+		head = "Peltast's Mezail +3",
+		neck = "Dragoon's Collar +2",
+		ear1 = "Moonshade Earring",
+		ear2 = "Thrud Earring",
+		body = "Nyame mail",
+		hands = "Nyame Gauntlets",
+		ring1 = "Epaminondas's Ring",
+		ring2 = "Ephramad's ring",
+		back = Brig.WSD,
+		waist = "Sailfi Belt +1",
+		legs = "Nyame flanchard",
 		feet = "Nyame sollerets"
 	}
 

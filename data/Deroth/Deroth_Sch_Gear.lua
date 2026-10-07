@@ -312,10 +312,10 @@ function init_gear_sets()
         body="Agwu's Robe",hands="Agwu's Gages",ring1="Stikini Ring",ring2="Stikini Ring",
         back=AMBUNUKE,waist="Acuity Belt +1",legs="Agwu's Slops",feet="Agwu's Pigaches"}
 
-    sets.midcast.Kaustra = {main="Akademos",sub="Enki Strap",ammo="Pemphredo Tathlum",
-        head="Pixie Hairpin +1",neck="Argute Stole +2",ear1="Regal Earring",ear2="Malignance Earring",
-        body="Agwu's Robe", hands="Amalric gages +1",ring1="Freke Ring",ring2="Archon Ring",
-        back=AMBUNUKE,waist="Sacro cord",legs="Amalric Slops +1",feet="Agwu's Pigaches"} 
+    sets.midcast.Kaustra = {main="Bunzi's Rod",sub="Ammurapi Shield",ammo="Ghastly Tathlum +1",
+        head="Arbatel Bonnet +3",neck="Argute Stole +2",ear1="Regal Earring",ear2="Malignance Earring",
+        body="Arbatel Gown +3", hands="Agwu's gages",ring1="Freke Ring",ring2="Archon Ring",
+        back=AMBUNUKE,waist="Sacro cord",legs="Agwu's Slops",feet="Arbatel Loafers +3"} 
 		
     sets.midcast.Kaustra.Resistant = set_combine(sets.midcast.Kaustra, {})
 
