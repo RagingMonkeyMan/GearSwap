@@ -437,34 +437,27 @@ end
 function job_self_command(commandArgs, eventArgs)
 	if commandArgs[1]:lower() == 'fast' then
 		send_command('input /ja "Bolter\'s Roll" <me>;autocor off')
-                add_to_chat(158,'MAXIMUM SPEED')
+        add_to_chat(158,'MAXIMUM SPEED')
 	elseif commandArgs[1]:lower() == 'aeolian' then
-		enable('main','sub','range','ammo')
-		equip({main=empty,sub=empty})
 		send_command('gs c weapons DualAeolian;gs c update;aws Aeolian edge;aws tp 1000')
+        equip_weaponset()
 		add_to_chat(158,'Aeolian weapon set equiped')
-        disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'ddweapons' or commandArgs[1]:lower() == 'slash' or commandArgs[1]:lower() == 'ddweaponsacc' then
-        enable('main','sub','range','ammo')
-		equip({main=empty,sub=empty})
 		send_command('gs c weapons DualSavageWeapons;gs c update;aws savage blade;aws tp 1000')
+        equip_weaponset()
 		add_to_chat(158,'Savage weapon set equiped')
-        disable('main','sub','range','ammo')
     elseif commandArgs[1]:lower() == 'pierce' then
-        enable('main','sub','range','ammo')
-		equip({main=empty,sub=empty})
 		send_command('gs c weapons DualTauret;gs c update;aws Evisceration;aws tp 1000')
+        equip_weaponset()
 		add_to_chat(158,'Evisceration weapon set equiped')
-        disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'magicweapons' then
-        enable('main','sub','range','ammo')
-		equip({main=empty,sub=empty})
 		send_command('gs c weapons DualLeadenMelee;gs c update;aws leaden salute;aws tp 1500')
+        equip_weaponset()
         add_to_chat(158,'Magic weapon sets equiped')
-        disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'rangedweapons' then
 		send_command('gs c weapons Ranged;gs c update;aws last stand;aws tp 1500')
-				add_to_chat(158,'Ranged weapon sets equiped')
+        equip_weaponset()
+		add_to_chat(158,'Ranged weapon sets equiped')
 	elseif commandArgs[1]:lower() == 'du' then
 		send_command('input /ja "Double Up" <me>')
                 add_to_chat(158,'Double Up')

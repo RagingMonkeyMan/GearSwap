@@ -669,35 +669,29 @@ function job_self_command(commandArgs, eventArgs)
 		send_command('input /ma "Chocobo Mazurka" <me>;sing off')
                 add_to_chat(158,'MAXIMUM SPEED')
 	elseif commandArgs[1]:lower() == 'aeolian' then
-		enable('main','sub','range','ammo')
 		send_command('gs c weapons DualAeolian;gs c update;aws aeolian edge;aws tp 1000')
+		equip_weaponset()
 		add_to_chat(158,'Aeolian weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'ddweapons' then
-		enable('main','sub','range','ammo')
 		send_command('gs c weapons DualNaegling;gs c update;aws savage blade;aws tp 1000')
+		equip_weaponset()
 		add_to_chat(158,'Savage blade weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'ddweaponsacc' then
-		enable('main','sub','range','ammo')
 		send_command('gs c weapons DualNaeglingAcc;gs c update;aws savage blade;aws tp 1500')
+		equip_weaponset()
 		add_to_chat(158,'Savage blade weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'magicweapons' then
-        enable('main','sub','range','ammo')
 		send_command('gs c weapons DualAeneas;gs c update;aws rudra\'s storm;aws tp 1000')
+		equip_weaponset()
 		add_to_chat(158,'Rudra\'s Storm weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'slash' then
-		enable('main','sub','range','ammo')
 		send_command('gs c weapons DualNaegling;gs c update;aws savage blade;aws tp 1000')
+		equip_weaponset()
 		add_to_chat(158,'Savage blade weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'pierce' then
-		enable('main','sub','range','ammo')
 		send_command('gs c weapons DualAeneas;gs c update;aws rudra\'s storm;aws tp 1000')
+		equip_weaponset()
 		add_to_chat(158,'Rudra\'s Storm weapon set equiped')
-		disable('main','sub','range','ammo')
 	elseif commandArgs[1]:lower() == 'buffson' then
 		send_command('sing on;cpaddon cmd start')
 	elseif commandArgs[1]:lower() == 'buffsoff' then
