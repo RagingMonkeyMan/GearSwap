@@ -870,18 +870,12 @@ function init_gear_sets()
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {waist="Chaac Belt", legs={ name="Herculean Trousers", augments={'AGI+6','INT+9','"Treasure Hunter"+2','Accuracy+7 Attack+7','Mag. Acc.+16 "Mag.Atk.Bns."+16',}}})
 	
 	-- Weapons sets
-	sets.weapons.Tizalmace = {main="Tizona",sub="Almace"}
-	sets.weapons.Tizbron = {main="Tizona",sub="Machaera +2"}
-	sets.weapons.TizSak = {main="Tizona", sub="Sakpata's Sword"}
-	sets.weapons.Magic = {main="Maxentius",sub="Bunzi's rod"}
-	sets.weapons.CJ_SET = {main="Sakpata's Sword",sub="Tizona"}
+	sets.weapons.Magic = {main="Telopanos Saber",sub="Bunzi's rod"}
 	sets.weapons.Savage = {main="Naegling",sub="Machaera +2"}
-	sets.weapons.SavageAcc = {main="Naegling",sub="Sakpata's Sword"}
+	sets.weapons.SavageAcc = {main="Naegling",sub="Telopanos Saber"}
     sets.weapons.Learning = {main="Nihility", sub="Wind knife"}
 	sets.weapons.Maxentius = {main="Maxentius",sub="Machaera +2"}
---	sets.weapons.Almace = {main="Almace",sub="Sequence"}
---	sets.weapons.Sequence = {main="Sequence",sub="Almace"}
---	sets.weapons.HybridWeapons = {main="Vampirism",sub="Vampirism"}
+
 
 	-- Engaged sets
 

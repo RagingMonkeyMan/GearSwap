@@ -335,10 +335,10 @@ function init_gear_sets()
 	sets.weapons.RangedSavage = {main="Naegling",sub="Nusku Shield",range="Molybdosis"}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Blurred Knife +1",range="Molybdosis"}
 	sets.weapons.DualSavageWeapons = {main="Naegling",sub="Blurred Knife +1",range="Anarchy +2"}
-	sets.weapons.DualLeadenRanged = {main="Rostam",sub="Tauret",range="Molybdosis"}
-	sets.weapons.DualLeadenMelee = {main="Naegling",sub="Tauret",range="Molybdosis"}
-	sets.weapons.DualAeolian = {main="Tauret",sub="Naegling",range="Anarchy +2"}
-	sets.weapons.DualLeadenMeleeAcc = {main="Naegling",sub="Rostam",range="Molybdosis"}
+	sets.weapons.DualLeadenRanged = {main="Rostam",sub="Telopanos Saber",range="Molybdosis"}
+	sets.weapons.DualLeadenMelee = {main="Telopanos Saber",sub="Tauret",range="Molybdosis"}
+	sets.weapons.DualAeolian = {main="Tauret",sub="Telopanos Saber",range="Anarchy +2"}
+	sets.weapons.DualLeadenMeleeAcc = {main="Telopanos Saber",sub="Rostam",range="Molybdosis"}
 	sets.weapons.DualRanged = {main="Rostam",sub="Kustawi +1",range="Molybdosis"}
 	
     -- Engaged sets

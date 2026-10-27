@@ -6,7 +6,7 @@ function user_job_setup()
 	state.CastingMode:options('Normal', 'Enmity', "OccultAcumen")
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT','Refresh','Reraise')
-	state.Weapons:options('Liberator', 'Caladbolg', 'Foenaria', 'Anguta', 'Apocalypse', 'Ragnarok', 'Lycurgos', 'Mace', 'Naegling', 'None')
+	state.Weapons:options('Liberator', 'Caladbolg', 'Foenaria', 'Agwu', 'Anguta', 'Apocalypse', 'Ragnarok', 'Lycurgos', 'Mace', 'Naegling', 'None')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
 	state.Passive = M{['description'] = 'Passive Mode','None'} -- ,'MP','Twilight'
 	state.DrainSwapWeaponMode = M{'Always','Never','1000'}
@@ -466,7 +466,7 @@ function init_gear_sets()
 	sets.precast.WS['Torcleaver'] = {
 		ammo="Knobkierrie",
 		head="Heath. Bur. +3",neck="Abyssal bead necklace +2",ear1="Moonshade Earring",ear2="Heathen's earring +1",
-		body="Ignominy Cuirass +4",hands="Sakpata's Gauntlets",ring1="Ephramad's ring",ring2="Epaminondas's Ring",
+		body="Ignominy Cuirass +4",hands="Nyame gauntlets",ring1="Ephramad's ring",ring2="Epaminondas's Ring",
 		back=Ankou.WSDVIT,waist="Fotia belt",legs="Fallen's flanchard +4",feet="Heath. Sollerets +3"}
 	
     sets.precast.WS['Torcleaver'].UncappedAtt = {
@@ -776,6 +776,44 @@ function init_gear_sets()
 		body="Dagon Breastplate", hands="Sakpata's Gauntlets", ring1="Niqmaddu Ring", ring2="Chirich Ring +1",
 		back=Ankou.DA, waist="Ioskeha Belt +1", legs="Sakpata's Cuisses", feet="Sakpata's Leggings"
 	}
+
+	-- Agwu melee sets
+	sets.engaged.Agwu = {
+		ammo="Coiste Bodhar",
+		head="Sakpata's Helm", neck="Abyssal Beads +2", ear1="Telos Earring", ear2="Brutal Earring",
+		body="Sakpata's Breastplate", hands="Sakpata's Gauntlets", ring1="Petrov Ring", ring2="Chirich Ring +1",
+		back=Ankou.DA, waist="Ioskeha Belt +1", legs="Ig. Flanchard +3", feet="Sakpata's Leggings"
+	}
+	sets.engaged.Agwu.DT = {
+		ammo="Staunch tathlum +1",
+		head="Heath. Bur. +3", neck="Abyssal Beads +2", ear1="Telos Earring", ear2="Dedition Earring",
+		body="Sakpata's Breastplate", hands="Sakpata's Gauntlets", ring1="Moonlight Ring", ring2="Chirich Ring +1",
+		back=Ankou.DA, waist="Ioskeha Belt +1", legs="Sakpata's Cuisses", feet="Sakpata's Leggings"
+	}
+	sets.engaged.Agwu.SomeAcc = {
+		ammo="Coiste Bodhar",
+		head="Heath. Bur. +3", neck="Abyssal Beads +2", ear1="Telos Earring", ear2="Crep. Earring",
+		body="Sakpata's Breastplate", hands="Sakpata's Gauntlets", ring1="Flamma Ring", ring2="Chirich Ring +1",
+		back="Null Shawl", waist="Ioskeha Belt +1", legs="Ig. Flanchard +3", feet="Flamma gambieras +2"
+	}
+	sets.engaged.Agwu.Acc = {
+		ammo="Seething Bomblet +1",
+		head="Heath. Bur. +3", neck="Null loop", ear1="Telos Earring", ear2="Crep. Earring",
+		body="Sakpata's Breastplate", hands="Sakpata's Gauntlets", ring1="Regal Ring", ring2="Chirich Ring +1",
+		back="Null Shawl", waist="Ioskeha Belt +1", legs="Ig. Flanchard +3", feet="Flamma gambieras +2"
+	}
+	sets.engaged.Agwu.FullAcc = {
+		ammo="Seething Bomblet +1",
+		head="Heath. Bur. +3",neck="Null loop",ear1="Telos Earring", ear2="Crep. Earring",
+		body="Emicho haubert +1",hands="Emicho gauntlets +1",ring1="Regal Ring",ring2="Chirich Ring +1",
+		back="Null Shawl",waist="Ioskeha Belt +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"
+	}
+	sets.engaged.Agwu.SubtleBlow = {
+		ammo="Coiste Bodhar",
+		head="Heath. Bur. +3", neck="Abyssal Beads +2", ear1="Dignitary's Earring", ear2="Telos Earring",
+		body="Dagon Breastplate", hands="Sakpata's Gauntlets", ring1="Niqmaddu Ring", ring2="Chirich Ring +1",
+		back=Ankou.DA, waist="Ioskeha Belt +1", legs="Sakpata's Cuisses", feet="Sakpata's Leggings"
+	}
 	
 	--[[sets.engaged.Caladbolg.AM = {}
 	sets.engaged.Caladbolg.SomeAcc.AM = {}
@@ -1061,6 +1099,7 @@ function init_gear_sets()
 	sets.weapons.Naegling = {main="Naegling",sub="Blurred Shield +1"}
 	sets.weapons.Lycurgos = {main="Lycurgos",sub="Utu Grip"}
 	sets.weapons.Foenaria = {main="Foenaria",sub="Utu Grip"}
+	sets.weapons.Agwu = {main="Agwu's Claymore",sub="Utu Grip"}
 	
     end
 	
