@@ -197,7 +197,7 @@ function init_gear_sets()
 
 	sets.midcast.Cure.DT = {main="Queller Rod",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Nourish. Earring +1",ear2="Glorious Earring",
-		body="Nyame Mail",hands="Theophany Mitts +3",ring1="Defending Ring",ring2="Janniston Ring",
+		body="Nyame Mail",hands="Theophany Mitts +3",ring1="Murky Ring",ring2="Janniston Ring",
 		back="Alaunus's Cape",waist="Luminary Sash",legs="Ebers Pant. +1",feet="Nyame Sollerets"}
 		
 	--Melee Curesets are used whenever your Weapons state is set to anything but None.
@@ -360,7 +360,7 @@ function init_gear_sets()
     -- Resting sets
 	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",ammo="Homiliary",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Ebers Bliaut +1",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Ebers Bliaut +1",hands=gear.chironic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Fucho-no-obi",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 
     -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
@@ -371,19 +371,19 @@ function init_gear_sets()
 
 	sets.idle.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Homiliary",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Witching Robe",hands=gear.chironic_refresh_hands,ring1="Defending Ring",ring2="Stikini Ring +1",
+		body="Witching Robe",hands=gear.chironic_refresh_hands,ring1="Murky Ring",ring2="Stikini Ring +1",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 		
 	sets.idle.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Homiliary",
 		head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
     -- Defense sets
 
 	sets.defense.PDT = {main="Mafic Cudgel",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1",
 		back="Shadow Mantle",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.defense.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",

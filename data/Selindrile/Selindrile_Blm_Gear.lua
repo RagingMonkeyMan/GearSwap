@@ -298,12 +298,12 @@ function init_gear_sets()
     -- Idle mode that keeps PDT gear on, but doesn't prevent normal gear swaps for precast/etc.
     sets.idle.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Nyame Helm",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Etiolation Earring",
-        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Carrier's Sash",legs="Assid. Pants +1",feet="Mallquis Clogs +2"}
 		
 	sets.idle.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.idle.DTHippo = set_combine(sets.idle.PDT, {feet="Hippo. Socks +1"})
@@ -315,24 +315,24 @@ function init_gear_sets()
 
     sets.idle.Weak = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Befouled Crown",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Etiolation Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Carrier's Sash",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
 
     -- Defense sets
 
     sets.defense.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
-        body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Mallquis Clogs +2"}
 
 	sets.defense.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
     sets.defense.MEVA = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.Kiting = {feet="Herald's Gaiters"}

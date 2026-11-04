@@ -111,8 +111,8 @@ function init_gear_sets()
 		feet="Ratri sollerets +1",
         neck="Sanctity necklace",
         waist="Eschan Stone",
-        left_ear="Odnowa Earring",
-        right_ear="Odnowa Earring +1",
+        left_ear="Alabaster Earring",
+        right_ear="Alabaster Earring",
         left_ring="Moonlight ring",
         right_ring="Moonbeam Ring",
         back=Ankou.FC,}
@@ -367,13 +367,13 @@ function init_gear_sets()
     sets.idle = {
 		ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Telos Earring",
-		body="Sacro Breastplate",hands="Sulevia's gauntlets +2",ring1="Defending ring",ring2="Chirich Ring +1",
+		body="Sacro Breastplate",hands="Sulevia's gauntlets +2",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back=Ankou.DA,waist="Flume belt",legs="Carmine cuisses +1",feet="Sulevia's leggings +2"}
 		
     sets.idle.PDT = {
 		ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Telos Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Defending ring",ring2="Chirich Ring +1",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back=Ankou.DA,waist="Flume belt",legs="Carmine cuisses +1",feet="Sulevia's leggings +2"}
 
 	sets.idle.Weak = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
@@ -384,14 +384,14 @@ function init_gear_sets()
 	sets.defense.PDT = {
 		ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 		
 	sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 		
 	sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
@@ -399,7 +399,7 @@ function init_gear_sets()
 	sets.defense.MEVA = {
 		ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
      
 	sets.Kiting = {legs="Carmine Cuisses +1"}
@@ -416,7 +416,7 @@ function init_gear_sets()
 	sets.engaged.DT = {ammo="Aurgelmir orb +1",
         ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
     sets.engaged.SomeAcc = {ammo="Aurgelmir orb +1",
         head="Flamma zucchetto +2",neck="Abyssal bead necklace +2",left_ear="Cessance Earring",right_ear="Brutal Earring",
@@ -440,7 +440,7 @@ function init_gear_sets()
 	sets.engaged.Apocalypse.DT = {ammo="Aurgelmir orb +1",
         ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 	sets.engaged.Apocalypse.SomeAcc = {ammo="Aurgelmir orb +1",
         head="Flamma zucchetto +2",neck="Abyssal bead necklace +2",left_ear="Cessance Earring",right_ear="Brutal Earring",
@@ -466,7 +466,7 @@ function init_gear_sets()
 	sets.engaged.Caladbolg.DT = {ammo="Aurgelmir orb +1",
         ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 	sets.engaged.Caladbolg.SomeAcc = {
 		ammo="Aurgelmir orb +1",
@@ -502,7 +502,7 @@ function init_gear_sets()
 	sets.engaged.Liberator.DT = {ammo="Aurgelmir orb +1",
         ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 	sets.engaged.Liberator.SomeAcc = {ammo="Aurgelmir orb +1",
         head="Flamma zucchetto +2",neck="Abyssal bead necklace +2",left_ear="Cessance Earring",right_ear="Brutal Earring",
@@ -523,7 +523,7 @@ function init_gear_sets()
 		back=Ankou.STP,waist="Sailfi Belt +1",legs=OdysseanLegsSTP,feet=ValorousBootsSTP}
 	sets.engaged.Liberator.DT.AM = {ammo="Staunch tathlum +1",
         head="Hjarrandi helm",neck="Abyssal bead necklace +2",left_ear="Mache Earring +1",right_ear="Telos Earring",
-		body="Hjarrandi Breastplate",hands="Emicho gauntlets +1",ring1="Defending Ring",ring2="Chirich Ring",
+		body="Hjarrandi Breastplate",hands="Emicho gauntlets +1",ring1="Murky Ring",ring2="Chirich Ring",
 		back=Ankou.STP,waist="Tempus Fugit +1",legs=OdysseanLegsSTP,feet=ValorousBootsSTP}
 	sets.engaged.Liberator.SomeAcc.AM = {ammo="Aurgelmir orb +1",
         head="Flamma zucchetto +2",neck="Abyssal bead necklace +2",left_ear="Digni. Earring",right_ear="Telos Earring",
@@ -547,7 +547,7 @@ function init_gear_sets()
 	sets.engaged.FatherTime.DT = {ammo="Aurgelmir orb +1",
         ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Loricate torque +1",left_ear="Cessance Earring",right_ear="Brutal Earring",
-		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Defending ring",
+		body="Hjarrandi breastplate",hands="Sulevia's gauntlets +2",ring1="Moonlight ring",ring2="Murky Ring",
 		back=Ankou.DA,waist="Tempus fugit +1",legs="Ignominy flanchard +3",feet="Flamma gambieras +2"}
 	sets.engaged.FatherTime.SomeAcc = {ammo="Aurgelmir orb +1",
         head="Flamma zucchetto +2",neck="Abyssal bead necklace +2",left_ear="Cessance Earring",right_ear="Brutal Earring",

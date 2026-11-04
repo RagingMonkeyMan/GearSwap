@@ -338,7 +338,7 @@ function init_gear_sets()
      -- Resting sets
     sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",ammo="Homiliary",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Amalric Doublet +1",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Amalric Doublet +1",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Fucho-no-obi",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 
     -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
@@ -350,26 +350,26 @@ function init_gear_sets()
 
     sets.idle.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
+        body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Murky Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet=gear.chironic_refresh_feet}
 		
 	sets.idle.Hippo = set_combine(sets.idle.PDT, {feet="Hippo. Socks +1"})
 
     sets.idle.Weak = {main="Bolelabunga",sub="Genmei Shield",ammo="Homiliary",
         head="Befouled Crown",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 		
     -- Defense sets
 
     sets.defense.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Mallquis Saio +2",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
+        body="Mallquis Saio +2",hands="Gende. Gages +1",ring1="Murky Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Battlecast Gaiters"}
 
     sets.defense.MDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Mallquis Saio +2",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
+        body="Mallquis Saio +2",hands="Gende. Gages +1",ring1="Murky Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Battlecast Gaiters"}
 		
     sets.defense.MEVA = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
@@ -394,12 +394,12 @@ function init_gear_sets()
     -- Normal melee group
     sets.engaged = {main="Bolelabunga",sub="Genmei Shield",ammo="Homiliary",
         head="Befouled Crown",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Sheltered Ring",
+        body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Sheltered Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Assid. Pants +1",feet=gear.chironic_refresh_feet}
 		
 	sets.engaged.PDT = {main="Malignance Pole", sub="Oneiros Grip",ammo="Staunch Tathlum +1",
         head="Gende. Caubeen +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-        body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Defending Ring",ring2="Dark Ring",
+        body="Vrikodara Jupon",hands="Gende. Gages +1",ring1="Murky Ring",ring2="Dark Ring",
         back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet=gear.chironic_refresh_feet}
 
     -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.

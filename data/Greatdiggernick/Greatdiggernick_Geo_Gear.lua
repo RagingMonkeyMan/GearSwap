@@ -261,18 +261,18 @@ function init_gear_sets()
 	-- Resting sets
 	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",legs="Assid. Pants +1",feet="Azimuth Gaiters +3"}
 
 	-- Idle sets
 
 	sets.idle = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 		body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
 	sets.idle.PDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 		body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 		back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
@@ -294,24 +294,24 @@ function init_gear_sets()
 	sets.idle.PDT.Pet.Indi = set_combine(sets.idle.PDT.Pet, {})
 
 	sets.idle.Weak = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	-- Defense sets
 	
 	sets.defense.PDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	sets.defense.MDT = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
     sets.defense.MEVA = {main="Idris",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
 	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Murky Ring",
 	back=GeoNukeCape,waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
@@ -342,13 +342,13 @@ function init_gear_sets()
 
 	-- Normal melee group
 	sets.engaged = {ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 		
 	sets.engaged.DW = {ammo="Staunch Tathlum",
-	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+	head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+	body="Azimuth Coat +3",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 	back="Solemnity Cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Azimuth Gaiters +3"}
 
 	--------------------------------------

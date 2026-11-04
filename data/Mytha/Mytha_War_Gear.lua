@@ -181,7 +181,7 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Null Masque",neck="Null Loop",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Hjarrandi Breast.",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Hjarrandi Breast.",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	-- Defense sets

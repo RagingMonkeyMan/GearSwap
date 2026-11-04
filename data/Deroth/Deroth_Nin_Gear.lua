@@ -9,7 +9,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Heishi','Tanking','Aeolian',"Evisceration","GreatKatana",'Savage','None','ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcKatana','ProcClub','ProcStaff')
+	state.Weapons:options('Heishi','Tanking','Aeolian',"Evisceration","GreatKatana",'Savage','None','ProcDagger','ProcClub','ProcSword','ProcKatana','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcStaff')
 
     state.Stance = M{['description']='Stance','None','Innin','Yonin'}
 
@@ -22,7 +22,7 @@ function user_job_setup()
 	send_command('bind ^` input /ja "Innin" <me>')
 	send_command('bind !` input /ja "Yonin" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
-	send_command('bind !q gs c set WeaponskillMode Proc;;gs c set CastingMode Proc;gs c update')
+	send_command('bind !q gs c weapons ProcDagger;gs c set WeaponskillMode Proc;;gs c set CastingMode Proc;gs c update')
 	send_command('bind ^q gs c weapons Default;gs c set WeaponskillMode Normal;gs c set CastingMode Normal;gs c update')
 	send_command('bind ^f7 gs c weapons Heishi;gs c update')
     send_command('bind ^a gs c weapons Aeolian;gs c update')
@@ -59,7 +59,7 @@ function init_gear_sets()
     -- Waltz set (chr and vit)
     sets.precast.Waltz = {ammo="Yamarang",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Dedition Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Gelatinous Ring +1",
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"
     }
 
@@ -69,13 +69,13 @@ function init_gear_sets()
     -- Set for acc on steps, since Yonin drops acc a fair bit
     sets.precast.Step = {ammo="Date Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Dedition Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Gelatinous Ring +1",
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"
     }
 
     sets.precast.Flourish1 = {ammo="Date Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Dedition Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Gelatinous Ring +1",
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"
     }
 
@@ -303,7 +303,7 @@ function init_gear_sets()
 
     sets.midcast.FastRecast = {
         head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Mochizuki Tekko +1",ring1="Defending Ring",ring2="Kishar Ring",
+        body="Dread Jupon",hands="Mochizuki Tekko +1",ring1="Murky Ring",ring2="Kishar Ring",
         legs="Rawhide Trousers",feet="Malignance Boots"}
 
     sets.midcast.ElementalNinjutsu = {ammo="Pemphredo Tathlum",
@@ -346,24 +346,24 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {ammo="Date Shuriken",
         head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
-        body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+        body="Nyame mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1",
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.defense.PDT = {ammo="Date Shuriken",
         head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
-        body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
+        body="Nyame mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.defense.MDT = {
         ammo="Date Shuriken",
         head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
-        body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
+        body="Nyame mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.MEVA = {
         ammo="Date Shuriken",
         head="Nyame helm",neck="Ninja Nodowa +2",ear1="Dedition Earring",ear2="Alabaster Earring",
-        body="Nyame mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1", 
+        body="Nyame mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1", 
         back=AmbuDEXDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 
@@ -432,7 +432,7 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         ear1="Dedition Earring",
         ear2="Telos Earring",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring1="Gere Ring",
         back=AmbuTP
     }
@@ -448,7 +448,7 @@ function init_gear_sets()
         waist={ name="Sailfi Belt +1", augments={'Path: A',}},
         ear1="Dedition Earring",
         ear2="Telos Earring",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring1="Gere Ring",
         back=AmbuTP
     }
@@ -469,7 +469,7 @@ function init_gear_sets()
 	sets.DWEarrings = {}
 	sets.DWMax = {}
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {head="White rarab cap +1", waist="Chaac Belt"})
-	sets.Skillchain = {legs="Ryuo Hakama"}
+	sets.Skillchain = {}
 
 	-- Weapons sets
 	sets.weapons.Heishi = {main="Heishi Shorinken",sub="Kunimitsu"}
@@ -485,8 +485,8 @@ function init_gear_sets()
 	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
 	sets.weapons.ProcPolearm = {main="Tzee Xicu's Blade",sub=empty}
 	sets.weapons.ProcGreatKatana = {main="Mutsunokami +1",sub=empty}
-	sets.weapons.ProcKatana = {main="Heishi Shorinken",sub="Kunimitsu"}
-	sets.weapons.ProcClub = {main="Octave Club",sub=empty}
+	sets.weapons.ProcKatana = {main="Kunai",sub="Wind Knife"}
+	sets.weapons.ProcClub = {main="Octave Club",sub="Wind Knife"}
 	sets.weapons.ProcStaff = {main="Lamia Staff",sub=empty}
 end
 

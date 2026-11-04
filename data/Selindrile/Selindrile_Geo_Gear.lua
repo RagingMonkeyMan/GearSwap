@@ -106,7 +106,7 @@ function init_gear_sets()
 
 	sets.midcast.Geomancy = {main="Solstice",sub="Genmei Shield",range="Dunna",
 		head="Vanya Hood",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Malignance Earring",
-		body="Vedic Coat",hands="Geo. Mitaines +3",ring1="Defending Ring",ring2="Dark Ring",
+		body="Vedic Coat",hands="Geo. Mitaines +3",ring1="Murky Ring",ring2="Dark Ring",
 		back="Solemnity Cape",waist="Austerity Belt +1",legs="Vanya Slops",feet="Medium's Sabots"}
 
 
@@ -257,7 +257,7 @@ function init_gear_sets()
 	-- Resting sets
 	sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
 
 	-- Idle sets
@@ -269,18 +269,18 @@ function init_gear_sets()
 		
 	sets.idle.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
-		body="Jhakri Robe +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Jhakri Robe +2",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Mallquis Clogs +2"}
 
 	-- .Pet sets are for when Luopan is present.
 	sets.idle.Pet = {main="Sucellus",sub="Genmei Shield",range="Dunna",
 		head="Azimuth Hood +1",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
-		body="Jhakri Robe +2",hands="Geo. Mitaines +3",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands="Geo. Mitaines +3",ring1="Murky Ring",ring2="Dark Ring",
 		back=gear.idle_jse_back,waist="Isa Belt",legs="Psycloth Lappas",feet="Bagua Sandals +1"}
 
 	sets.idle.PDT.Pet = {main="Malignance Pole",sub="Umbra Strap",range="Dunna",
 		head="Azimuth Hood +1",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
-		body="Jhakri Robe +2",hands="Geo. Mitaines +3",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands="Geo. Mitaines +3",ring1="Murky Ring",ring2="Dark Ring",
 		back=gear.idle_jse_back,waist="Isa Belt",legs="Nyame Flanchard",feet="Bagua Sandals +1"}
 
 	-- .Indi sets are for when an Indi-spell is active.
@@ -291,19 +291,19 @@ function init_gear_sets()
 
 	sets.idle.Weak = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Befouled Crown",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Carrier's Sash",legs="Assid. Pants +1",feet="Azimuth Gaiters +1"}
 
 	-- Defense sets
 	
 	sets.defense.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Handler's Earring +1",
-		body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+		body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Azimuth Gaiters +1"}
 
 	sets.defense.MDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
 		head="Azimuth Hood +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Handler's Earring +1",
-		body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+		body="Mallquis Saio +2",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet="Azimuth Gaiters +1"}
 		
     sets.defense.MEVA = {main="Malignance Pole",sub="Enki Strap",ammo="Staunch Tathlum +1",

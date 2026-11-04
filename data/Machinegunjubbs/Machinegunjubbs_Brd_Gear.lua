@@ -313,7 +313,7 @@ function init_gear_sets()
 		waist="Windbuffet Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring",
 		back=IntarabusDW
 	}
@@ -330,7 +330,7 @@ function init_gear_sets()
 		waist="Windbuffet Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring",
 		back=IntarabusDW
 	}
@@ -345,7 +345,7 @@ function init_gear_sets()
 		waist="Windbuffet Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring",
 		back=IntarabusDW
 	}
@@ -390,7 +390,7 @@ function init_gear_sets()
 		waist="Windbuffet Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring",
 		back=IntarabusDW
 	}
@@ -438,7 +438,7 @@ function init_gear_sets()
 		waist="Windbuffet Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Chirich Ring",
 		back=IntarabusDW
 	}

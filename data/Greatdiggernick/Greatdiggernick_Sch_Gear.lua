@@ -417,7 +417,7 @@ function init_gear_sets()
     -- Resting sets
     sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",ammo="Homiliary",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Agwu's Robe",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+		body="Agwu's Robe",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Fucho-no-obi",legs="Assid. Pants +1",feet={ name="Nyame Sollerets", augments={'Path: B',}}}
 
     -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
@@ -434,8 +434,8 @@ function init_gear_sets()
 		neck="Loricate torque +1",		
 		waist="Carrier's Sash",
 		left_ear="Hearty Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Defending ring",
+		right_ear="Alabaster Earring",
+		left_ring="Murky Ring",
 		right_ring={name="Stikini Ring", bag="Wardrobe2"},
 		back="Moonbeam cape"}
 
@@ -451,8 +451,8 @@ function init_gear_sets()
 		neck="Sanctity Necklace",		
 		waist="Carrier's Sash",
 		left_ear="Hearty Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Defending ring",
+		right_ear="Alabaster Earring",
+		left_ring="Murky Ring",
 		right_ring={name="Stikini Ring", bag="Wardrobe2"},
 		back="Moonbeam cape",}
 		
@@ -472,12 +472,12 @@ function init_gear_sets()
 
     -- Normal melee group
     sets.engaged = {main="Malignance Pole", sub="Khonsu",ammo="Staunch Tathlum",
-        head="Nyame Helm",neck="Unmoving Collar +1",ear1="Tuisto Earring",ear2="Odnowa Earring +1",
+        head="Nyame Helm",neck="Unmoving Collar +1",ear1="Tuisto Earring",ear2="Alabaster Earring",
         body="Nyame Mail",hands="Nyame Gauntlets",ring1="Gelatinous Ring +1",ring2="Eihwaz Ring",
         back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet={ name="Nyame Sollerets", augments={'Path: B',}}}
 		
 	sets.engaged.PDT = {main="Malignance Pole", sub="Khonsu",ammo="Staunch Tathlum",
-        head="Nyame Helm",neck="Unmoving Collar +1",ear1="Tuisto Earring",ear2="Odnowa Earring +1",
+        head="Nyame Helm",neck="Unmoving Collar +1",ear1="Tuisto Earring",ear2="Alabaster Earring",
         body="Nyame Mail",hands="Nyame Gauntlets",ring1="Gelatinous Ring +1",ring2="Eihwaz Ring",
         back="Moonlight Cape",waist="Carrier's Sash",legs="Nyame Flanchard",feet={ name="Nyame Sollerets", augments={'Path: B',}}}
 

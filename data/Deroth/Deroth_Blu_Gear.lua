@@ -404,7 +404,7 @@ function init_gear_sets()
 		head="Luh. Keffiyeh +3",
 		neck="Mirage Stole +2",
 		ear1 = "Mache Earring +1",
-        ear2 = "Odnowa Earring +1",
+        ear2 = "Alabaster Earring",
         body = "Assim. Jubbah +3",
 		hands="Adhemar Wrist. +1", -- ATT
 		ring1="Ifrit Ring +1",
@@ -712,7 +712,7 @@ function init_gear_sets()
 		ammo = "Falcon Eye",
         head = "Carmine Mask +1",
         neck = "Phalaina Locket",
-        ear1 = "Odnowa Earring +1",
+        ear1 = "Alabaster Earring",
         ear2 = "Etiolation Earring",
         body = "Vrikodara Jupon",
         hands = "Telchine Gloves",
@@ -790,7 +790,7 @@ function init_gear_sets()
 	-- Resting sets (do later)
 --	sets.resting = {main="Bolelabunga",sub="Genmei Shield",ammo="Falcon Eye",
 --			      head="Rawhide Mask",neck="Loricate Torque +1",ear1="Etiolation Earring", ear2="Ethereal Earring",
---			      body="Jhakri Robe +2",hands=gear.herculean_refresh_hands,ring1="Defending Ring",ring2="Sheltered Ring",
+--			      body="Jhakri Robe +2",hands=gear.herculean_refresh_hands,ring1="Murky Ring",ring2="Sheltered Ring",
 --			      back="Bleating Mantle",waist="Flume Belt +1",legs="Lengo Pants",feet=gear.herculean_refresh_feet}
 
 	-- Idle sets (Review Done)
@@ -802,7 +802,7 @@ function init_gear_sets()
 		ear2="Telos Earring", 
 		body="Hashishin Mintan +2",
 		hands="Gleti's Gauntlets", 
-		ring1="Defending ring",
+		ring1="Murky Ring",
 		ring2="Chirich Ring +1",
  		back=BLUCapeSTP, 
 		waist="Flume Belt +1", 
@@ -833,7 +833,7 @@ function init_gear_sets()
         ear2 = "Etiolation Earring",
         body = "Malignance Tabard",
         hands = "Malignance Gloves",
-        ring1 = {name="Defending ring", priority=2},
+        ring1 = {name="Murky Ring", priority=2},
         ring2 = "Shadow Ring",
         back = BLUCapeCure,
         waist = "Flume Belt +1",
@@ -849,7 +849,7 @@ function init_gear_sets()
         ear2 = "Infused Earring",
         body = "Malignance Tabard",
         hands = "Malignance Gloves",
-        ring1 = {name="Defending ring", priority=2},
+        ring1 = {name="Murky Ring", priority=2},
         ring2 = "Shneddick Ring +1",
         back = BLUCapeCure,
         waist = "Kasiri Belt",
@@ -926,7 +926,7 @@ function init_gear_sets()
 		head="Malignance Chapeau", 
 		body="Malignance Tabard", 
 		hands="Malignance Gloves",
-		ring2="Defending Ring",
+		ring2="Murky Ring",
 		legs="Malignance Tights", 
 		feet="Malignance Boots"})
 
@@ -934,7 +934,7 @@ function init_gear_sets()
 		head="Malignance Chapeau", 
 		body="Malignance Tabard", 
 		hands="Malignance Gloves",
-		ring2="Defending Ring",
+		ring2="Murky Ring",
 		legs="Malignance Tights", 
 		feet="Malignance Boots"})
 				
@@ -942,7 +942,7 @@ function init_gear_sets()
 		head="Malignance Chapeau", 
 		body="Malignance Tabard", 
 		hands="Malignance Gloves",
-		ring2="Defending Ring",
+		ring2="Murky Ring",
 		legs="Malignance Tights", 
 		feet="Malignance Boots"})
 		
@@ -984,7 +984,7 @@ function init_gear_sets()
         ear2="Dignitary's Earring",
 		body="Malignance Tabard", 
 		hands="Malignance Gloves",
-		ring2="Defending ring",
+		ring2="Murky Ring",
         ring1="Chirich Ring +1",
 		back=BLUCapeDA,
 		waist="Reiki Yotai",
@@ -999,7 +999,7 @@ function init_gear_sets()
         ear2="Dignitary's Earring",
 		body="Malignance Tabard", 
 		hands="Malignance Gloves",
-		ring2="Defending ring",
+		ring2="Murky Ring",
         ring1="Chirich Ring +1",
 		back=BLUCapeDA,
 		waist="Reiki Yotai",

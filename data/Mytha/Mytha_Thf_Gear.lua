@@ -93,8 +93,8 @@ function init_gear_sets()
 
 	-- Waltz set (chr and vit)
 	sets.precast.Waltz = {ammo="Yamarang",
-		head="Nyame Helm",neck="Elite Royal Collar",ear1="Genmei Earring",ear2="Odnowa Earring +1",
-		body="Passion Jacket",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		head="Nyame Helm",neck="Elite Royal Collar",ear1="Genmei Earring",ear2="Alabaster Earring",
+		body="Passion Jacket",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Plat. Mog. Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.Self_Waltz = {}
@@ -193,7 +193,7 @@ function init_gear_sets()
 		back="Null Shawl",waist="Cornelia's Belt",legs=empty,feet=empty}
 	
 	sets.HPMax = {ammo="Staunch Tathlum +1",
-		head="Nyame Helm",neck="Null Loop",ear1="Etiolation Earring",ear2="Odnowa Earring +1",
+		head="Nyame Helm",neck="Null Loop",ear1="Etiolation Earring",ear2="Alabaster Earring",
 		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Kunaji Ring",ring2="K'ayres Ring",
 		back="Engulfer Cape +1",waist="Plat. Mog Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
@@ -201,7 +201,7 @@ function init_gear_sets()
 
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Null Masque",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.idle.Refresh = {ammo="Staunch Tathlum +1",
@@ -217,17 +217,17 @@ function init_gear_sets()
 
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Gelatinous Ring +1",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Gelatinous Ring +1",
 		back="Shadow Mantle",waist="Plat. Mog Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",neck="Null Loop",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 
@@ -248,12 +248,12 @@ function init_gear_sets()
 
 	sets.engaged.DT = {ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",neck="Null Loop",ear1="Suppanomimi",ear2="Sherida Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Moonlight Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Moonlight Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.Acc.DT = {ammo="Staunch Tathlum +1",
 		head="Malignance Chapeau",neck="Null Loop",ear1="Suppanomimi",ear2="Telos Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Moonlight Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Moonlight Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 end
 

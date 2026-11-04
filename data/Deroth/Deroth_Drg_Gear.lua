@@ -99,7 +99,7 @@ function init_gear_sets()
 
 	sets.precast.JA.Jump = set_combine(sets.precast.JA.Jump, {
 		head="Hjarrandi Helm",
-		ring1="Defending ring",
+		ring1="Murky Ring",
 		ring2="Murky ring"
 	})
 	
@@ -121,7 +121,7 @@ function init_gear_sets()
 	
 	sets.precast.JA['High Jump'] = set_combine(sets.precast.JA['High Jump'], {
 		head="Hjarrandi Helm",
-		ring1="Defending ring",
+		ring1="Murky Ring",
 		ring2="Murky ring"
 	})
 	
@@ -143,7 +143,7 @@ function init_gear_sets()
 
 	sets.precast.JA['Soul Jump'] = set_combine(sets.precast.JA['Soul Jump'], {
 		head="Hjarrandi Helm",
-		ring1="Defending ring",
+		ring1="Murky Ring",
 		ring2="Murky ring"
 	})
 	
@@ -165,7 +165,7 @@ function init_gear_sets()
 
 	sets.precast.JA['Spirit Jump'] = set_combine(sets.precast.JA['Spirit Jump'], {
 		head="Hjarrandi Helm",
-		ring1="Defending ring",
+		ring1="Murky Ring",
 		ring2="Murky ring"
 	})
 	
@@ -609,7 +609,7 @@ function init_gear_sets()
 		ear1 = "Telos Earring",
 		body = "Gleti's Cuirass",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Defending ring",
+		ring1 = "Murky Ring",
 		ring2 = "Regal Ring",
 		back = Brig.STP,
 		waist = "Flume Belt +1",
@@ -623,7 +623,7 @@ function init_gear_sets()
 		ear1 = "Telos Earring",
 		body = "Gleti's Cuirass",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Defending ring",
+		ring1 = "Murky Ring",
 		ring2 = "Regal Ring",
 		back = Brig.STP,
 		waist = "Flume Belt +1",
@@ -642,7 +642,7 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		body = "Hjarrandi Breastplate",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Niqmaddu Ring",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
@@ -658,7 +658,7 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		body = "Hjarrandi Breastplate",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Niqmaddu Ring",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
@@ -672,10 +672,10 @@ function init_gear_sets()
 		head = "Nyame helm",
 		neck = "Warder's Charm +1",
 		ear1 = "Eabani Earring",
-		ear2 = "Odnowa Earring +1",
+		ear2 = "Alabaster Earring",
 		body = "Gleti's Cuirass",
 		hands = "Gleti's Gauntlets",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Purity Ring",
 		back = Brig.FCMeva,
 		waist = "Carrier's Sash",
@@ -773,7 +773,7 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		body = "Gleti's Cuirass", 
 		hands = "Peltast's vambraces +3",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Dreki Ring",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
@@ -789,7 +789,7 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		body = "Peltast's plackart +3", 
 		hands = "Peltast's vambraces +3",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Dreki Ring",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",
@@ -804,7 +804,7 @@ function init_gear_sets()
 		ear2 = "Sherida Earring",
 		body = "Peltast's plackart +3", 
 		hands = "Peltast's vambraces +3",
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Dreki Ring",
 		back = Brig.DATP,
 		waist = "Ioskeha Belt +1",

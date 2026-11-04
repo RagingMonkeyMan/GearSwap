@@ -126,7 +126,7 @@ function init_gear_sets()
 		-- MIDCAST SETS
 	sets.midcast.FastRecast = {
 		head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
+		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
 		back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 		-- WEAPONSKILLS
@@ -391,40 +391,40 @@ function init_gear_sets()
 	sets.resting = {}
 
 	sets.idle = {ammo="Staunch Tathlum +1",
-		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Gleti's Breeches",feet="Gleti's Boots"}
 		
 	sets.idle.Reraise = set_combine(sets.idle, {})
 
 	sets.idle.Pet = {ammo="Staunch Tathlum +1",
-		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Gleti's Breeches",feet="Gleti's Boots"}
 
 	sets.idle.Pet.Engaged = {ammo="Staunch Tathlum +1",
-		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Gleti's Breeches",feet="Gleti's Boots"}
 
 	sets.idle.Pet.Engaged.DW = {ammo="Staunch Tathlum +1",
-		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Gleti's Mask",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Gleti's Cuirass",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Gleti's Breeches",feet="Gleti's Boots"}
 	-- DEFENSE SETS
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
-		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.PetPDT = {ammo="Staunch Tathlum +1",
-		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Nyame mail",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Nyame mail",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.PetMDT = {ammo="Staunch Tathlum +1",
-		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Nyame mail",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Nyame mail",hands="Gleti's Gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.PetMEVA = sets.defense.PetMDT
@@ -433,13 +433,13 @@ function init_gear_sets()
 	sets.defense.Reraise = set_combine(sets.defense.PDT, {})
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
-		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
-		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Defending Ring",
+		head="Nyame helm",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
 	sets.defense.MKiller = set_combine(sets.defense.MDT, {body="Nukumi Gausape +2"})

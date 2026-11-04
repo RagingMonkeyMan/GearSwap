@@ -428,28 +428,28 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {
 		head="Nyame helm",neck="Loricate torque +1",ear1="Sherida earring",ear2="Telos Earring",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back="Moonbeam cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Nyame sollerets"}
 		
 	sets.idle.PDT = {
 		head="Nyame helm",neck="Loricate torque +1",ear1="Sherida earring",ear2="Telos Earring",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back="Moonbeam cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Nyame sollerets"}
     
     -- Defense sets
     sets.defense.PDT = {
         head="Nyame helm",neck="Loricate torque +1",ear1="Sherida earring",ear2="Telos Earring",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back="Moonbeam cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.defense.MDT = {
 		head="Nyame helm",neck="Loricate torque +1",ear1="Sherida earring",ear2="Telos Earring",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back="Moonbeam cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Nyame sollerets"}
 		
     sets.defense.MEVA = {
         head="Nyame helm",neck="Loricate torque +1",ear1="Sherida earring",ear2="Telos Earring",
-		body="Nyame mail",hands="Nyame gauntlets",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Nyame mail",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back="Moonbeam cape",waist="Carrier's Sash",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     sets.Kiting = {legs="Carmine Cuisses +1"}
@@ -489,7 +489,7 @@ function init_gear_sets()
 	
     sets.engaged.DT = {
 		head="Malignance Chapeau",neck="Iskur gorget",ear1="Sherida earring",ear2="Telos Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back=BelenusMelee,waist="Sailfi belt +1",legs="Malignance tights",feet="Malignance boots"}
 
     sets.engaged.DW = {
@@ -499,7 +499,7 @@ function init_gear_sets()
 		
     sets.engaged.DW.DT = {
 		head="Malignance Chapeau",neck="Iskur gorget",ear1="Eabani Earring",ear2="Telos Earring", -- should be Suppanomimi instead of Eabani
-		body="Malignance Tabard",hands="Malignance gloves",ring1="Defending Ring",ring2="Chirich Ring +1",
+		body="Malignance Tabard",hands="Malignance gloves",ring1="Murky Ring",ring2="Chirich Ring +1",
 		back=BelenusMelee,waist="Patentia sash",legs="Malignance tights",feet="Malignance boots"}
     
     sets.engaged.DW.Acc = {

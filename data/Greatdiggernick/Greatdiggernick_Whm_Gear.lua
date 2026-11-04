@@ -724,47 +724,47 @@ function init_gear_sets()
     -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes) 
 	sets.idle = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 
 
 	sets.idle.PDT = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 		
 	sets.idle.MDT = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 		
 	sets.idle.Weak = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 
     -- Defense sets
 
 	sets.defense.PDT = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 
 	sets.defense.MDT = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 
     sets.defense.MEVA = {
         main="Bolelabunga",sub="Ammurapi Shield",ammo="Staunch Tathlum",
-		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Odnowa Earring +1",
-		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Defending ring",ring2="Stikini Ring",
+		head="Volte beret",neck="Loricate Torque +1",ear1="Hearty Earring",ear2="Alabaster Earring",
+		body="Ebers bliaut +2",hands="Nyame gauntlets",ring1="Murky Ring",ring2="Stikini Ring",
 		back="Solemnity Cape",waist="Carrier's Sash",legs="Ebers pantaloons +2",feet="Nyame Sollerets"}
 		
 		-- Engaged sets

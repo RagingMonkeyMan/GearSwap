@@ -284,34 +284,34 @@ function init_gear_sets()
 
     sets.idle.PDT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Plat. Mog. Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.idle.MDT = {main="Daybreak",sub="Genmei Shield",range=empty,ammo="Staunch Tathlum +1",
 		head="Arbatel Bonnet +3",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Arbatel Pants +3",feet="Arbatel Loafers +3"}
 		
 	sets.idle.MEVA = {main="Daybreak",sub="Genmei Shield",range=empty,ammo="Staunch Tathlum +1",
 		head="Arbatel Bonnet +3",neck="Null Loop",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Arbatel Pants +3",feet="Arbatel Loafers +3"}
 		
     -- Defense sets
 
     sets.defense.PDT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Plat. Mog. Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
     sets.defense.MDT = {main="Daybreak",sub="Genmei Shield",range=empty,ammo="Staunch Tathlum +1",
 		head="Arbatel Bonnet +3",neck="Warder's Charm +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Arbatel Pants +3",feet="Arbatel Loafers +3"}
 		
     sets.defense.MEVA = {main="Daybreak",sub="Genmei Shield",range=empty,ammo="Staunch Tathlum +1",
 		head="Arbatel Bonnet +3",neck="Null Loop",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Arbatel Gown +3",hands="Arbatel Bracers +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Arbatel Pants +3",feet="Arbatel Loafers +3"}
 		
     sets.Kiting = {ring2="Shneddick Ring"}
@@ -359,7 +359,7 @@ function init_gear_sets()
 		back="Null Shawl",waist="Luminary Sash",legs="Jhakri Slops +1",feet="Jhakri Pigaches +2"}
 		
     sets.HPCure = {main="Daybreak",sub="Ammurapi Shield",ammo="Regal Gem",
-		head="Nyame Helm",neck="Sanctity Necklace",ear1="Etiolation Earring",ear2="Odnowa Earring +1",
+		head="Nyame Helm",neck="Sanctity Necklace",ear1="Etiolation Earring",ear2="Alabaster Earring",
 		body="Bunzi's Robe",hands="Bokwus Gloves",ring1="Sirona's Ring",ring2="Kunaji Ring",
 		back="Oretan. Cape +1",waist="Gishdubar Sash",legs="Nyame Flanchard",feet="Medium's Sabots"}
 end

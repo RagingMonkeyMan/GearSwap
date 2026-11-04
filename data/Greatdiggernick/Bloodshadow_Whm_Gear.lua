@@ -180,7 +180,7 @@ function init_gear_sets()
     waist={ name="Shinjutsu-no-Obi +1", augments={'Path: A',}},
     left_ear="Gifted Earring",
     right_ear="Mendi. Earring",
-    left_ring="Defending Ring",
+    left_ring="Murky Ring",
     right_ring={ name="Mephitas's Ring +1", augments={'Path: A',}},
     back={ name="Fi Follet Cape +1", augments={'Path: A',}},
 }  

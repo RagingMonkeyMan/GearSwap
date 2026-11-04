@@ -189,23 +189,23 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Malignance Tights",feet="Malignance Boots"}
 	
 	-- Defense sets
 	sets.defense.PDT = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.defense.MDT = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Malignance Tights",feet="Malignance Boots"}
 		
 	sets.defense.MEVA = {
 		head="Malignance Chapeau",neck="Warder's Charm +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Vengeful Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Vengeful Ring",
 		back="Moonlight Cape",waist="Carrier's Sash",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.Kiting = {legs="Carmine Cuisses +1"}
@@ -244,7 +244,7 @@ function init_gear_sets()
 		
 	sets.engaged.DT = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back=gear.tp_ranger_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.DW = {
@@ -254,7 +254,7 @@ function init_gear_sets()
 		
 	sets.engaged.DW.DT = {
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Suppanomimi",ear2="Brutal Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back=gear.tp_ranger_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 	
 	sets.engaged.DW.Acc = {

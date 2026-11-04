@@ -291,7 +291,7 @@ function init_gear_sets()
 	-- Idle sets
     sets.idle = {ammo="Aurgelmir orb +1",
         head="Malignance Chapeau",neck="Bathy choker +1",ear1="Telos Earring",ear2="Sherida Earring",
-        body="Hiza. Haramaki +2",hands="Malignance gloves",ring1="Chirich Ring +1",ring2="Defending Ring",
+        body="Hiza. Haramaki +2",hands="Malignance gloves",ring1="Chirich Ring +1",ring2="Murky Ring",
         back=SegomoDA,waist="Moonbow belt +1",legs="Kendatsuba hakama +1",feet="Malignance boots"}
 
     sets.idle.Town = {ammo="Aurgelmir orb +1",
@@ -311,8 +311,8 @@ function init_gear_sets()
         back=SegomoDA,waist="Moonbow belt +1",legs="Kendatsuba hakama +1",feet="Malignance boots"}
 
     sets.defense.HP = {ammo="Staunch tathlum +1",
-        head="Kendatsuba jinpachi +1",neck="Loricate torque +1",ear1="Odnowa Earring +1",ear2="Odnowa Earring",
-        body="Kendatsuba samue +1",hands=AdhemarDEX,ring1="Gelatinous Ring +1",ring2="Defending Ring",
+        head="Kendatsuba jinpachi +1",neck="Loricate torque +1",ear1="Alabaster Earring",ear2="Alabaster Earring",
+        body="Kendatsuba samue +1",hands=AdhemarDEX,ring1="Gelatinous Ring +1",ring2="Murky Ring",
         back="Moonbeam cape",waist="Moonbow belt +1",legs="Kendatsuba hakama +1",feet="Hermes' sandals"}
 
     sets.defense.MDT = {ammo="Staunch tathlum +1",

@@ -162,7 +162,7 @@ function init_gear_sets()
 
 	sets.idle = {main="Agwu's Axe",sub="Sacro Bulwark",ammo="Voluspa Tathlum",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Infused Earring",ear2="Sanare Earring", --ear1="Domesticator's Earring+1"
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.idle.Refresh = {}
@@ -170,15 +170,15 @@ function init_gear_sets()
 	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.idle.Pet = {main="Agwu's Axe",sub="Sacro Bulwark",ammo="Voluspa Tathlum",
-		head="Nuk. Cabasset +3",neck="Empath Necklace",ear1="Odnowa Earring +1",ear2="Nukumi Earring +1", --ear1="Domesticator's Earring+1"
-		body="Nyame Mail",hands="Gleti's Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		head="Nuk. Cabasset +3",neck="Empath Necklace",ear1="Alabaster Earring",ear2="Nukumi Earring +1", --ear1="Domesticator's Earring+1"
+		body="Nyame Mail",hands="Gleti's Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Nukumi Quijotes +3",feet="Gleti's Boots"}
 		
 	sets.idle.Pet.DW = {main="Agwu's Axe",sub="Astolfo"}
 
 	sets.idle.Pet.Engaged = {main="Agwu's Axe",sub="Sacro Bulwark",ammo="Voluspa Tathlum",
-		head="Nuk. Cabasset +3",neck="Empath Necklace",ear1="Odnowa Earring +1",ear2="Nukumi Earring +1", --ear1="Domesticator's Earring+1"
-		body="Nyame Mail",hands="Gleti's Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		head="Nuk. Cabasset +3",neck="Empath Necklace",ear1="Alabaster Earring",ear2="Nukumi Earring +1", --ear1="Domesticator's Earring+1"
+		body="Nyame Mail",hands="Gleti's Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Nukumi Quijotes +3",feet="Gleti's Boots"}
 
 	sets.idle.Pet.Engaged.DW = {main="Agwu's Axe",sub="Astolfo"}

@@ -94,7 +94,7 @@ function init_gear_sets()
 	
     sets.precast.CorsairShot.Proc = {ammo=gear.RAbullet,
         head="Wh. Rarab Cap +1",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Sanare Earring",
-        body="Emet Harness +1",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Emet Harness +1",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Carmine Cuisses +1",feet="Chass. Bottes +1"}
 
     sets.precast.CorsairShot['Light Shot'] = {ammo=gear.QDbullet,
@@ -244,7 +244,7 @@ function init_gear_sets()
 		--Because omen skillchains.
     sets.precast.WS['Burning Blade'] = {ammo=gear.RAbullet,
         head="Meghanada Visor +2",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Meg. Jam. +2"}
 
 	-- Swap to these on Moonshade using WS if at 3000 TP
@@ -296,29 +296,29 @@ function init_gear_sets()
 
     -- Idle sets
     sets.idle = {ammo=gear.RAbullet,
-        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Defending Ring",ring2="Dingir Ring",
+        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Murky Ring",ring2="Dingir Ring",
         back=CamulusDW,waist="Flume belt",legs="Malignance tights",feet="Malignance boots"}
 		
     sets.idle.PDT = {ammo=gear.RAbullet,
-        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Defending Ring",ring2="Dingir Ring",
+        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Murky Ring",ring2="Dingir Ring",
         back=CamulusDW,waist="Flume belt",legs="Malignance tights",feet="Malignance boots"}
 		
     sets.idle.Refresh = {ammo=gear.RAbullet,
-        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Odnowa Earring +1",
-        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Defending Ring",ring2="Dingir Ring",
+        head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Alabaster Earring",
+        body="Chasseur's Frac +3",hands="Chasseur's gants +3",ring1="Murky Ring",ring2="Dingir Ring",
         back=CamulusDW,waist="Flume belt",legs="Malignance tights",feet="Malignance boots"}
     
     -- Defense sets
     sets.defense.PDT = {ammo=gear.RAbullet,
         head="Malignance chapeau",neck="Loricate torque +1",ear1="Eabani earring",ear2="Suppanomimi",
-        body="Malignance tabard",hands="Malignance gloves",ring1="Defending Ring",ring2="Epona's ring",
+        body="Malignance tabard",hands="Malignance gloves",ring1="Murky Ring",ring2="Epona's ring",
         back=CamulusDW,waist="Sailfi Belt +1",legs="Malignance tights",feet="Malignance boots"}
 
     sets.defense.MDT = {ammo=gear.RAbullet,
         head="Malignance chapeau",neck="Loricate torque +1",ear1="Eabani earring",ear2="Suppanomimi",
-        body="Malignance tabard",hands="Malignance gloves",ring1="Defending Ring",ring2="Epona's ring",
+        body="Malignance tabard",hands="Malignance gloves",ring1="Murky Ring",ring2="Epona's ring",
         back=CamulusDW,waist="Sailfi Belt +1",legs="Malignance tights",feet="Malignance boots"}
 		
     sets.defense.MEVA = {ammo=gear.RAbullet,
@@ -381,12 +381,12 @@ function init_gear_sets()
 		
     sets.engaged.DT = {
         head="Malignance chapeau",neck="Loricate torque +1",ear1="Cessance earring",ear2="Telos earring",
-        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Defending Ring",ring2="Petrov ring",
+        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Petrov ring",
         back=CamulusDW,waist="Sailfi Belt +1",legs="Malignance tights",feet="Malignance boots"}
     
     sets.engaged.Acc.DT = {
         head="Malignance chapeau",neck="Loricate torque +1",ear1="Cessance earring",ear2="Telos earring",
-        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Defending Ring",ring2="Petrov ring",
+        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Petrov ring",
         back=CamulusDW,waist="Sailfi Belt +1",legs="Malignance tights",feet="Malignance boots"}
 
     sets.engaged.DW = {
@@ -401,12 +401,12 @@ function init_gear_sets()
 		
     sets.engaged.DW.DT = {
          head="Malignance chapeau",neck="Loricate torque +1",ear1="Eabani earring",ear2="Telos earring",
-        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Defending Ring",ring2="Petrov ring",
+        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Petrov ring",
         back=CamulusDW,waist="Reiki Yotai",legs="Malignance tights",feet="Malignance boots"}
     
     sets.engaged.DW.Acc.DT = {
          head="Malignance chapeau",neck="Loricate torque +1",ear1="Eabani earring",ear2="Telos earring",
-        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Defending Ring",ring2="Petrov ring",
+        body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Petrov ring",
         back=CamulusDW,waist="Reiki Yotai",legs="Malignance tights",feet="Malignance boots"}
 end
 

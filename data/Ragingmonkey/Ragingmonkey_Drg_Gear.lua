@@ -124,12 +124,12 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Loess Barbuta +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
-		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Dark Ring",
+		body="Tartarus Platemail",hands="Sulev. Gauntlets +2",ring1="Murky Ring",ring2="Dark Ring",
 		back="Shadow Mantle",waist="Flume Belt +1",legs="Carmine Cuisses +1",feet="Amm Greaves"}
 		
 	sets.idle.Refresh = {ammo="Staunch Tathlum +1",
 		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
-		body="Jumalik Mail",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Sulev. Gauntlets +2",ring1="Murky Ring",ring2="Dark Ring",
 		back="Shadow Mantle",waist="Flume Belt +1",legs="Carmine Cuisses +1",feet="Amm Greaves"}
 
 	sets.idle.Weak = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})

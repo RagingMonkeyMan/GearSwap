@@ -190,12 +190,12 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {ammo=gear.RAbullet,
 		head="Null Masque",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.idle.PDT = {ammo=gear.RAbullet,
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.idle.Refresh = {ammo=gear.RAbullet,
@@ -206,17 +206,17 @@ function init_gear_sets()
 	-- Defense sets
 	sets.defense.PDT = {ammo=gear.RAbullet,
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.defense.MDT = {ammo=gear.RAbullet,
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.defense.MEVA = {ammo=gear.RAbullet,
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shneddick Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shneddick Ring",
 		back="Null Shawl",waist="Null Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.Kiting = {ring2="Shneddick Ring"}

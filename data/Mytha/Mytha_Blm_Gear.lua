@@ -204,7 +204,7 @@ function init_gear_sets()
 		
 	sets.midcast['Elemental Magic'].DT = {main="Bunzi's Rod",sub="Culminus",ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +3",neck="Loricate Torque +1",ear1="Malignance Earring",ear2="Wicce Earring +1",
-		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Defending Ring",ring2="Freke Ring",
+		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Murky Ring",ring2="Freke Ring",
 		back=gear.nuke_jse_back,waist="Acuity Belt +1",legs="Wicce Chausses +3",feet="Wicce Sabots +3"}
 		
 	sets.midcast['Elemental Magic'].Resistant = {main="Bunzi's Rod",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
@@ -261,17 +261,17 @@ function init_gear_sets()
 	-- Idle mode that keeps PDT gear on, but doesn't prevent normal gear swaps for precast/etc.
 	sets.idle.PDT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Plat. Mog. Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.idle.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +3",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Lugalbanda Earring",
-		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Wicce Chausses +3",feet="Wicce Sabots +3"}
 		
 	sets.idle.MEVA = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +3",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Lugalbanda Earring",
-		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Wicce Chausses +3",feet="Wicce Sabots +3"}
 
 	sets.idle.Death = {}
@@ -280,17 +280,17 @@ function init_gear_sets()
 
 	sets.defense.PDT = {main="Daybreak",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Shadow Mantle",waist="Plat. Mog. Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 
 	sets.defense.MDT = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +3",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Lugalbanda Earring",
-		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Wicce Chausses +3",feet="Wicce Sabots +3"}
 		
 	sets.defense.MEVA = {main="Daybreak",sub="Ammurapi Shield",ammo="Staunch Tathlum +1",
 		head="Wicce Petasos +3",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Lugalbanda Earring",
-		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Wicce Coat +3",hands="Wicce Gloves +3",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Null Shawl",waist="Null Belt",legs="Wicce Chausses +3",feet="Wicce Sabots +3"}
 
 	sets.Kiting = {ring2="Shneddick Ring"}

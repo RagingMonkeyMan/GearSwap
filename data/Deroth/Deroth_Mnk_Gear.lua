@@ -7,7 +7,7 @@ function user_job_setup()
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT')
-	state.Weapons:options('Godhands','Verethragna','Staff','None','ProcStaff','ProcClub','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana')
+	state.Weapons:options('Verethragna','Godhands','Staff','None','ProcStaff','ProcClub','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
 
@@ -18,6 +18,8 @@ function user_job_setup()
 	send_command('bind !` input /ja "Perfect Counter" <me>')
 	send_command('bind ^backspace input /ja "Mantra" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
+	send_command('bind ^q gs c weapons Verethragna;gs c update')
+	send_command('bind ^a gs c weapons Godhands;gs c update')
 	
 	select_default_macro_book()
 end
@@ -27,7 +29,7 @@ function init_gear_sets()
 	-- Start defining the sets
 	--------------------------------------
 	
-	SegomoCrit =	{ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Crit.hit rate+10','Phys. dmg. taken-10%',}}
+	SegomoCrit =	{ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Phys. dmg. taken-10%',}}
 	SegomoSTRDA =	{ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
 	SegomoTP = { name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}
 	
@@ -65,7 +67,7 @@ function init_gear_sets()
 	
 	sets.precast.JA['Chakra'] = {
 		ammo="Coiste Bodhar",
-        head="Genmei Kabuto",neck="Unmoving Collar",ear1="Tuisto Earring",ear2="Odnowa Earring +1",
+        head="Genmei Kabuto",neck="Unmoving Collar",ear1="Tuisto Earring",ear2="Alabaster Earring",
         body="Anchorite's Cyclas +1",hands="Anchorite's gloves +3",ring1="Niqmaddu Ring",ring2="Regal Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Mpaca's Hose",feet="Hesychast's Gaiters +3"}
 
@@ -97,10 +99,10 @@ function init_gear_sets()
 
     -- Weaponskill sets
     -- Default set for any weaponskill that isn't any more specifically defined
-    sets.precast.WS = {ammo="Knobkierrie",
-        head="Hesychast's crown +3",neck="Fotia Gorget",ear1="Telos Earring",ear2="Sherida Earring",
-        body="Kendatsuba samue +1",hands="Anchorite's gloves +3",ring1="Niqmaddu Ring",ring2="Gere Ring",
-        back=SegomoSTRDA,waist="Moonbow belt +1",legs="Hiza. Hizayoroi +2",feet="Kendatsuba sune-ate +1"}
+    sets.precast.WS = {ammo="Crepuscular pebble",
+        head="Nyame helm",neck="Fotia Gorget",ear1="Hoxne Earring",ear2="Sherida Earring",
+        body="Nyame Mail",hands="Nyame Gauntlets",ring1="Niqmaddu Ring",ring2="Gere Ring",
+        back=SegomoSTRDA,waist="Moonbow belt +1",legs="Nyame flanchard",feet="Nyame Sollerets"}
 
 	sets.precast.WS.Proc = {
 		ammo={name="Staunch Tathlum +1", priority=1},
@@ -111,8 +113,8 @@ function init_gear_sets()
 		feet=empty,
 		neck={name="Unmoving Collar +1", priority=1},
 		waist={name="Plat. Mog. Belt", priority=1},
-		left_ear={name="Odnowa Earring +1", priority=1},
-		right_ear={name="Tuisto Earring", priority=1},
+		ear1={name="Alabaster Earring", priority=1},
+		ear2={name="Tuisto Earring", priority=1},
 		left_ring={name="Gelatinous Ring +1", priority=1},
 		right_ring=empty,
 		back=empty
@@ -129,11 +131,11 @@ function init_gear_sets()
 		body="Malignance tabard",
 		hands="Bhikku gloves +3",
 		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
+		feet="Kendatsuba sune-ate +1",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade earring",
-		right_ear="Schere Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -148,8 +150,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade earring",
-		right_ear="Schere Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -164,10 +166,10 @@ function init_gear_sets()
 		feet="Nyame Sollerets",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Schere Earring",
-		left_ring="Ephramad's Ring",
-		right_ring="Gere Ring",
+		ear1="Schere Earring",
+		ear2="Moonshade Earring",
+		left_ring="Niqmaddu Ring",
+		right_ring="Ephramad's Ring",
 		back=SegomoSTRDA
 	}
 	
@@ -180,8 +182,8 @@ function init_gear_sets()
 		feet="Nyame Sollerets",
 		neck="Rep. Plat. Medal",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Schere Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -195,8 +197,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade earring",
-		right_ear="Schere Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade Earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -211,8 +213,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade earring",
-		right_ear="Schere Earring",
+		ear1="Moonshade earring",
+		ear2="Schere Earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -227,24 +229,24 @@ function init_gear_sets()
 		feet="Kendatsuba sune-ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
+		ear1="Schere Earring",
+		ear2="Hoxne Earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoCrit
 	}
 
 	sets.precast.WS["Ascetic's Fury"].UncappedAtt = {
-		ammo="Knobkierrie",
+		ammo="Crepuscular Pebble",
 		head="Adhemar Bonnet +1",
 		body="Kendatsuba Samue +1",
-		hands="Ryuo Tekko +1",
-		legs="Kendatsuba hakama +1",
-		feet="Ryuo Sune-Ate +1",
+		hands="Bhikku gloves +3",
+		legs="Mpaca's Hose",
+		feet="Kendatsuba sune-ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
+		ear1="Schere Earring",
+		ear2="Hoxne Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoCrit
@@ -256,30 +258,14 @@ function init_gear_sets()
 		body="Kendatsuba Samue +1",
 		hands="Bhikku gloves +3",
 		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
-		neck="Fotia Gorget",
+		feet="Kendatsuba sune-ate +1",
+		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Sherida Earring",
-		right_ear="Schere Earring",
-		left_ring="Ephramad's Ring",
+		ear1="Hoxne Earring",
+		ear2="Sherida Earring",
+		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoCrit
-	}
-
-	sets.precast.WS["Victory Smite"].Impetus = {
-		ammo="Crepuscular Pebble",
-		head="Adhemar Bonnet +1",
-		body="Bhikku Cyclas +3",
-		hands="Bhikku gloves +3",
-		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
-		neck="Fotia Gorget",
-		waist="Moonbow belt +1",
-		left_ear="Sherida Earring",
-		right_ear="Schere Earring",
-		left_ring="Ephramad's Ring",
-		right_ring="Gere Ring",
-		back=SegomoSTRDA
 	}
 
 	sets.precast.WS["Victory Smite"].UncappedAtt = {
@@ -288,59 +274,43 @@ function init_gear_sets()
 		body="Kendatsuba Samue +1",
 		hands="Ryuo Tekko +1",
 		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
+		feet="Kendatsuba sune-ate +1",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Sherida Earring",
-		right_ear="Schere Earring",
+		ear1="Schere Earring",
+		ear2="Odr Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoCrit
-	}
-
-	sets.precast.WS["Victory Smite"].UncappedAtt.Impetus = {
-		ammo="Coiste Bodhar",
-		head="Adhemar Bonnet +1",
-		body="Kendatsuba Samue +1",
-		hands="Ryuo Tekko +1",
-		legs="Mpaca's Hose",
-		feet="Mpaca's Boots",
-		neck="Fotia Gorget",
-		waist="Moonbow belt +1",
-		left_ear="Sherida Earring",
-		right_ear="Schere Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Gere Ring",
-		back=SegomoSTRDA
 	}
 		
     sets.precast.WS['Shijin Spiral'] = {
 		ammo="Crepuscular Pebble",
 		head="Kendatsuba jinpachi +1",
-		body="Adhemar Jacket +1",
+		body="Malignance Tabard",
 		hands="Bhikku gloves +3",
 		legs="Mpaca's Hose",
 		feet="Kendatsuba sune-ate +1",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Mache Earring +1",
-		right_ear="Sherida Earring",
-		left_ring="Ephramad's Ring",
-		right_ring="Gere Ring",
+		ear1="Mache Earring +1",
+		ear2="Sherida Earring",
+		left_ring="Niqmaddu Ring",
+		right_ring="Ephramad's Ring",
 		back=SegomoSTRDA
 	}
 
 	sets.precast.WS['Shijin Spiral'].UncappedAtt = {
 		ammo="Coiste Bodhar",
-		head="Kendatsuba jinpachi +1",
-		body="Bhikku Cyclas +3",
-		hands="Bhikku gloves +3",
+		head="Adhemar bonnet +1",
+		body="Adhemar Jacket +1",
+		hands="Adhemar wristbands +1",
 		legs="Nyame Flanchard",
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Schere Earring",
-		right_ear="Sherida Earring",
+		ear1="Schere Earring",
+		ear2="Sherida Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -355,8 +325,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade Earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -371,8 +341,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
+		ear1="Moonshade Earring",
+		ear2="Sherida Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -387,8 +357,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Mnk. Nodowa +2",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
+		ear1="Schere Earring",
+		ear2="Moonshade Earring",
 		left_ring="Ephramad's Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -403,8 +373,8 @@ function init_gear_sets()
 		feet="Mpaca's Boots",
 		neck="Fotia Gorget",
 		waist="Moonbow belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
+		ear1="Moonshade Earring",
+		ear2="Sherida Earring",
 		left_ring="Niqmaddu Ring",
 		right_ring="Gere Ring",
 		back=SegomoSTRDA
@@ -450,23 +420,23 @@ function init_gear_sets()
 	
 	-- Idle sets
     sets.idle = {ammo="Staunch tathlum +1",
-        head="Nyame helm",neck="Bathy choker +1",ear1="Schere Earring",ear2="Sherida Earring",
-        body="Nyame mail",hands="Nyame gauntlets",ring1="Chirich Ring +1",ring2="Defending Ring",
+        head="Nyame helm",neck="Bathy choker +1",ear1="Alabaster Earring",ear2="Alabaster Earring",
+        body="Nyame mail",hands="Nyame gauntlets",ring1="Chirich Ring +1",ring2="Murky Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Nyame flanchard",feet="Nyame sollerets"}
 
     -- Defense sets
     sets.defense.PDT = {ammo="Staunch tathlum +1",
-        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Telos Earring",ear2="Sherida Earring",
+        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Alabaster Earring",ear2="Alabaster Earring",
         body="Malignance tabard",hands="Malignance gloves",ring1="Niqmaddu Ring",ring2="Gere Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Bhikku hose +3",feet="Malignance boots"}
 
     sets.defense.MDT = {ammo="Staunch tathlum +1",
-        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Telos Earring",ear2="Sherida Earring",
+        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Alabaster Earring",ear2="Alabaster Earring",
         body="Malignance tabard",hands="Malignance gloves",ring1="Niqmaddu Ring",ring2="Gere Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Bhikku hose +3",feet="Malignance boots"}
 		
 	sets.defense.MEVA = {ammo="Staunch tathlum +1",
-        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Telos Earring",ear2="Sherida Earring",
+        head="Malignance Chapeau",neck="Loricate torque +1",ear1="Alabaster Earring",ear2="Alabaster Earring",
         body="Malignance tabard",hands="Malignance gloves",ring1="Niqmaddu Ring",ring2="Gere Ring",
         back=SegomoTP,waist="Moonbow belt +1",legs="Bhikku hose +3",feet="Malignance boots"}
 

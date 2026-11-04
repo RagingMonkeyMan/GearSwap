@@ -265,7 +265,7 @@ function init_gear_sets()
     -- Resting sets
     sets.resting = {main="Chatoyant Staff",sub="Oneiros Grip",
 		head="Befouled Crown",neck="Chrys. Torque",ear1="Ethereal Earring",ear2="Sanare Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Fucho-no-obi",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
     
 
@@ -280,7 +280,7 @@ function init_gear_sets()
     -- Idle mode that keeps PDT gear on, but doesn't prevent normal gear swaps for precast/etc.
     sets.idle.PDT = {main="Malignance Pole",sub="Oneiros Grip",ammo="Staunch Tathlum +1",
         head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
-        body="Vrikodara Jupon",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+        body="Vrikodara Jupon",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Flax Sash",legs="Assid. Pants +1",feet="Mallquis Clogs +2"}
 		
 	sets.idle.DTHippo = set_combine(sets.idle.PDT, {feet="Hippo. Socks +1"})
@@ -292,19 +292,19 @@ function init_gear_sets()
 
     sets.idle.Weak = {main="Bolelabunga",sub="Genmei Shield",ammo="Staunch Tathlum +1",
 		head="Befouled Crown",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Etiolation Earring",
-		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Defending Ring",ring2="Dark Ring",
+		body="Jhakri Robe +2",hands=gear.merlinic_refresh_hands,ring1="Murky Ring",ring2="Dark Ring",
 		back="Umbra Cape",waist="Flax Sash",legs="Assid. Pants +1",feet=gear.merlinic_refresh_feet}
 
     -- Defense sets
 
     sets.defense.PDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
-        body="Mallquis Saio +2",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Dark Ring",
+        body="Mallquis Saio +2",hands="Hagondes Cuffs +1",ring1="Murky Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Flax Sash",legs="Hagondes Pants +1",feet="Mallquis Clogs +2"}
 
     sets.defense.MDT = {main="Malignance Pole",sub="Umbra Strap",ammo="Staunch Tathlum +1",
         head="Hagondes Hat +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
-        body="Mallquis Saio +2",hands="Hagondes Cuffs +1",ring1="Defending Ring",ring2="Shadow Ring",
+        body="Mallquis Saio +2",hands="Hagondes Cuffs +1",ring1="Murky Ring",ring2="Shadow Ring",
         back="Solemnity Cape",waist="Flax Sash",legs="Hagondes Pants +1",feet="Mallquis Clogs +2"}
 		
     sets.defense.MEVA = {main="Malignance Pole",sub="Enki Strap",ammo="Staunch Tathlum +1",

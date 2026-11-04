@@ -100,7 +100,7 @@ function init_gear_sets()
 		-- MIDCAST SETS
 	sets.midcast.FastRecast = {
 		head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body=gear.taeon_pet_body,hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
+		body=gear.taeon_pet_body,hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
 		back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -217,50 +217,50 @@ function init_gear_sets()
 
 	sets.idle = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Staunch Tathlum +1",
 		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Genmei Earring",
-		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Solemnity Cape",waist="Flume Belt +1",legs="Tali'ah Sera. +2",feet="Skd. Jambeaux +1"}
 		
 	sets.idle.SingleWield = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Staunch Tathlum +1",
 		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Genmei Earring",
-		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Solemnity Cape",waist="Flume Belt +1",legs="Tali'ah Sera. +2",feet="Skd. Jambeaux +1"}
 
 	sets.idle.Refresh = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Staunch Tathlum +1",
 		head="Jumalik Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Genmei Earring",
-		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Solemnity Cape",waist="Flume Belt +1",legs="Tali'ah Sera. +2",feet="Skd. Jambeaux +1"}
 		
 	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.idle.Pet = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	sets.idle.Pet.Engaged = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Gleti's Gauntlets",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Gleti's Gauntlets",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	sets.idle.Pet.Engaged.DW = {main="Izizoeksi",sub=gear.PDTMABKumbha,ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Shulmanu Collar",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Artio's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	-- DEFENSE SETS
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Sanare Earring",ear2="Handler's Earring +1",
-		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
 	sets.defense.PetPDT = {ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	sets.defense.PetMDT = {ammo="Voluspa Tathlum",
 		head="Anwig Salade",neck="Loricate Torque +1",ear1="Enmerkar Earring",ear2="Handler's Earring +1",
-		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Defending Ring",ring2="C. Palug Ring",
+		body="Tot. Jackcoat +3",hands="Ankusa Gloves +1",ring1="Murky Ring",ring2="C. Palug Ring",
 		back="Pastoralist's Mantle",waist="Isa Belt",legs="Tali'ah Sera. +2",feet="Ankusa Gaiters +3"}
 
 	sets.defense.PetMEVA = sets.defense.PetMDT
@@ -270,7 +270,7 @@ function init_gear_sets()
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Warder's Charm +1",ear1="Sanare Earring",ear2="Etiolation Earring",
-		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Defending Ring",ring2="Shadow Ring",
+		body="Jumalik Mail",hands="Macabre Gaunt. +1",ring1="Murky Ring",ring2="Shadow Ring",
 		back="Engulfer Cape +1",waist="Engraved Belt",legs="Tali'ah Sera. +2",feet="Nukumi Ocreae +1"}
 
 	sets.defense.MEVA = {
@@ -313,27 +313,27 @@ function init_gear_sets()
 	-- MELEE (SINGLE-WIELD) HYBRID SETS
 	sets.engaged.PDT = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Buremte Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.SomeAcc.PDT = {ammo="Falcon Eye",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Buremte Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 		head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Buremte Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.FullAcc.PDT = {ammo="Falcon Eye",
 		head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Buremte Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum +1",
 		head=gear.valorous_wsd_head,neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Jumalik Mail",hands="Buremte Gloves",ring1="Defending Ring",ring2="Dark Ring",
+		body="Jumalik Mail",hands="Buremte Gloves",ring1="Murky Ring",ring2="Dark Ring",
 		back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Valorous Greaves"}
 
 	-- MELEE (DUAL-WIELD) SETS FOR DNC AND NIN SUBJOB

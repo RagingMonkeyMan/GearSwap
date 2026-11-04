@@ -60,7 +60,7 @@ function init_gear_sets()
     -- Waltz set (chr and vit)
     sets.precast.Waltz = {ammo="Yamarang",
         head="Mummu Bonnet +2",neck="Unmoving Collar +1",ear1="Enchntr. Earring +1",ear2="Handler's Earring +1",
-        body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
+        body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Murky Ring",ring2="Valseur's Ring",
         back="Toetapper Mantle",waist="Chaac Belt",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
 		
 	sets.Self_Waltz = {head="Mummu Bonnet +2",body="Passion Jacket",ring1="Asklepian Ring"}
@@ -126,7 +126,7 @@ function init_gear_sets()
 	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {ammo="C. Palug Stone",neck="Combatant's Torque",ear1="Telos Earring",body="Meg. Cuirie +2",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Malignance Boots"})
 	sets.precast.WS.Proc = {ammo="Yamarang",
         head="Wh. Rarab Cap +1",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sanare Earring",
-        body="Dread Jupon",hands="Kurys Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Dread Jupon",hands="Kurys Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Dashing Subligar",feet="Ahosi Leggings"}
 
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
@@ -172,7 +172,7 @@ function init_gear_sets()
     
     sets.midcast.FastRecast = {
         head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
+        body="Dread Jupon",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Rawhide Trousers",feet="Malignance Boots"}
         
     -- Specific spells
@@ -190,7 +190,7 @@ function init_gear_sets()
 
     sets.idle = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Defending Ring",ring2="Sheltered Ring",
+        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Murky Ring",ring2="Sheltered Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
 		
     sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
@@ -199,12 +199,12 @@ function init_gear_sets()
 
     sets.defense.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Meg. Cuirie +2",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Shadow Mantle",waist="Flume Belt +1",legs=gear.herculean_dt_legs,feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Meg. Cuirie +2",hands="Floral Gauntlets",ring1="Defending Ring",ring2="Dark Ring",
+        body="Meg. Cuirie +2",hands="Floral Gauntlets",ring1="Murky Ring",ring2="Dark Ring",
         back="Engulfer Cape +1",waist="Engraved Belt",legs=gear.herculean_dt_legs,feet="Ahosi Leggings"}
 		
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
@@ -229,7 +229,7 @@ function init_gear_sets()
 		
     sets.engaged.DTLite = {ammo="Yamarang",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-        body="Adhemar Jacket +1",hands="Adhemar Wrist. +1",ring1="Defending Ring",ring2="Epona's Ring",
+        body="Adhemar Jacket +1",hands="Adhemar Wrist. +1",ring1="Murky Ring",ring2="Epona's Ring",
         back=gear.stp_jse_back,waist="Windbuffet Belt +1",legs="Samnuha Tights",feet=gear.herculean_ta_feet}
 		
     sets.engaged.SomeAcc = {ammo="Yamarang",
@@ -254,27 +254,27 @@ function init_gear_sets()
 
     sets.engaged.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
-        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Moonlight Ring",
+        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Murky Ring",ring2="Moonlight Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.engaged.SomeAcc.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
-        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
+        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Murky Ring",ring2="Patricius Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
     sets.engaged.Acc.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
-        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
+        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Murky Ring",ring2="Patricius Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 
     sets.engaged.FullAcc.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
-        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Patricius Ring",
+        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Murky Ring",ring2="Patricius Ring",
         back="Moonlight Cape",waist="Olseni Belt",legs="Meg. Chausses +2",feet="Ahosi Leggings"}
 		
     sets.engaged.Fodder.PDT = {ammo="Staunch Tathlum +1",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Dudgeon Earring",ear2="Heartseeker Earring",
-        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Defending Ring",ring2="Dark Ring",
+        body="Meg. Cuirie +2",hands="Meg. Gloves +2",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Meg. Chausses +2",feet="Malignance Boots"}
 
     -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.

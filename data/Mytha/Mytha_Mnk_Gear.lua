@@ -123,7 +123,7 @@ function init_gear_sets()
 	-- Midcast Sets
 	sets.midcast.FastRecast = {ammo="Staunch Tathlum +1",
 		head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Dread Jupon",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
+		body="Dread Jupon",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
 		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 		
 	-- Specific spells
@@ -138,13 +138,13 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Hiza. Haramaki +2",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Sheltered Ring",
+		body="Hiza. Haramaki +2",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Sheltered Ring",
 		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Hippo. Socks +1"}
 
 	-- Defense sets
 	sets.defense.PDT = {ammo="Eluder's Sachet",
 		head="Nyame Helm",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Defending Ring",ring2="Warden's Ring",
+		body="Nyame Mail",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Warden's Ring",
 		back="Moonlight Cape",waist="Black Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
@@ -183,15 +183,15 @@ function init_gear_sets()
 	-- Defensive melee hybrid sets
 	sets.engaged.PDT = {ammo="Aurgelmir Orb +1",
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Brutal Earring",ear2="Sherida Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Niqmaddu Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Niqmaddu Ring",
 		back="Moonlight Cape",waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 	sets.engaged.Acc.PDT = {ammo="Falcon Eye",
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Sherida Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Niqmaddu Ring",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Niqmaddu Ring",
 		back="Moonlight Cape",waist="Olseni Belt",legs="Malignance Tights",feet="Malignance Boots"}
 	sets.engaged.FullAcc.PDT = {ammo="Falcon Eye",
 		head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Mache Earring +1",ear2="Odr Earring",
-		body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
+		body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Ramuh Ring +1",
 		back="Moonlight Cape",waist="Olseni Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 	-- Hundred Fists/Impetus melee set mods

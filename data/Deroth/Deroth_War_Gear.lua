@@ -134,7 +134,7 @@ function init_gear_sets()
 		feet=empty,
 		neck={name="Unmoving Collar +1", priority=1},
 		waist={name="Plat. Mog. Belt", priority=1},
-		left_ear={name="Odnowa Earring +1", priority=1},
+		left_ear={name="Alabaster Earring", priority=1},
 		right_ear={name="Tuisto Earring", priority=1},
 		left_ring={name="Gelatinous Ring +1", priority=1},
 		right_ring=empty,
@@ -336,11 +336,11 @@ function init_gear_sets()
 		ammo = "Staunch Tathlum +1",
 		head = "Sakpata's Helm",
 		neck = "Bathy choker +1", 
-		ear1 = "Odnowa Earring +1",
+		ear1 = "Alabaster Earring",
 		ear2 = "Tuisto earring", 
 		body = "Sakpata's Breastplate", 
 		hands= "Sakpata's Gauntlets", 
-		ring1 = "Defending Ring",
+		ring1 = "Murky Ring",
 		ring2 = "Chirich Ring +1",
 		back = CicholDA, 
 		waist = "Carrier's Sash",
@@ -354,7 +354,7 @@ function init_gear_sets()
 	-- Defense sets
 --	sets.defense.PDT = {ammo="Staunch Tathlum +1",
 	--	head="Sulevia's Mask +2",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Ethereal Earring",
-	--	body="Hjarrandi Breast.",hands="Sulev. Gauntlets +2",ring1="Defending Ring",ring2="Sulevia's Ring",
+	--	body="Hjarrandi Breast.",hands="Sulev. Gauntlets +2",ring1="Murky Ring",ring2="Sulevia's Ring",
 	--	back="Moonlight cape",waist="Flume Belt +1",legs="Sulev. Cuisses +2",feet="Sulevia's leggings +2"}
 		
 	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})

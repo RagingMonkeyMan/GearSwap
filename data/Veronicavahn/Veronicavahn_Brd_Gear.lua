@@ -327,7 +327,7 @@ function init_gear_sets()
 	-- Resting sets
 	sets.resting = {main="Daybreak",sub="Genmei Shield",ranged="Marsyas",
 		head="Inyanga tiara +2",neck="Loricate Torque +1",ear1="Regal earring",ear2="Dignitary's Earring",
-		body="Inyanga Jubbah +2",hands="Inyan. Dastanas +2",ring1="Defending Ring",ring2="Ayanmo Ring",
+		body="Inyanga Jubbah +2",hands="Inyan. Dastanas +2",ring1="Murky Ring",ring2="Ayanmo Ring",
 		back=IntarabusFC,waist="Flume Belt +1",legs="Inyanga Shalwar +2",feet="Inyanga Crackows +2"}
 	
 	sets.idle = {
@@ -341,7 +341,7 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusFC
 	}
@@ -356,7 +356,7 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusFC
 	}
@@ -372,7 +372,7 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusFC
 	}
@@ -389,7 +389,7 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusFC
 	}
@@ -404,7 +404,7 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Eabani Earring",
 		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusFC
 	}
@@ -447,7 +447,7 @@ function init_gear_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Telos Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusDA
 	}
@@ -463,7 +463,7 @@ function init_gear_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Telos Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Petrov Ring",
 		back=IntarabusDA
 	}
@@ -510,7 +510,7 @@ function init_gear_sets()
 		waist="Reiki Yotai",
 		left_ear="Eabani Earring",
 		right_ear="Telos Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusDA
 	}
@@ -542,7 +542,7 @@ function init_gear_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Brutal Earring",
 		right_ear="Telos Earring",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Moonlight Ring",
 		back=IntarabusDA
 	}

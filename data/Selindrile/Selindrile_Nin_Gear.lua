@@ -48,7 +48,7 @@ function init_gear_sets()
     -- Waltz set (chr and vit)
     sets.precast.Waltz = {ammo="Yamarang",
         head="Mummu Bonnet +2",neck="Unmoving Collar +1",ear1="Enchntr. Earring +1",ear2="Handler's Earring +1",
-        body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
+        body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Murky Ring",ring2="Valseur's Ring",
         back="Moonlight Cape",waist="Chaac Belt",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
 
     -- Don't need any special gear for Healing Waltz.
@@ -136,7 +136,7 @@ function init_gear_sets()
 
     sets.midcast.FastRecast = {
         head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Mochizuki Tekko +1",ring1="Defending Ring",ring2="Kishar Ring",
+        body="Dread Jupon",hands="Mochizuki Tekko +1",ring1="Murky Ring",ring2="Kishar Ring",
         legs="Rawhide Trousers",feet="Malignance Boots"}
 
     sets.midcast.ElementalNinjutsu = {ammo="Pemphredo Tathlum",
@@ -179,19 +179,19 @@ function init_gear_sets()
     -- Idle sets
     sets.idle = {ammo="Staunch Tathlum +1",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
     sets.idle.Sphere = set_combine(sets.idle, {body="Mekosu. Harness"})
 
     sets.defense.PDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Sanare Earring",
-        body="Emet Harness +1",hands="Malignance Gloves",ring1="Defending Ring",ring2="Dark Ring",
+        body="Emet Harness +1",hands="Malignance Gloves",ring1="Murky Ring",ring2="Dark Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Nyame Flanchard",feet="Malignance Boots"}
 
     sets.defense.MDT = {ammo="Togakushi Shuriken",
         head="Dampening Tam",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Sanare Earring",
-        body="Emet Harness +1",hands="Malignance Gloves",ring1="Defending Ring",ring2="Shadow Ring",
+        body="Emet Harness +1",hands="Malignance Gloves",ring1="Murky Ring",ring2="Shadow Ring",
         back="Engulfer Cape +1",waist="Engraved Belt",legs="Nyame Flanchard",feet="Ahosi Leggings"}
 
 	sets.defense.MEVA = {ammo="Yamarang",
@@ -249,27 +249,27 @@ function init_gear_sets()
 
     sets.engaged.DT = {ammo="Togakushi Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.SomeAcc.DT = {ammo="Togakushi Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.Acc.DT = {ammo="Togakushi Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Mache Earring +1",ear2="Telos Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.FullAcc.DT = {ammo="Togakushi Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Mache Earring +1",ear2="Odr Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Ramuh Ring +1",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Ramuh Ring +1",
         back=gear.da_jse_back,waist="Olseni Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.engaged.Fodder.DT = {ammo="Togakushi Shuriken",
         head="Malignance Chapeau",neck="Loricate Torque +1",ear1="Cessance Earring",ear2="Brutal Earring",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Epona's Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Murky Ring",ring2="Epona's Ring",
         back=gear.da_jse_back,waist="Windbuffet Belt +1",legs="Malignance Tights",feet="Malignance Boots"}
 
     --------------------------------------

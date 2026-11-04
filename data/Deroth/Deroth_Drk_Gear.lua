@@ -145,7 +145,7 @@ function init_gear_sets()
         neck="Unmoving Collar +1",
         waist="Plat. Mog. Belt",
         left_ear="Tuisto Earring",
-        right_ear="Odnowa Earring +1",
+        right_ear="Alabaster Earring",
         left_ring="Gelatinous Ring +1",
         right_ring="Moonlight Ring",
         back=Ankou.FC}
@@ -272,7 +272,7 @@ function init_gear_sets()
 	-- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {ammo="Knobkierrie",
 		head="Heath. Bur. +3",neck="Abyssal bead necklace +2",ear1="Moonshade Earring",ear2="Heathen's Earring +1",
-		body="Ignominy Cuirass +4",hands="Sakpata's gauntlets",ring1="Ephramad's ring",ring2="Epaminondas's Ring",
+		body="Ignominy Cuirass +4",hands="Nyame gauntlets",ring1="Ephramad's ring",ring2="Epaminondas's Ring",
 		back=Ankou.WSDSTR,waist="Fotia belt",legs="Fallen's flanchard +4",feet="Heath. Sollerets +3"}
 		
 	sets.precast.WS.UncappedAtt = {ammo="Knobkierrie",
@@ -596,13 +596,13 @@ function init_gear_sets()
            
     sets.idle = {
 		ammo="Staunch Tathlum +1",
-        head="Sakpata's Helm",neck="Abyssal Bead Necklace +2",ear1="Telos Earring", ear2="Odnowa Earring +1",
+        head="Sakpata's Helm",neck="Abyssal Bead Necklace +2",ear1="Telos Earring", ear2="Alabaster Earring",
 		body="Sakpata's Breastplate",hands="Sakpata's gauntlets",ring1="Moonlight ring",ring2="Chirich Ring +1",
 		back=Ankou.DA,waist="Carrier's sash",legs="Sakpata's Cuisses",feet="Sakpata's leggings"}
 		
     sets.idle.PDT = {
 		ammo="Staunch Tathlum +1",
-        head="Sakpata's Helm",neck="Abyssal Bead Necklace +2",ear1="Telos Earring", ear2="Odnowa Earring +1",
+        head="Sakpata's Helm",neck="Abyssal Bead Necklace +2",ear1="Telos Earring", ear2="Alabaster Earring",
 		body="Sakpata's Breastplate",hands="Sakpata's gauntlets",ring1="Moonlight ring",ring2="Chirich Ring +1",
 		back=Ankou.DA,waist="Carrier's sash",legs="Sakpata's Cuisses",feet="Sakpata's leggings"}
 
@@ -905,7 +905,7 @@ function init_gear_sets()
 	sets.engaged.Liberator.DT.AM = {
 		ammo="Staunch Tathlum +1",
         head="Hjarrandi helm",neck="Vim torque +1",ear1="Telos Earring",ear2="Crep. Earring",
-		body="Hjarrandi Breastplate",hands="Emicho gauntlets +1",ring1="Defending Ring",ring2="Moonlight Ring",
+		body="Hjarrandi Breastplate",hands="Emicho gauntlets +1",ring1="Murky Ring",ring2="Moonlight Ring",
 		back=Ankou.STP,waist="Tempus fugit +1",legs=OdysseanLegsSTP,feet=ValorousBootsSTP
 	}
 	sets.engaged.Liberator.SomeAcc.AM = {

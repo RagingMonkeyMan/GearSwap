@@ -116,7 +116,7 @@ function init_gear_sets()
 		-- MIDCAST SETS
 	sets.midcast.FastRecast = {
 		head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Defending Ring",ring2="Prolix Ring",
+		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
 		back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
@@ -367,44 +367,44 @@ function init_gear_sets()
 
 	sets.idle = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.idle.Refresh = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 		
 	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
 
 	sets.idle.Pet = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.idle.Pet.Engaged = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.idle.Pet.Engaged.DW = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Sacro Breastplate",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 	-- DEFENSE SETS
 	sets.defense.PDT = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.defense.PetPDT = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.defense.PetMDT = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.defense.PetMEVA = sets.defense.PetMDT
@@ -414,12 +414,12 @@ function init_gear_sets()
 
 	sets.defense.MDT = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meghanada chausses +2",feet="Malignance boots"}
 
 	sets.defense.MEVA = {ammo="Staunch Tathlum +1",
 		head="Malignance chapeau",neck="Loricate Torque +1",ear1="Eabani Earring",ear2="Genmei Earring",
-		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Defending Ring",
+		body="Malignance tabard",hands="Malignance gloves",ring1="Regal Ring",ring2="Murky Ring",
 		back=ArtioDA,waist="Flume Belt",legs="Meg. Chausses +2",feet="Malignance boots"}
 
 	sets.defense.MKiller = set_combine(sets.defense.MDT, {body="Nukumi Gausape +1"})
