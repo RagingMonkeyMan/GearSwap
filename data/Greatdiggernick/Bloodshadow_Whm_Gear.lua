@@ -52,7 +52,7 @@ function init_gear_sets()
     -- Precast Sets
 
     -- Fast cast sets for spells
-    sets.precast.FC = { --82-84 FC before staff/subjob. 7 Quick magic. 
+    sets.precast.FC = {ring1="Kishar Ring", ring2="Weatherspoon Ring",  --82-84 FC before staff/subjob. 7 Quick magic. 
     main="Oranyan",
     sub="Giuoco Grip",
     ammo="Impatiens",

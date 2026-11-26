@@ -115,7 +115,7 @@ function init_gear_sets()
     
     sets.precast.FC = {
         head="Carmine Mask +1",neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Prolix Ring",
+        body="Dread Jupon",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Moonlight Cape",waist="Flume Belt +1",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
 
     sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket"})
@@ -410,7 +410,7 @@ function init_gear_sets()
         back=CamulusDA,waist="Reiki Yotai",legs="Chasseur's culottes +2",feet="Malignance boots"}
 		
     sets.engaged.DW.DT = {
-         head="Malignance chapeau",neck="Iskur gorget",ear1="Eabani earring",ear2="Dedition earring",
+        head="Malignance chapeau",neck="Iskur gorget",ear1="Eabani earring",ear2="Dedition earring",
         body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Epona's ring",
         back=CamulusDA,waist="Reiki Yotai",legs="Chasseur's culottes +2",feet="Malignance boots"}
 
@@ -420,7 +420,7 @@ function init_gear_sets()
         back=CamulusDA,waist="Sailfi Belt +1",legs="Chasseur's culottes +2",feet="Malignance boots"}
     
     sets.engaged.DW.Acc.DT = {
-         head="Malignance chapeau",neck="Sanctity necklace",ear1="Eabani earring",ear2="Telos earring",
+        head="Malignance chapeau",neck="Sanctity necklace",ear1="Eabani earring",ear2="Telos earring",
         body="Malignance tabard",hands="Adhemar wristbands +1",ring1="Murky Ring",ring2="Epona's ring",
         back=CamulusDA,waist="Reiki Yotai",legs="Chasseur's culottes +2",feet="Malignance boots"}
 end

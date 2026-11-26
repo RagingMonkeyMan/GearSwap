@@ -80,7 +80,7 @@ function init_gear_sets()
         body="Pinga Tunic", -- 13
 		hands="Agwu's gages", -- 6
 		ring1="Kishar Ring", -- 4
-		ring2="Weather. Ring", -- 5
+		ring2="Weatherspoon Ring", -- 5
         back="Fi Follet Cape +1", -- 10
 		waist="Embla Sash", -- 5
 		legs="Pinga Pants", -- 11
@@ -470,7 +470,7 @@ function init_gear_sets()
 		body="Pinga Tunic", -- 13
 		hands="Vanya cuffs", -- 8
 		ring1="Kishar Ring", -- 4
-		ring2="Prolix Ring", -- 5
+		ring2="Weatherspoon Ring", -- 5
 		back="Fi Follet Cape +1", -- 10
 		waist="Embla Sash", -- 5
 		legs="Pinga Pants", -- 11
@@ -537,7 +537,7 @@ function init_gear_sets()
 		body="Pinga Tunic", -- 13
 		hands="Vanya cuffs", -- 8
 		ring1="Kishar Ring", -- 4
-		ring2="Prolix Ring", -- 5
+		ring2="Weatherspoon Ring", -- 5
 		back="Fi Follet Cape +1", -- 10
 		waist="Embla Sash", -- 5
 		legs="Pinga Pants", -- 11
@@ -633,7 +633,7 @@ function init_gear_sets()
 		body="Pinga Tunic", -- 13
 		hands="Vanya cuffs", -- 8
 		ring1="Kishar Ring", -- 4
-		ring2="Prolix Ring", -- 5
+		ring2="Weatherspoon Ring", -- 5
 		back="Fi Follet Cape +1", -- 10
 		waist="Embla Sash", -- 5
 		legs="Pinga Pants", -- 11

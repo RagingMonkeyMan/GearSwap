@@ -75,12 +75,12 @@ function init_gear_sets()
 		   
 	-- Fast cast sets for spells
 
-	sets.precast.FC = {}
+	sets.precast.FC = {ring1="Weatherspoon Ring", ring2="Prolix Ring", }
 	
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {})
 
 	-- Midcast Sets
-	sets.midcast.FastRecast = {}
+	sets.midcast.FastRecast = {ring1="Weatherspoon Ring", ring2="Prolix Ring", }
 	
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {})
 				   

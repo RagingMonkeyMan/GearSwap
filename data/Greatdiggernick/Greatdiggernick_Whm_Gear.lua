@@ -35,6 +35,10 @@ function user_job_setup()
     select_default_macro_book()
 end
 
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 005')
+end
+
 -- Define sets and vars used by this job file.
 function init_gear_sets()
     --------------------------------------
@@ -49,22 +53,22 @@ function init_gear_sets()
     -- Precast Sets
 
     -- Fast cast sets for spells
-    sets.precast.FC = { 
-    main="C. Palug hammer",
-    ammo="Impatiens",
-    head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
-    body="Inyanga Jubbah +2",
-    hands="Gende. Gages +1",
-    legs="Ayanmo Cosciales +2",
-    feet="Regal Pumps +1",
-    neck="Voltsurge torque",
-    waist="Embla Sash",
-    right_ear="Malignance Earring",
-    left_ear="Loquac. Earring",
-    left_ring="Weatherspoon Ring",
-    right_ring="Kishar Ring",
-    back="Alaunus's Cape",
-}
+    sets.precast.FC = {ring1="Kishar Ring", ring2="Weatherspoon Ring",  
+        main="C. Palug hammer",
+        ammo="Impatiens",
+        head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
+        body="Inyanga Jubbah +2",
+        hands="Gende. Gages +1",
+        legs="Ayanmo Cosciales +2",
+        feet="Regal Pumps +1",
+        neck="Voltsurge torque",
+        waist="Embla Sash",
+        right_ear="Malignance Earring",
+        left_ear="Loquac. Earring",
+        left_ring="Weatherspoon Ring",
+        right_ring="Kishar Ring",
+        back="Alaunus's Cape",
+    }
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
 	
@@ -170,21 +174,21 @@ function init_gear_sets()
     -- sets.MagicBurst = {main=gear.grioavolr_nuke_staff,sub="Enki Strap",neck="Mizu. Kubikazari",ring1="Mujin Band",ring2="Locus Ring"}
 	
     sets.midcast.FastRecast = {
-    main="C. Palug hammer",
-    ammo="Impatiens",
-    head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
-    body="Inyanga Jubbah +2",
-    hands="Gende. Gages +1",
-    legs="Ayanmo Cosciales +2",
-    feet="Regal Pumps +1",
-    neck="Voltsurge torque",
-    waist="Witful Belt",
-    right_ear="Malignance Earring",
-    left_ear="Loquac. Earring",
-    left_ring="Weatherspoon Ring",
-    right_ring="Kishar Ring",
-    back="Alaunus's Cape",
-}
+        main="C. Palug hammer", --7
+        ammo="Impatiens",
+        head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --10
+        body="Inyanga Jubbah +2", --14
+        hands="Gende. Gages +1", --7
+        legs="Ayanmo Cosciales +2", --6
+        feet="Regal Pumps +1", --4
+        neck="Voltsurge torque", --4
+        waist="Witful Belt", --3
+        right_ear="Malignance Earring", --4
+        left_ear="Loquac. Earring", --2
+        left_ring="Weatherspoon Ring", --5
+        right_ring="Kishar Ring", --4
+        back="Alaunus's Cape", --10
+    }
 		
     -- Cure sets
 
@@ -629,60 +633,60 @@ function init_gear_sets()
 }
 		
 	sets.midcast.Dispel = {
-    main={ name="Contemplator +1", augments={'Path: A',}},
-    sub="Enki Strap",
-    ammo="Pemphredo Tathlum",
-	head=empty,
-    body={ name="Cohort Cloak +1", augments={'Path: A',}},
-    hands="Inyan. Dastanas +2",
-    legs="Chironic Hose",
-    feet="Theo. Duckbills +3",
-    neck="Erra Pendant",
-    waist="Luminary Sash",
-    left_ear="Digni. Earring",
-    right_ear="Malignance Earring",
-    ring1={name="Stikini Ring +1", bag="wardrobe1"},
-	ring2={name="Stikini Ring +1", bag="wardrobe2"},
-    back={ name="Aurist's Cape +1", augments={'Path: A',}},
-}
+        main="Bunzi's Rod",
+        sub="Ammurapi shield",
+        ammo="Pemphredo Tathlum",
+        head="Befouled Crown",
+        body="Theo. Bliaut +3",
+        hands="Inyan. Dastanas +2",
+        legs="Th. Pant. +3",
+        feet="Theo. Duckbills +3",
+        neck="Null loop",
+        waist="Null belt",
+        left_ear="Alabaster Earring",
+        right_ear="Malignance Earring",
+        ring1="Stikini Ring",
+        ring2="Kishar ring",
+        back={ name="Aurist's Cape +1", augments={'Path: A',}},
+    }
 		
 	sets.midcast.Dispelga = set_combine(sets.midcast.Dispel, {main="Daybreak",sub="Ammurapi Shield"})
 
 	sets.midcast['Enfeebling Magic'] = {
-    main={ name="Contemplator +1", augments={'Path: A',}},
-    sub="Enki Strap",
-    ammo="Pemphredo Tathlum",
-	head=empty,
-    body={ name="Cohort Cloak +1", augments={'Path: A',}},
-    hands="Inyan. Dastanas +2",
-    legs="Chironic Hose",
-    feet="Theo. Duckbills +3",
-    neck="Erra Pendant",
-    waist="Luminary Sash",
-    left_ear="Digni. Earring",
-    right_ear="Malignance Earring",
-    ring1="Stikini Ring",
-	ring2="Kishar ring",
-    back={ name="Aurist's Cape +1", augments={'Path: A',}},
-}
+        main="Bunzi's Rod",
+        sub="Ammurapi shield",
+        ammo="Pemphredo Tathlum",
+        head="Befouled Crown",
+        body="Theo. Bliaut +3",
+        hands="Inyan. Dastanas +2",
+        legs="Th. Pant. +3",
+        feet="Theo. Duckbills +3",
+        neck="Null loop",
+        waist="Null belt",
+        left_ear="Alabaster Earring",
+        right_ear="Malignance Earring",
+        ring1="Stikini Ring",
+        ring2="Kishar ring",
+        back={ name="Aurist's Cape +1", augments={'Path: A',}},
+    }
 
 	sets.midcast['Enfeebling Magic'].Resistant = {
-    main={ name="Contemplator +1", augments={'Path: A',}},
-    sub="Enki Strap",
-    ammo="Pemphredo Tathlum",
-	head=empty,
-    body={ name="Cohort Cloak +1", augments={'Path: A',}},
-    hands="Inyan. Dastanas +2",
-    legs="Chironic Hose",
-    feet="Theo. Duckbills +3",
-    neck="Erra Pendant",
-    waist="Luminary Sash",
-    left_ear="Digni. Earring",
-    right_ear="Malignance Earring",
-    ring1="Stikini Ring",
-	ring2="Kishar ring",
-    back={ name="Aurist's Cape +1", augments={'Path: A',}},
-}
+        main="Bunzi's Rod",
+        sub="Ammurapi shield",
+        ammo="Pemphredo Tathlum",
+        head="Befouled Crown",
+        body="Theo. Bliaut +3",
+        hands="Inyan. Dastanas +2",
+        legs="Th. Pant. +3",
+        feet="Theo. Duckbills +3",
+        neck="Null loop",
+        waist="Null belt",
+        left_ear="Alabaster Earring",
+        right_ear="Malignance Earring",
+        ring1="Stikini Ring",
+        ring2="Kishar ring",
+        back={ name="Aurist's Cape +1", augments={'Path: A',}},
+    }
 		
 	sets.midcast.Dia = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 	sets.midcast.Diaga = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)

@@ -73,27 +73,10 @@ function init_gear_sets()
 	BelenusSTRWSD = { name="Belenus's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 	BelenusMelee = { name="Belenus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}
 
-	AdhemarDEX = { name="Adhemar Wrist. +1", bag="Wardrobe 2", augments={'DEX+12','AGI+12','Accuracy+20',}}
-	AdhemarAGI = { name="Adhemar Wrist. +1", bag="Wardrobe", augments={'AGI+12','Rng.Acc.+20','Rng.Atk.+20',}}
 	--------------------------------------
 	-- Precast sets
 	--------------------------------------
-	HercHelmSTRTA = { name="Herculean Helm", augments={'Accuracy+22','"Triple Atk."+4'}}
-	HercHelmSTRWSD = { name="Herculean Helm", augments={'Accuracy+29','Weapon skill damage +4%','STR+5','Attack+5',}}
-	HercHelmMABWSD = { name="Herculean Helm", augments={'Mag. Acc.+20 "Mag.Atk.Bns."+20','Weapon skill damage +4%','Mag. Acc.+4','"Mag.Atk.Bns."+3',}}
-	HercGlovesMABWS = { name="Herculean Gloves", augments={'"Mag.Atk.Bns."+24','Weapon skill damage +4%',}}
-	HercGlovesSTRTA = { name="Herculean Gloves", augments={'Rng.Atk.+10','"Triple Atk."+4','STR+3','Attack+11',}}
-	HercPantsSTRWSD = { name="Herculean Trousers", augments={'Attack+16','Weapon skill damage +3%','STR+10','Accuracy+7',}}
-	HercPantsMAB = { name="Herculean Trousers", augments={'Mag. Acc.+12 "Mag.Atk.Bns."+12','Weapon skill damage +4%','INT+2','Mag. Acc.+2','"Mag.Atk.Bns."+14',}}
-	HercPantsRAWS = { name="Herculean Trousers", augments={'Rng.Acc.+13','Weapon skill damage +5%','AGI+7',}}
-    HercBootsSTRTA = { name="Herculean Boots", augments={'Accuracy+22','"Triple Atk."+4','STR+2','Attack+1',}}
-	HercBootsMABWSD = { name="Herculean Boots", augments={'"Mag.Atk.Bns."+24','Weapon skill damage +3%','MND+6',}}
-	HercBootsRattWSD = { name="Herculean Boots", augments={'Rng.Acc.+25 Rng.Atk.+25','Weapon skill damage +4%',}}
-	HercBootsWSD = { name="Herculean Boots", augments={'Attack+9','Weapon skill damage +4%','Accuracy+10',}}
-	HercBodyQuad = { name="Herculean Vest", augments={'Pet: Mag. Acc.+26','Pet: INT+2','Quadruple Attack +3','Mag. Acc.+18 "Mag.Atk.Bns."+18',}}
-    HercBodyRattWSD = { name="Herculean Vest", augments={'Rng.Acc.+12 Rng.Atk.+12','Weapon skill damage +4%','DEX+3','Rng.Acc.+1',}}
-	HercBodyWSD = { name="Herculean Vest", augments={'Weapon skill damage +4%','AGI+3','Accuracy+10',}}
-	
+		
 	sets.Obi = {waist="Hachirin-no-obi"}
 	
 	sets.TreasureHunter = {head="Wh. Rarab Cap +1",body="Volte Jupon",waist="Chaac Belt"}
@@ -111,7 +94,7 @@ function init_gear_sets()
 
     sets.precast.FC = {
         head="Carmine Mask +1",neck="Baetyl Pendant",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Lebeche Ring",
+        body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring",
         back="Moonlight Cape",waist="Flume belt +1",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
 
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket"})
@@ -332,7 +315,7 @@ function init_gear_sets()
 	
     sets.midcast.FastRecast = {
         head="Carmine Mask +1",neck="Voltsurge torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Leyline Gloves",ring1="Weather. Ring",ring2="Prolix Ring",
+        body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring",
         back="Moonlight Cape",waist="Flume belt +1",legs="Rawhide Trousers",feet="Carmine Greaves +1"}
 		
 	-- Ranged sets
@@ -367,16 +350,6 @@ function init_gear_sets()
         body="Nisroch Jerkin",hands="Mummu wrists +2",ring1="Ephramad's ring",ring2="Ilabrat ring",
         back=BelenusCrit,waist="Kwahu Kachina belt +1",legs="Amini Bragues +3",feet="Oshosi leggings +1"} 
 
-	-- sets.buff["Double Shot"]["Armageddon"].AM = { -- THIS SET DOESN"T WORK, SYNTAX IS WRONG
-	-- 	head="Meghanada visor +2",neck="Scout's gorget +2",ear1="Odr earring",ear2="Amini Earring +1",
-    --     body="Arcadian Jerkin +3",hands="Oshosi gloves +1",ring1="Ephramad's ring",ring2="Ilabrat ring", 
-    --     back=BelenusCrit,waist="Kwahu Kachina belt +1",legs="Oshosi trousers +1",feet="Oshosi leggings +1"} 
-
-	-- sets.midcast.RA["Armageddon"].TrueShot.AM = {
-	-- 	head="Meghanada visor +2",neck="Scout's gorget +2",ear1="Odr earring",ear2="Amini Earring +1",
-	-- 	body="Nisroch Jerkin",hands="Mummu wrists +2",ring1="Ephramad's ring",ring2="Ilabrat ring",
-	-- 	back=BelenusCrit,waist="Tellen belt",legs="Amini Bragues +3",feet="Ikenga Clogs"} 
-
 	sets.midcast.RA.Crit = {
 		head="Meghanada visor +2",neck="Scout's gorget +2",ear1="Odr earring",ear2="Amini Earring +1",
         body="Nisroch Jerkin",hands="Mummu wrists +2",ring1="Begrudging Ring",ring2="Ilabrat ring", 
@@ -393,21 +366,13 @@ function init_gear_sets()
         body="Nisroch Jerkin",hands="Mummu wrists +2",ring1="Ephramad's ring",ring2="Ilabrat ring",
         back=BelenusCrit,waist="Kwahu Kachina belt +1",legs="Amini Bragues +3",feet="Oshosi leggings +1"} 
 
-	-- sets.buff["Double Shot"]["Gandiva"].AM = { -- THIS SET DOESN"T WORK, SYNTAX IS WRONG
-	-- 	head="Meghanada visor +2",neck="Scout's gorget +2",ear1="Odr earring",ear2="Amini Earring +1",
-	-- 	body="Arcadian Jerkin +3",hands="Oshosi gloves +1",ring1="Ephramad's ring",ring2="Ilabrat ring", 
-	-- 	back=BelenusCrit,waist="Kwahu Kachina belt +1",legs="Oshosi trousers +1",feet="Oshosi leggings +1"}
-
-	-- sets.midcast.RA["Gandiva"].TrueShot.AM = {
-	-- 	head="Meghanada visor +2",neck="Scout's gorget +2",ear1="Odr earring",ear2="Amini Earring +1",
-	-- 	body="Nisroch Jerkin",hands="Mummu wrists +2",ring1="Ephramad's ring",ring2="Ilabrat ring",
-	-- 	back=BelenusCrit,waist="Tellen belt",legs="Amini Bragues +3",feet="Ikenga Clogs"}
 		
 	--These sets will overlay based on accuracy level, regardless of other options.
 	sets.buff.Camouflage = {body="Orion Jerkin +3"}
 	sets.buff.Camouflage.Acc = {body="Orion Jerkin +3"}
 	sets.buff['Double Shot'] = {body="Arcadian jerkin +3", hands="Oshosi gloves +1", legs="Oshosi trousers +1", feet="Oshosi leggings +1"}
 	sets.buff['Double Shot'].Acc = {body="Arcadian jerkin +3", hands="Oshosi gloves +1", legs="Oshosi trousers +1", feet="Oshosi leggings +1"}
+	sets.TrueShot = {body="Nisroch Jerkin",waist="Tellen belt",legs="Amini Bragues +3",feet="Ikenga's Clogs"}
 	sets.buff.Barrage = {hands="Orion Bracers +3"}
 	
 	sets.Self_Healing = {}

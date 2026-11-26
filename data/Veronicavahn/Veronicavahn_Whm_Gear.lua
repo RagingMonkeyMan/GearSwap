@@ -57,7 +57,7 @@ function init_gear_sets()
     -- Fast cast sets for spells
     sets.precast.FC = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap",ammo="Incantor Stone",
 		head="Vanya Hood",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Inyanga Jubbah +2",hands=ChironicGlovesFC,ring1="Kishar Ring",ring2="Lebeche Ring",
+		body="Inyanga Jubbah +2",hands=ChironicGlovesFC,ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=AlaunusFC,waist="Witful Belt",legs="Lengo Pants",feet="Regal Pumps +1"}
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
@@ -126,7 +126,7 @@ function init_gear_sets()
 	
 	sets.ConserveMP = {main=gear.grioavolr_fc_staff,sub="Umbra Strap",ammo="Hasty Pinion +1",
 		head="Vanya Hood",neck="Cleric's torque +2",ear1="Gifted Earring",ear2="Gwati Earring",
-		body="Vedic Coat",hands="Fanatic Gloves",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Vedic Coat",hands="Fanatic Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back="Solemnity Cape",waist="Austerity Belt +1",legs="Vanya Slops",feet="Medium's Sabots"}
 		
 	sets.midcast.Teleport = sets.ConserveMP
@@ -136,7 +136,7 @@ function init_gear_sets()
 	
     sets.midcast.FastRecast = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap",ammo="Hasty Pinion +1",
 		head="Vanya Hood",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Inyanga Jubbah +2",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Inyanga Jubbah +2",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=AlaunusFC,waist="Witful Belt",legs="Lengo Pants",feet="Regal Pumps +1"}
 		
     -- Cure sets
@@ -234,7 +234,7 @@ function init_gear_sets()
 
 	sets.midcast.StatusRemoval = {main=gear.grioavolr_fc_staff,sub="Clemency Grip",ammo="Hasty Pinion +1",
 		head="Ebers Cap +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Malignance Earring",
-		body="Inyanga Jubbah +2",hands="Fanatic Gloves",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Inyanga Jubbah +2",hands="Fanatic Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=AlaunusFC,waist="Witful Belt",legs="Ebers Pant. +1",feet="Regal Pumps +1"}
 		
 	sets.midcast.Erase = set_combine(sets.midcast.StatusRemoval, {neck="Cleric's Torque"})

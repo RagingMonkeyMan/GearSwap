@@ -110,13 +110,13 @@ function init_gear_sets()
 
 	sets.precast.FC = {ammo="Impatiens",
 		neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Jumalik Mail",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Prolix Ring"}
+		body="Jumalik Mail",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring"}
 		sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
 
 		-- MIDCAST SETS
 	sets.midcast.FastRecast = {
 		head="Gavialis Helm",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
+		body="Sacro Breastplate",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring",
 		back="Moonlight Cape",waist="Klouskap Sash",legs="Tali'ah Sera. +2",feet="Tot. Gaiters +1"}
 
 	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})

@@ -89,7 +89,7 @@ function init_gear_sets()
 
 	sets.precast.FC = {ammo="Impatiens",
 		head="Malignance Chapeau",neck="Orunmila's Torque",ear1="Etiolation Earring ",ear2="Loquac. Earring",
-		body="Malignance Tabard",hands="Leyline Gloves",ring1="Lebeche Ring",ring2="Kishar Ring",
+		body="Malignance Tabard",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket"})

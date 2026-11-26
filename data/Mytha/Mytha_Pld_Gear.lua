@@ -130,7 +130,7 @@ function init_gear_sets()
 	
 	sets.precast.FC = {main="Sakpata's Sword",sub="Chanter's Shield",ammo="Impatiens",
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Rev. Surcoat +3",hands="Leyline Gloves",ring1="Lebeche Ring",ring2="Kishar Ring",
+		body="Rev. Surcoat +3",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=gear.fastcast_jse_back,waist="Creed Baudrier",legs=gear.odyssean_fc_legs,feet="Odyssean Greaves"}
 		
 	sets.precast.FC.DT = {main="Sakpata's Sword",ammo="Impatiens",

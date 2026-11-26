@@ -110,7 +110,7 @@ function init_gear_sets()
 	-- Fast cast sets for spells
 	sets.precast.FC = {main="Sakpata's Sword",sub="Sacro Bulwark",ammo="Impatiens",
 		head="Atrophy Chapeau +3",neck="Loricate Torque +1",ear1="Malignance Earring",ear2="Leth. Earring +1",
-		body="Viti. Tabard +3",hands="Nyame Gauntlets",ring1="Murky Ring",ring2="Lebeche Ring",
+		body="Viti. Tabard +3",hands="Nyame Gauntlets",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back="Perimede Cape",waist="Witful Belt",legs="Nyame Flanchard",feet="Nyame Sollerets"}
 		
 	sets.precast.FC.DT = {main="Sakpata's Sword",sub="Sacro Bulwark",ammo="Impatiens",
@@ -395,7 +395,7 @@ function init_gear_sets()
 		
     sets.midcast['Elemental Magic'].Proc = {main="Gleti's Knife",sub="Forfend +1",range=empty,ammo="Regal Gem",
         head="Malignance Chapeau",neck="Null Loop",ear1="Snotra Earring",ear2="Leth. Earring +1",
-        body="Malignance Tabard",hands="Malignance Gloves",ring1="Kishar Ring",ring2="Prolix Ring",
+        body="Malignance Tabard",hands="Malignance Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Null Shawl",waist="Null Belt",legs="Malignance Tights",feet="Malignance Boots"}
 		
 	sets.midcast['Elemental Magic'].HighTierNuke = {main="Bunzi's Rod",sub="Ammurapi Shield",ammo="Ghastly Tathlum +1",

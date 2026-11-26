@@ -69,7 +69,7 @@ function init_gear_sets()
 	
 	sets.precast.FC = {
 		head="Carmine mask +1",neck="Voltsurge Torque",ear1="Loquacious Earring",ear2="Malignance Earring",
-		body="Viti. Tabard +3",hands="Gendewitha Gages",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Viti. Tabard +3",hands="Gendewitha Gages",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=CapeFC,waist="Witful Belt",legs="Chironic hose",feet="Carmine greaves +1"}
 		
 	sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Twilight Cloak"})
@@ -142,7 +142,7 @@ function init_gear_sets()
 	
 	sets.midcast.FastRecast = {
 		head="Carmine mask +1",neck="Voltsurge Torque",ear1="Loquacious Earring",ear2="Malignance Earring",
-		body="Viti. Tabard +3",hands="Gendewitha Gages",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Viti. Tabard +3",hands="Gendewitha Gages",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=CapeFC,waist="Witful Belt",legs="Chironic hose",feet="Carmine greaves +1"
 	}
 
@@ -267,7 +267,7 @@ function init_gear_sets()
 
     sets.midcast['Elemental Magic'].Proc = {main=empty,sub=empty,range=empty,ammo="Impatiens",
         head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Zendik Robe",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
+        body="Zendik Robe",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
 		
 	sets.midcast['Elemental Magic'].HighTierNuke = set_combine(sets.midcast['Elemental Magic'], {ammo="Pemphredo Tathlum",ear1="Regal Earring",ring1="Stikini Ring"})

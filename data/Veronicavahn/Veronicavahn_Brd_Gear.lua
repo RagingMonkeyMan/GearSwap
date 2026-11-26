@@ -31,6 +31,10 @@ function user_job_setup()
 	select_default_macro_book()
 end
 
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 003')
+end
+
 function init_gear_sets()
 
 	--------------------------------------
@@ -67,7 +71,7 @@ function init_gear_sets()
 	-- Fast cast sets for spells
 	sets.precast.FC = {
 		head="Bunzi's Hat",neck="Voltsurge Torque",ear1="Aoidos' earring",ear2="Loquac. Earring",
-		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Inyanga Jubbah +2",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=IntarabusFC,waist="Witful Belt",legs="Aya. Cosciales +2",feet="Fili Cothurnes +2"}
 
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {right_ear="Mendi. Earring",feet="Vanya Clogs"})
@@ -103,7 +107,7 @@ function init_gear_sets()
 	-- Precast sets to enhance JAs
 	
 	sets.precast.JA.Nightingale = {feet="Bihu Slippers"}
-	sets.precast.JA.Troubadour = {body="Bihu Jstcorps +3"}
+	sets.precast.JA.Troubadour = {body="Bihu Justaucorps +4"}
 	sets.precast.JA['Soul Voice'] = {legs="Bihu Cannions +1"}
 
 	-- Waltz set (chr and vit)
@@ -114,7 +118,7 @@ function init_gear_sets()
 	sets.precast.WS = {
 		range=WSLinos,
 		head="Nyame Helm",
-		body="Bihu Justaucorps +3",
+		body="Bihu Justaucorps +4",
 		hands="Nyame Gauntlets",
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
@@ -137,7 +141,7 @@ function init_gear_sets()
 		range=WSLinos,
 		ammo=empty,
 		head={ name="Lustratio Cap +1", augments={'Accuracy+20','DEX+8','Crit. hit rate+3%',}},
-		body="Ayanmo Corazza +2",
+		body="Bihu Justaucorps +4",
 		hands={ name="Lustr. Mittens +1", augments={'Accuracy+20','DEX+8','Crit. hit rate+3%',}},
 		legs={ name="Lustr. Subligar +1", augments={'Accuracy+20','DEX+8','Crit. hit rate+3%',}},
 		feet={ name="Lustra. Leggings +1", augments={'Accuracy+20','DEX+8','Crit. hit rate+3%',}},
@@ -153,7 +157,7 @@ function init_gear_sets()
 	sets.precast.WS["Rudra's Storm"] = {
 		range=WSLinos,
 		head="Nyame Helm",
-		body="Bihu Justaucorps +3",
+		body="Bihu Justaucorps +4",
 		hands="Nyame Gauntlets",
 		legs="Lustratio Subligar +1",
 		feet="Lustratio Leggings +1",
@@ -169,7 +173,7 @@ function init_gear_sets()
 	sets.precast.WS["Evisceration"] = {
 		range=WSLinos,
 		head="Ayanmo Zucchetto +2",
-		body="Bihu Justaucorps +3",
+		body="Bihu Justaucorps +4",
 		hands="Ayanmo Manopolas +2",
 		legs="Ayanmo Cosciales +2",
 		feet="Ayanmo Gambieras +2",
@@ -201,7 +205,7 @@ function init_gear_sets()
 	sets.precast.WS["Savage Blade"] = {
 		range=WSLinos,
 		head="Nyame Helm",
-		body="Bihu Justaucorps +3",
+		body="Bihu Justaucorps +4",
 		hands="Nyame Gauntlets",
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
@@ -272,7 +276,7 @@ function init_gear_sets()
 	-- Song-specific recast reduction
 	sets.midcast.SongRecast = {main="Carnwenhan",sub="Ammurapi Shield",range="Daurdabla",ammo=empty,
 		head="Nahtirah Hat",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Inyanga Jubbah +2",hands="Gendewitha Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
+		body="Inyanga Jubbah +2",hands="Gendewitha Gages +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=IntarabusFC,waist="Witful Belt",legs="Fili Rhingrave +2",feet="Aya. Gambieras +2"}
 
 	-- Cast spell with normal gear, except using Daurdabla instead

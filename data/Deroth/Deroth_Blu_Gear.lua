@@ -101,8 +101,8 @@ function init_gear_sets()
 		ear2="Loquac. Earring", -- 2				-- 2
 		body="Pinga Tunic", -- 13 Mintan +1 (14)		-- 9
 		hands="Leyline Gloves", -- 8				-- 6
-		ring1="Weatherspoon ring", -- 5 				-- 4
-		ring2="Gelatinous ring +1",	-- 0			-- 0
+		ring1="Kishar Ring", -- 5 				-- 4
+		ring2="Weatherspoon Ring",	-- 0			-- 0
 		back="Fi follet Cape +1", -- 10     			-- 0
 		waist="Austerity Belt +1", -- 0				-- 2 (witful)	
 		legs="Aya. Cosciales +2", -- 6				-- 7 (psycloth lappas path D)

@@ -9,7 +9,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Normal','Savage','MagicWeapons','ProcDagger','ProcStaff','ProcClub','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana')
+	state.Weapons:options('Normal','Savage','MagicWeapons','ProcDagger','ProcClub','ProcSword','ProcKatana','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcStaff')
 
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','Suppa','DWMax','Parry'}
@@ -21,7 +21,7 @@ function user_job_setup()
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind @f10 gs c toggle AmbushMode')
 	send_command('bind ^backspace input /item "Thief\'s Tools" <t>')
-	send_command('bind ^p gs c weapons ProcDagger;gs c set WeaponSkillMode proc;')
+	send_command('bind !q gs c weapons ProcDagger;gs c set WeaponSkillMode proc;')
 	send_command('bind !f7 gs c set weapons Normal')
 	send_command('bind !backspace input /ja "Hide" <me>')
 	send_command('bind ^q gs c weapons Normal;gs c set WeaponSkillMode match') --Requips weapons and gear.
@@ -83,14 +83,15 @@ function init_gear_sets()
 	sets.weapons.SwordThrowing = {main="Naegling",sub="Blurred Knife +1",range="Raider's Bmrng.",ammo=empty}
 	sets.weapons.Bow = {main="Aeneas",sub="Kustawi +1",range="Kaja Bow",ammo="Chapuli Arrow"}
 	
-	sets.weapons.ProcStaff = {main="Light Staff"}
 	sets.weapons.ProcDagger = {main="Wind Knife",sub="Wind Knife"}
-	sets.weapons.ProcClub = {main="Octave club",sub="Wind knife"}
 	sets.weapons.ProcSword = {main="Nihility",sub="Wind Knife"}
 	sets.weapons.ProcGreatSword = {main="Ophidian Sword",sub=empty}
 	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
 	sets.weapons.ProcPolearm = {main="Tzee Xicu's Blade",sub=empty}
 	sets.weapons.ProcGreatKatana = {main="Mutsunokami +1",sub=empty}
+	sets.weapons.ProcKatana = {main="Kunai",sub="Wind Knife"}
+	sets.weapons.ProcClub = {main="Octave Club",sub="Wind Knife"}
+	sets.weapons.ProcStaff = {main="Lamia Staff",sub=empty}
 	
     -- Actions we want to use to tag TH.
     sets.precast.Step = {ammo="C. Palug Stone",
@@ -140,7 +141,7 @@ function init_gear_sets()
     -- Fast cast sets for spells
     sets.precast.FC = {ammo="Impatiens",
 		head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-		body="Dread Jupon",hands="Leyline Gloves",ring1="Lebeche Ring",ring2="Prolix Ring",
+		body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring",
 		legs="Rawhide Trousers"}
 
     sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads",body="Passion Jacket"})
@@ -248,7 +249,7 @@ function init_gear_sets()
 
     sets.midcast.FastRecast = {
         head=gear.herculean_fc_head,neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-        body="Dread Jupon",hands="Leyline Gloves",ring1="Murky Ring",ring2="Prolix Ring",
+        body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Prolix Ring",
         back="Moonlight Cape",waist="Tempus Fugit",legs="Rawhide Trousers",feet="Malignance Boots"}
 
     -- Specific spells

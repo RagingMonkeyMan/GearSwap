@@ -8,4 +8,3 @@ sets.TreasureHunter = {head="Wh. Rarab Cap +1",waist="Chaac Belt",ammo="Perfect 
 
 sets.precast.Item['Hallowed Water'] = {}
 sets.precast.Item['Holy Water'] = {}
-

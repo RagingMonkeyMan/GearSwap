@@ -52,7 +52,7 @@ function init_gear_sets()
 	-- Fast cast sets for spells
 	sets.precast.FC = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Impatiens",
 		head=gear.merlinic_fc_head,neck="Orunmila's Torque",ear1="Malignance Earring",ear2="Loquac. Earring",
-		body="Volte Doublet",hands="Telchine Gloves",ring1="Kishar Ring",ring2="Lebeche Ring",
+		body="Volte Doublet",hands="Telchine Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back="Perimede Cape",waist="Witful Belt",legs="Artsieq Hose",feet=gear.merlinic_fc_feet}
 		
 	sets.precast.FC.DT = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Impatiens",

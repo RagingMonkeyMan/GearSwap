@@ -64,7 +64,7 @@ function init_gear_sets()
 
 	sets.precast.FC = {
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Malignance Earring",
-		body="Fallen's Cuirass +3",hands="Leyline Gloves",ring1="Prolix ring",ring2="Kishar Ring",
+		body="Fallen's Cuirass +3",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back=Ankou.FC,waist="Flume Belt +1",legs="Enif Cosciales",feet="Odyssean Greaves"}
 
 	sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty,body="Twilight Cloak"})
@@ -72,7 +72,7 @@ function init_gear_sets()
 	-- Midcast Sets
 	sets.midcast.FastRecast = {
 		head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Malignance Earring",
-		body="Fallen's Cuirass +3",hands="Leyline Gloves",ring1="Prolix ring",ring2="Kishar Ring",
+		body="Fallen's Cuirass +3",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Kishar Ring",
 		back=Ankou.FC,waist="Tempus Fugit +1",legs="Enif Cosciales",feet="Odyssean Greaves"}
                    
 	-- Specific spells

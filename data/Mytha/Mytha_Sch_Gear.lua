@@ -51,7 +51,7 @@ function init_gear_sets()
     -- Fast cast sets for spells
     sets.precast.FC = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Impatiens",
         head=gear.merlinic_fc_head,neck="Orunmila's Torque",ear1="Malignance Earring",ear2="Loquac. Earring",
-        body="Pinga Tunic",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Lebeche Ring",
+        body="Pinga Tunic",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Perimede Cape",waist="Witful Belt",legs="Pinga Pants",feet=gear.merlinic_fc_feet}
 		
     sets.precast.FC.DT = {main=gear.grioavolr_fc_staff,sub="Clerisy Strap +1",ammo="Impatiens",
@@ -246,7 +246,7 @@ function init_gear_sets()
 		
 	sets.midcast.Helix.Proc = {main=empty, sub=empty,ammo="Impatiens",
         head="Vanya Hood",neck="Orunmila's Torque",ear1="Etiolation Earring",ear2="Loquac. Earring",
-        body="Volte Doublet",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
+        body="Volte Doublet",hands="Gende. Gages +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Psycloth Lappas",feet="Regal Pumps +1"}
 
 	sets.midcast.Impact = {main="Bunzi's Rod",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",

@@ -4,13 +4,13 @@ function user_job_setup()
 	state.OffenseMode:options('Normal','Acc')
     state.HybridMode:options('Turtle','MEVA','ShieldTank', 'Normal')
     state.WeaponskillMode:options('Match','Normal', 'Acc','Proc')
-    state.CastingMode:options('Normal','SIRD')
+    state.CastingMode:options('SIRD','Normal')
 	state.Passive:options('None','AbsorbMP')
     state.PhysicalDefenseMode:options('PDT','ShieldTank')
     state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA','Death','Charm')
 	state.IdleMode:options('Normal','ShieldTank','KiteTank','Refresh','Reraise')
-	state.Weapons:options('Ochain','NaeglingOchain','Aegis','NaeglingAegis','Duban','NaeglingDuban','NaeglingBlurred',"Caladbolg","MaceOchain","MaceAegis","Aeolian","DualWeapons","DualAeolian","None")
+	state.Weapons:options('Aegis','NaeglingAegis','Duban','NaeglingDuban','Ochain','NaeglingOchain','NaeglingBlurred',"Caladbolg","MaceOchain","MaceAegis","Aeolian","DualWeapons","DualAeolian","None")
 	state.AutoEmblem = M(false, 'Auto Emblem')
 	state.UnlockWeapons = M(true, 'Unlock Weapons')
 	
@@ -18,11 +18,11 @@ function user_job_setup()
 
 	-- Additional local binds
 
-	-- send_command('bind ^a gs c weapons Aegis')
-	-- send_command('bind ^o gs c weapons Ochain')
-	-- send_command('bind ^d gs c weapons Duban')
-	-- send_command('bind ^m gs c weapons MaceOchain')
-	-- send_command('bind ^c gs c weapons Caladbolg')
+	send_command('bind ^a gs c weapons Aegis')
+	send_command('bind ^o gs c weapons Ochain')
+	send_command('bind ^d gs c weapons Duban')
+	send_command('bind ^m gs c weapons MaceOchain')
+	send_command('bind ^c gs c weapons Caladbolg')
 
 	send_command('bind !` gs c SubJobEnmity')
 	send_command('bind ^backspace input /ja "Shield Bash" <t>')
@@ -39,10 +39,14 @@ function user_job_setup()
 	send_command('bind @f8 gs c toggle AutoTankMode')
 	send_command('bind @f10 gs c toggle TankAutoDefense')
 	send_command('bind ^@!` gs c cycle SkillchainMode')
-	send_command('bind ^f7 gs c weapons Ochain;gs c update')
+	send_command('bind ^f7 gs c weapons Aegis;gs c update')
 	
     select_default_macro_book()
     update_defense_mode()
+end
+
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 006')
 end
 
 function init_gear_sets()
@@ -136,7 +140,7 @@ function init_gear_sets()
 		
     sets.precast.FC = {ammo="Sapience Orb",
         head="Carmine Mask +1",neck="Unmoving Collar +1",ear1="Alabaster Earring",ear2="Tuisto Earring",
-        body="Rev. Surcoat +3",hands="Leyline gloves",ring1="Gelatinous Ring +1",ring2="Weatherspoon Ring",
+        body="Rev. Surcoat +3",hands="Leyline gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back=RudianosFastcast,waist="Plat. Mog. Belt",legs="Sakpata's Cuisses",feet=OdysseanBootsFC}
 		
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})

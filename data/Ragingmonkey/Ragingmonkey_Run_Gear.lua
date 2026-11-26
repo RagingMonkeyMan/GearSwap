@@ -168,12 +168,12 @@ function init_gear_sets()
 	-- Fast cast sets for spells
     sets.precast.FC = {ammo="Sapience Orb",
             head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-            body="Dread Jupon",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+            body="Dread Jupon",hands="Leyline Gloves",ring1="Kishar Ring",ring2="Weatherspoon Ring",
             back="Moonlight Cape",waist="Audumbla Sash",legs="Ayanmo Cosciales +2",feet="Carmine Greaves +1"}
 			
 	sets.precast.FC.DT = {ammo="Sapience Orb",
             head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-            body="Futhark coat +3",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+            body="Futhark coat +3",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Kishar Ring",
             back="Moonlight Cape",waist="Audumbla Sash",legs="Ayanmo Cosciales +2",feet="Carmine Greaves +1"}
 		
 	sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash", legs="Futhark Trousers +1"})
@@ -243,17 +243,17 @@ function init_gear_sets()
 	
     sets.midcast.FastRecast = {ammo="Sapience Orb",
             head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-            body="Dread Jupon",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+            body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Kishar Ring",
             back="Moonlight Cape",waist="Audumbla Sash",legs="Ayanmo Cosciales +2",feet="Carmine Greaves +1"}
 			
 	sets.midcast.FastRecast.DT = {ammo="Sapience Orb",
             head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-            body="Dread Jupon",hands="Leyline Gloves",ring1="Prolix Ring",ring2="Kishar Ring",
+            body="Dread Jupon",hands="Leyline Gloves",ring1="Weatherspoon Ring",ring2="Kishar Ring",
             back="Moonlight Cape",waist="Audumbla Sash",legs="Ayanmo Cosciales +2",feet="Carmine Greaves +1"}
 		
 	sets.midcast.FastRecast.SIRD = {ammo="Sapience Orb",
             head="Carmine Mask +1",neck="Voltsurge Torque",ear1="Enchntr. Earring +1",ear2="Loquac. Earring",
-            body="Dread Jupon",hands="Regal Gauntlets",ring1="Prolix Ring",ring2="Kishar Ring",
+            body="Dread Jupon",hands="Regal Gauntlets",ring1="Weatherspoon Ring",ring2="Kishar Ring",
             back="Moonlight Cape",waist="Audumbla Sash",legs="Ayanmo Cosciales +2",feet="Carmine Greaves +1"}
 
     sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast,{

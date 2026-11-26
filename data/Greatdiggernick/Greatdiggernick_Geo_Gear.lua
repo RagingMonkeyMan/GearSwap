@@ -32,6 +32,10 @@ function user_job_setup()
 	select_default_macro_book()
 end
 
+function user_job_lockstyle()
+	windower.chat.input('/lockstyleset 005')
+end
+
 function init_gear_sets()
 	
 	--------------------------------------
@@ -41,8 +45,8 @@ function init_gear_sets()
 	-- Precast sets to enhance JAs
 	sets.precast.JA.Bolster = {body="Bagua Tunic +1"}
 	sets.precast.JA['Life Cycle'] = {body="Geo. Tunic +1",back=GeoRegenCape}
-	sets.precast.JA['Radial Arcana'] = {feet="Bagua sandals +3"}
-	sets.precast.JA['Mending Halation'] = {legs="Bagua Pants +3"}
+	sets.precast.JA['Radial Arcana'] = {feet="Bagua Sandals +4"}
+	sets.precast.JA['Mending Halation'] = {legs="Bagua Pants +4"}
 	sets.precast.JA['Full Circle'] = {head="Azimuth Hood +3",hands="Bagua Mitaines +1"}
 	
 	-- Indi Duration in slots that would normally have skill here to make entrust more efficient.
@@ -55,7 +59,7 @@ function init_gear_sets()
 
 	sets.precast.FC = {main="C. Palug hammer",sub=None,ammo="Impatiens",
 		head="Vanya hood",neck="Voltsurge Torque",ear1="Malignance Earring",ear2="Loquacious Earring",
-		body="Agwu's Robe",hands="Agwu's gages",ring1="Weatherspoon Ring",ring2="Kishar Ring",
+		body="Agwu's Robe",hands="Agwu's gages",ring1="Kishar Ring",ring2="Weatherspoon Ring",
 		back="Lifestream Cape",waist="Embla sash",legs="Agwu's Slops",feet="Regal pumps +1"}
 
 	sets.precast.FC.Geomancy = set_combine(sets.precast.FC, {range="Dunna",ammo=empty})
@@ -98,11 +102,11 @@ function init_gear_sets()
 	sets.midcast.Geomancy = {main="Idris",sub="Genmei Shield",range="Dunna",
 		head="Azimuth Hood +3",neck="Bagua Charm +2",ear1="Gna Earring",ear2="Fulla Earring",
 		body="Bagua Tunic +1",hands="Geo. Mitaines +4",ring1="Stikini Ring",ring2="Stikini Ring",
-		back="Lifestream Cape",waist="Austerity Belt +1",legs="Bagua Pants +3",feet="Bagua sandals +3"}
+		back="Lifestream Cape",waist="Austerity Belt +1",legs="Bagua Pants +4",feet="Bagua Sandals +4"}
 
 
 	--Extra Indi duration as long as you can keep your 900 skill cap.
-	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {back=GeoRegenCape,legs="Bagua Pants +3",feet="Azimuth Gaiters +3"})
+	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {back=GeoRegenCape,legs="Bagua Pants +4",feet="Azimuth Gaiters +3"})
 		
     sets.midcast.Cure = {main=gear.gada_healing_club,sub="Sors Shield",ammo="Hasty Pinion +1",
         head="Vanya hood",neck="Incanter's Torque",ear1="Gifted Earring",ear2="Etiolation Earring",
@@ -140,7 +144,7 @@ function init_gear_sets()
 		
     sets.midcast['Elemental Magic'].Proc = {main=empty,sub=empty,ammo="Impatiens",
         head="Nahtirah Hat",neck="Loricate Torque +1",ear1="Gifted Earring",ear2="Loquac. Earring",
-        body="Seidr Cotehardie",hands="Hagondes Cuffs +1",ring1="Kishar Ring",ring2="Prolix Ring",
+        body="Seidr Cotehardie",hands="Hagondes Cuffs +1",ring1="Kishar Ring",ring2="Weatherspoon Ring",
         back="Swith Cape +1",waist="Witful Belt",legs="Assid. Pants +1",feet="Regal Pumps +1"}
 		
     sets.midcast['Elemental Magic'].Fodder = {main="Bunzi's Rod",sub="Ammurapi Shield",ammo="Ghastly Tathlum +1", -- Ghastly +1 aug 
@@ -209,15 +213,15 @@ function init_gear_sets()
 
 	sets.midcast.Dispelga = set_combine(sets.midcast.Dispel, {main="Daybreak",sub="Ammurapi Shield"})
 		
-	sets.midcast['Enfeebling Magic'] = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
+	sets.midcast['Enfeebling Magic'] = {main="Bunzi's rod",sub="Ammurapi Shield",ammo="Pemphredo Tathlum", -- Idris
 		head="Befouled Crown",neck="Null loop",ear1="Digni. Earring",ear2="Malignance Earring",
 		body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Kishar Ring",ring2="Stikini Ring",
-		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua sandals +3"}
+		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua Sandals +4"}
 		
-	sets.midcast['Enfeebling Magic'].Resistant = {main="Daybreak",sub="Ammurapi Shield",ammo="Pemphredo Tathlum",
+	sets.midcast['Enfeebling Magic'].Resistant = {main="Bunzi's rod",sub="Ammurapi Shield",ammo="Pemphredo Tathlum", -- Idris
 		head="Befouled Crown",neck="Null loop",ear1="Digni. Earring",ear2="Malignance Earring",
 		body="Azimuth Coat +3",hands="Azimuth gloves +3",ring1="Metamor. Ring +1",ring2="Stikini Ring",
-		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua sandals +3"}
+		back=GeoNukeCape,waist="Null belt",legs="Azimuth tights +3",feet="Bagua Sandals +4"}
 		
     sets.midcast.ElementalEnfeeble = set_combine(sets.midcast['Enfeebling Magic'], {head="Amalric Coif +1",ear2="Malignance Earring",waist="Acuity Belt +1"})
     sets.midcast.ElementalEnfeeble.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {head="Amalric Coif +1",ear2="Malignance Earring",waist="Acuity Belt +1"})
@@ -280,12 +284,12 @@ function init_gear_sets()
 	sets.idle.Pet = {main="Idris",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
 		body="Azimuth Coat +3",hands="Geo. Mitaines +4",ring1="Defending Ring",ring2="Murky Ring",
-		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua sandals +3"}
+		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua Sandals +4"}
 
 	sets.idle.PDT.Pet = {main="Idris",sub="Genmei Shield",ammo="Staunch Tathlum",
 		head="Azimuth Hood +3",neck="Loricate Torque +1",ear1="Handler's Earring",ear2="Handler's Earring +1",
 		body="Azimuth Coat +3",hands="Geo. Mitaines +4",ring1="Defending Ring",ring2="Murky Ring",
-		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua sandals +3"}
+		back=GeoRegenCape,waist="Isa Belt",legs="Nyame flanchard",feet="Bagua Sandals +4"}
 
 	-- .Indi sets are for when an Indi-spell is active.
 	sets.idle.Indi = set_combine(sets.idle, {})
